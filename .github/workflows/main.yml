@@ -17,4 +17,4 @@ jobs:
         server: ${{ secrets.ftp_hostingerhost }}
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /jjlsysem-layout/
+        server-dir: /jjlsystem-layout/
