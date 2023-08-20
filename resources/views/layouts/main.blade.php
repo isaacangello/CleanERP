@@ -1,5 +1,5 @@
 @php
-    $systemVersion = "0.4.20";
+    $systemVersion = "0.4.25 git actions deploy on home";
 @endphp
     <!DOCTYPE html>
 <html>
@@ -204,7 +204,7 @@
                 &copy; 2023 <a href="javascript:void(0);">JJL - SYSTEM 2</a>.
             </div>
             <div class="version">
-                <b>Version: </b> {{$systemVersion}} teste git deploy
+                <b>Version: </b> {{$systemVersion}}
             </div>
         </div>
         <!-- #Footer -->
