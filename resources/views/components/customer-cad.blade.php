@@ -172,12 +172,12 @@
                                     <label for="md-checkbox-keys"> Keys in office ?</label>
                                  </div>
                                 <div class="checkbox-float">
-                                    <input type="checkbox" id="md-checkbox-drivelicence" name="cad-customer-drivlicence" class="filled-in chk-col-teal"  />
-                                    <label for="md-checkbox-drivelicence" > need driver licence ?</label><br>
+                                    <input type="checkbox" id="md-checkbox-drive-licence" name="cad-customer-drive-licence" class="filled-in chk-col-teal"  />
+                                    <label for="md-checkbox-drive-licence" > need driver licence ?</label><br>
                                 </div>
                                 <div class="checkbox-float">
-                                    <input type="checkbox" id="md-checkbox-passkey" name="cad_customer-passkey" class="filled-in chk-col-teal" />
-                                    <label for="md-checkbox-passkey" > need door or gate code ?</label>
+                                    <input type="checkbox" id="md-checkbox-gate-code" name="cad_customer-gate-code" class="filled-in chk-col-teal" />
+                                    <label for="md-checkbox-gate-code" > need door or gate code ?</label>
                                 </div>
                                 <div class="checkbox-float">
                                     <input type="checkbox" id="md-checkbox-moregirl" name="cad_customer-moregril" class="filled-in chk-col-teal" />
@@ -187,7 +187,8 @@
                             <div class="col s12 m7">
                                 <label for="textarea-cad-custumer-house-description" >house description</label>
                                 <div class="form-group">
-                                    <div class="form-line sucess">
+                                    <div class="form-line success">
+                                        <textarea style="padding: 10px; height: 200px"  id="textarea-cad-house-description" name="cad-costumer-house-description" class="form-control custom-textarea"   placeholder="Please type customer house description here..."></textarea>
                                     </div>
                                     <div class="help-info">Type house description</div>
                                 </div>

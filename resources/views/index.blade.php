@@ -14,9 +14,12 @@
                 <small class="w-75 text-bg-info force-white-text"  style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>The second version - The Powerful System. </b></small>
             </div>
         </div>
+       @error('name','password')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <div class="card">
             <div class="body" style="padding: 20px;">
-                <form id="sign_in" method="POST" action="{{ route('home') }}">
+                <form id="sign_in" method="POST" action="/login">
                     @csrf
                     <div class="msg">Sign in to start your session</div>
                     <div class="input-group">

@@ -24,18 +24,22 @@ return new class extends Migration
             $table->id();
             $table->string('name',120);
             $table->string('address',120);
+            $table->string('complement',120);
             $table->string('phone',20);
             $table->string('email',40);
             $table->string('type',11)->default('RESIDENTIAL');
             $table->string('status',8)->default('ACTIVE');
             $table->string('frequency',3)->default('ONE');
+            $table->string('price_weekly')->nullable();
+            $table->string('price_biweekly')->nullable();
+            $table->string('price_monthly')->nullable();
+            $table->string('other_services')->nullable();
             $table->string('regday',15)->nullable();
-            $table->string('description',320)->nullable();
             $table->string('info',320)->nullable();
-            $table->boolean('rentalhouse')->default(false);
-            $table->boolean('drive')->default(false);
+            $table->boolean('drivelicence')->default(false);
             $table->boolean('key')->default(false);
-            $table->boolean('passkey')->default(false);
+            $table->boolean('gate_code')->default(false);
+            $table->string('house_description',320)->nullable();
             $table->timestamps();
         });
     }

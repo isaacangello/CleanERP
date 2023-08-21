@@ -8858,7 +8858,9 @@ html.ie11 .bs-searchbox .form-control {
     float: left;
 }
 /*adjust textarea*/
-
+textarea.custom-textarea{
+    height: 170px;
+}
 textarea.custom-textarea:focus{
     border: none!important;
 }

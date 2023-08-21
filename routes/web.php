@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use \App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TesteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,40 +15,29 @@ use App\Http\Controllers\TesteController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-# rota para o index (login)
 Route::get('/index', function () {
     return view('index');
 })->name('index');
+Route::get('/', function () {
+    return view('index');
+});
+Route::post('/authenticate', [IndexController::class , 'authenticate'])->name('login.authenticate');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/home', function () {
+Route::middleware('auth')->group(function () {
+    Route::get('/home', function () {
     return view('home');
 })->name('home');
-Route::post('/home', function () {
-    return view('home');
-})->name('home');
-
-Route::get('/week', function () {
-    return view('week');
-})->name('week');
 
 Route::get('/customers', function () {
-    return view('customers');
-})->name('customers');
+    return view('home')->name('customers');
+});
 
-Route::get('/finances', function () {
-    return view('finances');
-})->name('finances');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('/loginajax', function () {
-    return view('loginajax');
-})->name('loginajax');
-
-Route::get('/testehome', function () {
-    return view('testehome');
-})->name('testehome');
-
-route::get('/get_ajax_login',[TesteController::class,'ajax_return']);
-route::post('/get_ajax_login',[TesteController::class,'ajax_return']);
+require __DIR__.'/auth.php';

@@ -11,7 +11,11 @@ Esse é um Projeto para a empresa JJL Clean Services, para controlar os processo
     - Usuários
     - Funcionarios
     - 
-- Financeiro
-- operacional
+- Comtrole Financeiro
+- Operacional
 
-
+## Telas já construidas até agora.
+- Tela de Login
+- Cadastros
+    - Customers
+    - Employees

@@ -38,7 +38,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
-                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-teal">
+                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-teal" checked disabled>
                             <label for="rememberme">Remember Me</label>
                         </div>
                         <div class="col-xs-4">

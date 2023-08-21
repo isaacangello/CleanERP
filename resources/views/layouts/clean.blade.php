@@ -53,7 +53,7 @@
 </style>
 </head>
 
-<body class="theme-teal login-page"  style="background-image: url('https://jjlsystem.xyz/teste/public/img/Background_login.png');background-size: 100% auto;background-repeat: no-repeat;">
+<body class="theme-teal login-page"  style="background-image: url('https://jjlsystem.xyz/teste/img/Background_login.png');background-size: 100% auto;background-repeat: no-repeat;">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
