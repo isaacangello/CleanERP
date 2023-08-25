@@ -5,14 +5,15 @@
         <div>
                 <div class="user-info" style="background: url('img/898_300X135.jpg') no-repeat no-repeat;">
                     <div class="image">
-                        <img src="img/users/mirella.png" width="48" height="48" alt="User"/>
-                    </div>
-                    <div class="info-container">
-                        <div class="name person-shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mirella</div>
-                        <div class="email person-shadow">mirella@example.com</div>
+            <div class="image">
+                <img src="/img/users/user.png" width="48" height="48" alt="User"/>
+            </div>
+            <div class="info-container">
+                <div class="name person-shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$userName}}</div>
+                <div class="email person-shadow">{{$email}}</div>
                         <div class="user-helper-dropdown">
                             <a href="javascript:void(0);" id="" data-target='dropdown-left-sidebar'><i class="material-icons white-text">keyboard_arrow_down</i></a>
-                            <ul id="dropdown-left-sidebar" class='z-depth-4 scale-transition scale-out scale-in'>
+                            <ul id="dropdown-left-sidebar1" class='z-depth-4 scale-transition scale-out scale-in'>
                                 <li><a href="javascript:void(0);" class="waves-effect"><i class="material-icons">person</i><span>Profile</span></a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="javascript:void(0);" class="waves-effect"><i class="material-icons">settings_applications</i><span>Config</span></a></li>

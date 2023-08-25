@@ -11,7 +11,7 @@
     <!-- Bootstrap Core Css -->
 {{--    <link href="web-resources/bootstrap/bootstrap.min.css" rel="stylesheet">--}}
     <!-- Materialize Core Css -->
-    <link href="web-resources/materialize/css/materialize.min.css" rel="stylesheet">
+    <link href="web-resources/materialize/css/materialize.css" rel="stylesheet">
 
     <!-- Waves Effect Css -->
     <link href="web-resources/systheme/plugins/node-waves/waves.css" rel="stylesheet" />
@@ -64,7 +64,7 @@
     <script src="web-resources/jquery/jquery-3.7.0.min.js"></script>
     <!-- Bootstrap Core Js -->
     <script src="web-resources/bootstrap/bootstrap.min.js"></script>
-    <script src="web-resources/materialize/js/materialize.min.js"></script>
+    <script src="web-resources/materialize/js/materialize.js"></script>
 
     <!-- Select Plugin Js -->
     <script src="web-resources/systheme/plugins/bootstrap-select/js/bootstrap-select.js"></script>

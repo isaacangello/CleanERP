@@ -22,18 +22,24 @@ Route::get('/', function () {
     return view('index');
 });
 Route::post('/authenticate', [IndexController::class , 'authenticate'])->name('login.authenticate');
+
+//Route::get('/home', function () {
+//    return view('home');
+//})->middleware(['auth', 'verified'])->name('home');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/customers', function () {
+    return view('customers');
+})->middleware(['auth', 'verified'])->name('customers');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
     return view('home');
 })->name('home');
 
-Route::get('/customers', function () {
-    return view('home')->name('customers');
-});
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

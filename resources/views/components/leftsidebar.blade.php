@@ -1,91 +1,4 @@
-@php
-    $systemVersion = "0.4.25 git actions deploy on home";
-@endphp
-    <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    @yield('title')
-    <!-- Favicon-->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
-    <link rel="manifest" href="./img/site.webmanifest">
-    <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#00a300">
-    <meta name="theme-color" content="#ffffff">
-    @yield('css-style')
-    <link href="web-resources/custom/mobile.css" rel="stylesheet">
-    @yield('script-top')
-</head>
-
-<body class="theme-teal">
-<!-- Page Loader -->
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-teal">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
-    </div>
-<!-- #END# Page Loader -->
-<!-- Overlay For Sidebars -->
-<div class="overlay"></div>
-<!-- #END# Overlay For Sidebars -->
-<!-- Search Bar -->
-<!-- #END# Search Bar -->
-<!-- Top NavBar -->
-<nav class="navbar nav">
-    <div class="nav-wrapper">
-         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <a href="#" id="hide-left-sidebar"  class="brand-logo hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
-        <a href="javascript:void(0);" id="jjl-logo" class="brand-logo  person-shadow hide-on-med-and-down">
-            <img src="img/android-chrome-256x256.png"   class="logo " alt="jjl logo"/>
-        </a>
-        <a href="javascript:void(0);" id="jjl-text" class=" brand-logo m-l-100 person-shadow flow-text hide-on-med-and-down" >
-            JJL System 2
-        </a>
-        <ul id="nav-mobile" class="right">
-            <li>
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                    <i class="material-icons" >notifications</i>
-                    <span id="label-count-alarm">7</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                    <i class="material-icons" >flag</i>
-                    <span id="label-count-msg">9</span>
-                </a>
-
-            </li>
-
-
-        </ul>
-    </div>
-</nav>
-<!-- #Top Bar  #########################################-->
-    <!-- Left Sidebar mobile laravel component #########################################-->
-    <x-mobile-left-sidebar
-        :user-name="Auth::user()->name"
-        :email="Auth::user()->email"
-        :system-version="$systemVersion"
-    />
-    <!-- Left Sidebar mobile end #########################################-->
-
-<section>
-    <!--###### Left Sidebar ######################################### -->
+<div>
     <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
         <div class="user-info">
@@ -93,8 +6,8 @@
                 <img src="img/users/user.png" width="48" height="48" alt="User"/>
             </div>
             <div class="info-container">
-                <div class="name person-shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</div>
-                <div class="email person-shadow">{{ Auth::user()->email }}</div>
+                <div class="name person-shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$userName}}</div>
+                <div class="email person-shadow">{{$email}}</div>
                 <div class="user-helper-dropdown">
                     <a href="#" id="buton-user-dropdown" data-target='dropdown-left-sidebar'><i class="material-icons white-text">keyboard_arrow_down</i></a>
                     <ul id="dropdown-left-sidebar" class='z-depth-4 scale-transition scale-out scale-in'>
@@ -216,15 +129,5 @@
         </div>
         <!-- #Footer -->
     </aside>
-    <!-- #END# Left Sidebar -->
-    <!-- Right Sidebar -->
-</section>
 
-<section class="content" id="site-content">
-    @yield('content')
-</section>
-@yield('script-botton')
-</body>
-
-</html>
-
+</div>

@@ -14,18 +14,20 @@ class IndexController extends Controller
     {
         $credentials = $request->validate([
             'name' => ['required', 'name'],
+            'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('home');
         }
 
         return back()->withErrors([
+            'email' => 'email wrong: The provided credentials do not match our records.',
             'name' => 'Name wrong: The provided credentials do not match our records.',
             'password' => 'Password wrong: The provided credentials do not match our records.',
-        ])->onlyInput('name');
+        ])->onlyInput('email');
     }
 }

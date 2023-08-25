@@ -13,16 +13,34 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            input.form-control {
+                margin-bottom: 0px!important;
+                border-bottom: none!important;
+            }
+            textarea.form-control {
+                margin-bottom: 0px!important;
+                border-bottom: none!important;
+            }
+            input.select-dropdown {
+                margin-bottom: 0px!important;
+                border-bottom: none!important;
+            }
+            .red:hover{
+                background-color: #ef9a9a!important;
+            }
+        </style>
+
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+    <body class="">
+        <div class="">
+            <div class="container align-center" style="background-color: transparent;">
+                <a href="/home"  class="">
+                    <img src="img/icon-81.png" style="width: 5em;" alt="JJL logo" />
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div>
                 {{ $slot }}
             </div>
         </div>
