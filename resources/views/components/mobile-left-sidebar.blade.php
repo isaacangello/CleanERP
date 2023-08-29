@@ -6,7 +6,7 @@
                 <div class="user-info" style="background: url('img/898_300X135.jpg') no-repeat no-repeat;">
                     <div class="image">
             <div class="image">
-                <img src="/img/users/user.png" width="48" height="48" alt="User"/>
+                <img src="{{$userImg}}" width="48" height="48" alt="User"/>
             </div>
             <div class="info-container">
                 <div class="name person-shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$userName}}</div>

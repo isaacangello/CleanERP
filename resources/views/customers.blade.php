@@ -49,6 +49,37 @@
 @endsection
 
 @section('content')
+@php
+    if (!isset($customerName)){$customerName='Jhon Doe Pinto Rego';$customerNameCad='&nbsp;';}
+    if (!isset($customerType)){$customerType='RESIDENCIAL';$customerTypeCad='&nbsp;';}
+    if (!isset($customerEmail)){$customerEmail='jhondoe@email.com';$customerEmailCad='&nbsp;';}
+    if (!isset($customerAddress)){$customerAddress='Meu endereço';$customerAddressCad='&nbsp;';}
+    if (!isset($customerAddressComplement)){$customerAddressComplement='Complemento';$customerAddressComplementCad="&nbsp;";}
+    if (!isset($customerPhone)){$customerPhone='561-124-555';$customerPhoneCad ='&nbsp;';}
+    if (!isset($customerPriceWeekly )){$customerPriceWeekly ='200';$customerPriceWeeklyCad='&nbsp;';}
+    if (!isset($customerPriceBiweekly )){$customerPriceBiweekly ='200';$customerPriceBiweeklyCad='&nbsp;';}
+    if (!isset($customerPriceMonthly)){$customerPriceMonthly='200';$customerPriceMonthlyCad='&nbsp;';}
+    if (!isset($costumerOtherServices)){$costumerOtherServices='Lorem ipsun and Busei ipsun';$costumerOtherServicesCad='&nbsp;';}
+    if (!isset($customerStatus)){$customerStatus='ACTIVE';$customerStatusCad='&nbsp;';}
+    if (!isset($customerJustifyInactive)){$customerJustifyInactive='está inativo por que eu quiz e pronto, mandei !!!!!';$customerJustifyInactiveCad='&nbsp;';}
+    if (!isset($customerKeys)){$customerKeys='checked';$customerKeysCad="checked";}
+    if (!isset($customerDriveLicence )){$customerDriveLicence ='checked';$customerDriveLicenceCad='checked';}
+    if (!isset($customerGateCode )){$customerGateCode ='checked';$customerGateCodeCad='checked';}
+    if (!isset($customerPasskey)){$customerPasskey='checked';$customerPasskeyCad='checked';}
+    if (!isset($customerMoregirl)){$customerMoregirl='checked';$customerMoregirlCad='checked';}
+    if (!isset($customerHouseDescription)){$customerHouseDescription='Lorem ipsun';$customerHouseDescriptionCad='&nbsp;';}
+    if (!isset($customerNote )){$customerNote ='Lorem ipsun and Busei ipsun';$customerNoteCad='&nbsp;';}
+    if (!isset($count )){$count=0;}
+    //<!-- função auxiliar para gerar lista com cores alternadas  -->
+            function altclass($nun){
+                if ($nun % 2 > 0 ){
+                    echo "darken-3";
+                }else{
+                    echo "darken-4";
+                }
+            }
+@endphp
+
 <div class="container-fluid">
     <div class="block-header">
         <h2>
@@ -62,7 +93,7 @@
                 <div class="header" style="padding-bottom: 0px;">
                     <div class="row">
                         <div class="col s12 m12">
-                            <button class="btn waves-effect waves-teal  btn-small modal-trigger" data-target="new-customer"  href="#new-customer"  >New Customer</button>
+                            <button class="btn waves-effect waves-teal  btn-small modal-trigger"  href="#new-customer"  >New Customer</button>
                             <span id="list-of-customer" class="m-l-35">LIST OF CUSTOMERS</span>
                                     <!-- ############  Blade  component customer-cad ###########################################################################################-->
                                     <!-- component register for register new customer-->
@@ -73,33 +104,6 @@
                     </div>
                 </div>
                                                 <!-- tratando variáveis do componentes customer-viewedit -->
-                                                @php
-                                                    if (!isset($vieweditCustomerName)){$vieweditCustomerName='Jhon Doe Pinto Rego';}
-                                                    if (!isset($vieweditCustomerType)){$vieweditCustomerType='RESIDENCIAL';}
-                                                    if (!isset($vieweditCustomerEmail)){$vieweditCustomerEmail='jhondoe@email.com';}
-                                                    if (!isset($vieweditCustomerAddress)){$vieweditCustomerAddress='Meu endereço';}
-                                                    if (!isset($vieweditCustomerAddressComplement)){$vieweditCustomerAddressComplement='Complemento';}
-                                                    if (!isset($vieweditCustomerPhone)){$vieweditCustomerPhone='561-124-555';}
-                                                    if (!isset($vieweditCustomerPriceWeekly )){$vieweditCustomerPriceWeekly ='200';}
-                                                    if (!isset($vieweditCustomerPriceBiweekly )){$vieweditCustomerPriceBiweekly ='200';}
-                                                    if (!isset($vieweditCustomerPriceMonthly)){$vieweditCustomerPriceMonthly='200';}
-                                                    if (!isset($vieweditCustomerStatus)){$vieweditCustomerStatus='ACTIVE';}
-                                                    if (!isset($vieweditCustomerJustifyInactive)){$vieweditCustomerJustifyInactive='está inativo por que eu quiz e pronto, mandei !!!!!';}
-                                                    if (!isset($vieweditCustomerKeys)){$vieweditCustomerKeys=' ';}
-                                                    if (!isset($vieweditCustomerDrivelicence )){$vieweditCustomerDrivelicence =' ';}
-                                                    if (!isset($viewditCustomerPasskey)){$viewditCustomerPasskey='checked';}
-                                                    if (!isset($vieweditCustomerMoregirl)){$vieweditCustomerMoregirl='checked';}
-                                                    if (!isset($vieweditCustumerHouseDescription)){$vieweditCustumerHouseDescription='Lorem ipsun';}
-                                                    if (!isset($vieweditCustomerNote )){$vieweditCustomerNote ='Lorem ipsun and Busei ipsun';}
-                                                    //<!-- função auxiliar para gerar lista com cores alternadas  -->
-                                                            function altclass($nun){
-                                                                if ($nun % 2 > 0 ){
-                                                                    echo "darken-3";
-                                                                }else{
-                                                                    echo "darken-4";
-                                                                }
-                                                            }
-                                                @endphp
 
                 <div class="body">
                     <div class="row">
@@ -111,26 +115,8 @@
                                           <div class="collapsible-header green @php(altclass($i)) white-text"><i class="material-icons">person</i>Jhon Doe Pinto Rego</div>
                                             <div class="collapsible-body">
                                                 @php($count=$i)
-                                                <x-customer-view-edit
-                                                    :viewedit-customer-name="$vieweditCustomerName"
-                                                    :viewedit-customer-type="$vieweditCustomerType"
-                                                    :viewedit-customer-email="$vieweditCustomerType"
-                                                    :viewedit-customer-address="$vieweditCustomerAddress"
-                                                    :viewedit-customer-address-complement="$vieweditCustomerAddressComplement"
-                                                    :viewedit-customer-phone="$vieweditCustomerPhone"
-                                                    :viewedit-customer-price-weekly="$vieweditCustomerPriceWeekly"
-                                                    :viewedit-customer-price-biweekly="$vieweditCustomerPriceBiweekly"
-                                                    :viewedit-customer-price--monthly="$vieweditCustomerPriceMonthly"
-                                                    :viewedit-customer-status="$vieweditCustomerStatus"
-                                                    :viewedit-customer-justify-inactive="$vieweditCustomerJustifyInactive"
-                                                    :viewedit-customer-keys="$vieweditCustomerKeys"
-                                                    :viewedit-customer-drivelicence="$vieweditCustomerDrivelicence"
-                                                    :viewdit-customer-passkey="$viewditCustomerPasskey"
-                                                    :viewedit-customer-moregirl="$vieweditCustomerMoregirl"
-                                                    :viewedit-custumer-house-description="$vieweditCustumerHouseDescription"
-                                                    :viewedit-customer-note="$vieweditCustomerNote"
-                                                    :count="$count"
-                                                />
+                                                    @include('components.customer-crud')
+
                                             </div>
                                     </li>
 @endfor

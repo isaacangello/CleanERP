@@ -9,7 +9,7 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.css": {
-    "file": "assets/app-23fa3b2a.css",
+    "file": "assets/app-186fd34f.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -17,9 +17,9 @@
       "assets/898_300X135-73855875.jpg"
     ],
     "css": [
-      "assets/app-23fa3b2a.css"
+      "assets/app-186fd34f.css"
     ],
-    "file": "assets/app-952d6268.js",
+    "file": "assets/app-4211699b.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

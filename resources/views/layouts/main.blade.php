@@ -1,5 +1,8 @@
 @php
-    $systemVersion = "0.4.25 git actions deploy on home";
+    if(empty($systemVersion)){$systemVersion = "0.5.01 git actions deploy on home";}
+    if(empty($userImg)){$userImg = "img/users/user.png";}
+    if(empty($email)){$email = Auth::user()->email;}else{$email="email@email.com";}
+    $userName = Auth::user()->name;
 @endphp
     <!DOCTYPE html>
 <html>
@@ -49,7 +52,7 @@
 <nav class="navbar nav">
     <div class="nav-wrapper">
          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <a href="#" id="hide-left-sidebar"  class="brand-logo hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
+        <a href="#" id="hide-left-sidebar"  class="hide-left-sidebar brand-logo hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
         <a href="javascript:void(0);" id="jjl-logo" class="brand-logo  person-shadow hide-on-med-and-down">
             <img src="img/android-chrome-256x256.png"   class="logo " alt="jjl logo"/>
         </a>
@@ -78,8 +81,9 @@
 <!-- #Top Bar  #########################################-->
     <!-- Left Sidebar mobile laravel component #########################################-->
     <x-mobile-left-sidebar
-        :user-name="Auth::user()->name"
-        :email="Auth::user()->email"
+        :user-name="$userName"
+        :user-img="$userImg"
+        :email="$email"
         :system-version="$systemVersion"
     />
     <!-- Left Sidebar mobile end #########################################-->
@@ -98,14 +102,14 @@
                 <div class="user-helper-dropdown">
                     <a href="#" id="buton-user-dropdown" data-target='dropdown-left-sidebar'><i class="material-icons white-text">keyboard_arrow_down</i></a>
                     <ul id="dropdown-left-sidebar" class='z-depth-4 scale-transition scale-out scale-in'>
-                        <li><a href="javascript:void(0);" class="waves-effect"><i class="material-icons">person</i><span>Profile</span></a></li>
+                        <li><a href="javascript:void(0);" class="waves-effect waves-classic waves-light"><i class="material-icons">person</i><span>Profile</span></a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0);" class="waves-effect"><i class="material-icons">settings_applications</i><span>Config</span></a></li>
+                        <li><a href="javascript:void(0);" class="waves-effect waves-classic waves-light"><i class="material-icons">settings_applications</i><span>Config</span></a></li>
                         <li role="separator" class="divider"></li>
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
-                                <button type="submit" class="waves-effect" style="border:none"><i class="material-icons">input</i><span>Sign Out</span> </button>
+                                <button type="submit" class="waves-effect waves-classic" style="border:none"><i class="material-icons">input</i><span>Sign Out</span> </button>
                             </form>
                         </li>
                     </ul>

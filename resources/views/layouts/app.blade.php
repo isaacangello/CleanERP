@@ -1,3 +1,9 @@
+@php
+    if(empty($systemVersion)){$systemVersion = "0.5.01 git actions deploy on home";}
+    if(empty($userImg)){$userImg = "img/users/user.png";}
+    if(empty($email)){$email = Auth::user()->email;}else{$email="email@email.com";}
+    $userName = Auth::user()->name;
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -31,9 +37,20 @@
 
             <!-- Page Content -->
             <main>
-
-                {{ $slot }}
+            <section>
+                <x-leftsidebar
+                    :user-name="$userName"
+                    :user-img="$userImg"
+                    :email="$email"
+                    :system-version="$systemVersion"
+                />
+            </section>
+                <section class="site-content" id="site-content">
+                    {{ $slot }}
+                </section>
             </main>
         </div>
+{{--    <script src="web-resources/jquery/jquery-3.7.0.min.js"></script>--}}
+{{--    <script src="web-resources/systheme/js/pages/index.js"></script>--}}
     </body>
 </html>

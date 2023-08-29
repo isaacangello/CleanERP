@@ -1,5 +1,7 @@
-﻿$(document).ready(function () {
-
+﻿if(typeof indexloaded === "undefined") {var indexloaded = false;}
+if (indexloaded === false){
+$(document).ready(function () {
+var indexloaded = true;
 
 $(function () {
     //Widgets count
@@ -116,7 +118,7 @@ function getRandomData() {
     return res;
 }
 
-var hidden = "false";
+var hidden = "true";
 
 $("#hide-left-sidebar").click(function () {
     /*
@@ -143,8 +145,43 @@ $("#hide-left-sidebar").click(function () {
             $("#leftsidebar").hide("500");
             $("#site-content").css('margin-left',"15px");
 
-        };
+        }
     }
 
 );
+var hidden1 = "true";
+
+console.log('Arquivo index.js');
+
+$("a.hide-left-sidebar").click(function () {
+    /*
+    *   -moz-transition: 0.5s;
+        -o-transition: 0.5s;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    * */
+             $(".leftsidebar").css({
+                    "-moz-transition":"left 0.5s",
+                    "-o-transition":"left 0.5s",
+                    "-webkit-transition":"left 0.5s",
+                    "transition":"left 0.5s",
+                 });
+
+        if(hidden1 == "true"){
+             hidden1 = "false";
+            $(".leftsidebar").show("500") ;
+            $(".site-content").css('margin-left',"315px");
+            $(".site-content").css('display',"block!important");
+
+        } else {
+             hidden1 = "true";
+            $(".leftsidebar").hide("500");
+            $(".site-content").css('margin-left',"15px");
+
+        }
+    }
+
+);
+
 })
+    }
