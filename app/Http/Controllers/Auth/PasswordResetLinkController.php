@@ -22,7 +22,12 @@ class PasswordResetLinkController extends Controller
      * Handle an incoming password reset link request.
      *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * emails senhas
+     * reset@jjsystem.host 5.;!?G9w.MX!
+     * reset@jjlsystem.xyz w{OF*8}cmr@*
      */
+
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
