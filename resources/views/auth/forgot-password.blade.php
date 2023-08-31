@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="container">
         <div class="row">
-            <div class="col s2 m3"></div>
+            <div class="col s1 m3"></div>
                 <div class="col s10 m6">
                     {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
                 </div>
