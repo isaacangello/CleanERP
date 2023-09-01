@@ -18,7 +18,7 @@
            <div class="alert alert-danger">
                <ul class="collection">
                @foreach($errors->get('email') as $message)
-                   <li class="collection-item">{{ $message }}</li>
+                   <li class="collection-item">Email: {{ $message }}</li>
                @endforeach
                </ul>
            </div>
@@ -27,7 +27,7 @@
            <div class="alert alert-danger">
                <ul class="collection">
                @foreach($errors->get('password') as $message)
-                   <li class="collection-item">{{ $message }}</li>
+                   <li class="collection-item">Password: {{ $message }}</li>
                @endforeach
                </ul>
            </div>
@@ -42,17 +42,19 @@
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
-                        <div class="form-line @if($errors->get('email')) error focused @endif">
+                        <div class="form-line">
                             <input id="email" type="email" name="email"  class="form-control"  placeholder="Email" required autofocus autocomplete="username" />
                         </div>
+                        <x-input-error :messages="$errors->get('email')" class="red-text text-darken-4" />
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
                         </span>
-                        <div class="form-line @if($errors->get('password')) error focused @endif">
+                        <div class="form-line">
                             <input id="password" type="password" class="form-control" name="password"  autocomplete="current-password" placeholder="Password" required>
                         </div>
+                        <x-input-error :messages="$errors->get('password')" class="red-text text-darken-4" />
                     </div>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">

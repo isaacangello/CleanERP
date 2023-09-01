@@ -36,7 +36,7 @@
         <div class="">
             <div class="container align-center" style="background-color: transparent;">
                 <a href="/home"  class="">
-                    <img src="/img/icon-81.png" style="width: 5em;" alt="JJL logo" />
+                    <img src="./img/icon-81.png" style="width: 5em;" alt="JJL logo" />
                 </a>
             </div>
 

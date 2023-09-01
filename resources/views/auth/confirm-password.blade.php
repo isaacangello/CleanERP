@@ -2,17 +2,14 @@
 <div class="row">
     <div class="col s1 m3"></div>
     <div class="col s10 m6">
-
-    </div>
-    <div class="col s1 m3"></div>
-</div>
         <div class="alert alert-info">
             {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
         </div>
-
+    </div>
+    <div class="col s1 m3"></div>
+</div>
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
-
         <!-- Password -->
 <div class="row">
     <div class="col s1 m3"></div>
@@ -25,9 +22,8 @@
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />
-
-                <x-input-error :messages="$errors->get('password')" class="red-text text-darken-4" />
             </div>
+           <x-input-error :messages="$errors->get('password')" class="red-text text-darken-4" />
         </div>
 
     </div>
