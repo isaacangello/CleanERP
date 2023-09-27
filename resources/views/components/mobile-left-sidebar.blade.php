@@ -84,7 +84,7 @@
                     </a>
                 </li>
                 <li class="sidenav-item">
-                    <a href="javascript:void(0);" class="waves-effect">
+                    <a href="{{route('employees')}}" class="waves-effect">
                         <i class="material-icons" style="font-size: 20px;">badge</i>
                         <span>Employees</span>
                     </a>

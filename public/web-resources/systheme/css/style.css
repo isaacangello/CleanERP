@@ -8892,3 +8892,7 @@ textarea.custom-textarea:focus-visible{
 .displaytest{
     display: none;
 }
+
+.label-padding{
+ padding: 4px;
+}

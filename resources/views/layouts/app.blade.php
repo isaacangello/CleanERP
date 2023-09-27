@@ -20,7 +20,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite('resources/css/app.css')
     </head>
     <body class="theme-teal">
         <div class="container-fluid">
@@ -50,7 +50,6 @@
                 </section>
             </main>
         </div>
-{{--    <script src="web-resources/jquery/jquery-3.7.0.min.js"></script>--}}
-{{--    <script src="web-resources/systheme/js/pages/index.js"></script>--}}
+        @vite('resources/js/app.js')
     </body>
 </html>

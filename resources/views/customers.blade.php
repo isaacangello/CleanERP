@@ -1,6 +1,6 @@
 @extends("layouts.main")
 @section('title')
-     <title>Home - main - JJL System 2</title>
+     <title>Customers - main - JJL System 2</title>
 @endsection
 {{--css links para o head--}}
 @section('css-style')
@@ -19,7 +19,7 @@
     <!-- Animation Css -->
     <link href="web-resources/systheme/plugins/animate-css/animate.css" rel="stylesheet" />
     <!-- Sweet Alert Css -->
-    <link href=web-resources/systheme/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="web-resources/systheme/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
 
     <!-- Custom Css -->
@@ -45,6 +45,7 @@
         .red:hover{
             background-color: #ef9a9a!important;
         }
+
     </style>
 @endsection
 
@@ -93,7 +94,7 @@
                 <div class="header" style="padding-bottom: 0px;">
                     <div class="row">
                         <div class="col s12 m12">
-                            <button class="btn waves-effect waves-teal  btn-small modal-trigger"  href="#new-customer"  >New Customer</button>
+                            <button class="btn waves-effect waves-classic waves-light  btn-small modal-trigger"  href="#new-customer"  >New Customer</button>
                             <span id="list-of-customer" class="m-l-35">LIST OF CUSTOMERS</span>
                                     <!-- ############  Blade  component customer-cad ###########################################################################################-->
                                     <!-- component register for register new customer-->
@@ -162,36 +163,36 @@
 @section('script-botton')
     <!-- Jquery Core Js -->
 {{--    <script src="web-resources/systheme/plugins/jquery/jquery.min.js"></script>--}}
-    <script src="web-resources/jquery/jquery-3.7.0.min.js"></script>
+    <script src="{{asset('web-resources/jquery/jquery-3.7.0.min.js')}}"></script>
     <!-- Bootstrap Core Js -->
 {{--    <script src="web-resources/bootstrap/bootstrap.min.js"></script>--}}
-    <script src="web-resources/materialize/js/materialize.min.js"></script>
+    <script src="{{ asset('web-resources/materialize/js/materialize.min.js') }}"></script>
 
     <!-- Select Plugin Js -->
 {{--    <script src="web-resources/systheme/plugins/bootstrap-select/js/bootstrap-select.js"></script>--}}
 
     <!-- Slimscroll Plugin Js -->
-    <script src="web-resources/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="{{asset('web-resources/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="web-resources/systheme/plugins/node-waves/waves.js"></script>
+    <script src="{{asset('web-resources/systheme/plugins/node-waves/waves.js')}}"></script>
     <!-- Jquery Validation Plugin Css -->
-    <script src="../../plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="{{ asset('web-resources/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>
 
     <!-- JQuery Steps Plugin Js -->
-    <script src="../../plugins/jquery-steps/jquery.steps.js"></script>
+    <script src="{{asset('web-resources/systheme/plugins/jquery-steps/jquery.steps.js')}}"></script>
 
     <!-- Sweet Alert Plugin Js -->
-    <script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="{{asset('web-resources/systheme/plugins/sweetalert/sweetalert.min.js')}}"></script>
 
     <!-- Custom Js -->
-    <script src="web-resources/systheme/js/admin.js"></script>
+    <script src="{{ asset('web-resources/systheme/js/admin.js') }}"></script>
 {{--    <script src="web-resources/systheme/js/pages/tables/jquery-datatable.js"></script>--}}
-    <script src="web-resources/systheme/js/pages/index.js"></script>
-<script src="web-resources/systheme/js/pages/forms/form-validation.js"></script>
+    <script src="{{ asset('web-resources/systheme/js/pages/index.js') }}"></script>
+<script src="{{ asset('web-resources/systheme/js/pages/forms/form-validation.js') }}"></script>
     <!-- Demo Js -->
-    <script src="web-resources/systheme/js/demo.js"></script>
-    <script src="web-resources/systheme/js/systheme.js"></script>
+    <script src="{{asset('web-resources/systheme/js/demo.js')}}"></script>
+    <script src="{{ asset('web-resources/systheme/js/systheme.js') }}"></script>
 @endsection
 
 

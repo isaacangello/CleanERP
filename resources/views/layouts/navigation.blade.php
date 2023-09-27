@@ -1,8 +1,8 @@
 <!-- Top NavBar -->
 <nav class="navbar nav">
     <div class="nav-wrapper">
-         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <a href="#" id="hide-left-sidebar"  class="hide-left-sidebar brand-logo hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
+         <a href="javascript:void(0);" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="javascript:void(0);" id="hide-left-sidebar"  class="hide-left-sidebar brand-logo hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
         <a href="javascript:void(0);" id="jjl-logo" class="brand-logo  person-shadow hide-on-med-and-down">
             <img src="img/android-chrome-256x256.png"   class="logo " alt="jjl logo"/>
         </a>

@@ -13,15 +13,15 @@
     @yield('title')
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('./img/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('./img/favicon-16x16.png')}}">
     <link rel="manifest" href="./img/site.webmanifest">
-    <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="mask-icon" href="{{ asset('./img/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#00a300">
     <meta name="theme-color" content="#ffffff">
     @yield('css-style')
-    <link href="web-resources/custom/mobile.css" rel="stylesheet">
+    <link href="{{ asset('web-resources/custom/mobile.css') }} " rel="stylesheet">
     @yield('script-top')
 </head>
 
@@ -54,7 +54,7 @@
          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <a href="#" id="hide-left-sidebar"  class="hide-left-sidebar brand-logo hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
         <a href="javascript:void(0);" id="jjl-logo" class="brand-logo  person-shadow hide-on-med-and-down">
-            <img src="img/android-chrome-256x256.png"   class="logo " alt="jjl logo"/>
+            <img src="{{asset('img/android-chrome-256x256.png')}}"   class="logo " alt="jjl logo"/>
         </a>
         <a href="javascript:void(0);" id="jjl-text" class=" brand-logo m-l-100 person-shadow flow-text hide-on-med-and-down" >
             JJL System 2
@@ -94,7 +94,7 @@
         <!-- User Info -->
         <div class="user-info">
             <div class="image">
-                <img src="img/users/user.png" width="48" height="48" alt="User"/>
+                <img src="{{asset('img/users/user.png')}}" width="48" height="48" alt="User"/>
             </div>
             <div class="info-container">
                 <div class="name person-shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</div>
@@ -102,14 +102,20 @@
                 <div class="user-helper-dropdown">
                     <a href="#" id="buton-user-dropdown" data-target='dropdown-left-sidebar'><i class="material-icons white-text">keyboard_arrow_down</i></a>
                     <ul id="dropdown-left-sidebar" class='z-depth-4 scale-transition scale-out scale-in'>
-                        <li><a href="javascript:void(0);" class="waves-effect waves-classic waves-light"><i class="material-icons">person</i><span>Profile</span></a></li>
+                        <li>
+                            <a href="{{ route('profile.edit') }}" class="waves-effect waves-classic waves-light"><i class="material-icons">person</i><span>Profile</span></a>
+                        </li>
                         <li role="separator" class="divider"></li>
                         <li><a href="javascript:void(0);" class="waves-effect waves-classic waves-light"><i class="material-icons">settings_applications</i><span>Config</span></a></li>
                         <li role="separator" class="divider"></li>
-                        <li>
-                            <form action="{{ route('logout') }}" method="post">
+                        <li style="background-color: transparent">
+                            <form action="{{ route('logout') }}" method="post" >
                                 @csrf
-                                <button type="submit" class="waves-effect waves-classic" style="border:none"><i class="material-icons">input</i><span>Sign Out</span> </button>
+                                <a href="javascript:void(0);" class="waves-effect waves-classic waves-light">
+                                    <button type="submit" style="border:none;background-color: transparent">
+                                        <i class="material-icons">input</i><span>Sign Out</span>
+                                    </button>
+                                </a>
                             </form>
                         </li>
                     </ul>
@@ -182,7 +188,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);">
+                    <a href="{{route('employees')}}">
                         <i class="material-icons" style="font-size: 20px;">badge</i>
                         <span>Employees</span>
                     </a>

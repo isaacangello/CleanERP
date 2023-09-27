@@ -18,24 +18,32 @@ use Illuminate\Support\Facades\Route;
 Route::get('/index', function () {
     return view('index');
 })->name('index');
+
 Route::get('/', function () {
     return view('index');
 });
+
 Route::post('/authenticate', [IndexController::class , 'authenticate'])->name('login.authenticate');
 
 //Route::get('/home', function () {
 //    return view('home');
 //})->middleware(['auth', 'verified'])->name('home');
-
+//############################################################# dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+//#############################################################
 Route::get('/customers', function () {
     return view('customers');
 })->middleware(['auth', 'verified'])->name('customers');
+//#############################################################
+Route::get('/employees', function () {
+    return view('employees');
+})->middleware(['auth', 'verified'])->name('employees');
 
-
+//#############################################################
 Route::middleware('auth')->group(function () {
+
     Route::get('/home', function () {
     return view('home');
 })->name('home');
