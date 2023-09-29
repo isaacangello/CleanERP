@@ -8896,3 +8896,11 @@ textarea.custom-textarea:focus-visible{
 .label-padding{
  padding: 4px;
 }
+
+.label-employee-view-edit{
+    color: white;
+    background-color: #8BC34A !important;
+    padding: 4px;
+
+
+}

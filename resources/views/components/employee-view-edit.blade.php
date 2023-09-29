@@ -1,7 +1,7 @@
 <div>
-    <div class="row">
-        <span class="label bg-light-green p-12 label-padding">Personal information</span>
-        <hr>
+    <div class="row label-employee-view-edit" >
+        <span class="label bg-light-green  label-padding">Personal information</span>
+{{--        <hr>--}}
     </div>
 
     <div class="row clearfix">
@@ -81,7 +81,7 @@
                         <p>
                           <label>
                             <input name="group1" type="radio" />
-                            <span class="grey-text text-darken-2">Part Time</span>
+                            <span class="grey-text text-darken-2">Full Time</span>
                           </label>
                         </p>
                     </div>
@@ -169,7 +169,7 @@
     </div>
 
     <div class="row">
-        <span class="label bg-light-green p-12 label-padding">Additional information</span>
+        <span class="label bg-light-green label-padding">Additional information</span>
         <hr>
     </div>
     <div class="row clearfix">

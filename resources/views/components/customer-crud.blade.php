@@ -12,7 +12,7 @@
         <div class=" col s12 m4">
             <div class="form-group">
                 <div class="form-line success">
-                    <select id="select-crud-customer-type" name="customer-type" class="form-control">
+                    <select id="select-crud-customer-type" name="customer-type" >
                         <option selected value="{{ $customerType }}">{{ $customerType }}</option>
                         <option  value="RESIDENCIAL">RESIDENCIAL</option>
                         <option value="COMERCIAL">COMERCIAL</option>
@@ -131,7 +131,7 @@ if (isset($customerStatus)){
         <div class="col s12 m5">
             <div class="form-group">
                 <div class="form-line success">
-                    <select class="form-control">
+                    <select class="">
                         <option disabled>select status of cutomer</option>
                         <option selected value="{{ $customerStatus }}">{{ $customerStatus }}</option>
                         <option value="{{$customerStatus2}}">{{$customerStatus2}}</option>

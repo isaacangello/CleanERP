@@ -17,11 +17,11 @@
                             <div class=" col s12 m4">
                                 <div class="form-group">
                                     <div class="form-line success">
-                                        <select id="select-cad-customer-type" name="customer-type" class="form-control">
+                                        <select id="select-cad-customer-type" name="customer-type">
                                             <option value="">Select one option</option>
                                             <option selected value="RESIDENCIAL">RESIDENCIAL</option>
                                             <option value="COMERCIAL">COMERCIAL</option>
-                                            <option value="RENTAL_HOUSE">RENTAL HOUSE</option>
+                                            <option value="RENTALHOUSE">RENTAL HOUSE</option>
                                         </select>
                                     </div>
                                     <div class="help-info">select type of customer</div>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="divider clearfix" style="margin: 30px 0px 30px 0px;"></div>
+                        <div class="divider clearfix" style="margin: 30px 0 30px 0;"></div>
 
                         <div class="row clearfix">
                             <div class="col s12 m3">
@@ -120,7 +120,7 @@
                             <div class="col s12 m4">
                                 <div class="form-group">
                                     <div class="form-line success">
-                                        <select class="form-control">
+                                        <select class="btn-group bootstrap-select  show-tick">
                                             <option disabled>select status of cutomer</option>
                                             <option selected value="ACTIVE">ACTIVE</option>
                                             <option value="INACTIVE">INACTIVE</option>
