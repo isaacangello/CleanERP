@@ -230,7 +230,7 @@
                               name="costumer-note"
                               class="form-control custom-textarea"
                               rows="4"
-                              placeholder="Please type customer notes here..."
+                              placeholder="Please type employee notes here..."
                     ></textarea>
                             </div>
                             <div class="help-info">Insert employee Additional information.</div>
