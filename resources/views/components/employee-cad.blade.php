@@ -43,7 +43,7 @@
                     <div class="col s12 m6">
                         <div class="form-group">
                             <div class="form-line success">
-                                <input class="form-control"  id="input-view-edit-email" name="emplpoyeeEmail" value=" />
+                                <input class="form-control"  id="input-view-edit-email" name="emplpoyeeEmail" value="" />
                     <label class="form-label"  for="input-view-edit-">Employee email</label>
                             </div>
                             <div class="help-info">Insert employee email contact.</div>

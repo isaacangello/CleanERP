@@ -39,7 +39,7 @@
             <div class="form-group">
                 <div class="form-line success">
                     <input class="form-control"  id="input-view-edit-email" name="emplpoyeeEmail" value="{{$employeeEmail}}" />
-                    <label class="form-label"  for="input-view-edit-">Employee email</label>
+                    <label class="form-label"  for="input-view-edit-email">Employee email</label>
                 </div>
                 <div class="help-info">Insert employee email contact.</div>
             </div>

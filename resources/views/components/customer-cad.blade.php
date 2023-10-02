@@ -70,7 +70,7 @@
                                         <input type="text" id="input-cad-customer-email" name="customer-email" class="form-control" value="">
                                         <label class="form-label" for="input-cad-customer-email" >Email</label>
                                     </div>
-                                    <div class="help-info">Insert email </div>
+                                    <div class="help-info">Insert email</div>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                                         <input type="text"  name="customer-justify-inatctive" id="input-cad-customer-justify-inatctive" class="form-control" value=""/>
                                         <label class="form-label" for="input-cad-customer-justify-inatctive">why change customer status ?</label>
                                     </div>
-                                    <div class="help-info">why change customer status ?</div>
+                                    <div class="help-info">Why change customer status ?</div>
                                 </div>
                             </div>
                         </div>
@@ -146,19 +146,19 @@
                                  </div>
                                 <div class="checkbox-float">
                                     <input type="checkbox" id="md-checkbox-drive-licence" name="customer-drive-licence" value="" class="filled-in chk-col-teal"   />
-                                    <label for="md-checkbox-drive-licence" > need driver licence ?</label><br>
+                                    <label for="md-checkbox-drive-licence" > Need driver licence ?</label><br>
                                 </div>
                                 <div class="checkbox-float">
                                     <input type="checkbox" id="md-checkbox-gate-code" name="customer-gate-code" value="" class="filled-in chk-col-teal" />
-                                    <label for="md-checkbox-gate-code" > need door or gate code ?</label>
+                                    <label for="md-checkbox-gate-code" > Need door or gate code ?</label>
                                 </div>
                                 <div class="checkbox-float">
                                     <input type="checkbox" id="md-checkbox-moregirl" name="customer-moregirl" value="" class="filled-in chk-col-teal" />
-                                    <label for="md-checkbox-moregirl" style="margin-right: 20px;"> more then one girl ?</label>
+                                    <label for="md-checkbox-moregirl" style="margin-right: 20px;"> More then one girl ?</label>
                                 </div>
                             </div>
                             <div class="col s12 m7">
-                                <label for="textarea-cad-custumer-house-description" >house description</label>
+                                <label for="textarea-cad-custumer-house-description" >House description.</label>
                                 <div class="form-group">
                                     <div class="form-line success">
                                         <textarea style="padding: 10px; height: 200px"  id="textarea-cad-house-description" name="costumer-house-description" class="form-control custom-textarea"   placeholder="Please type customer house description here..."></textarea>
@@ -170,7 +170,7 @@
                         </div>
                         <div class="row clearfix">
                             <div class="col s12">
-                                <label for="textarea-cad-costumer-note">type customer notes</label>
+                                <label for="textarea-cad-costumer-note">type customer notes.</label>
                                 <div class="form-group">
                                     <div class="form-line success">
                                         <textarea style="padding: 10px;"  id="textarea-cad-costumer-note" name="costumer-note"  class="form-control custom-textarea"  rows="4" placeholder="Please type customer notes here..."></textarea>
