@@ -29,24 +29,24 @@
     <link href="web-resources/systheme/css/themes/all-themes.css" rel="stylesheet" />
 
 
-    <style>
-        input.form-control {
-            margin-bottom: 0!important;
-            border-bottom: none!important;
-        }
-        textarea.form-control {
-            margin-bottom: 0!important;
-            border-bottom: none!important;
-        }
-        input.select-dropdown {
-            margin-bottom: 0px!important;
-            border-bottom: none!important;
-        }
-        .red:hover{
-            background-color: #ef9a9a!important;
-        }
+{{--    <style>--}}
+{{--        input.form-control {--}}
+{{--            margin-bottom: 0!important;--}}
+{{--            border-bottom: none!important;--}}
+{{--        }--}}
+{{--        textarea.form-control {--}}
+{{--            margin-bottom: 0!important;--}}
+{{--            border-bottom: none!important;--}}
+{{--        }--}}
+{{--        input.select-dropdown {--}}
+{{--            margin-bottom: 0px!important;--}}
+{{--            border-bottom: none!important;--}}
+{{--        }--}}
+{{--        .red:hover{--}}
+{{--            background-color: #ef9a9a!important;--}}
+{{--        }--}}
 
-    </style>
+{{--    </style>--}}
 @endsection
 {{--
 personal information
@@ -71,7 +71,7 @@ employee notes
 @php
     if (!isset($employeeName)){$employeeName='Jane Doe Pinto Rego';$employeeNameCad='&nbsp;';}
     if (!isset($employeeEmail)){$employeeEmail='jhondoe@email.com';$employeeEmailCad='&nbsp;';}
-    if (!isset($employeeBirth)){$employeeBirth='RESIDENCIAL';$employeeTypeBirthCad='&nbsp;';}
+    if (!isset($employeeBirth)){$employeeBirth='DAY';$employeeTypeBirthCad='&nbsp;';}
     if (!isset($employeeAddress)){$employeeAddress='Meu endereço';$employeeAddressCad='&nbsp;';}
     if (!isset($employeeAddressComplement)){$employeeAddressComplement='Complemento';$employeeAddressComplementCad="&nbsp;";}
     if (!isset($employeePhone)){$employeePhone='561-124-555';$employeePhoneCad ='&nbsp;';}
@@ -81,7 +81,7 @@ employee notes
     if (!isset($employeeRefPhone1)){$employeeRefPhone1='Katiusia';$employeeRefphone1Cad='&nbsp;';}
     if (!isset($employeeRefPhone2)){$employeeRefPhone2='Katiusia';$employeeRefphone2Cad='&nbsp;';}
     if (!isset($employeeStatus)){$employeeStatus='ACTIVE';$employeeStatusCad='&nbsp;';}
-    if (!isset($employeeJustifyInactive)){$employeeJustifyInactive='está inativo por que eu quiz e pronto, mandei !!!!!';$employeeJustifyInactiveCad='&nbsp;';}
+    if (!isset($employeeRestricao)){$employeeRestricao='está inativo por que eu quiz e pronto, mandei !!!!!';$employeeRestricaoCad='&nbsp;';}
     if (!isset($employeeKeys)){$employeeKeys='checked';$employeeKeysCad="checked";}
     if (!isset($employeeDriveLicence )){$employeeDriveLicence ='checked';$employeeDriveLicenceCad='checked';}
     if (!isset($employeeGateCode )){$employeeGateCode ='checked';$employeeGateCodeCad='checked';}
@@ -117,7 +117,9 @@ employee notes
                             <span id="list-of-employees" class="m-l-35">LIST OF EMPLOYEES</span>
                                     <!-- ############  Blade  component employee-cad ###########################################################################################-->
                                     <!-- component register for register new employee-->
-                                    <x-employee-cad />
+                                    <x-employee-cad
+                                    :
+                                    />
 
 
                         </div>

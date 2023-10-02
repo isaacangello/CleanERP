@@ -1,7 +1,6 @@
 <div>
     <div class="row label-employee-view-edit" >
         <span class="label bg-light-green  label-padding">Personal information</span>
-{{--        <hr>--}}
     </div>
 
     <div class="row clearfix">
@@ -11,6 +10,7 @@
                     <input class="form-control"  id="input-view-edit-employee-name" name="employee-name" value="{{$employeeName}}" />
                     <label class="form-label" for="input-view-edit-employee-name">Employee Name</label>
                 </div>
+                <div class="help-info">Insert emplyee name.</div>
             </div>
         </div>
     </div>
@@ -21,6 +21,7 @@
                     <input class="form-control"  id="input-view-edit-employee-address" name="employee-address" value="{{$employeeAddress}}" />
                     <label class="form-label"  for="input-view-edit-employee-address">Employee Address</label>
                 </div>
+                <div class="help-info">Insert employee address.</div>
             </div>
         </div>
     </div>
@@ -28,17 +29,19 @@
         <div class="col s12 m6">
             <div class="form-group">
                 <div class="form-line success">
-                    <input class="form-control"  id="input-view-edit-nascimento" name="employee-nascimento" value="{{$employeeBirth}}" />
+                    <input class="form-control datepicker"  id="input-view-edit-nascimento" name="employee-nascimento" value="{{$employeeBirth}}" />
                     <label class="form-label"  for="input-view-edit-nascimento">Date of birth</label>
                 </div>
+                <div class="help-info">Insert employee date of birth.</div>
             </div>
         </div>
         <div class="col s12 m6">
             <div class="form-group">
                 <div class="form-line success">
                     <input class="form-control"  id="input-view-edit-email" name="emplpoyeeEmail" value="{{$employeeEmail}}" />
-                    <label class="form-label"  for="input-view-edit-">Employee Name</label>
+                    <label class="form-label"  for="input-view-edit-">Employee email</label>
                 </div>
+                <div class="help-info">Insert employee email contact.</div>
             </div>
         </div>
     </div>
@@ -50,6 +53,7 @@
                     <input class="form-control"  id="input-view-edit-phone" name="employee-phone" value="{{$employeePhone}}" />
                     <label class="form-label"  for="input-view-edit-nascimento">Phone</label>
                 </div>
+                <div class="help-info">Insert employee phone.</div>
             </div>
         </div>
         <div class="col s12 m6">
@@ -62,6 +66,7 @@
                           </label>
                         </p>
                 </div>
+                <div class="help-info">Select working period.</div>
             </div>
         </div>
     </div>
@@ -70,10 +75,12 @@
             <div class="col s12 m6">
                 <div class="form-group">
                     <div class="form-line success">
-                        <input class="form-control"  id="input-view-edit-nascimento" name="employee-nascimento" value="{{$employeeBirth}}" />
-                        <label class="form-label"  for="input-view-edit-nascimento">Employee Name</label>
+                        <input class="form-control" type="text"  id="input-view-edit-restricao" name="employee-Restriçao" value="{{$employeeRestricao}}" />
+                        <label class="form-label"  for="input-view-edit-restricao">Employee Restriçao</label>
                     </div>
+                    <div class="help-info">Insert employee Restricao.</div>
                 </div>
+
             </div>
             <div class="col s12 m6">
                 <div class="form-group">
@@ -85,12 +92,13 @@
                           </label>
                         </p>
                     </div>
+                    <div class="help-info">Select working period.</div>
                 </div>
             </div>
     </div>
-    <div class="row">
-        <span class="label bg-light-green p-12 label-padding">Document information</span>
-        <hr>
+
+    <div class="row label-employee-view-edit" >
+        <span class="label bg-light-green  label-padding">Document information</span>
     </div>
 
     <div class="row clearfix">
@@ -100,6 +108,7 @@
                     <input class="form-control"  id="input-view-edit-document" name="employee-document" value="{{$employeeDocument}}" />
                     <label class="form-label"  for="input-view-edit-">Document</label>
                 </div>
+                <div class="help-info">Insert one employee Document number.</div>
             </div>
         </div>
     </div>
@@ -110,11 +119,12 @@
                 <div class="form-line success">
                     <p>
                       <label>
-                        <input name="employee-type" type="radio" checked />
+                        <input name="employee-type" type="radio" checked>
                         <span class="grey-text text-darken-2">Residencial</span>
                       </label>
                     </p>
                 </div>
+                <div class="help-info">Select your sector job.</div>
             </div>
         </div>
         <div class="col s12 m6">
@@ -122,11 +132,12 @@
                 <div class="form-line success">
                     <p>
                       <label>
-                        <input name="employee-type" type="radio" />
+                        <input name="employee-type" type="radio" >
                         <span class="grey-text text-darken-2">Commercial</span>
                       </label>
                     </p>
                 </div>
+                <div class="help-info">Select your sector job.</div>
             </div>
         </div>
     </div>
@@ -136,16 +147,18 @@
                 <div class="form-group">
                     <div class="form-line success">
                         <input class="form-control"  id="input-view-edit-ref1" name="employee-refname1" value="{{$employeeRefName1}}" />
-                        <label class="form-label"  for="input-view-edit-ref1">Reference Name 1</label>
+                        <label class="form-label"  for="input-view-edit-ref1">First reference Name.</label>
                     </div>
+                    <div class="help-info">Insert the first employee reference name.</div>
                 </div>
             </div>
             <div class="col s12 m5">
                 <div class="form-group">
                     <div class="form-line success">
                         <input class="form-control"  id="input-view-edit-ref2" name="employee-refname2" value="{{$employeeRefPhone1}}" />
-                        <label class="form-label"  for="input-view-edit-ref2">Reference phone 1</label>
+                        <label class="form-label"  for="input-view-edit-ref2">First reference phone.</label>
                     </div>
+                    <div class="help-info">Insert the first employee reference phone.</div>
                 </div>
             </div>
     </div>
@@ -154,8 +167,9 @@
                 <div class="form-group">
                     <div class="form-line success">
                         <input class="form-control"  id="input-view-edit-ref1" name="employee-refname1" value="{{$employeeRefName2}}" />
-                        <label class="form-label"  for="input-view-edit-ref1">Reference Name 1</label>
+                        <label class="form-label"  for="input-view-edit-ref1">Second Reference Name</label>
                     </div>
+                    <div class="help-info">Insert the second employee reference name.</div>
                 </div>
             </div>
             <div class="col s12 m5">
@@ -164,14 +178,15 @@
                         <input class="form-control"  id="input-view-edit-ref2" name="employee-refname2" value="{{$employeeRefPhone2}}" />
                         <label class="form-label"  for="input-view-edit-ref2">Reference Phone 2</label>
                     </div>
+                    <div class="help-info">Insert the second employee reference phone.</div>
                 </div>
             </div>
     </div>
 
-    <div class="row">
-        <span class="label bg-light-green label-padding">Additional information</span>
-        <hr>
+    <div class="row label-employee-view-edit" >
+        <span class="label bg-light-green  label-padding">Additional information</span>
     </div>
+
     <div class="row clearfix">
         <div class="col s12 m6">
             <div class="form-group">
@@ -183,6 +198,7 @@
                       </label>
                     </p>
                 </div>
+                <div class="help-info">Select if employee is active.</div>
             </div>
         </div>
         <div class="col s12 m6">
@@ -191,10 +207,11 @@
                     <p>
                       <label>
                         <input name="employee-status" type="radio" />
-                        <span class="grey-text text-darken-2">Commercial</span>
+                        <span class="grey-text text-darken-2">Inactive</span>
                       </label>
                     </p>
                 </div>
+                <div class="help-info">Select if employee is inactive.</div>
             </div>
         </div>
     </div>
@@ -211,7 +228,9 @@
                               placeholder="Please type customer notes here..."
                     >{{$employeeNote}}</textarea>
                 </div>
+                <div class="help-info">Insert employee Additional information.</div>
             </div>
+
         </div>
     </div>
 

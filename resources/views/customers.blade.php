@@ -31,15 +31,15 @@
 
     <style>
         input.form-control {
-            margin-bottom: 0px!important;
+            margin-bottom: 0!important;
             border-bottom: none!important;
         }
         textarea.form-control {
-            margin-bottom: 0px!important;
+            margin-bottom: 0!important;
             border-bottom: none!important;
         }
         input.select-dropdown {
-            margin-bottom: 0px!important;
+            margin-bottom: 0!important;
             border-bottom: none!important;
         }
         .red:hover{

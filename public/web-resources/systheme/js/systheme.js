@@ -74,3 +74,11 @@ $("#buton-user-dropdown").click(function () {
 
 );
 });
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, {
+        autoClose: true,
+        showClearBtn: true,
+        yearRange: 50,
+    });
+  });

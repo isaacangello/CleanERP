@@ -8866,7 +8866,11 @@ textarea.custom-textarea:focus{
 }
 textarea.custom-textarea:focus-visible{
     border: none!important;
-    outline: none!important;
+    outline:none !important;
+    -webkit-box-shadow: 1px -2px 52px -17px rgba(107,105,107,1)!important;
+    -moz-box-shadow: 1px -2px 52px -17px rgba(107,105,107,1) !important;
+    box-shadow: 1px -2px 52px -17px rgba(107,105,107,1) !important;
+
 }
 
 .force-white-text{
@@ -8901,6 +8905,25 @@ textarea.custom-textarea:focus-visible{
     color: white;
     background-color: #8BC34A !important;
     padding: 4px;
+}
 
-
+input.form-control {
+    margin-bottom: 0!important;
+    border-bottom: none!important;
+}
+textarea.form-control {
+    margin-bottom: 0!important;
+    border-bottom: none!important;
+}
+input.select-dropdown {
+    margin-bottom: 0!important;
+    border-bottom: none!important;
+}
+.red:hover{
+    background-color: #ef9a9a!important;
+}
+input.form-control:focus-visible{
+    -webkit-box-shadow: 1px -2px 52px -17px rgba(107,105,107,1)!important;
+    -moz-box-shadow: 1px -2px 52px -17px rgba(107,105,107,1) !important;
+    box-shadow: 1px -2px 52px -17px rgba(107,105,107,1) !important;
 }

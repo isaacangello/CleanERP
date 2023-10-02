@@ -1,4 +1,8 @@
 <div>
+    <div class="row label-employee-view-edit" >
+        <span class="label bg-light-green  label-padding">Personal information</span>
+    </div>
+
     <div class="row clearfix">
         <div class="col s12 m8">
             <div class="form-group">
@@ -6,7 +10,7 @@
                     <input id="input-crud-customer-name" name="customer-name" type="text" class="form-control" value="{{ $customerName }}">
                     <label class="form-label" for="input-crud-customer-name">Name Customer</label>
                 </div>
-                <div class="help-info">Insert name Customer</div>
+                <div class="help-info">Insert name customer.</div>
             </div>
         </div>
         <div class=" col s12 m4">
@@ -19,7 +23,7 @@
                         <option value="RENTAL_HOUSE">RENTAL HOUSE</option>
                     </select>
                 </div>
-                <div class="help-info">select type of customer</div>
+                <div class="help-info">Select type of customer.</div>
             </div>
 
         </div>
@@ -33,7 +37,7 @@
                     <input type="text" id="input-crud-customer-address" name="customer-address" class="form-control" value="{{$customerAddress}}">
                     <label class="form-label" for="input-crud-customer-address">Address Customer</label>
                 </div>
-                <div class="help-info">Insert address Customer</div>
+                <div class="help-info">Insert address Customer.</div>
             </div>
         </div>
         <div class="col s12 m5">
@@ -43,7 +47,7 @@
                     <input type="text" id="input-crud-customer-address-complement" name="customer-address-complement"   class="form-control" value="{{$customerAddressComplement}}">
                     <label class="form-label" for="input-crud-customer-address-complement">Complement</label>
                 </div>
-                <div class="help-info">Insert address Complement</div>
+                <div class="help-info">Insert address complement.</div>
             </div>
         </div>
     </div>
@@ -55,7 +59,7 @@
                     <input type="text" id="input-crud-customer-phone" name="customer-phone" class="form-control" value="{{$customerPhone}}" >
                     <label class="form-label" for="input-crud-customer-phone">Phone</label>
                 </div>
-                <div class="help-info">Insert phone </div>
+                <div class="help-info">Insert customer phone.</div>
             </div>
         </div>
 
@@ -65,11 +69,14 @@
                     <input type="text" id="input-crud-customer-email" name="customer-email" class="form-control" value="{{$customerEmail}}">
                     <label class="form-label" for="input-crud-customer-email" >Email</label>
                 </div>
-                <div class="help-info">Insert email </div>
+                <div class="help-info">Insert customer email.</div>
             </div>
         </div>
     </div>
-    <div class="divider clearfix" style="margin: 30px 0px 30px 0px;"></div>
+    <div class="row label-employee-view-edit" >
+        <span class="label bg-light-green  label-padding">Services information</span>
+    </div>
+
 
     <div class="row clearfix">
         <div class="col s6 m3">
@@ -112,7 +119,7 @@
                               placeholder="Other services here..."
                     >{{$costumerOtherServices}}</textarea>
                 </div>
-                <div class="help-info">Ohter services </div>
+                <div class="help-info">Ohter services.</div>
             </div>
         </div>
 @php
@@ -137,16 +144,19 @@ if (isset($customerStatus)){
                         <option value="{{$customerStatus2}}">{{$customerStatus2}}</option>
                     </select>
                 </div>
-                <div class="help-info">select status of customer</div>
+                <div class="help-info">select status of customer.</div>
             </div>
             <div class="form-group">
                 <div class="form-line success">
                     <input type="text"  name="customer-justify-inatctive" id="input-crud-customer-justify-inatctive" class="form-control" value="{{  $customerJustifyInactive }}"/>
                     <label class="form-label" for="input-crud-customer-justify-inatctive">why change customer status ?</label>
                 </div>
-                <div class="help-info">why change customer status ?</div>
+                <div class="help-info">Why change customer status ?</div>
             </div>
         </div>
+    </div>
+    <div class="row label-employee-view-edit" >
+        <span class="label bg-light-green  label-padding">Additional information</span>
     </div>
 
     <div class="row clearfix">
@@ -186,7 +196,7 @@ if (isset($customerStatus)){
     </div>
     <div class="row clearfix">
         <div class="col s12">
-            <label for="textarea-crud-costumer-note">type customer notes</label>
+            <label for="textarea-crud-costumer-note">Customer notes</label>
             <div class="form-group">
                 <div class="form-line success">
                     <textarea style="padding: 10px;"
@@ -197,7 +207,7 @@ if (isset($customerStatus)){
                               placeholder="Please type customer notes here..."
                     >{{$customerNote}}</textarea>
                 </div>
-                <div class="help-info">Type customer notes </div>
+                <div class="help-info">Type customer notes.</div>
             </div>
         </div>
     </div>
