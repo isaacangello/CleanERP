@@ -125,6 +125,7 @@
     <content url="file://$MODULE_DIR$/../laravel7-docker">
       <sourceFolder url="file://$MODULE_DIR$/../laravel7-docker/src/app" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/../laravel7-docker/src/tests" isTestSource="true" packagePrefix="Tests\" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker" />
       <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/asm89/stack-cors" />
       <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/composer" />
