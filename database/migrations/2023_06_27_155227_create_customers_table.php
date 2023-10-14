@@ -39,7 +39,8 @@ return new class extends Migration
             $table->boolean('drivelicence')->default(false);
             $table->boolean('key')->default(false);
             $table->boolean('gate_code')->default(false);
-            $table->string('house_description',320)->nullable();
+            $table->string('house_description',3000)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

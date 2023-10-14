@@ -25,11 +25,12 @@ return new class extends Migration
             $table->string('phonereftwo',20)->nullable();
             $table->string('description',320)->nullable();
             $table->string('type',11)->default('RESIDENTIAL');
-            $table->string('status',8)->default('ACTIVE');
+            $table->string('status',10)->default('ACTIVE');
             $table->string('shift',10)->nullable();
-            $table->string('username',20);
+            $table->string('username',120);
             $table->string('password',)->default('$2y$10$D6RqabA3OSgM91rUvSiYSeVMf9k6IyrqkVBOGwGOjCIV5bW2UrRWO'); /* senha  1234 */
-            $table->boolean('newuser')->default(1);
+            $table->boolean('newuser')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

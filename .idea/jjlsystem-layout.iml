@@ -5,7 +5,6 @@
       <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
       <sourceFolder url="file://$MODULE_DIR$/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
-      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
@@ -122,6 +121,110 @@
       <excludeFolder url="file://$MODULE_DIR$/storage/app" />
       <excludeFolder url="file://$MODULE_DIR$/storage/framework" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/_laravel_idea" />
+    </content>
+    <content url="file://$MODULE_DIR$/../laravel7-docker">
+      <sourceFolder url="file://$MODULE_DIR$/../laravel7-docker/src/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/../laravel7-docker/src/tests" isTestSource="true" packagePrefix="Tests\" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/asm89/stack-cors" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/brick/math" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/dragonmantank/cron-expression" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/egulias/email-validator" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/facade/flare-client-php" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/facade/ignition" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/facade/ignition-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/fakerphp/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/fideloper/proxy" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/filp/whoops" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/fruitcake/laravel-cors" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/guzzlehttp/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/guzzlehttp/promises" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/laravel/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/laravel/tinker" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/league/commonmark" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/league/mime-type-detection" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/mockery/mockery" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/myclabs/deep-copy" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/nesbot/carbon" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/nunomaduro/collision" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/opis/closure" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/phar-io/manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/phar-io/version" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/phpoption/phpoption" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/phpunit/php-code-coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/phpunit/php-file-iterator" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/phpunit/php-invoker" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/phpunit/php-text-template" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/phpunit/php-timer" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/phpunit/phpunit" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/psr/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/psr/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/psr/http-client" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/psy/psysh" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/ralouphie/getallheaders" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/ramsey/collection" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/ramsey/uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/cli-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/code-unit" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/code-unit-reverse-lookup" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/comparator" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/complexity" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/environment" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/global-state" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/lines-of-code" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/object-enumerator" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/object-reflector" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/recursion-context" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/resource-operations" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/type" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/swiftmailer/swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/css-selector" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/error-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/event-dispatcher-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/http-foundation" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/http-kernel" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/polyfill-iconv" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/polyfill-intl-grapheme" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/polyfill-intl-idn" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/polyfill-intl-normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/polyfill-php72" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/polyfill-php73" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/polyfill-php81" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/process" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/routing" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/string" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/translation" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/translation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/symfony/var-dumper" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/theseer/tokenizer" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/tijsverkoyen/css-to-inline-styles" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/vlucas/phpdotenv" />
+      <excludeFolder url="file://$MODULE_DIR$/../laravel7-docker/src/vendor/voku/portable-ascii" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
