@@ -38,8 +38,10 @@ return new class extends Migration
             $table->string('info',320)->nullable();
             $table->boolean('drivelicence')->default(false);
             $table->boolean('key')->default(false);
+            $table->boolean('moregril')->default(false);
             $table->boolean('gate_code')->default(false);
             $table->string('house_description',3000)->nullable();
+            $table->string('note',3000)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

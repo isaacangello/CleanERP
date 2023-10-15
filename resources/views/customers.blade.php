@@ -110,26 +110,40 @@
                     <div class="row">
                         <div class="col s12">
                                 <ul class="collapsible popout">
-@for ($i = 0; $i < 10; $i++)
+                                @foreach($customers as $customer)
                                     <!---#####################colapsable item ####################################################-->
                                     <li>
-                                          <div class="collapsible-header green @php(altclass($i)) white-text"><i class="material-icons">person</i>Jhon Doe Pinto Rego</div>
+                                        @php($count++)
+                                          <div class="collapsible-header green @php(altclass($count)) white-text"><i class="material-icons">person</i>{{$customer->name}}</div>
                                             <div class="collapsible-body">
-                                                @php($count=$i)
-                                                    @include('components.customer-crud')
+
+                                                    <x-customer-crud :customer-name="$customer->name"
+                                                                     :customer-address="$customer->address"
+                                                                     :customer-type="$customer->type"
+                                                                     :customer-email="$customer->email"
+                                                                     :customer-address-complement="$customer->complement"
+                                                                     :customer-phone="$customer->phone"
+                                                                     :customer-price-biweekly="$customer->price_biweekly"
+                                                                     :customer-price-weekly="$customer->price_weekly"
+                                                                     :customer-price-monthly="$customer->price_monthly"
+                                                                     customer-drive-licence="$customer->"
+                                                                     :customer-gate-code="$customer->gate_code"
+                                                                     :customer-keys="$customer->key"
+                                                                     :customer-moregirl="false"
+                                                                     :customer-note="$customer->house_description"
+                                                                     :customer-other-services="$customer->house_description"
+                                                                     :customer-house-description="$customer->house_description"
+                                                                     :customer-justify-inactive="$customer->house_description"
+                                                                     :count="$count"
+                                                    >
+
+
+                                                    </x-customer-crud>
 
                                             </div>
                                     </li>
-@endfor
+                                @endforeach
 
-
-                                    <!---#####################colapsable item ####################################################-->
-                                    <li>
-                                          <div class="collapsible-header green darken-4 white-text"><i class="material-icons">person</i>Jane Doe Rego Pinto </div>
-                                            <div class="collapsible-body">
-                                              Lorem ipsum dolor sit amet.
-                                            </div> <!-- end collapsible body -->
-                                    </li>
                                   </ul>
 
                         </div>
@@ -137,10 +151,12 @@
                     </div>
                     <!---##################### row pagination ####################################################-->
                     <div class="row">
-
-                        <div class="col s12 m12 valign-wrapper center ">
+                        <div class="col s1 m2"></div>
+                        <div class="col s10 m8 valign-wrapper center-align" style="align-content: center;align-items: center;justify-content: center">
+                            <!--
                              <ul class="pagination center valign-wrapper align-center" style="margin: 0 auto">
-                                <li class="disabled valign-wrapper"><a href="#!" ><i class="material-icons ">chevron_left</i></a></li>
+
+                                 <li class="disabled valign-wrapper"><a href="#!" ><i class="material-icons ">chevron_left</i></a></li>
                                 <li class="active  valign-wrapper"><a href="#!" class="green darken-3 white-text">1</a></li>
                                 <li class=" valign-wrapper"><a href="#" class="waves-effect waves-teal">2</a></li>
                                 <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">3</a></li>
@@ -148,7 +164,11 @@
                                 <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">5</a></li>
                                 <li class=" valign-wrapper" ><a href="#!" ><i class="material-icons waves-effect waves-teal">chevron_right</i></a></li>
                               </ul>
+                              -->
+                            {{ $customers->links() }}
                         </div>
+                        <div class="col s1 m2"></div>
+
 
                     </div>
                 </div>

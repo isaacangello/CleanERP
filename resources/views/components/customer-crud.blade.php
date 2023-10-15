@@ -117,7 +117,7 @@
                               class="form-control custom-textarea"
                               rows="4"
                               placeholder="Other services here..."
-                    >{{$costumerOtherServices}}</textarea>
+                    >{{$customerOtherServices}}</textarea>
                 </div>
                 <div class="help-info">Ohter services.</div>
             </div>
