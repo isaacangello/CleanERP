@@ -10,7 +10,7 @@
                     <input class="form-control"  id="input-view-edit-employee-name" name="employee-name" value="{{$employeeName}}" />
                     <label class="form-label" for="input-view-edit-employee-name">Employee Name</label>
                 </div>
-                <div class="help-info">Insert emplyee name.</div>
+                <div class="help-info">Insert employee name.</div>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
                         <p>
                           <label>
                             <input name="group1" type="radio" checked />
-                            <span class="grey-text text-darken-2 ">Part Time</span>
+                            <span class="grey-text text-darken-2">Part Time</span>
                           </label>
                         </p>
                 </div>
@@ -75,10 +75,10 @@
             <div class="col s12 m6">
                 <div class="form-group">
                     <div class="form-line success">
-                        <input class="form-control" type="text"  id="input-view-edit-restricao" name="employee-Restriçao" value="{{$employeeRestricao}}" />
-                        <label class="form-label"  for="input-view-edit-restricao">Employee Restriçao</label>
+                        <input class="form-control" type="text"  id="input-view-edit-restriction" name="employee-Restriçao" value="{{$employeeRestriction}}" />
+                        <label class="form-label"  for="input-view-edit-restriction">Employee Restriction</label>
                     </div>
-                    <div class="help-info">Insert employee Restricao.</div>
+                    <div class="help-info">Insert employee Restriction.</div>
                 </div>
 
             </div>
@@ -221,12 +221,12 @@
             <div class="form-group">
                 <div class="form-line success">
                     <textarea style="padding: 10px;"
-                              id="textarea-crud-costumer-note"
-                              name="costumer-note"
+                              id="textarea-crud-costumer-description"
+                              name="costumer-description"
                               class="form-control custom-textarea"
                               rows="4"
                               placeholder="Please type customer notes here..."
-                    >{{$employeeNote}}</textarea>
+                    >{{$employeeDescription}}</textarea>
                 </div>
                 <div class="help-info">Insert employee Additional information.</div>
             </div>

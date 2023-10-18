@@ -182,7 +182,7 @@
                     <span>REGISTER / VIEW</span>
                 </li>
                 <li>
-                    <a href="{{route('customers')}}">
+                    <a href="{{route('customers', ['page' => 1])}}">
                         <i class="material-icons" style="font-size: 20px;">group_add</i>
                         <span>Customers</span>
                     </a>
@@ -198,7 +198,7 @@
                     <span>FINANCES</span>
                 </li>
                 <li>
-                    <a href="javascript:void(0);">
+                    <a href="{{ route('finances') }}">
                         <i class="material-icons">price_change</i>
                         <span>Home</span>
                     </a>

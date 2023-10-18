@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\FinanceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,11 +37,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 //#############################################################
 Route::get('/customers', [CustomerController::class, 'index'])->middleware(['auth', 'verified'])->name('customers');
+//Route::get('/customers/{page?}', [CustomerController::class, 'index'])->middleware(['auth', 'verified'])->name('customers');
 //#############################################################
-Route::get('/employees', function () {
-    return view('employees');
-})->middleware(['auth', 'verified'])->name('employees');
-
+Route::get('/employees', [EmployeeController::class,'index'])->middleware(['auth', 'verified'])->name('employees');
+//#############################################################
+Route::get('/finances', [FinanceController::class, 'index'])->middleware(['auth', 'verified'])->name('finances');
 //#############################################################
 Route::middleware('auth')->group(function () {
 

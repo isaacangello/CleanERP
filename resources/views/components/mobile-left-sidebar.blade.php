@@ -94,7 +94,7 @@
                     <span>FINANCES</span>
                 </li>
                 <li class="sidenav-item">
-                    <a href="javascript:void(0);" class="waves-effect">
+                    <a href="{{ route('finances') }}" class="waves-effect">
                         <i class="material-icons">price_change</i>
                         <span>Home</span>
                     </a>

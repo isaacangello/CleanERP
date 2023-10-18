@@ -18,11 +18,14 @@ return new class extends Migration
             $table->string('name',120);
             $table->string('phone',20);
             $table->string('email',60)->nullable();
+            $table->date('birth')->nullable();
             $table->string('address',120)->nullable();
             $table->string('namerefone',60)->nullable();
             $table->string('namereftwo',60)->nullable();
             $table->string('phonerefone',20)->nullable();
             $table->string('phonereftwo',20)->nullable();
+            $table->string('restriction')->nullable();
+            $table->string('document')->nullable();
             $table->string('description',320)->nullable();
             $table->string('type',11)->default('RESIDENTIAL');
             $table->string('status',10)->default('ACTIVE');

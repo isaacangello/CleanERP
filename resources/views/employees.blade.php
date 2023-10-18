@@ -131,16 +131,37 @@ employee notes
                     <div class="row">
                         <div class="col s12">
                                 <ul class="collapsible popout">
-                                    @for ($i = 0; $i < 10; $i++)
+{{--                                    @php--}}
+{{--//                                        extract($employees->items()[0],EXTR_OVERWRITE);--}}
+{{--                                        dd($employees->items())--}}
+{{--                                    @endphp--}}
+                                    @foreach($employees as $employee)
+                                        @php($count++)
                                     <!---#####################colapsable item ####################################################-->
                                     <li>
-                                        <div class="collapsible-header green @php(altclass($i)) white-text"><i class="material-icons">person</i>Jhon Doe Pinto Rego</div>
+                                        <div class="collapsible-header green @php(altclass($count)) white-text"><i class="material-icons">person</i>{{$employee->name}}</div>
                                         <div class="collapsible-body">
-                                                @php($count=$i)
-                                                @include('components.employee-view-edit')
+
+
+                                                <x-employee-view-edit
+                                                        :employee-name="$employee->name"
+                                                        :employee-phone="$employee->phone"
+                                                        :employee-email="$employee->email"
+                                                        :employee-address="$employee->address"
+                                                        :employee-ref-name1="$employee->namerefone"
+                                                        :employee-ref-name2="$employee->namereftwo"
+                                                        :employee-ref-phone1="$employee->phonerefone"
+                                                        :employee-ref-phone2="$employee->phonereftwo"
+                                                        :employee-birth="$employee->birth"
+                                                        :employee-document="$employee->document"
+                                                        :employee-restriction="$employee->restriction"
+                                                        :employee-description="$employee->description"
+                                                        :count="$count"
+                                                >
+                                                </x-employee-view-edit>
                                         </div>
                                     </li>
-                                    @endfor
+                                    @endforeach
 
 
                                     <!---#####################colapsable item ####################################################-->
@@ -158,16 +179,17 @@ employee notes
                     <!---##################### row pagination ####################################################-->
                     <div class="row">
 
-                        <div class="col s12 m12 valign-wrapper center ">
-                             <ul class="pagination center valign-wrapper align-center" style="margin: 0 auto">
-                                <li class="disabled valign-wrapper"><a href="#!" ><i class="material-icons ">chevron_left</i></a></li>
-                                <li class="active  valign-wrapper"><a href="#!" class="green darken-3 white-text">1</a></li>
-                                <li class=" valign-wrapper"><a href="#" class="waves-effect waves-teal">2</a></li>
-                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">3</a></li>
-                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">4</a></li>
-                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">5</a></li>
-                                <li class=" valign-wrapper" ><a href="#!" ><i class="material-icons waves-effect waves-teal">chevron_right</i></a></li>
-                              </ul>
+                        <div class="col s12 m12 valign-wrapper justify-content-center" >
+{{--                             <ul class="pagination center valign-wrapper align-center" style="margin: 0 auto">--}}
+{{--                                <li class="disabled valign-wrapper"><a href="#!" ><i class="material-icons ">chevron_left</i></a></li>--}}
+{{--                                <li class="active  valign-wrapper"><a href="#!" class="green darken-3 white-text">1</a></li>--}}
+{{--                                <li class=" valign-wrapper"><a href="#" class="waves-effect waves-teal">2</a></li>--}}
+{{--                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">3</a></li>--}}
+{{--                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">4</a></li>--}}
+{{--                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">5</a></li>--}}
+{{--                                <li class=" valign-wrapper" ><a href="#!" ><i class="material-icons waves-effect waves-teal">chevron_right</i></a></li>--}}
+{{--                              </ul>--}}
+                                {{ $employees->links() }}
                         </div>
 
                     </div>

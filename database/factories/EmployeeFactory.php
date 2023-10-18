@@ -16,20 +16,26 @@ class EmployeeFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->firstName('female');
+        $lastname= fake()->lastName;
+        $username= strtolower($name);
         return [
-            'name' => fake()->name,
+            'name' => "$name $lastname",
             'phone' => fake()->e164PhoneNumber(),
             'email' => fake()->freeEmail(),
+            'birth' => fake()->date,
             'address' => fake()->address(),
             'namerefone' => fake()->name,
             'namereftwo' => fake()->name,
             'phonerefone' => fake()->e164PhoneNumber(),
             'phonereftwo' => fake()->e164PhoneNumber(),
             'description' => fake()->sentence,
+            'restriction' => fake()->sentence,
+            'document' => fake()->randomNumber(),
             'type' => ((rand(1,1))%2)<0?'RESIDENCIAL':'COMERCIAL',
             'status' => 'ACTIVE',
             'shift' => fake()->text(10),
-            'username' => fake()->name,
+            'username' => $username,
             'password' => '$2y$10$D6RqabA3OSgM91rUvSiYSeVMf9k6IyrqkVBOGwGOjCIV5bW2UrRWO',
             'newuser' => true
         ];
