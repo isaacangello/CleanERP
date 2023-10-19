@@ -20,7 +20,7 @@
     <link href="web-resources/systheme/plugins/animate-css/animate.css" rel="stylesheet" />
     <!-- Sweet Alert Css -->
     <link href="web-resources/systheme/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
-
+{{--<link href="../../public/web-resources/systheme/plugins/morrisjs/morris.css" rel="stylesheet" />--}}
 
     <!-- Custom Css -->
     <link href="web-resources/systheme/css/style.css" rel="stylesheet">
@@ -125,6 +125,24 @@
                                         </div>
                             </div>
                             <div class="col s60 m6" >
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading">
+                                                <small>Seach paid</small>
+                                            </div>
+                                            <div class="panel-body p-l-3 p-r-3">
+                                                 <div style="width:800px;"><canvas id="acquisitions"></canvas></div>
+                                            </div>
+                                            <div class="panel-footer">
+                                                <div class="row">
+                                                    <div class="col s1"></div>
+                                                    <div class="col s11" >
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -162,15 +180,18 @@
 
     <!-- Sweet Alert Plugin Js -->
     <script src="{{asset('web-resources/systheme/plugins/sweetalert/sweetalert.min.js')}}"></script>
-
+    <!-- chart Plugin Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.js" integrity="sha512-6LKCH7i2+zMNczKuCT9ciXgFCKFp3MevWTZUXDlk7azIYZ2wF5LRsrwZqO7Flt00enUI+HwzzT5uhOvy6MNPiA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('web-resources/systheme/js/chartjs.js') }}"></script>
     <!-- Custom Js -->
     <script src="{{ asset('web-resources/systheme/js/admin.js') }}"></script>
-    {{--    <script src="web-resources/systheme/js/pages/tables/jquery-datatable.js"></script>--}}
+
     <script src="{{ asset('web-resources/systheme/js/pages/index.js') }}"></script>
     <script src="{{ asset('web-resources/systheme/js/pages/forms/form-validation.js') }}"></script>
     <!-- Demo Js -->
     <script src="{{asset('web-resources/systheme/js/demo.js')}}"></script>
     <script src="{{ asset('web-resources/systheme/js/systheme.js') }}"></script>
+
 @endsection
 
 
