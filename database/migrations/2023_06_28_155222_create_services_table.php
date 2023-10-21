@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('(customer_idcustomer_id)');
             $table->unsignedBigInteger('employee1_id');
             $table->unsignedBigInteger('employee2_id')->nullable();
             $table->dateTime('service_date');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('instructions', 3000)->nullable();
             $table->boolean('paid_out')->nullable();
             $table->boolean('fee')->nullable();
-            $table->string('finotes',500)->nullable();
+            $table->string('feenotes',500)->nullable();
             $table->string('pgmt')->nullable();
             $table->string('who_saved')->nullable();
             $table->float('price')->nullable();

@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('shift',10)->nullable();
             $table->string('username',120);
             $table->string('password',)->default('$2y$10$D6RqabA3OSgM91rUvSiYSeVMf9k6IyrqkVBOGwGOjCIV5bW2UrRWO'); /* senha  1234 */
-            $table->boolean('newuser')->default(true);
+            $table->boolean('ne()namewuser')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });
