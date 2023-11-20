@@ -114,4 +114,7 @@ class FinanceController extends Controller
         ]
         );
     }
+    public function detail_employee(){
+
+    }
 }

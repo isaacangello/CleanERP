@@ -41,7 +41,12 @@ Route::get('/customers', [CustomerController::class, 'index'])->middleware(['aut
 //#############################################################
 Route::get('/employees', [EmployeeController::class,'index'])->middleware(['auth', 'verified'])->name('employees');
 //#############################################################
-Route::get('/finances', [FinanceController::class, 'index'])->middleware(['auth', 'verified'])->name('finances');
+//Route::get('/finances', [FinanceController::class, 'index'])->middleware(['auth', 'verified'])->name('finances');
+Route::prefix('finances')->group(function () {
+    Route::get('/', [FinanceController::class, 'index'])->middleware(['auth', 'verified'])->name('finances');
+    Route::get('/detailer/{id}/{from}/{till}', [FinanceController::class, 'detail_employee'])->middleware(['auth', 'verified'])->name('finances.detailer');
+});
+
 //#############################################################
 Route::middleware('auth')->group(function () {
 
