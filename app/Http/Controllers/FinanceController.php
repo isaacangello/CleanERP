@@ -2,48 +2,116 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\Employee;
-use App\Models\Customer;
-use App\Models\Service;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use App\Treatment\DateTreatment;
 
 class FinanceController extends Controller
 {
     //
-    public function perc(){
+    private int $nunregpage;
+
+    public function __construct()
+    {
+
+        $this->nunregpage = 20;
 
     }
-    public function data_sevice_from_employee($employee_id,$from,$till){
-         return DB::table('services')->where('employee1_id', $employee_id)
-             ->where('services.deleted_at','=',null )
-             ->where('services.deleted_at','=',null )
+    public function total_price_services_period(string $from, string $till): float
+    {
+        $collection_result =  DB::table('services')
+             ->whereBetween('service_date',[$from,$till] )
             ->join('employees', 'services.employee1_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
-            ->select('services.id',
-                'services.employee1_id',
-                'services.employee2_id',
+            ->select(
+                'customers.price_weekly',
+            )->get();
+
+        return $collection_result->sum('price_weekly');
+    }
+    public function count_payment_employees(int $employee_id,string $from,string $till)
+    {
+      $collection_result =  DB::table('services')->where('employee1_id', $employee_id)
+             ->whereBetween('service_date',[$from,$till] )
+            ->join('employees', 'services.employee1_id','=','employees.id')
+            ->join('customers','services.customer_id','=', 'customers.id')
+            ->select(
                 'services.service_date',
-                'services.period',
-                'services.frequency',
                 'services.paid_out',
                 'services.fee',
-                'services.finotes',
+                'services.feenotes',
                 'services.pgmt',
                 'services.who_saved',
                 'services.price',
                 'services.plus',
                 'services.minus',
-                'employees.name as employee',
-                'customers.name as customer',
-                'customers.price_weekly'
+                'employees.name as emp_name',
+                'customers.name as cust_name',
+                'customers.price_weekly',
+                'customers.address'
             )->get();
+
+            $array_result = array();
+            $total = $collection_result->sum('price_weekly');
+            $array_fromdb = $collection_result->toArray();
+
+            foreach ($array_fromdb as $row){
+                $array_result['emp_name'] = $row->emp_name;
+                $array_result['cem'] = number_format($total,2,'.',',');
+                $array_result['setenta'] = number_format(($total*0.7),2,'.',',');
+                $array_result['trinta'] = number_format(($total*0.3),2,'.',',');
+            }
+        return $array_result;
     }
-    public function index (Request $request){
-        $colllecion_services =$this->data_sevice_from_employee(3);
-        dd($colllecion_services);
+    /**
+     * https://laravel.com/docs/10.x/collections#method-flatten
+     * esse metodo junta ps array de duas ou mais dimençoe em um
+     */
+
+    public function index (Request $request, DateTreatment $date, $day = null){
+        $collection_employees = DB::table('employees')->orderBy('name', 'asc')->paginate($this->nunregpage);
+        $i = 0;
+        $datefrom = $date->GetMondaySartuday();
+//        dd($collection_employees->items());
+        $array_temp =array();
+        $sorted = $collection_employees;
+        foreach ($collection_employees->items() as $employees){
+            $data_temp = $this->count_payment_employees($employees->id,$datefrom['monday'],$datefrom['saturday']);
+
+            if (empty($data_temp) ){
+                $array_temp[$i]= [
+                    'emp_name' => $employees->name,
+                    'cem' => 0,
+                    'setenta' => 0,
+                    'trinta' => 0
+                ];
+            }else{
+                $array_temp[$i]=$data_temp;
+            }
+
+            $i++;
+        }
+        /**
+         * Alimentando chart
+         */
+        $cem = $this->total_price_services_period($datefrom['monday'],$datefrom['saturday']);
+//        dd($cem);
+        $total_services = [
+          'cem' => $cem,
+          'setenta' => ($cem*0.7),
+          'trinta' => ($cem*0.3)
+        ];
+
+
         return view('finances',
-        [ 'employees' => Employee::all()]
+        [
+            'employees' => $collection_employees,
+            'employees_services' => $array_temp,
+            'total_services' => $total_services
+        ]
         );
     }
 }

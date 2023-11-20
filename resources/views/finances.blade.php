@@ -1,6 +1,6 @@
 @extends("layouts.main")
 @section('title')
-    <title>Customers - main - JJL System 2</title>
+    <title>Finances - main - JJL System 2</title>
 @endsection
 {{--css links para o head--}}
 @section('css-style')
@@ -71,11 +71,11 @@
                     <div class="header" style="padding-bottom: 0px;">
                         <div class="row">
                             <div class="col s6 m6">
-                                        <div class="panel panel-default ">
+                                        <div class="panel panel-default" >
                                             <div class="panel-heading">
                                                 <small>Seach paid</small>
                                             </div>
-                                            <div class="panel-body p-l-3 p-r-3">
+                                            <div class="panel-body p-l-3 p-r-3" style="height:35vh;">
                                                 <div class="row">
                                                     <div class="input-field col s12 m12">
                                                         <div class="form-group">
@@ -113,36 +113,83 @@
 
                                                         </div>
                                                     </div>
-                                                </div>
+                                                <button class="teal waves-effect waves-classic waves-light white-text btn btn-small">Search</button>
+                                            </div>
                                             <div class="panel-footer">
                                                 <div class="row">
                                                     <div class="col s1"></div>
                                                     <div class="col s11" >
-                                                        <button class="teal waves-effect waves-classic waves-light white-text btn btn-small">Search</button>
+                                                        &nbsp;
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                             </div>
                             <div class="col s60 m6" >
-                                        <div class="panel panel-default ">
+                                        <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <small>Seach paid</small>
+                                                <small>Payments of week</small>
                                             </div>
-                                            <div class="panel-body p-l-3 p-r-3">
-                                                 <div style="width:800px;"><canvas id="acquisitions"></canvas></div>
+                                            <div class="panel-body p-l-3 p-r-3" style="height:35vh;">
+                                                 <div class="chart-container align-center" style="position: relative; height:30vh;" >
+                                                     <canvas id="chart-area"></canvas>
+                                                 </div>
                                             </div>
-                                            <div class="panel-footer">
+                                            <div class="panel-footer" style="position: relative">
                                                 <div class="row">
                                                     <div class="col s1"></div>
-                                                    <div class="col s11" >
-
+                                                    <div class="col s11">
+                                                            &nbsp;
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <table class="table table-striped highlight">
+                                    <thead>
+                                        <tr class="green darken-3 white-text">
+                                            <th>Employee</th>
+                                            <th>Total</th>
+                                            <th>70%</th>
+                                            <th>30%</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if($employees_services != null)
+{{--                                        {{dd($employees_services)}}--}}
+                                        @foreach($employees_services as $key =>  $row)
+                                                @php
+//                                                    dd($row);
+                                                    extract($row);
+                                                @endphp
+                                        @if($emp_name!=null)
+                                            <tr>
+                                                <td>{{$emp_name}}</td>
+                                                <td>{{$cem}}</td>
+                                                <td>{{$setenta}}</td>
+                                                <td>{{$trinta}}</td>
+                                                <td></td>
+                                            </tr>
+                                        @endif
+                                        @endforeach
+                                    @else
+                                         <tr>
+                                             <td colspan="5" style="padding: 10px"><p>Services not found in this week</p></td>
+                                         </tr>
+                                    @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="s12">
+                                {{ $employees->links() }}
                             </div>
                         </div>
                     </div>
@@ -181,8 +228,7 @@
     <!-- Sweet Alert Plugin Js -->
     <script src="{{asset('web-resources/systheme/plugins/sweetalert/sweetalert.min.js')}}"></script>
     <!-- chart Plugin Js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.js" integrity="sha512-6LKCH7i2+zMNczKuCT9ciXgFCKFp3MevWTZUXDlk7azIYZ2wF5LRsrwZqO7Flt00enUI+HwzzT5uhOvy6MNPiA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('web-resources/systheme/js/chartjs.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Custom Js -->
     <script src="{{ asset('web-resources/systheme/js/admin.js') }}"></script>
 
@@ -191,7 +237,47 @@
     <!-- Demo Js -->
     <script src="{{asset('web-resources/systheme/js/demo.js')}}"></script>
     <script src="{{ asset('web-resources/systheme/js/systheme.js') }}"></script>
+    <script>
+        /**
+            copiado do style home  tables
+            materialize colors
+            yellow darken-3 : #f9a825; rgb(249,168,37)
+            yellow: #fff176; rgb(255,241,118)
+            green darken-3: #2e7d32; rgb(46,125,50)
+        */
+      const ctx = document.getElementById('chart-area');
 
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['100%', '70%', '30%'],
+          datasets: [
+              {
+
+                data: [{{$total_services['cem']}},{{$total_services['setenta']}},{{$total_services['trinta']}},],
+                        backgroundColor: [
+                            'rgb(46,125,50,0.4)',
+                            'rgb(249,168,37,0.4)',
+                            'rgb(255,241,118,0.4)'
+                        ],
+                          borderColor:[
+                                    'rgb(46,125,50)',
+                                    'rgb(249,168,37)',
+                                    'rgb(255,241,118)'
+                          ],
+                borderWidth: 1,
+              }
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
 @endsection
 
 

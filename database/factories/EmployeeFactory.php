@@ -18,7 +18,7 @@ class EmployeeFactory extends Factory
     {
         $name = fake()->firstName('female');
         $lastname= fake()->lastName;
-        $username= strtolower($name);
+        $username= strtolower($name.$lastname);
         return [
             'name' => "$name $lastname",
             'phone' => fake()->e164PhoneNumber(),

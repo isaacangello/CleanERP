@@ -24,7 +24,7 @@ class ServiceFactory extends Factory
             'customer_id' => fake()->numberBetween(1,10000),
             'employee1_id' => fake()->numberBetween(1,100),
             'employee2_id' => fake()->numberBetween(1,100),
-            'service_date' => fake()->dateTimeBetween('-5 years','+2 years' ),
+            'service_date' => fake()->dateTimeBetween('-1 years','+2 years' ),
             'period' => $periods[$periodskey],
             'frequency' =>  $frequencevals[$frekey],
             'notes' => fake()->paragraph(),
