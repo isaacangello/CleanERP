@@ -106,7 +106,7 @@ class FinanceController extends Controller
         ];
 
 
-        return view('finances',
+        return view('finance.finances',
         [
             'employees' => $collection_employees,
             'employees_services' => $array_temp,
