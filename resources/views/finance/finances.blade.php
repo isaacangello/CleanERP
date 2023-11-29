@@ -168,15 +168,15 @@
 //                                                    dd($row);
                                                     extract($row);
                                                 @endphp
-                                        @if($emp_name!=null)
-                                            <tr>
-                                                <td>{{$emp_name}}</td>
-                                                <td>{{$cem}}</td>
-                                                <td>{{$setenta}}</td>
-                                                <td>{{$trinta}}</td>
-                                                <td></td>
-                                            </tr>
-                                        @endif
+                                            @if($emp_name!=null)
+                                                <tr>
+                                                    <td>{{$emp_name}}</td>
+                                                    <td>{{$cem}}</td>
+                                                    <td>{{$setenta}}</td>
+                                                    <td>{{$trinta}}</td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     @else
                                          <tr>

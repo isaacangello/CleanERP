@@ -117,9 +117,7 @@ employee notes
                             <span id="list-of-employees" class="m-l-35">LIST OF EMPLOYEES</span>
                                     <!-- ############  Blade  component employee-cad ###########################################################################################-->
                                     <!-- component register for register new employee-->
-                                    <x-employee-cad
-                                    :
-                                    />
+                                    <x-employee-cad />
 
 
                         </div>
@@ -206,6 +204,8 @@ employee notes
     <!-- Jquery Core Js -->
 {{--    <script src="web-resources/systheme/plugins/jquery/jquery.min.js"></script>--}}
     <script src="{{asset('web-resources/jquery/jquery-3.7.0.min.js')}}"></script>
+    <!-- Axios js-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Bootstrap Core Js -->
 {{--    <script src="web-resources/bootstrap/bootstrap.min.js"></script>--}}
     <script src="{{ asset('web-resources/materialize/js/materialize.min.js') }}"></script>

@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string('frequency')->default('ONE');
             $table->string('notes', 3000)->nullable();
             $table->string('instructions', 3000)->nullable();
-            $table->boolean('paid_out')->nullable();
-            $table->boolean('fee')->nullable();
+            $table->boolean('paid_out')->default(false);
+            $table->boolean('paid_out')->default(false);
+            $table->boolean('fee')->default(false);
             $table->string('feenotes',500)->nullable();
             $table->string('pgmt')->nullable();
             $table->string('who_saved')->nullable();
