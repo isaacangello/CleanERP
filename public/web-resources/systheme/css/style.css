@@ -24,17 +24,10 @@
     overflow: hidden; }
 
 .logo{
-    width:15%;
+    width:40px;
     border-radius: 25px;
-    float: left;
 }
-#jjl-logo{
-    margin-left: 3%;
-    display: block;
-    padding-top: 1%;
-    height:100%;
-    vertical-align: middle;
-}
+
 #buton-user-dropdown{
     z-index: -1;
 }
@@ -1778,7 +1771,19 @@ margin-bottom: 9px;}
 
 .p-b-10 {
     padding-bottom: 10px; }
+/*+==================+*/
+.p-l-12 {
+    padding-left: 12px; }
 
+.p-t-12 {
+    padding-top: 12px; }
+
+.p-r-12 {
+    padding-right: 12px; }
+
+.p-b-12 {
+    padding-bottom: 12px; }
+/*+==================+*/
 .p-l-15 {
     padding-left: 15px; }
 
@@ -1790,7 +1795,7 @@ margin-bottom: 9px;}
 
 .p-b-15 {
     padding-bottom: 15px; }
-
+/*+==================+*/
 .p-l-20 {
     padding-left: 20px; }
 

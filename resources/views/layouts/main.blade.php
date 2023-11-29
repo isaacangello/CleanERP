@@ -51,14 +51,21 @@
 <!-- Top NavBar -->
 <nav class="navbar nav">
     <div class="nav-wrapper">
-         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <a href="#" id="hide-left-sidebar"  class="hide-left-sidebar brand-logo hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
-        <a href="javascript:void(0);" id="jjl-logo" class="brand-logo  person-shadow hide-on-med-and-down">
-            <img src="{{asset('img/android-chrome-256x256.png')}}"   class="logo " alt="jjl logo"/>
-        </a>
-        <a href="javascript:void(0);" id="jjl-text" class=" brand-logo m-l-100 person-shadow flow-text hide-on-med-and-down" >
-            JJL System 2
-        </a>
+
+        <ul class="left">
+            <li>
+                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#" id="hide-left-sidebar"  class="hide-left-sidebar hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
+            </li>
+            <li class="valign-wrapper p-l-3 p-t-12 center-align">
+                   <span class="valign-wrapper "> <img src="{{asset('img/android-chrome-256x256.png')}}"  class="logo"  alt="jjl logo"/></span>
+            </li>
+            <li>
+                <span class="person-shadow flow-text hide-on-med-and-down p-l-10" >
+                    JJL System 2
+                </span>
+            </li>
+        </ul>
         <ul id="nav-mobile" class="right">
             <li>
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">

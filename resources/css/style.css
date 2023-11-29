@@ -26,14 +26,14 @@
 .logo{
     width:15%;
     border-radius: 25px;
-    float: left;
+    /*float: left;*/
 }
 #jjl-logo{
-    margin-left: 3%;
+    /*margin-left: 3%;*/
     display: block;
-    padding-top: 1%;
+    /*padding-top: 1%;*/
     height:100%;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
 }
 #buton-user-dropdown{
     z-index: -1;
