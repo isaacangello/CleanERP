@@ -17,4 +17,32 @@ class Employee extends Model
             'status','shift','username',
             'password','newuser'
         ];
+    public function rules(){
+        return[
+            'name' => 'require:unique:employees,name',
+            'phone' =>'require',
+            'email' => 'require',
+            'birth' => 'require',
+            'address' =>'require',
+            'namerefone' =>"nullable",
+            'namereftwo' =>'nullable',
+            'phonerefone' =>'nullable',
+            'phonereftwo' =>'nullable',
+            'restriction' =>'nullable',
+            'description' =>'nullable',
+            'document' =>'nullable',
+            'type' =>'require',
+            'status' =>'require',
+            'shift' =>'nullable',
+            'username' =>'require:unique:employees,username',
+            'password' =>'nullable',
+            'newuser' =>'nullable',
+        ];
+    }
+    public function feedback(){
+        return[
+
+        ];
+    }
+
 }

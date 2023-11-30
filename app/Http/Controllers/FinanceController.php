@@ -29,38 +29,73 @@ class FinanceController extends Controller
             ->select(
                 'customers.price_weekly',
             )->get();
-
-        return $collection_result->sum('price_weekly');
+        $collection_result1 =  DB::table('services')
+             ->whereBetween('service_date',[$from,$till] )
+            ->join('employees', 'services.employee2_id','=','employees.id')
+            ->join('customers','services.customer_id','=', 'customers.id')
+            ->select(
+                'customers.price_weekly',
+            )->get();
+        $returnvar =  ($collection_result->sum('price_weekly')+$collection_result1->sum('price_weekly'));
+        return $returnvar;
     }
     public function count_payment_employees(int $employee_id,string $from,string $till)
     {
-      $collection_result =  DB::table('services')->where('employee1_id', $employee_id)
-             ->whereBetween('service_date',[$from,$till] )
+        $array_result = array();
+        $collection_result =  DB::table('services')->where('employee1_id', $employee_id)
+            ->whereBetween('service_date',[$from,$till] )
             ->join('employees', 'services.employee1_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(
-                'services.service_date',
-                'services.paid_out',
-                'services.fee',
-                'services.feenotes',
-                'services.pgmt',
-                'services.who_saved',
-                'services.price',
-                'services.plus',
-                'services.minus',
-                'employees.name as emp_name',
-                'customers.name as cust_name',
-                'customers.price_weekly',
-                'customers.address'
+            'services.service_date',
+            'services.paid_out',
+            'services.fee',
+            'services.feenotes',
+            'services.pgmt',
+            'services.who_saved',
+            'services.price',
+            'services.plus',
+            'services.minus',
+            'employees.name as emp_name',
+            'customers.name as cust_name',
+            'customers.price_weekly',
+            'customers.address'
+            )->get();
+        $collection_result1 =  DB::table('services')->where('employee2_id', $employee_id)
+            ->whereBetween('service_date',[$from,$till] )
+            ->join('employees', 'services.employee2_id','=','employees.id')
+            ->join('customers','services.customer_id','=', 'customers.id')
+            ->select(
+            'services.service_date',
+            'services.paid_out',
+            'services.fee',
+            'services.feenotes',
+            'services.pgmt',
+            'services.who_saved',
+            'services.price',
+            'services.plus',
+            'services.minus',
+            'employees.name as emp_name',
+            'customers.name as cust_name',
+            'customers.price_weekly',
+            'customers.address'
             )->get();
 
-            $array_result = array();
+
             $total = $collection_result->sum('price_weekly');
+            $total1 = $collection_result1->sum('price_weekly');
             $array_fromdb = $collection_result->toArray();
+            $array2_fromdb = $collection_result1->toArray();
 
             foreach ($array_fromdb as $row){
                 $array_result['emp_name'] = $row->emp_name;
                 $array_result['cem'] = number_format($total,2,'.',',');
+                $array_result['setenta'] = number_format(($total*0.7),2,'.',',');
+                $array_result['trinta'] = number_format(($total*0.3),2,'.',',');
+            }
+            foreach ($array2_fromdb as $row){
+                $array_result['emp_name'] = $row->emp_name;
+                $array_result['cem'] = number_format($total1,2,'.',',');
                 $array_result['setenta'] = number_format(($total*0.7),2,'.',',');
                 $array_result['trinta'] = number_format(($total*0.3),2,'.',',');
             }

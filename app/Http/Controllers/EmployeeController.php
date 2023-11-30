@@ -8,7 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
-    public function index(Request $request){
+    private Employee $employee;
+
+    public function __construct(Employee $employee)
+    {
+        $this->employee = $employee;
+    }
+
+    public function index(){
         if(!isset($configpage))$configpage = 50;
 
         return view('employees',[
@@ -16,4 +23,9 @@ class EmployeeController extends Controller
             ]
         );
     }
+    public function store(Request $request){
+
+
+    }
+
 }
