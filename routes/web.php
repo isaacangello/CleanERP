@@ -5,6 +5,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\ServicesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,9 +51,7 @@ Route::prefix('finances')->group(function () {
 //#############################################################
 Route::middleware('auth')->group(function () {
 
-    Route::get('/home', function () {
-    return view('home');
-})->name('home');
+    Route::get('/home',[ServicesController::class,'home'])->name('home');
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

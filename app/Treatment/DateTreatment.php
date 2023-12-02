@@ -2,6 +2,9 @@
 
 namespace App\Treatment;
 
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+
 class DateTreatment
 {
    /**
@@ -177,5 +180,65 @@ public function MakeArrayDays($firstdate = 0, $periodo = 'Wek', $periodo_meses =
         }
 
         return $array_result;
+    }
+    public function getWeek($day):array{
+        /**
+         * Monday (Segunda-feira) ...
+         * Tuesday (Terça-feira) ...
+         * Wednesday (Quarta-feira) ...
+         * Thursday (Quinta-feira) ...
+         * Friday (Sexta-feira) ...
+         * Saturday (Sábado) ...
+         * Sunday (Domingo) ...
+         */
+
+        $day_string = strtotime($day);
+        return $this->extracted($day_string);
+    }
+    public function getWeekByNumberWeek($numberWeek,$year = 'current'):array{
+        if ($year == 'current'){
+
+            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
+            ->filter(fn ($date) => $date->isMonday());
+        }else{
+//            dd(now()->startOfYear());
+            $carbon = Carbon::create($year);
+//            $carbon->between($carbon->startOfYear()-,$carbon->endOfYear())
+//                ->filter(fn ($date) => $date->isMonday());
+            $period = CarbonPeriod::between($carbon->startOfYear()->toDate(), $carbon->endOfYear()->toDate())
+            ->filter(fn ($date) => $date->isMonday());
+//            dd($carbon->endOfYear());
+        }
+            $dates = [];
+            foreach ($period as $date) {
+            $dates[] = $date->format('Y-m-d');
+        }
+        dd($dates);
+        $day_string = strtotime($dates[($numberWeek - 1)]);
+        dd($this->extracted($day_string));
+        return $this->extracted($day_string);
+    }
+
+    /**
+     * @param bool|int $day_string
+     * @return array
+     */
+    public function extracted(bool|int $day_string): array
+    {
+        $weekArr["monday"] = date('Y-m-d', strtotime('Monday this week', $day_string));
+        $weekArr["Tuesday"] = date('Y-m-d', strtotime('Tuesday this week', $day_string));
+        $weekArr["Wednesday"] = date('Y-m-d', strtotime('Wednesday this week', $day_string));
+        $weekArr["Thursday"] = date('Y-m-d', strtotime('Thursday this week', $day_string));
+        $weekArr["Friday"] = date('Y-m-d', strtotime('Friday this week', $day_string));
+        $weekArr["Saturday"] = date('Y-m-d', strtotime('Saturday this week', $day_string));
+        $weekArr["Sunday"] = date('Y-m-d', strtotime('Sunday this week', $day_string));
+        return $weekArr;
+    }
+    public function numberWeekByday(string $date): int
+    {
+        $datearr = explode('-',$date);
+        $dia=$datearr[2];$mes=$datearr[1];$ano=$datearr[0];
+        $var=intval( date('z', mktime(0,0,0,$mes,$dia,$ano) ) / 7 ) + 1;
+        return $var;
     }
 }
