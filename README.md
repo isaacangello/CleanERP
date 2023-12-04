@@ -8,9 +8,9 @@ Esse é um Projeto para a empresa JJL Clean Services, para controlar os processo
 
 - Cadastros 1
     - users 1.1 (userModel,UserController,profileController)
-    - Customers 1.3 (EmployeeModel,EmployeeController)
-    - Employees 1.4 (serviceModel,ServicesController)
-    - Services
+    - Customers 1.2 (CustomerModel,CustomerController) 
+    - Employees 1.3 (EmployeeModel,EmployeeController)
+    - Services  1.4 (serviceModel,ServicesController)
 - exibiçoes 2
     - Customers 2.1 (customer.blade,CadComponent,EditComponent)
     - Employees 2.2 (employee.blade,CadComponent,EditComponent)

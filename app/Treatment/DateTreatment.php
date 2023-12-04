@@ -10,6 +10,7 @@ class DateTreatment
    /**
      * A basic feature test example.
      */
+
     /*************************************JJLsystem************************************
      *  Essa funçao retorna o nome do mes
      */
@@ -203,19 +204,44 @@ public function MakeArrayDays($firstdate = 0, $periodo = 'Wek', $periodo_meses =
         }else{
 //            dd(now()->startOfYear());
             $carbon = Carbon::create($year);
-//            $carbon->between($carbon->startOfYear()-,$carbon->endOfYear())
-//                ->filter(fn ($date) => $date->isMonday());
+            if($carbon->startOfYear()->isMonday()){
             $period = CarbonPeriod::between($carbon->startOfYear()->toDate(), $carbon->endOfYear()->toDate())
             ->filter(fn ($date) => $date->isMonday());
+            }
+            if($carbon->startOfYear()->isTuesday()){
+            $period = CarbonPeriod::between($carbon->startOfYear()->toDate(), $carbon->endOfYear()->toDate())
+            ->filter(fn ($date) => $date->isTuesday());
+            }
+            if($carbon->startOfYear()->isWednesday()){
+            $period = CarbonPeriod::between($carbon->startOfYear()->toDate(), $carbon->endOfYear()->toDate())
+            ->filter(fn ($date) => $date->isWednesday());
+            }
+            if($carbon->startOfYear()->isThursday()){
+            $period = CarbonPeriod::between($carbon->startOfYear()->toDate(), $carbon->endOfYear()->toDate())
+            ->filter(fn ($date) => $date->isThursday());
+            }
+            if($carbon->startOfYear()->isFriday()){
+            $period = CarbonPeriod::between($carbon->startOfYear()->toDate(), $carbon->endOfYear()->toDate())
+            ->filter(fn ($date) => $date->isFriday());
+            }
+            if($carbon->startOfYear()->isSaturday() ){
+            $period = CarbonPeriod::between($carbon->startOfYear()->toDate(), $carbon->endOfYear()->toDate())
+            ->filter(fn ($date) => $date->isSaturday());
+            }
+            if($carbon->startOfYear()->isSunday()){
+            $period = CarbonPeriod::between($carbon->startOfYear()->toDate(), $carbon->endOfYear()->toDate())
+            ->filter(fn ($date) => $date->isSunday());
+            }
+
 //            dd($carbon->endOfYear());
         }
             $dates = [];
             foreach ($period as $date) {
             $dates[] = $date->format('Y-m-d');
         }
-        dd($dates);
+//        dd($dates);
         $day_string = strtotime($dates[($numberWeek - 1)]);
-        dd($this->extracted($day_string));
+//        dd($this->extracted($day_string));
         return $this->extracted($day_string);
     }
 

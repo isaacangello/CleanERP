@@ -25,15 +25,19 @@ class ServicesController extends Controller
             $weekarr = $this->date->getWeekByNumberWeek($request->numberweek,$year);
 
         }else{
-            $numweek = $this->date->numberWeekByday(now()->format('Y-m-d'));
+            $numweek = 1;
+//            dd($numweek);
             $weekarr = $this->date->getWeekByNumberWeek($numweek,$year);
         }
 //         dd($today);
 
 
-        dd($weekarr);
+//        dd($weekarr);
 
 
-        return view('home');
+        return view('home',
+        [
+           'weekarr' => $weekarr,
+        ]);
     }
 }
