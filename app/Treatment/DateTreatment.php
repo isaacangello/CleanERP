@@ -196,13 +196,48 @@ public function MakeArrayDays($firstdate = 0, $periodo = 'Wek', $periodo_meses =
         $day_string = strtotime($day);
         return $this->extracted($day_string);
     }
-    public function getWeekByNumberWeek($numberWeek,$year = 'current'):array{
-        if ($year == 'current'){
 
-            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
+    /**
+     *
+     */
+    public function getWeekByNumberWeek($numberWeek, $year = 'current'):array{
+        if ($year == 'current'){
+//            dd(now()->startOfYear()->isSunday())
+//            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
+//            ->filter(fn ($date) => $date->isMonday());
+
+
+            if(now()->startOfYear()->isMonday()){
+            $period = CarbonPeriod::between(now()->startOfYear()->toDate(), now()->endOfYear()->toDate())
             ->filter(fn ($date) => $date->isMonday());
+            }
+            if(now()->startOfYear()->isTuesday()){
+            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
+            ->filter(fn ($date) => $date->isTuesday());
+            }
+            if(now()->startOfYear()->isWednesday()){
+            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
+            ->filter(fn ($date) => $date->isWednesday());
+            }
+            if(now()->startOfYear()->isThursday()){
+            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
+            ->filter(fn ($date) => $date->isThursday());
+            }
+            if(now()->startOfYear()->isFriday()){
+            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
+            ->filter(fn ($date) => $date->isFriday());
+            }
+            if(now()->startOfYear()->isSaturday() ){
+            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
+            ->filter(fn ($date) => $date->isSaturday());
+            }
+            if(now()->startOfYear()->isSunday()){
+            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
+            ->filter(fn ($date) => $date->isSaturday());
+            }
+//            dd($period);
         }else{
-//            dd(now()->startOfYear());
+
             $carbon = Carbon::create($year);
             if($carbon->startOfYear()->isMonday()){
             $period = CarbonPeriod::between($carbon->startOfYear()->toDate(), $carbon->endOfYear()->toDate())
@@ -251,7 +286,7 @@ public function MakeArrayDays($firstdate = 0, $periodo = 'Wek', $periodo_meses =
      */
     public function extracted(bool|int $day_string): array
     {
-        $weekArr["monday"] = date('Y-m-d', strtotime('Monday this week', $day_string));
+        $weekArr["Monday"] = date('Y-m-d', strtotime('Monday this week', $day_string));
         $weekArr["Tuesday"] = date('Y-m-d', strtotime('Tuesday this week', $day_string));
         $weekArr["Wednesday"] = date('Y-m-d', strtotime('Wednesday this week', $day_string));
         $weekArr["Thursday"] = date('Y-m-d', strtotime('Thursday this week', $day_string));
