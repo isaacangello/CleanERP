@@ -45,9 +45,20 @@
                 </div>
                 <div class="body">
                         <div class="row">
-                            @for($i=0;$i<16;$i++)
-                                <x-home-cards />
-                            @endfor
+                            @php
+                                    function oddCheck($nun): bool
+                                    {
+                                        if ($nun % 2 > 0 ){
+                                            return true;
+                                        }else{
+                                            return false;
+                                        }
+                                    }
+
+                            @endphp
+                            #@foreach($weekarr as $key => $row)
+                                <x-home-cards :emp-name="$key" :data="$row" />
+                            @endforeach
                         </div> <!--grid system row-->
                 </div> <!--card body-->
             </div> <!--card -->

@@ -15,12 +15,16 @@ class ServicesController extends Controller
     private Service $service;
     private DateTreatment $date;
     private Employee $employee;
+    private mixed $from;
+    private mixed $till;
 
     public function __construct(Service $service,DateTreatment $date, Employee $employee)
     {
         $this->service = $service;
         $this->date = $date;
         $this->employee = $employee;
+
+
     }
 
     public function home(Request $request){
@@ -38,11 +42,14 @@ class ServicesController extends Controller
         if(isset($request->numberweek) and intval($request->numberweek) >=1 and intval($request->numberweek) <=52 ){
 //            dd($request->numberweek);
             $weekarr = $this->date->getWeekByNumberWeek($request->numberweek,$year);
-
+            $this->from = $weekarr['Monday'];
+            $this->till = $weekarr['Sunday'];
         }else{
 
             $numweek = $this->date->numberWeekByday(now()->format('Y-m-d'));
             $weekarr = $this->date->getWeekByNumberWeek($numweek,$year);
+            $this->from = $weekarr['Monday'];
+            $this->till = $weekarr['Sunday'];
         }
         /**
          * Montado dados para tela
@@ -58,11 +65,13 @@ class ServicesController extends Controller
             foreach ($servicesArr->toArray() as $key => $row){
                 $c=0;
                 $array_temp = [];
+                $array_temp2 = [];
 
 
                 foreach ($row as $key2 => $items){
 //                        var_dump($items->service_date)."<br>";
                     $carbon_date = Carbon::create($items->service_date);
+                    $items->service_date = $carbon_date->format('m/d/Y');
                     if($carbon_date->isMonday()){
                         $weekDay="Monday";
                         $array_temp2= [
@@ -161,16 +170,33 @@ class ServicesController extends Controller
                 }
 
 //                    echo"<hr>";
+//                    var_dump($array_week);
+//                    echo"<hr>";
+
                     $array_sort = collect($array_temp)->sortBy('service_date')->toArray();
                     if(array_key_exists($key,$filtered)){
                           array_push($filtered[$key],$array_sort)  ;
+                          $filtered[$key] = $array_week;
                     }else{
                         $filtered[$key] = $array_sort;
+                        $filtered[$key] = $array_week;
                     }
             }
 
+//            foreach ($filtered as $key => $data){
+//
+//                echo '<br>'.$key."<br>";
+//                    foreach ($data as $key1 => $row){
+//                        echo"<br>====($key1)====<br>";
+//                        foreach ($row as $dat){
+//                            echo "  =/=".$dat['cust_name']."  =/=  ".$dat['service_date'].'  =/=  '.$dat['period'].'<br>';
+//                        }
+//
+//                    }
+//                    echo '<br>';
+//            }
 
-            dd($array_week);
+//            dd($array_week);
 //            dd($filtered);
 
 
