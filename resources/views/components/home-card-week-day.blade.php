@@ -3,12 +3,18 @@
             $arrayCount = sizeof($data);
         @endphp
 
-        <tr><td colspan="2">{{ $weekDayLabel }} tamanho do data >>{{ $arrayCount }}</td></tr>
+        <tr><td colspan="2" class="text-uppercase">{{ $weekDayLabel }}</td></tr>
 
         <tr>
             @foreach($data as $row)
                 @php(extract($row))
-                <td><a>{{ $cust_name }}</a></td>
+                    <td>
+                        <a>{{ $cust_name }}</a>
+                        <span class="badge">
+                            <span class="material-symbols-outlined ">mark_unread_chat_alt</span>
+                            <span class="material-symbols-outlined ">brightness_7</span>
+                        </span>
+                    </td>
                 @php($c++)
                 {{-- pulando para linha de baixo quando atinge dois td's --}}
                 @if($c == 2)
@@ -23,7 +29,7 @@
                     <td>&nbsp;</td>
                 @endif
                 @if($arrayCount == 0)
-                    <td>&nbsp;</td><td>&nbsp;</td>
+                    <td>&nbsp;</td><td>&nbsp;&nbsp;</td>
                 @endif
         </tr>
 

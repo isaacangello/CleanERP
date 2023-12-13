@@ -20,9 +20,11 @@
     <link rel="mask-icon" href="{{ asset('./img/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#00a300">
     <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     @yield('css-style')
     <link href="{{ asset('web-resources/custom/mobile.css') }} " rel="stylesheet">
     @yield('script-top')
+
 </head>
 
 <body class="theme-teal">

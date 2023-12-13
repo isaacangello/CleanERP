@@ -60,6 +60,7 @@ class ServicesController extends Controller
 
             $servicesArr = $this->employee->servicesFromPeriod($weekarr['Monday'],$weekarr['Sunday']);
             $filtered = [];
+            $filteredWeekGroup = [];
             $array_week['Monday']= [];$array_week['Tuesday']= [];$array_week['Wednesday']= [];$array_week['Thursday']= [];$array_week['Friday']= [];$array_week['Saturday']= [];
 //            dd($servicesArr->toArray());
             foreach ($servicesArr->toArray() as $key => $row){
@@ -176,11 +177,12 @@ class ServicesController extends Controller
                     $array_sort = collect($array_temp)->sortBy('service_date')->toArray();
                     if(array_key_exists($key,$filtered)){
                           array_push($filtered[$key],$array_sort)  ;
-                          $filtered[$key] = $array_week;
+//                          $filtered[$key] = $array_week;
                     }else{
                         $filtered[$key] = $array_sort;
-                        $filtered[$key] = $array_week;
+//                        $filtered[$key] = $array_week;
                     }
+                    $filteredWeekGroup[$key] = $array_week;
             }
 
 //            foreach ($filtered as $key => $data){
@@ -198,11 +200,21 @@ class ServicesController extends Controller
 
 //            dd($array_week);
 //            dd($filtered);
-
-
+            $weekarr['Monday'] = Carbon::create($weekarr['Monday'])->format('m/d/Y');
+            $weekarr['Tuesday'] = Carbon::create($weekarr['Tuesday'])->format('m/d/Y');
+            $weekarr['Wednesday'] = Carbon::create($weekarr['Wednesday'])->format('m/d/Y');
+            $weekarr['Thursday'] = Carbon::create($weekarr['Thursday'])->format('m/d/Y');
+            $weekarr['Friday'] = Carbon::create($weekarr['Friday'])->format('m/d/Y');
+            $weekarr['Saturday'] = Carbon::create($weekarr['Saturday'])->format('m/d/Y');
+            $weekarr['Sunday'] = Carbon::create($weekarr['Sunday'])->format('m/d/Y');
+//        dd($weekarr);
         return view('home',
         [
-           'weekarr' => $filtered,
+           'dataArr' => $filteredWeekGroup,
+            'weekArr' => $weekarr,
+            'numWeek' => $numweek,
         ]);
     }
+
+
 }

@@ -40,7 +40,7 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        Day of week 12 <div class="displaytest">Iphone</div>
+                        Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span class="label-date-home">{{ $weekArr['Monday'] }}</span> - Till <span class="label-date-home">{{ $weekArr['Saturday'] }} </span><div class="displaytest">Iphone</div>
                     </h2>
                 </div>
                 <div class="body">
@@ -56,7 +56,7 @@
                                     }
 
                             @endphp
-                            #@foreach($weekarr as $key => $row)
+                            #@foreach($dataArr as $key => $row)
                                 <x-home-cards :emp-name="$key" :data="$row" />
                             @endforeach
                         </div> <!--grid system row-->

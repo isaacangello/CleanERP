@@ -113,6 +113,7 @@ class Employee extends Model
                 'period',
                 'who_saved',
                 'customers.name as cust_name',
+                'customers.type as cust_type',
                 'employees.name as emp_name'
             )->get()->sortBy('emp_name')->groupBy('emp_name');
 
