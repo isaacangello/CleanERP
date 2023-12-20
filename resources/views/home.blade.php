@@ -31,7 +31,7 @@
 <div class="container-fluid">
     <div class="block-header">
         <h2>
-            <small>EMPLOYEES SERVICES TODAY</small>
+            <small>EMPLOYEES SERVICES</small>
         </h2>
     </div>
     <!-- Basic Examples -->

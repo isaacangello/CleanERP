@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
      * fields
      *  `nome``address``phone``email``type``status``frequency``regday``description``paypay``local``rentalhouse``info``chavec``key``passkey`
-     * description for services frenquency
+     * description for services frequency
      * WEK =>Weekly
      * BIW=>Biweekly
      * THR=>Threeweekly

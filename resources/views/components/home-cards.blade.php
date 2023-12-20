@@ -27,58 +27,6 @@
 
                                                         <x-home-card-week-day :week-day-label="$weekDayLabel" :data="$row" />
                                                 @endforeach
-
-{{--
-{{--                                                <!--==================divisão de dia ===========================================================-->--}}
-{{--                                                    <tr><td colspan="2" >MONDAY</td></tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>FULANO</td><td>BEUTRANO</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>BEUTRANO</td><td>FULANO</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                <!--==================divisão de dia ===========================================================-->--}}
-{{--                                                    <tr><td colspan="2" >TUESDAY</td></tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>BEUTRANO</td><td>FULANO</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>FULANO</td><td>BEUTRANO</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                <!--==================divisão de dia ===========================================================-->--}}
-{{--                                                    <tr><td colspan="2" >WEDNESDAY</td></tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>FULANO</td><td>BEUTRANO</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>BEUTRANO</td><td>FULANO</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                <!--==================divisão de dia ===========================================================-->--}}
-{{--                                                    <tr><td colspan="2" >THRUSDAY</td></tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>BEUTRANO</td><td>FULANO</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>FULANO</td><td>BEUTRANO</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                <!--==================divisão de dia ===========================================================-->--}}
-{{--                                                    <tr><td colspan="2" >FRIDAY</td></tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>FULANO</td><td>BEUTRANO</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>FULANO</td><td>BEUTRANO</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                <!--==================divisão de dia ===========================================================-->--}}
-{{--                                                    <tr><td colspan="2" >SATURDAY</td></tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>FULANO</td>--}}
-{{--                                                        <td></td>--}}
-{{--                                                    </tr>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>FULANO</td>--}}
-{{--                                                        <td></td>--}}
-{{--                                                    </tr>--}}
                                                 </tbody>
                                             </table>
 
