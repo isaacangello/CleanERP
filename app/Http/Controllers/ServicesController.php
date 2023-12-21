@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+//use App\View\Components\customer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Service;
 use App\Models\Employee;
+use \App\Models\Customer;
 use App\Treatment\DateTreatment;
 use Carbon\CarbonPeriod;
 class ServicesController extends Controller
@@ -15,15 +17,16 @@ class ServicesController extends Controller
     private Service $service;
     private DateTreatment $date;
     private Employee $employee;
+    private Customer $customer;
     private mixed $from;
     private mixed $till;
 
-    public function __construct(Service $service,DateTreatment $date, Employee $employee)
+    public function __construct(Service $service,DateTreatment $date, Employee $employee,Customer $customer)
     {
         $this->service = $service;
         $this->date = $date;
         $this->employee = $employee;
-
+        $this->customer = $customer;
 
     }
 
@@ -213,6 +216,8 @@ class ServicesController extends Controller
            'dataArr' => $filteredWeekGroup,
             'weekArr' => $weekarr,
             'numWeek' => $numweek,
+            'employeesCol' => $this->employee->all()->sortBy('name'),
+            'customersCol' => $this->customer->all()->sortBy('name'),
         ]);
     }
 

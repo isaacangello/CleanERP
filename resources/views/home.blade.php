@@ -39,12 +39,14 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <button class="btn waves-effect waves-classic waves-light  btn-small modal-trigger"  href="#new-service" >New service</button>
+                    <button class="btn waves-classic waves-light btn-small  btn-small modal-trigger"  href="#new-service" >New service</button>
                     <span class="p-l-10">
                           Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span class="label-date-home">{{ $weekArr['Monday'] }}</span> - Till <span class="label-date-home">{{ $weekArr['Saturday'] }} </span><div class="displaytest">Iphone</div>
                     </span>
                 </div>
-                <x-service-cad></x-service-cad>
+                <x-service-cad :employees="$employeesCol" :customers="$customersCol">
+
+                </x-service-cad>
                 <div class="body">
                         <div class="row">
                             @php

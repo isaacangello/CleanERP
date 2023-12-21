@@ -32,8 +32,7 @@ $(document).ready(function () {
         startingTop: '0%',
         endingTop: '10%',
     });
-
-/** dropdown materialize */
+    /** dropdown materialize */
 /*
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.dropdown-trigger');
@@ -44,7 +43,7 @@ $(document).ready(function () {
   // Or with jQuery
   $('.dropdown-trigger').dropdown();
 
-  var hidden = "true";
+  var hidden = true;
 $("#buton-user-dropdown").click(function () {
     /*
     *   -moz-transition: 0.5s;
@@ -59,13 +58,13 @@ $("#buton-user-dropdown").click(function () {
                     "transition":"left 0.5s",
                  });
 
-        if(hidden == "true"){
-             hidden = "false";
+        if(hidden == true){
+             hidden = false;
             $("#dropdown-left-sidebar").show("500") ;
             // $("#site-content").css('margin-left',"315px");
 
         } else {
-             hidden = "true";
+             hidden = true;
             $("#dropdown-left-sidebar").hide("500");
             // $("#site-content").css('margin-left',"15px");
 
@@ -80,5 +79,9 @@ $("#buton-user-dropdown").click(function () {
         autoClose: true,
         showClearBtn: true,
         yearRange: 50,
+        format:'mm/dd/yyyy',
     });
   });
+      // time picker
+  $('.timepicker').timepicker();
+

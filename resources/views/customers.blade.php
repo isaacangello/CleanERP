@@ -180,6 +180,7 @@
 @endsection
 
 
+
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
     <!-- Jquery Core Js -->
@@ -215,5 +216,4 @@
     <script src="{{asset('web-resources/systheme/js/demo.js')}}"></script>
     <script src="{{ asset('web-resources/systheme/js/systheme.js') }}"></script>
 @endsection
-
 
