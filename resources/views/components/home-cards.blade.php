@@ -24,7 +24,6 @@
                                                 </thead>
                                                 <tbody>
                                                 @foreach($data as $weekDayLabel => $row)
-
                                                         <x-home-card-week-day :week-day-label="$weekDayLabel" :data="$row" />
                                                 @endforeach
                                                 </tbody>
