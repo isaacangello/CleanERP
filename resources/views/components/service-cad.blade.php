@@ -109,11 +109,10 @@
                             <div class="form-group">
                                 <div class="form-line success">
                                     <select id="select-cad-service-frequency" name="service-frequency">
-                                        <option selected value="One">Eventual</option>
-                                        <option selected value="Wek">Weekly</option>
-                                        <option selected value="Biw">Biweekly</option>
-                                        <option selected value="Thr">Three-weekly</option>
-                                        <option selected value="Mon">Monthly</option>
+                                        <option selected value="One">Price for Eventual</option>
+                                        <option selected value="Wek">Price for Weekly</option>
+                                        <option selected value="Biw">Price for Biweekly</option>
+                                        <option selected value="Mon">Price for Monthly</option>
                                     </select>
                                     <label class="form-label"  for="select-cad-service-frequency">Service frequency.</label>
                                 </div>
