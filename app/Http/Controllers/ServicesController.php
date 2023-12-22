@@ -181,14 +181,16 @@ class ServicesController extends Controller
                     if(array_key_exists($key,$filtered)){
                           array_push($filtered[$key],$array_sort)  ;
 //                          $filtered[$key] = $array_week;
+                        $array_sort = [];
                     }else{
                         $filtered[$key] = $array_sort;
 //                        $filtered[$key] = $array_week;
+                        $array_sort = [];
                     }
                     $filteredWeekGroup[$key] = $array_week;
             }
 
-//            foreach ($filtered as $key => $data){
+//            foreach ($filteredWeekGroup as $key => $data){
 //
 //                echo '<br>'.$key."<br>";
 //                    foreach ($data as $key1 => $row){
@@ -200,7 +202,7 @@ class ServicesController extends Controller
 //                    }
 //                    echo '<br>';
 //            }
-
+//
 //            dd($array_week);
 //            dd($filtered);
             $weekarr['Monday'] = Carbon::create($weekarr['Monday'])->format('m/d/Y');
@@ -210,7 +212,7 @@ class ServicesController extends Controller
             $weekarr['Friday'] = Carbon::create($weekarr['Friday'])->format('m/d/Y');
             $weekarr['Saturday'] = Carbon::create($weekarr['Saturday'])->format('m/d/Y');
             $weekarr['Sunday'] = Carbon::create($weekarr['Sunday'])->format('m/d/Y');
-//        dd($weekarr);
+//        dd($filteredWeekGroup);
         return view('home',
         [
            'dataArr' => $filteredWeekGroup,

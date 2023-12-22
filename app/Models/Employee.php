@@ -93,6 +93,11 @@ class Employee extends Model
 
       return $result_services;
     }
+    public function servicesFromWeek($emp_id,$weekNun) :array{
+       $arr_result = [];
+
+       return $arr_result;
+    }
     public function servicesFromPeriodWhithEmpId($from,$till,$empId = null,$numberRegsPage = 15){
      if($empId == null){
         return [];

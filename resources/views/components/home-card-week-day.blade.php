@@ -7,9 +7,13 @@
 
         <tr>
             @foreach($data as $row)
-                @php(extract($row))
+                @php
+                    extract($row);
+                    $title="Service id: $service_id \n customer id: $cust_id \n employee1 is: $emp_id \n customer: $cust_name";
+                @endphp
+
                     <td>
-                        <a>{{ $cust_name }}</a>
+                        <a title="{{$title}}">{{ $cust_name }}</a>
                         <span class="badge">
                             <span class="material-symbols-outlined ">mark_unread_chat_alt</span>
                             <span class="material-symbols-outlined ">brightness_7</span>

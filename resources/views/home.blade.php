@@ -12,7 +12,8 @@
 {{--    <link href="web-resources/bootstrap/bootstrap.min.css" rel="stylesheet">--}}
     <!-- Materialize Core Css -->
     <link href="{{ asset('web-resources/materialize/css/materialize.css') }}" rel="stylesheet">
-
+    <!-- jquery ui  Css -->
+     <link href="{{asset('web-resources/jquery-ui/jquery-ui.css')}}" rel="stylesheet" />
     <!-- Waves Effect Css -->
     <link href="{{asset('web-resources/systheme/plugins/node-waves/waves.css')}}" rel="stylesheet" />
 
@@ -75,10 +76,13 @@
 
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
-    <!-- Jquery Core Js -->
+
 {{--    <script src="web-resources/systheme/plugins/jquery/jquery.min.js"></script>--}}
+    <!-- Jquery core js -->
     <script src="{{asset('web-resources/jquery/jquery-3.7.0.min.js')}}"></script>
-    <!-- Bootstrap Core Js -->
+    <!-- Jquery-ui Js -->
+    <script src="{{asset('web-resources/jquery-ui/jquery-ui.js')}}"></script>
+<!-- Bootstrap Core Js -->
 {{--    <script src="web-resources/bootstrap/bootstrap.min.js"></script>--}}
     <script src="{{ asset('web-resources/materialize/js/materialize.min.js') }}"></script>
 

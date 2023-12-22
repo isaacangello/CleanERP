@@ -15,13 +15,16 @@ $(document).ready(function () {
 
 /** colapsable materialize */
  $('.collapsible').collapsible();
- /** INITIALIZE SELECT*/
+ /** INITIALIZE SELECT */
  $('select').formSelect();
-/** INITIALIZE mobile side bar*/
+/** INITIALIZE mobile side bar */
  $('.sidenav').sidenav();
-/** INITIALIZE modal*/
+/** INITIALIZE modal */
   // $('.modal').modal();
-
+ /** INITIALIZE tooltip jquery-ui */
+  $( function() {
+    $( document ).tooltip();
+  } );
 
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, {
