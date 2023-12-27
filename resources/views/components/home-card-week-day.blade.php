@@ -8,13 +8,15 @@
         <tr>
             @foreach($data as $row)
                 @php
-                    extract($row);
-                    $title="Service id: $service_id \n customer id: $cust_id \n employee1 is: $emp_id \n customer: $cust_name";
+//                    dd($row->service_id);
+                    $title="Service id: $row->service_id \n customer id: $row->cust_id \n employee1 is: $row->emp_id \n customer: $row->cust_name";
                 @endphp
 
                     <td>
-                        <a title="{{$title}}">{{ $cust_name }}</a>
+                        <a title="{{$title}}">{{ explode(' ',$row->cust_name)[0] }}</a>
+
                         <span class="badge">
+
                             <span class="material-symbols-outlined ">mark_unread_chat_alt</span>
                             <span class="material-symbols-outlined ">brightness_7</span>
                         </span>
@@ -30,10 +32,10 @@
 
             @endforeach
                 @if(oddCheck($arrayCount))
-                    <td>&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
                 @endif
                 @if($arrayCount == 0)
-                    <td>&nbsp;</td><td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td>
                 @endif
         </tr>
 

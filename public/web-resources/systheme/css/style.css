@@ -8873,7 +8873,8 @@ html.ie11 .bs-searchbox .form-control {
   'FILL' 0,
   'wght' 100,
   'GRAD' 0,
-  'opsz' 9;font-size: medium;
+  'opsz' 9;
+    font-size: smaller;
     justify-content: center;
     justify-items: center;
     vertical-align: middle;

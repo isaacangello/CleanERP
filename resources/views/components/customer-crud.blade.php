@@ -19,8 +19,8 @@
                     <select id="select-crud-customer-type" name="customer-type" >
                         <option selected value="{{ $customerType }}">{{ $customerType }}</option>
                         <option  value="RESIDENCIAL">RESIDENCIAL</option>
-                        <option value="COMERCIAL">COMERCIAL</option>
-                        <option value="RENTAL_HOUSE">RENTAL HOUSE</option>
+                        <option value="COMMERCIAL">COMERCIAL</option>
+                        <option value="RENTALHOUSE">RENTAL HOUSE</option>
                     </select>
                 </div>
                 <div class="help-info">Select type of customer.</div>

@@ -59,11 +59,21 @@
                                             return false;
                                         }
                                     }
-
+                                    $c=0;
                             @endphp
-                            #@foreach($dataArr as $key => $row)
+                            
+                            @foreach($dataArr as $key => $row)
                                 <x-home-cards :emp-name="$key" :data="$row" />
+                                @php
+                                    $c++;
+                                    if($c >= 4){
+                                        $c=0;
+                                        echo "</div><div class='row'>";
+                                    }
+                                @endphp
+
                             @endforeach
+                            
                         </div> <!--grid system row-->
                 </div> <!--card body-->
             </div> <!--card -->

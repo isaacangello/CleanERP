@@ -22,7 +22,7 @@ class EmployeeFactory extends Factory
         return [
             'name' => "$name $lastname",
             'phone' => fake()->e164PhoneNumber(),
-            'email' => fake()->freeEmail(),
+            'email' => fake()->unique()->safeEmail(),
             'birth' => fake()->date,
             'address' => fake()->address(),
             'namerefone' => fake()->name,

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Treatment\DateTreatment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,6 +15,7 @@ class Employee extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
             'nome','phone','email','address',
             'namerefone','namereftwo','phonerefone',
@@ -93,8 +95,29 @@ class Employee extends Model
 
       return $result_services;
     }
-    public function servicesFromWeek($emp_id,$weekNun) :array{
+    public function servicesFromWeeknumber($emp_id,$weekNun, $year = 'current') :array{
+        $date = new DateTreatment();
        $arr_result = [];
+       $weekArr = $date->getWeekByNumberWeek($weekNun,$year);
+        foreach ($weekArr as $key =>  $weekday){
+            $weekdayCarbon = Carbon::create($weekday);
+            $arr_result[$key] = DB::table('services')
+                ->where('services.employee1_id','=',$emp_id)
+                ->whereBetween('service_date',[$weekdayCarbon->format('Y-m-d 00:00:00'),$weekdayCarbon->format('Y-m-d 11:59:56')] )
+                ->join('employees', 'services.employee1_id','=','employees.id')
+                ->join('customers','services.customer_id','=', 'customers.id')
+                ->select(
+                    'services.id as service_id',
+                    'customer_id as cust_id',
+                    'employee1_id as emp_id',
+                    'service_date',
+                    'period',
+                    'who_saved',
+                    'customers.name as cust_name',
+                    'customers.type as cust_type',
+                    'employees.name as emp_name'
+                )->get()->toArray();
+        }
 
        return $arr_result;
     }

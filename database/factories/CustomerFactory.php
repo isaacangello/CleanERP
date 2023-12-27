@@ -25,13 +25,15 @@ class CustomerFactory extends Factory
          */
         $frequencevals = array('WEK','BIW','THR','MON','ONE');
         $frekey = array_rand($frequencevals);
+        $arrCusType = array('COMERCIAL','RESIDENCIAL','RENTALHOUSE');
+        $custType = array_rand($arrCusType);
         return [
             'name' => fake()->name(),
             'address' => fake()->address(),
             'complement' => fake()->text(20) ,
             'phone' => fake()->e164PhoneNumber() ,
-            'email' => fake() ->companyEmail,
-            'type' => ((rand(1,1))%2)<0?'RESIDENCIAL':'COMERCIAL',
+            'email' => fake()->unique()->safeEmail(),
+            'type' => $custType,
             'status' => 'ACTIVE',
             'frequency' => $frequencevals[$frekey] ,
             'price_weekly' => fake()->randomFloat(2,80,300) ,
@@ -40,9 +42,9 @@ class CustomerFactory extends Factory
             'other_services' => fake()->text(30) ,
             'regday' => null,
             'info' => fake()->paragraph ,
-            'drivelicence' => false ,
-            'key' => false ,
-            'gate_code' => false ,
+            'drivelicence' => array_rand(array(true,false)) ,
+            'key' => array_rand(array(true,false)) ,
+            'gate_code' => array_rand(array(true,false)) ,
             'house_description' => fake()->paragraph(3) ,
         ];
     }
