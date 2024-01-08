@@ -122,7 +122,7 @@
                                 <div class="col s12 m4">
                                     <div class="form-group">
                                         <div class="form-line success">
-                                            <select class="btn-group bootstrap-select  show-tick">
+                                            <select class="btn-group bootstrap-select  show-tick" name="status">
                                                 <option disabled>select status of cutomer</option>
                                                 <option selected value="ACTIVE">ACTIVE</option>
                                                 <option value="INACTIVE">INACTIVE</option>

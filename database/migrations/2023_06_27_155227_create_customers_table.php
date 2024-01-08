@@ -24,7 +24,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',120);
             $table->string('address',120);
-            $table->string('complement',120);
+            $table->string('complement',120)->nullable();
             $table->string('phone',20);
             $table->string('email',40);
             $table->string('type',11)->default('RESIDENTIAL');
