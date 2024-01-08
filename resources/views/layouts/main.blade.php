@@ -191,13 +191,13 @@
                     <span>REGISTER / VIEW</span>
                 </li>
                 <li>
-                    <a href="{{route('customers', ['page' => 1])}}">
+                    <a href="{{route('customers.index', ['page' => 1])}}">
                         <i class="material-icons" style="font-size: 20px;">group_add</i>
                         <span>Customers</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('employees')}}">
+                    <a href="{{route('employees.index')}}">
                         <i class="material-icons" style="font-size: 20px;">badge</i>
                         <span>Employees</span>
                     </a>

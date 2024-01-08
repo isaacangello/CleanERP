@@ -34,11 +34,11 @@ return new class extends Migration
             $table->string('price_biweekly')->nullable();
             $table->string('price_monthly')->nullable();
             $table->string('other_services')->nullable();
-            $table->string('regday',15)->nullable();
+            $table->string('justify_inactive',320)->nullable();
             $table->string('info',320)->nullable();
-            $table->boolean('drivelicence')->default(false);
+            $table->boolean('drive_licence')->default(false);
             $table->boolean('key')->default(false);
-            $table->boolean('moregril')->default(false);
+            $table->boolean('more_girl')->default(false);
             $table->boolean('gate_code')->default(false);
             $table->string('house_description',3000)->nullable();
             $table->string('note',3000)->nullable();

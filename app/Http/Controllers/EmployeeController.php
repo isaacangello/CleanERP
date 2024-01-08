@@ -19,7 +19,7 @@ class EmployeeController extends Controller
         if(!isset($configpage))$configpage = 50;
 
         return view('employees',[
-            'employees' => DB::table('employees')->paginate($configpage)
+            'employees' => DB::table('employees')->orderBy('name')->paginate($configpage)
             ]
         );
     }

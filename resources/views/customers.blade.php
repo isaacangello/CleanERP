@@ -107,6 +107,9 @@
                                                 <!-- tratando variáveis do componentes customer-viewedit -->
 
                 <div class="body">
+                    @php if(isset($stored)){ @endphp
+
+                    @php } @endphp
                     <div class="row">
                         <div class="col s12">
                                 <ul class="collapsible popout">
@@ -153,18 +156,6 @@
                     <div class="row">
                         <div class="col s1 m2"></div>
                         <div class="col s10 m8 valign-wrapper center-align" style="align-content: center;align-items: center;justify-content: center">
-                            <!--
-                             <ul class="pagination center valign-wrapper align-center" style="margin: 0 auto">
-
-                                 <li class="disabled valign-wrapper"><a href="#!" ><i class="material-icons ">chevron_left</i></a></li>
-                                <li class="active  valign-wrapper"><a href="#!" class="green darken-3 white-text">1</a></li>
-                                <li class=" valign-wrapper"><a href="#" class="waves-effect waves-teal">2</a></li>
-                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">3</a></li>
-                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">4</a></li>
-                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">5</a></li>
-                                <li class=" valign-wrapper" ><a href="#!" ><i class="material-icons waves-effect waves-teal">chevron_right</i></a></li>
-                              </ul>
-                              -->
                             {{ $customers->links() }}
                         </div>
                         <div class="col s1 m2"></div>

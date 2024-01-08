@@ -78,13 +78,13 @@
                     <span>REGISTER / VIEW</span>
                 </li>
                 <li class="sidenav-item">
-                    <a href="{{route('customers')}}" class="waves-effect">
+                    <a href="{{route('customers.index')}}" class="waves-effect">
                         <i class="material-icons" style="font-size: 20px;">group_add</i>
                         <span>Customers</span>
                     </a>
                 </li>
                 <li class="sidenav-item">
-                    <a href="{{route('employees')}}" class="waves-effect">
+                    <a href="{{route('employees.index')}}" class="waves-effect">
                         <i class="material-icons" style="font-size: 20px;">badge</i>
                         <span>Employees</span>
                     </a>

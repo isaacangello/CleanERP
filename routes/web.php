@@ -37,10 +37,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 //#############################################################
-Route::get('/customers', [CustomerController::class, 'index'])->middleware(['auth', 'verified'])->name('customers');
-//Route::get('/customers/{page?}', [CustomerController::class, 'index'])->middleware(['auth', 'verified'])->name('customers');
+//############ RESOURCES CUSTOMERS EMPLOYEES SERVICES NAD ETC
 //#############################################################
-Route::get('/employees', [EmployeeController::class,'index'])->middleware(['auth', 'verified'])->name('employees');
+Route::resources([
+   'customers' => CustomerController::class,
+    'employees' => EmployeeController::class,
+]);
+//Route::get('/customers', [CustomerController::class, 'index'])->middleware(['auth', 'verified'])->name('customers');
+//Route::get('/employees', [EmployeeController::class,'index'])->middleware(['auth', 'verified'])->name('employees');
 //#############################################################
 //Route::get('/finances', [FinanceController::class, 'index'])->middleware(['auth', 'verified'])->name('finances');
 Route::prefix('finances')->group(function () {
