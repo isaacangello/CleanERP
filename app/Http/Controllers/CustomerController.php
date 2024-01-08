@@ -53,8 +53,8 @@ class CustomerController extends Controller
             'key' => $key ,
             'more_girl' => $more_girl,
             'gate_code' => $gate_code,
-            'house_description' => 'required',
-            'note' => 'required',
+            'house_description' => $request->house_description,
+            'note' => $request->note,
         ]);
 
 
