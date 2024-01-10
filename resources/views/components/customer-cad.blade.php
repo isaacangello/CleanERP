@@ -3,9 +3,24 @@
 <!-- ############  Modal Structure ###########################################################################################-->
     <div id="new-customer" class="modal bottom-sheet">
         <div class="modal-content">
-            <form method="post" action="{{ route('customers.store') }}">
+            <form method="post" id="customerFormCad" action="{{ route('customers.store') }}">
                 @csrf
+                <input type="hidden" value="ACTIVE" name="status">
                 <div class="container z-depth-3" style="width: 95%">
+                @if ($errors->any())
+                    <div class="row clearfix">
+                        <div class="col s12">
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
+                        </div>
+                    </div>
+               @endif
                             <div class="row clearfix">
                                 <div class="col s12 m8">
                                     <div class="form-group">
@@ -122,20 +137,15 @@
                                 <div class="col s12 m4">
                                     <div class="form-group">
                                         <div class="form-line success">
-                                            <select class="btn-group bootstrap-select  show-tick" name="status">
-                                                <option disabled>select status of cutomer</option>
-                                                <option selected value="ACTIVE">ACTIVE</option>
-                                                <option value="INACTIVE">INACTIVE</option>
+                                            <select id="select-cad-service-frequency" name="frequency">
+                                                <option selected value="One">Eventual</option>
+                                                <option  value="Wek">Weekly</option>
+                                                <option  value="Biw">Biweekly</option>
+                                                <option  value="Mon">Monthly</option>
                                             </select>
+                                            <label class="form-label"  for="select-cad-service-frequency">Service frequency.</label>
                                         </div>
-                                        <div class="help-info">select status of customer</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-line success">
-                                            <input type="text"  name="justify_inactive" id="input-cad-customer-justify-inactive" class="form-control" value=""/>
-                                            <label class="form-label" for="input-cad-customer-justify-inactive">why change customer status ?</label>
-                                        </div>
-                                        <div class="help-info">Why change customer status ?</div>
+                                        <div class="help-info">Select the service execution frequency.</div>
                                     </div>
                                 </div>
                             </div>
@@ -143,20 +153,29 @@
                             <div class="row clearfix">
                                 <div class="col s12 m5">
                                      <div class="checkbox-float">
-                                        <input type="checkbox" id="md-checkbox-keys" name="customer-keys" value="" class="filled-in chk-col-teal"  />
-                                        <label for="md-checkbox-keys"> Keys in office ?</label>
+                                         <label for="md-checkbox-keys">
+                                            <input type="checkbox" id="md-checkbox-keys" name="key"   class="filled-in chk-col-teal"  />
+                                             <span> Keys in office ?</span>
+                                         </label>
                                      </div>
                                     <div class="checkbox-float">
-                                        <input type="checkbox" id="md-checkbox-drive-licence" name="drive_licence" value="" class="filled-in chk-col-teal"   />
-                                        <label for="md-checkbox-drive-licence" > Need driver licence ?</label><br>
+                                        <label for="md-checkbox-drive-licence" >
+                                            <input type="checkbox" id="md-checkbox-drive-licence" name="drive_licence"  class="filled-in chk-col-teal"   />
+                                            <span> Need driver licence ?</span>
+                                        </label>
+                                        <br>
                                     </div>
                                     <div class="checkbox-float">
-                                        <input type="checkbox" id="md-checkbox-gate-code" name="gate_code" value="" class="filled-in chk-col-teal" />
-                                        <label for="md-checkbox-gate-code" > Need door or gate code ?</label>
+                                        <label for="md-checkbox-gate-code">
+                                            <input type="checkbox" id="md-checkbox-gate-code" name="gate_code"   class="filled-in chk-col-teal" />
+                                            <span> Need door or gate code ?</span>
+                                        </label>
                                     </div>
                                     <div class="checkbox-float">
-                                        <input type="checkbox" id="md-checkbox-more-girl" name="more_girl" value="" class="filled-in chk-col-teal" />
-                                        <label for="md-checkbox-more-girl" style="margin-right: 20px;"> More then one girl ?</label>
+                                        <label for="md-checkbox-more-girl" style="margin-right: 20px;">
+                                            <input type="checkbox" id="md-checkbox-more-girl" name="more_girl"  class="filled-in chk-col-teal" />
+                                            <span>More then one girl ?</span>
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col s12 m7">
@@ -182,7 +201,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn waves-classic waves-light btn-small " type="submit">save changes</button>
+                                <button class="btn waves-classic waves-light btn-small" id="btnCadCustomer" type="submit">save changes</button>
                                 <a href="#!" class="btn modal-close waves-classic waves-light btn-small red darken-4">Cancel</a>
                             </div>
                 </div><!--END OF CONTAINER -->

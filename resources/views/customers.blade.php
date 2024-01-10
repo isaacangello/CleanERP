@@ -116,7 +116,10 @@
                                 @foreach($customers as $customer)
                                     <!---#####################colapsable item ####################################################-->
                                     <li>
-                                        @php($count++)
+                                        @php
+                                            $count++ ;
+                                            if(isset($customer->justify_inactive)){$justify_inactive = $customer->justify_inactive;}else{$justify_inactive = "&nbsp;";}
+                                        @endphp
                                           <div class="collapsible-header green @php(altclass($count)) white-text"><i class="material-icons">person</i>{{$customer->name}}</div>
                                             <div class="collapsible-body">
 
@@ -134,9 +137,9 @@
                                                                      :customer-keys="$customer->key"
                                                                      :customer-moregirl="false"
                                                                      :customer-note="$customer->house_description"
-                                                                     :customer-other-services="$customer->house_description"
+                                                                     :customer-other-services="$customer->other_services"
                                                                      :customer-house-description="$customer->house_description"
-                                                                     :customer-justify-inactive="$customer->house_description"
+                                                                     :customer-justify-inactive="$justify_inactive"
                                                                      :count="$count"
                                                     >
 
@@ -200,6 +203,9 @@
 
     <!-- Custom Js -->
     <script src="{{ asset('web-resources/systheme/js/admin.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('web-resources/custom/customers/modal_cad.js') }}"></script>
+
 {{--    <script src="web-resources/systheme/js/pages/tables/jquery-datatable.js"></script>--}}
     <script src="{{ asset('web-resources/systheme/js/pages/index.js') }}"></script>
 <script src="{{ asset('web-resources/systheme/js/pages/forms/form-validation.js') }}"></script>

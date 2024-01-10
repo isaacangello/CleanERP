@@ -18,23 +18,25 @@ class CustomerController extends Controller
     }
 
     public function index(Request $request){
-
-
-        return view('customers',[
-            'customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage)
-        ]);
-
+        return view('customers',['customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage)]);
     }
 
     public function store(Request $request){
 
+//        dd($request->all());
 
         $request->validate($this->cust->rules());
-        if($request->drive_licence == null){$drive_licence = false;}else{$drive_licence = $request->drive_licence;}
-        if($request->key == null){$key = false;}else{$key = $request->key;}
-        if($request->more_girl == null){$more_girl = false;}else{$more_girl = $request->more_girl;}
-        if($request->gate_code == null){$gate_code = false;}else{$gate_code = $request->gate_code;}
-        $this->cust->create( [
+        if(isset($request->drive_licence) and $request->drive_licence == "on"){$drive_licence = true;}else{$drive_licence = false;}
+        if(isset($request->key) and $request->key == "on"){$key = true;}else{$key = false;}
+        if(isset($request->more_girl) and $request->more_girl =="on" ){$more_girl = true;}else{$more_girl = false;}
+        if(isset($request->gate_code) and $request->gate_code == "on"){$gate_code = true;}else{$gate_code = false;}
+//            echo"<br>drive_licence > ";var_dump($drive_licence);
+//            echo"<br>key > ";var_dump($key);
+//            echo"<br>more_girl > ";var_dump($more_girl);
+//            echo"<br>gate_code > ";var_dump($gate_code);
+//            dd($drive_licence);
+
+        $return = $this->cust->create( [
             'name' => $request->name,
             'address' => $request->address,
             'complement' => $request->complement,
@@ -56,13 +58,11 @@ class CustomerController extends Controller
             'house_description' => $request->house_description,
             'note' => $request->note,
         ]);
-
-
-        return view('customers',[
-            'customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage),
-            'stored' => 'O Customer '.$request->name." Successfully saved!"
-        ]);
-
+//        return view('customers',[
+//            'customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage),
+//            'stored' => 'O Customer '.$request->name." Successfully saved!"
+//        ]);
+        return response()->json($return,200);
     }
 
 }

@@ -16,7 +16,8 @@ class Customer extends Model
         'other_services','regday','info','drivelicence',
         'key','gate_code','house_description'
     ];
-    public function rules(){
+    public function rules(): array
+    {
 
         return [
             'name' => 'required',
