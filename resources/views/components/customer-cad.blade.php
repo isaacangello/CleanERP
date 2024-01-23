@@ -3,7 +3,7 @@
 <!-- ############  Modal Structure ###########################################################################################-->
     <div id="new-customer" class="modal bottom-sheet">
         <div class="modal-content">
-            <form method="post" id="customerFormCad" action="{{ route('customers.store') }}">
+            <form id="customerFormCad" >
                 @csrf
                 <input type="hidden" value="ACTIVE" name="status">
                 <div class="container z-depth-3" style="width: 95%">

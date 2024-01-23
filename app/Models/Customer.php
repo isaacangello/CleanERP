@@ -13,8 +13,9 @@ class Customer extends Model
     protected $fillable = [
         'name','address','complement','phone','email','type','status',
         'frequency','price_weekly','price_biweekly','price_monthly',
-        'other_services','regday','info','drivelicence',
-        'key','gate_code','house_description'
+        'other_services','justify_inactive','info',
+        'drive_licence','key','more_girl','gate_code',
+        'house_description','note'
     ];
     public function rules(): array
     {

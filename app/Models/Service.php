@@ -11,16 +11,43 @@ class Service extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = [
-        'employee1_id','employee2_id',
-        'customer_id', 'service_date',
-        'id','who_saved','fee','period',
-        'pgmt','frequency','price','minus',
-        'plus','notes','finotes'
+        'customer_id','employee1_id',
+        'employee2_id','service_date',
+        'period','frequency','notes','instructions',
+        'paid_out','fee','fee_notes','payment','who_saved',
+        'price','justify_minus', 'minus',
+        'justify_plus','plus',
     ];
-    public function employee(){
-        return $this->belongsTo(Employee::class);
+    public function employee(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo('App\Models\Service','employee1_id');
     }
-    public function employee2(){
-        return $this->belongsTo(Service::class,'employee2_id');
+    public function employee2(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo('App\Models\Service','employee2_id');
+    }
+    public function rules(): array
+    {
+        return [
+            'customer_id' => 'required|numeric',
+            'employee1_id' => 'required|numeric',
+            'employee2_id' => 'required|numeric',
+            'service_date' => 'required|date',
+            'period' => 'alpha_num:ascii',
+            'frequency' => 'nullable',
+            'notes' => 'nullable',
+            'instructions' => 'nullable',
+            'paid_out' => 'nullable',
+            'fee' => 'nullable',
+            'fee_notes' => 'present_with:',
+            'payment' => 'nullable',
+            'who_saved' => 'alpha_num:ascii',
+            'price' => 'numeric',
+            'justify_plus' => 'present_with:plus',
+            'plus' => 'nullable',
+            'justify_minus' => 'present_with:minus',
+            'minus' => 'nullable',
+
+        ];
     }
 }

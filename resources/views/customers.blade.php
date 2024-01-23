@@ -132,10 +132,10 @@
                                                                      :customer-price-biweekly="$customer->price_biweekly"
                                                                      :customer-price-weekly="$customer->price_weekly"
                                                                      :customer-price-monthly="$customer->price_monthly"
-                                                                     customer-drive-licence="$customer->"
+                                                                     :customer-drive-licence="$customer->drive_licence"
                                                                      :customer-gate-code="$customer->gate_code"
                                                                      :customer-keys="$customer->key"
-                                                                     :customer-moregirl="false"
+                                                                     :customer-more-girl="$customer->more_girl"
                                                                      :customer-note="$customer->house_description"
                                                                      :customer-other-services="$customer->other_services"
                                                                      :customer-house-description="$customer->house_description"
@@ -179,7 +179,7 @@
 @section('script-botton')
     <!-- Jquery Core Js -->
 {{--    <script src="web-resources/systheme/plugins/jquery/jquery.min.js"></script>--}}
-    <script src="{{asset('web-resources/jquery/jquery-3.7.0.min.js')}}"></script>
+    <script src="{{asset('web-resources/jquery/jquery-3.7.1.min.js')}}"></script>
     <!-- Bootstrap Core Js -->
 {{--    <script src="web-resources/bootstrap/bootstrap.min.js"></script>--}}
     <script src="{{ asset('web-resources/materialize/js/materialize.min.js') }}"></script>

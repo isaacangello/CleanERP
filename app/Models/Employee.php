@@ -17,30 +17,31 @@ class Employee extends Model
     use SoftDeletes;
 
     protected $fillable = [
-            'nome','phone','email','address',
-            'namerefone','namereftwo','phonerefone',
-            'phonereftwo','description', 'type',
+            'name','phone','email','address',
+            'name_ref_one','name_ref_two','phone_ref_one',
+            'phone_ref_two','restriction','description','document', 'type',
             'status','shift','username',
-            'password','newuser'
+            'password','new_user'
         ];
-    public function rules(){
+    public function rules(): array
+    {
         return[
-            'name' => 'require:unique:employees,name',
-            'phone' =>'require',
-            'email' => 'require',
-            'birth' => 'require',
-            'address' =>'require',
-            'namerefone' =>"nullable",
-            'namereftwo' =>'nullable',
-            'phonerefone' =>'nullable',
-            'phonereftwo' =>'nullable',
+            'name' => 'required|unique:employees,name,'.$this->id,
+            'phone' =>'required',
+            'email' => 'required',
+            'birth' => 'required',
+            'address' =>'required',
+            'name_ref_one' =>"nullable",
+            'name_ref_two' =>'nullable',
+            'phone_ref_one' =>'nullable',
+            'phone_ref_two' =>'nullable',
             'restriction' =>'nullable',
             'description' =>'nullable',
             'document' =>'nullable',
-            'type' =>'require',
-            'status' =>'require',
+            'type' =>'required',
+            'status' =>'required',
             'shift' =>'nullable',
-            'username' =>'require:unique:employees,username',
+            'username' =>'required| unique:employees,username,'.$this->id,
             'password' =>'nullable',
             'newuser' =>'nullable',
         ];
@@ -50,9 +51,9 @@ class Employee extends Model
 
         ];
     }
-    public function services():hasMany
+    public function services():BelongsTo
     {
-        return $this->hasMany(Service::class,'employee1_id');
+        return $this->belongsTo(Service::class);
     }
 
     public function servicesFromDate($date,$numberRegsPage = 15){

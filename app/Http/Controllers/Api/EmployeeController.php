@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\Controller;
 class EmployeeController extends Controller
 {
     private Employee $employee ;
@@ -14,14 +14,13 @@ class EmployeeController extends Controller
     public function __construct(Employee $employee)
     {
         $this->employee = $employee;
-        $this->configpage = 50;
     }
 
     public function index(){
-        if(!isset($this->configpage))$this->configpage = 50;
+        if(!isset($configpage))$configpage = 50;
 
         return view('employees',[
-            'employees' => DB::table('employees')->orderBy('name')->paginate($this->configpage)
+            'employees' => DB::table('employees')->orderBy('name')->paginate($configpage)
             ]
         );
     }
@@ -63,11 +62,7 @@ class EmployeeController extends Controller
         }
 
         $return = $employee->update($request->all());
-        return view('employees',
-            [
-                'employees' => DB::table('employees')->orderBy('name')->paginate($this->configpage)
-            ]
-        );
+        return response()->json($return,200);
     }
 
     public function destroy ($employee){

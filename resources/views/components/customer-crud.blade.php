@@ -162,19 +162,25 @@ if (isset($customerStatus)){
     <div class="row clearfix">
         <div class="col s12 m5">
              <div class="checkbox-float">
-                <input type="checkbox" id="med-checkbox-keys{{ $count }}" name="customer-keys" value="{{ $customerKeys }}" class="filled-in chk-col-teal"  />
+                 @php if($customerKeys) {$customerKeysString = "checked='checked'"; }else{$customerKeysString = ""; }@endphp
+                <input type="checkbox" id="med-checkbox-keys{{ $count }}" name="customer-keys" {{ $customerKeysString }} class="filled-in chk-col-teal"  />
                 <label for="med-checkbox-keys{{ $count }}"> Keys in office ?</label>
              </div>
             <div class="checkbox-float">
-                <input type="checkbox" id="med-checkbox-drive-licence{{ $count }}" name="customer-drive-licence" value="{{$customerDriveLicence}}" class="filled-in chk-col-teal"   />
+                @php
+                    if($customerDriveLicence){$customerDriveLicenceString= "checked='checked'";}else{$customerDriveLicenceString='';}
+                @endphp
+                <input type="checkbox" id="med-checkbox-drive-licence{{ $count }}" name="customer-drive-licence" {{$customerDriveLicenceString}} class="filled-in chk-col-teal"   />
                 <label for="med-checkbox-drive-licence{{ $count }}" > need driver licence ?</label><br>
             </div>
             <div class="checkbox-float">
-                <input type="checkbox" id="med-checkbox-gate-code{{ $count }}" name="customer-gate-code" value="{{$customerGateCode}}" class="filled-in chk-col-teal" />
+                @php if($customerGateCode) {$customerGateCodeString = "checked='checked'"; }else{$customerGateCodeString = ""; }@endphp
+                <input type="checkbox" id="med-checkbox-gate-code{{ $count }}" name="customer-gate-code" {{$customerGateCodeString}} class="filled-in chk-col-teal" />
                 <label for="med-checkbox-gate-code{{ $count }}" > need door or gate code ?</label>
             </div>
             <div class="checkbox-float">
-                <input type="checkbox" id="med-checkbox-moregirl{{ $count }}" name="customer-moregril" value="{{$customerMoregirl}}" class="filled-in chk-col-teal" />
+                @php if($customerMoreGirl) {$customerMoreGirlString = "checked='checked'"; }else{$customerMoreGirlString = ""; }@endphp
+                <input type="checkbox" id="med-checkbox-moregirl{{ $count }}" name="customer-more_gril" {{$customerMoreGirlString}} class="filled-in chk-col-teal" />
                 <label for="med-checkbox-moregirl{{ $count }}" style="margin-right: 20px;"> more then one girl ?</label>
             </div>
         </div>

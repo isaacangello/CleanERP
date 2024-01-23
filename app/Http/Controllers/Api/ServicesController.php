@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 //use App\View\Components\customer;
 use Carbon\Carbon;
@@ -12,6 +12,7 @@ use App\Models\Employee;
 use \App\Models\Customer;
 use App\Treatment\DateTreatment;
 use Carbon\CarbonPeriod;
+use App\Http\Controllers\Controller;
 class ServicesController extends Controller
 {
 

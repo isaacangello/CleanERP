@@ -36,10 +36,10 @@ return new class extends Migration
             $table->string('other_services')->nullable();
             $table->string('justify_inactive',320)->nullable();
             $table->string('info',320)->nullable();
-            $table->boolean('drive_licence')->default(false);
-            $table->boolean('key')->default(false);
-            $table->boolean('more_girl')->default(false);
-            $table->boolean('gate_code')->default(false);
+            $table->boolean('drive_licence')->default(0);
+            $table->boolean('key')->default(0);
+            $table->boolean('more_girl')->default(0);
+            $table->boolean('gate_code')->default(0);
             $table->string('house_description',3000)->nullable();
             $table->string('note',3000)->nullable();
             $table->softDeletes();

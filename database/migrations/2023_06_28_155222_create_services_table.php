@@ -27,7 +27,9 @@ return new class extends Migration
             $table->string('payment')->nullable();
             $table->string('who_saved')->nullable();
             $table->float('price')->nullable();
+            $table->string('justify_plus',500)->nullable();
             $table->float('plus')->nullable();
+            $table->string('justify_minus',500)->nullable();
             $table->float('minus')->nullable();
             $table->softDeletes();
             $table->timestamps();

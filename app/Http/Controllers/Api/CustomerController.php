@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
 {
@@ -58,11 +58,11 @@ class CustomerController extends Controller
             'house_description' => $request->house_description,
             'note' => $request->note,
         ]);
-        return view('customers',[
-            'customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage),
-            'success' => 'O Customer '.$request->name." Successfully saved!"
-        ]);
-//        return response()->json($return,201);
+//        return view('customers',[
+//            'customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage),
+//            'stored' => 'O Customer '.$request->name." Susccessfully saved!"
+//        ]);
+        return response()->json($return,201);
     }
 
 
