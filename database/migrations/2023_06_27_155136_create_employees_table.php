@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name',120);
             $table->string('phone',20);
             $table->string('email',60)->nullable();
-            $table->date('birth')->nullable();
+            $table->date('birth');
             $table->string('address',120)->nullable();
             $table->string('name_ref_one',60)->nullable();
             $table->string('name_ref_two',60)->nullable();
@@ -27,12 +27,12 @@ return new class extends Migration
             $table->string('restriction')->nullable();
             $table->string('document')->nullable();
             $table->string('description',320)->nullable();
-            $table->string('type',11)->default('RESIDENTIAL');
-            $table->string('status',10)->default('ACTIVE');
-            $table->string('shift',10)->nullable();
-            $table->string('username',120);
-            $table->string('password',)->default('$2y$10$D6RqabA3OSgM91rUvSiYSeVMf9k6IyrqkVBOGwGOjCIV5bW2UrRWO'); /* senha  1234 */
-            $table->boolean('new_user')->default(true);
+            $table->string('type',30)->default('RESIDENTIAL');
+            $table->string('status',30)->default('ACTIVE');
+            $table->string('shift',30)->nullable();
+            $table->string('username',120)->unique();
+            $table->string('password')->default('$2y$10$D6RqabA3OSgM91rUvSiYSeVMf9k6IyrqkVBOGwGOjCIV5bW2UrRWO')->nullable(); /* senha  1234 */
+            $table->boolean('new_user')->default(true)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

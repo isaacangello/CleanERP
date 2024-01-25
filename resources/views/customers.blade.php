@@ -107,9 +107,7 @@
                                                 <!-- tratando variáveis do componentes customer-viewedit -->
 
                 <div class="body">
-                    @php if(isset($stored)){ @endphp
-
-                    @php } @endphp
+                    <x-msgs />
                     <div class="row">
                         <div class="col s12">
                                 <ul class="collapsible popout">
@@ -204,7 +202,7 @@
     <!-- Custom Js -->
     <script src="{{ asset('web-resources/systheme/js/admin.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="{{ asset('web-resources/custom/customers/modal_cad.js') }}"></script>
+{{--    <script src="{{ asset('web-resources/custom/customers/modal_cad.js') }}"></script>--}}
 
 {{--    <script src="web-resources/systheme/js/pages/tables/jquery-datatable.js"></script>--}}
     <script src="{{ asset('web-resources/systheme/js/pages/index.js') }}"></script>

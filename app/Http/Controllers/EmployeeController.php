@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use stdClass;
 
 class EmployeeController extends Controller
 {
@@ -39,9 +42,21 @@ class EmployeeController extends Controller
          name phone email birth address name_ref_one name_ref_two phone_ref_one phone_ref_two
          restriction document description type status shift username password new_user
          */
+
         $request->validate($this->employee->rules());
-        $retorun = $this->employee->create($request->all());
-        return response()->json($retorun,200);
+//        var_dump($request->all());
+//        echo"<br><br><hr>";
+        $array_data = $request->all();
+        $array_data['birth'] = Carbon::create($array_data['birth'])->format('Y-m-d' );
+        $array_data['password'] = Hash::make($array_data['password']);
+//        dd($array_data);
+        $return = $this->employee->create($array_data);
+
+           $st = new StdClass();
+           $st->status = true;
+           $st->msg = 'The employee '.$return->name.' is registered!';
+        return redirect()->back()->with('success',$st);
+
 
     }
     public function update(Request $request,$id){
@@ -65,7 +80,8 @@ class EmployeeController extends Controller
         $return = $employee->update($request->all());
         return view('employees',
             [
-                'employees' => DB::table('employees')->orderBy('name')->paginate($this->configpage)
+                'employees' => DB::table('employees')->orderBy('name')->paginate($this->configpage),
+
             ]
         );
     }

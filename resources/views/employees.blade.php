@@ -126,6 +126,7 @@ employee notes
                                                 <!-- tratando variáveis do componentes employee-viewedit -->
 
                 <div class="body">
+                    <x-msgs />
                     <div class="row">
                         <div class="col s12">
                                 <ul class="collapsible popout">
@@ -146,14 +147,19 @@ employee notes
                                                         :employee-phone="$employee->phone"
                                                         :employee-email="$employee->email"
                                                         :employee-address="$employee->address"
-                                                        :employee-ref-name1="$employee->namerefone"
-                                                        :employee-ref-name2="$employee->namereftwo"
-                                                        :employee-ref-phone1="$employee->phonerefone"
-                                                        :employee-ref-phone2="$employee->phonereftwo"
+                                                        :employee-ref-name1="$employee->name_ref_one"
+                                                        :employee-ref-name2="$employee->name_ref_two"
+                                                        :employee-ref-phone1="$employee->phone_ref_one"
+                                                        :employee-ref-phone2="$employee->phone_ref_two"
                                                         :employee-birth="$employee->birth"
                                                         :employee-document="$employee->document"
+                                                        :employee-shift="$employee->shift"
                                                         :employee-restriction="$employee->restriction"
                                                         :employee-description="$employee->description"
+                                                        :employee-username="$employee->username"
+                                                        :employee-password="$employee->password"
+                                                        :employee-status="$employee->status"
+                                                        :employee-type="$employee->type"
                                                         :count="$count"
                                                 >
                                                 </x-employee-view-edit>
@@ -163,12 +169,12 @@ employee notes
 
 
                                     <!---#####################colapsable item ####################################################-->
-                                    <li>
-                                          <div class="collapsible-header green darken-4 white-text"><i class="material-icons">person</i>Jane Doe Rego Pinto </div>
-                                            <div class="collapsible-body">
-                                              Lorem ipsum dolor sit amet.
-                                            </div> <!-- end collapsible body -->
-                                    </li>
+{{--                                    <li>--}}
+{{--                                          <div class="collapsible-header green darken-4 white-text"><i class="material-icons">person</i>Jane Doe Rego Pinto </div>--}}
+{{--                                            <div class="collapsible-body">--}}
+{{--                                              Lorem ipsum dolor sit amet.--}}
+{{--                                            </div> <!-- end collapsible body -->--}}
+{{--                                    </li>--}}
                                 </ul>
 
                         </div>
