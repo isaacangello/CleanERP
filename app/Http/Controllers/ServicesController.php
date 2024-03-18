@@ -12,6 +12,7 @@ use App\Models\Employee;
 use \App\Models\Customer;
 use App\Treatment\DateTreatment;
 use Carbon\CarbonPeriod;
+use stdClass;
 class ServicesController extends Controller
 {
 
@@ -30,15 +31,18 @@ class ServicesController extends Controller
         $this->employee = $employee;
         $this->customer = $customer;
         $this->today = now()->format('Y-m-d');
+       $this->st = new StdClass();
+       $this->st->status = true;
+
     }
 
     public function home(Request $request){
-        /**
+    /**
          * Tratando dados recebidos no request ano e numero da semana
          * @param year
          * @param numberweek
          */
-        if (isset($request->year)){$year = $request->year;}else{$year = 'current';}
+            if (isset($request->year)){$year = $request->year;}else{$year = 'current';}
         /**
          * Verificando tamanho das semanas do ano
          *  casso a sentença seja falsa e retornadado um array com a semana atual
@@ -104,12 +108,22 @@ class ServicesController extends Controller
 
     public function store(Request $req){
         if($req->all() === null){
-            return response()->json(['msg' => 'need data store.'],404);
+//            return response()->json(['msg' => ],404);
+            $this->st->status = false;
+            $this->st->msg = 'Need data to store service.';
+            return redirect()->back()->with('errors',$this->st);
+
         }
+//        dd($data_save);
         $req->validate($this->service->rules());
-        $return = $this->service->create($req->all());
-        return response()->json($return,200);
+        $data_save = $req->all();
+        $data_save['service_date'] = Carbon::create($req->service_date." ".$req->service_time)->format('Y-m-d H:i:s');
+        $return = $this->service->create($data_save);
+        $this->st->status = true;
+        $this->st->msg = 'The service is saved.';
+        return redirect()->back()->with('success',$this->st);
     }
+
     public function update(Request $req,$id){
         if($req->all() === null){
             return response()->json(['msg' => 'need data to update.'],404);

@@ -42,6 +42,7 @@ Route::get('/dashboard', function () {
 Route::resources([
    'customers' => CustomerController::class,
     'employees' => EmployeeController::class,
+    'services' => ServicesController::class,
 ]);
 //Route::get('/customers', [CustomerController::class, 'index'])->middleware(['auth', 'verified'])->name('customers');
 //Route::get('/employees', [EmployeeController::class,'index'])->middleware(['auth', 'verified'])->name('employees');

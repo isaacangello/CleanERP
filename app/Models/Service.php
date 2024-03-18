@@ -39,7 +39,7 @@ class Service extends Model
             'instructions' => 'nullable',
             'paid_out' => 'nullable',
             'fee' => 'nullable',
-            'fee_notes' => 'present_with:',
+            'fee_notes' => 'present_with:fee',
             'payment' => 'nullable',
             'who_saved' => 'alpha_num:ascii',
             'price' => 'numeric',

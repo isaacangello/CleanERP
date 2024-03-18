@@ -49,6 +49,7 @@
 
                 </x-service-cad>
                 <div class="body">
+                        <x-msgs />
                         <div class="row">
                             @php
                                     function oddCheck($nun): bool

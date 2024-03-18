@@ -18,6 +18,9 @@ class EmployeeController extends Controller
     {
         $this->employee = $employee;
         $this->configpage = 50;
+           $this->st = new StdClass();
+           $this->st->status = true;
+
     }
 
     public function index(){
@@ -52,10 +55,8 @@ class EmployeeController extends Controller
 //        dd($array_data);
         $return = $this->employee->create($array_data);
 
-           $st = new StdClass();
-           $st->status = true;
-           $st->msg = 'The employee '.$return->name.' is registered!';
-        return redirect()->back()->with('success',$st);
+       $this->st->msg = 'The employee <b>'.$return->name.'</b> is registered!';
+        return redirect()->back()->with('success',$this->st);
 
 
     }
@@ -77,13 +78,15 @@ class EmployeeController extends Controller
             $request->validate($employee->rules());
         }
 
-        $return = $employee->update($request->all());
-        return view('employees',
-            [
-                'employees' => DB::table('employees')->orderBy('name')->paginate($this->configpage),
+        if( $employee->update($request->all())){
+            $this->st->msg = 'The employee <b>'.$employee->getAttribute('name').'</b> is updated!';
+            return redirect()->back()->with('success',$this->st);
+        }else{
+        $this->st->status = false;
+        $this->st->msg = 'The employee <b>'.$employee->getAttribute('name').'</b> is not updated!';
+        return redirect()->back()->with('errors',$this->st);
+        }
 
-            ]
-        );
     }
 
     public function destroy ($employee){
