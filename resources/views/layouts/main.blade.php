@@ -1,7 +1,7 @@
 @php
-    if(empty($systemVersion)){$systemVersion = "0.5.01 git actions deploy on home";}
+    if(empty($systemVersion)){$systemVersion = "0.6.01 git actions deploy on home";}
     if(empty($userImg)){$userImg = "img/users/user.png";}
-    if(empty($email)){$email = Auth::user()->email;}else{$email="email@email.com";}
+    if(!empty(Auth::user()->email)){$email = Auth::user()->email;}else{$email="email@email.com";}
     $userName = Auth::user()->name;
 @endphp
     <!DOCTYPE html>
