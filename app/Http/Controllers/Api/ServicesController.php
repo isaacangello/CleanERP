@@ -80,7 +80,7 @@ class ServicesController extends Controller
             $employees =  $this->employee->all()->sortBy('name');
 
             foreach ($employees as $row){
-                $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeeknumber($row->id,$this->date->numberWeekByday(now()->format('Y-m-d')));;
+                $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$this->date->numberWeekByday(now()->format('Y-m-d')));;
             }
 
 //        dd($filteredWeekGroup);

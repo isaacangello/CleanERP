@@ -11,22 +11,22 @@
     <!-- Bootstrap Core Css -->
 {{--    <link href="web-resources/bootstrap/bootstrap.min.css" rel="stylesheet">--}}
     <!-- Materialize Core Css -->
-    <link href="web-resources/materialize/css/materialize.css" rel="stylesheet">
+    <link href="{{asset("web-resources/materialize/css/materialize.css")}}" rel="stylesheet">
 
     <!-- Waves Effect Css -->
 {{--    <link href="web-resources/systheme/plugins/node-waves/waves.css" rel="stylesheet" />--}}
 
     <!-- Animation Css -->
-    <link href="web-resources/systheme/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="{{asset("web-resources/systheme/plugins/animate-css/animate.css")}}" rel="stylesheet" />
     <!-- Sweet Alert Css -->
-    <link href="web-resources/systheme/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="{{asset("web-resources/systheme/plugins/sweetalert/sweetalert.css")}}" rel="stylesheet" />
 
 
     <!-- Custom Css -->
-    <link href="web-resources/systheme/css/style.css" rel="stylesheet">
+    <link href="{{asset("web-resources/systheme/css/style.css")}}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="web-resources/systheme/css/themes/all-themes.css" rel="stylesheet" />
+    <link href="{{asset("web-resources/systheme/css/themes/all-themes.css")}}" rel="stylesheet" />
 
 
     <style>
@@ -121,7 +121,8 @@
                                           <div class="collapsible-header green @php(altclass($count)) white-text"><i class="material-icons">person</i>{{$customer->name}}</div>
                                             <div class="collapsible-body">
 
-                                                    <x-customer-crud :customer-name="$customer->name"
+                                                    <x-customer-crud :customer-id="$customer->id"
+                                                                     :customer-name="$customer->name"
                                                                      :customer-address="$customer->address"
                                                                      :customer-type="$customer->type"
                                                                      :customer-email="$customer->email"
@@ -134,7 +135,7 @@
                                                                      :customer-gate-code="$customer->gate_code"
                                                                      :customer-keys="$customer->key"
                                                                      :customer-more-girl="$customer->more_girl"
-                                                                     :customer-note="$customer->house_description"
+                                                                     :customer-note="$customer->note"
                                                                      :customer-other-services="$customer->other_services"
                                                                      :customer-house-description="$customer->house_description"
                                                                      :customer-justify-inactive="$justify_inactive"
@@ -202,6 +203,7 @@
     <!-- Custom Js -->
     <script src="{{ asset('web-resources/systheme/js/admin.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('web-resources/custom/field_change.js') }}"></script>
 {{--    <script src="{{ asset('web-resources/custom/customers/modal_cad.js') }}"></script>--}}
 
 {{--    <script src="web-resources/systheme/js/pages/tables/jquery-datatable.js"></script>--}}

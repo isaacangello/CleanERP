@@ -60,7 +60,7 @@ class Employee extends Model
 //        echo "$date <br>";
         $carbon_date = Carbon::create($date);
       $result_emp1 =  DB::table('services')
-            ->whereBetween('service_date',[$carbon_date->format('Y-m-d 00:00:00'),$carbon_date->format('Y-m-d 11:59:56')] )
+            ->whereDate('service_date',$carbon_date->format('Y-m-d'))
             ->join('employees', 'services.employee1_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(
@@ -96,7 +96,7 @@ class Employee extends Model
 
       return $result_services;
     }
-    public function servicesFromWeeknumber($emp_id,$weekNun, $year = 'current') :array{
+    public function servicesFromWeekNumber($emp_id, $weekNun, $year = 'current') :array{
         $date = new DateTreatment();
        $arr_result = [];
        $weekArr = $date->getWeekByNumberWeek($weekNun,$year);
@@ -104,7 +104,7 @@ class Employee extends Model
             $weekdayCarbon = Carbon::create($weekday);
             $arr_result[$key] = DB::table('services')
                 ->where('services.employee1_id','=',$emp_id)
-                ->whereBetween('service_date',[$weekdayCarbon->format('Y-m-d 00:00:00'),$weekdayCarbon->format('Y-m-d 11:59:56')] )
+                ->whereDate('service_date',$weekdayCarbon->format('Y-m-d') )
                 ->join('employees', 'services.employee1_id','=','employees.id')
                 ->join('customers','services.customer_id','=', 'customers.id')
                 ->select(
@@ -131,7 +131,7 @@ class Employee extends Model
 
       $result_services =  DB::table('services')
             ->where('employee1_id','=', $empId )
-            ->whereBetween('service_date',[$carbon_from->format('Y-m-d 00:00:00'),$carbon_till->format('Y-m-d 11:59:56')] )
+            ->whereDate('service_date',$carbon_from->format('Y-m-d'), )
             ->join('employees', 'services.employee1_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(

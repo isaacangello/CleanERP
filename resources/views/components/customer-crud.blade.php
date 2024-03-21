@@ -7,8 +7,8 @@
         <div class="col s12 m8">
             <div class="form-group">
                 <div class="form-line success">
-                    <input id="input-crud-customer-name" name="customer-name" type="text" class="form-control" value="{{ $customerName }}">
-                    <label class="form-label" for="input-crud-customer-name">Name Customer</label>
+                    <input id="input-crud-customer-name{{$customerId}}" name="name" onchange="field_change(this,{{$customerId}},'{{ csrf_token() }}')" type="text" class="form-control" value="{{ $customerName }}">
+                    <label class="form-label" for="input-crud-customer-name{{$customerId}}">Name Customer</label>
                 </div>
                 <div class="help-info">Insert name customer.</div>
             </div>
@@ -16,7 +16,7 @@
         <div class=" col s12 m4">
             <div class="form-group">
                 <div class="form-line success">
-                    <select id="select-crud-customer-type" name="customer-type" >
+                    <select id="select-crud-customer-type{{$customerId}}" name="type" onchange="field_change(this,{{$customerId}},'{{ csrf_token() }}')">
                         <option selected value="{{ $customerType }}">{{ $customerType }}</option>
                         <option  value="RESIDENCIAL">RESIDENCIAL</option>
                         <option value="COMMERCIAL">COMERCIAL</option>
@@ -34,8 +34,8 @@
 
             <div class="form-group">
                 <div class="form-line success">
-                    <input type="text" id="input-crud-customer-address" name="customer-address" class="form-control" value="{{$customerAddress}}">
-                    <label class="form-label" for="input-crud-customer-address">Address Customer</label>
+                    <input type="text" id="input-crud-customer-address{{$customerId}}" name="address" onchange="field_change(this,{{$customerId}},'{{ csrf_token() }}')" class="form-control" value="{{$customerAddress}}" >
+                    <label class="form-label" for="input-crud-customer-address{{$customerId}}">Address Customer</label>
                 </div>
                 <div class="help-info">Insert address Customer.</div>
             </div>
@@ -44,8 +44,8 @@
 
             <div class="form-group">
                 <div class="form-line success">
-                    <input type="text" id="input-crud-customer-address-complement" name="customer-address-complement"   class="form-control" value="{{$customerAddressComplement}}">
-                    <label class="form-label" for="input-crud-customer-address-complement">Complement</label>
+                    <input type="text" id="input-crud-customer-address-complement{{$customerId}}" name="complement" onchange="field_change(this,{{$customerId}},'{{ csrf_token() }}')"  class="form-control" value="{{$customerAddressComplement}}">
+                    <label class="form-label" for="input-crud-customer-address-complement{{$customerId}}">Complement</label>
                 </div>
                 <div class="help-info">Insert address complement.</div>
             </div>
@@ -56,8 +56,8 @@
         <div class="col s12 m6">
             <div class="form-group">
                 <div class="form-line success">
-                    <input type="text" id="input-crud-customer-phone" name="customer-phone" class="form-control" value="{{$customerPhone}}" >
-                    <label class="form-label" for="input-crud-customer-phone">Phone</label>
+                    <input type="text" id="input-crud-customer-phone{{$customerId}}" name="phone" onchange="field_change(this,{{$customerId}},'{{ csrf_token() }}')" class="form-control" value="{{$customerPhone}}" >
+                    <label class="form-label" for="input-crud-customer-phone{{$customerId}}">Phone</label>
                 </div>
                 <div class="help-info">Insert customer phone.</div>
             </div>
@@ -66,8 +66,8 @@
         <div class="col s12 m6">
             <div class="form-group">
                 <div class="form-line success">
-                    <input type="text" id="input-crud-customer-email" name="customer-email" class="form-control" value="{{$customerEmail}}">
-                    <label class="form-label" for="input-crud-customer-email" >Email</label>
+                    <input type="text" id="input-crud-customer-email{{$customerId}}" name="email" onchange="field_change(this,{{$customerId}},'{{ csrf_token() }}')" class="form-control" value="{{$customerEmail}}">
+                    <label class="form-label" for="input-crud-customer-email{{$customerId}}" >Email</label>
                 </div>
                 <div class="help-info">Insert customer email.</div>
             </div>
@@ -84,24 +84,24 @@
               <li class="collection-item">
                 <div class="form-group" style="margin:0;padding: 0;">
                     <div class="form-line success">
-                        <input type="text" id="input-crud-customer-price-weekly" name="customer-price-weekly" class="form-control" value="{{$customerPriceWeekly}}">
-                        <label class="form-label " for="input-crud-customer-price-weekly">Price for weekly.</label>
+                        <input type="text" id="input-crud-customer-price-weekly{{$customerId}}" name="price-weekly" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" class="form-control" value="{{$customerPriceWeekly}}">
+                        <label class="form-label " for="input-crud-customer-price-weekly{{$customerId}}">Price for weekly.</label>
                     </div>
                 </div>
               </li>
               <li class="collection-item">
                  <div class="form-group" style="margin:0;padding: 0;">
                     <div class="form-line success">
-                        <input type="text" id="input-crud-customer-price-biweekly" name="customer-price-biweekly" class="form-control" value="{{$customerPriceBiweekly}}">
-                        <label class="form-label " for="input-crud-customer-price-biweekly">Price for biweekly.</label>
+                        <input type="text" id="input-crud-customer-price-biweekly{{$customerId}}" name="price-biweekly" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" class="form-control" value="{{$customerPriceBiweekly}}">
+                        <label class="form-label " for="input-crud-customer-price-biweekly{{$customerId}}">Price for biweekly.</label>
                     </div>
                  </div>
               </li>
               <li class="collection-item">
                 <div class="form-group" style="margin:0;padding: 0;">
                     <div class="form-line success">
-                        <input type="text" id="input-crud-customer-price-monthly" name="customer-price-monthly" class="form-control" value="{{$customerPriceMonthly}}">
-                        <label class="form-label " for="input-crud-customer-price-monthly">Price for monthly.</label>
+                        <input type="text" id="input-crud-customer-price-monthly{{$customerId}}" name="price-monthly" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" class="form-control" value="{{$customerPriceMonthly}}">
+                        <label class="form-label " for="input-crud-customer-price-monthly{{$customerId}}">Price for monthly.</label>
                     </div>
                 </div>
 
@@ -109,14 +109,15 @@
             </ul>
         </div>
         <div class="col s6 m4">
-            <label for="textarea-crud-costumer-other-services">Other Services</label>
+            <label for="textarea-crud-costumer-other-services{{$customerId}}">Other Services</label>
             <div class="form-group" >
                 <div class="form-line success " >
-                    <textarea id="textarea-crud-costumer-other-services"
-                              name="costumer-other-services"
+                    <textarea id="textarea-crud-costumer-other-services{{$customerId}}"
+                              name="other-services"
                               class="form-control custom-textarea"
                               rows="4"
                               placeholder="Other services here..."
+                              onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')"
                     >{{$customerOtherServices}}</textarea>
                 </div>
                 <div class="help-info">Ohter services.</div>
@@ -138,7 +139,7 @@ if (isset($customerStatus)){
         <div class="col s12 m5">
             <div class="form-group">
                 <div class="form-line success">
-                    <select class="">
+                    <select id="select-customer-status{{$customerId}}" class="form-control" name="status" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')">
                         <option disabled>select status of cutomer</option>
                         <option selected value="{{ $customerStatus }}">{{ $customerStatus }}</option>
                         <option value="{{$customerStatus2}}">{{$customerStatus2}}</option>
@@ -148,8 +149,8 @@ if (isset($customerStatus)){
             </div>
             <div class="form-group">
                 <div class="form-line success">
-                    <input type="text"  name="customer-justify-inatctive" id="input-crud-customer-justify-inatctive" class="form-control" value="{{  $customerJustifyInactive }}"/>
-                    <label class="form-label" for="input-crud-customer-justify-inatctive">why change customer status ?</label>
+                    <input type="text"  name="justify-inatctive" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" id="input-crud-customer-justify-inatctive{{$customerId}}" class="form-control" value="{!!  $customerJustifyInactive !!}"/>
+                    <label class="form-label" for="input-crud-customer-justify-inatctive{{$customerId}}">why change customer status ?</label>
                 </div>
                 <div class="help-info">Why change customer status ?</div>
             </div>
@@ -162,37 +163,38 @@ if (isset($customerStatus)){
     <div class="row clearfix">
         <div class="col s12 m5">
              <div class="checkbox-float">
-                 @php if($customerKeys) {$customerKeysString = "checked='checked'"; }else{$customerKeysString = ""; }@endphp
-                <input type="checkbox" id="med-checkbox-keys{{ $count }}" name="customer-keys" {{ $customerKeysString }} class="filled-in chk-col-teal"  />
-                <label for="med-checkbox-keys{{ $count }}"> Keys in office ?</label>
+                 @php if($customerKeys === 1) {$customerKeysString = "checked='checked'"; }else{$customerKeysString = ""; }@endphp
+                <input type="checkbox" id="med-checkbox-keys{{$customerId}}{{ $count }}" name="key" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" {{ $customerKeysString }} class="filled-in chk-col-teal"  />
+                <label for="med-checkbox-keys{{$customerId}}{{ $count }}"> Keys in office ?</label>
              </div>
             <div class="checkbox-float">
                 @php
-                    if($customerDriveLicence){$customerDriveLicenceString= "checked='checked'";}else{$customerDriveLicenceString='';}
+                    if($customerDriveLicence === 1){$customerDriveLicenceString= "checked='checked'";}else{$customerDriveLicenceString='';}
                 @endphp
-                <input type="checkbox" id="med-checkbox-drive-licence{{ $count }}" name="customer-drive-licence" {{$customerDriveLicenceString}} class="filled-in chk-col-teal"   />
-                <label for="med-checkbox-drive-licence{{ $count }}" > need driver licence ?</label><br>
+                <input type="checkbox" id="med-checkbox-drive-licence{{$customerId}}{{ $count }}" name="drive_licence" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" {{$customerDriveLicenceString}} class="filled-in chk-col-teal"   />
+                <label for="med-checkbox-drive-licence{{$customerId}}{{ $count }}" > need driver licence ?</label><br>
             </div>
             <div class="checkbox-float">
-                @php if($customerGateCode) {$customerGateCodeString = "checked='checked'"; }else{$customerGateCodeString = ""; }@endphp
-                <input type="checkbox" id="med-checkbox-gate-code{{ $count }}" name="customer-gate-code" {{$customerGateCodeString}} class="filled-in chk-col-teal" />
-                <label for="med-checkbox-gate-code{{ $count }}" > need door or gate code ?</label>
+                @php if($customerGateCode  === 1) {$customerGateCodeString = "checked='checked'"; }else{$customerGateCodeString = ""; }@endphp
+                <input type="checkbox" id="med-checkbox-gate-code{{$customerId}}{{ $count }}" name="gate_code" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" {{$customerGateCodeString}} class="filled-in chk-col-teal" />
+                <label for="med-checkbox-gate-code{{$customerId}}{{ $count }}" > need door or gate code ?</label>
             </div>
             <div class="checkbox-float">
-                @php if($customerMoreGirl) {$customerMoreGirlString = "checked='checked'"; }else{$customerMoreGirlString = ""; }@endphp
-                <input type="checkbox" id="med-checkbox-moregirl{{ $count }}" name="customer-more_gril" {{$customerMoreGirlString}} class="filled-in chk-col-teal" />
-                <label for="med-checkbox-moregirl{{ $count }}" style="margin-right: 20px;"> more then one girl ?</label>
+                @php if($customerMoreGirl  === 1) {$customerMoreGirlString = "checked='checked'"; }else{$customerMoreGirlString = ""; }@endphp
+                <input type="checkbox" id="med-checkbox-moregirl{{$customerId}}{{ $count }}" name="more_girl" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" {{$customerMoreGirlString}} class="filled-in chk-col-teal" />
+                <label for="med-checkbox-moregirl{{$customerId}}{{ $count }}" style="margin-right: 20px;"> more then one girl ?</label>
             </div>
         </div>
         <div class="col s12 m7">
-            <label for="textarea-crud-custumer-house-description" >house description</label>
+            <label for="textarea-crud-house-description{{$customerId}}" >house description</label>
             <div class="form-group">
                 <div class="form-line success">
                     <textarea style="padding: 10px; height: 200px"
-                              id="textarea-crud-house-description"
-                              name="costumer-house-description"
+                              id="textarea-crud-house-description{{$customerId}}"
+                              name="house_description"
                               class="form-control custom-textarea"
                               placeholder="Please type customer house description here..."
+                              onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')"
                     >{{$customerHouseDescription}}</textarea>
                 </div>
                 <div class="help-info">Type house description</div>
@@ -202,15 +204,16 @@ if (isset($customerStatus)){
     </div>
     <div class="row clearfix">
         <div class="col s12">
-            <label for="textarea-crud-costumer-note">Customer notes</label>
+            <label for="textarea-crud-costumer-note{{$customerId}}">Customer notes</label>
             <div class="form-group">
                 <div class="form-line success">
                     <textarea style="padding: 10px;"
-                              id="textarea-crud-costumer-note"
-                              name="costumer-note"
+                              id="textarea-crud-costumer-note{{$customerId}}"
+                              name="note"
                               class="form-control custom-textarea"
                               rows="4"
                               placeholder="Please type customer notes here..."
+                              onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')"
                     >{{$customerNote}}</textarea>
                 </div>
                 <div class="help-info">Type customer notes.</div>

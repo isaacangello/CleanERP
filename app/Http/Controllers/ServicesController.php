@@ -83,7 +83,7 @@ class ServicesController extends Controller
             $employees =  $this->employee->all()->sortBy('name');
 
             foreach ($employees as $row){
-                $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeeknumber($row->id,$this->date->numberWeekByday(now()->format('Y-m-d')));;
+                $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$this->date->numberWeekByday(now()->format('Y-m-d')));;
             }
 
 //        dd($filteredWeekGroup);
@@ -114,9 +114,35 @@ class ServicesController extends Controller
             return redirect()->back()->with('errors',$this->st);
 
         }
-//        dd($data_save);
+
         $req->validate($this->service->rules());
+
+         // selecionando preço do serviço
+        $cust_data = null;
+         $cust_data = $this->customer->find($req->customer_id);
         $data_save = $req->all();
+        if(!is_null($cust_data)){
+            if(!is_null($req->frequency_payment)) {
+                switch ($req->frequency_payment) {
+                    case'Thr':
+                    case'One':
+                    case'Wek':
+                        $frequency_payment = 'price_weekly';
+                        $price = $cust_data->price_weekly;
+                        break;
+                    case'Biw':
+                        $frequency_payment = 'price_biweekly';
+                        $price = $cust_data->price_biweekly;
+                        break;
+                    case'Mon':
+                        $frequency_payment = 'price_monthly';
+                        $price = $cust_data->price_monthly;
+                        break;
+                }
+            }
+
+        }
+        if($price > 0){$data_save['price'] = $price; $data_save['frequency_payment'] = $frequency_payment; }
         $data_save['service_date'] = Carbon::create($req->service_date." ".$req->service_time)->format('Y-m-d H:i:s');
         $return = $this->service->create($data_save);
         $this->st->status = true;

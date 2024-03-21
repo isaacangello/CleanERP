@@ -42,9 +42,15 @@
                             <div class="form-group">
                                 <div class="form-line success">
                                     <select id="select-cad-service-employee1" name="employee1_id">
-                                        <option selected value="none">Employee</option>
+                                        <option  value="none">Employee</option>
                                         @foreach($employees as $values)
-                                            <option  value="{{$values->id}}">{{$values->name}} </option>
+                                             @if(old('employee1_id') == $values->id)
+                                                 <option selected  value="{{$values->id}}">{{$values->name}} </option>
+                                            @else
+                                                 <option  value="{{$values->id}}">{{$values->name}} </option>
+                                            @endif
+
+
                                         @endforeach
                                     </select>
                                     <label class="form-label"  for="select-cad-service-employee1">Employee</label>
@@ -58,7 +64,11 @@
                                     <select id="select-cad-service-employee2" name="employee2_id">
                                         <option selected value="none">Second employee</option>
                                         @foreach($employees as $values)
-                                            <option  value="{{$values->id}}">{{$values->name}} </option>
+                                             @if(old('employee2_id') == $values->id)
+                                                 <option selected  value="{{$values->id}}">{{$values->name}} </option>
+                                            @else
+                                                 <option  value="{{$values->id}}">{{$values->name}} </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                     <label class="form-label"  for="select-cad-service-employee1">Second employee.</label>
@@ -106,7 +116,7 @@
                                                     }
 
                                                 @endphp
-                                        <option {{ $string_none }} value="none">period</option>
+                                        <option {{ $string_none }} value="">period</option>
                                         <option {{ $string_first }} value="first">First</option>
                                         <option  {{ $string_second }} value="second">Second</option>
                                         <option  {{ $string_third }} value="third">third</option>
@@ -121,12 +131,27 @@
                         <div class=" col s12 m6">
                             <div class="form-group">
                                 <div class="form-line success">
-                                    <select id="select-cad-service-charge" name="frequency">
-                                        <option selected value="One">Eventual</option>
-                                        <option selected value="Wek">Weekly</option>
-                                        <option selected value="Biw">Biweekly</option>
-                                        <option selected value="Thr">Three-weekly</option>
-                                        <option selected value="Mon">Monthly</option>
+                                    <select id="select-cad-service-charge" name="frequency_payment">
+                                                @php
+                                                    $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
+                                                    if(!empty(old("frequency"))){
+                                                        switch (old("frequency")){
+                                                            case'One': $string_Eventual = "selected" ;break;
+                                                            case'Wek':$string_Weekly = "selected";break;
+                                                            case'Biw':$string_Biweekly = "selected";break;
+                                                            case'Thr':$string_Three_weekly = "selected";break;
+                                                            case'Mon':$string_Monthly = "selected";break;
+                                                        }
+                                                    }else{
+                                                        $string_Eventual = "selected";
+                                                    }
+
+                                                @endphp
+
+                                        <option {{ $string_Eventual }} value="Wek">Eventual</option>
+                                        <option {{ $string_Weekly }} value="Wek">Weekly</option>
+                                        <option {{ $string_Biweekly }} value="Biw">Biweekly</option>
+                                        <option {{ $string_Monthly }} value="Mon">Monthly</option>
                                     </select>
                                     <label class="form-label"  for="select-cad-service-charge">type of charge.</label>
                                 </div>
@@ -136,11 +161,29 @@
                         <div class=" col s12 m6">
                             <div class="form-group">
                                 <div class="form-line success">
-                                    <select id="select-cad-service-frequency" name="frequency_payment">
-                                        <option selected value="One">Price for Eventual</option>
-                                        <option selected value="Wek">Price for Weekly</option>
-                                        <option selected value="Biw">Price for Biweekly</option>
-                                        <option selected value="Mon">Price for Monthly</option>
+                                    <select id="select-cad-service-frequency" name="frequency">
+                                                @php
+                                                    $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
+                                                    if(!empty(old("frequency_payment"))){
+                                                        switch (old("frequency_payment")){
+                                                            case'One': $string_Eventual = "selected" ;break;
+                                                            case'Wek':$string_Weekly = "selected";break;
+                                                            case'Biw':$string_Biweekly = "selected";break;
+                                                            case'Thr':$string_Three_weekly = "selected";break;
+                                                            case'Mon':$string_Monthly = "selected";break;
+                                                        }
+                                                    }else{
+                                                        $string_none = "selected";
+                                                    }
+
+                                                @endphp
+                                        <option {{ $string_none }} value="">Select one option</option>
+                                        <option {{ $string_Eventual }} value="One">Eventual</option>
+                                        <option {{ $string_Weekly }} value="Wek">Weekly</option>
+                                        <option {{ $string_Biweekly }} value="Biw">Biweekly</option>
+                                        <option {{ $string_Three_weekly }} value="Thr">Three-weekly</option>
+                                        <option {{ $string_Monthly }} value="Mon">Monthly</option>
+
                                     </select>
                                     <label class="form-label"  for="select-cad-service-frequency">Service frequency.</label>
                                 </div>
@@ -153,16 +196,16 @@
                                 <label for="textarea-cad-service-note">type service notes.</label>
                                 <div class="form-group">
                                     <div class="form-line success">
-                                        <textarea style="padding: 10px;"  id="textarea-cad-service-note" name="notes"  class="form-control custom-textarea"  rows="4" placeholder="Please type service notes here..."></textarea>
+                                        <textarea style="padding: 10px;"  id="textarea-cad-service-note" name="notes"  class="form-control custom-textarea"  rows="4" placeholder="Please type service notes here...">{{ old('notes') }}</textarea>
                                     </div>
                                     <div class="help-info">Type customer notes </div>
                                 </div>
                         </div>
                         <div class=" col s12 m6">
-                                <label for="textarea-cad-costumer-note">Instructions for employees.</label>
+                                <label for="textarea-cad-costumer-instructions">Instructions for employees.</label>
                                 <div class="form-group">
                                     <div class="form-line success">
-                                        <textarea style="padding: 10px;"  id="textarea-cad-costumer-note" name="instructions"  class="form-control custom-textarea"  rows="4" placeholder="Please type instructions for employees here..."></textarea>
+                                        <textarea style="padding: 10px;"  id="textarea-cad-costumer-instructions" name="instructions"  class="form-control custom-textarea"  rows="4" placeholder="Please type instructions for employees here...">{{ old('instructions') }}</textarea>
                                     </div>
                                     <div class="help-info">Type instructions for employees. </div>
                                 </div>

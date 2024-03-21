@@ -64,6 +64,34 @@ class CustomerController extends Controller
 //        ]);
         return response()->json($return,201);
     }
+    public function update($id, Request $req)
+    {
+        //dd($req);
+            $dynamic_rules = array();
+            foreach ($this->cust->rules() as $input => $rule ){
+                if(array_key_exists($input, $req->all())){
+                 $dynamic_rules[$input] = $rule;
+                }
+            }
+            $req->validate($dynamic_rules);
+            $result =  $this->cust->find($id);
+            $valOld = "next";
+            switch ($req->fieldName){
+                case'drive_licence': $valOld = $result->drive_licence;
+                case'key': $valOld = $result->key;
+                case'more_girl': $valOld = $result->more_girl;
+                case'gate_code': $valOld = $result->gate_code;
+                default: $val_update = $req->value;
+            }
+            if($valOld != "next"){
+            if($valOld== 0){$val_update = 1;}else{$val_update = 0;}
+            }
+            $result->update([
+                "$req->fieldName" => $val_update
+            ]);
+            $result->save();
+        return response()->json(['_token' => $req->_token,'fieldName' =>$req->fieldName,'value' => $val_update, 'drive_licence' => $result->drive_licence ]);
+    }
 
 
 }
