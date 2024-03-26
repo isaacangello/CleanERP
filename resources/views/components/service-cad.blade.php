@@ -1,4 +1,5 @@
 <div>
+
        <div id="new-service" class="modal bottom-sheet">
            <div class="modal-header">
                <h6>Create a new service.</h6>
@@ -148,10 +149,10 @@
 
                                                 @endphp
 
-                                        <option {{ $string_Eventual }} value="Wek">Eventual</option>
-                                        <option {{ $string_Weekly }} value="Wek">Weekly</option>
-                                        <option {{ $string_Biweekly }} value="Biw">Biweekly</option>
-                                        <option {{ $string_Monthly }} value="Mon">Monthly</option>
+                                        <option {{ $string_Eventual }} value="Wek">Eventual </option>
+                                        <option {{ $string_Weekly }} value="Wek">Weekly </option>
+                                        <option {{ $string_Biweekly }} value="Biw">Biweekly </option>
+                                        <option {{ $string_Monthly }} value="Mon">Monthly </option>
                                     </select>
                                     <label class="form-label"  for="select-cad-service-charge">type of charge.</label>
                                 </div>
