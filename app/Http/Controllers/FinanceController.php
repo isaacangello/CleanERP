@@ -27,14 +27,14 @@ class FinanceController extends Controller
             ->join('employees', 'services.employee1_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(
-                'customers.price_weekly',
+                'services.price',
             )->get();
         $collection_result1 =  DB::table('services')
              ->whereBetween('service_date',[$from,$till] )
             ->join('employees', 'services.employee2_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(
-                'customers.price_weekly',
+                'services.price',
             )->get();
         $returnvar =  ($collection_result->sum('price_weekly')+$collection_result1->sum('price_weekly'));
         return $returnvar;
@@ -50,8 +50,8 @@ class FinanceController extends Controller
             'services.service_date',
             'services.paid_out',
             'services.fee',
-            'services.feenotes',
-            'services.pgmt',
+            'services.fee_notes',
+            'services.payment',
             'services.who_saved',
             'services.price',
             'services.plus',
@@ -69,8 +69,8 @@ class FinanceController extends Controller
             'services.service_date',
             'services.paid_out',
             'services.fee',
-            'services.feenotes',
-            'services.pgmt',
+            'services.fee_notes',
+            'services.payment',
             'services.who_saved',
             'services.price',
             'services.plus',
@@ -82,11 +82,11 @@ class FinanceController extends Controller
             )->get();
 
 
-            $total = $collection_result->sum('price_weekly');
-            $total1 = $collection_result1->sum('price_weekly');
+            $total = $collection_result->sum('price');
+            $total1 = $collection_result1->sum('price');
             $array_fromdb = $collection_result->toArray();
             $array2_fromdb = $collection_result1->toArray();
-
+            $total = $total + $total1;
             foreach ($array_fromdb as $row){
                 $array_result['emp_name'] = $row->emp_name;
                 $array_result['cem'] = number_format($total,2,'.',',');
