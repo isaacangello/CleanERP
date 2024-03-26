@@ -87,10 +87,10 @@ class CustomerController extends Controller
             if($valOld== 0){$val_update = 1;}else{$val_update = 0;}
             }
             $result->update([
-                "$req->fieldName" => $val_update
+                $req->fieldName => $val_update
             ]);
             $result->save();
-        return response()->json(['_token' => $req->_token,'fieldName' =>$req->fieldName,'value' => $val_update, 'drive_licence' => $result->drive_licence ]);
+        return response()->json(['_token' => $req->_token,'fieldName' =>$req->fieldName,'value' => $val_update, $req->fieldName => $valOld ]);
     }
 
 

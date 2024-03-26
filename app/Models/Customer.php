@@ -21,7 +21,7 @@ class Customer extends Model
     {
 
         return [
-            'name' => 'required|unique:employees,name,'.$this->id,
+            'name' => 'required|unique:customers,name,'.$this->id,
             'address' => 'required',
             'complement' => 'nullable',
             'phone' => 'numeric',

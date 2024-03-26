@@ -140,7 +140,7 @@ if (isset($customerStatus)){
             <div class="form-group">
                 <div class="form-line success">
                     <select id="select-customer-status{{$customerId}}" class="form-control" name="status" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')">
-                        <option disabled>select status of cutomer</option>
+                        <option disabled>select status of customer</option>
                         <option selected value="{{ $customerStatus }}">{{ $customerStatus }}</option>
                         <option value="{{$customerStatus2}}">{{$customerStatus2}}</option>
                     </select>
@@ -171,17 +171,17 @@ if (isset($customerStatus)){
                 @php
                     if($customerDriveLicence === 1){$customerDriveLicenceString= "checked='checked'";}else{$customerDriveLicenceString='';}
                 @endphp
-                <input type="checkbox" id="med-checkbox-drive-licence{{$customerId}}{{ $count }}" name="drive_licence" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" {{$customerDriveLicenceString}} class="filled-in chk-col-teal"   />
+                <input type="checkbox" id="med-checkbox-drive-licence{{$customerId}}{{ $count }}" name="drive_licence" value="0" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" {{$customerDriveLicenceString}} class="filled-in chk-col-teal"   />
                 <label for="med-checkbox-drive-licence{{$customerId}}{{ $count }}" > need driver licence ?</label><br>
             </div>
             <div class="checkbox-float">
                 @php if($customerGateCode  === 1) {$customerGateCodeString = "checked='checked'"; }else{$customerGateCodeString = ""; }@endphp
-                <input type="checkbox" id="med-checkbox-gate-code{{$customerId}}{{ $count }}" name="gate_code" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" {{$customerGateCodeString}} class="filled-in chk-col-teal" />
+                <input type="checkbox" id="med-checkbox-gate-code{{$customerId}}{{ $count }}" name="gate_code" value="0" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" {{$customerGateCodeString}} class="filled-in chk-col-teal" />
                 <label for="med-checkbox-gate-code{{$customerId}}{{ $count }}" > need door or gate code ?</label>
             </div>
             <div class="checkbox-float">
                 @php if($customerMoreGirl  === 1) {$customerMoreGirlString = "checked='checked'"; }else{$customerMoreGirlString = ""; }@endphp
-                <input type="checkbox" id="med-checkbox-moregirl{{$customerId}}{{ $count }}" name="more_girl" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" {{$customerMoreGirlString}} class="filled-in chk-col-teal" />
+                <input type="checkbox" id="med-checkbox-moregirl{{$customerId}}{{ $count }}" name="more_girl" value="0" onchange="field_change(this,'/api/customer/',{{$customerId}},'{{ csrf_token() }}')" {{$customerMoreGirlString}} class="filled-in chk-col-teal" />
                 <label for="med-checkbox-moregirl{{$customerId}}{{ $count }}" style="margin-right: 20px;"> more then one girl ?</label>
             </div>
         </div>
