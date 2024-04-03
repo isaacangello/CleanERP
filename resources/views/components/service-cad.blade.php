@@ -17,7 +17,16 @@
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success">
-                                    <select id="select-cad-service-customer" name="customer_id">
+                                    @php
+                                        $prices = array();
+                                        $i=0;
+                                        foreach ($customers as $value){
+                                           $prices[$i]['price_weekly']  = $value->price_weekly;
+                                           $prices[$i]['price_biweekly']  = $value->price_biweekly;
+                                           $prices[$i]['price_monthly']  = $value->price_monthly ;
+                                        }
+                                    @endphp
+                                    <select id="select-cad-service-customer" name="customer_id" onchange="price_inject('#select-cad-service-charge')">
                                         @php
                                            if(!empty(old('customer_id'))){
 
@@ -149,7 +158,7 @@
 
                                                 @endphp
 
-                                        <option {{ $string_Eventual }} value="Wek">Eventual </option>
+                                        <option {{ $string_Eventual }} value="One">Eventual </option>
                                         <option {{ $string_Weekly }} value="Wek">Weekly </option>
                                         <option {{ $string_Biweekly }} value="Biw">Biweekly </option>
                                         <option {{ $string_Monthly }} value="Mon">Monthly </option>

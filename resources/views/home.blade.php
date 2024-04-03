@@ -13,21 +13,21 @@
     <!-- Bootstrap Core Css -->
 {{--    <link href="web-resources/bootstrap/bootstrap.min.css" rel="stylesheet">--}}
     <!-- Materialize Core Css -->
-    <link href="{{ asset('web-resources/materialize/css/materialize.css') }}" rel="stylesheet">
+    <link href="{{ Vite::asset('resources/web-resources/materialize/css/materialize.css') }}" rel="stylesheet">
     <!-- jquery ui  Css -->
-     <link href="{{asset('web-resources/jquery-ui/jquery-ui.css')}}" rel="stylesheet" />
+     <link href="{{Vite::asset('resources/web-resources/jquery-ui/jquery-ui.css')}}" rel="stylesheet" />
     <!-- Waves Effect Css -->
-    <link href="{{asset('web-resources/systheme/plugins/node-waves/waves.css')}}" rel="stylesheet" />
+    <link href="{{Vite::asset('resources/web-resources/systheme/plugins/node-waves/waves.css')}}" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="{{asset('web-resources/systheme/plugins/animate-css/animate.css')}}" rel="stylesheet" />
+    <link href="{{Vite::asset('resources/web-resources/systheme/plugins/animate-css/animate.css')}}" rel="stylesheet" />
 
 
     <!-- Custom Css -->
-    <link href="{{asset('web-resources/systheme/css/style.css')}}" rel="stylesheet">
+    <link href="{{Vite::asset('resources/web-resources/systheme/css/style.css')}}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="{{asset('web-resources/systheme/css/themes/all-themes.css')}}" rel="stylesheet" />
+    <link href="{{Vite::asset('resources/web-resources/systheme/css/themes/all-themes.css')}}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -54,14 +54,6 @@
                         <x-msgs />
                         <div class="row">
                             @php
-                                    function oddCheck($nun): bool
-                                    {
-                                        if ($nun % 2 > 0 ){
-                                            return true;
-                                        }else{
-                                            return false;
-                                        }
-                                    }
                                     $c=0;
                             @endphp
                             
@@ -92,37 +84,39 @@
 
 {{--    <script src="web-resources/systheme/plugins/jquery/jquery.min.js"></script>--}}
     <!-- Jquery core js -->
-    <script src="{{asset('web-resources/jquery/jquery-3.7.0.min.js')}}"></script>
+    <script src="{{Vite::asset('resources/web-resources/jquery/jquery-3.7.0.min.js')}}"></script>
     <!-- Jquery-ui Js -->
-    <script src="{{asset('web-resources/jquery-ui/jquery-ui.js')}}"></script>
+    <script src="{{Vite::asset('resources/web-resources/jquery-ui/jquery-ui.js')}}"></script>
 <!-- Bootstrap Core Js -->
 {{--    <script src="web-resources/bootstrap/bootstrap.min.js"></script>--}}
-    <script src="{{ asset('web-resources/materialize/js/materialize.min.js') }}"></script>
+    <script src="{{ Vite::asset('resources/web-resources/materialize/js/materialize.min.js') }}"></script>
 
     <!-- Select Plugin Js -->
 {{--    <script src="web-resources/systheme/plugins/bootstrap-select/js/bootstrap-select.js"></script>--}}
 
     <!-- Slimscroll Plugin Js -->
-    <script src="{{asset('web-resources/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
+    <script src="{{Vite::asset('resources/web-resources/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="{{asset('web-resources/systheme/plugins/node-waves/waves.js')}}"></script>
+    <script src="{{Vite::asset('resources/web-resources/systheme/plugins/node-waves/waves.js')}}"></script>
     <!-- Jquery Validation Plugin Css -->
-    <script src="{{ asset('web-resources/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>
+{{--    <script src="{{ Vite::asset('resources/web-resources/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>--}}
 
     <!-- JQuery Steps Plugin Js -->
-    <script src="{{asset('web-resources/systheme/plugins/jquery-steps/jquery.steps.js')}}"></script>
+    <script src="{{Vite::asset('resources/web-resources/systheme/plugins/jquery-steps/jquery.steps.js')}}"></script>
 
     <!-- Sweet Alert Plugin Js -->
-    <script src="{{asset('web-resources/systheme/plugins/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{Vite::asset('resources/web-resources/systheme/plugins/sweetalert/sweetalert.min.js')}}"></script>
 
     <!-- Custom Js -->
-    <script src="{{ asset('web-resources/systheme/js/admin.js') }}"></script>
+    <script src="{{ Vite::asset('resources/web-resources/systheme/js/admin.js') }}"></script>
 {{--    <script src="web-resources/systheme/js/pages/tables/jquery-datatable.js"></script>--}}
-    <script src="{{ asset('web-resources/systheme/js/pages/index.js') }}"></script>
-<script src="{{ asset('web-resources/systheme/js/pages/forms/form-validation.js') }}"></script>
+    <script src="{{ Vite::asset('resources/web-resources/systheme/js/pages/index.js') }}"></script>
+<script src="{{ Vite::asset('resources/web-resources/systheme/js/pages/forms/form-validation.js') }}"></script>
     <!-- Demo Js -->
-    <script src="{{asset('web-resources/systheme/js/demo.js')}}"></script>
-    <script src="{{ asset('web-resources/systheme/js/systheme.js') }}"></script>
+    <script src="{{Vite::asset('resources/web-resources/systheme/js/demo.js')}}"></script>
+    <script src="{{ Vite::asset('resources/web-resources/systheme/js/systheme.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ Vite::asset('resources/web-resources/custom/service_cad.js') }}"></script>
 @endsection
 

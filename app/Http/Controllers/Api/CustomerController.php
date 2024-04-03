@@ -21,6 +21,10 @@ class CustomerController extends Controller
         return view('customers',['customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage)]);
     }
 
+    public function show(int $id){
+        $cust = $this->cust->find($id);
+        return response()->json($cust->toArray());
+    }
     public function store(Request $request){
 
 //        dd($request->all());

@@ -3966,12 +3966,12 @@ section.content {
 .alert-spacing{
     padding: 15px   ;
 }
-alert-spacing > ul {
+.alert-spacing > ul {
     margin-top: 2px;
     padding: 0;
     margin-bottom: 2px;
 }
-alert-spacing > ul li {
+.alert-spacing > ul li {
     padding: 3px;
 }
 /* Dialogs (SweetAlert) ======================== */
@@ -4597,36 +4597,36 @@ alert-spacing > ul li {
     margin-top: 0 !important; }
 
 .datepicker table tr td.active {
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2A6F46), to(#2A6F46));
-    background-image: -webkit-linear-gradient(to bottom, #2A6F46, #2A6F46);
-    background-image: -o-linear-gradient(to bottom, #2A6F46, #2A6F46);
-    background-image: linear-gradient(to bottom, #2A6F46, #2A6F46);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2A6F46), to(#00C853));
+    background-image: -webkit-linear-gradient(to bottom, #2A6F46, #00C853);
+    background-image: -o-linear-gradient(to bottom, #2A6F46, #00C853);
+    background-image: linear-gradient(to bottom, #2A6F46, #00C853);
     border: none; }
 .datepicker table tr td.active:hover.active {
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2A6F46), to(#2A6F46));
-    background-image: -webkit-linear-gradient(to bottom, #2A6F46, #2A6F46);
-    background-image: -o-linear-gradient(to bottom, #2A6F46, #2A6F46);
-    background-image: linear-gradient(to bottom, #2A6F46, #2A6F46);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2A6F46), to(#00C853));
+    background-image: -webkit-linear-gradient(to bottom, #2A6F46, #00C853);
+    background-image: -o-linear-gradient(to bottom, #2A6F46, #00C853);
+    background-image: linear-gradient(to bottom, #2A6F46, #00C853);
     border: none; }
 
 .datepicker table tr td.selected {
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2A6F46), to(#2A6F46));
-    background-image: -webkit-linear-gradient(to bottom, #2A6F46, #2A6F46);
-    background-image: -o-linear-gradient(to bottom, #2A6F46, #2A6F46);
-    background-image: linear-gradient(to bottom, #2A6F46, #2A6F46);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2A6F46), to(#00C853));
+    background-image: -webkit-linear-gradient(to bottom, #2A6F46, #00C853);
+    background-image: -o-linear-gradient(to bottom, #2A6F46, #00C853);
+    background-image: linear-gradient(to bottom, #2A6F46, #00C853);
     border: none; }
 
 .datepicker table tr td span.active {
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2A6F46), to(#2A6F46));
-    background-image: -webkit-linear-gradient(to bottom, #2A6F46, #2A6F46);
-    background-image: -o-linear-gradient(to bottom, #2A6F46, #2A6F46);
-    background-image: linear-gradient(to bottom, #2A6F46, #2A6F46);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2A6F46), to(#00C853));
+    background-image: -webkit-linear-gradient(to bottom, #2A6F46, #00C853);
+    background-image: -o-linear-gradient(to bottom, #2A6F46, #00C853);
+    background-image: linear-gradient(to bottom, #2A6F46, #00C853);
     border: none; }
 .datepicker table tr td span.active:hover.active {
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2A6F46), to(#2A6F46));
-    background-image: -webkit-linear-gradient(to bottom, #2A6F46, #2A6F46);
-    background-image: -o-linear-gradient(to bottom, #2A6F46, #2A6F46);
-    background-image: linear-gradient(to bottom, #2A6F46, #2A6F46);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00C853), to(#00C853));
+    background-image: -webkit-linear-gradient(to bottom, #2A6F46, #00C853);
+    background-image: -o-linear-gradient(to bottom, #2A6F46, #00C853);
+    background-image: linear-gradient(to bottom, #2A6F46, #00C853);
     border: none; }
 
 .datepicker table.table-condensed > tbody > tr > td {
@@ -7297,7 +7297,14 @@ fieldset[disabled] .form-control {
     overflow: visible; }
 
 .ls-closed .sidebar {
-    margin-left: -300px; }
+    margin-left: -300px;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+
 
 .ls-closed section.content {
     margin-left: 15px; }
@@ -8086,13 +8093,19 @@ fieldset[disabled] .form-control {
 
 .overlay-open .sidebar {
     margin-left: 0;
-    z-index: 99999999; }
+    z-index: 99999999;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s; }
+
+
 /*sidebar largescreen*/
 .sidebar {
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
     font-family: "Roboto", sans-serif;
     background: #fdfdfd;
     width: 300px;
@@ -8344,7 +8357,7 @@ fieldset[disabled] .form-control {
 
 /* Login Page ================================== */
 .login-page {
-    background-image: url('img/Background_login.png');
+    background-image: url('../images/Background_login.png');
     background-size: 100% auto;
     background-repeat: no-repeat;
     padding-left: 0;

@@ -1,4 +1,5 @@
         @php
+            use App\Helpers\Funcs;
             $c=0;
             $arrayCount = sizeof($data);
         @endphp
@@ -31,7 +32,7 @@
 {{--                checando final da table--}}
 
             @endforeach
-                @if(oddCheck($arrayCount))
+                @if(Funcs::oddCheck($arrayCount))
                     <td>&nbsp;&nbsp;</td>
                 @endif
                 @if($arrayCount == 0)

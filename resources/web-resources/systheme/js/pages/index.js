@@ -127,28 +127,26 @@ $("#hide-left-sidebar").click(function () {
         -webkit-transition: 0.5s;
         transition: 0.5s;
     * */
-             $("#leftsidebar").css({
-                    "-moz-transition":"left 0.5s",
-                    "-o-transition":"left 0.5s",
-                    "-webkit-transition":"left 0.5s",
-                    "transition":"left 0.5s",
-                 });
 
         if(hidden == "true"){
              hidden = "false";
-            $("#leftsidebar").show("500") ;
+            // $("#leftsidebar").show("500") ;
+            $("#leftsidebar").css('margin-left',"0");
             $("#site-content").css('margin-left',"315px");
             $("#site-content").css('display',"block!important");
 
         } else {
              hidden = "true";
-            $("#leftsidebar").hide("500");
+            // $("#leftsidebar").hide("500");
+            $("#leftsidebar").css('margin-left',"-315px");
             $("#site-content").css('margin-left',"15px");
 
         }
     }
 
 );
+
+
 var hidden1 = "true";
 
 console.log('Arquivo index.js');
