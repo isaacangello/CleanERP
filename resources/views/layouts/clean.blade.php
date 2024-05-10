@@ -1,5 +1,6 @@
 @php
-    $systemVersion = "0.1.25";
+    $systemVersion = "0.7.02";
+    use Illuminate\Support\Facades\Vite;
 @endphp
 <!DOCTYPE html>
 <html>
@@ -23,37 +24,33 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="web-resources/systheme/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{Vite::asset('resources/web/materialize/css/materialize.css') }}" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="web-resources/systheme/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="{{ Vite::asset('resources/web/systheme/plugins/node-waves/waves.css') }}" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="web-resources/systheme/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="{{ Vite::asset('resources/web/systheme/plugins/animate-css/animate.css') }}" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
-    <link href="web-resources/systheme/plugins/morrisjs/morris.css" rel="stylesheet" />
+    <link href="{{ Vite::asset('resources/web/systheme/plugins/morrisjs/morris.css') }}" rel="stylesheet" />
 
-    <!-- Custom Css -->
-    <link href="web-resources/systheme/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="web-resources/systheme/css/themes/all-themes.css" rel="stylesheet" />
-<style>
-    .bodyclass {
-        background-image: url("img/jjl-positivo.png");
-        background-size: 200px auto;
-        opacity: 0.3;
-        margin: 0px;
-        padding: 0px;
-        width: 100%;
-        height:100%;
-        display:block;
+    <link href="{{ Vite::asset('resources/web/systheme/css/themes/all-themes.css') }}" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="{{ Vite::asset('resources/web/systheme/css/style.css') }}" rel="stylesheet">
+
+    <style type="text/css">
+    .body_class {
+        background-image: url({{ asset('img/Background_login.png') }});
+        background-size: 100% 100vh;
+        background-repeat: no-repeat;
     }
 </style>
 </head>
 
-<body class="theme-teal login-page"  style="background-image: url('https://jjlsystem.xyz/teste/img/Background_login.png');background-size: 100% auto;background-repeat: no-repeat;">
+<body class="theme-teal login-page body_class" >
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -106,46 +103,46 @@
 
 
     <!-- Jquery Core Js -->
-    <script src="web-resources/systheme/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/jquery/jquery.min.js') }}"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="web-resources/systheme/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="{{ Vite::asset('resources/web/materialize/js/materialize.js') }}"></script>
 
     <!-- Select Plugin Js -->
-    <script src="web-resources/systheme/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
 
     <!-- Slimscroll Plugin Js -->
-    <script src="web-resources/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="web-resources/systheme/plugins/node-waves/waves.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/node-waves/waves.js') }}"></script>
 
     <!-- Jquery CountTo Plugin Js -->
-    <script src="web-resources/systheme/plugins/jquery-countto/jquery.countTo.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/jquery-countto/jquery.countTo.js') }}"></script>
 
     <!-- Morris Plugin Js -->
-    <script src="web-resources/systheme/plugins/raphael/raphael.min.js"></script>
-    <script src="web-resources/systheme/plugins/morrisjs/morris.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/raphael/raphael.min.js') }}"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/morrisjs/morris.js') }}"></script>
 
     <!-- ChartJs -->
-    <script src="web-resources/systheme/plugins/chartjs/Chart.bundle.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/chartjs/Chart.bundle.js') }}"></script>
 
     <!-- Flot Charts Plugin Js -->
-    <script src="web-resources/systheme/plugins/flot-charts/jquery.flot.js"></script>
-    <script src="web-resources/systheme/plugins/flot-charts/jquery.flot.resize.js"></script>
-    <script src="web-resources/systheme/plugins/flot-charts/jquery.flot.pie.js"></script>
-    <script src="web-resources/systheme/plugins/flot-charts/jquery.flot.categories.js"></script>
-    <script src="web-resources/systheme/plugins/flot-charts/jquery.flot.time.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/flot-charts/jquery.flot.js') }}"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/flot-charts/jquery.flot.resize.js') }}"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/flot-charts/jquery.flot.pie.js') }}"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/flot-charts/jquery.flot.categories.js') }}"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/flot-charts/jquery.flot.time.js') }}"></script>
 
     <!-- Sparkline Chart Plugin Js -->
-    <script src="web-resources/systheme/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>
 
     <!-- Custom Js -->
-    <script src="web-resources/systheme/js/admin.js"></script>
-    <script src="web-resources/systheme/js/pages/index.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/js/admin.js') }}"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/js/pages/index.js') }}"></script>
 
     <!-- Demo Js -->
-    <script src="web-resources/systheme/js/demo.js"></script>
+    <script src="{{ Vite::asset('resources/web/systheme/js/demo.js') }}"></script>
     @yield('script-botton')
 </body>
 

@@ -22,22 +22,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="web-resources/systheme/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="web/systheme/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="web-resources/systheme/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="web/systheme/plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="web-resources/systheme/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="web/systheme/plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- JQuery DataTable Css -->
-    <link href="web-resources/systheme/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="web/systheme/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- Custom Css -->
-    <link href="web-resources/systheme/css/style.css" rel="stylesheet">
+    <link href="web/systheme/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="web-resources/systheme/css/themes/all-themes.css" rel="stylesheet" />
+    <link href="web/systheme/css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
 <body class="theme-teal">
@@ -541,39 +541,39 @@
     </section>
 
     <!-- Jquery Core Js -->
-{{--    <script src="web-resources/systheme/plugins/jquery/jquery.min.js"></script>--}}
-    <script src="web-resources/jquery/jquery-migrate-1.4.1.min.js"></script>
+{{--    <script src="web/systheme/plugins/jquery/jquery.min.js"></script>--}}
+    <script src="web/jquery/jquery-migrate-1.4.1.min.js"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="web-resources/systheme/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="web/systheme/plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Select Plugin Js -->
-    <script src="web-resources/systheme/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="web/systheme/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
     <!-- Slimscroll Plugin Js -->
-    <script src="web-resources/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="web/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="web-resources/systheme/plugins/node-waves/waves.js"></script>
+    <script src="web/systheme/plugins/node-waves/waves.js"></script>
 
     <!-- Jquery DataTable Plugin Js -->
-    <script src="web-resources/systheme/plugins/jquery-datatable/jquery.dataTables.js"></script>
-    <script src="web-resources/systheme/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="web-resources/systheme/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-    <script src="web-resources/systheme/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-    <script src="web-resources/systheme/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-    <script src="web-resources/systheme/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-    <script src="web-resources/systheme/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-    <script src="web-resources/systheme/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-    <script src="web-resources/systheme/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    <script src="web/systheme/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="web/systheme/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="web/systheme/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="web/systheme/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="web/systheme/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="web/systheme/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="web/systheme/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="web/systheme/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="web/systheme/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
     <!-- Custom Js -->
-    <script src="web-resources/systheme/js/admin.js"></script>
-    <script src="web-resources/systheme/js/pages/tables/jquery-datatable.js"></script>
-    <script src="web-resources/systheme/js/pages/index.js"></script>
+    <script src="web/systheme/js/admin.js"></script>
+    <script src="web/systheme/js/pages/tables/jquery-datatable.js"></script>
+    <script src="web/systheme/js/pages/index.js"></script>
 
     <!-- Demo Js -->
-    <script src="web-resources/systheme/js/demo.js"></script>
+    <script src="web/systheme/js/demo.js"></script>
 </body>
 
 </html>

@@ -9,24 +9,24 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-{{--    <link href="web-resources/bootstrap/bootstrap.min.css" rel="stylesheet">--}}
+{{--    <link href="web/bootstrap/bootstrap.min.css" rel="stylesheet">--}}
     <!-- Materialize Core Css -->
-    <link href="web-resources/materialize/css/materialize.css" rel="stylesheet">
+    <link href="web/materialize/css/materialize.css" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-{{--    <link href="web-resources/systheme/plugins/node-waves/waves.css" rel="stylesheet" />--}}
+{{--    <link href="web/systheme/plugins/node-waves/waves.css" rel="stylesheet" />--}}
 
     <!-- Animation Css -->
-    <link href="web-resources/systheme/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="web/systheme/plugins/animate-css/animate.css" rel="stylesheet" />
     <!-- Sweet Alert Css -->
-    <link href="web-resources/systheme/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="web/systheme/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
 
     <!-- Custom Css -->
-    <link href="web-resources/systheme/css/style.css" rel="stylesheet">
+    <link href="web/systheme/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="web-resources/systheme/css/themes/all-themes.css" rel="stylesheet" />
+    <link href="web/systheme/css/themes/all-themes.css" rel="stylesheet" />
 
 
 {{--    <style>--}}
@@ -208,40 +208,40 @@ employee notes
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
     <!-- Jquery Core Js -->
-{{--    <script src="web-resources/systheme/plugins/jquery/jquery.min.js"></script>--}}
-    <script src="{{asset('web-resources/jquery/jquery-3.7.0.min.js')}}"></script>
+{{--    <script src="web/systheme/plugins/jquery/jquery.min.js"></script>--}}
+    <script src="{{asset('web/jquery/jquery-3.7.0.min.js')}}"></script>
     <!-- Axios js-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Bootstrap Core Js -->
-{{--    <script src="web-resources/bootstrap/bootstrap.min.js"></script>--}}
-    <script src="{{ asset('web-resources/materialize/js/materialize.min.js') }}"></script>
+{{--    <script src="web/bootstrap/bootstrap.min.js"></script>--}}
+    <script src="{{ asset('web/materialize/js/materialize.min.js') }}"></script>
 
     <!-- Select Plugin Js -->
-{{--    <script src="web-resources/systheme/plugins/bootstrap-select/js/bootstrap-select.js"></script>--}}
+{{--    <script src="web/systheme/plugins/bootstrap-select/js/bootstrap-select.js"></script>--}}
 
     <!-- Slimscroll Plugin Js -->
-    <script src="{{asset('web-resources/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
+    <script src="{{asset('web/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="{{asset('web-resources/systheme/plugins/node-waves/waves.js')}}"></script>
+    <script src="{{asset('web/systheme/plugins/node-waves/waves.js')}}"></script>
     <!-- Jquery Validation Plugin Css -->
-    <script src="{{ asset('web-resources/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>
+    <script src="{{ asset('web/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>
 
     <!-- JQuery Steps Plugin Js -->
-    <script src="{{asset('web-resources/systheme/plugins/jquery-steps/jquery.steps.js')}}"></script>
+    <script src="{{asset('web/systheme/plugins/jquery-steps/jquery.steps.js')}}"></script>
 
     <!-- Sweet Alert Plugin Js -->
-    <script src="{{asset('web-resources/systheme/plugins/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('web/systheme/plugins/sweetalert/sweetalert.min.js')}}"></script>
       <!-- Input Mask Plugin Js -->
-    <script src="{{ asset('web-resources/systheme/plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
+    <script src="{{ asset('web/systheme/plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
     <!-- Custom Js -->
-    <script src="{{ asset('web-resources/systheme/js/admin.js') }}"></script>
-{{--    <script src="web-resources/systheme/js/pages/tables/jquery-datatable.js"></script>--}}
-    <script src="{{ asset('web-resources/systheme/js/pages/index.js') }}"></script>
-<script src="{{ asset('web-resources/systheme/js/pages/forms/form-validation.js') }}"></script>
+    <script src="{{ asset('web/systheme/js/admin.js') }}"></script>
+{{--    <script src="web/systheme/js/pages/tables/jquery-datatable.js"></script>--}}
+    <script src="{{ asset('web/systheme/js/pages/index.js') }}"></script>
+<script src="{{ asset('web/systheme/js/pages/forms/form-validation.js') }}"></script>
     <!-- Demo Js -->
-    <script src="{{asset('web-resources/systheme/js/demo.js')}}"></script>
-    <script src="{{ asset('web-resources/systheme/js/systheme.js') }}"></script>
+    <script src="{{asset('web/systheme/js/demo.js')}}"></script>
+    <script src="{{ asset('web/systheme/js/systheme.js') }}"></script>
 @endsection
 
 

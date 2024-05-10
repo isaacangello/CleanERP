@@ -57,20 +57,20 @@
                         <x-input-error :messages="$errors->get('password')" class="red-text text-darken-4" />
                     </div>
                     <div class="row">
-                        <div class="col-xs-8 p-t-5">
+                        <div class="col s12 m6  p-t-5">
                             <input type="checkbox" name="remember" id="remember_me" class="filled-in chk-col-teal">
                             <label for="remember_me">Remember Me</label>
                         </div>
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-teal waves-effect" type="submit">SIGN IN</button>
+                        <div class="col s12 m6 align-right">
+                            <button class="btn waves-effect waves-light bg-teal p-6" type="submit">SIGN IN</button>
                         </div>
                     </div>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6">
+                    <div class="row m-t-15">
+                        <div class="col s12 m6">
                             &nbsp;
                         </div>
-                        <div class="col-xs-6 align-right">
-                            <a href="{{ route('password.request') }}">Forgot Password?</a>
+                        <div class="col s12 m6 align-right">
+                            <a href="{{ route('password.request') }}" class="m-b-3">Forgot Password?</a>
                         </div>
                     </div>
                 </form>

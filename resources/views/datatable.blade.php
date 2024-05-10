@@ -8,7 +8,7 @@
 
     <!-- DataTable Css-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
-{{--    <link href="web-resources/systheme/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">--}}
+{{--    <link href="web/systheme/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">--}}
 
 @endsection
 <!-- Links para scripts no topo do layout -->

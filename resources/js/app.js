@@ -1,5 +1,5 @@
 
 import.meta.glob([
-  '../web-resources/**',
+  '../web/**',
 ]);
 

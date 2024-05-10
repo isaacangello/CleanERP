@@ -814,6 +814,19 @@
     font-size: 48px; }
 
 /* Helpers ===================================== */
+.p-0{padding: 0;}
+.p-1{padding: 1px !important;}
+.p-2{padding: 2px!important;}
+.p-3{padding: 3px!important;}
+.p-4{padding: 4px!important;}
+.p-5{padding: 5px!important;}
+.p-6{padding: 6px!important;}
+.p-7{padding: 7px!important;}
+.p-8{padding: 8px!important;}
+.p-9{padding: 9px!important;}
+.p-10{padding: 10px!important;}
+.p-15{padding: 15px!important;}
+
 .m-l--125 {
     margin-left: -125px; }
 

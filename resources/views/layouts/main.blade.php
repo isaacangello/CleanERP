@@ -1,5 +1,6 @@
 @php
-    if(empty($systemVersion)){$systemVersion = "0.6.01 git actions deploy on home";}
+use Illuminate\Support\Facades\Vite;
+    if(empty($systemVersion)){$systemVersion = "0.7.02";}
     if(empty($userImg)){$userImg = "img/users/user.png";}
     if(!empty(Auth::user()->email)){$email = Auth::user()->email;}else{$email="email@email.com";}
     $userName = Auth::user()->name;
@@ -22,7 +23,6 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     @yield('css-style')
-    <link href="{{ asset('web-resources/custom/mobile.css') }} " rel="stylesheet">
     @yield('script-top')
 
 </head>

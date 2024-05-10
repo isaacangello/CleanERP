@@ -69,5 +69,5 @@
         var url = "@php echo $url; @endphp"+"/"
 
     </script>
-    <script src="web-resources/custom/ajaxteste.js"></script>
+    <script src="web/custom/ajaxteste.js"></script>
 @endsection
