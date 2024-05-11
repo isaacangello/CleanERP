@@ -6,13 +6,24 @@
            </div>
             <div class="modal-content">
                 <div class="container z-depth-3" style="width: 95%">
+
+                    <div class="hide info-box-3 bg-red hover-zoom-effect" id="error_infobox">
+                        <div class="icon">
+                            <i class="material-icons pulse">report</i>
+                        </div>
+                        <div class="content">
+                            <div class="text ">ERROR</div>
+                            <div id="error-text" class="number count-to" data-from="0" data-to="125" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+
                     <div class="row label-employee-view-edit" >
                         <span class="label bg-light-green  label-padding">People involved in the service</span>
                     </div>
-                    <form action="{{ route('services.store') }}" method="post">
+                    <form id="service-form" action="{{ route('services.store') }}" method="post">
                     @csrf
-                        <input type="hidden" name="who_saved" id="" value="{{Auth::user()->name}}">
-                        <input type="hidden" name="who_saved_id" id="" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="who_saved"  value="{{Auth::user()->name}}">
+                        <input type="hidden" name="who_saved_id"  value="{{Auth::user()->id}}">
                     <div class="row">
                         <div class=" col s12 m4">
                             <div class="form-group">

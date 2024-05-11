@@ -99,7 +99,7 @@ use Illuminate\Support\Facades\Vite;
 
 <section>
     <!--###### Left Sidebar ######################################### -->
-    <aside id="leftsidebar" class="sidebar">
+    <aside id="leftsidebar" class="ls-closed sidebar ">
         <!-- User Info -->
         <div class="user-info">
             <div class="image">

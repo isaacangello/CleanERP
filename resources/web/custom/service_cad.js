@@ -46,6 +46,49 @@ function price_inject(idPush) {
         })
 
 
-}
+}// funçao price_inject
 
 
+// logic async for modal to register services
+
+const ServiceForm = document.querySelector('#service-form')
+
+ServiceForm.addEventListener('submit',function (event) {
+    event.preventDefault()
+    let data = new FormData(this)
+    let dataJson = {
+
+        '_token': data.get('_token') ,
+        'who_saved': data.get('who_saved'),
+        'who_saved_id': data.get('who_saved_id'),
+        'customer_id': data.get('customer_id'),
+        'employee1_id': data.get('employee1_id'),
+        'employee2_id': data.get('employee2_id'),
+        'service_date': data.get('service_date'),
+        'service_time': data.get('service_time'),
+        'period': data.get('period'),
+        'frequency_payment': data.get('frequency_payment'),
+        'frequency': data.get('frequency'),
+        'notes': data.get('notes'),
+        'instructions': data.get('instructions'),
+    }
+    axios.post('api/services', dataJson)
+        .then(function (resp) {
+            console.log("status retornado => "+resp.status)
+
+            // window.location.reload()
+        })
+        .catch(function (error) {
+            let infoBox = document.querySelector('#error_infobox')
+            let boxMsgError = document.querySelector('#error-text')
+            boxMsgError.style.fontSize = '18px'
+            boxMsgError.innerText = " "+error.response.data.message;
+            console.info(infoBox.classList)
+            if(infoBox.classList.contains('hide')){
+            infoBox.classList.remove('hide')
+            }
+
+            console.log(error)
+        })
+
+})

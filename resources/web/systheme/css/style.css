@@ -82,13 +82,11 @@
 .navbar .navbar-collapse.in {
     overflow: visible; }
 #leftsidebar{
-    -moz-transition: left 0.5s;
-    -o-transition: left 0.5s;
-    -webkit-transition:left 0.5s;
-    transition:left 0.5s;}
-
-.ls-closed .sidebar {
-    margin-left: -300px; }
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
 
 .ls-closed section.content {
     margin-left: 15px; }
@@ -2956,16 +2954,19 @@ a {
     -ms-animation: none !important;
     animation: none !important; }
 aside{
-    -moz-transition: 0.5s;
-    -o-transition: 0.5s;
-    -webkit-transition: 0.5s;
-    transition: 0.5s; }
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
 section.content {
     margin: 94px 15px 0 315px;
-    -moz-transition: 0.5s;
-    -o-transition: 0.5s;
-    -webkit-transition: 0.5s;
-    transition: 0.5s; }
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
 
 /* Dashboard =================================== */
 .dashboard-flot-chart {
@@ -7296,8 +7297,9 @@ fieldset[disabled] .form-control {
 .navbar .navbar-collapse.in {
     overflow: visible; }
 
+
 .ls-closed .sidebar {
-    margin-left: -300px;
+    margin-left: -300px !important;
     -moz-transition: 0.5s;
     -o-transition: 0.5s;
     -webkit-transition: 0.5s;
@@ -7307,7 +7309,12 @@ fieldset[disabled] .form-control {
 
 
 .ls-closed section.content {
-    margin-left: 15px; }
+    margin-left: 15px;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
 
 .ls-closed .bars:after, .ls-closed .bars:before {
     font-family: 'Material Icons';

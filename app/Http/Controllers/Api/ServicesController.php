@@ -103,13 +103,30 @@ class ServicesController extends Controller
         return response()->json($service,200);
     }
 
-    public function store(Request $req){
+    public function store(Request $req): \Illuminate\Http\JsonResponse
+    {
         if($req->all() === null){
-            return response()->json(['msg' => 'need data store.'],404);
+            return response()->json(['msg' => 'need data to store.'],404);
         }
         $req->validate($this->service->rules());
-        $return = $this->service->create($req->all());
-        return response()->json($return,200);
+        $service_date = Carbon::create($req->service_date." ".$req->service_time)->format('Y-m-d H:i:s');
+
+ //        $req->who_saved_id = intval($req->who_saved_id);
+        $return = $this->service->create([
+                'customer_id' => $req->customer_id,
+                'employee1_id' =>$req->employee1_id,
+                'employee2_id'=>$req->employee2_id,
+                'service_date'=>$service_date,
+                'period'=>$req->period,
+                'frequency'=>$req->frequency,
+                'frequency_payment'=>$req->frequency_payment,
+                'payment'=>$req->payment,
+                'who_saved'=>$req->who_saved,
+                'price'=>$req->price,
+                'who_saved_id'=>$req->who_saved_id,
+            ]
+        );
+        return response()->json($req->all(),404);
     }
     public function update(Request $req,$id){
         if($req->all() === null){

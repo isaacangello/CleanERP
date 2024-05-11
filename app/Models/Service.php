@@ -14,7 +14,8 @@ class Service extends Model
         'customer_id','employee1_id',
         'employee2_id','service_date',
         'period','frequency','notes','instructions',
-        'paid_out','fee','fee_notes','payment','who_saved',
+        'paid_out','fee','fee_notes','payment','frequency_payment',
+        'who_saved','who_saved_id',
         'price','justify_minus', 'minus',
         'justify_plus','plus',
     ];
@@ -42,6 +43,7 @@ class Service extends Model
             'fee_notes' => 'present_with:fee',
             'payment' => 'nullable',
             'who_saved' => 'alpha_num:ascii',
+            'who_saved_id' => 'nullable',
             'price' => 'numeric',
             'justify_plus' => 'present_with:plus',
             'plus' => 'nullable',
