@@ -9,11 +9,9 @@
 <!-- jquery ui  Css -->
 <link href="{{Vite::asset('resources/web/jquery-ui/jquery-ui.css')}}" rel="stylesheet" />
 <!-- Waves Effect Css -->
-<link href="{{Vite::asset('resources/web/systheme/plugins/node-waves/waves.css')}}" rel="stylesheet" />
-
+<link href="{{Vite::asset('node_modules/node-waves/dist/waves.min.css')}}" rel="stylesheet" />
 <!-- Animation Css -->
-<link href="{{Vite::asset('resources/web/systheme/plugins/animate-css/animate.css')}}" rel="stylesheet" />
-
+<link href="{{Vite::asset('node_modules/animate.css/animate.css')}}" rel="stylesheet" />
 
 
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
@@ -23,3 +21,4 @@
 
 
 <link href="{{ Vite::asset('resources/web/custom/mobile.css') }} " rel="stylesheet">
+

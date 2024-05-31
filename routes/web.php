@@ -57,6 +57,7 @@ Route::prefix('finances')->group(function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/home',[ServicesController::class,'home'])->name('home');
+    Route::post('/confirm/{id}',[ServicesController::class,'confirm'])->name('confirm');
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -7,6 +7,7 @@
 {{--css links para o head--}}
 @section('css-style')
     @include('layouts.generic_css')
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 @endsection
 
 @section('content')
@@ -28,13 +29,18 @@
                           Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
                                     class="label-date-home">{{ $weekArr['Monday'] }}</span> - Till <span
                                     class="label-date-home">{{ $weekArr['Saturday'] }} </span><div class="displaytest">Iphone</div>
-                    </span>
+                        </span>
+                        <span>
+                            
+                        </span>
+                        <x-msgs :$msg />
+
                     </div>
                     <x-service-cad :employees="$employeesCol" :customers="$customersCol">
 
                     </x-service-cad>
                     <div class="body">
-                        <x-msgs/>
+
                         <div class="row">
                             @php
                                 $c=0;
@@ -60,6 +66,7 @@
             </div><!-- col -->
         </div>  <!-- row -->
     </div>
+    <x-service-details />
 @endsection
 
 {{-- inclusção de scripts  no final no corpo--}}

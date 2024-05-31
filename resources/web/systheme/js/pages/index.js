@@ -1,6 +1,7 @@
 ﻿if(typeof indexloaded === "undefined") {var indexloaded = false;}
 if (indexloaded === false) {
     $(document).ready(function () {
+
         var indexloaded = true;
 
         $(function () {

@@ -107,6 +107,7 @@ class Employee extends Model
                 ->whereDate('service_date',$weekdayCarbon->format('Y-m-d') )
                 ->join('employees', 'services.employee1_id','=','employees.id')
                 ->join('customers','services.customer_id','=', 'customers.id')
+                ->orderBy('service_date')
                 ->select(
                     'services.id as service_id',
                     'customer_id as cust_id',
@@ -114,6 +115,7 @@ class Employee extends Model
                     'service_date',
                     'period',
                     'who_saved',
+                    'confirmed',
                     'customers.name as cust_name',
                     'customers.type as cust_type',
                     'employees.name as emp_name'

@@ -4,10 +4,10 @@
            <div class="modal-header">
                <h6>Create a new service.</h6>
            </div>
-            <div class="modal-content">
+            <div class="modal-content modal-content-bs">
                 <div class="container z-depth-3" style="width: 95%">
 
-                    <div class="hide info-box-3 bg-red hover-zoom-effect" id="error_infobox">
+                    <div class="hide info-box-3 bg-red hover-zoom-effect animate__animated animate__shakeX" id="error_infobox">
                         <div class="icon">
                             <i class="material-icons pulse">report</i>
                         </div>

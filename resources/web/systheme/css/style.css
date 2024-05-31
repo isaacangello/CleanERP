@@ -1,5 +1,9 @@
 ﻿/* Navbar ====================================== */
-@import url(materialize.css);
+@import url(../../materialize/css/materialize.css);
+:root{
+    --clamp-size: clamp(0.6em, 0.7em + 1vw, 1em);
+    --jjl-green-color: #2e7d32;
+}
 .navbar {
     font-family: "Roboto", sans-serif;
     -webkit-border-radius: 0;
@@ -1647,6 +1651,10 @@ margin-bottom: 9px;}
 .p-b-0 {
     padding-bottom: 0px; }
 /*+==================+*/
+.p-1{
+    padding: 1px;
+}
+
 .p-l-1 {
     padding-left: 1px; }
 
@@ -1660,6 +1668,10 @@ margin-bottom: 9px;}
     padding-bottom: 1px; }
 
 /*+==================+*/
+.p-2{
+    padding: 2px;
+}
+
 .p-l-2 {
     padding-left: 2px; }
 
@@ -1673,6 +1685,10 @@ margin-bottom: 9px;}
     padding-bottom: 2px; }
 
 /*+==================+*/
+.p-3{
+    padding: 3px;
+}
+
 .p-l-3 {
     padding-left: 3px; }
 
@@ -1686,6 +1702,10 @@ margin-bottom: 9px;}
     padding-bottom: 3px; }
 
 /*+==================+*/
+.p-4{
+    padding: 4px;
+}
+
 .p-l-4 {
     padding-left: 4px; }
 
@@ -1699,6 +1719,10 @@ margin-bottom: 9px;}
     padding-bottom: 4px; }
 
 /*+==================+*/
+.p-5{
+    padding: 5px;
+}
+
 .p-l-5 {
     padding-left: 5px; }
 
@@ -1712,6 +1736,10 @@ margin-bottom: 9px;}
     padding-bottom: 5px; }
 
 /*+==================+*/
+.p-6{
+    padding: 6px;
+}
+
 .p-l-6 {
     padding-left: 6px; }
 
@@ -1725,6 +1753,10 @@ margin-bottom: 9px;}
     padding-bottom: 6px; }
 
 /*+==================+*/
+.p-7{
+    padding: 7px;
+}
+
 .p-l-7 {
     padding-left: 7px; }
 
@@ -1738,6 +1770,10 @@ margin-bottom: 9px;}
     padding-bottom: 7px; }
 
 /*+==================+*/
+.p-8{
+    padding: 8px;
+}
+
 .p-l-8 {
     padding-left: 8px; }
 
@@ -1751,6 +1787,10 @@ margin-bottom: 9px;}
     padding-bottom: 8px; }
 
 /*+==================+*/
+.p-9{
+    padding: 9px;
+}
+
 .p-l-9 {
     padding-left: 9px; }
 
@@ -1764,6 +1804,10 @@ margin-bottom: 9px;}
     padding-bottom: 9px; }
 
 /*+==================+*/
+.p-10{
+    padding: 10px;
+}
+
 .p-l-10 {
     padding-left: 10px; }
 
@@ -3014,11 +3058,11 @@ section.content {
 
 .btn-link {
     font-weight: bold;
-    color: #333;
     -moz-transition: 0.5s;
     -o-transition: 0.5s;
     -webkit-transition: 0.5s;
     transition: 0.5s; }
+
 .btn-link:active, .btn-link:focus {
     text-decoration: none;
     color: #333; }
@@ -3026,6 +3070,10 @@ section.content {
     text-decoration: none;
     color: #333;
     background-color: #ddd; }
+
+.btn-link-underline:hover{
+    text-decoration: underline;
+}
 
 .btn-circle-lg {
     border: none;
@@ -4850,26 +4898,31 @@ section.content {
     font-size: 17px; }
 
 /* Modals ====================================== */
-.modal .modal-header {
+.modal-theme .modal-header {
     border: none;
-    padding: 25px 25px 5px 25px; }
-.modal .modal-header .modal-title {
+    padding: 5px; }
+.modal-theme .modal-header .modal-title {
     font-weight: bold;
     font-size: 16px; }
 
-.modal .modal-content {
+.modal-theme .modal-content {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     border-radius: 0;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.31) !important;
     border: none; }
-.modal .modal-content .modal-body {
+.modal-theme .modal-content .modal-body {
     color: #777;
-    padding: 15px 25px; }
+    padding: 5px 5px;
+    border: 1px solid teal;
+}
 
-.modal .modal-footer {
-    border: none;}
+.modal-theme .modal-footer {
+    padding: 20px;
+    border: 1px solid teal;
+
+}
 
 .modal-col-red {
     background-color: #F44336; }
@@ -8853,55 +8906,96 @@ html.ie11 .bs-searchbox .form-control {
     Tela home week tratando  tables
     materialize colors
     yellow darken-3 : #f9a825;
+    #f57f17 yellow darken-4
     yellow: #fff176;
     green darken-3: #2e7d32;
+    indigo darken 4 #1a237e
+    #00695c teal darken-3
 */
-.table-home tbody td:first-child[colspan] {
+.table-home tbody th {
     background-color:#2e7d32 ;
     color:white;
 }
-.table-home tbody tr td:nth-child(even) {
-    background-color: #fff176;
-    color: white;
+.table-home tbody td:first-child[colspan] {
+    background-color:#2e7d32 ;
+    color:white;
+    font-weight: bold;
+    font-size: var(--clamp-size);
+    text-transform: uppercase;
 }
-.table-home tbody tr td:nth-child(even) span > span {
-    color: #2e7d32;
-}
-.table-home tbody tr td:nth-child(even) a {
+.table-home tbody tr.yellow-row td {
+    flex-direction: row;
+    background-color: whitesmoke;
     color: #2e7d32;
     font-weight: bold;
+    font-size: var(--clamp-size);
+
+}
+.table-home tbody tr.yellow-row td span > span {
+    color: #2e7d32;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: var(--clamp-size);
+}
+.table-home tbody tr.yellow-row td a {
+    color: #2e7d32;
+    font-weight: bold;
+    font-size: var(--clamp-size);
 }
 /* linhas ímpares (odd) */
-.table-home tbody tr td:nth-child(odd) {
-    background-color: #f9a825;
-    color: white;
+.table-home tbody tr.orange-row td {
+    background-color: whitesmoke;
+    color: #f57f17;
+    font-weight: bold;
+    font-size: var(--clamp-size) ;
 }
-.table-home tbody tr td:nth-child(odd) span > span {
-    color: white;
+.table-home tbody tr.orange-row td span > span {
+    color: #f57f17;
+    font-weight: bold;
+    font-size: var(--clamp-size);
 }
-.table-home tbody tr:hover td:nth-child(odd) span > span {
-    color:  #f9a825;
+.table-home tbody tr.orange-row:hover td span > span {
+    color:  #f57f17;
+    font-weight: bold;
+    font-size: var(--clamp-size);
 }
 .table-home tbody tr td:nth-child(odd) a{
     color: #2e7d32;
     font-weight: bold;
+    font-size: var(--clamp-size);
+
 }
 .table-home tbody tr:hover > td{
-    background-color: whitesmoke;
-    color: #2e7d32;
-}
-.table-home tbody tr:hover td:nth-child(even) a {
+    background-color:#fff176;
     color: #2e7d32;
     font-weight: bold;
+    font-size: var(--clamp-size);
+
 }
-.table-home tbody tr:hover td:nth-child(odd) a{
-    color: #f9a825;
+.table-home tbody tr:hover td a {
+    color: #2e7d32;
     font-weight: bold;
+    font-size: var(--clamp-size);
+
+}
+.table-home tbody tr:hover td a{
+    color: #00695c;
+    font-weight: bold;
+    font-size: var(--clamp-size);
+
 }
 /* label of date on home screen */
 .label-date-home{
     padding: 5px;
     color: #2e7d32;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.btn-xm{
+    border:none;
+    margin: 0;
+    padding: 2px;
+    border-radius: 2px;
     font-weight: bold;
 }
 /* icones */
@@ -8924,7 +9018,7 @@ html.ie11 .bs-searchbox .form-control {
  padding: 40px;
 }
 
-.modal-content{
+.modal-content-bs{
      height: 90vh!important;
     background-color: #eee;;
 }

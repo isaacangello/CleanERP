@@ -16,16 +16,10 @@
                                         <span class="card-title">{{$empName}}</span>
                                         <p>
                                             <table class="table-home green darken-3 centered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ESCALA 1</th>
-                                                        <th>ESCALA 2</th>
-                                                    </tr>
-                                                </thead>
                                                 <tbody>
 {{--                                                @php dd($data) @endphp--}}
                                                 @foreach($data as $weekDayLabel => $row)
-
+{{--                                                        @php(var_dump($row)."<br><br>")--}}
                                                         <x-home-card-week-day :week-day-label="$weekDayLabel" :data="$row" />
                                                 @endforeach
                                                 </tbody>

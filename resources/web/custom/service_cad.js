@@ -55,6 +55,11 @@ const ServiceForm = document.querySelector('#service-form')
 
 ServiceForm.addEventListener('submit',function (event) {
     event.preventDefault()
+    function RefreshPage(key,queryString) {
+        var newUrl = window.location.origin + window.location.pathname + "?"+key+"=" + queryString;
+        window.location.href = newUrl;
+        return false;
+    }
     let data = new FormData(this)
     let dataJson = {
 
@@ -75,7 +80,10 @@ ServiceForm.addEventListener('submit',function (event) {
     axios.post('api/services', dataJson)
         .then(function (resp) {
             console.log("status retornado => "+resp.status)
-
+            console.info(resp.data.message)
+            sessionStorage.setItem('status','service-true')
+            sessionStorage.setItem('msg',resp.data.message)
+            RefreshPage('msg',resp.data.message)
             // window.location.reload()
         })
         .catch(function (error) {

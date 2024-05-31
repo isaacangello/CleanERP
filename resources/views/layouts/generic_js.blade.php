@@ -15,7 +15,8 @@
 <script src="{{Vite::asset('resources/web/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
 <!-- Waves Effect Plugin Js -->
-<script src="{{Vite::asset('resources/web/systheme/plugins/node-waves/waves.js')}}"></script>
+{{--<script src="{{Vite::asset('resources/web/systheme/plugins/node-waves/waves.js')}}"></script>--}}
+<script src="{{Vite::asset('node_modules/node-waves/dist/waves.min.js')}}"></script>
 <!-- Jquery Validation Plugin Css -->
 {{--    <script src="{{ Vite::asset('web/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>--}}
 

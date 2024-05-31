@@ -17,7 +17,7 @@ class Service extends Model
         'paid_out','fee','fee_notes','payment','frequency_payment',
         'who_saved','who_saved_id',
         'price','justify_minus', 'minus',
-        'justify_plus','plus',
+        'justify_plus','plus', 'confirmed',
     ];
     public function employee(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -35,7 +35,7 @@ class Service extends Model
             'employee2_id' => 'required|numeric',
             'service_date' => 'required|date',
             'period' => 'alpha_num:ascii',
-            'frequency' => 'nullable',
+            'frequency' => 'required',
             'notes' => 'nullable',
             'instructions' => 'nullable',
             'paid_out' => 'nullable',

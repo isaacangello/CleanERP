@@ -36,7 +36,7 @@ class ServicesController extends Controller
 
     }
 
-    public function home(Request $request){
+    public function home(Request $request, $msg = null){
     /**
          * Tratando dados recebidos no request ano e numero da semana
          * @param year
@@ -87,16 +87,22 @@ class ServicesController extends Controller
             }
 
 //        dd($filteredWeekGroup);
+        // mensagem do formulario
+        if($request->msg !== null and $msg === null ){
+            $msg = $request->msg;
+        }
 
 
         return view('home',
-        [
-           'dataArr' => $filteredWeekGroup,
-            'weekArr' => $weekarr,
-            'numWeek' => $numweek,
-            'employeesCol' => $this->employee->all()->sortBy('name'),
-            'customersCol' => $this->customer->all()->sortBy('name'),
-        ]);
+            [
+               'dataArr' => $filteredWeekGroup,
+                'weekArr' => $weekarr,
+                'numWeek' => $numweek,
+                'employeesCol' => $this->employee->all()->sortBy('name'),
+                'customersCol' => $this->customer->all()->sortBy('name'),
+                'msg' => $msg,
+            ]
+        );
     }
     public function index(){
 
@@ -170,7 +176,18 @@ class ServicesController extends Controller
         $return = $service->update($req->all());
         return response()->json($return,206);
     }
+    public function confirm(Request $req,$id)
+    {
 
-
-
+        $service = $this->service->find($id);
+//        dd();
+        if ($service->confirmed === 0) {
+            $service->update(['confirmed' => 1]);
+            $msg = "Service has been confirmed";
+        } else {
+            $service->update(['confirmed' => 0]);
+            $msg = "Service has been decommitted";
+        }
+        return redirect()->back()->with(['msg' => $msg]);
+    }
 }

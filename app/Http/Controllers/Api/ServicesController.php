@@ -33,7 +33,7 @@ class ServicesController extends Controller
         $this->today = now()->format('Y-m-d');
     }
 
-    public function home(Request $request){
+    public function home(Request $request, $msg = null){
         /**
          * Tratando dados recebidos no request ano e numero da semana
          * @param year
@@ -85,6 +85,8 @@ class ServicesController extends Controller
 
 //        dd($filteredWeekGroup);
 
+            $msg = session()->get('msg');
+//        dd(session()->get('msg'));
 
         return view('home',
         [
@@ -93,6 +95,7 @@ class ServicesController extends Controller
             'numWeek' => $numweek,
             'employeesCol' => $this->employee->all()->sortBy('name'),
             'customersCol' => $this->customer->all()->sortBy('name'),
+            'msg' => $msg,
         ]);
     }
     public function index(){
@@ -119,6 +122,8 @@ class ServicesController extends Controller
                 'service_date'=>$service_date,
                 'period'=>$req->period,
                 'frequency'=>$req->frequency,
+                'notes' => $req->notes,
+                'instructions' => $req->instructions,
                 'frequency_payment'=>$req->frequency_payment,
                 'payment'=>$req->payment,
                 'who_saved'=>$req->who_saved,
@@ -126,7 +131,7 @@ class ServicesController extends Controller
                 'who_saved_id'=>$req->who_saved_id,
             ]
         );
-        return response()->json($req->all(),404);
+        return response()->json(['message' => "Service has been scheduled on date $req->service_date, $req->service_time"],201);
     }
     public function update(Request $req,$id){
         if($req->all() === null){
