@@ -4,9 +4,14 @@
 <script src="{{Vite::asset('resources/web/jquery/jquery-3.7.1.min.js')}}"></script>
 <!-- Jquery-ui Js -->
 <script src="{{Vite::asset('resources/web/jquery-ui/jquery-ui.js')}}"></script>
-<!-- Bootstrap Core Js -->
+
+<!-- Materialize Core Js -->
 {{--    <script src="web/bootstrap/bootstrap.min.js"></script>--}}
 <script src="{{ Vite::asset('resources/web/materialize/js/materialize.min.js') }}"></script>
+
+<!-- Waves Effect Plugin Js -->
+{{--<script src="{{Vite::asset('resources/web/systheme/plugins/node-waves/waves.js')}}"></script>--}}
+<script src="{{Vite::asset('node_modules/node-waves/dist/waves.min.js')}}"></script>
 
 <!-- Select Plugin Js -->
 {{--    <script src="web/systheme/plugins/bootstrap-select/js/bootstrap-select.js"></script>--}}
@@ -14,9 +19,6 @@
 <!-- Slimscroll Plugin Js -->
 <script src="{{Vite::asset('resources/web/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
-<!-- Waves Effect Plugin Js -->
-{{--<script src="{{Vite::asset('resources/web/systheme/plugins/node-waves/waves.js')}}"></script>--}}
-<script src="{{Vite::asset('node_modules/node-waves/dist/waves.min.js')}}"></script>
 <!-- Jquery Validation Plugin Css -->
 {{--    <script src="{{ Vite::asset('web/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>--}}
 
@@ -36,4 +38,5 @@
 <script src="{{ Vite::asset('resources/web/systheme/js/systheme.js') }}"></script>
 <script src="{{ Vite::asset('node_modules/axios/dist/axios.min.js') }}"></script>
 <script src="{{ Vite::asset('resources/web/custom/service_cad.js') }}"></script>
+<script src="{{ Vite::asset('resources/web/custom/modal_push.js') }}"></script>
 

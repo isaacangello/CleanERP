@@ -40,7 +40,7 @@
                         </div>
                         <div class="valign-wrapper center-align ">
 
-                            <a href="#largeModal" class="btn-link-underline modal-trigger m-l-5">{{ Funcs::nameShort($row->cust_name,' ',2) }}</a>
+                            <a href="#largeModal" data-service-id="{{$row->service_id}}" onclick="push_run(this)" class="btn-link-underline modal-trigger m-l-5">{{ Funcs::nameShort($row->cust_name,' ',2) }}</a>
 
                         <span class="badge">
                             <span class="material-symbols-outlined ">mark_unread_chat_alt</span>

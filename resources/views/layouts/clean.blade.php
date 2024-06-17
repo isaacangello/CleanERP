@@ -19,28 +19,7 @@
     <meta name="msapplication-TileColor" content="#00a300">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core Css -->
-    <link href="{{Vite::asset('resources/web/materialize/css/materialize.css') }}" rel="stylesheet">
-
-    <!-- Waves Effect Css -->
-    <link href="{{ Vite::asset('resources/web/systheme/plugins/node-waves/waves.css') }}" rel="stylesheet" />
-
-    <!-- Animation Css -->
-    <link href="{{ Vite::asset('resources/web/systheme/plugins/animate-css/animate.css') }}" rel="stylesheet" />
-
-    <!-- Morris Chart Css-->
-    <link href="{{ Vite::asset('resources/web/systheme/plugins/morrisjs/morris.css') }}" rel="stylesheet" />
-
-
-    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="{{ Vite::asset('resources/web/systheme/css/themes/all-themes.css') }}" rel="stylesheet" />
-    <!-- Custom Css -->
-    <link href="{{ Vite::asset('resources/web/systheme/css/style.css') }}" rel="stylesheet">
-
+    @include('layouts.generic_css')
     <style type="text/css">
     .body_class {
         background-image: url({{ asset('img/Background_login.png') }});
@@ -72,29 +51,22 @@
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
     <!-- Search Bar -->
-    <div class="search-bar">
-        <div class="search-icon">
-            <i class="material-icons">search</i>
-        </div>
-        <input type="text" placeholder="START TYPING...">
-        <div class="close-search">
-            <i class="material-icons">close</i>
-        </div>
-    </div>
+{{--    <div class="search-bar">--}}
+{{--        <div class="search-icon">--}}
+{{--            <i class="material-icons">search</i>--}}
+{{--        </div>--}}
+{{--        <input type="text" placeholder="START TYPING...">--}}
+{{--        <div class="close-search">--}}
+{{--            <i class="material-icons">close</i>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- #END# Search Bar -->
     <!-- Top Bar -->
     <nav class="navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{route('index')}}">JJL - SYSTEM 2</a>
-            </div>
-            <div class="nav-item">
-
-            </div>
+        <div class="nav-wrapper p-l-20">
+                <a class="brand-logo font-16 " href="{{route('index')}}">JJL - SYSTEM 2</a>
+        </div>
     </nav>
-
-    <!-- #Top Bar -->
-
 
 
         <div class="container-fluid" style="margin-top: 70px;">
@@ -102,47 +74,7 @@
         </div>
 
 
-    <!-- Jquery Core Js -->
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/jquery/jquery.min.js') }}"></script>
-
-    <!-- Bootstrap Core Js -->
-    <script src="{{ Vite::asset('resources/web/materialize/js/materialize.js') }}"></script>
-
-    <!-- Select Plugin Js -->
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
-
-    <!-- Slimscroll Plugin Js -->
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/node-waves/waves.js') }}"></script>
-
-    <!-- Jquery CountTo Plugin Js -->
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/jquery-countto/jquery.countTo.js') }}"></script>
-
-    <!-- Morris Plugin Js -->
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/raphael/raphael.min.js') }}"></script>
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/morrisjs/morris.js') }}"></script>
-
-    <!-- ChartJs -->
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/chartjs/Chart.bundle.js') }}"></script>
-
-    <!-- Flot Charts Plugin Js -->
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/flot-charts/jquery.flot.js') }}"></script>
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/flot-charts/jquery.flot.resize.js') }}"></script>
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/flot-charts/jquery.flot.pie.js') }}"></script>
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/flot-charts/jquery.flot.categories.js') }}"></script>
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/flot-charts/jquery.flot.time.js') }}"></script>
-
-    <!-- Sparkline Chart Plugin Js -->
-    <script src="{{ Vite::asset('resources/web/systheme/plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>
-
-    <!-- Custom Js -->
-    <script src="{{ Vite::asset('resources/web/systheme/js/admin.js') }}"></script>
-    <script src="{{ Vite::asset('resources/web/systheme/js/pages/index.js') }}"></script>
-
-    <!-- Demo Js -->
-    <script src="{{ Vite::asset('resources/web/systheme/js/demo.js') }}"></script>
+   @include('layouts.generic_js')
     @yield('script-botton')
 </body>
 

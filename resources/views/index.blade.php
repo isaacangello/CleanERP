@@ -5,22 +5,22 @@
 
 @section('content')
 <div class="row">
-<div class="col-3"></div>
-<div class="col-6">
+<div class="col s1 m4"></div>
+<div class="col s10 m4">
    <div class="login-box" style="opacity: 1;">
-        <div  style="width: 100%;">
-            <div class="p-t-5 p-b-10 align-center ">
-                <a href="javascript:void(0);" class="force-white-text" style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>JJLSYSTEM 2</b></a><br>
-                <small class="w-75 text-bg-info force-white-text"  style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>The second version - The Powerful System. </b></small>
+        <div>
+            <div class="p-t-5 p-b-10 center-align">
+                <a href="javascript:void(0);" class="white-text " style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>JJLSYSTEM 2</b></a><br>
+                <small class="w-75 text-bg-info white-text"  style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>The second version - The Powerful System. </b></small>
             </div>
         </div>
        @if($errors->get('email'))
-           <div class="alert alert-danger">
-               <ul class="collection">
+           <div class="alert alert-danger p-10 z-depth-3">
+
                @foreach($errors->get('email') as $message)
-                   <li class="collection-item">Email: {{ $message }}</li>
+                   Email: {{ $message }}
                @endforeach
-               </ul>
+
            </div>
        @endif
        @if($errors->get('password'))
@@ -33,8 +33,8 @@
            </div>
        @endif
 
-        <div class="card">
-            <div class="body" style="padding: 20px;">
+        <div class="card p-20">
+            <div class="body">
                 <form id="sign_in" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="msg">Sign in to start your session</div>
@@ -42,8 +42,10 @@
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
-                        <div class="form-line">
-                            <input id="email" type="email" name="email"  class="form-control"  placeholder="Email" required autofocus autocomplete="username" />
+                        <div class="form-group">
+                            <div class="form-line success">
+                                <input id="email" type="email" name="email"  class="form-control"  placeholder="Email" required autofocus autocomplete="username" />
+                            </div>
                         </div>
                         <x-input-error :messages="$errors->get('email')" class="red-text text-darken-4" />
                     </div>
@@ -51,26 +53,32 @@
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
                         </span>
-                        <div class="form-line">
-                            <input id="password" type="password" class="form-control" name="password"  autocomplete="current-password" placeholder="Password" required>
+                        <div class="form-group">
+                            <div class="form-line success">
+                                <input id="password" type="password" class="form-control" name="password"  autocomplete="current-password" placeholder="Password" required>
+                            </div>
                         </div>
                         <x-input-error :messages="$errors->get('password')" class="red-text text-darken-4" />
                     </div>
                     <div class="row">
-                        <div class="col s12 m6  p-t-5">
-                            <input type="checkbox" name="remember" id="remember_me" class="filled-in chk-col-teal">
-                            <label for="remember_me">Remember Me</label>
+                        <div class="col s12 m6 valign-wrapper p-b-4">
+                            <p>
+                                <label>
+                                    <input type="checkbox" name="remember" id="remember_me" class="filled-in chk-col-teal">
+                                    <span>Remember Me</span>
+                                </label>
+                            </p>
                         </div>
-                        <div class="col s12 m6 align-right">
-                            <button class="btn waves-effect waves-light bg-teal p-6" type="submit">SIGN IN</button>
+                        <div class="col s12 m6 right-align">
+                            <button class="waves-effect waves-light btn bg-teal" type="submit">SIGN IN</button>
                         </div>
                     </div>
                     <div class="row m-t-15">
                         <div class="col s12 m6">
                             &nbsp;
                         </div>
-                        <div class="col s12 m6 align-right">
-                            <a href="{{ route('password.request') }}" class="m-b-3">Forgot Password?</a>
+                        <div class="col s12 m6 right-align">
+                            <a href="{{ route('password.request') }}" class="m-b-3 green-text text-darken-2">Forgot Password?</a>
                         </div>
                     </div>
                 </form>
@@ -79,6 +87,6 @@
     </div>
 
 </div>
-<div class="col-3"></div>
+<div class="col s1 m4"></div>
 </div>
 @endsection

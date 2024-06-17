@@ -11,7 +11,7 @@ class Customer extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = [
-        'name','address','complement','phone','email','type','status',
+        'id','name','address','complement','phone','email','type','status',
         'frequency','price_weekly','price_biweekly','price_monthly',
         'other_services','justify_inactive','info',
         'drive_licence','key','more_girl','gate_code',
@@ -43,5 +43,9 @@ class Customer extends Model
             'note' => 'nullable|string',
         ];
 
+    }
+    public function Services()
+    {
+        $this->hasMany(Service::class);
     }
 }

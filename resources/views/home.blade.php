@@ -66,11 +66,17 @@
             </div><!-- col -->
         </div>  <!-- row -->
     </div>
-    <x-service-details />
+    @php
+        if(isset($employeesCol)){$employeesItems = $employeesCol;}else{$employeesItems = false;}
+        if(isset($customersCol)){$customersItems = $customersCol;}else{$customersItems = false;}
+//        dd($employeesCol);
+    @endphp
+    <x-service-details :employees="$employeesItems" :customers="$customersItems" />
 @endsection
 
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
     @include('layouts.generic_js')
+
 @endsection
 

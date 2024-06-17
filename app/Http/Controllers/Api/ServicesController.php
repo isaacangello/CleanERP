@@ -102,7 +102,8 @@ class ServicesController extends Controller
 
     }
     public function show(Request $request, $id){
-        $service = $this->service->find($id);
+        $service = $this->service->find($id)->customer();
+//        dd($service);
         return response()->json($service,200);
     }
 

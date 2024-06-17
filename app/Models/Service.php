@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+//use App\Models\Customer;
 class Service extends Model
 {
     use HasFactory;
     use SoftDeletes;
     protected $fillable = [
-        'customer_id','employee1_id',
+        "id",'customer_id','employee1_id',
         'employee2_id','service_date',
         'period','frequency','notes','instructions',
         'paid_out','fee','fee_notes','payment','frequency_payment',
@@ -19,13 +19,17 @@ class Service extends Model
         'price','justify_minus', 'minus',
         'justify_plus','plus', 'confirmed',
     ];
-    public function employee(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function customer()
     {
-        return $this->belongsTo('App\Models\Service','employee1_id');
+        return $this->hasOne(Customer::class);
     }
-    public function employee2(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function employee()
     {
-        return $this->belongsTo('App\Models\Service','employee2_id');
+        return $this->hasMany(Employee::class,'employee1_id');
+    }
+    public function employee2()
+    {
+        return $this->hasMany(Employee::class,'employee2_id');
     }
     public function rules(): array
     {
