@@ -18,12 +18,12 @@ class CustomerController extends Controller
     }
 
     public function index(Request $request){
-        return view('customers',['customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage)]);
+        return response()->json(['customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage)],200);
     }
 
     public function show(int $id){
         $cust = $this->cust->find($id);
-        return response()->json($cust->toArray());
+        return response()->json($cust->toArray(),200);
     }
     public function store(Request $request){
 
@@ -88,7 +88,7 @@ class CustomerController extends Controller
                 default: $val_update = $req->value;
             }
             if($valOld != "next"){
-            if($valOld== 0){$val_update = 1;}else{$val_update = 0;}
+            if($valOld=== 0){$val_update = 1;}else{$val_update = 0;}
             }
             $result->update([
                 $req->fieldName => $val_update

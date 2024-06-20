@@ -25,6 +25,8 @@
                         <button class="btn waves-effect waves-light btn-small  btn-small modal-trigger"
                                 href="#new-service">New service
                         </button>
+                        <br class="hide-on-med-and-up">
+                        <br class="hide-on-med-and-up">
                         <span class="p-l-10">
                           Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
                                     class="label-date-home">{{ $weekArr['Monday'] }}</span> - Till <span

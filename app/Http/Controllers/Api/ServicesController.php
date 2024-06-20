@@ -102,8 +102,10 @@ class ServicesController extends Controller
 
     }
     public function show(Request $request, $id){
-        $service = $this->service->find($id)->customer();
+        $service = $this->service->with('customer','employee', 'employee2')->find($id) ;
+//        $service['customer'] = Service::find($id)->customer;
 //        dd($service);
+
         return response()->json($service,200);
     }
 

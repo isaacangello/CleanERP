@@ -126,7 +126,7 @@ employee notes
                                                 <!-- tratando variáveis do componentes employee-viewedit -->
 
                 <div class="body">
-                    <x-msgs />
+                    <x-msgs :$msg />
                     <div class="row">
                         <div class="col s12">
                                 <ul class="collapsible popout">
@@ -143,6 +143,7 @@ employee notes
 
 
                                                 <x-employee-view-edit
+                                                        :employee-id="$employee->id"
                                                         :employee-name="$employee->name"
                                                         :employee-phone="$employee->phone"
                                                         :employee-email="$employee->email"
@@ -242,6 +243,8 @@ employee notes
     <!-- Demo Js -->
     <script src="{{asset('web/systheme/js/demo.js')}}"></script>
     <script src="{{ asset('web/systheme/js/systheme.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('web/custom/field_change.js') }}"></script>
 @endsection
 
 

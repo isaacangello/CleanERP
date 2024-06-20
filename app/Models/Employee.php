@@ -51,9 +51,9 @@ class Employee extends Model
 
         ];
     }
-    public function services():BelongsTo
+    public function services():HasMany
     {
-        return $this->belongsTo(Service::class);
+        return $this->hasMany(Service::class);
     }
 
     public function servicesFromDate($date,$numberRegsPage = 15){

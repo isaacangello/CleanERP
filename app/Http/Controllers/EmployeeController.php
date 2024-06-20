@@ -14,7 +14,7 @@ class EmployeeController extends Controller
 {
     private Employee $employee ;
 
-    public function __construct(Employee $employee)
+    public function __construct(Employee $employee,public string|null $msg = null)
     {
         $this->employee = $employee;
         $this->configpage = 50;
@@ -23,11 +23,11 @@ class EmployeeController extends Controller
 
     }
 
-    public function index(){
+    public function index($msg = null){
         if(!isset($this->configpage))$this->configpage = 50;
-
         return view('employees',[
-            'employees' => DB::table('employees')->orderBy('name')->paginate($this->configpage)
+            'employees' => DB::table('employees')->orderBy('name')->paginate($this->configpage),
+                'msg' =>$msg
             ]
         );
     }
@@ -39,7 +39,7 @@ class EmployeeController extends Controller
         return $response;
 
     }
-    public function store(Request $request){
+    public function store(Request $request,string|null $msg=null){
         /**
          *  campos
          name phone email birth address name_ref_one name_ref_two phone_ref_one phone_ref_two
@@ -56,11 +56,11 @@ class EmployeeController extends Controller
         $return = $this->employee->create($array_data);
 
        $this->st->msg = 'The employee <b>'.$return->name.'</b> is registered!';
-        return redirect()->back()->with('success',$this->st);
+        return redirect()->back()->with(['success'=>$this->st,"msg" => $msg]);
 
 
     }
-    public function update(Request $request,$id){
+    public function update(Request $request,$id,string|null $msg=null){
         $employee = $this->employee->find($id);
         if($employee === null ){
             return response()->json(['msg' => 'Employee for update not found'],404);
@@ -84,7 +84,7 @@ class EmployeeController extends Controller
         }else{
         $this->st->status = false;
         $this->st->msg = 'The employee <b>'.$employee->getAttribute('name').'</b> is not updated!';
-        return redirect()->back()->with('errors',$this->st);
+        return redirect()->back()->with(['errors',$this->st,"msg" => $msg]);
         }
 
     }

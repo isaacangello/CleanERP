@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\Employee;
@@ -43,26 +44,27 @@ class EmployeeController extends Controller
         return response()->json($retorun,200);
 
     }
-    public function update(Request $request,$id){
-        $employee = $this->employee->find($id);
-        if($employee === null ){
-            return response()->json(['msg' => 'Employee for update not found'],404);
-        }
-        if($request->method() === 'PATCH'){
-            $dynamic_rules = array();
-            foreach ($employee->rules() as $input => $rule ){
-                if(array_key_exists($input, $request->all())){
-                 $dynamic_rules[$input] = $rule;
-                }
+    public function update($id, Request $req){
+        //dd($req);
+        $dynamic_rules = array();
+        foreach ($this->employee->rules() as $input => $rule ){
+            if(array_key_exists($input, $req->all())){
+                $dynamic_rules[$input] = $rule;
             }
-            $request->validate($dynamic_rules);
-//            dd($dynamic_rules);
-        }else{
-            $request->validate($employee->rules());
         }
-
-        $return = $employee->update($request->all());
-        return response()->json($return,200);
+        $req->validate($dynamic_rules);
+        $result =  $this->employee->find($id);
+        $valOld = "next";
+//        return response()->json(['retorno' => Carbon::create($req->value)->format('Y-m-d')]);
+        switch ($req->fieldName){
+            case'birth': $val_update = Carbon::create($req->value)->format('Y-m-d');
+            default: $val_update = $req->value;
+        }
+        $result->update([
+            $req->fieldName => $val_update
+        ]);
+        $result->save();
+        return response()->json(['_token' => $req->_token,'fieldName' =>$req->fieldName,'value' => $val_update, $req->fieldName => $valOld ]);
     }
 
     public function destroy ($employee){

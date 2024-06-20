@@ -21,15 +21,15 @@ class Service extends Model
     ];
     public function customer()
     {
-        return $this->hasOne(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
     public function employee()
     {
-        return $this->hasMany(Employee::class,'employee1_id');
+        return $this->belongsTo(Employee::class,'employee1_id');
     }
     public function employee2()
     {
-        return $this->hasMany(Employee::class,'employee2_id');
+        return $this->belongsTo(Employee::class,'employee2_id');
     }
     public function rules(): array
     {

@@ -1,4 +1,5 @@
-<select>
+{{--id="{{$elementId}}" name="{{$elementName}}"--}}
+<select {{ $attributes }}>
         @if(isset($customers) and $customers )
 {{--            @php dd($customers) @endphp--}}
             @foreach($customers as $customerRow)

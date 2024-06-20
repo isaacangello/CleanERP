@@ -107,7 +107,7 @@
                                                 <!-- tratando variáveis do componentes customer-viewedit -->
 
                 <div class="body">
-                    <x-msgs />
+                    <x-msgs :$msg />
                     <div class="row">
                         <div class="col s12">
                                 <ul class="collapsible popout">

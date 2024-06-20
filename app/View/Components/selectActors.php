@@ -11,6 +11,9 @@ class selectActors extends Component
      * Create a new component instance.
      */
     public function __construct(
+//        public string  $elementName,
+//        public string  $elementId,
+
         public Customer $customers,
         public Employee $employees
     ){}

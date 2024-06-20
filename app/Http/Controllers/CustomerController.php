@@ -17,11 +17,17 @@ class CustomerController extends Controller
         $this->cust = $cust;
     }
 
-    public function index(Request $request){
-        return view('customers',['customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage)]);
+    public function index($msg = null){
+        return view('customers',
+            [
+                'customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage),
+                'msg' => $msg
+
+            ]
+        );
     }
 
-    public function store(Request $request){
+    public function store(Request $request, $msg = null){
 
 //        dd($request->all());
 
@@ -60,7 +66,8 @@ class CustomerController extends Controller
         ]);
         return view('customers',[
             'customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage),
-            'success' => 'O Customer '.$request->name." Successfully saved!"
+            'success' => 'O Customer '.$request->name." Successfully saved!",
+            'msg' => $msg
         ]);
 //        return response()->json($return,201);
     }
