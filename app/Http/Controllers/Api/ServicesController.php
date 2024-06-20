@@ -136,26 +136,30 @@ class ServicesController extends Controller
         );
         return response()->json(['message' => "Service has been scheduled on date $req->service_date, $req->service_time"],201);
     }
-    public function update(Request $req,$id){
-        if($req->all() === null){
-            return response()->json(['msg' => 'need data to update.'],404);
-        }
-        $service = $this->service->find($id);
-        if($req->method() === 'PATCH'){
-            $dynamic_rules= array();
-            foreach ($service->rules() as $input => $rule){
-                if (array_key_exists($input,$req->all())){
-                    $dynamic_rules[$input] = $rule;
-                }
-            }
-            $req->validate($dynamic_rules);
-        }else{
-        $req->validate($service->rules());
-        }
 
-        $return = $service->update($req->all());
-        return response()->json($return,206);
+    public function update($id, Request $req){
+        //dd($req);
+        $dynamic_rules = array();
+        foreach ($this->service->rules() as $input => $rule ){
+            if(array_key_exists($input, $req->all())){
+                $dynamic_rules[$input] = $rule;
+            }
+        }
+        $req->validate($dynamic_rules);
+        $result =  $this->employee->find($id);
+        $valOld = "next";
+//        return response()->json(['retorno' => Carbon::create($req->value)->format('Y-m-d')]);
+        switch ($req->fieldName){
+            case'birth': $val_update = Carbon::create($req->value)->format('Y-m-d');
+            default: $val_update = $req->value;
+        }
+        $result->update([
+            $req->fieldName => $val_update
+        ]);
+        $result->save();
+        return response()->json(['_token' => $req->_token,'fieldName' =>$req->fieldName,'value' => $val_update, $req->fieldName => $valOld ]);
     }
+
 
 
 
