@@ -50,9 +50,11 @@ class ServicesController extends Controller
          */
         if(isset($request->numberweek) and intval($request->numberweek) >=1 and intval($request->numberweek) <=52 ){
 //            dd($request->numberweek);
+            $numweek = $request->numberweek;
             $weekarr = $this->date->getWeekByNumberWeek($request->numberweek,$year);
             $this->from = $weekarr['Monday'];
             $this->till = $weekarr['Sunday'];
+            //dd($weekarr);
         }else{
 
             $numweek = $this->date->numberWeekByday(now()->format('Y-m-d'));
@@ -83,7 +85,7 @@ class ServicesController extends Controller
             $employees =  $this->employee->all()->sortBy('name');
 
             foreach ($employees as $row){
-                $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$this->date->numberWeekByday(now()->format('Y-m-d')));;
+                $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$numweek);;
             }
 
 //        dd($filteredWeekGroup);
@@ -98,6 +100,7 @@ class ServicesController extends Controller
                'dataArr' => $filteredWeekGroup,
                 'weekArr' => $weekarr,
                 'numWeek' => $numweek,
+                'year' => $year,
                 'employeesCol' => $this->employee->all()->sortBy('name'),
                 'customersCol' => $this->customer->all()->sortBy('name'),
                 'msg' => $msg,

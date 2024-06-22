@@ -1,19 +1,9 @@
+@php
+    $style='style=margin-bottom:0;';
 
-<!-- Modal Structure -->
-{{--<div id="largeModal" class="modal modal-fixed-footer" tabindex="-1" role="dialog">--}}
-{{--    <div class="modal-content">--}}
-{{--        <h4>Modal Header</h4>--}}
-{{--        <p>A bunch of text</p>--}}
-{{--    </div>--}}
-{{--    <div class="modal-footer">--}}
-{{--        <a href="#" class="modal-close waves-effect waves-green btn-flat">Agree</a>--}}
-{{--    </div>--}}
-{{--</div>--}}
-{{--
-Address: 2777 NE 24th Street, The Lighthouse Point, 33064
-Phone: 6465461182
-Date: 06/14/2024
---}}
+
+@endphp
+
 <div class="modal fade in" id="largeModal" tabindex="-1" role="dialog" style="display: block;">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-col-teal">
@@ -21,36 +11,36 @@ Date: 06/14/2024
                 <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
             </div>
             <div class="modal-body bg-white green-text text-darken-4">
+                <span class="hide" id="serviceId"></span>
 
-                @php $style='style=margin-bottom:0;' @endphp
                 <table class="table-modal-services-details">
                     <tr>
                         <th colspan="1" class="light-green lighten-4">Employee:</th>
                         <td colspan="3" class="p-l-2">
-                            <x-select-actors id="selectServiceEmployee" name="employee1_id" :employees="$employees" />
+                            <x-select-actors id="selectServiceEmployee" name="employee1_id" :employees="$employees" onchange="modal_changes(this,'{{ csrf_token() }}','services')" />
                         </td>
                     </tr>
                     <tr>
                         <th colspan="1" class="light-green lighten-4">Customer:</th>
                         <td colspan="3" class=" p-l-2">
-                            <x-select-actors  id="selectServiceCustomer" name="customer_id" :customers="$customers" />
+                            <x-select-actors  id="selectServiceCustomer" name="customer_id" :customers="$customers" onchange="modal_changes(this,'{{ csrf_token() }}','services')"/>
                         </td>
                     </tr>
                     <tr>
                         <th colspan="1" class="light-green lighten-4 h-45">Address:</th>
                         <td colspan="3"  class="p-l-2">
-                            <x-text-input id="serviceAddress" name="address" :formGroupStyle="$style"  />
+                            <x-text-input id="serviceAddress" name="address" :formGroupStyle="$style"   onchange="modal_changes(this,'{{ csrf_token() }}','customers')" />
                         </td>
                     </tr>
                     <tr>
                         <th colspan="1" class="light-green lighten-4">Phone:</th>
                         <td  colspan="3"  class="">
-                            <x-text-input id="servicePhone" name="phone" :formGroupStyle="$style"  />
+                            <x-text-input id="servicePhone" name="phone" :formGroupStyle="$style" onchange="modal_changes(this,'{{ csrf_token() }}','customers')" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="light-green lighten-4">Date:</th><td><x-text-input :formGroupStyle="$style"  id="serviceDate" name="service_date" /></td>
-                        <th class="light-green lighten-4">Time:</th><td><x-text-input  :formGroupStyle="$style"  id="serviceTime" name="service_time" /></td>
+                        <th class="light-green lighten-4">Date:</th><td><x-text-input :formGroupStyle="$style"  id="serviceDate" name="service_date" class="datepicker" onchange="dateTime_change('serviceDate','serviceTime','{{ csrf_token() }}')" /></td>
+                        <th class="light-green lighten-4">Time:</th><td><x-text-input  :formGroupStyle="$style"  id="serviceTime" name="service_time" class="timepicker" onchange="dateTime_change('serviceDate','serviceTime','{{ csrf_token() }}')" /></td>
                     </tr>
                     <tr>
                         <th class="light-green lighten-4">In:</th><td><x-text-input :formGroupStyle="$style"  id="serviceInTime"  name="" /> </td>

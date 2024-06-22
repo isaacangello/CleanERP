@@ -1,3 +1,16 @@
+// var moment = require('moment');
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
+
 function field_change(element,urlBase,token){
     console.log("url => "+urlBase)
     let field = element.getAttribute('name')
@@ -15,6 +28,10 @@ function field_change(element,urlBase,token){
     .then(resp =>{
                 console.log(resp)
                     element.classList.add('teal', 'lighten-5')
+                Toast.fire({
+                    icon: "success",
+                    title: `New ${field} is successfully saved!`
+                });
                 setTimeout( ()=> {
                     element.classList.remove('teal', 'lighten-5')
                 },1000)
@@ -33,5 +50,89 @@ function field_change(element,urlBase,token){
 
         }
     )
+
+}
+function urlGenerate(model,response){
+    var urlBase = "";
+    switch (model) {
+        case'services': urlBase = `api/services/${response}`; break;
+        case'employees': urlBase = `api/employee/${response.data.employee1_id}` ; break;
+        case'customers': urlBase = `api/customer/${response.data.customer_id}`; break;
+    }
+    return urlBase
+}
+function modal_changes(element,token,model){
+    const service_id = document.querySelector("#serviceId").innerText
+    switch (model) {
+        case'services': field_change(element,urlGenerate(model,service_id),token); break;
+        case'employees':
+        case'customers':
+                axios.get('api/services/'+service_id+'/all:id,customer_id,employee1_id')
+                    .then(resp=>{
+                        // console.info(resp)
+                        field_change(element,urlGenerate(model,resp),token)
+                    })
+            break;
+    }
+    console.log("função modal_change service_id =>"+service_id)
+}
+
+function dateTime_change(elementId1,elementId2,token){
+    function date_format(day){
+        var data = new Date(day),
+            dia  = data.getDate().toString().padStart(2, '0'),
+            mes  = (data.getMonth()+1).toString().padStart(2, '0'), //+1 pois no getMonth Janeiro começa com zero.
+            ano  = data.getFullYear();
+        return ano+"-"+mes+"-"+dia;
+    }
+    const date = document.getElementById(elementId1).value
+    const time = document.getElementById(elementId2).value
+    const service_id = document.querySelector("#serviceId").innerText
+    //element.getAttribute('value')
+    let value = `${date} ${time}`
+    const urlBase = `api/services/${service_id}`
+    console.log('alterando campo service_date Via axios com valor => '+value)
+    console.log("url => "+urlBase)
+    console.log("date=>"+date+" Time=>"+time)
+    const DateToPost = moment(date+" "+time, "MM/DD/YYYY hh:mm").format("YYYY-MM-DD hh:mm:ss")
+    console.log("fotmated ->"+DateToPost)
+    axios.patch(urlBase,
+        {
+            _token: token,
+            fieldName: "service_date",
+            value: DateToPost,
+        }).then(resp =>{
+                console.log(resp)
+            const {value:accept}=  Swal.fire({
+                title: "The date and date have been modified, it is necessary to reload the window to reflect the changes.",
+                icon: "question",
+                iconHtml: "?",
+                confirmButtonText: "Reload ?",
+                cancelButtonText: "Cancel",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonColor:"#2e7d32",
+                iconColor:"#2e7d32"
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    window.location.reload()
+                }
+            })
+            }
+
+        ).catch( resp =>{
+            date.classList.add('red', 'lighten-5')
+            setTimeout(function () {
+                date.classList.remove('red', 'lighten-5')
+            },1000)
+            time.classList.add('red', 'lighten-5')
+            setTimeout(function () {
+                time.classList.remove('red', 'lighten-5')
+            },1000)
+
+
+            }
+        )
 
 }

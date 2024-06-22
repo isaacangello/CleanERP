@@ -26,8 +26,9 @@
 <script src="{{Vite::asset('resources/web/systheme/plugins/jquery-steps/jquery.steps.js')}}"></script>
 
 <!-- Sweet Alert Plugin Js -->
-<script src="{{Vite::asset('resources/web/systheme/plugins/sweetalert/sweetalert.min.js')}}"></script>
-
+<!--Added version 2 -->
+{{--<script src="{{Vite::asset('resources/web/systheme/plugins/sweetalert/sweetalert.min.js')}}"></script>--}}
+<script src="{{ Vite::asset('node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
 <!-- Custom Js -->
 <script src="{{ Vite::asset('resources/web/systheme/js/admin.js') }}"></script>
 {{--    <script src="resources/web/systheme/js/pages/tables/jquery-datatable.js"></script>--}}
@@ -36,7 +37,10 @@
 <!-- Demo Js -->
 <script src="{{Vite::asset('resources/web/systheme/js/demo.js')}}"></script>
 <script src="{{ Vite::asset('resources/web/systheme/js/systheme.js') }}"></script>
+
+<script src="{{ Vite::asset('node_modules/moment/min/moment.min.js') }}"></script>
 <script src="{{ Vite::asset('node_modules/axios/dist/axios.min.js') }}"></script>
 <script src="{{ Vite::asset('resources/web/custom/service_cad.js') }}"></script>
+<script src="{{ Vite::asset('resources/web/custom/field_change.js') }}"></script>
 <script src="{{ Vite::asset('resources/web/custom/modal_push.js') }}"></script>
 

@@ -98,15 +98,26 @@ class ServicesController extends Controller
             'msg' => $msg,
         ]);
     }
-    public function index(){
-
+    public function index(Request $req){
     }
     public function show(Request $request, $id){
         $service = $this->service->with('customer','employee', 'employee2')->find($id) ;
-//        $service['customer'] = Service::find($id)->customer;
-//        dd($service);
-
-        return response()->json($service,200);
+        $status = 200;
+        return response()->json($service,$status);
+    }
+    public function query(Request $request,$id, $fields){
+        $firstParam = explode(':', $fields)[0];
+        $queryString = explode(':', $fields)[1];
+        if($firstParam === "with"){
+            if($fields){
+                $service = $this->service->selectRaw($queryString)->with('customer','employee', 'employee2')->find($id);
+                $status = 206;
+            }
+        }else{
+            $service = $this->service->selectRaw($queryString)->find($id);
+            $status = 206;
+        }
+        return response()->json($service,$status);
     }
 
     public function store(Request $req): \Illuminate\Http\JsonResponse
@@ -146,7 +157,7 @@ class ServicesController extends Controller
             }
         }
         $req->validate($dynamic_rules);
-        $result =  $this->employee->find($id);
+        $result =  $this->service->find($id);
         $valOld = "next";
 //        return response()->json(['retorno' => Carbon::create($req->value)->format('Y-m-d')]);
         switch ($req->fieldName){

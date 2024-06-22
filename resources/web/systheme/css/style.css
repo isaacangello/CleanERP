@@ -9489,3 +9489,9 @@ input.form-control:focus-visible{
 .panel-danger > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #ebccd1;
 }
+.h-30{
+    height:30px!important;
+}
+.h-45{
+    height: 45px !important;
+}

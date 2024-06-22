@@ -1,13 +1,15 @@
-function push_run(btnParam){
+function push_run(btnParam,custId,empId){
 
     const btnModalId = btnParam.getAttribute('href')
     const modalInstance = M.Modal.getInstance(document.querySelector(btnModalId))
     const service_id = btnParam.getAttribute('data-service-id')
+    document.querySelector("#serviceId").innerText = service_id
     console.info(btnModalId)
     function populate(id)  {
         /**
          * Flied
          */
+
             const defaultModalLabel = document.querySelector("#defaultModalLabel")
             const serviceAddress = document.querySelector("#serviceAddress")
             const servicePhone= document.querySelector("#servicePhone")

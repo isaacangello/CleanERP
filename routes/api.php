@@ -27,6 +27,7 @@ Route::apiResource('services', ServicesController::class)
     'update'=>'services.api.update',
     'destroy'=>'services.api.destroy',
 ]);
+Route::get('services/{id}/{fields}',[ServicesController::class , 'query'])->name('services.api.query');
 Route::apiResource('customer', CustomerController::class)
 ->names([
     'index'=>'customer.api.index',
