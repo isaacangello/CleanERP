@@ -32,13 +32,13 @@ Esse é um Projeto para a empresa JJL Clean Services, para controlar os processo
 ## Telas já construidas até agora.
 - Cadastros 1
     - users 1.1 (userModel,UserController,profileController) OK
-    - Customers 1.2 (CustomerModel,CustomerController) NO
-    - Employees 1.3 (EmployeeModel,EmployeeController)  NO
-    - Services 1.4 (serviceModel,HomeController,ServicesController) NO
+    - Customers 1.2 (CustomerModel,CustomerController) OK
+    - Employees 1.3 (EmployeeModel,EmployeeController)  OK
+    - Services 1.4 (serviceModel,HomeController,ServicesController) OK
 - Exibiçoes 2
     - Customers 2.1 (customer.blade,CadComponent,EditComponent) OK
     - Employees 2.2 (employee.blade,CadComponent,EditComponent) OK
-    - Services 2.3 (home.blade) (agora)
+    - Services 2.3 (home.blade) OK
     - configuraçoes personalizadas 2.4 NO
 - exibiçoes employees 3
   - tela login 3.1 NO
@@ -47,7 +47,8 @@ Esse é um Projeto para a empresa JJL Clean Services, para controlar os processo
   - DateTreatment (classes para tratamento de datas) (agora)
 
 - Controle Financeiro
-  - filtrar dados por periodo NO
+    - Tela Principal finaeiro OK
+    - filtrar dados por periodo NO
       - employees NO
       - customers NO
 - Operacional
