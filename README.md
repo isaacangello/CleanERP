@@ -47,8 +47,9 @@ Esse é um Projeto para a empresa JJL Clean Services, para controlar os processo
   - DateTreatment (classes para tratamento de datas) (agora)
 
 - Controle Financeiro
-    - Tela Principal finaeiro OK
-    - filtrar dados por periodo NO
+    - Tela Principal finance OK
+    - filtrate dados por periodo NO
+    - Check viability of Fuzzy search NO  
       - employees NO
       - customers NO
 - Operacional
