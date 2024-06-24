@@ -8175,7 +8175,7 @@ fieldset[disabled] .form-control {
     width: 300px;
     overflow: hidden;
     display: inline-block;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 64px);
     position: fixed;
     top: 64px;
     left: 0;
@@ -8190,7 +8190,9 @@ fieldset[disabled] .form-control {
     width: 100%;
     border-top: 1px solid #eee;
     padding: 15px;
-    overflow: hidden; }
+    overflow: hidden;
+
+}
 .sidebar .legal .copyright {
     font-size: 13px;
     white-space: nowrap;
@@ -8263,7 +8265,8 @@ fieldset[disabled] .form-control {
 .sidebar .menu {
     position: relative;
     overflow-y: auto;
-    height: 90vh; }
+    height: 90vh;
+}
 .sidebar .menu .list {
     list-style: none;
     padding-left: 0; }
