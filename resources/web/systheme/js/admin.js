@@ -1,3 +1,5 @@
+import {isNullOrUndef} from "../../custom/helpers/funcs.js";
+
 $(document).ready(function () {
 
 
@@ -31,7 +33,7 @@ $.AdminBSB.options = {
         white: '#ffffff'
     },
     leftSideBar: {
-        scrollColor: 'rgba(0,0,0,0.5)',
+        scrollColor: '#2A6F46',
         scrollWidth: '4px',
         scrollAlwaysVisible: false,
         scrollBorderRadius: '0',
@@ -113,9 +115,11 @@ $.AdminBSB.leftSideBar = {
     setMenuHeight: function (isFirstTime) {
         if (typeof $.fn.slimScroll != 'undefined') {
             var configs = $.AdminBSB.options.leftSideBar;
-            var height =  ($(window).height() - ($('.legal').outerHeight() + $('.user-info').outerHeight() + $('.navbar').innerHeight()));
-            console.info("Altura slin bar =>"+height)
-            var $el = $('.list');
+            var heightDesktop =  ($(window).height() - ($('.legal').outerHeight() + $('#userInfoDesktop').outerHeight() + $('.navbar').innerHeight()));//$('.user-info').outerHeight()
+
+            // console.info("Altura da area marcada  =>"+ $('#userInfoDesktop').outerHeight())
+            var $el = $('.menu');
+            // var $elMobile = $('#slide-out');
 
             if (!isFirstTime) {
                 $el.slimscroll({
@@ -124,14 +128,13 @@ $.AdminBSB.leftSideBar = {
             }
 
             $el.slimscroll({
-                height: height + "px",
+                height: heightDesktop + "px",
                 color: configs.scrollColor,
                 size: configs.scrollWidth,
                 alwaysVisible: configs.scrollAlwaysVisible,
                 borderRadius: configs.scrollBorderRadius,
                 railBorderRadius: configs.scrollRailBorderRadius
             });
-
             //Scroll active menu item when page load, if option set = true
             if ($.AdminBSB.options.leftSideBar.scrollActiveItemWhenPageLoad) {
                 var item = $('.menu .list li.active')[0];
@@ -479,3 +482,34 @@ $(function () {
 });
 
 });
+
+
+
+let timeDisplayBrazil = document.getElementById('brazil_time');
+let timeDisplayFlorida = document.getElementById('florida_time');
+if(!isNullOrUndef(timeDisplayBrazil) &&  !isNullOrUndef(timeDisplayFlorida) ){
+        function refreshTimeBrazil() {
+            let timezone = 'America/Sao_Paulo'
+            const options = { timeZone: timezone, timeZoneName: "short" };
+            timeDisplayBrazil.innerHTML =new Date().toLocaleTimeString("pt-BR", options)
+
+        }
+
+
+
+        function refreshTimeFlorida() {
+            let timezone1 = 'America/New_York'
+            const options = { timeZone: timezone1, timeZoneName: "short" };
+            timeDisplayFlorida.innerHTML = new Date().toLocaleTimeString('en-US',options);
+
+        }
+
+        let interval = async ()=>{
+            await setInterval(refreshTimeBrazil, 1000);
+            await setInterval(refreshTimeFlorida, 1000);
+        }
+            interval();
+}else{
+        console.info("time Basil florida is off")
+}
+

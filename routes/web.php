@@ -29,13 +29,7 @@ Route::get('/', function () {
 
 Route::post('/authenticate', [IndexController::class , 'authenticate'])->name('login.authenticate');
 
-//Route::get('/home', function () {
-//    return view('home');
-//})->middleware(['auth', 'verified'])->name('home');
-//############################################################# dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 //#############################################################
 //############ RESOURCES CUSTOMERS EMPLOYEES SERVICES NAD ETC
 //#############################################################
@@ -44,19 +38,21 @@ Route::resources([
     'employees' => EmployeeController::class,
     'services' => ServicesController::class,
 ]);
-//Route::get('/customers', [CustomerController::class, 'index'])->middleware(['auth', 'verified'])->name('customers');
-//Route::get('/employees', [EmployeeController::class,'index'])->middleware(['auth', 'verified'])->name('employees');
 //#############################################################
-//Route::get('/finances', [FinanceController::class, 'index'])->middleware(['auth', 'verified'])->name('finances');
+//############ FINANCE
+//#############################################################
 Route::prefix('finances')->group(function () {
     Route::get('/', [FinanceController::class, 'index'])->middleware(['auth', 'verified'])->name('finances');
     Route::get('/detailer/{id}/{from}/{till}', [FinanceController::class, 'detail_employee'])->middleware(['auth', 'verified'])->name('finances.detailer');
 });
 
 //#############################################################
+//############ AUTH MIDDLEWARE
+//#############################################################
 Route::middleware('auth')->group(function () {
 
-    Route::get('/home',[ServicesController::class,'home'])->name('home');
+    Route::get('/home',[IndexController::class,'home'])->name('home');
+    Route::get('/week',[ServicesController::class,'week'])->name('week');
     Route::post('/confirm/{id}',[ServicesController::class,'confirm'])->name('confirm');
 
 
@@ -64,5 +60,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+//#############################################################
+//############ API
+//#############################################################
 
 require __DIR__.'/auth.php';

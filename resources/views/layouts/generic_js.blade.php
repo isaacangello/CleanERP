@@ -1,6 +1,6 @@
 {{--@use(Illuminate\Support\Facades\Vite)--}}
 <!-- Jquery core js -->
-<script src="{{ asset('web/jquery/jquery-3.7.1.min.js') }}"></script>
+<script  src="{{ asset('web/jquery/jquery-3.7.1.min.js') }}"></script>
 <!-- Jquery-ui Js -->
 <script src="{{ asset('web/jquery-ui/jquery-ui.js') }}"></script>
 
@@ -26,7 +26,7 @@
 {{--<script src="{{ asset('node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>--}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Custom Js -->
-<script src="{{ asset('web/systheme/js/admin.js') }}"></script>
+<script type="module" src="{{ asset('web/systheme/js/admin.js') }}"></script>
 
 <script src="{{ asset('web/systheme/js/pages/index.js') }}"></script>
 <script src="{{ asset('web/systheme/js/pages/forms/form-validation.js') }}"></script>

@@ -1,14 +1,9 @@
 {{--id="{{$elementId}}" name="{{$elementName}}"--}}
 <select {{ $attributes }}>
-        @if(isset($customers) and $customers )
-{{--            @php dd($customers) @endphp--}}
-            @foreach($customers as $customerRow)
-                <option value="{{ $customerRow->id }}">{{ $customerRow->name }}</option>
+        @if(isset($customers) and $customers )@php($data = $customers)@endif
+        @if(isset($employees) and $employees)@php($data = $employees)@endif
+            <option value="null" selected="selected" disabled>Options</option>
+            @foreach($data as $dataRow)
+                <option value="{{ $dataRow->id }}">{{ $dataRow->name }}</option>
             @endforeach
-        @endif
-        @if(isset($employees) and $employees)
-            @foreach($employees as $employeesRow)
-                <option value="{{ $employeesRow->id }}">{{ $employeesRow->name }}</option>
-            @endforeach
-        @endif
 </select>

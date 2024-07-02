@@ -30,4 +30,8 @@ class IndexController extends Controller
             'password' => 'Password wrong: The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
+    public function home()
+    {
+        return view('home');
+    }
 }

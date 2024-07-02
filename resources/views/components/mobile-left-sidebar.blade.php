@@ -1,10 +1,9 @@
-<div id="componet-mobile-left-sidebar">
+<div id="component-mobile-left-sidebar">
     <!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
-    <ul id="slide-out" class="sidenav ">
+    <ul id="slide-out" class="sidenav">
     <li>
-        <div>
-                <div class="user-info" style="background: url('img/898_300X135.jpg') no-repeat no-repeat;">
-                    <div class="image">
+        <div class="user-info" id="userInfoMobile" style="background: url('img/898_300X135.jpg') no-repeat no-repeat;">
+            <div class="image">
             <div class="image">
                 <img src="{{$userImg}}" width="48" height="48" alt="User"/>
             </div>
@@ -49,7 +48,7 @@
                                 <i class="material-icons">today</i>
                                 <span class="waves-effect">Services today</span>
                             </a>
-                            <a href="javascript:void(0);" class="waves-effect">
+                            <a href="{{route('week')}}" class="waves-effect">
                                 <i class="material-icons" style="font-size: 20px;">calendar_view_week</i>
                                 <span>Services Week</span>
                             </a>

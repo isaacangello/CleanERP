@@ -59,7 +59,7 @@
                     <tr><th colspan="4" class="light-green lighten-4 center-align">notes:</th></tr>
                     <tr>
                         <td  colspan="4" class="p-1">
-                            <textarea  name="notes" id="ServiceNotes" cols="30" rows="10">
+                            <textarea  name="notes" id="ServiceNotes" cols="30" rows="10"  onchange="modal_changes(this,'{{ csrf_token() }}','customers')">
 
                             </textarea>
                         </td>
@@ -68,7 +68,7 @@
                     <tr><th colspan="4" class="light-green lighten-4 center-align">instructions for employees:</th></tr>
                     <tr>
                         <td  colspan="4" class="grey-text text-darken-3 p-1">
-                            <textarea name="instructions" id="ServiceInstructions" cols="30" rows="10">
+                            <textarea name="instructions" id="ServiceInstructions" onchange="modal_changes(this,'{{ csrf_token() }}','customers')"  cols="30" rows="10">
 
                             </textarea>
                         </td>

@@ -1,10 +1,11 @@
-mak@props([
+@props([
     'name',
     'show' => false,
     'maxWidth' => '2xl'
 ])
 
 @php
+if(isset($maxWidth)){
 $maxWidth = [
     'sm' => 'sm:max-w-sm',
     'md' => 'sm:max-w-md',
@@ -12,6 +13,9 @@ $maxWidth = [
     'xl' => 'sm:max-w-xl',
     '2xl' => 'sm:max-w-2xl',
 ][$maxWidth];
+}else{
+ $maxWidth ="xl";
+}
 @endphp
 
 <div

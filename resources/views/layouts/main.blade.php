@@ -1,5 +1,5 @@
 @php
-use Illuminate\Support\Facades\Vite;
+
     if(empty($systemVersion)){$systemVersion = "0.7.02";}
     if(empty($userImg)){$userImg = "img/users/user.png";}
     if(!empty(Auth::user()->email)){$email = Auth::user()->email;}else{$email="email@email.com";}
@@ -101,7 +101,7 @@ use Illuminate\Support\Facades\Vite;
     <!--###### Left Sidebar ######################################### -->
     <aside id="leftsidebar" class="ls-closed sidebar ">
         <!-- User Info -->
-        <div class="user-info">
+        <div class="user-info" id="userInfoDesktop">
             <div class="image">
                 <img src="{{asset('img/users/user.png')}}" width="48" height="48" alt="User"/>
             </div>
@@ -139,7 +139,7 @@ use Illuminate\Support\Facades\Vite;
             cleaning_services
 
         -->
-        <div class="menu">
+        <div class="menu" id="menu-desktop">
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="active">
@@ -162,7 +162,7 @@ use Illuminate\Support\Facades\Vite;
                                 <i class="material-icons" style="font-size: 20px;">today</i>
                                 <span>Services today</span>
                             </a>
-                            <a href="javascript:void(0);">
+                            <a href="{{ route('week') }}">
                                 <i class="material-icons" style="font-size: 20px;">calendar_view_week</i>
                                 <span>Services Week</span>
                             </a>
@@ -225,11 +225,9 @@ use Illuminate\Support\Facades\Vite;
         </div>
         <!-- #Menu -->
         <!-- Footer -->
-        <div class="legal">
+        <div class="legal" id="legalDesktop">
             <div class="copyright">
-                &copy; 2023 <a href="javascript:void(0);">JJL - SYSTEM 2</a>.
-            </div>
-            <div class="version">
+                &copy; 2024 <a href="javascript:void(0);">JJL - SYSTEM 2</a>.
                 <b>Version: </b> {{$systemVersion}}
             </div>
         </div>

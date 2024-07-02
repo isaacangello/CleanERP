@@ -10,7 +10,24 @@ const Toast = Swal.mixin({
         toast.onmouseleave = Swal.resumeTimer;
     }
 });
-
+function swalConfirm(fields) {
+    const {value:accept}=  Swal.fire({
+        title: `The ${fields} have been modified, it is necessary to reload the window to reflect the changes.`,
+        icon: "question",
+        iconHtml: "?",
+        confirmButtonText: "Reload ?",
+        cancelButtonText: "Cancel",
+        showCancelButton: true,
+        showCloseButton: true,
+        confirmButtonColor:"#2e7d32",
+        iconColor:"#2e7d32"
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            window.location.reload()
+        }
+    })
+}
 function field_change(element,urlBase,token){
     console.log("url => "+urlBase)
     let field = element.getAttribute('name')
@@ -26,12 +43,20 @@ function field_change(element,urlBase,token){
             value: value.value,
     })
     .then(resp =>{
-                console.log(resp)
+                console.log(resp.data.fieldName)
                     element.classList.add('teal', 'lighten-5')
                 Toast.fire({
                     icon: "success",
                     title: `New ${field} is successfully saved!`
                 });
+                switch (resp.data.fieldName) {
+                    case "employee1_id":
+                        swalConfirm('Employee')
+
+                    case "customer_id":
+                        swalConfirm('Customer')
+
+                }
                 setTimeout( ()=> {
                     element.classList.remove('teal', 'lighten-5')
                 },1000)
@@ -103,22 +128,7 @@ function dateTime_change(elementId1,elementId2,token){
             value: DateToPost,
         }).then(resp =>{
                 console.log(resp)
-            const {value:accept}=  Swal.fire({
-                title: "The date and date have been modified, it is necessary to reload the window to reflect the changes.",
-                icon: "question",
-                iconHtml: "?",
-                confirmButtonText: "Reload ?",
-                cancelButtonText: "Cancel",
-                showCancelButton: true,
-                showCloseButton: true,
-                confirmButtonColor:"#2e7d32",
-                iconColor:"#2e7d32"
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                    window.location.reload()
-                }
-            })
+                swalConfirm("field date or time" )
             }
 
         ).catch( resp =>{

@@ -11,114 +11,113 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <div class="block-header">
-            <h2>
-                <small>EMPLOYEES SERVICES</small>
-            </h2>
+    <div class="row">
+        <div class="col s12">
+            <div class="card">
+                <div class="header p-10">
+                    <h2 class="uppercase uppercase-text">welcome, {{ Auth::user()->name }}</h2>
+                </div>
+                <div class="body align-center">
+                        <p class="font-16">{{ now()->timezone('America/New_York')->format('l jS \\of F Y ') }}</p>
+                    <p class="font-14"><b>Brasil:<span class="label bg-cyan p-5" id="brazil_time"></span> / <b>Florida:</b> <span class="label bg-teal p-5" id="florida_time"></span> </b></p>
+                </div>
         </div>
-        <!-- Basic Examples -->
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                            <span>
-                              Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
-                                        class="label-date-home">{{ $weekArr['Monday'] }}</span> - Till <span
-                                        class="label-date-home">{{ $weekArr['Saturday'] }} </span><div class="displaytest">Iphone</div>
-                            </span>
-                        <x-msgs :$msg />
-
-                    </div>
-                    <x-service-cad :employees="$employeesCol" :customers="$customersCol">
-
-                    </x-service-cad>
-                    <div class="body">
-                        <div class="row">
-                            <div class="col s12 m2 input-field">
-                                <div class="form-group">
-
-                                        <button class="btn h-45 modal-trigger"href="#new-service">
-                                            New service
-                                        </button>
-                                </div>
-                            </div>
-                            <div class="col s12 m2 input-field">
-                                <div class="form-group">
-                                    <form action="{{ route('home') }}">
-                                        <button class="btn h-45">
-                                            This week
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                            <form action="{{ route('home') }}">
-                            <div class="col s12 m3 input-field" >
-                                <div class="form-group">
-                                    <div class="form-line success">
-                                    <select name="numberweek" class="form-control h-30" style="height: 30px">
-                                        <option value="{{ $numWeek?$numWeek:'' }}">week {{$numWeek?$numWeek:''}}</option>
-                                        @for ($i = 1; $i < 53; $i++)
-                                            <option value="{{$i}}">week {{$i}}</option>
-                                        @endfor
-
-                                    </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12 m3 input-field">
-                                <div class="form-group">
-                                    <div class="form-line success">
-
-                                        <select name="year" class="form-control">
-                                            <option value="{{$year?$year:now()->format("Y")}}">{{$year?$year:'current year'}}</option>
-                                            @for ($i = 2020; $i < 2031; $i++)
-                                                <option value="{{$i}}">{{$i}}</option>
-                                            @endfor
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12 m2 input-field">
-                                    <button class="btn h-45">
-                                        go
-                                    </button>
-                            </div>
-                            </form>
-                        </div>
-
-                        <div class="row">
-                            @php
-                                $c=0;
-                            @endphp
-
-                            @foreach($dataArr as $key => $row)
-                                <x-home-cards :emp-name="$key" :data="$row"/>
-                                @php
-                                    $c++;
-                                    if($c >= 4){
-                                        $c=0;
-                                        echo "</div><div class='row'>";
-                                    }
-                                @endphp
-
-                            @endforeach
-
-                        </div> <!--grid system row-->
-                    </div> <!--card body-->
-                </div> <!--card -->
-
-
-            </div><!-- col -->
-        </div>  <!-- row -->
     </div>
-    @php
-        if(isset($employeesCol)){$employeesItems = $employeesCol;}else{$employeesItems = false;}
-        if(isset($customersCol)){$customersItems = $customersCol;}else{$customersItems = false;}
-//        dd($employeesCol);
-    @endphp
-    <x-service-details :employees="$employeesItems" :customers="$customersItems" />
+    <div class="row">
+                <div class="col s12 m8">
+                    <div class="card">
+                        <div class="header">
+                            <h2>TASK INFOS</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown valign-wrapper">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right hide">
+                                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
+                                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
+                                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive ">
+                                <table class="table table-hover dashboard-task-infos highlight">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Task</th>
+                                        <th>Status</th>
+                                        <th>Manager</th>
+                                        <th>Progress</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Task A</td>
+                                        <td><span class="label bg-green">Doing</span></td>
+                                        <td>John Doe</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="width: 62%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Task B</td>
+                                        <td><span class="label bg-blue">To Do</span></td>
+                                        <td>John Doe</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Task C</td>
+                                        <td><span class="label bg-light-blue">On Hold</span></td>
+                                        <td>John Doe</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-light-blue" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Task D</td>
+                                        <td><span class="label bg-orange">Wait Approvel</span></td>
+                                        <td>John Doe</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Task E</td>
+                                        <td>
+                                            <span class="label bg-red">Suspended</span>
+                                        </td>
+                                        <td>John Doe</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-red" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
 @endsection
 
 {{-- inclusção de scripts  no final no corpo--}}
@@ -126,4 +125,3 @@
     @include('layouts.generic_js')
 
 @endsection
-

@@ -81,36 +81,7 @@
                             <div class="divider clearfix" style="margin: 30px 0 30px 0;"></div>
 
                             <div class="row clearfix">
-                                <div class="col s12 m3">
-                                     <ul class="collection">
-                                      <li class="collection-item">
-                                        <div class="form-group" style="margin:0;padding: 0;">
-                                            <div class="form-line success">
-                                                <input type="text" id="input-cad-customer-price-weekly" name="price_weekly" class="form-control" value="{{ old('price_weekly') }}">
-                                                <label class="form-label " for="input-cad-customer-price-weekly">Price for weekly.</label>
-                                            </div>
-                                        </div>
-                                      </li>
-                                      <li class="collection-item">
-                                         <div class="form-group" style="margin:0;padding: 0;">
-                                            <div class="form-line success">
-                                                <input type="text" id="input-cad-customer-price-biweekly" name="price_biweekly" class="form-control" value="{{ old('price_biweekly') }}">
-                                                <label class="form-label " for="input-cad-customer-price-biweekly">Price for biweekly.</label>
-                                            </div>
-                                         </div>
-                                      </li>
-                                      <li class="collection-item">
-                                        <div class="form-group" style="margin:0;padding: 0;">
-                                            <div class="form-line success">
-                                                <input type="text" id="input-cad-customer-price-monthly" name="price_monthly" class="form-control" value="{{ old('price_monthly') }}">
-                                                <label class="form-label " for="input-cad-customer-price-monthly">Price for monthly.</label>
-                                            </div>
-                                        </div>
-
-                                      </li>
-                                    </ul>
-                                </div>
-                                <div class="col s12 m5">
+                                <div class="col s12 m8">
                                     <label for="textarea-cad-costumer-other-services">Other Services</label>
                                     <div class="form-group" >
                                         <div class="form-line success " >
@@ -126,13 +97,14 @@
                                         <div class="form-line success">
                                             <select id="select-cad-service-frequency" name="frequency">
                                                 @php if(!empty(old("frequency"))){
-                                                    switch (old("frequency")){
-                                                        case'One': $string_val = "Eventual" ;break;
-                                                        case'Wek':$string_val = "Weekly";break;
-                                                        case'Biw':$string_val = "Biweekly";break;
-                                                        case'Mon':$string_val = "Monthly";break;
+                                                        switch (old("frequency")){
+                                                            case'One': $string_val = "Eventual" ;break;
+                                                            case'Wek':$string_val = "Weekly";break;
+                                                            case'Biw':$string_val = "Biweekly";break;
+                                                            case'Mon':$string_val = "Monthly";break;
+                                                        }
+                                                        echo"<option value='".old("frequency")."'>".$string_val."</option>";
                                                     }
-                                                        echo"<option value='".old("frequency")."'>".$string_val."</option>";}
                                                 @endphp
                                                 <option selected value="One">Eventual</option>
                                                 <option  value="Wek">Weekly</option>
@@ -144,6 +116,38 @@
                                         <div class="help-info">Select the service execution frequency.</div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col s12 m3">
+                                    <ul class="collection">
+                                        <li class="collection-item">
+                                            <div class="form-group" style="margin:0;padding: 0;">
+                                                <div class="form-line success">
+                                                    <input type="text" id="input-cad-customer-price-weekly" name="price_weekly" class="form-control" value="{{ old('price_weekly') }}">
+                                                    <label class="form-label " for="input-cad-customer-price-weekly">Price for weekly.</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="collection-item">
+                                            <div class="form-group" style="margin:0;padding: 0;">
+                                                <div class="form-line success">
+                                                    <input type="text" id="input-cad-customer-price-biweekly" name="price_biweekly" class="form-control" value="{{ old('price_biweekly') }}">
+                                                    <label class="form-label " for="input-cad-customer-price-biweekly">Price for biweekly.</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="collection-item">
+                                            <div class="form-group" style="margin:0;padding: 0;">
+                                                <div class="form-line success">
+                                                    <input type="text" id="input-cad-customer-price-monthly" name="price_monthly" class="form-control" value="{{ old('price_monthly') }}">
+                                                    <label class="form-label " for="input-cad-customer-price-monthly">Price for monthly.</label>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                </div>
+
                             </div>
 
                             <div class="row clearfix">

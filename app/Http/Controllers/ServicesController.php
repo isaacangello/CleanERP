@@ -36,7 +36,7 @@ class ServicesController extends Controller
 
     }
 
-    public function home(Request $request, $msg = null){
+    public function week(Request $request, $msg = null){
     /**
          * Tratando dados recebidos no request ano e numero da semana
          * @param year
@@ -95,7 +95,7 @@ class ServicesController extends Controller
         }
 
 
-        return view('home',
+        return view('week',
             [
                'dataArr' => $filteredWeekGroup,
                 'weekArr' => $weekarr,
