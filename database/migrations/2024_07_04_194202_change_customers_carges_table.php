@@ -13,19 +13,18 @@ return new class extends Migration
     {
         Schema::table('customers',function (Blueprint $table){
             $table->dropColumn(['price_weekly','price_biweekly','price_monthly']);
-            $table->string('price_of_charge');
+
+            $table->string('standard_charges');
         });//
-        Schema::create('charges_customers_services',function (Blueprint $table){
+        Schema::create('charges_customers',function (Blueprint $table){
             $table->id();
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('service_id');
-            $table->string('label');
-            $table->string('hint');
+            $table->unsignedBigInteger('charge_id');
             $table->decimal('value',8,2);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('charge_id')->references('id')->on('charges');
 
         });
     }
@@ -34,14 +33,13 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    {   Schema::table('customers',function (Blueprint $table){
-        $table->dropColumn('price_of_charge');
-        $table->string('price_weekly')->nullable();
-        $table->string('price_biweekly')->nullable();
-        $table->string('price_monthly')->nullable();
-    });
-    Schema::table('customers',function (Blueprint $table){
-        $table
-    });
+    {
+        Schema::table('customers', function (Blueprint $table) {
+            $table->dropColumn('price_of_charge');
+            $table->string('price_weekly')->nullable();
+            $table->string('price_biweekly')->nullable();
+            $table->string('price_monthly')->nullable();
+        });
+        Schema::dropIfExists('charges_customers');
     }
 };

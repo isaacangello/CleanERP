@@ -14,9 +14,25 @@ return new class extends Migration
         Schema::create('configs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->integer('nunregpages')->default(15);
+            $table->integer('nun_reg_pages')->default(15);
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
+        });
+
+        Schema::create('business_data', function (Blueprint $table) {
+            $table->id();
+            $table->string('business_name');
+            $table->string('business_phone');
+            $table->string('business_other_phone');
+            $table->string('business_address');
+            $table->string('business_city');
+            $table->string('business_zipcode');
+            $table->string('business_email');
+            $table->string('business_site');
+            $table->softDeletes();
+            $table->timestamps();
+
         });
     }
 

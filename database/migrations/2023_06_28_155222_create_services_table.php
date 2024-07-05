@@ -34,11 +34,11 @@ return new class extends Migration
             $table->float('minus')->nullable();
             $table->softDeletes();
             $table->timestamps();
-        });
-        Schema::table('services', function (Blueprint $table) {
+
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('employee1_id')->references('id')->on('employees');
             $table->foreign('employee2_id')->references('id')->on('employees');
+
         });
     }
 
