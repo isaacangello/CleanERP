@@ -36,7 +36,7 @@ class Service extends Model
         return [
             'customer_id' => 'required|numeric',
             'employee1_id' => 'required|numeric',
-            'employee2_id' => 'required|numeric',
+            'employee2_id' => 'nullable|numeric',
             'service_date' => 'required|date',
             'period' => 'alpha_num:ascii',
             'frequency' => 'required',

@@ -3,10 +3,21 @@
 <!-- ############  Modal Structure ###########################################################################################-->
     <div id="new-customer" class="modal bottom-sheet">
         <div class="modal-content">
-            <form id="customerFormCad" action="{{ route('customers.store') }}" method="post" >
+
+            <form id="customer-form-cad" action="{{ route('customers.store') }}" method="post" >
                 @csrf
                 <input type="hidden" value="ACTIVE" name="status">
                 <div class="container z-depth-3" style="width: 95%">
+                            <div class="row clearfix">
+                                <div class="col s12">
+                                    <div class="alert alert-danger p-10 m-t-5 animate__animated animate__shakeX hide" role="alert">
+                                        <span class="font-14" id="errorMsg">Mensagem aqui</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row label-employee-view-edit" >
+                                <span class="label bg-light-green  label-padding">Personal information</span>
+                            </div>
                             <div class="row clearfix">
                                 <div class="col s12 m8">
                                     <div class="form-group">
@@ -78,8 +89,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="divider clearfix" style="margin: 30px 0 30px 0;"></div>
-
+                            <div class="row label-employee-view-edit" >
+                                <span class="label bg-light-green  label-padding">Service information</span>
+                            </div>
                             <div class="row clearfix">
                                 <div class="col s12 m8">
                                     <label for="textarea-cad-costumer-other-services">Other Services</label>
@@ -117,33 +129,87 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row label-employee-view-edit" >
+                                <span class="label bg-light-green  label-padding">Billing price</span>
+                            </div>
                             <div class="row clearfix">
                                 <div class="col s12 m3">
                                     <ul class="collection">
                                         <li class="collection-item">
                                             <div class="form-group" style="margin:0;padding: 0;">
                                                 <div class="form-line success">
-                                                    <input type="text" id="input-cad-customer-price-weekly" name="price_weekly" class="form-control" value="{{ old('price_weekly') }}">
-                                                    <label class="form-label " for="input-cad-customer-price-weekly">Price for weekly.</label>
+                                                    <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="">
+                                                    <label class="form-label" for="input-cad-customer-price-label1">Label</label>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="collection-item">
                                             <div class="form-group" style="margin:0;padding: 0;">
                                                 <div class="form-line success">
-                                                    <input type="text" id="input-cad-customer-price-biweekly" name="price_biweekly" class="form-control" value="{{ old('price_biweekly') }}">
-                                                    <label class="form-label " for="input-cad-customer-price-biweekly">Price for biweekly.</label>
+                                                    <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control" value="">
+                                                    <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col s12 m3">
+                                    <ul class="collection">
+                                        <li class="collection-item">
+                                            <div class="form-group" style="margin:0;padding: 0;">
+                                                <div class="form-line success">
+                                                    <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="">
+                                                    <label class="form-label" for="input-cad-customer-price-label1">Label</label>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="collection-item">
                                             <div class="form-group" style="margin:0;padding: 0;">
                                                 <div class="form-line success">
-                                                    <input type="text" id="input-cad-customer-price-monthly" name="price_monthly" class="form-control" value="{{ old('price_monthly') }}">
-                                                    <label class="form-label " for="input-cad-customer-price-monthly">Price for monthly.</label>
+                                                    <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control" value="">
+                                                    <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
                                                 </div>
                                             </div>
-
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col s12 m3">
+                                    <ul class="collection">
+                                        <li class="collection-item">
+                                            <div class="form-group" style="margin:0;padding: 0;">
+                                                <div class="form-line success">
+                                                    <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="">
+                                                    <label class="form-label" for="input-cad-customer-price-label1">Label</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="collection-item">
+                                            <div class="form-group" style="margin:0;padding: 0;">
+                                                <div class="form-line success">
+                                                    <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control" value="">
+                                                    <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col s12 m3">
+                                    <ul class="collection">
+                                        <li class="collection-item">
+                                            <div class="form-group" style="margin:0;padding: 0;">
+                                                <div class="form-line success">
+                                                    <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="">
+                                                    <label class="form-label" for="input-cad-customer-price-label1">Label</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="collection-item">
+                                            <div class="form-group" style="margin:0;padding: 0;">
+                                                <div class="form-line success">
+                                                    <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control" value="">
+                                                    <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
+                                                </div>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>

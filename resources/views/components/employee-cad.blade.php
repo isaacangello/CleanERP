@@ -6,7 +6,7 @@
             <div class="container z-depth-3" style="width: 95%">
                 <form action="{{route('employees.store')}}" method="post">
                 @csrf
-                    <input type="hidden" name="status" value="ACTIVE">
+                <input type="hidden" name="status" value="ACTIVE">
                 <div class="row label-employee-view-edit" >
                     <span class="label bg-light-green  label-padding">Personal information</span>
                 </div>

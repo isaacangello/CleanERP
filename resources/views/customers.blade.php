@@ -177,5 +177,7 @@
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
     @include("layouts.generic_js")
+    <script src="{{ asset('web/custom/customers/modal_cad.js') }}"></script>
+
 @endsection
 
