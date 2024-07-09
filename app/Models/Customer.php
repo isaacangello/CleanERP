@@ -15,7 +15,7 @@ class Customer extends Model
         'frequency','price_weekly','price_biweekly','price_monthly',
         'other_services','justify_inactive','info',
         'drive_licence','key','more_girl','gate_code',
-        'house_description','note'
+        'house_description','note','charges_customers'
     ];
     public function rules(): array
     {
@@ -41,6 +41,7 @@ class Customer extends Model
             'gate_code' => 'nullable',
             'house_description' => 'nullable|string',
             'note' => 'nullable|string',
+            'standard_billings' => 'nullable',
         ];
 
     }

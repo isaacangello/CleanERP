@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::table('customers',function (Blueprint $table){
             $table->dropColumn(['price_weekly','price_biweekly','price_monthly']);
+            $table->string('others_emails',3000);
 
-            $table->string('standard_charges');
+            $table->string('standard_Billings');
         });//
-        Schema::create('charges_customers',function (Blueprint $table){
+        Schema::create('billings_customers',function (Blueprint $table){
             $table->id();
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('charge_id');
+            $table->unsignedBigInteger('billing_id');
             $table->decimal('value',8,2);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('charge_id')->references('id')->on('charges');
+            $table->foreign('billing_id')->references('id')->on('billings');
 
         });
     }

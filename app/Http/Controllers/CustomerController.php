@@ -36,11 +36,6 @@ class CustomerController extends Controller
         if(isset($request->key) and $request->key == "on"){$key = 1;}else{$key = 0;}
         if(isset($request->more_girl) and $request->more_girl =="on" ){$more_girl = 1;}else{$more_girl = 0;}
         if(isset($request->gate_code) and $request->gate_code == "on"){$gate_code = 1;}else{$gate_code = 0;}
-//            echo"<br>drive_licence > ";var_dump($drive_licence);
-//            echo"<br>key > ";var_dump($key);
-//            echo"<br>more_girl > ";var_dump($more_girl);
-//            echo"<br>gate_code > ";var_dump($gate_code);
-//            dd($drive_licence);
 
         $return = $this->cust->create( [
             'name' => $request->name,

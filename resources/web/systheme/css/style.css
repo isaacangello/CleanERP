@@ -9508,3 +9508,9 @@ input.form-control:focus-visible{
 .uppercase-text {
     text-transform: uppercase!important;
 }
+.transition-all{
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
