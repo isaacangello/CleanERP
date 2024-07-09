@@ -16,24 +16,26 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+
         <div class="form-group">
             <div class="form-line success">
-                <x-input-label for="name" :value="__('Name')" />
-                <x-text-input id="name" name="name" type="text" class="form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+                <x-input-label for="profile-name" :value="__('Name')" />
+                <x-text-input id="profile-name" name="name" type="text" class="form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             </div>
                 <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
         <div class="form-group">
             <div class="form-line success">
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" name="email" type="email" class="form-control" :value="old('email', $user->email)" required autocomplete="username" />
+                <x-input-label for="profile-email" :value="__('Email')" />
+                <x-text-input id="profile-email" name="email" type="email" class="form-control" :value="old('email', $user->email)" required autocomplete="username" />
 
             </div>
                 <x-input-error class="mt-2" :messages="$errors->get('email')" />
         </div>
+
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div class="form-group">
-                    <div class="form-line success" style="align-items: end;align-content: flex-end">
+                    <div class="" >
                             <p>
                                 {{ __('Your email address is unverified.') }}
 

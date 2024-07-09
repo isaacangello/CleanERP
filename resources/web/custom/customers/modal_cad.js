@@ -127,6 +127,7 @@ formCustomers.addEventListener('submit',function (event) {
                                 if(item[c].classList.contains('success')){
                                     item[c].classList.remove('success')
                                     item[c].classList.add('error')
+                                    document.getElementById('input-cad-customer-'+chave).style.backgroundColor ='#ffebee'
                                 }
                             }
                         }

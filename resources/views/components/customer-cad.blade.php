@@ -92,6 +92,94 @@
                             <div id="other-emails" class="hide transition-all" style="height: 0">
 
                             </div>
+                    <div class="row label-employee-view-edit" >
+                        <span class="label bg-light-green  label-padding">Billing price</span>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col s12 m3">
+                            <ul class="collection">
+                                <li class="collection-item">
+                                    <div class="form-group" style="margin:0;padding: 0;">
+                                        <div class="form-line success form-line-billing-labels">
+                                            <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="la">
+                                            <label class="form-label" for="input-cad-customer-price-label1">Label</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="collection-item">
+                                    <div class="form-group" style="margin:0;padding: 0;">
+                                        <div class="form-line success ">
+                                            <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="a">
+                                            <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col s12 m3">
+                            <ul class="collection">
+                                <li class="collection-item">
+                                    <div class="form-group" style="margin:0;padding: 0;">
+                                        <div class="form-line success form-line-billing-labels">
+                                            <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="lb">
+                                            <label class="form-label" for="input-cad-customer-price-label1">Label</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="collection-item">
+                                    <div class="form-group" style="margin:0;padding: 0;">
+                                        <div class="form-line success">
+                                            <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="b">
+                                            <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col s12 m3">
+                            <ul class="collection">
+                                <li class="collection-item">
+                                    <div class="form-group" style="margin:0;padding: 0;">
+                                        <div class="form-line success form-line-billing-labels">
+                                            <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="lc">
+                                            <label class="form-label" for="input-cad-customer-price-label1">Label</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="collection-item">
+                                    <div class="form-group" style="margin:0;padding: 0;">
+                                        <div class="form-line success">
+                                            <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="c">
+                                            <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col s12 m3">
+                            <ul class="collection">
+                                <li class="collection-item">
+                                    <div class="form-group" style="margin:0;padding: 0;">
+                                        <div class="form-line success form-line-billing-labels">
+                                            <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="ld">
+                                            <label class="form-label" for="input-cad-customer-price-label1">Label</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="collection-item">
+                                    <div class="form-group" style="margin:0;padding: 0;">
+                                        <div class="form-line success">
+                                            <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="d">
+                                            <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+
                             <div class="row label-employee-view-edit" >
                                 <span class="label bg-light-green  label-padding">Service information</span>
                             </div>
@@ -131,92 +219,6 @@
                                         <div class="help-info">Select the service execution frequency.</div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row label-employee-view-edit" >
-                                <span class="label bg-light-green  label-padding">Billing price</span>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col s12 m3">
-                                    <ul class="collection">
-                                        <li class="collection-item">
-                                            <div class="form-group" style="margin:0;padding: 0;">
-                                                <div class="form-line success form-line-billing-labels">
-                                                    <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="la">
-                                                    <label class="form-label" for="input-cad-customer-price-label1">Label</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="collection-item">
-                                            <div class="form-group" style="margin:0;padding: 0;">
-                                                <div class="form-line success ">
-                                                    <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="a">
-                                                    <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col s12 m3">
-                                    <ul class="collection">
-                                        <li class="collection-item">
-                                            <div class="form-group" style="margin:0;padding: 0;">
-                                                <div class="form-line success form-line-billing-labels">
-                                                    <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="lb">
-                                                    <label class="form-label" for="input-cad-customer-price-label1">Label</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="collection-item">
-                                            <div class="form-group" style="margin:0;padding: 0;">
-                                                <div class="form-line success">
-                                                    <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="b">
-                                                    <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col s12 m3">
-                                    <ul class="collection">
-                                        <li class="collection-item">
-                                            <div class="form-group" style="margin:0;padding: 0;">
-                                                <div class="form-line success form-line-billing-labels">
-                                                    <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="lc">
-                                                    <label class="form-label" for="input-cad-customer-price-label1">Label</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="collection-item">
-                                            <div class="form-group" style="margin:0;padding: 0;">
-                                                <div class="form-line success">
-                                                    <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="c">
-                                                    <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col s12 m3">
-                                    <ul class="collection">
-                                        <li class="collection-item">
-                                            <div class="form-group" style="margin:0;padding: 0;">
-                                                <div class="form-line success form-line-billing-labels">
-                                                    <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="ld">
-                                                    <label class="form-label" for="input-cad-customer-price-label1">Label</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="collection-item">
-                                            <div class="form-group" style="margin:0;padding: 0;">
-                                                <div class="form-line success">
-                                                    <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="d">
-                                                    <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-
                             </div>
 
                             <div class="row clearfix">
