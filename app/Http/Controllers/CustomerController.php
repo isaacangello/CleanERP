@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Billing;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use Illuminate\View\View;
@@ -21,7 +22,8 @@ class CustomerController extends Controller
         return view('customers',
             [
                 'customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage),
-                'msg' => $msg
+                'msg' => $msg,
+                'billings' => Billing::all()
 
             ]
         );

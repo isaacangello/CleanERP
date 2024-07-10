@@ -35,6 +35,68 @@ function other_email() {
 }
 
 /**
+ *
+ * @type {string}
+ */
+let oneCol = `
+                        <div class="col s12 m3">
+                            <ul class="collection">
+                                <li class="collection-item">
+                                    <div class="form-group" style="margin:0;padding: 0;">
+                                        <div class="form-line success form-line-billing-labels">
+                                            <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="">
+                                            <label class="form-label" for="input-cad-customer-price-label1">Label</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="collection-item">
+                                    <div class="form-group" style="margin:0;padding: 0;">
+                                        <div class="form-line success">
+                                            <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="">
+                                            <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+`
+
+/**
+ *
+ * @type {HTMLElement}
+ */
+    let btnBilling = document.getElementById('btn-billing')
+    let btnBillingClear = document.getElementById('btn-billing-clear')
+/**
+ *  listener click to add new Billing field
+ */
+    btnBilling.addEventListener('click',function (event) {
+        event.preventDefault()
+        let rowBilling = document.getElementById('row-billing')
+        if(!rowBilling.classList.contains('row') && !rowBilling.classList.contains('clearfix')){
+            rowBilling.classList.add('row', 'clearfix')
+        }
+        rowBilling.innerHTML = rowBilling.innerHTML + oneCol
+        if(rowBilling.classList.contains('hide')){
+            rowBilling.classList.remove('hide')
+        }
+
+    })
+/**
+ * clear Billing fields
+ */
+btnBillingClear.addEventListener('click',function (e) {
+    e.preventDefault()
+    let rowBilling = document.getElementById('row-billing')
+    rowBilling.innerHTML = " "
+    if(!rowBilling.classList.contains('hide')){
+        rowBilling.classList.remove('row','clearfix')
+        rowBilling.classList.add('hide')
+    }
+
+})
+
+/**
  jjsystem_sys2.customers.id
 jjsystem_sys2.customers.name
 jjsystem_sys2.customers.address

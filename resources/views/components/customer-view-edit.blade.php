@@ -13,7 +13,7 @@
         <div class=" col s12 m4">
             <div class="form-group">
                 <div class="form-line success">
-                    <select id="select-viewedit-customer-type" name="viewedit-customer-type" class="form-control">
+                    <select id="select-viewedit-customer-type" name="viewedit-customer-type" class="form-control materialize-select">
                         <option disabled>select type of cutomer</option>
                         <option selected value="{{ $vieweditCustomerType }}">{{ $vieweditCustomerType }}</option>
                         <option value="COMERCIAL">RESIDENCIAL</option>
@@ -115,7 +115,7 @@
                         $vieweditCustomerStatus2 = 'INACTIVE';
                     }
                     @endphp
-                    <select id="select-viewedit-customer-status" name="viewedit-customer-status" class="form-control">
+                    <select id="select-viewedit-customer-status" name="viewedit-customer-status" class="form-control materialize-select">
                         <option disabled>select status of cutomer</option>
                         <option selected value="{{ $vieweditCustomerStatus }}">{{ $vieweditCustomerStatus }}</option>
                         <option value="{{$vieweditCustomerStatus2}}">{{$vieweditCustomerStatus2}}</option>

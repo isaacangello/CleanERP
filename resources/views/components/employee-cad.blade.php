@@ -133,7 +133,7 @@
                     <div class="col s12 m6">
                         <div class="form-group">
                             <div class="form-line success">
-                                <select id="select-cad-service-frequency" name="type">
+                                <select id="select-cad-service-frequency" name="type" class="materialize-select">
                                     @php $selected = false; if(!empty(old("type"))){
                                             switch (old("type")){
                                                 case'RESIDENTIAL': $string_val = "RESIDENTIAL"; $selected = true; echo"<option selected value='".old("type")."'>".$string_val."</option>";break;
@@ -154,7 +154,7 @@
                     <div class="col s12 m6">
                         <div class="form-group">
                             <div class="form-line success">
-                                <select id="select-cad-service-frequency" name="shift">
+                                <select id="select-cad-service-frequency" name="shift" class="materialize-select">
                                     @php $selected = false; if(!empty(old("shift"))){
 
                                             switch (old("shift")){

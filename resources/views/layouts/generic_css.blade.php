@@ -40,3 +40,5 @@
 
 <link href="{!! asset('web/systheme/css/style.css') !!}" rel="stylesheet">
 
+<link href="{!! asset('web/systheme/plugins/lou-multi-select/css/multi-select.css') !!}" rel="stylesheet">
+

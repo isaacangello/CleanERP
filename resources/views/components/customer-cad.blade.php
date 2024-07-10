@@ -31,7 +31,7 @@
                                 <div class=" col s12 m4">
                                     <div class="form-group">
                                         <div class="form-line success form-line-type">
-                                            <select id="select-cad-customer-type" name="type" onchange="other_email()">
+                                            <select class="materialize-select" id="select-cad-customer-type" name="type" onchange="other_email()">
                                                 <option value="">Select one option</option>
                                                 @php if(!empty(old("type"))){echo"<option value='".old("type")."'>".old("type")."</option>";}@endphp
                                                 <option selected value="RESIDENTIAL">RESIDENTIAL</option>
@@ -96,87 +96,28 @@
                         <span class="label bg-light-green  label-padding">Billing price</span>
                     </div>
                     <div class="row clearfix">
-                        <div class="col s12 m3">
-                            <ul class="collection">
-                                <li class="collection-item">
-                                    <div class="form-group" style="margin:0;padding: 0;">
-                                        <div class="form-line success form-line-billing-labels">
-                                            <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="la">
-                                            <label class="form-label" for="input-cad-customer-price-label1">Label</label>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="collection-item">
-                                    <div class="form-group" style="margin:0;padding: 0;">
-                                        <div class="form-line success ">
-                                            <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="a">
-                                            <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                        <div class="col s12 m12">
+                            <div class="form-group">
+                                <div class="form-line-type">
+                                    <label class="form-label m-b-5" for="id-customer-billing">Select billing Prices</label>
+                                    <select multiple id="id-customer-billing" class="form-control" name="my-select[]">
+                                        @foreach($billings as $key => $billing)
+                                        <option  value='{{$key}}'>{{ $billing->label.' / '.$billing->value }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                    <div class="help-info">List of billing options</div>
+                            </div>
                         </div>
-                        <div class="col s12 m3">
-                            <ul class="collection">
-                                <li class="collection-item">
-                                    <div class="form-group" style="margin:0;padding: 0;">
-                                        <div class="form-line success form-line-billing-labels">
-                                            <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="lb">
-                                            <label class="form-label" for="input-cad-customer-price-label1">Label</label>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="collection-item">
-                                    <div class="form-group" style="margin:0;padding: 0;">
-                                        <div class="form-line success">
-                                            <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="b">
-                                            <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col s12 m3">
-                            <ul class="collection">
-                                <li class="collection-item">
-                                    <div class="form-group" style="margin:0;padding: 0;">
-                                        <div class="form-line success form-line-billing-labels">
-                                            <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="lc">
-                                            <label class="form-label" for="input-cad-customer-price-label1">Label</label>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="collection-item">
-                                    <div class="form-group" style="margin:0;padding: 0;">
-                                        <div class="form-line success">
-                                            <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="c">
-                                            <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col s12 m3">
-                            <ul class="collection">
-                                <li class="collection-item">
-                                    <div class="form-group" style="margin:0;padding: 0;">
-                                        <div class="form-line success form-line-billing-labels">
-                                            <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="ld">
-                                            <label class="form-label" for="input-cad-customer-price-label1">Label</label>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="collection-item">
-                                    <div class="form-group" style="margin:0;padding: 0;">
-                                        <div class="form-line success">
-                                            <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="d">
-                                            <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                    </div>
+                    <div id="row-billing" class="hide">
 
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col s12 m12">
+                            <button id="btn-billing" class="btn btn-small bg-green">New Billing prices</button>
+                            <button id="btn-billing-clear" class="btn btn-small bg-blue-grey">clear</button>
+                        </div>
                     </div>
 
 
@@ -198,7 +139,7 @@
                                 <div class="col s12 m4">
                                     <div class="form-group">
                                         <div class="form-line success form-line-frequency">
-                                            <select id="select-cad-service-frequency" name="frequency">
+                                            <select class="materialize-select" id="select-cad-service-frequency" name="frequency">
                                                 @php if(!empty(old("frequency"))){
                                                         switch (old("frequency")){
                                                             case'One': $string_val = "Eventual" ;break;

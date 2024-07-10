@@ -98,7 +98,7 @@
                             <span id="list-of-customer" class="m-l-35">LIST OF CUSTOMERS</span>
                                     <!-- ############  Blade  component customer-cad ###########################################################################################-->
                                     <!-- component register for register new customer-->
-                                    <x-customer-cad />
+                                    <x-customer-cad :$billings />
 
 
                         </div>
@@ -178,6 +178,8 @@
 @section('script-botton')
     @include("layouts.generic_js")
     <script src="{{ asset('web/custom/customers/modal_cad.js') }}"></script>
-
+    <script>
+        $('#id-customer-billing').multiSelect()
+    </script>
 @endsection
 

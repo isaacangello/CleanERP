@@ -16,7 +16,7 @@
         <div class=" col s12 m4">
             <div class="form-group">
                 <div class="form-line success">
-                    <select id="select-crud-customer-type{{$customerId}}" name="type" onchange="field_change(this,'{{$urlBase}}','{{ csrf_token() }}')">
+                    <select class="materialize-select" id="select-crud-customer-type{{$customerId}}" name="type" onchange="field_change(this,'{{$urlBase}}','{{ csrf_token() }}')">
                         <option selected value="{{ $customerType }}">{{ $customerType }}</option>
                         <option  value="RESIDENCIAL">RESIDENCIAL</option>
                         <option value="COMMERCIAL">COMERCIAL</option>
@@ -139,7 +139,7 @@ if (isset($customerStatus)){
         <div class="col s12 m5">
             <div class="form-group">
                 <div class="form-line success">
-                    <select id="select-customer-status{{$customerId}}" class="form-control" name="status" onchange="field_change(this,'{{$urlBase}}','{{ csrf_token() }}')">
+                    <select id="select-customer-status{{$customerId}}" class="form-control materialize-select" name="status" onchange="field_change(this,'{{$urlBase}}','{{ csrf_token() }}')">
                         <option disabled>select status of customer</option>
                         <option selected value="{{ $customerStatus }}">{{ $customerStatus }}</option>
                         <option value="{{$customerStatus2}}">{{$customerStatus2}}</option>

@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <div class="form-line success">
 
-                                <select id="select-cad-service-status{{$employeeId}}" name="type" onchange="field_change(this,'{{$urlBase}}','{{ csrf_token() }}')">
+                                <select class="materialize-select" id="select-cad-service-status{{$employeeId}}" name="type" onchange="field_change(this,'{{$urlBase}}','{{ csrf_token() }}')">
                                     <option value='{{ $employeeStatus }}'>{{ $employeeStatus }}</option>
                                     <option selected value="ACTIVE">ACTIVE</option>
                                     <option  value="INACTIVE">INACTIVE</option>
@@ -147,7 +147,7 @@
                         <div class="form-group">
                             <div class="form-line success">
                                 <label class="form-label"  for="select-cad-service-sector-job{{$employeeId}}">Sector job.</label>
-                                <select id="select-cad-service-sector-job{{$employeeId}}" name="type" onchange="field_change(this,'{{$urlBase}}','{{ csrf_token() }}')">
+                                <select class="materialize-select" id="select-cad-service-sector-job{{$employeeId}}" name="type" onchange="field_change(this,'{{$urlBase}}','{{ csrf_token() }}')">
                                     <option selected value="{{$employeeType}}">{{$employeeType}}</option>
                                     <option  value="RESIDENTIAL">RESIDENTIAL</option>
                                     <option  value="COMMERCIAL">COMMERCIAL</option>
@@ -160,7 +160,7 @@
                     <div class="col s12 m6">
                         <div class="form-group">
                             <div class="form-line success">
-                                <select id="select-cad-service-frequency{{$employeeId}}" name="shift" onchange="field_change(this,'{{$urlBase}}','{{ csrf_token() }}')">
+                                <select class="materialize-select" id="select-cad-service-frequency{{$employeeId}}" name="shift" onchange="field_change(this,'{{$urlBase}}','{{ csrf_token() }}')">
                                     @php $selected = false; if(!empty($employeeShift)){
 
                                             switch (old("shift")){

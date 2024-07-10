@@ -49,4 +49,8 @@ class Customer extends Model
     {
         $this->hasMany(Service::class);
     }
+    public function billings()
+    {
+        return $this->belongsToMany(Billing::class,'billings_customers');
+    }
 }

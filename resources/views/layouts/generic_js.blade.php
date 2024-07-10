@@ -33,6 +33,7 @@
 <!-- Demo Js -->
 <script src="{{ asset('web/systheme/js/demo.js')}}"></script>
 <script src="{{ asset('web/systheme/js/systheme.js') }}"></script>
+<script src="{{ asset('web/systheme/plugins/lou-multi-select/js/jquery.multi-select.js') }}"></script>
 
 <script src="{{ asset('web/systheme/plugins/moment/min/moment.min.js') }}"></script>
 

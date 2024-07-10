@@ -80,7 +80,7 @@
                                                     <div class="input-field col s12 m12">
                                                         <div class="form-group">
                                                             <div class="form-line success">
-                                                                <select id="select-finance-employee" class="form-control" name="finance-employee" >
+                                                                <select id="select-finance-employee" class="form-control materialize-select" name="finance-employee" >
                                                                     <option selected value=""></option>
                                                                     @foreach($employees as $employee)
                                                                         <option value="{{ $employee->id }}">{{ $employee->name }}</option>

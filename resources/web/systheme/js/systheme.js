@@ -16,7 +16,7 @@ $(document).ready(function () {
 /** colapsable materialize */
  $('.collapsible').collapsible();
  /** INITIALIZE SELECT */
- $('select').formSelect();
+ $('.materialize-select').formSelect();
 /** INITIALIZE mobile side bar */
  $('.sidenav').sidenav();
 /** INITIALIZE modal */

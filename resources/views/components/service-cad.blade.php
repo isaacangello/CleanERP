@@ -37,7 +37,7 @@
                                            $prices[$i]['price_monthly']  = $value->price_monthly ;
                                         }
                                     @endphp
-                                    <select id="select-cad-service-customer" name="customer_id" onchange="price_inject('#select-cad-service-charge')">
+                                    <select class="materialize-select" id="select-cad-service-customer" name="customer_id" onchange="price_inject('#select-cad-service-charge')">
                                         @php
                                            if(!empty(old('customer_id'))){
 
@@ -62,7 +62,7 @@
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success">
-                                    <select id="select-cad-service-employee1" name="employee1_id">
+                                    <select id="select-cad-service-employee1" name="employee1_id" class="materialize-select">
                                         <option  value="none">Employee</option>
                                         @foreach($employees as $values)
                                              @if(old('employee1_id') == $values->id)
@@ -82,7 +82,7 @@
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success">
-                                    <select id="select-cad-service-employee2" name="employee2_id">
+                                    <select class="materialize-select" id="select-cad-service-employee2" name="employee2_id">
                                         <option selected value="none">Second employee</option>
                                         @foreach($employees as $values)
                                              @if(old('employee2_id') == $values->id)
@@ -123,7 +123,7 @@
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success">
-                                    <select id="select-cad-service-period" name="period">
+                                    <select class="materialize-select" id="select-cad-service-period" name="period">
                                                 @php
                                                     $string_first = ""; $string_second = "";$string_third="";$string_none= "";
                                                     if(!empty(old("period"))){
@@ -152,7 +152,7 @@
                         <div class=" col s12 m6">
                             <div class="form-group">
                                 <div class="form-line success">
-                                    <select id="select-cad-service-charge" name="frequency_payment">
+                                    <select class="materialize-select" id="select-cad-service-charge" name="frequency_payment">
                                                 @php
                                                     $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
                                                     if(!empty(old("frequency"))){
@@ -182,7 +182,7 @@
                         <div class=" col s12 m6">
                             <div class="form-group">
                                 <div class="form-line success">
-                                    <select id="select-cad-service-frequency" name="frequency">
+                                    <select class="materialize-select" id="select-cad-service-frequency" name="frequency">
                                                 @php
                                                     $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
                                                     if(!empty(old("frequency_payment"))){

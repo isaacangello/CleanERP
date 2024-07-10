@@ -56,7 +56,7 @@
                                 <div class="col s12 m3 input-field" >
                                     <div class="form-group">
                                         <div class="form-line success">
-                                            <select name="numberweek" class="form-control h-30" style="height: 30px">
+                                            <select name="numberweek" class="form-control h-30 materialize-select" style="height: 30px">
                                                 <option value="{{ $numWeek?$numWeek:'' }}">week {{$numWeek?$numWeek:''}}</option>
                                                 @for ($i = 1; $i < 53; $i++)
                                                     <option value="{{$i}}">week {{$i}}</option>
@@ -69,7 +69,7 @@
                                     <div class="form-group">
                                         <div class="form-line success">
 
-                                            <select name="year" class="form-control">
+                                            <select name="year" class="form-control materialize-select">
                                                 <option value="{{$year?$year:now()->format("Y")}}">{{$year?$year:'current year'}}</option>
                                                 @for ($i = 2020; $i < 2031; $i++)
                                                     <option value="{{$i}}">{{$i}}</option>

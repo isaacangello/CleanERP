@@ -1206,7 +1206,7 @@ margin-right:4%;
     margin-right: 5%; }
 
 .m-b-5 {
-    margin-bottom: 20px; }
+    margin-bottom: 5px !important; }
 /*+==================+*/
 .m-l-6{
 margin-left: 6px;}

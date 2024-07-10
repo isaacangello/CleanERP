@@ -1,5 +1,5 @@
 {{--id="{{$elementId}}" name="{{$elementName}}"--}}
-<select {{ $attributes }}>
+<select  {{ $attributes }}>
         @if(isset($customers) and $customers )@php($data = $customers)@endif
         @if(isset($employees) and $employees)@php($data = $employees)@endif
             <option value="null" selected="selected" disabled>Options</option>
