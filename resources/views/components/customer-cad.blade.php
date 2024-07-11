@@ -98,11 +98,11 @@
                     <div class="row clearfix">
                         <div class="col s12 m12">
                             <div class="form-group">
-                                <div class="form-line-type">
+                                <div class="form-line-billing-values-selected[]">
                                     <label class="form-label m-b-5" for="id-customer-billing">Select billing Prices</label>
-                                    <select multiple id="id-customer-billing" class="form-control" name="my-select[]">
+                                    <select multiple id="id-customer-billing" class="form-control" name="billing-values-selected[]">
                                         @foreach($billings as $key => $billing)
-                                        <option  value='{{$key}}'>{{ $billing->label.' / '.$billing->value }}</option>
+                                        <option  value='{{$billing->id}}'>{{ $billing->label.' / '.$billing->value }}</option>
                                         @endforeach
                                     </select>
                                 </div>

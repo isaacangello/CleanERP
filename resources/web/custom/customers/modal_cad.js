@@ -35,7 +35,7 @@ function other_email() {
 }
 
 /**
- *
+ * the new billing fieldserve
  * @type {string}
  */
 let oneCol = `
@@ -43,7 +43,7 @@ let oneCol = `
                             <ul class="collection">
                                 <li class="collection-item">
                                     <div class="form-group" style="margin:0;padding: 0;">
-                                        <div class="form-line success form-line-billing-labels">
+                                        <div class="form-line success form-line-label">
                                             <input type="text" id="input-cad-customer-price-label1" name="billing_labels[]" class="form-control" value="">
                                             <label class="form-label" for="input-cad-customer-price-label1">Label</label>
                                         </div>
@@ -51,7 +51,7 @@ let oneCol = `
                                 </li>
                                 <li class="collection-item">
                                     <div class="form-group" style="margin:0;padding: 0;">
-                                        <div class="form-line success">
+                                        <div class="form-line success form-line-value">
                                             <input type="text" id="input-cad-customer-price-value1" name="billing_values[]" class="form-control billing-values" value="">
                                             <label class="form-label" for="input-cad-customer-price-value1">Value.</label>
                                         </div>
@@ -128,6 +128,7 @@ formCustomers.addEventListener('submit',function (event) {
                 let BillingObj = {}
                 let BillingLabels = document.getElementsByName('billing_labels[]')
                 let BillingValues = document.getElementsByName('billing_values[]')
+                let BillingValuesSelected = document.getElementsByName('billing-values-selected[]')
                     // console.log(BillingValues)
                  for(c=0;c < BillingValues.length;c++){
                      BillingObj[BillingLabels[c].value] = BillingValues[c].value
@@ -157,7 +158,9 @@ formCustomers.addEventListener('submit',function (event) {
                     'note': data.get('note'),
                     'billing_labels': data.getAll('billing_labels[]'),
                     'billing_values': data.getAll('billing_values[]'),
+                    'billing-values-selected': data.getAll('billing-values-selected[]'),
                     'billing_obj': BillingObj,
+
                 }
                 // console.log("data => "+data)
                 // console.log("dataJson => "+dataJson.billing_labels)

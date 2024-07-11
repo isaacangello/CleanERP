@@ -10,9 +10,7 @@ class Billing extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = [
-        'label','value','hint'
-    ];
+    protected $fillable  = ['label','value','hint'];
     public function customers()
     {
      return $this->belongsToMany(Customer::class, 'billings_customers');

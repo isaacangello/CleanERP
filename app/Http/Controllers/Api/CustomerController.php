@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Billing;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 //use Illuminate\View\View;
@@ -12,10 +13,11 @@ use Illuminate\Support\Facades\Validator;
 class CustomerController extends Controller
 {
 
-    public function __construct(Customer $cust)
+    public function __construct(Customer $cust,Billing $billing)
     {
         $this->configpage = 50;
         $this->cust = $cust;
+        $this->billing = $billing;
     }
 
     public function index(Request $request){
@@ -23,12 +25,36 @@ class CustomerController extends Controller
     }
 
     public function show(int $id){
+        /**
+         * @type Customer $cust
+         */
         $cust = $this->cust->find($id);
         return response()->json($cust->toArray(),200);
     }
     public function store(Request $request){
 
         $request->validate($this->cust->rules());
+
+        $ids = [];
+        if(!empty($request->billing_labels) and !empty($request->billing_values)){
+
+            $rules = [
+                'label' => 'string|min:3|max:30',
+                'value' => 'decimal:0,2',
+                'hint' => 'string|max:50'
+
+            ];
+            foreach ($request->billing_labels as $key => $label) {
+                $data =['label' => $label, 'value' => $request->billing_values[$key], 'hint' => "Billing price to ".$label];
+                $validate[$key] = Validator::make($data,$rules);
+                if(!$validate[$key]->fails()){
+                    $ids[] = DB::table('billings')->insertGetId(['label' => $label, 'value' => floatval($request->billing_values[$key]), 'hint' => "Billing price to " . $label]);
+                }
+            }
+        }
+        if (empty($ids)){
+            return response()->json([ "message"=> "Unable to register an empty billing amount."],422);
+        }
 
         if(isset($request->drive_licence) and $request->drive_licence == "on"){$drive_licence = 1;}else{$drive_licence = 0;}
         if(isset($request->key) and $request->key == "on"){$key = 1;}else{$key = 0;}
@@ -58,8 +84,10 @@ class CustomerController extends Controller
 //            'note' => $request->note,
 //        ]);
 
-        return response()->json(['message'=>"is valid!"],201);
+
+        return response()->json(['id\'s'=>empty($ids)?'empty':$ids,'isarray'=>'is_array($ids)'],201);
     }
+
     public function update($id, Request $req)
     {
         //dd($req);
