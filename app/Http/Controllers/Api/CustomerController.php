@@ -32,18 +32,27 @@ class CustomerController extends Controller
         return response()->json($cust->toArray(),200);
     }
     public function store(Request $request){
-
+        /**
+         * previously validating common data
+         */
         $request->validate($this->cust->rules());
 
-        $ids = [];
-        if(!empty($request->billing_labels) and !empty($request->billing_values)){
-
+        /**
+         *  if adding new billing methods
+         * will be treated in this place
+         */
+        ;
+        if(in_array('', $request->billing_labels) || in_array('',$request->billing_values)){
+            $ids = [];
             $rules = [
                 'label' => 'string|min:3|max:30',
                 'value' => 'decimal:0,2',
                 'hint' => 'string|max:50'
 
             ];
+            /**
+             * Once the existence of new billings is confirmed, they will be validated with an instance of the VALIDATOR class
+             */
             foreach ($request->billing_labels as $key => $label) {
                 $data =['label' => $label, 'value' => $request->billing_values[$key], 'hint' => "Billing price to ".$label];
                 $validate[$key] = Validator::make($data,$rules);
@@ -51,41 +60,53 @@ class CustomerController extends Controller
                     $ids[] = DB::table('billings')->insertGetId(['label' => $label, 'value' => floatval($request->billing_values[$key]), 'hint' => "Billing price to " . $label]);
                 }
             }
+            if (empty($ids)){
+                return response()->json([ "message"=> "Unable to register an empty billing amount."],422);
+            }
         }
-        if (empty($ids)){
-            return response()->json([ "message"=> "Unable to register an empty billing amount."],422);
-        }
-
+        /**
+         * Saving de customer data
+         */
         if(isset($request->drive_licence) and $request->drive_licence == "on"){$drive_licence = 1;}else{$drive_licence = 0;}
         if(isset($request->key) and $request->key == "on"){$key = 1;}else{$key = 0;}
         if(isset($request->more_girl) and $request->more_girl =="on" ){$more_girl = 1;}else{$more_girl = 0;}
         if(isset($request->gate_code) and $request->gate_code == "on"){$gate_code = 1;}else{$gate_code = 0;}
-//
-//        $return = $this->cust->create( [
-//            'name' => $request->name,
-//            'address' => $request->address,
-//            'complement' => $request->complement,
-//            'phone' => $request->phone,
-//            'email' => $request->email,
-//            'type' => $request->type,
-//            'status' => $request->status,
-//            'frequency' => $request->frequency,
-//            'price_weekly' => $request->price_weekly,
-//            'price_biweekly' => $request->price_biweekly,
-//            'price_monthly' => $request->price_monthly,
-//            'other_services' => $request->other_services,
-//            'justify_inactive' => $request->justify_inactive,
-//            'info' => 'required',
-//            'drive_licence' => $drive_licence,
-//            'key' => $key ,
-//            'more_girl' => $more_girl,
-//            'gate_code' => $gate_code,
-//            'house_description' => $request->house_description,
-//            'note' => $request->note,
-//        ]);
-
-
-        return response()->json(['id\'s'=>empty($ids)?'empty':$ids,'isarray'=>'is_array($ids)'],201);
+        if(!isset($request->others_emails)){$others_emails="&nbsp;";}else{$others_emails=$request->others_emails;}
+        $return_cust = $this->cust->create( [
+            'name' => $request->name,
+            'address' => $request->address,
+            'complement' => $request->complement,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'type' => $request->type,
+            'status' => $request->status,
+            'frequency' => $request->frequency,
+            'other_services' => $request->other_services,
+            'justify_inactive' => $request->justify_inactive,
+            'info' => 'required',
+            'drive_licence' => $drive_licence,
+            'key' => $key ,
+            'more_girl' => $more_girl,
+            'gate_code' => $gate_code,
+            'house_description' => $request->house_description,
+            'note' => $request->note,
+            'others_emails' => $others_emails
+        ]);
+        /**
+         * saving de relational Billing data
+         */
+        if(!empty($ids)){
+            foreach ($ids as $id){
+                DB::table('billings_customers')->insert(['customer_id'=> $return_cust->id,'billing_id'=>$id]);
+            }
+        }
+        $return_billings= '';
+        /**
+         *  response it's all right
+         * this response follow http response standards
+         *  https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
+         */
+        return response()->json(['customer'=>$return_cust,'billings' =>$return_billings ],201);
     }
 
     public function update($id, Request $req)

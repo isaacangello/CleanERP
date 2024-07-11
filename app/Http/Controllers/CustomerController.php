@@ -19,11 +19,14 @@ class CustomerController extends Controller
     }
 
     public function index($msg = null){
+
+        $customers = $this->cust->orderBy('name')->with('billings')->paginate($this->configpage);
+
         return view('customers',
             [
-                'customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage),
+                'customers' => $customers,
                 'msg' => $msg,
-                'billings' => Billing::all()
+                'billings_all' => Billing::all()
 
             ]
         );

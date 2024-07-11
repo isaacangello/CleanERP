@@ -42,5 +42,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('configs');
+        Schema::dropIfExists('business_data');
     }
 };

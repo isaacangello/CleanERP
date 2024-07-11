@@ -125,6 +125,16 @@ jjsystem_sys2.customers.standard_charges
             const formCustomers =  document.getElementById('customer-form-cad')
 formCustomers.addEventListener('submit',function (event) {
                 event.preventDefault()
+                let errorBox =  document.getElementById('error-box')
+                let errorInnexText = document.getElementById('errorMsg')
+                if(!errorBox.classList.contains('hide')){
+                    errorBox.classList.add('hide')
+                    errorInnexText.innerText = ' '
+                }
+
+
+
+
                 let BillingObj = {}
                 let BillingLabels = document.getElementsByName('billing_labels[]')
                 let BillingValues = document.getElementsByName('billing_values[]')

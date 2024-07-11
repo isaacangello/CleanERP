@@ -12,10 +12,10 @@ class Customer extends Model
     use SoftDeletes;
     protected $fillable = [
         'id','name','address','complement','phone','email','type','status',
-        'frequency','price_weekly','price_biweekly','price_monthly',
+        'frequency','others_emails',
         'other_services','justify_inactive','info',
         'drive_licence','key','more_girl','gate_code',
-        'house_description','note','charges_customers'
+        'house_description','note','charges_customers',
     ];
     public function rules(): array
     {
@@ -29,9 +29,6 @@ class Customer extends Model
             'type' => 'nullable|string',
             'status' => 'nullable|string',
             'frequency' => 'nullable|string',
-            'price_weekly' => 'nullable|numeric',
-            'price_biweekly' => 'nullable|numeric',
-            'price_monthly' => 'nullable|numeric',
             'other_services' => 'nullable|string',
             'justify_inactive' => 'nullable|string',
             'info' => 'nullable',
@@ -42,6 +39,7 @@ class Customer extends Model
             'house_description' => 'nullable|string',
             'note' => 'nullable|string',
             'standard_billings' => 'nullable',
+            'others_emails'=> 'nullable',
         ];
 
     }
@@ -51,6 +49,6 @@ class Customer extends Model
     }
     public function billings()
     {
-        return $this->belongsToMany(Billing::class,'billings_customers');
+        return $this->belongsToMany(Billing::class,'billings_customers','customer_id','billing_id');
     }
 }

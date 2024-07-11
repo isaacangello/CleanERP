@@ -11,17 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('customers',function (Blueprint $table){
-            $table->dropColumn(['price_weekly','price_biweekly','price_monthly']);
-            $table->string('others_emails',3000);
+        if (Schema::hasColumn('customers', 'price_weekly')) {
+            Schema::table('customers', function (Blueprint $table) {
+                $table->dropColumn(['price_weekly', 'price_biweekly', 'price_monthly']);
 
-            $table->string('standard_Billings');
+            });//
+        }
+        Schema::table('customers',function (Blueprint $table){
+
+            $table->string('others_emails',3000);
         });//
+
         Schema::create('billings_customers',function (Blueprint $table){
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('billing_id');
-            $table->decimal('value',8,2);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('customer_id')->references('id')->on('customers');
@@ -36,11 +40,19 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('customers', function (Blueprint $table) {
-            $table->dropColumn('price_of_charge');
+
+
             $table->string('price_weekly')->nullable();
             $table->string('price_biweekly')->nullable();
             $table->string('price_monthly')->nullable();
         });
-        Schema::dropIfExists('charges_customers');
+        if (Schema::hasColumn('customers', 'price_of_charge')) {
+            // The "users" table exists and has an "email" column...
+            Schema::table('customers', function (Blueprint $table) {
+                $table->dropColumn('price_of_charge');
+            });
+        }
+
+        Schema::dropIfExists('billings_customers');
     }
 };
