@@ -53,6 +53,7 @@ function price_inject(idPush) {
 
 const ServiceForm = document.querySelector('#service-form')
 
+if (ServiceForm !== undefined){
 ServiceForm.addEventListener('submit',function (event) {
     event.preventDefault()
     function RefreshPage(key,queryString) {
@@ -100,3 +101,5 @@ ServiceForm.addEventListener('submit',function (event) {
         })
 
 })
+
+}

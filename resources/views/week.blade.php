@@ -45,15 +45,50 @@
                             </div>
                             <div class="col s12 m2 input-field">
                                 <div class="form-group">
-                                    <form action="{{ route('home') }}">
+                                    <form action="{{ route('week') }}">
                                         <button class="btn h-45">
                                             This week
                                         </button>
                                     </form>
                                 </div>
                             </div>
-                            <form action="{{ route('home') }}">
-                                <div class="col s12 m3 input-field" >
+                            <div class="col s12 m1 input-field">
+                                <div class="form-group">
+                                    @php
+                                        //numberweek=28&year=current
+                                        if (!isset($year) || $year == "current"){$year=now()->format("Y");}
+                                        //dd($numWeek);
+                                        if($numWeek >= 52){
+                                            $numWeek_arrow_f=1;
+                                            $year_arrow_f = $year + 1;
+                                        }else{
+                                            $numWeek_arrow_f= $numWeek + 1;
+                                            $year_arrow_f = $year;
+                                        }
+                                        if($numWeek <= 1){
+                                            $numWeek_arrow_b=52;
+                                            $year_arrow_b = $year - 1;
+
+                                        }else{
+                                            $numWeek_arrow_b= $numWeek - 1;
+                                            $year_arrow_b = $year;
+                                        }
+
+                                    @endphp
+                                    <form action="{{ route('week') }}">
+                                        <form action="{{ route('week')}}">
+                                            <x-text-input type="hidden" value="{{$numWeek_arrow_b}}" name="numberweek"></x-text-input>
+                                            <x-text-input type="hidden" value="{{$year_arrow_b}}" name="year"></x-text-input>
+                                        <button class="btn h-45">
+                                            <span class="material-symbols-outlined">
+                                                arrow_back
+                                            </span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <form action="{{ route('week') }}">
+                                <div class="col s12 m2 input-field" >
                                     <div class="form-group">
                                         <div class="form-line success">
                                             <select name="numberweek" class="form-control h-30 materialize-select" style="height: 30px">
@@ -65,7 +100,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col s12 m3 input-field">
+                                <div class="col s12 m2 input-field">
                                     <div class="form-group">
                                         <div class="form-line success">
 
@@ -85,6 +120,20 @@
                                     </button>
                                 </div>
                             </form>
+                            <div class="col s12 m1 input-field">
+                                <div class="form-group">
+                                    <form action="{{ route('week')}}">
+                                        <x-text-input type="hidden" value="{{$numWeek_arrow_f}}" name="numberweek"></x-text-input>
+                                        <x-text-input type="hidden" value="{{$year_arrow_f}}" name="year"></x-text-input>
+                                        <button class="btn h-45">
+                                            <span class="material-symbols-outlined">
+                                                arrow_forward
+                                            </span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="row">

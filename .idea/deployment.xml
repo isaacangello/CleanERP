@@ -1,28 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" serverName="Hostgaor" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="JJL">
+      <paths name="Hostgaor">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-            <mapping local="$PROJECT_DIR$/../laravel7-docker" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="JJL-hostgator">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-            <mapping local="$PROJECT_DIR$/../laravel7-docker" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="jjlsystem2teste">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-            <mapping local="$PROJECT_DIR$/../laravel7-docker" web="/" />
+            <mapping deploy="/jjlsystem-layout" local="$PROJECT_DIR$" web="/" />
+            <mapping local="" />
           </mappings>
         </serverdata>
       </paths>

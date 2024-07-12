@@ -240,5 +240,6 @@
     <orderEntry type="library" name="axios" level="application" />
     <orderEntry type="library" name="alpinejs" level="application" />
     <orderEntry type="library" name="sweetalert2" level="application" />
+    <orderEntry type="library" name="fullcalendar" level="application" />
   </component>
 </module>

@@ -17,6 +17,11 @@
         "vue-loader": "^17.3.1"
     },
     "dependencies": {
+        "@fullcalendar/core": "^6.1.14",
+        "@fullcalendar/daygrid": "^6.1.14",
+        "@fullcalendar/google-calendar": "^6.1.14",
+        "@fullcalendar/list": "^6.1.14",
+        "@fullcalendar/timegrid": "^6.1.14",
         "animate.css": "^4.1.1",
         "chart.js": "^4.4.0",
         "materialize-css": "^1.0.0-rc.2",
