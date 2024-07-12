@@ -97,6 +97,7 @@
                                 @endphp
                             @endforeach
                                 <option @if($checked) {{'selected="selected'}} @endif value='{{$billings_one->id}}'>{{ $billings_one->label.' / '.$billings_one->value }}</option>
+                                @php $checked = false; @endphp
                         @endforeach
                     </select>
                 </div>

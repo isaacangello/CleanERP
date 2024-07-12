@@ -168,7 +168,7 @@ formCustomers.addEventListener('submit',function (event) {
                     'note': data.get('note'),
                     'billing_labels': data.getAll('billing_labels[]'),
                     'billing_values': data.getAll('billing_values[]'),
-                    'billing-values-selected': data.getAll('billing-values-selected[]'),
+                    'billing_values_selected': data.getAll('billing-values-selected[]'),
                     'billing_obj': BillingObj,
 
                 }
@@ -177,9 +177,9 @@ formCustomers.addEventListener('submit',function (event) {
                 // console.info("Axios >"+axios)
                 axios.post('/api/customer',dataJson)
                     .then(function (resp) {
-                    if(resp.status >=200 && resp.status <=299){
+                    if(resp.status ===201){
                         console.log(resp.data)
-
+                        window.location.reload()
 
                     }// location.reload()
                 }).catch(function (error) {

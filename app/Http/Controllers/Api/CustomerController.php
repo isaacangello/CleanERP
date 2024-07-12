@@ -100,7 +100,18 @@ class CustomerController extends Controller
                 DB::table('billings_customers')->insert(['customer_id'=> $return_cust->id,'billing_id'=>$id]);
             }
         }
-        $return_billings= '';
+        $billing_rules = [
+            'customer_id'=> 'integer',
+            'billing_id'=> 'integer',
+
+        ];
+
+
+        foreach ($request->billing_values_selected as $id){
+            Validator::make(['customer_id'=> $return_cust->id,'billing_id'=>$id], $billing_rules );
+            DB::table('billings_customers')->insert(['customer_id'=> $return_cust->id,'billing_id'=>$id]);
+        }
+        $return_billings= 'passou';
         /**
          *  response it's all right
          * this response follow http response standards

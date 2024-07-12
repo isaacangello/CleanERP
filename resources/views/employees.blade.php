@@ -4,49 +4,7 @@
 @endsection
 {{--css links para o head--}}
 @section('css-style')
-     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core Css -->
-{{--    <link href="web/bootstrap/bootstrap.min.css" rel="stylesheet">--}}
-    <!-- Materialize Core Css -->
-    <link href="web/materialize/css/materialize.css" rel="stylesheet">
-
-    <!-- Waves Effect Css -->
-{{--    <link href="web/systheme/plugins/node-waves/waves.css" rel="stylesheet" />--}}
-
-    <!-- Animation Css -->
-    <link href="web/systheme/plugins/animate-css/animate.css" rel="stylesheet" />
-    <!-- Sweet Alert Css -->
-    <link href="web/systheme/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
-
-
-    <!-- Custom Css -->
-    <link href="web/systheme/css/style.css" rel="stylesheet">
-
-    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="web/systheme/css/themes/all-themes.css" rel="stylesheet" />
-
-
-{{--    <style>--}}
-{{--        input.form-control {--}}
-{{--            margin-bottom: 0!important;--}}
-{{--            border-bottom: none!important;--}}
-{{--        }--}}
-{{--        textarea.form-control {--}}
-{{--            margin-bottom: 0!important;--}}
-{{--            border-bottom: none!important;--}}
-{{--        }--}}
-{{--        input.select-dropdown {--}}
-{{--            margin-bottom: 0px!important;--}}
-{{--            border-bottom: none!important;--}}
-{{--        }--}}
-{{--        .red:hover{--}}
-{{--            background-color: #ef9a9a!important;--}}
-{{--        }--}}
-
-{{--    </style>--}}
+ @include('layouts.generic_css')
 @endsection
 {{--
 personal information
@@ -208,43 +166,7 @@ employee notes
 
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
-    <!-- Jquery Core Js -->
-{{--    <script src="web/systheme/plugins/jquery/jquery.min.js"></script>--}}
-    <script src="{{asset('web/jquery/jquery-3.7.0.min.js')}}"></script>
-    <!-- Axios js-->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- Bootstrap Core Js -->
-{{--    <script src="web/bootstrap/bootstrap.min.js"></script>--}}
-    <script src="{{ asset('web/materialize/js/materialize.min.js') }}"></script>
-
-    <!-- Select Plugin Js -->
-{{--    <script src="web/systheme/plugins/bootstrap-select/js/bootstrap-select.js"></script>--}}
-
-    <!-- Slimscroll Plugin Js -->
-    <script src="{{asset('web/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="{{asset('web/systheme/plugins/node-waves/waves.js')}}"></script>
-    <!-- Jquery Validation Plugin Css -->
-    <script src="{{ asset('web/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>
-
-    <!-- JQuery Steps Plugin Js -->
-    <script src="{{asset('web/systheme/plugins/jquery-steps/jquery.steps.js')}}"></script>
-
-    <!-- Sweet Alert Plugin Js -->
-    <script src="{{asset('web/systheme/plugins/sweetalert/sweetalert.min.js')}}"></script>
-      <!-- Input Mask Plugin Js -->
-    <script src="{{ asset('web/systheme/plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
-    <!-- Custom Js -->
-    <script src="{{ asset('web/systheme/js/admin.js') }}"></script>
-{{--    <script src="web/systheme/js/pages/tables/jquery-datatable.js"></script>--}}
-    <script src="{{ asset('web/systheme/js/pages/index.js') }}"></script>
-<script src="{{ asset('web/systheme/js/pages/forms/form-validation.js') }}"></script>
-    <!-- Demo Js -->
-    <script src="{{asset('web/systheme/js/demo.js')}}"></script>
-    <script src="{{ asset('web/systheme/js/systheme.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="{{ asset('web/custom/field_change.js') }}"></script>
+ @include('layouts.generic_js')
 @endsection
 
 
