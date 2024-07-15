@@ -115,6 +115,7 @@
     @include('layouts.generic_js')
             <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.14/index.global.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.14/index.global.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/list@6.1.14/index.global.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.14/index.global.min.js"></script>
 
             <script type="module" src="{{ asset('web/custom/home/calendar-init.js') }}"></script>

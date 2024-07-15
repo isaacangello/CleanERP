@@ -8,14 +8,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         googleCalendarApiKey: 'AIzaSyDPMFK5rxexkPU_uR4TYpq4Ly6dAzJenrU',
         events: {
-            googleCalendarId: 'chamadas@jjlcleanservices.com',
+            googleCalendarId: 'jjlcleanservices@gmail.com',
         },
-        initialView: 'dayGridDay',
+        initialView: 'listWeek',
         headerToolbar: {
             "left": "prev,next today",
             "center": "title",
-            "right": "dayGridMonth,dayGridWeek,dayGridDay"
+            "right": "listWeek,dayGridDay,dayGridWeek,dayGridMonth"
         },
+        eventSourceSuccess: function(content, response) {
+            console.log(content)
+        }
     });
     calendar.render();
 });
