@@ -180,9 +180,9 @@
                                 <i class="material-icons" style="font-size: 20px;">today</i>
                                 <span>Services today</span>
                             </a>
-                            <a href="javascript:void(0);">
+                            <a href="{{route('commercial.schedule', ['page' => 1])}}">
                                 <i class="material-icons" style="font-size: 20px;">calendar_view_week</i>
-                                <span>Services Week</span>
+                                <span>Services Schedule</span>
                             </a>
                         </li>
                     </ul>

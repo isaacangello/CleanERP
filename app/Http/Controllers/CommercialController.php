@@ -25,70 +25,21 @@ class CommercialController extends Controller
     public function index(Request $request, $msg = null)
     {
         /**
-         * Tratando dados recebidos no request ano e numero da semana
-         * @param year
-         * @param numberweek
+         * Tratando dados recebidos no request
+         * @param day
+
          */
-        if (isset($request->year)){$year = $request->year;}else{$year = 'current';}
-        /**
-         * Verificando tamanho das semanas do ano
-         *  casso a sentença seja falsa e retornadado um array com a semana atual
-         *  @retunn array
-         */
-        if(isset($request->numberweek) and intval($request->numberweek) >=1 and intval($request->numberweek) <=52 ){
-//            dd($request->numberweek);
-            $numweek = $request->numberweek;
-            $weekarr = $this->date->getWeekByNumberWeek($request->numberweek,$year);
-            $this->from = $weekarr['Monday'];
-            $this->till = $weekarr['Sunday'];
-            //dd($weekarr);
-        }else{
-
-            $numweek = $this->date->numberWeekByday(now()->format('Y-m-d'));
-            $weekarr = $this->date->getWeekByNumberWeek($numweek,$year);
-            $this->from = $weekarr['Monday'];
-            $this->till = $weekarr['Sunday'];
-        }
-        /**
-         * Montado dados para tela
-         *  percorrendo o array de datas da semana retornada e montando array de dados
-         * com os serviços da semana atual, filtrados por employee
-         */
-
-        $filteredWeekGroup= [];
-
-
-//
-//            dd($array_week);
-//            dd($filtered);
-        $weekarr['Monday'] = Carbon::create($weekarr['Monday'])->format('m/d/Y');
-        $weekarr['Tuesday'] = Carbon::create($weekarr['Tuesday'])->format('m/d/Y');
-        $weekarr['Wednesday'] = Carbon::create($weekarr['Wednesday'])->format('m/d/Y');
-        $weekarr['Thursday'] = Carbon::create($weekarr['Thursday'])->format('m/d/Y');
-        $weekarr['Friday'] = Carbon::create($weekarr['Friday'])->format('m/d/Y');
-        $weekarr['Saturday'] = Carbon::create($weekarr['Saturday'])->format('m/d/Y');
-        $weekarr['Sunday'] = Carbon::create($weekarr['Sunday'])->format('m/d/Y');
-
-        $employees =  $this->employee->all()->sortBy('name');
-
-        foreach ($employees as $row){
-            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$numweek);;
-        }
-
-//        dd($filteredWeekGroup);
-        // mensagem do formulario
-        if($request->msg !== null and $msg === null ){
-            $msg = $request->msg;
-        }
+        if(!isset($request->day) || $request->day =="current" ){$day = now()->format('m/d/Y');}else{$day = $request->day;}
+        $previous = Carbon::create($day)->add(-1,'day')->format('m/d/Y');
+        $next = Carbon::create($day)->add(1,'day')->format('m/d/Y');
        return view('commercial.schedule',
            [
-               'dataArr' => $filteredWeekGroup,
-               'weekArr' => $weekarr,
-               'numWeek' => $numweek,
-               'year' => $year,
+               'day' => $day,
+               'previous' => $previous,
+               'next'=> $next ,
                'employeesCol' => $this->employee->all()->sortBy('name'),
                'customersCol' => $this->customer->all()->sortBy('name'),
-               'msg' => $msg,
+                'msg' => null
            ]
        );
     }
