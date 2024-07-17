@@ -31,6 +31,9 @@
                                     @php
                                         $prices = array();
                                         $i=0;
+                                        /**
+                                        *  @var
+                                         */
                                         foreach ($customers as $value){
                                            $prices[$i]['price_weekly']  = $value->price_weekly;
                                            $prices[$i]['price_biweekly']  = $value->price_biweekly;
@@ -83,7 +86,7 @@
                             <div class="form-group">
                                 <div class="form-line success">
                                     <select class="materialize-select" id="select-cad-service-employee2" name="employee2_id">
-                                        <option selected value="none">Second employee</option>
+                                        <option selected value="0">Second employee</option>
                                         @foreach($employees as $values)
                                              @if(old('employee2_id') == $values->id)
                                                  <option selected  value="{{$values->id}}">{{$values->name}} </option>
@@ -151,32 +154,12 @@
                     <div class="row">
                         <div class=" col s12 m6">
                             <div class="form-group">
-                                <div class="form-line success">
-                                    <select class="materialize-select" id="select-cad-service-charge" name="frequency_payment">
-                                                @php
-                                                    $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
-                                                    if(!empty(old("frequency"))){
-                                                        switch (old("frequency")){
-                                                            case'One': $string_Eventual = "selected" ;break;
-                                                            case'Wek':$string_Weekly = "selected";break;
-                                                            case'Biw':$string_Biweekly = "selected";break;
-                                                            case'Thr':$string_Three_weekly = "selected";break;
-                                                            case'Mon':$string_Monthly = "selected";break;
-                                                        }
-                                                    }else{
-                                                        $string_Eventual = "selected";
-                                                    }
-
-                                                @endphp
-
-                                        <option {{ $string_Eventual }} value="One">Eventual </option>
-                                        <option {{ $string_Weekly }} value="Wek">Weekly </option>
-                                        <option {{ $string_Biweekly }} value="Biw">Biweekly </option>
-                                        <option {{ $string_Monthly }} value="Mon">Monthly </option>
+                                <div class="form-line success" id="select-cad-service-billings-container">
+                                    <select class="materialize-select" id="select-cad-service-billings" name="frequency_payment">
                                     </select>
-                                    <label class="form-label"  for="select-cad-service-charge">type of charge.</label>
+                                    <label class="form-label"  for="select-cad-service-billings">type of billing.</label>
                                 </div>
-                                <div class="help-info">Select type of service charge.</div>
+                                <div class="help-info">Select type of billing.</div>
                             </div>
                         </div>
                         <div class=" col s12 m6">

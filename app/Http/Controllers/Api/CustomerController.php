@@ -28,7 +28,7 @@ class CustomerController extends Controller
         /**
          * @type Customer $cust
          */
-        $cust = $this->cust->find($id);
+        $cust = $this->cust->with('billings')->find($id);
         return response()->json($cust->toArray(),200);
     }
     public function store(Request $request){

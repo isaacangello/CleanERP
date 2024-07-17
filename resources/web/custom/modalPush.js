@@ -3,8 +3,9 @@ function push_run(btnParam,custId,empId){
     const btnModalId = btnParam.getAttribute('href')
     const modalInstance = M.Modal.getInstance(document.querySelector(btnModalId))
     const service_id = btnParam.getAttribute('data-service-id')
+
     document.querySelector("#serviceId").innerText = service_id
-    console.info(btnModalId)
+    console.info(modalInstance)
     function populate(id)  {
         /**
          * Flied
@@ -41,7 +42,7 @@ function push_run(btnParam,custId,empId){
         function markSelected(itemId,itemSearch){
             let item = document.querySelector(itemId)
             let itemInstance = M.FormSelect.getInstance(item)
-            console.info(itemInstance.input.value)
+            console.info(itemInstance)
             itemInstance.input.value = itemSearch
             for(var c = 0; c< itemInstance.dropdownOptions.children.length;c++){
                 //console.info(itemSearch)
@@ -57,7 +58,7 @@ function push_run(btnParam,custId,empId){
         }
         axios.get("api/services/"+id)
             .then(response=>{
-                    // console.info(response.data)
+                     console.info(response.data)
                     let serviceData = response.data
                     if(serviceData.customer.type === "RENTALHOUSE"){
                         defaultModalLabel.innerHTML = serviceData.customer.name+' <span class="material-symbols-outlined ">brightness_7</span>'
@@ -79,5 +80,6 @@ function push_run(btnParam,custId,empId){
             )
         return ""
     }
+    console.log(service_id)
     modalInstance.onOpenStart(populate(service_id))
 }

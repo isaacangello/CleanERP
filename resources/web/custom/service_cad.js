@@ -5,43 +5,31 @@ function price_inject(idPush) {
     axios.get('api/customer/'+idCust)
         .then(function (resp) {
             let payments = document.querySelector(idPush)
-             var instance = M.FormSelect.getInstance(payments);
+             // var instance = M.FormSelect.getInstance(payments);
+            let SelectContainer = document.getElementById('select-cad-service-billings-container')
+            //instance.destroy()
             // console.log(instance.dropdownOptions.children[0])
-            // console.log(resp.data)
-        for(i=0;i<payments.options.length;i++){
+            console.log(resp.data)
+            // console.log(instance.dropdownOptions)
+            // console.log(instance.options)
+            let SelectBillings = document.createElement('select')
+            SelectBillings.setAttribute('class','materialize-select')
+            SelectBillings.setAttribute('id','select-cad-service-billings')
+            SelectBillings.setAttribute('name','frequency_payment')
+        for(i=0;i<resp.data.billings.length;i++){
             // console.log(payments.options[i].value)
+            console.log(resp.data.billings[i].label)
+                    SelectBillings.appendChild(new Option(`${resp.data.billings[i].label} / US$ ${resp.data.billings[i].value}`,`${resp.data.billings[i].id},${resp.data.billings[i].value}`)) //= resp.data.billings[i].label+" / R$" + resp.data.billings[i].value
+                    // payments.options[i].innerText = resp.data.billings[i].label+" / R$" + resp.data.billings[i].value
 
-            switch(payments.options[i].value) {
-                case "One":
-                // console.log("SWITCH EVENTUAL");
-                    payments.options[i].innerText = "Eventual / R$" + resp.data.price_weekly
-                    let li1 = document.querySelector('#'+instance.dropdownOptions.children[i].id)
-                    li1.innerHTML = "<span> Eventual /  R$"+resp.data.price_weekly+"</span>"
-                     break;
-                case "Wek":
-                    // console.log("Switch opçao Weekly");
-                    payments.options[i].innerText = "Weekly / R$" + resp.data.price_weekly
-                    let li2 = document.querySelector('#'+instance.dropdownOptions.children[i].id)
-                    li2.innerHTML = "<span> Weekly /  R$"+resp.data.price_weekly+"</span>"
-                     break;
-                case "Biw":
-                    // console.log("Switch opçao Biweekly");
-                    payments.options[i].innerText = "Biweekly / R$" + resp.data.price_biweekly
-                    let li3 = document.querySelector('#'+instance.dropdownOptions.children[i].id)
-                    li3.innerHTML = "<span> Biweekly /  R$"+resp.data.price_biweekly+"</span>"
-                     break;
-                case "Mon":
-                    // console.log("Switch opçao Monthly");
-                    payments.options[i].innerText = "Monthly / R$" + resp.data.price_monthly
-                    let li4 = document.querySelector('#'+instance.dropdownOptions.children[i].id)
-                    li4.innerHTML = "<span> Monthly /  R$"+resp.data.price_monthly+"</span>"
-
-                     break;
-            }
+                    //li1.innerHTML = "<span> Eventual /  R$"+resp.data.price_weekly+"</span>"
             // payments.options[i].innerText = payments.options[i].text
             // console.log(payments.options[i].text)
         }
-
+            SelectContainer.innerHTML = ''
+            SelectContainer.appendChild(SelectBillings)
+            let element = document.getElementById('select-cad-service-billings')
+            M.FormSelect.init(element)
 
         })
 
@@ -57,8 +45,8 @@ if (ServiceForm !== undefined){
 ServiceForm.addEventListener('submit',function (event) {
     event.preventDefault()
     function RefreshPage(key,queryString) {
-        var newUrl = window.location.origin + window.location.pathname + "?"+key+"=" + queryString;
-        window.location.href = newUrl;
+        window.location.href = window.location.origin + window.location.pathname + "?"+key+"=" + queryString;
+
         return false;
     }
     let data = new FormData(this)
@@ -82,10 +70,19 @@ ServiceForm.addEventListener('submit',function (event) {
         .then(function (resp) {
             console.log("status retornado => "+resp.status)
             console.info(resp.data.message)
-            sessionStorage.setItem('status','service-true')
-            sessionStorage.setItem('msg',resp.data.message)
-            RefreshPage('msg',resp.data.message)
-            // window.location.reload()
+            console.info(resp)
+            // sessionStorage.setItem('status','service-true')
+            // sessionStorage.setItem('msg',resp.data.message)
+
+            // get instance of modal and close it
+            let serviceCadModalElement = document.getElementById('new-service')
+            let serviceCadModalInstance = M.Modal.getInstance(serviceCadModalElement)
+            serviceCadModalInstance.close()
+            Toast.fire({
+                icon: "success",
+                title: resp.data.message
+            });
+
         })
         .catch(function (error) {
             let infoBox = document.querySelector('#error_infobox')

@@ -125,23 +125,24 @@ class ServicesController extends Controller
         if($req->all() === null){
             return response()->json(['msg' => 'need data to store.'],404);
         }
+        //return response()->json(['msg' => $req->all()],200);
         $req->validate($this->service->rules());
         $service_date = Carbon::create($req->service_date." ".$req->service_time)->format('Y-m-d H:i:s');
-
- //        $req->who_saved_id = intval($req->who_saved_id);
+        if($req->employee2_id === "0"){$employee2_id = $req->employee1_id;}else{$employee2_id = $req->employee2_id;}
+        $frequency_payment = explode(',',$req->frequency_payment);
         $return = $this->service->create([
                 'customer_id' => $req->customer_id,
                 'employee1_id' =>$req->employee1_id,
-                'employee2_id'=>$req->employee2_id,
+                'employee2_id'=>$employee2_id,
                 'service_date'=>$service_date,
                 'period'=>$req->period,
                 'frequency'=>$req->frequency,
                 'notes' => $req->notes,
                 'instructions' => $req->instructions,
-                'frequency_payment'=>$req->frequency_payment,
+                'frequency_payment'=>$frequency_payment[0],
                 'payment'=>$req->payment,
                 'who_saved'=>$req->who_saved,
-                'price'=>$req->price,
+                'price'=>$frequency_payment[1],
                 'who_saved_id'=>$req->who_saved_id,
             ]
         );

@@ -14,7 +14,7 @@ $("#btn_sigin_id").click(function (e) {
         data: form_data,
         dataType: 'JSON',
         success: function (data, textStatus, jqXHR) {
-            if(data["status"] == "success"){
+            if(data["status"] === "success"){
                 $('.result').text(' ')
                 $('.result').prepend('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\n' +
                     '                    <div class="info-box-4 hover-expand-effect">\n' +
@@ -29,7 +29,7 @@ $("#btn_sigin_id").click(function (e) {
                     '                </div>\n');
                 //$('#sign_in')[0].reset();
 
-            }else if(data['status'] == "error"){
+            }else if(data['status'] === "error"){
                 $('.result').text(' ')
                 $('.result').prepend('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\n' +
                     '                    <div class="info-box-4 hover-expand-effect">\n' +

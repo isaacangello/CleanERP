@@ -20,14 +20,14 @@ $(document).ready(function () {
 /** INITIALIZE mobile side bar */
  $('.sidenav').sidenav();
 /** INITIALIZE modal */
-  // $('.modal').modal();
+  // $('.modal').modal();''
  /** INITIALIZE tooltip jquery-ui */
   $( function() {
     $( document ).tooltip();
   } );
 
     var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, {
+    var ModalAllInstances = M.Modal.init(elems, {
         preventScrolling: true,
         dismissible: false,
         inDuration: 400,

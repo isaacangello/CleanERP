@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommercialController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\CustomerController;
@@ -51,11 +52,21 @@ Route::prefix('finances')->group(function () {
 //#############################################################
 Route::middleware('auth')->group(function () {
 
+//#############################################################
+//############ RESIDENTIAL ROUTES
+//#############################################################
+
     Route::get('/home',[IndexController::class,'home'])->name('home');
     Route::get('/week',[ServicesController::class,'week'])->name('week');
     Route::post('/confirm/{id}',[ServicesController::class,'confirm'])->name('confirm');
+//#############################################################
+//############ RESIDENTIAL ROUTES
+//#############################################################
+Route::get('/commercial-schedule',[CommercialController::class,'index'])->name('commercial.schedule');
 
-
+//#############################################################
+//############ PROFLIE ROUTES
+//#############################################################
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

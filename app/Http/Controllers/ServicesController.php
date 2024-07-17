@@ -124,34 +124,22 @@ class ServicesController extends Controller
 
         }
 
+        return response()->json(['resp'=>$req->all()],200);
         $req->validate($this->service->rules());
 
          // selecionando preço do serviço
         $cust_data = null;
-         $cust_data = $this->customer->find($req->customer_id);
+         $cust_data = $this->customer->with('billings')->find($req->customer_id);
         $data_save = $req->all();
-        if(!is_null($cust_data)){
-            if(!is_null($req->frequency_payment)) {
-                switch ($req->frequency_payment) {
-                    case'Thr':
-                    case'One':
-                    case'Wek':
-                        $frequency_payment = 'price_weekly';
-                        $price = $cust_data->price_weekly;
-                        break;
-                    case'Biw':
-                        $frequency_payment = 'price_biweekly';
-                        $price = $cust_data->price_biweekly;
-                        break;
-                    case'Mon':
-                        $frequency_payment = 'price_monthly';
-                        $price = $cust_data->price_monthly;
-                        break;
-                }
+
+        $frequency_payment = explode(',',$req->requency_payment);
+
+            if($req->employee2_id == 0){
+                $data_save['employee2_id'] = $req->employee1_id;
             }
 
-        }
-        if($price > 0){$data_save['price'] = $price; $data_save['frequency_payment'] = $frequency_payment; }
+
+        if($frequency_payment[1] > 0){$data_save['price'] = $frequency_payment[1]; $data_save['frequency_payment'] = $frequency_payment[0]; }
         $data_save['service_date'] = Carbon::create($req->service_date." ".$req->service_time)->format('Y-m-d H:i:s');
         $return = $this->service->create($data_save);
         $this->st->status = true;
