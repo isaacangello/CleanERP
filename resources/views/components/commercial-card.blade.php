@@ -1,4 +1,4 @@
-<div>
+
     <!-- home card components
         this component was written to iterate through the data for the week by employee
         /**
@@ -9,11 +9,12 @@
         green darken-3: #2e7d32;
         */
     -->
-    <div class="col s12 m3">
+@if($dayName != "Saturday" and $dayName != "Sunday" )
+    <div>
 
         <div class="card green darken-3 white-text">
             <div class="card-content card-content-min">
-                <span class="card-title">Nome</span>
+                <span class="card-title font-12">{{ $dayName??''  }} - {{ $day??'' }}  </span>
                 <p>
                 <table class="table-home green darken-3 centered">
                     <tbody>
@@ -27,4 +28,5 @@
             </div>
         </div>
     </div>
+@endif
 

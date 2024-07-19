@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\numberweek;
+use App\Http\Controllers\year;
 use App\Models\Customer;
 use App\Models\Employee;
 use Carbon\Carbon;
@@ -81,8 +84,9 @@ class CommercialController extends Controller
             $msg = $request->msg;
         }
 
-       return view('commercial.schedule',
+       return response()->json(
            [
+               'view' => 'commercial.schedule',
                'dataArr' => $filteredWeekGroup,
                'weekArr' => $weekarr,
                'numWeek' => $numweek,
@@ -90,7 +94,16 @@ class CommercialController extends Controller
                'employeesCol' => $this->employee->all()->sortBy('name'),
                'customersCol' => $this->customer->all()->sortBy('name'),
                'msg' => $msg,
-           ]
+           ],
+           200
        );
+    }
+    public function store(Request $request){
+        $response = [
+            'message' => 'Method store Commercial controller',
+            'data' => $request->all()
+
+        ];
+        response()->json($response,200);
     }
 }

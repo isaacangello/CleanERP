@@ -39,6 +39,3 @@ function swalConfirm(fields) {
     })
 }
 
-// initialize modal for detail service data
-// let modalDetails =  document.getElementById('largeModal')
-// M.Modal.init(modalDetails)

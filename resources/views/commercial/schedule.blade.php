@@ -21,37 +21,63 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <div class="col s12 m2 offset-m5">
-                              <span>Today </span><span class="yellow-text text-darken-4">{{ $day }}</span>
-                        </div>
-                    </div>
-                    <x-msgs :$msg />
-                    <x-service-cad :employees="$employeesCol" :customers="$customersCol">
+                            <span>
+                              Week Number   <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From
+                                            <span class="label-date-home">{{ $weekArr['Monday'] }}</span> - Till
+                                            <span class="label-date-home">{{ $weekArr['Saturday'] }} </span>
+                            </span>
+                        <x-msgs :$msg />
 
-                    </x-service-cad>
+                    </div>
+                    <x-commercial-cad :employees="$employeesCol" :customers="$customersCol" :$weekArr>
+
+                    </x-commercial-cad>
                     <div class="body">
                         <div class="row">
                             <div class="col s12 m2 input-field">
                                 <div class="form-group">
 
-                                    <button class="btn h-45 modal-trigger" href="#new-service">
-                                        New Schedule
+                                    <button class="btn h-45 modal-trigger" href="#new-schedule">
+                                        New schedule
                                     </button>
                                 </div>
                             </div>
                             <div class="col s12 m2 input-field">
                                 <div class="form-group">
-                                    <form action="{{ route('commercial.schedule', ['page' => 1]) }}">
+                                    <form action="{{ route('commercial.schedule') }}">
                                         <button class="btn h-45">
-                                            This day
+                                            This week
                                         </button>
                                     </form>
                                 </div>
                             </div>
-                            <div class="col s12 m1 input-field">
+                            <div class="col s12 m1 input-field align-left">
                                 <div class="form-group">
-                                    <form action="{{ route('commercial.schedule',) }}">
-                                            <x-text-input type="hidden" name="day" value="{{ $previous }}" />
+                                    @php
+                                        //numberweek=28&year=current
+                                        if (!isset($year) || $year == "current"){$year=now()->format("Y");}
+                                        //dd($numWeek);
+                                        if($numWeek >= 52){
+                                            $numWeek_arrow_f=1;
+                                            $year_arrow_f = $year + 1;
+                                        }else{
+                                            $numWeek_arrow_f= $numWeek + 1;
+                                            $year_arrow_f = $year;
+                                        }
+                                        if($numWeek <= 1){
+                                            $numWeek_arrow_b=52;
+                                            $year_arrow_b = $year - 1;
+
+                                        }else{
+                                            $numWeek_arrow_b= $numWeek - 1;
+                                            $year_arrow_b = $year;
+                                        }
+                                        //dd($weekArr);
+                                    @endphp
+                                    <form action="{{ route('commercial.schedule') }}">
+                                        <form action="{{ route('week')}}">
+                                            <x-text-input type="hidden" value="{{$numWeek_arrow_b}}" name="numberweek"></x-text-input>
+                                            <x-text-input type="hidden" value="{{$year_arrow_b}}" name="year"></x-text-input>
                                             <button class="btn h-45">
                                             <span class="material-symbols-outlined">
                                                 arrow_back
@@ -64,21 +90,40 @@
                                 <div class="col s12 m2 input-field" >
                                     <div class="form-group">
                                         <div class="form-line success">
-                                            <input type="text" name="day" class="form-control datepicker">
+                                            <select name="numberweek" class="form-control h-30 materialize-select" style="height: 30px">
+                                                <option value="{{ $numWeek?$numWeek:'' }}">week {{$numWeek?$numWeek:''}}</option>
+                                                @for ($i = 1; $i < 53; $i++)
+                                                    <option value="{{$i}}">week {{$i}}</option>
+                                                @endfor
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col s12 m2 input-field">
+                                    <div class="form-group">
+                                        <div class="form-line success">
 
+                                            <select name="year" class="form-control materialize-select">
+                                                <option value="{{$year?$year:now()->format("Y")}}">{{$year?$year:'current year'}}</option>
+                                                @for ($i = 2020; $i < 2031; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col s12 m1 input-field">
                                     <button class="btn h-45">
                                         go
                                     </button>
                                 </div>
                             </form>
-                            <div class="col s12 m1 input-field text-start">
+                            <div class="col s12 m1 input-field align-left">
                                 <div class="form-group">
                                     <form action="{{ route('commercial.schedule')}}">
-                                        <x-text-input type="hidden" name="day" value="{{ $next }}" />
+                                        <x-text-input type="hidden" value="{{$numWeek_arrow_f}}" name="numberweek"></x-text-input>
+                                        <x-text-input type="hidden" value="{{$year_arrow_f}}" name="year"></x-text-input>
                                         <button class="btn h-45">
                                             <span class="material-symbols-outlined">
                                                 arrow_forward
@@ -90,8 +135,12 @@
 
                         </div>
 
-                        <div class="row">
-                            <x-commercial-card />
+                        <div class="row grid-schedules">
+
+                            @foreach($weekArr as $key => $day)
+                                <x-commercial-card :day-name="$key" :$day  />
+                            @endforeach
+
                         </div> <!--grid system row-->
                     </div> <!--card body-->
                 </div> <!--card -->

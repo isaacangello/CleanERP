@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ServicesController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\CommercialController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,6 +28,7 @@ Route::apiResource('services', ServicesController::class)
     'update'=>'services.api.update',
     'destroy'=>'services.api.destroy',
 ]);
+Route::post('/api/commercial-schedule',[CommercialController::class,'store'])->name('commercial.api.store');
 Route::get('services/{id}/{fields}',[ServicesController::class , 'query'])->name('services.api.query');
 Route::apiResource('customer', CustomerController::class)
 ->names([

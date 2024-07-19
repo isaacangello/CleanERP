@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('employee_id');
             $table->dateTime('schedule_date');
+            $table->string('loop');
             $table->string('notes', 3000);
             $table->string('instructions', 3000);
             $table->softDeletes();
