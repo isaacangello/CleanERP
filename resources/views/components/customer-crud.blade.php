@@ -85,8 +85,8 @@
         <div class="col s12 m12">
             <div class="form-group">
                 <div class="form-line-billing-values-selected[]">
-                    <label class="form-label m-b-5" for="id-customer-billing">Select billing Prices</label>
-                    <select multiple id="id-customer-billing2" class="form-control customer-billing" name="billing-values-selected[]">
+                    <label class="form-label m-b-5" for="id-customer-billing{{$customer->id}}">Select billing Prices</label>
+                    <select multiple id="id-customer-billing{{$customer->id}}" class="form-control customer-billing" name="billing-values-selected[]">
                         @php $checked = false; @endphp
                         @foreach($billingsAll as $billings_one)
                             @foreach($customer->billings as $key => $billing)

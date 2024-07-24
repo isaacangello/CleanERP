@@ -118,3 +118,10 @@ function dateTime_change(elementId1,elementId2,token){
         )
 
 }
+
+function select_billings_changes(El) {
+    dataJson = {
+        'billing_values_selected': El.value
+    }
+
+}

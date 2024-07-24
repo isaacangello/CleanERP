@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Billing;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 //use Illuminate\View\View;
@@ -42,7 +43,8 @@ class CustomerController extends Controller
          * will be treated in this place
          */
         ;
-        if(in_array('', $request->billing_labels) || in_array('',$request->billing_values)){
+        if(count( $request->billing_labels) > 0 ){
+
             $ids = [];
             $rules = [
                 'label' => 'string|min:3|max:30',
@@ -64,6 +66,12 @@ class CustomerController extends Controller
                 return response()->json([ "message"=> "Unable to register an empty billing amount."],422);
             }
         }
+    /** Validate billing fields */
+        if(count($request->billing_values_selected)<= 0){
+            return response()->json([ "message"=> "It is not possible to register a customer with empty billing."],422);
+        }
+
+
         /**
          * Saving de customer data
          */
@@ -94,10 +102,13 @@ class CustomerController extends Controller
         ]);
         /**
          * saving de relational Billing data
+
+            @param Carbon
          */
+        $now = Carbon::now()->timezone('America/New_York')->format('Y-m-d H:i:s');
         if(!empty($ids)){
             foreach ($ids as $id){
-                DB::table('billings_customers')->insert(['customer_id'=> $return_cust->id,'billing_id'=>$id]);
+                DB::table('billings_customers')->insert(['customer_id'=> $return_cust->id,'billing_id'=>$id, 'created_at' => $now, 'updated_at' => $now]);
             }
         }
         $billing_rules = [
@@ -107,10 +118,11 @@ class CustomerController extends Controller
         ];
 
 
-        foreach ($request->billing_values_selected as $id){
-            Validator::make(['customer_id'=> $return_cust->id,'billing_id'=>$id], $billing_rules );
-            DB::table('billings_customers')->insert(['customer_id'=> $return_cust->id,'billing_id'=>$id]);
-        }
+
+            foreach ($request->billing_values_selected as $id){
+                Validator::make(['customer_id'=> $return_cust->id,'billing_id'=>$id], $billing_rules );
+                DB::table('billings_customers')->insert(['customer_id'=> $return_cust->id,'billing_id'=>$id, 'created_at' => $now, 'updated_at' => $now], );
+            }
         $return_billings= 'passou';
         /**
          *  response it's all right

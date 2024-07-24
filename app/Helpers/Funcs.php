@@ -48,16 +48,17 @@ class Funcs
      */
     public static function nameShort(String $name,string $delimiter = ' ',int $index = 0):string
     {
-        if ($index > 0) {
-            $string = '';
-            for ($i=0;$i<$index;$i++){
-                $string .= explode($delimiter,$name)[$i]." ";
-            }
-            return trim($string);
-        }else{
-            return explode($delimiter,$name)[0];
-        }
+        if(sizeof(explode($delimiter,$name)) > 1) {
+            if ($index > 0) {
+                $string = '';
 
+                for ($i=0;$i<$index;$i++){
+                    $string .= explode($delimiter,$name)[$i]." ";
+                }
+                return trim($string);
+            }
+        }
+        return $name;
     }
 
 
