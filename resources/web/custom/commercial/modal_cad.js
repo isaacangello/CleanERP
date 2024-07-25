@@ -1,6 +1,6 @@
 const pluginPath = '../helpers'
 // import {isNullOrUndef} from  '../helpers/funcs.js';
-import {isValidElement,isNullOrUndef,serialize} from "../helpers/funcs.js";
+import {isValidElement,isNullOrUndef,serialize,errorShow} from "../helpers/funcs.js";
 
 
 let scheduleForm =  document.getElementById('schedule-form')
@@ -14,9 +14,10 @@ if(isValidElement(scheduleForm)){
             'who_saved': dataForm.get('who_saved'),
             'who_saved_id': dataForm.get('who_saved_id'),
             'customer_id': dataForm.get('customer_id'),
+            'denomination': dataForm.get('denomination'),
             'employee1_id': dataForm.get('employee1_id'),
-            'service_date': dataForm.get('service_date'),
-            'service_time': dataForm.get('service_time'),
+            'schedule_date': dataForm.get('schedule_date'),
+            'schedule_time': dataForm.get('schedule_time'),
             'period': dataForm.get('period'),
             'loop': dataForm.getAll('loop[]'),
             'notes': dataForm.get('notes'),
@@ -25,6 +26,11 @@ if(isValidElement(scheduleForm)){
         axios.post('  api/commercial-schedule',jsonData)
             .then(function (response) {
                 console.log(response)
-            })
+            }).catch(function (error) {
+            let errorBox =  document.getElementById('error_infobox')
+            let errorInnexText = document.getElementById('error-text')
+             console.log(error)
+            errorShow(error,errorBox,errorInnexText,'cad-schedule-')
+        })
     })
 }

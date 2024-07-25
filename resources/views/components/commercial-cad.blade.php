@@ -27,9 +27,9 @@
                     <input type="hidden" name="who_saved_id"  value="{{Auth::user()->id}}">
                     <!-- Row ######################################################################################################-->
                     <div class="row">
-                        <div class=" col s12 m6">
+                        <div class=" col s12 m4">
                             <div class="form-group">
-                                <div class="form-line success">
+                                <div class="form-line success form-line-customer_id">
                                     @php
                                         $prices = array();
                                         $i=0;
@@ -42,7 +42,7 @@
                                            $prices[$i]['price_monthly']  = $value->price_monthly ;
                                         }
                                     @endphp
-                                    <select class="materialize-select" id="select-cad-service-customer" name="customer_id" >
+                                    <select class="materialize-select" id="cad-schedule-customer_id" name="customer_id" >
                                         @php
                                             if(!empty(old('customer_id'))){
 
@@ -59,15 +59,24 @@
                                         @endforeach
 
                                     </select>
-                                    <label class="form-label"  for="select-cad-service-customer">Customer</label>
+                                    <label class="form-label"  for="cad-schedule-customer">Customer</label>
                                 </div>
-                                <div class="help-info">select the customer for service schedule.</div>
+                                <div class="help-info" id="help-info-customer_id">select the customer for service schedule.</div>
                             </div>
                         </div>
-                        <div class=" col s12 m6">
+                        <div class=" col s12 m4">
                             <div class="form-group">
-                                <div class="form-line success">
-                                    <select id="select-cad-service-employee1" name="employee1_id" class="materialize-select">
+                                <div class="form-line success form-line-denomination">
+                                    <label class="form-label"  for="cad-schedule-denomination">Denomination</label>
+                                    <input class="form-control"  id="cad-schedule-denomination" name="denomination" value="{{ old('denomination') }}" />
+                                </div>
+                                <div class="help-info" id="help-info-denomination">Type one denomination.</div>
+                            </div>
+                        </div>
+                        <div class=" col s12 m4">
+                            <div class="form-group">
+                                <div class="form-line success form-line-employee1_id">
+                                    <select id="cad-schedule-employee1_id" name="employee1_id" class="materialize-select">
                                         <option  value="none">Employee</option>
                                         @foreach($employees as $values)
                                             @if(old('employee1_id') == $values->id)
@@ -81,7 +90,7 @@
                                     </select>
                                     <label class="form-label"  for="select-cad-service-employee1">Employee</label>
                                 </div>
-                                <div class="help-info">select the employee for service.</div>
+                                <div id="help-info-employee1_id" class="help-info" >select the employee for service.</div>
                             </div>
                         </div>
                     </div>
@@ -92,26 +101,26 @@
                     <div class="row">
                         <div class="col s12 m4">
                             <div class="form-group">
-                                <div class="form-line success">
-                                    <input class="form-control datepicker"  id="input-cad-service-date" name="service_date" value="{{ old('service_date') }}" />
-                                    <label class="form-label"  for="input-cad-service-date">Schedule start Date</label>
+                                <div class="form-line success form-line-schedule_date">
+                                    <input class="form-control datepicker"  id="cad-schedule-schedule_date" name="schedule_date" value="{{ old('schedule_date') }}" />
+                                    <label class="form-label"  for="cad-schedule-schedule_date">Schedule start Date</label>
                                 </div>
-                                <div class="help-info">Select the Schedule execution date start.</div>
+                                <div class="help-info" id="help-info-schedule_date">Select the Schedule execution date start.</div>
                             </div>
                         </div>
                         <div class="col s12 m4">
                             <div class="form-group">
-                                <div class="form-line success">
-                                    <input class="form-control timepicker"  id="input-cad-service-time" name="service_time" value="{{ old('service_time') }}" />
-                                    <label class="form-label"  for="input-cad-service-time">Service Time</label>
+                                <div class="form-line success form-line-schedule_time">
+                                    <input class="form-control timepicker"  id="cad-schedule-schedule_time" name="schedule_time" value="{{ old('schedule_time') }}" />
+                                    <label class="form-label"  for="cad-schedule-schedule_time">Service Time</label>
                                 </div>
-                                <div class="help-info">Select the Schedule execution time.</div>
+                                <div class="help-info" id="help-info-schedule_time">Select the Schedule execution time.</div>
                             </div>
                         </div>
                         <div class=" col s12 m4">
                             <div class="form-group">
-                                <div class="form-line success">
-                                    <select class="materialize-select" id="select-cad-service-period" name="period">
+                                <div class="form-line success form-line-period">
+                                    <select class="materialize-select" id="cad-schedule-period" name="period">
                                         @php
                                             $string_first = ""; $string_second = "";$string_third="";$string_none= "";
                                             if(!empty(old("period"))){
@@ -132,7 +141,7 @@
                                     </select>
                                     <label class="form-label"  for="select-cad-service-period">Service Period.</label>
                                 </div>
-                                <div class="help-info">Select the period of the day.</div>
+                                <div class="help-info" id="help-info-loop">Select the period of the day.</div>
                             </div>
                         </div>
                     </div>
@@ -145,8 +154,8 @@
                     <!-- Row ######################################################################################################-->
                     <div class="row">
                         <div class=" col s12 ">
-                            <label class="form-label"  for="select-cad-service-period">Schedule repeat.</label>
-                            <div class="form-group p-10">
+                            <label class="form-label"  for="cad-schedule-loop">Schedule repeat.</label>
+                            <div class="form-group p-10 form-line-loop" id="cad-schedule-loop">
                                 <div class="grid-schedules m-b-5">
                                     @foreach($weekArr as $key => $day)
                                         @if($key !== 'Saturday' and $key !== 'Sunday')
@@ -164,7 +173,7 @@
                                     @endforeach
                                 </div>
 
-                                <div class="help-info">Select day for repeat Service Schedule.</div>
+                                <div class="help-info" id="help-info-loop">Select day for repeat Service Schedule.</div>
                             </div>
                         </div>
                     </div>
@@ -177,21 +186,21 @@
                         <!-- Row ######################################################################################################-->
                     <div class="row">
                         <div class=" col s12 m6">
-                            <label for="textarea-cad-service-note">type service notes.</label>
+                            <label for="cad-schedule-note">type service notes.</label>
                             <div class="form-group">
-                                <div class="form-line success">
-                                    <textarea style="padding: 10px;"  id="textarea-cad-service-note" name="notes"  class="form-control custom-textarea"  rows="4" placeholder="Please type service notes here...">{{ old('notes') }}</textarea>
+                                <div class="form-line success form-line-notes">
+                                    <textarea style="padding: 10px;"  id="cad-schedule-note" name="notes"  class="form-control custom-textarea"  rows="4" placeholder="Please type service notes here...">{{ old('notes') }}</textarea>
                                 </div>
-                                <div class="help-info">Type customer notes </div>
+                                <div class="help-info" id="help-info-notes">Type customer notes </div>
                             </div>
                         </div>
                         <div class=" col s12 m6">
                             <label for="textarea-cad-costumer-instructions">Instructions for employees.</label>
                             <div class="form-group">
-                                <div class="form-line success">
+                                <div class="form-line success form-line-instructions">
                                     <textarea style="padding: 10px;"  id="textarea-cad-costumer-instructions" name="instructions"  class="form-control custom-textarea"  rows="4" placeholder="Please type instructions for employees here...">{{ old('instructions') }}</textarea>
                                 </div>
-                                <div class="help-info">Type instructions for employees. </div>
+                                <div class="help-info" id="help-info-instructions">Type instructions for employees. </div>
                             </div>
                         </div>
                     </div>

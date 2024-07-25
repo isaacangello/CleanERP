@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('loop');
             $table->string('notes', 3000);
             $table->string('instructions', 3000);
+            $table->string('who_saved');
+            $table->string('denomination',15);
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers');

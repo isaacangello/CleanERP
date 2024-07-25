@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\Funcs;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\numberweek;
 use App\Http\Controllers\year;
 use App\Models\Customer;
 use App\Models\Employee;
+use App\Models\Schedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Treatment\DateTreatment;
@@ -17,11 +19,13 @@ class CommercialController extends Controller
     public DateTreatment $date;
     public Employee $employee;
     public Customer $customer;
+    public Schedule $schedule;
     public function __construct()
     {
         $this->date = new DateTreatment();
         $this->employee = new Employee();
         $this->customer = new Customer();
+        $this->schedule =  new Schedule();
     }
 
     //
@@ -100,10 +104,22 @@ class CommercialController extends Controller
     }
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        $response = [
-            'message' => 'Method store Commercial controller',
-            'data' => $request->all()
-        ];
+        $request->validate($this->schedule->rules);
+        $response = $this->schedule->create(
+            [
+                'customer_id'=>$request->customer_id,
+                'employee_id'=> $request->employee1_id,
+                'schedule_date' =>Funcs::dateTimeToDB($request->get('schedule_date'),$request->get('schedule_time')),
+                'notes' =>$request->notes,
+                'instructions' =>$request->instructions,
+                'denomination' =>$request->denomination,
+                'who_saved' => $request->who_saved.":".$request->who_saved_id,
+                'loop' => json_encode($request->loop)
+
+
+            ]
+        );
+
         return response()->json($response,200);
     }
 }
