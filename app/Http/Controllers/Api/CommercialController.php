@@ -98,12 +98,12 @@ class CommercialController extends Controller
            200
        );
     }
-    public function store(Request $request){
+    public function store(Request $request): \Illuminate\Http\JsonResponse
+    {
         $response = [
             'message' => 'Method store Commercial controller',
             'data' => $request->all()
-
         ];
-        response()->json($response,200);
+        return response()->json($response,200);
     }
 }

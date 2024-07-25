@@ -28,8 +28,9 @@ Route::apiResource('services', ServicesController::class)
     'update'=>'services.api.update',
     'destroy'=>'services.api.destroy',
 ]);
-Route::post('/api/commercial-schedule',[CommercialController::class,'store'])->name('commercial.api.store');
-Route::get('services/{id}/{fields}',[ServicesController::class , 'query'])->name('services.api.query');
+Route::post('/commercial-schedule',[CommercialController::class,'store'])->name('commercial.api.store');
+
+Route::get('services/{id}/{fields}',[ServicesController::class ,'query'])->name('services.api.query');
 Route::apiResource('customer', CustomerController::class)
 ->names([
     'index'=>'customer.api.index',
@@ -38,6 +39,8 @@ Route::apiResource('customer', CustomerController::class)
     'update'=>'customer.api.update',
     'destroy'=>'customer.api.destroy',
 ]);
+Route::post('update-billing/{customer}',[CustomerController::class,'update_billing'])->name('customer.api.update.billings');
+
 Route::apiResource('employee',  EmployeeController::class)
 ->names([
     'index'=>'employee.api.index',

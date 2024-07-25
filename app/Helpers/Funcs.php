@@ -60,6 +60,9 @@ class Funcs
         }
         return $name;
     }
-
+    public static function dateTimeToDB($date,$time): string
+    {
+        return Carbon::create($date." ".$time)->format('Y-m-d H:i:s');
+    }
 
 }

@@ -19,6 +19,11 @@ class CustomerController extends Controller
         $this->configpage = 50;
         $this->cust = $cust;
         $this->billing = $billing;
+
+    }
+    public function floridaNow()
+    {
+        return  Carbon::now()->timezone('America/New_York')->format('Y-m-d H:i:s');
     }
 
     public function index(Request $request){
@@ -159,6 +164,23 @@ class CustomerController extends Controller
             ]);
             $result->save();
         return response()->json(['_token' => $req->_token,'fieldName' =>$req->fieldName,'value' => $val_update, $req->fieldName => $valOld ]);
+    }
+
+    public function update_billing($id,Request $req): \Illuminate\Http\JsonResponse
+    {
+         DB::table('billings_customers')->select('id')->where('customer_id','=',$id)->delete();
+        $valuesToInsert = [];
+        $i =0;
+        foreach ($req->billing_values_selected as $b_id){
+            $valuesToInsert[$i]['id'] = '';
+            $valuesToInsert[$i]['customer_id'] = $id;
+            $valuesToInsert[$i]['billing_id'] =$b_id;
+            $valuesToInsert[$i]['updated_at'] = $this->floridaNow();
+            $valuesToInsert[$i]['created_at'] =$this->floridaNow();
+            $i++;
+        }
+       $result = DB::table('billings_customers')->insertOrIgnore($valuesToInsert);
+        return response()->json(['billing'=> $result],200);
     }
 
 

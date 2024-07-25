@@ -196,8 +196,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn waves-classic waves-light btn-small " type="submit">save changes</button>
-                        <a href="#!" class="btn modal-close waves-classic waves-light btn-small red darken-4">Cancel</a>
+                        <button class="btn  btn-small " type="submit">save changes</button>
+                        <a href="#!" class="btn modal-close  btn-small red darken-4">Cancel</a>
                     </div>
                 </form>
             </div><!--END OF CONTAINER -->

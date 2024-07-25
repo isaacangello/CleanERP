@@ -119,9 +119,26 @@ function dateTime_change(elementId1,elementId2,token){
 
 }
 
-function select_billings_changes(El) {
-    dataJson = {
-        'billing_values_selected': El.value
-    }
+function select_billings_changes(El,formId,token,customerId) {
+    /**
+     * the element of having the name billing-values-selected[]
+     * */
+    let formEL = document.getElementById(formId)
+    let formData  = new FormData(formEL)
 
+    let dataJson = {
+         '_token':token,
+        'billing_values_selected': formData.getAll('billing-values-selected[]')
+    }
+    axios.post(' api/update-billing/'+customerId,
+        dataJson
+        ).then(function (response) {
+            console.log(response)
+            Toast.fire({
+                icon: "success",
+                title: `The billing is successfully updated!`
+            });
+
+        }
+    )
 }

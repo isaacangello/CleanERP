@@ -31,7 +31,6 @@ function push_run(btnParam,custId,empId){
         function time_format(timeInput) {
             let convert = { '13':"01",'14':"02",'15':"02",'16':"04",'17':"05",'18':"06",'19':"07",'20':"08",'21':"09",'22':"10",'23':"11"}
             let time_temp = timeInput.split(':')
-            let sufix = 'AM';
                 if ( time_temp[0] > 12 ){
                     return convert[time_temp[0]]+":"+time_temp[1]+' PM'
 

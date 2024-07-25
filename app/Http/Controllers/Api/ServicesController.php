@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 //use App\View\Components\customer;
+use App\Helpers\Funcs;
 use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -127,7 +128,7 @@ class ServicesController extends Controller
         }
         //return response()->json(['msg' => $req->all()],200);
         $req->validate($this->service->rules());
-        $service_date = Carbon::create($req->service_date." ".$req->service_time)->format('Y-m-d H:i:s');
+        $service_date = Funcs::dateTimeToDB($req->service_date,$req->service_time); //Carbon::create($req->service_date." ".$req->service_time)->format('Y-m-d H:i:s');
         if($req->employee2_id === "0"){$employee2_id = $req->employee1_id;}else{$employee2_id = $req->employee2_id;}
         $frequency_payment = explode(',',$req->frequency_payment);
         $return = $this->service->create([

@@ -1,6 +1,8 @@
-<div>
 
+<div>
+    <form id="form-customer-crud-{{$customer->id}}">
     @php $urlBase = "api/customer/".$customer->id; @endphp
+
             <!-- ################################################################################################################################-->
     <div class="row label-employee-view-edit" >
         <span class="label bg-light-green  label-padding">Personal information</span>
@@ -86,7 +88,7 @@
             <div class="form-group">
                 <div class="form-line-billing-values-selected[]">
                     <label class="form-label m-b-5" for="id-customer-billing{{$customer->id}}">Select billing Prices</label>
-                    <select multiple id="id-customer-billing{{$customer->id}}" class="form-control customer-billing" name="billing-values-selected[]">
+                    <select multiple id="id-customer-billing{{$customer->id}}" class="form-control customer-billing" name="billing-values-selected[]" onchange="select_billings_changes(this,'form-customer-crud-{{$customer->id}}','{{ csrf_token() }}',{{$customer->id}})">
                         @php $checked = false; @endphp
                         @foreach($billingsAll as $billings_one)
                             @foreach($customer->billings as $key => $billing)
@@ -233,5 +235,7 @@ if (isset($customer->tatus)){
             </div>
         </div>
     </div>
+    </form>
 </div>
+
 
