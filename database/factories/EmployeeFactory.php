@@ -25,19 +25,19 @@ class EmployeeFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'birth' => fake()->date,
             'address' => fake()->address(),
-            'namerefone' => fake()->name,
-            'namereftwo' => fake()->name,
-            'phonerefone' => fake()->e164PhoneNumber(),
-            'phonereftwo' => fake()->e164PhoneNumber(),
+            'name_ref_one' => fake()->name,
+            'name_ref_two' => fake()->name,
+            'phone_ref_one' => fake()->e164PhoneNumber(),
+            'phone_ref_two' => fake()->e164PhoneNumber(),
             'description' => fake()->sentence,
             'restriction' => fake()->sentence,
             'document' => fake()->randomNumber(),
-            'type' => ((rand(1,1))%2)<0?'RESIDENCIAL':'COMERCIAL',
+            'type' => ((rand(1,1))%2)<0?'RESIDENCIAL':'COMMERCIAL',
             'status' => 'ACTIVE',
             'shift' => fake()->text(10),
             'username' => $username,
             'password' => '$2y$10$D6RqabA3OSgM91rUvSiYSeVMf9k6IyrqkVBOGwGOjCIV5bW2UrRWO',
-            'newuser' => true
+            'new_user' => true
         ];
     }
 }

@@ -76,9 +76,9 @@ class CommercialController extends Controller
         $weekarr['Saturday'] = Carbon::create($weekarr['Saturday'])->format('m/d/Y');
         $weekarr['Sunday'] = Carbon::create($weekarr['Sunday'])->format('m/d/Y');
 
-        $customers = $this->customer->where('')->sortBy('name');
+        $customers = $this->customer->where('type','COMMERCIAL')->sortBy('name');
 
-        foreach ($employees as $row){
+        foreach ($customers as $row){
             $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$numweek);;
         }
 
