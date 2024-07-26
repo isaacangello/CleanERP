@@ -26,6 +26,7 @@ if(isValidElement(scheduleForm)){
         axios.post('  api/commercial-schedule',jsonData)
             .then(function (response) {
                 console.log(response)
+
             }).catch(function (error) {
             let errorBox =  document.getElementById('error_infobox')
             let errorInnexText = document.getElementById('error-text')

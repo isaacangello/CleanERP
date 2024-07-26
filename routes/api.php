@@ -28,6 +28,7 @@ Route::apiResource('services', ServicesController::class)
     'update'=>'services.api.update',
     'destroy'=>'services.api.destroy',
 ]);
+Route::get('/commercial-schedule',[CommercialController::class,'index'])->name('commercial.api.index');
 Route::post('/commercial-schedule',[CommercialController::class,'store'])->name('commercial.api.store');
 
 Route::get('services/{id}/{fields}',[ServicesController::class ,'query'])->name('services.api.query');
