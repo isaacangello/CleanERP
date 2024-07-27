@@ -12,6 +12,7 @@ use App\Models\Schedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Treatment\DateTreatment;
+use Illuminate\Support\Facades\DB;
 
 class CommercialController extends Controller
 {
@@ -76,28 +77,52 @@ class CommercialController extends Controller
         $weekarr['Saturday'] = Carbon::create($weekarr['Saturday'])->format('m/d/Y');
         $weekarr['Sunday'] = Carbon::create($weekarr['Sunday'])->format('m/d/Y');
 
-        $customers = $this->customer->where('type','COMMERCIAL')->sortBy('name');
-
-        foreach ($customers as $row){
-            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$numweek);;
-        }
+        /**
+         * OLLAMA CODE
+         */
+//        $schedules = DB::table('schedules')
+//            ->join('customers', 'schedules.customer_id', '=', 'customers.id')
+//            ->join('employees', 'schedules.employee_id', '=', 'employees.id')
+//            ->select(
+//                'schedules.*',
+//                DB::raw('DAYNAME(schedule_date) as day_of_week'),
+//                'customers.name as customer_name',
+//                'employees.name as employee_name'
+//            )
+//            ->whereNull('schedules.deleted_at')
+//            ->get();
+//
+//// Agora, você pode agrupar os registros pelo dia da semana:
+//        $groupedSchedules = $schedules->groupBy(function ($item) {
+//            return Carbon::parse($item->schedule_date)->dayOfWeek;
+//        });
 
 //        dd($filteredWeekGroup);
         // mensagem do formulario
         if($request->msg !== null and $msg === null ){
             $msg = $request->msg;
         }
-
+        $data = $this->schedule->with('customer','employee')->get();
+        $groupedSchedules = $data->groupBy(function ($item) {
+            return Carbon::parse($item->schedule_date)->dayOfWeek;
+        });
+        $schedulesPerDay = [];
+        foreach ($groupedSchedules as $item){
+            $scheduleDateCarbon = Carbon::create($item->schedule_date);
+            if($scheduleDateCarbon->isMonday()){
+                $schedulesPerDay['monday'][] =  $item->toArray();
+            }
+        }
        return response()->json(
            [
-               'view' => 'commercial.schedule',
-               'dataArr' => $filteredWeekGroup,
-               'weekArr' => $weekarr,
-               'numWeek' => $numweek,
-               'year' => $year,
-               'employeesCol' => $this->employee->all()->sortBy('name'),
-               'customersCol' => $this->customer->all()->sortBy('name'),
-               'msg' => $msg,
+//               'view' => 'commercial.schedule',
+               'dataArr' =>  $groupedSchedules,
+//               'weekArr' => $weekarr,
+//               'numWeek' => $numweek,
+//               'year' => $year,
+//               'employeesCol' => $this->employee->all()->sortBy('name'),
+//               'customersCol' => $this->customer->all()->sortBy('name'),
+//               'msg' => $msg,
            ],
            200
        );

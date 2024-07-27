@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Employee;
+use App\Models\Schedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Treatment\DateTreatment;
@@ -14,11 +15,13 @@ class CommercialController extends Controller
     public DateTreatment $date;
     public Employee $employee;
     public Customer $customer;
+    public Schedule $schedule;
     public function __construct()
     {
         $this->date = new DateTreatment();
         $this->employee = new Employee();
         $this->customer = new Customer();
+        $this->schedule = new Schedule();
     }
 
     //
@@ -80,10 +83,33 @@ class CommercialController extends Controller
         if($request->msg !== null and $msg === null ){
             $msg = $request->msg;
         }
+        $data = $this->schedule->with('customer','employee')->get();
 
+        $schedulesPerDay = [];
+//        dd($data);
+        foreach ($data as $item){
+//            echo $item->schedule_date."<br>";
+            $scheduleDateCarbon = Carbon::create($item->schedule_date);
+            if($scheduleDateCarbon->isMonday()){
+                $schedulesPerDay['monday'][] =  $item;
+            }
+            if($scheduleDateCarbon->isTuesday()){
+                $schedulesPerDay['Tuesday'][] =  $item;
+            }
+            if($scheduleDateCarbon->isWednesday()){
+                $schedulesPerDay['Wednesday'][] =  $item;
+            }
+            if($scheduleDateCarbon->isThursday()){
+                $schedulesPerDay['Thursday'][] =  $item;
+            }
+            if($scheduleDateCarbon->isFriday()){
+                $schedulesPerDay['Friday'][] =  $item;
+            }
+        }
+//        dd($schedulesPerDay);
        return view('commercial.schedule',
            [
-               'dataArr' => $filteredWeekGroup,
+               'dataArr' => $schedulesPerDay,
                'weekArr' => $weekarr,
                'numWeek' => $numweek,
                'year' => $year,
