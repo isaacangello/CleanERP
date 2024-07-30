@@ -12,7 +12,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+{{--        @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
+        @include('layouts.generic_css')
         <style>
             input.form-control {
                 margin-bottom: 0px!important;
@@ -44,5 +45,6 @@
                 {{ $slot }}
             </div>
         </div>
+        @include('layouts.generic_js')
     </body>
 </html>
