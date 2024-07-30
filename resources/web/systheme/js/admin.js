@@ -224,7 +224,7 @@ $.AdminBSB.search = {
 
         //ESC key on pressed
         $searchBar.find('input[type="text"]').on('keyup', function (e) {
-            if (e.keyCode == 27) {
+            if (e.keyCode === 27) {
                 _this.hideSearchBar();
             }
         });
@@ -287,7 +287,7 @@ $.AdminBSB.input = {
         $parentSelector.find('.form-control').focusout(function () {
             var $this = $(this);
             if ($this.parents('.form-group').hasClass('form-float')) {
-                if ($this.val() == '') { $this.parents('.form-line').removeClass('focused'); }
+                if ($this.val() === '') { $this.parents('.form-line').removeClass('focused'); }
             }
             else {
                 $this.parents('.form-line').removeClass('focused');
@@ -438,7 +438,7 @@ $.AdminBSB.browser = {
             return chrome;
         } else if (/firefox/i.test(userAgent)) {
             return firefox;
-        } else if (!!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)) {
+        } else if (!!navigator.userAgent.match(/Version\/[\d.]+.*Safari/)) {
             return safari;
         }
 

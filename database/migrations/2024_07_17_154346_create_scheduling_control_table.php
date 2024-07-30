@@ -17,6 +17,9 @@ return new class extends Migration
             $this->extracted($table);
             $table->foreign('service_id')->references('id')->on('services');
         });
+//        Schema::create('scheduling_control_residential_repetition',function (Blueprint $table){
+//
+//        });
         Schema::create('scheduling_control_commercial', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('schedule_id');

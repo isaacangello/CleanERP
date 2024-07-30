@@ -58,7 +58,6 @@ class FinanceController extends Controller
             'services.minus',
             'employees.name as emp_name',
             'customers.name as cust_name',
-            'customers.price_weekly',
             'customers.address'
             )->get();
         $collection_result1 =  DB::table('services')->where('employee2_id', $employee_id)
@@ -77,7 +76,6 @@ class FinanceController extends Controller
             'services.minus',
             'employees.name as emp_name',
             'customers.name as cust_name',
-            'customers.price_weekly',
             'customers.address'
             )->get();
 
