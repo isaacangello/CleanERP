@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Employee;
 use App\Models\Schedule;
 use Carbon\Carbon;
+use DOMElement;
 use Illuminate\Http\Request;
 use App\Treatment\DateTreatment;
 
@@ -84,7 +85,30 @@ class CommercialController extends Controller
             $msg = $request->msg;
         }
         $data = $this->schedule->with('customer','employee')->get();
+        $div_exemple = "
+        <div class='card green darken-3 white-text'>
+            <div class='card-content card-content-min'>
+                <span class='card-title font-12'> dayName - day </span>
+                <p>
+                <table class='table-home green darken-3 centered'>
+                    <tbody>
+                            <tr class='yellow-row'><td>&nbsp;</td></tr>
+                            <tr class='yellow-row'><td>&nbsp;</td></tr>
+                            <tr class='yellow-row'><td>&nbsp;</td></tr>
+                    </tbody>
+                </table>
 
+                </p>
+            </div>
+        </div>
+
+        
+        ";
+
+        $div_card= new DOMElement('div');
+        $div_card->setAttribute('class','card');
+        var_dump($div_card);
+        dd('true');
         $schedulesPerDay = [];
 //        dd($data);
         foreach ($data as $item){
@@ -106,6 +130,8 @@ class CommercialController extends Controller
                 $schedulesPerDay['Friday'][] =  $item;
             }
         }
+
+
 //        dd($schedulesPerDay);
        return view('commercial.schedule',
            [

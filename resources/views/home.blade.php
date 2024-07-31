@@ -18,7 +18,7 @@
                     <h2 class="uppercase uppercase-text">welcome, {{ Auth::user()->name }}</h2>
                 </div>
                 <div class="body align-center">
-                        <p class="font-16">{{ now()->timezone('America/New_York')->format('l jS \\of F Y ') }}</p>
+                        <p class="font-12">{{ now()->timezone('America/New_York')->format('l jS \\of F Y ') }}</p>
                     <p class="font-14"><b>Brasil:<span class="label bg-cyan p-5" id="brazil_time"></span> / <b>Florida:</b> <span class="label bg-teal p-5" id="florida_time"></span> </b></p>
                 </div>
         </div>
@@ -34,11 +34,11 @@
                                 <table class="table table-hover dashboard-task-infos highlight">
                                     <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Type</th>
-                                        <th>Title</th>
-                                        <th>Status</th>
-                                        <th>Link</th>
+                                        <th class="flow-text">#</th>
+                                        <th class="flow-text">Type</th>
+                                        <th class="flow-text">Title</th>
+                                        <th class="hide-on-small-and-down flow-text">Status</th>
+                                        <th class="hide-on-small-and-down flow-text">Link</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -53,38 +53,38 @@
                                         https://meet.google.com/mec-cngi-feo
                                     -->
                                     <tr>
-                                        <td>1</td>
-                                        <td>Call</td>
-                                        <td><a target="_blank" href="https://meet.google.com/pbx-ngck-evi"><span class="label bg-green p-5">Chamada Principal</span></a></td>
-                                        <td>Unknown</td>
-                                        <td>
+                                        <td class="flow-text">1</td>
+                                        <td class="flow-text">Call</td>
+                                        <td class="font-14"><a target="_blank" href="https://meet.google.com/pbx-ngck-evi"><span class="label bg-green p-5 ">Chamada Principal</span></a></td>
+                                        <td class="hide-on-small-and-down flow-text">Unknown</td>
+                                        <td class="hide-on-small-and-down flow-text">
                                             <span>https://meet.google.com/pbx-ngck-evi</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>Call</td>
-                                        <td><a target="_blank" href="https://meet.google.com/vvh-zxmn-cjc"><span class="label bg-blue p-5">Chamada Residencial</span></a></td>
-                                        <td>Unknown</td>
-                                        <td>
+                                        <td><a target="_blank" href="https://meet.google.com/vvh-zxmn-cjc"><span class="label bg-blue p-5 font-14">Chamada Residencial</span></a></td>
+                                        <td class="hide-on-small-and-down flow-text">Unknown</td>
+                                        <td class="hide-on-small-and-down flow-text">
                                             <span>https://meet.google.com/vvh-zxmn-cjc</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
                                         <td>Call</td>
-                                        <td><a target="_blank" href="https://meet.google.com/cot-jkcr-dgw"><span class="label bg-light-blue p-5">Chamada Comercial</span></a></td>
-                                        <td>Unknown</td>
-                                        <td>
+                                        <td><a target="_blank" href="https://meet.google.com/cot-jkcr-dgw"><span class="label bg-light-blue p-5 font-14">Chamada Comercial</span></a></td>
+                                        <td class="hide-on-small-and-down flow-text">Unknown</td>
+                                        <td class="hide-on-small-and-down flow-text">
                                             <span>https://meet.google.com/cot-jkcr-dgw</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>4</td>
                                         <td>Call</td>
-                                        <td><a target="_blank" href="https://meet.google.com/mec-cngi-feo"><span class="label bg-orange p-5">Chamada Extra</span></a></td>
-                                        <td>Unknown</td>
-                                        <td>
+                                        <td><a target="_blank" href="https://meet.google.com/mec-cngi-feo"><span class="label bg-orange p-5 font-14">Chamada Extra</span></a></td>
+                                        <td class="hide-on-small-and-down flow-text">Unknown</td>
+                                        <td class="hide-on-small-and-down flow-text">
                                             <span>https://meet.google.com/mec-cngi-feo</span>
                                         </td>
                                     </tr>

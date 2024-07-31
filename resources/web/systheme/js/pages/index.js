@@ -157,7 +157,7 @@ if (indexloaded === false) {
         }
 // var hidden1 = "true";
 
-        console.log('Arquivo index.js');
+        //console.log('Arquivo index.js');
 
 // $("a.hide-left-sidebar").click(function () {
 //     /*

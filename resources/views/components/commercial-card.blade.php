@@ -10,7 +10,6 @@
         */
     -->
 @if($dayName != "Saturday" and $dayName != "Sunday" )
-    <div>
 
         <div class="card green darken-3 white-text">
             <div class="card-content card-content-min">
@@ -27,6 +26,6 @@
                 </p>
             </div>
         </div>
-    </div>
+
 @endif
 
