@@ -105,10 +105,10 @@ class CommercialController extends Controller
         
         ";
 
-        $div_card= new DOMElement('div');
-        $div_card->setAttribute('class','card');
-        var_dump($div_card);
-        dd('true');
+//        $div_card= new DOMElement('div');
+//        $div_card->setAttribute('class','card');
+//        echo var_dump($div_card);
+//        dd('true');
         $schedulesPerDay = [];
 //        dd($data);
         foreach ($data as $item){
