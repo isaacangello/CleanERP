@@ -2,30 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use AllowDynamicProperties;
+use App\Helpers\Funcs;
 use App\Models\Customer;
 use App\Models\Employee;
 use App\Models\Schedule;
 use Carbon\Carbon;
 use DOMElement;
+use DOMDocument;
 use Illuminate\Http\Request;
 use App\Treatment\DateTreatment;
-
-class CommercialController extends Controller
+use Spatie\Html\Html;
+use Spatie\Html\Elements\Div;
+use Spatie\Html\Elements\Element;
+#[AllowDynamicProperties] class CommercialController extends Controller
 {
 
     public DateTreatment $date;
     public Employee $employee;
     public Customer $customer;
     public Schedule $schedule;
-    public function __construct()
+    public Html $html;
+    public function __construct(Request $request)
     {
         $this->date = new DateTreatment();
         $this->employee = new Employee();
         $this->customer = new Customer();
         $this->schedule = new Schedule();
+        $this->html = new Html($request);
     }
 
-    //
     public function index(Request $request, $msg = null)
     {
         /**
@@ -84,7 +90,8 @@ class CommercialController extends Controller
         if($request->msg !== null and $msg === null ){
             $msg = $request->msg;
         }
-        $data = $this->schedule->with('customer','employee')->get();
+        $data = $this->schedule->with('customer','employee')->whereDate('schedule_date','>=' , $this->from )->whereDate('schedule_date','<=' , $this->till )->get();
+//        dd($this->from);
         $div_exemple = "
         <div class='card green darken-3 white-text'>
             <div class='card-content card-content-min'>
@@ -104,11 +111,10 @@ class CommercialController extends Controller
 
         
         ";
+        $textRowTd = ['text1','text2','text3'];
 
-//        $div_card= new DOMElement('div');
-//        $div_card->setAttribute('class','card');
-//        echo var_dump($div_card);
-//        dd('true');
+        //dd($card);
+
         $schedulesPerDay = [];
 //        dd($data);
         foreach ($data as $item){
@@ -130,19 +136,32 @@ class CommercialController extends Controller
                 $schedulesPerDay['Friday'][] =  $item;
             }
         }
+        $cards = '';
+//                dd($schedulesPerDay);
+        foreach ($schedulesPerDay as $dayName => $dataSchedule){
+            if($dayName != "Saturday" and $dayName != "Sunday" ){
+                $textRowTd = [];
+                foreach ($dataSchedule as $item) {
+                    $textRowTd [] = Funcs::nameShort($item->denomination).':'.Funcs::nameShort($item->employee->name);
+                }
+//                dd();echo"<br><br><hr><br><br>";
+                $cards .=  Funcs::createCommercialCard($textRowTd, "$dayName - ".Carbon::create($dataSchedule[0]->schedule_date)->format('m/d/Y'));
+            }
+        }
 
 
-//        dd($schedulesPerDay);
-       return view('commercial.schedule',
-           [
-               'dataArr' => $schedulesPerDay,
-               'weekArr' => $weekarr,
-               'numWeek' => $numweek,
-               'year' => $year,
-               'employeesCol' => $this->employee->all()->sortBy('name'),
-               'customersCol' => $this->customer->all()->sortBy('name'),
-               'msg' => $msg,
-           ]
-       );
+        return view('commercial.schedule',
+            [
+                'dataArr' => $schedulesPerDay,
+                'weekArr' => $weekarr,
+                'numWeek' => $numweek,
+                'cards' => $cards,
+                'year' => $year,
+                'employeesCol' => $this->employee->all()->sortBy('name'),
+                'customersCol' => $this->customer->all()->sortBy('name'),
+                'msg' => $msg,
+            ]
+        );
     }
 }
+//

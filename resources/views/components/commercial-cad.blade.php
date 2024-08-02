@@ -23,7 +23,7 @@
                 <!-- Divider ######################################################################################################-->
                 <form id="schedule-form" action="{{ route('services.store') }}" method="post">
                     @csrf
-                    <input type="hidden" name="who_saved"  value="{{Auth::user()->name}}">
+                    <input type="hidden" name="who_saved"  value="{{\App\Helpers\Funcs::replaceSpaces(Auth::user()->name)}}">
                     <input type="hidden" name="who_saved_id"  value="{{Auth::user()->id}}">
                     <!-- Row ######################################################################################################-->
                     <div class="row">

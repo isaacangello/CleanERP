@@ -2265,6 +2265,19 @@ margin-bottom: 9px;}
 
 .padding-0 {
     padding: 0; }
+/**
+    widths
+ */
+.w-1{
+  width:1%;
+}
+.w-49p{
+    width:49%;
+}
+.w-50p{
+  width: 50%;
+}
+
 
 .font-6 {
     font-size: 6px; }
@@ -2402,7 +2415,7 @@ margin-bottom: 9px;}
     font-size: 50px; }
 
 .align-left {
-    text-align: left; }
+    text-align: left!important; }
 
 .align-center {
     text-align: center; }
@@ -9131,7 +9144,11 @@ textarea.custom-textarea:focus-visible{
     background-color: #8BC34A !important;
     padding: 4px;
 }
-
+.label-crud{
+    color: white;
+    background-color: #8BC34A !important;
+    padding: 4px;
+}
 input.form-control {
     margin-bottom: 0!important;
     border-bottom: none!important;
@@ -9531,5 +9548,6 @@ input.form-control:focus-visible{
     width: 19.8%;
     /*border: 1px solid lightslategrey;*/
 }
+
 
 

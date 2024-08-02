@@ -1,5 +1,5 @@
 <div>
-
+        @php use  App\Helpers\Funcs; @endphp
        <div id="new-service" class="modal bottom-sheet">
            <div class="modal-header">
                <h6>Create a new service.</h6>
@@ -22,7 +22,7 @@
                     </div>
                     <form id="service-form" action="{{ route('services.store') }}" method="post">
                     @csrf
-                        <input type="hidden" name="who_saved"  value="{{Auth::user()->name}}">
+                        <input type="hidden" name="who_saved"  value="{{Funcs::replaceSpaces(Auth::user()->name)}}">
                         <input type="hidden" name="who_saved_id"  value="{{Auth::user()->id}}">
                     <div class="row">
                         <div class=" col s12 m4">

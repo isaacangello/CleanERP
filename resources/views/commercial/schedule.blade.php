@@ -135,11 +135,11 @@
 
                         </div>
 
-                        <div class="row grid-schedules">
+                        <div  id="renderSchedule" class="row grid-schedules">
 
-                            @foreach($weekArr as $key => $day)
-                                <x-commercial-card :day-name="$key" :$day  />
-                            @endforeach
+
+                                {!! $cards !!}
+
 
                         </div> <!--grid system row-->
                     </div> <!--card body-->
