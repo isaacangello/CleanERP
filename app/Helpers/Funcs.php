@@ -52,13 +52,15 @@ class Funcs
     public static function nameShort(String $name,string $delimiter = ' ',int $index = 0):string
     {
         if(sizeof(explode($delimiter,trim($name))) > 1) {
+            $exploded = explode($delimiter,$name);
             if ($index > 0) {
                 $string = '';
-
                 for ($i=0;$i<=$index;$i++){
-                    $string .= explode($delimiter,$name)[$i]." ";
+                    $string .= $exploded[$i]." ";
                 }
                 return trim($string);
+            }else{
+                return trim($exploded[0]);
             }
         }
         return $name;
@@ -79,7 +81,7 @@ class Funcs
                     Div::create()->class('card-content card-content-min')
                         ->addChild(Element::withTag('span')->class('card-title font-12')->text($cardTile))
                         ->addChild(Element::withTag('p')->addChild(
-                            Element::withTag('table')->class('table-home green darken-3 centered')->children($trTds,function ($trTds){
+                            Element::withTag('table')->class('table-home green darken-3 ')->children($trTds,function ($trTds){
                                 $leftSpan = Element::withTag('span')->class('w-49p align-left')->text(explode(':',$trTds)[0]);
                                 $rightSpan = Element::withTag('span')->class('p-l-5 blue-grey-text text-darken-3')->text(' : '.explode(':',$trTds)[1]);
                                 Element::withTag('span')->text(explode(':',$trTds)[0]);
