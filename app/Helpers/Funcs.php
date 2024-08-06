@@ -91,7 +91,16 @@ class Funcs
 
                 )
         )->render();
-
     }
+    public function createResidentialCard():bool{
+        return true;
+    }
+    public function createCustomerList():bool{
+        return true;
+    }
+    public function createEmployeeList():bool{
+        return true;
+    }
+
 
 }
