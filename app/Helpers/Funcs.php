@@ -75,22 +75,26 @@ class Funcs
     }
 
     public static function createCommercialCard(array $trTds,string $cardTile):string{
-        return Div::create()->addChild(
-            Div::create()->class('card green darken-3 white-text')
-                ->addChild(
-                    Div::create()->class('card-content card-content-min')
-                        ->addChild(Element::withTag('span')->class('card-title font-12')->text($cardTile))
-                        ->addChild(Element::withTag('p')->addChild(
-                            Element::withTag('table')->class('table-home green darken-3 ')->children($trTds,function ($trTds){
-                                $leftSpan = Element::withTag('span')->class('w-49p align-left')->text(explode(':',$trTds)[0]);
-                                $rightSpan = Element::withTag('span')->class('p-l-5 blue-grey-text text-darken-3')->text(' : '.explode(':',$trTds)[1]);
-                                Element::withTag('span')->text(explode(':',$trTds)[0]);
-                                return Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->class('font-10')->addChildren([$leftSpan,$rightSpan]));
-                            })
-                        ))
+        //dd($trTds);
+        $trs_temp = '';
+        foreach ($trTds as $EmpNameKey => $arr){
+            //dd($arr);
+            $trs_temp .= Element::withTag('tr')->class('label-green-lighten-1')->addChild(Element::withTag('td')->class('align-center')->text($EmpNameKey));
+            foreach ($arr as $value){
+                $trs_temp .= Element::withTag('tr')->class('orange-row')->addChild(Element::withTag('td')->text($value->denomination));
+            }
+        }
 
-                )
-        )->render();
+        return Div::create()->addChild(
+                    Div::create()->class('card green darken-3 white-text')
+                        ->addChild(
+                                    Div::create()->class('card-content card-content-min')
+                                    ->addChild(Element::withTag('span')->class('card-title font-12')->text($cardTile))
+                                    ->addChild(Element::withTag('p')->addChild(Element::withTag('table')->class('table-home green darken-3')->addchild($trs_temp))
+                                )
+                        )
+                )->render();
+
     }
     public function createResidentialCard():bool{
         return true;

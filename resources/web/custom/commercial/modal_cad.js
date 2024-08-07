@@ -25,8 +25,16 @@ if(isValidElement(scheduleForm)){
         }
         axios.post('  api/commercial-schedule',jsonData)
             .then(function (response) {
-                console.log(response)
-
+                //console.log(response)
+                axios.get('api/commercial-schedule')
+                    .then(function (resp) {
+                        console.log(resp)
+                            document.getElementById('renderSchedule').innerHTML = resp.data.cards
+                         var elem = document.querySelector('#new-schedule')
+                        var instance = M.Modal.getInstance(elem);
+                        instance.close()
+                        }
+                    )
             }).catch(function (error) {
             let errorBox =  document.getElementById('error_infobox')
             let errorInnexText = document.getElementById('error-text')

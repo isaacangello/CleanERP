@@ -77,52 +77,90 @@ class CommercialController extends Controller
         $weekarr['Saturday'] = Carbon::create($weekarr['Saturday'])->format('m/d/Y');
         $weekarr['Sunday'] = Carbon::create($weekarr['Sunday'])->format('m/d/Y');
 
-        /**
-         * OLLAMA CODE
-         */
-//        $schedules = DB::table('schedules')
-//            ->join('customers', 'schedules.customer_id', '=', 'customers.id')
-//            ->join('employees', 'schedules.employee_id', '=', 'employees.id')
-//            ->select(
-//                'schedules.*',
-//                DB::raw('DAYNAME(schedule_date) as day_of_week'),
-//                'customers.name as customer_name',
-//                'employees.name as employee_name'
-//            )
-//            ->whereNull('schedules.deleted_at')
-//            ->get();
-//
-//// Agora, você pode agrupar os registros pelo dia da semana:
-//        $groupedSchedules = $schedules->groupBy(function ($item) {
-//            return Carbon::parse($item->schedule_date)->dayOfWeek;
-//        });
+        $employees =  $this->employee->all()->sortBy('name');
+
+        foreach ($employees as $row){
+            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$numweek);;
+        }
 
 //        dd($filteredWeekGroup);
         // mensagem do formulario
         if($request->msg !== null and $msg === null ){
             $msg = $request->msg;
         }
-        $data = $this->schedule->with('customer','employee')->get();
-        $groupedSchedules = $data->groupBy(function ($item) {
-            return Carbon::parse($item->schedule_date)->dayOfWeek;
-        });
+        $data = $this->schedule->with('customer','employee')->whereDate('schedule_date','>=' , $this->from )->whereDate('schedule_date','<=' , $this->till )->orderBy('schedule_date')->get();
+//        dd($this->from);
+        $div_exemple = "
+        <div class='card green darken-3 white-text'>
+            <div class='card-content card-content-min'>
+                <span class='card-title font-12'> dayName - day </span>
+                <p>
+                <table class='table-home green darken-3 centered'>
+                    <tbody>
+                            <tr class='yellow-row'><td>&nbsp;</td></tr>
+                            <tr class='yellow-row'><td>&nbsp;</td></tr>
+                            <tr class='yellow-row'><td>&nbsp;</td></tr>
+                    </tbody>
+                </table>
+
+                </p>
+            </div>
+        </div>
+
+        
+        ";
+        $textRowTd = ['text1','text2','text3'];
+
+        //dd($card);
+
         $schedulesPerDay = [];
-        foreach ($groupedSchedules as $item){
+//        dd($data);
+        foreach ($data as $item){
+//            echo $item->schedule_date."<br>";
             $scheduleDateCarbon = Carbon::create($item->schedule_date);
             if($scheduleDateCarbon->isMonday()){
-                $schedulesPerDay['monday'][] =  $item->toArray();
+                $schedulesPerDay['Monday'][] =  $item;
+            }
+            if($scheduleDateCarbon->isTuesday()){
+                $schedulesPerDay['Tuesday'][] =  $item;
+            }
+            if($scheduleDateCarbon->isWednesday()){
+                $schedulesPerDay['Wednesday'][] =  $item;
+            }
+            if($scheduleDateCarbon->isThursday()){
+                $schedulesPerDay['Thursday'][] =  $item;
+            }
+            if($scheduleDateCarbon->isFriday()){
+                $schedulesPerDay['Friday'][] =  $item;
+            }
+        }
+        $schedulesPerDayAndEmployee = [];
+        //dd(array_key_exists()$schedulesPerDay['Friday']);
+        foreach ($schedulesPerDay as $dayName => $dataSchedule){
+            $schedulesPerDayAndEmployee[$dayName] = [];
+            foreach ($dataSchedule as $data){
+                $schedulesPerDayAndEmployee[$dayName][$data->employee->name][] = $data;
+            }
+        }
+        //dd($schedulesPerDayAndEmployee);
+        $cards = '';
+        foreach ($schedulesPerDayAndEmployee as $dayName => $dataSchedule){
+            if($dayName != "Saturday" and $dayName != "Sunday" ){
+                $textRowTd = [];
+                //dd($dataSchedule);
+                $cards .=  Funcs::createCommercialCard($dataSchedule, "$dayName - ".$weekarr[$dayName]);
             }
         }
        return response()->json(
            [
-//               'view' => 'commercial.schedule',
-               'dataArr' =>  $groupedSchedules,
-//               'weekArr' => $weekarr,
-//               'numWeek' => $numweek,
-//               'year' => $year,
-//               'employeesCol' => $this->employee->all()->sortBy('name'),
-//               'customersCol' => $this->customer->all()->sortBy('name'),
-//               'msg' => $msg,
+               'view' => 'commercial.schedule',
+                'cards' => $cards,
+               'weekArr' => $weekarr,
+               'numWeek' => $numweek,
+               'year' => $year,
+               'employeesCol' => $this->employee->all()->sortBy('name'),
+               'customersCol' => $this->customer->all()->sortBy('name'),
+               'msg' => $msg,
            ],
            200
        );

@@ -17,9 +17,9 @@ class ScheduleFactory extends Factory
     public function definition(): array
     {
         return [
-            'customer_id' => fake()->numberBetween(1,10000),
+            'customer_id' => fake()->numberBetween(1,21),
             'employee_id'=> fake()->numberBetween(1,10000),
-            'schedule_date'=> fake()->dateTimeInInterval('2024-07-22 08:00:49', '+ 5 days'),
+            'schedule_date'=> fake()->dateTimeInInterval(now()->format('Y-m-d H:i:s'), '+ 5 days'),
             'notes'=>fake()->paragraph,
             'instructions'=>fake()->paragraph,
             'loop' => '["Monday","Tuesday","Wednesday","Thursday","Friday"]',

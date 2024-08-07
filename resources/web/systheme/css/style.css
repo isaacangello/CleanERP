@@ -2418,7 +2418,7 @@ margin-bottom: 9px;}
     text-align: left!important; }
 
 .align-center {
-    text-align: center; }
+    text-align: center!important; }
 
 .align-right {
     text-align: right; }
@@ -8980,6 +8980,13 @@ html.ie11 .bs-searchbox .form-control {
     font-weight: bold;
     font-size: var(--clamp-size) ;
 }
+.table-home tbody tr.orange-row:hover td {
+    background-color: whitesmoke;
+    text-decoration: underline;
+    color: #f57f17;
+    font-weight: bold;
+    font-size: var(--clamp-size) ;
+}
 .table-home tbody tr.orange-row td span > span {
     color: #f57f17;
     font-weight: bold;
@@ -8987,6 +8994,7 @@ html.ie11 .bs-searchbox .form-control {
 }
 .table-home tbody tr.orange-row:hover td span > span {
     color:  #f57f17;
+    text-decoration: underline;
     font-weight: bold;
     font-size: var(--clamp-size);
 }
@@ -8996,20 +9004,20 @@ html.ie11 .bs-searchbox .form-control {
     font-size: var(--clamp-size);
 
 }
-.table-home tbody tr:hover > td{
+.table-home tbody tr.yellow-row:hover > td{
     background-color:#fff176;
     color: #2e7d32;
     font-weight: bold;
     font-size: var(--clamp-size);
 
 }
-.table-home tbody tr:hover td a {
+.table-home tbody tr.yellow-row:hover td a {
     color: #2e7d32;
     font-weight: bold;
     font-size: var(--clamp-size);
 
 }
-.table-home tbody tr:hover td a{
+.table-home tbody tr.yellow-row:hover td a{
     color: #00695c;
     font-weight: bold;
     font-size: var(--clamp-size);
@@ -9018,9 +9026,18 @@ html.ie11 .bs-searchbox .form-control {
 /* label of date on home screen */
 .label-date-home{
     padding: 5px;
-    color: #2e7d32;
+    color: #FFFFFF;
     font-weight: bold;
     text-transform: uppercase;
+    text-align: center;
+}
+.label-green-lighten-1{
+    padding: 5px;
+    color: black;
+    background-color: #66bb6a;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
 }
 .btn-xm{
     border:none;

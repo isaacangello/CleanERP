@@ -90,7 +90,11 @@ use Spatie\Html\Elements\Element;
         if($request->msg !== null and $msg === null ){
             $msg = $request->msg;
         }
-        $data = $this->schedule->with('customer','employee')->whereDate('schedule_date','>=' , $this->from )->whereDate('schedule_date','<=' , $this->till )->get();
+        $data = $this->schedule->with('customer','employee')
+            ->whereDate('schedule_date','>=' , $this->from )
+            ->whereDate('schedule_date','<=' , $this->till )
+            ->orderBy('schedule_date')
+            ->get();
 //        dd($this->from);
         $div_exemple = "
         <div class='card green darken-3 white-text'>
@@ -121,7 +125,7 @@ use Spatie\Html\Elements\Element;
 //            echo $item->schedule_date."<br>";
             $scheduleDateCarbon = Carbon::create($item->schedule_date);
             if($scheduleDateCarbon->isMonday()){
-                $schedulesPerDay['monday'][] =  $item;
+                $schedulesPerDay['Monday'][] =  $item;
             }
             if($scheduleDateCarbon->isTuesday()){
                 $schedulesPerDay['Tuesday'][] =  $item;
@@ -136,18 +140,23 @@ use Spatie\Html\Elements\Element;
                 $schedulesPerDay['Friday'][] =  $item;
             }
         }
-        $cards = '';
-//                dd($schedulesPerDay);
+        $schedulesPerDayAndEmployee = [];
+        //dd(array_key_exists()$schedulesPerDay['Friday']);
         foreach ($schedulesPerDay as $dayName => $dataSchedule){
-            if($dayName != "Saturday" and $dayName != "Sunday" ){
-                $textRowTd = [];
-                foreach ($dataSchedule as $item) {
-                    $textRowTd [] = Funcs::nameShort($item->denomination).':'.Funcs::nameShort($item->employee->name);
+            $schedulesPerDayAndEmployee[$dayName] = [];
+                foreach ($dataSchedule as $data){
+                        $schedulesPerDayAndEmployee[$dayName][$data->employee->name][] = $data;
                 }
-//                dd();echo"<br><br><hr><br><br>";
-                $cards .=  Funcs::createCommercialCard($textRowTd, "$dayName - ".Carbon::create($dataSchedule[0]->schedule_date)->format('m/d/Y'));
-            }
         }
+                //dd($schedulesPerDayAndEmployee);
+        $cards = '';
+            foreach ($schedulesPerDayAndEmployee as $dayName => $dataSchedule){
+                if($dayName != "Saturday" and $dayName != "Sunday" ){
+                    $textRowTd = [];
+                    //dd($dataSchedule);
+                    $cards .=  Funcs::createCommercialCard($dataSchedule, "$dayName - ".$weekarr[$dayName]);
+                    }
+            }
 
 
         return view('commercial.schedule',
