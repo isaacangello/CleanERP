@@ -33,6 +33,11 @@ if(isValidElement(scheduleForm)){
                          var elem = document.querySelector('#new-schedule')
                         var instance = M.Modal.getInstance(elem);
                         instance.close()
+                        Toast.fire({
+                            icon: "success",
+                            title: `Schedule has successfully saved!`
+                        });
+
                         }
                     )
             }).catch(function (error) {
