@@ -43,11 +43,6 @@
                                         }
                                     @endphp
                                     <select class="materialize-select" id="cad-schedule-customer_id" name="customer_id" >
-                                        @php
-                                            if(!empty(old('customer_id'))){
-
-                                            }
-                                        @endphp
                                         <option @if(empty(old('customer_id'))) selected @endif  value="">Customer</option>
                                         @foreach($customers as  $value)
                                             @if(old('customer_id') == $value->id)

@@ -8987,6 +8987,19 @@ html.ie11 .bs-searchbox .form-control {
     font-weight: bold;
     font-size: var(--clamp-size) ;
 }
+.table-home tbody tr.orange-row td a {
+    background-color: whitesmoke;
+    color: #f57f17 !important;
+    font-weight: bold;
+    font-size: var(--clamp-size) ;
+}
+.table-home tbody tr.orange-row:hover td a {
+    background-color: whitesmoke;
+    text-decoration: underline;
+    color: #f57f17;
+    font-weight: bold;
+    font-size: var(--clamp-size) ;
+}
 .table-home tbody tr.orange-row td span > span {
     color: #f57f17;
     font-weight: bold;
@@ -9026,7 +9039,7 @@ html.ie11 .bs-searchbox .form-control {
 /* label of date on home screen */
 .label-date-home{
     padding: 5px;
-    color: #FFFFFF;
+    color: #2e7d32;
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;

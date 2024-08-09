@@ -32,9 +32,6 @@ function field_change(element,urlBase,token){
                 setTimeout( ()=> {
                     element.classList.remove('teal', 'lighten-5')
                 },1000)
-
-
-
             }
 
     )
@@ -43,8 +40,6 @@ function field_change(element,urlBase,token){
             setTimeout(function () {
                 element.classList.remove('red', 'lighten-5')
             },1000)
-
-
         }
     )
 

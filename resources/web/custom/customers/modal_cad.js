@@ -39,7 +39,7 @@ function other_email() {
  * @type {string}
  */
 let oneCol = `
-                        <div class="col s12 m3">
+                        
                             <ul class="collection">
                                 <li class="collection-item">
                                     <div class="form-group" style="margin:0;padding: 0;">
@@ -58,7 +58,7 @@ let oneCol = `
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        
 `
 
 /**
@@ -76,7 +76,11 @@ let oneCol = `
         if(!rowBilling.classList.contains('row') && !rowBilling.classList.contains('clearfix')){
             rowBilling.classList.add('row', 'clearfix')
         }
-        rowBilling.innerHTML = rowBilling.innerHTML + oneCol
+
+        let parser = document.createElement('div');
+        parser.classList.add("col" ,"s12", "m3")
+        parser.innerHTML = oneCol
+        rowBilling.append(parser) //= rowBilling.innerHTML +
         if(rowBilling.classList.contains('hide')){
             rowBilling.classList.remove('hide')
         }

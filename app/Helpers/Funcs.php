@@ -55,7 +55,7 @@ class Funcs
             $exploded = explode($delimiter,$name);
             if ($index > 0) {
                 $string = '';
-                for ($i=0;$i<=$index;$i++){
+                for ($i=0;$i<$index;$i++){
                     $string .= $exploded[$i]." ";
                 }
                 return trim($string);
@@ -81,7 +81,15 @@ class Funcs
             //dd($arr);
             $trs_temp .= Element::withTag('tr')->class('label-green-lighten-1')->addChild(Element::withTag('td')->class('align-center')->text($EmpNameKey));
             foreach ($arr as $value){
-                $trs_temp .= Element::withTag('tr')->class('orange-row')->addChild(Element::withTag('td')->text($value->denomination));
+                $trs_temp .= Element::withTag('tr')->class('orange-row')->addChild(Element::withTag('td')
+                    ->addChild(Element::withTag('a')->attributes([
+                        'data-schedule-id' => $value->id,
+                        'href' => '#scheduleModal',
+                        'class'=> 'btn-link-underline modal-trigger m-l-5',
+                        'onclick' => "schedule_push(this)",
+
+                    ])
+                        ->text($value->denomination)));
             }
         }
 

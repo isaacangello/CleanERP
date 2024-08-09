@@ -20,10 +20,11 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
+{{--                    @php dd($weekArr); @endphp--}}
                     <div class="header">
                             <span>
                               Week Number   <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From
-                                            <span class="label-date-home">{{ $weekArr['Monday'] }}</span> - Till
+                                            <span class="label-date-home">{{ $weekArr["Monday"] }}</span> - Till
                                             <span class="label-date-home">{{ $weekArr['Saturday'] }} </span>
                             </span>
                         <x-msgs :$msg />
@@ -149,12 +150,13 @@
             </div><!-- col -->
         </div>  <!-- row -->
     </div>
+
     @php
         if(isset($employeesCol)){$employeesItems = $employeesCol;}else{$employeesItems = false;}
         if(isset($customersCol)){$customersItems = $customersCol;}else{$customersItems = false;}
 //        dd($employeesCol);
     @endphp
-    <x-service-details :employees="$employeesItems" :customers="$customersItems" />
+    <x-schedule-details :employees="$employeesItems" :customers="$customersItems" />
 @endsection
 
 {{-- inclusção de scripts  no final no corpo--}}

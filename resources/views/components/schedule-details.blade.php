@@ -11,7 +11,7 @@
                 <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
             </div>
             <div class="modal-body bg-white green-text text-darken-4">
-                <span class="hide" id="serviceId"></span>
+                <span class="hide" id="scheduleId"></span>
 
                 <table class="table-modal-services-details">
                     <tr>
