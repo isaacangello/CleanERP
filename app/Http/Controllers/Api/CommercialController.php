@@ -185,4 +185,49 @@ class CommercialController extends Controller
 
         return response()->json($response,200);
     }
+
+    public function update($id, Request $req)
+    {
+        //dd($req);
+        $dynamic_rules = array();
+        foreach ($this->schedule->rules as $input => $rule ){
+            if(array_key_exists($input, $req->all())){
+                $dynamic_rules[$input] = $rule;
+            }
+        }
+        $req->validate($dynamic_rules);
+        $result =  $this->schedule->find($id);
+        $valOld = "next";
+        switch ($req->fieldName){
+            case'drive_licence': $valOld = $result->drive_licence;
+            case'key': $valOld = $result->key;
+            case'more_girl': $valOld = $result->more_girl;
+            case'gate_code': $valOld = $result->gate_code;
+            default: $val_update = $req->value;
+        }
+        if($valOld != "next"){
+            if($valOld=== 0){$val_update = 1;}else{$val_update = 0;}
+        }
+        $result->update([
+            $req->fieldName => $val_update
+        ]);
+        $result->save();
+        return response()->json(['_token' => $req->_token,'fieldName' =>$req->fieldName,'value' => $val_update, $req->fieldName => $valOld ]);
+    }
+    public function query(Request $request,$id, $fields){
+        $firstParam = explode(':', $fields)[0];
+        $queryString = explode(':', $fields)[1];
+        if($firstParam === "with"){
+            if($fields){
+                $service = $this->schedule->selectRaw($queryString)->with('customer','employee', 'employee2')->find($id);
+                $status = 206;
+            }
+        }else{
+            $service = $this->schedule->selectRaw($queryString)->find($id);
+            $status = 206;
+        }
+        return response()->json($service,$status);
+    }
+
+
 }

@@ -50,11 +50,13 @@ function urlGenerate(model,response){
         case'services': urlBase = `api/services/${response}`; break;
         case'employees': urlBase = `api/employee/${response.data.employee1_id}` ; break;
         case'customers': urlBase = `api/customer/${response.data.customer_id}`; break;
+        case'commercial': urlBase = `api/commercial-schedule/${response.data.customer_id}`; break;
     }
     return urlBase
 }
 function modal_changes(element,token,model){
     const service_id = document.querySelector("#serviceId").innerText
+    const schedule_id = document.querySelector("#scheduleId").innerText
     switch (model) {
         case'services': field_change(element,urlGenerate(model,service_id),token); break;
         case'employees':
@@ -65,6 +67,12 @@ function modal_changes(element,token,model){
                         field_change(element,urlGenerate(model,resp),token)
                     })
             break;
+        case'commercial':
+            axios.get('api/commercial-schedule/'+schedule_id+'/all:id,customer_id,employee1_id')
+                .then(resp=>{
+                    // console.info(resp)
+                    field_change(element,urlGenerate(model,resp),token)
+                })
     }
     console.log("função modal_change service_id =>"+service_id)
 }

@@ -8944,11 +8944,11 @@ html.ie11 .bs-searchbox .form-control {
     #00695c teal darken-3
 */
 .table-home tbody th {
-    background-color:#2e7d32 ;
+    background-color:#274e13 ;
     color:white;
 }
 .table-home tbody td:first-child[colspan] {
-    background-color:#2e7d32 ;
+    background-color:#274e13 ;
     color:white;
     font-weight: bold;
     font-size: var(--clamp-size);
@@ -9047,7 +9047,7 @@ html.ie11 .bs-searchbox .form-control {
 .label-green-lighten-1{
     padding: 5px;
     color: black;
-    background-color: #66bb6a;
+    background-color: #6aa84f;
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
