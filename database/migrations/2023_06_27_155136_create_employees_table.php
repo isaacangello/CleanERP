@@ -6,13 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
      * `nome``phone``email``adress``nomerefone``phonerefone``nomereftwo``phonereftwo``notes``tipo``status``turnos``horario``cor`
      * RESIDENTIAL INACTIVE
      */
+
     public function up(): void
     {
+
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('name',120);
@@ -31,7 +34,9 @@ return new class extends Migration
             $table->string('status',30)->default('ACTIVE');
             $table->string('shift',30)->nullable();
             $table->string('username',120)->unique();
-            $table->string('password')->default('$2y$10$D6RqabA3OSgM91rUvSiYSeVMf9k6IyrqkVBOGwGOjCIV5bW2UrRWO')->nullable(); /* senha  1234 */
+            $table->string('password')->default(bcrypt('1234'))->nullable(); /* senha  1234 */
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->boolean('new_user')->default(true)->nullable();
             $table->softDeletes();
             $table->timestamps();
