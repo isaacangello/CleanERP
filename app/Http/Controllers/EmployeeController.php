@@ -23,11 +23,24 @@ class EmployeeController extends Controller
 
     }
 
-    public function index($msg = null){
+    public function index(string  $filter = 'RESIDENTIAL',$msg = null){
         if(!isset($this->configpage))$this->configpage = 50;
+        switch ($filter){
+            case'COMMERCIAL':
+                $filtered =  DB::table('employees')->where('type','=','COMMERCIAL' )->orderBy('name')->paginate($this->configpage);
+                $filtered_type = 'COMMERCIAL';
+                break;
+            default:
+                $filtered =  DB::table('employees')->where('type','=','RESIDENTIAL' )->orderBy('name')->paginate($this->configpage);
+                $filtered_type = 'RESIDENTIAL';
+            break;
+        }
+
+
         return view('employees',[
-            'employees' => DB::table('employees')->orderBy('name')->paginate($this->configpage),
-                'msg' =>$msg
+            'employees' => $filtered,
+                'msg' =>$msg,
+                "type" => $filtered_type
             ]
         );
     }
@@ -56,7 +69,7 @@ class EmployeeController extends Controller
         $return = $this->employee->create($array_data);
 
        $this->st->msg = 'The employee <b>'.$return->name.'</b> is registered!';
-        return redirect()->back()->with(['success'=>$this->st,"msg" => $msg]);
+        return redirect()->back()->with(['success'=>$this->st,"type" => $request->filtered_type,"msg" => $msg]);
 
 
     }

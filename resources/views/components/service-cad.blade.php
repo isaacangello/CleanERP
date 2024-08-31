@@ -24,6 +24,7 @@
                     @csrf
                         <input type="hidden" name="who_saved"  value="{{Funcs::replaceSpaces(Auth::user()->name)}}">
                         <input type="hidden" name="who_saved_id"  value="{{Auth::user()->id}}">
+                        <input type="hidden" name="numWeek"  value="{{$numWeek}}">
                     <div class="row">
                         <div class=" col s12 m4">
                             <div class="form-group">
@@ -41,11 +42,6 @@
                                         }
                                     @endphp
                                     <select class="materialize-select" id="select-cad-service-customer" name="customer_id" onchange="price_inject('#select-cad-service-charge')">
-                                        @php
-                                           if(!empty(old('customer_id'))){
-
-                                           }
-                                        @endphp
                                         <option @if(empty(old('customer_id'))) selected @endif  value="">Customer</option>
                                         @foreach($customers as  $value)
                                             @if(old('customer_id') == $value->id)

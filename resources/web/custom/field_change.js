@@ -145,3 +145,49 @@ function select_billings_changes(El,formId,token,customerId) {
         }
     )
 }
+
+// confirm or not service
+function startConfirmButtons() {
+        let btnConfirm = document.querySelectorAll('.btn-confirm-form')
+        console.log(btnConfirm)
+
+        for (let i = 0; i < btnConfirm.length; i++) {
+            btnConfirm[i].addEventListener('click',function (event) {
+                event.preventDefault()
+                let confirFormId =  btnConfirm[i].getAttribute('data-form-id')
+                let confirmForm = document.getElementById(confirFormId)
+
+                confirmForm.addEventListener('submit',function (event) {
+                    event.preventDefault()
+                })
+                    let data = new FormData(confirmForm)
+                    let dataJson = {
+
+                        '_token': data.get('_token'),
+                        'id': data.get('id'),
+                        'numWeek': data.get('numWeek'),
+                        'confirmed': data.get('confirmed'),
+
+                    }
+                    console.log(dataJson)
+                axios.post(' api/confirm',
+                    dataJson
+                ).then(function (response) {
+                    console.log(response.data.html)
+                    document.getElementById('htmlContent').innerHTML = response.data.html
+                    Toast.fire({
+                        icon: "success",
+                        title: response.data.message
+                    });
+
+                })
+                startConfirmButtons()
+
+            })
+
+        }
+}
+
+startConfirmButtons()
+
+

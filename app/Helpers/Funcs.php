@@ -104,8 +104,122 @@ class Funcs
                 )->render();
 
     }
-    public function createResidentialCard():bool{
-        return true;
+    public static function createResidentialCard($data,$numweek):string{
+//        dd($data);
+        $return = "";
+
+        foreach ($data as $EmpName => $array) {
+            $trs_temp = '';
+            $cardTitleSpan = Element::withTag('span')->class('card-title')->text($EmpName);
+
+            foreach ($array as $weekDayLabel => $arr) {
+                //dd($arr);
+                if (array_key_exists(0, $arr)) {
+                    $text_print = Funcs::carbonFormat($arr[0]->service_date);
+                } else {
+                    $text_print = "";
+
+                }
+                $trs_temp .= Element::withTag('tr')->addChild(Element::withTag('td')->attributes(
+                    [
+                        'class' => 'align-center',
+                        'colspan' => '1',
+                    ]
+                )->text($weekDayLabel . " " . $text_print));
+                $arrayCount = sizeof($arr);
+                if (collect($arr)->isNotEmpty()) {
+                    foreach ($arr as $value) {
+
+                        if (collect($value)->isNotEmpty()) {
+                            //dd($value);
+
+                            $confirmation_service = $value->confirmed?'green darken-3':'red darken-3';
+                            $spanRentalHouse = $value->cust_type === 'RENTALHOUSE'?Element::withTag('span')->class('material-symbols-outlined')->text('brightness_7'):'';
+                            $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')
+                                ->addChildren(
+                                        [
+                                            Div::create()->class('left valign-wrapper padding-0')->addChild(
+                                                Element::withTag('form')->attributes([ 'id'=>"confirmService$value->service_id"])->addChildren(
+                                                    [
+                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"_token" , 'value' => csrf_token() ]),
+                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"confirmed" , 'value' => $value->confirmed ]),
+                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"numWeek" , 'value' => $numweek ]),
+                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"id" , 'value' => $value->service_id ]),
+                                                        Element::withTag('button')->attributes(
+                                                            [
+                                                                'class'=> 'btn-confirm-form waves-effect waves-light btn-xm padding-0  z-depth-2 '.$confirmation_service,
+                                                                'data-form-id' => "confirmService$value->service_id"  ,
+                                                                'type'=>"submit",
+                                                            ])
+                                                            ->addChild(html()->span()->class('white-text')->text(Funcs::carbonFormat($value->service_date,'h')))
+                                                    ]
+                                                )
+                                            )
+
+                                                ,
+
+                                            Div::create()->class('valign-wrapper center-align padding-0')->addChildren(
+                                                [
+                                                    Element::withTag('a')->attributes(
+                                                        [
+                                                            'data-service-id' => $value->service_id,
+                                                            'href' => '#largeModal',
+                                                            'class' => 'btn-link-underline modal-trigger m-l-5',
+                                                            'onclick' => "push_run(this)",
+                                                        ]
+                                                    )->text(Funcs::nameShort($value->cust_name,' ',2))
+                                                    ,
+                                                    Element::withTag('span')->class('badge')->addChildren(
+                                                        [
+                                                            Element::withTag('span')->class('material-symbols-outlined')->text('mark_unread_chat_alt'),
+                                                            $spanRentalHouse
+
+                                                        ]
+                                                    )
+                                                ]
+                                            )
+                                        ]
+                                )
+                            );
+                        }
+                        //3º foreach
+                    }
+
+                }
+                switch($arrayCount) {
+                    case 1:$trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->text('&nbsp;'));break;
+                    case 0:
+                        $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->text('&nbsp;'));
+                        $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->text('&nbsp;'));
+                        break;
+
+
+                }
+
+                //2º foreach
+            }
+            //1º foreach
+            $return.= Div::create()->class("col s12 m3")
+                ->addChild(
+                            Div::create()->class('card green darken-3 white-text')
+                                ->addChild(
+                                    Div::create()->class('card-content card-content-min')
+                                    ->addChildren(
+                                        [
+                                        $cardTitleSpan,
+                                        Element::withTag('p')->addChild(
+                                            Element::withTag('table')->class('table-home green darken-3 centered')->addChild($trs_temp)
+                                        )
+                                        ]
+                                    )
+
+                                )
+
+                )->render();
+
+        }
+                //dd($return);
+        return $return;
     }
     public function createCustomerList():bool{
         return true;

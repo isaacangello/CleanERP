@@ -103,26 +103,7 @@ export function errorShow(error, errorBox, errorInnexText, idsPrefix) {
         }
     }
 }
-let html =`
-<div className="card green darken-3 white-text">
-    <div className="card-content card-content-min">
-        <span className="card-title font-12">Monday - 07/22/2024  </span>
-        <table className="table-home green darken-3 centered">
-            <tbody>
-            <tr className="yellow-row">
-                <td>&nbsp;</td>
-            </tr>
-            <tr className="yellow-row">
-                <td>&nbsp;</td>
-            </tr>
-            <tr className="yellow-row">
-                <td>&nbsp;</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-`
+
 export function mountCard(eLContainer, options) {
     if (typeof eLContainer === 'undefined') {
         eLContainer = false

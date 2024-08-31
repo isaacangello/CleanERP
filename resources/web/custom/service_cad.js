@@ -44,17 +44,14 @@ const ServiceForm = document.querySelector('#service-form')
 if (ServiceForm !== undefined){
 ServiceForm.addEventListener('submit',function (event) {
     event.preventDefault()
-    function RefreshPage(key,queryString) {
-        window.location.href = window.location.origin + window.location.pathname + "?"+key+"=" + queryString;
 
-        return false;
-    }
     let data = new FormData(this)
     let dataJson = {
 
         '_token': data.get('_token') ,
         'who_saved': data.get('who_saved'),
         'who_saved_id': data.get('who_saved_id'),
+        'numWeek': data.get('numWeek'),
         'customer_id': data.get('customer_id'),
         'employee1_id': data.get('employee1_id'),
         'employee2_id': data.get('employee2_id'),
@@ -66,14 +63,14 @@ ServiceForm.addEventListener('submit',function (event) {
         'notes': data.get('notes'),
         'instructions': data.get('instructions'),
     }
+    console.log(dataJson)
     axios.post('api/services', dataJson)
         .then(function (resp) {
             console.log("status retornado => "+resp.status)
             console.info(resp.data.message)
             console.info(resp)
-            // sessionStorage.setItem('status','service-true')
-            // sessionStorage.setItem('msg',resp.data.message)
-
+            // repopulate screen
+            document.querySelector("#htmlContent").innerHTML = resp.data.html
             // get instance of modal and close it
             let serviceCadModalElement = document.getElementById('new-service')
             let serviceCadModalInstance = M.Modal.getInstance(serviceCadModalElement)

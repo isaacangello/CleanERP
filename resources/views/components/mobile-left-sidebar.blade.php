@@ -25,88 +25,92 @@
                 </div>
         </div>
     </li>
-                <li class="header">MAIN NAVIGATION</li>
-                <li class="active sidenav-item" style="background-color: #FFFFFF;">
-                    <a href="{{route('home')}}" class="waves-effect">
-                        <i class="material-icons">home</i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li class="header">
-                    <span>SERVICES</span>
-                </li>
-                <li class="sidenav-item">
-                    <a href="javascript:void(0);" class="menu-toggle waves-effect" >
-                        <i class="material-icons">house</i>
-                        <span class="">
-                        Residencial
-                        </span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="javascript:void(0);" >
-                                <i class="material-icons">today</i>
-                                <span class="waves-effect">Services today</span>
-                            </a>
-                            <a href="{{route('week')}}" class="waves-effect">
-                                <i class="material-icons" style="font-size: 20px;">calendar_view_week</i>
-                                <span>Services Week</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidenav-item">
-                    <a href="javascript:void(0);" class="menu-toggle waves-effect">
-                        <i class="material-icons">factory</i>
-                        <span>Comercial</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="javascript:void(0);" class="waves-effect">
-                                <i class="material-icons" style="font-size: 20px;">today</i>
-                                <span>Services today</span>
-                            </a>
-                            <a href="javascript:void(0);" class="waves-effect">
-                                <i class="material-icons" style="font-size: 20px;">calendar_view_week</i>
-                                <span>Services Week</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="header">
-                    <span>REGISTER / VIEW</span>
-                </li>
-                <li class="sidenav-item">
-                    <a href="{{route('customers.index')}}" class="waves-effect">
-                        <i class="material-icons" style="font-size: 20px;">group_add</i>
-                        <span>Customers</span>
-                    </a>
-                </li>
-                <li class="sidenav-item">
-                    <a href="{{route('employees.index')}}" class="waves-effect">
-                        <i class="material-icons" style="font-size: 20px;">badge</i>
-                        <span>Employees</span>
-                    </a>
-                </li>
 
-                <li class="header">
-                    <span>FINANCES</span>
-                </li>
-                <li class="sidenav-item">
-                    <a href="{{ route('finances') }}" class="waves-effect">
-                        <i class="material-icons">price_change</i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li class="header">
-                    <span>AGENDA CO.</span>
-                </li>
-                <li class="sidenav-item">
-                    <a href="javascript:void(0);" class="waves-effect">
-                        <i class="material-icons">free_cancellation</i>
-                        <span>Tasks</span>
-                    </a>
-                </li>
+{{--                <li class="header">MAIN NAVIGATION</li>--}}
+{{--                <li class="active sidenav-item" style="background-color: #FFFFFF;">--}}
+{{--                    <a href="{{route('home')}}" class="waves-effect">--}}
+{{--                        <i class="material-icons">home</i>--}}
+{{--                        <span>Home</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="header">--}}
+{{--                    <span>SERVICES</span>--}}
+{{--                </li>--}}
+{{--                <li class="sidenav-item">--}}
+{{--                    <a href="javascript:void(0);" class="menu-toggle waves-effect" >--}}
+{{--                        <i class="material-icons">house</i>--}}
+{{--                        <span class="">--}}
+{{--                        Residencial--}}
+{{--                        </span>--}}
+{{--                    </a>--}}
+{{--                    <ul class="ml-menu">--}}
+{{--                        <li>--}}
+{{--                            <a href="javascript:void(0);" >--}}
+{{--                                <i class="material-icons">today</i>--}}
+{{--                                <span class="waves-effect">Services today</span>--}}
+{{--                            </a>--}}
+{{--                            <a href="{{route('week')}}" class="waves-effect">--}}
+{{--                                <i class="material-icons" style="font-size: 20px;">calendar_view_week</i>--}}
+{{--                                <span>Services Week</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--                <li class="sidenav-item">--}}
+{{--                    <a href="javascript:void(0);" class="menu-toggle waves-effect">--}}
+{{--                        <i class="material-icons">factory</i>--}}
+{{--                        <span>Comercial</span>--}}
+{{--                    </a>--}}
+{{--                    <ul class="ml-menu">--}}
+{{--                        <li>--}}
+{{--                            <a href="javascript:void(0);" class="waves-effect">--}}
+{{--                                <i class="material-icons" style="font-size: 20px;">today</i>--}}
+{{--                                <span>Services today</span>--}}
+{{--                            </a>--}}
+{{--                            <a href="javascript:void(0);" class="waves-effect">--}}
+{{--                                <i class="material-icons" style="font-size: 20px;">calendar_view_week</i>--}}
+{{--                                <span>Services Week</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--                <li class="header">--}}
+{{--                    <span>REGISTER / VIEW</span>--}}
+{{--                </li>--}}
+{{--                <li class="sidenav-item">--}}
+{{--                    <a href="{{route('customers.index')}}" class="waves-effect">--}}
+{{--                        <i class="material-icons" style="font-size: 20px;">group_add</i>--}}
+{{--                        <span>Customers</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="sidenav-item">--}}
+{{--                    <a href="{{route('employees.index')}}" class="waves-effect">--}}
+{{--                        <i class="material-icons" style="font-size: 20px;">badge</i>--}}
+{{--                        <span>Employees</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+
+{{--                <li class="header">--}}
+{{--                    <span>FINANCES</span>--}}
+{{--                </li>--}}
+{{--                <li class="sidenav-item">--}}
+{{--                    <a href="{{ route('finances') }}" class="waves-effect">--}}
+{{--                        <i class="material-icons">price_change</i>--}}
+{{--                        <span>Home</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="header">--}}
+{{--                    <span>AGENDA CO.</span>--}}
+{{--                </li>--}}
+{{--                <li class="sidenav-item">--}}
+{{--                    <a href="javascript:void(0);" class="waves-effect">--}}
+{{--                        <i class="material-icons">free_cancellation</i>--}}
+{{--                        <span>Tasks</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+        <li>
+                @include('components.menu-links')
+        </li>
                 <li class="center-align sidenav-item">
 
                     &copy; 2023 <span class="green-text text-darken-3">JJL - SYSTEM 2</span>

@@ -30,7 +30,7 @@
                         <x-msgs :$msg />
 
                     </div>
-                    <x-service-cad :employees="$employeesCol" :customers="$customersCol">
+                    <x-service-cad :employees="$employeesCol" :customers="$customersCol" :num-week="$numWeek">
 
                     </x-service-cad>
                     <div class="body">
@@ -136,22 +136,23 @@
 
                         </div>
 
-                        <div class="row">
-                            @php
-                                $c=0;
-                            @endphp
+                        <div class="row" id="htmlContent">
+                            {!! $cardsHtml !!}
+{{--                            @php--}}
+{{--                                $c=0;--}}
+{{--                            @endphp--}}
 
-                            @foreach($dataArr as $key => $row)
-                                <x-home-cards :emp-name="$key" :data="$row"/>
-                                @php
-                                    $c++;
-                                    if($c >= 4){
-                                        $c=0;
-                                        echo "</div><div class='row'>";
-                                    }
-                                @endphp
+{{--                            @foreach($dataArr as $key => $row)--}}
+{{--                                <x-home-cards :emp-name="$key" :data="$row"/>--}}
+{{--                                @php--}}
+{{--                                    $c++;--}}
+{{--                                    if($c >= 4){--}}
+{{--                                        $c=0;--}}
+{{--                                        echo "</div><div class='row'>";--}}
+{{--                                    }--}}
+{{--                                @endphp--}}
 
-                            @endforeach
+{{--                            @endforeach--}}
 
                         </div> <!--grid system row-->
                     </div> <!--card body-->

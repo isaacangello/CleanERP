@@ -46,7 +46,7 @@ class Service extends Model
             'fee' => 'nullable',
             'fee_notes' => 'present_with:fee',
             'payment' => 'nullable',
-            'who_saved' => 'alpha_num:ascii',
+            'who_saved' => 'string',
             'who_saved_id' => 'nullable',
             'price' => 'numeric',
             'justify_plus' => 'present_with:plus',

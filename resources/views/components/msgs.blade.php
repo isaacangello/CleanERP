@@ -14,7 +14,7 @@
                         <div class="row clearfix">
                             <div class="col s12">
                                     <div class="alert alert-success alert-spacing font-15 m-l-22 m-r-22" >
-                                        {{ session()->get('success')->msg }}
+                                        {!!   session()->get('success')->msg !!}
                                     </div>
 
                             </div>

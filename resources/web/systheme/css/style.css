@@ -8946,6 +8946,10 @@ html.ie11 .bs-searchbox .form-control {
 .table-home tbody th {
     background-color:#274e13 ;
     color:white;
+    margin: 0;
+    padding: 0;
+    height: 15px;
+
 }
 .table-home tbody td:first-child[colspan] {
     background-color:#274e13 ;
@@ -8953,6 +8957,10 @@ html.ie11 .bs-searchbox .form-control {
     font-weight: bold;
     font-size: var(--clamp-size);
     text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    height: 25px;
+
 }
 .table-home tbody tr.yellow-row td {
     flex-direction: row;
@@ -8960,6 +8968,9 @@ html.ie11 .bs-searchbox .form-control {
     color: #2e7d32;
     font-weight: bold;
     font-size: var(--clamp-size);
+    margin: 0;
+    padding: 0 0 0 2px;
+    height: 25px;
 
 }
 .table-home tbody tr.yellow-row td span > span {
@@ -8967,11 +8978,17 @@ html.ie11 .bs-searchbox .form-control {
     font-weight: bold;
     text-transform: uppercase;
     font-size: var(--clamp-size);
+    margin: 0;
+    padding: 0;
+
 }
 .table-home tbody tr.yellow-row td a {
     color: #2e7d32;
     font-weight: bold;
     font-size: var(--clamp-size);
+    margin: 0;
+    padding: 0 0 0 2px;
+
 }
 /* linhas ímpares (odd) */
 .table-home tbody tr.orange-row td {
@@ -9055,7 +9072,7 @@ html.ie11 .bs-searchbox .form-control {
 .btn-xm{
     border:none;
     margin: 0;
-    padding: 2px;
+    padding: 1px;
     border-radius: 2px;
     font-weight: bold;
 }

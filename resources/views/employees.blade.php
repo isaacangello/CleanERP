@@ -6,25 +6,7 @@
 @section('css-style')
  @include('layouts.generic_css')
 @endsection
-{{--
-personal information
-name
-address
-data de nascimento
-email
-phone
-checkbox -> part time -> fulltime
 
-document information
-
-document
-radiobox residencial -> comercial
-"Name reference first"  phone
-"Name reference second" phone
-additional information
-radio buttons ->active ->inactive
-employee notes
---}}
 @section('content')
 @php
     if (!isset($employeeName)){$employeeName='Jane Doe Pinto Rego';$employeeNameCad='&nbsp;';}
@@ -49,7 +31,8 @@ employee notes
     if (!isset($employeeNote )){$employeeNote ='Lorem ipsun and Busei ipsun';$employeeNoteCad='&nbsp;';}
     if (!isset($count )){$count=0;}
     //<!-- função auxiliar para gerar lista com cores alternadas  -->
-            function altclass($nun){
+            function altclass($nun): void
+            {
                 if ($nun % 2 > 0 ){
                     echo "darken-3";
                 }else{
@@ -59,6 +42,9 @@ employee notes
 @endphp
 
 <div class="container-fluid">
+    @if(!is_null($msg))
+        <div id="SavedSwl" class="hide">{{ $msg }}</div>
+    @endif
     <div class="block-header">
         <h2>
             <small>EMPLOYEES REGISTER AND VIEW</small>
@@ -72,10 +58,10 @@ employee notes
                     <div class="row">
                         <div class="col s12 m12">
                             <button class="btn waves-effect waves-classic waves-light  btn-small modal-trigger"  href="#new-employee"  >New Employee</button>
-                            <span id="list-of-employees" class="m-l-35">LIST OF EMPLOYEES</span>
+                            <span id="list-of-employees" class="m-l-35">LIST OF EMPLOYEES {{ $type }}</span>
                                     <!-- ############  Blade  component employee-cad ###########################################################################################-->
                                     <!-- component register for register new employee-->
-                                    <x-employee-cad />
+                                    <x-employee-cad :$type />
 
 
                         </div>
@@ -125,15 +111,6 @@ employee notes
                                         </div>
                                     </li>
                                     @endforeach
-
-
-                                    <!---#####################colapsable item ####################################################-->
-{{--                                    <li>--}}
-{{--                                          <div class="collapsible-header green darken-4 white-text"><i class="material-icons">person</i>Jane Doe Rego Pinto </div>--}}
-{{--                                            <div class="collapsible-body">--}}
-{{--                                              Lorem ipsum dolor sit amet.--}}
-{{--                                            </div> <!-- end collapsible body -->--}}
-{{--                                    </li>--}}
                                 </ul>
 
                         </div>
@@ -143,15 +120,6 @@ employee notes
                     <div class="row">
 
                         <div class="col s12 m12 valign-wrapper justify-content-center" >
-{{--                             <ul class="pagination center valign-wrapper align-center" style="margin: 0 auto">--}}
-{{--                                <li class="disabled valign-wrapper"><a href="#!" ><i class="material-icons ">chevron_left</i></a></li>--}}
-{{--                                <li class="active  valign-wrapper"><a href="#!" class="green darken-3 white-text">1</a></li>--}}
-{{--                                <li class=" valign-wrapper"><a href="#" class="waves-effect waves-teal">2</a></li>--}}
-{{--                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">3</a></li>--}}
-{{--                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">4</a></li>--}}
-{{--                                <li class="valign-wrapper" ><a href="#!" class="waves-effect waves-teal ">5</a></li>--}}
-{{--                                <li class=" valign-wrapper" ><a href="#!" ><i class="material-icons waves-effect waves-teal">chevron_right</i></a></li>--}}
-{{--                              </ul>--}}
                                 {{ $employees->links() }}
                         </div>
 
@@ -167,6 +135,18 @@ employee notes
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
  @include('layouts.generic_js')
+ <script>
+     document.addEventListener('DOMContentLoaded',function () {
+         let swlConfirmTrigger = document.querySelector("#SavedSwl")
+             Toast.fire({
+                 icon: "success",
+                 title: swlConfirmTrigger.innerText
+             });
+
+     })
+
+ </script>
+
 @endsection
 
 

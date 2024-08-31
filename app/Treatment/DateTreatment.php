@@ -201,6 +201,9 @@ public function MakeArrayDays($firstdate = 0, $periodo = 'Wek', $periodo_meses =
      *
      */
     public function getWeekByNumberWeek($numberWeek, $year = 'current'):array{
+        if(is_nan($numberWeek)){
+            return ['error' => "numberWeek var is not a number"];
+        }
         if ($year == 'current'){
 //            dd(now()->startOfYear()->isSunday())
 //            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
@@ -275,7 +278,9 @@ public function MakeArrayDays($firstdate = 0, $periodo = 'Wek', $periodo_meses =
             $dates[] = $date->format('Y-m-d');
         }
 //        dd($dates);
-        $day_string = strtotime($dates[($numberWeek - 1)]);
+
+            $day_string = strtotime($dates[($numberWeek - 1)]);
+
 //        dd($this->extracted($day_string));
         return $this->extracted($day_string);
     }

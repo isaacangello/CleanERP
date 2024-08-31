@@ -40,6 +40,10 @@ Route::resources([
     'services' => ServicesController::class,
 ]);
 //#############################################################
+//############ ADVANCED ROUTES
+//#############################################################
+Route::get('employees/list/{filter}',[EmployeeController::class,'index'])->name('employees.filtered');
+//#############################################################
 //############ FINANCE
 //#############################################################
 Route::prefix('finances')->group(function () {

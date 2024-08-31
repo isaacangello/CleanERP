@@ -4,7 +4,7 @@
     <div id="new-employee" class="modal bottom-sheet">
         <div class="modal-content">
             <div class="container z-depth-3" style="width: 95%">
-                <form action="{{route('employees.store')}}" method="post">
+                <form id="formEmp" action="{{route('employees.store',['filtered_type' => $type])}}" method="post">
                 @csrf
                 <input type="hidden" name="status" value="ACTIVE">
                 <div class="row label-employee-view-edit" >
@@ -134,14 +134,25 @@
                         <div class="form-group">
                             <div class="form-line success">
                                 <select id="select-cad-service-frequency" name="type" class="materialize-select">
-                                    @php $selected = false; if(!empty(old("type"))){
-                                            switch (old("type")){
-                                                case'RESIDENTIAL': $string_val = "RESIDENTIAL"; $selected = true; echo"<option selected value='".old("type")."'>".$string_val."</option>";break;
-                                                case'COMMERCIAL':$string_val = "COMMERCIAL"; $selected = true; echo"<option selected value='".old("type")."'>".$string_val."</option>";break;
-                                                default: $selected = false;
-                                            }
+                                    @php
+                                        $selected = false;
+                                            if(empty(old("type")) and isset($type)){
+                                                    switch ($type){
+                                                        case'RESIDENTIAL': $string_val = "RESIDENTIAL"; $selected = true; echo"<option selected value='".$type."'>".$string_val."</option>";break;
+                                                        case'COMMERCIAL':$string_val = "COMMERCIAL"; $selected = true; echo"<option selected value='".$type."'>".$string_val."</option>";break;
+                                                        default: $selected = false;
+                                                    }
+                                            }else{
+                                              if(!empty(old("type"))){
+                                                    switch (old("type")){
+                                                        case'RESIDENTIAL': $string_val = "RESIDENTIAL"; $selected = true; echo"<option selected value='".old("type")."'>".$string_val."</option>";break;
+                                                        case'COMMERCIAL':$string_val = "COMMERCIAL"; $selected = true; echo"<option selected value='".old("type")."'>".$string_val."</option>";break;
+                                                        default: $selected = false;
+                                                    }
 
+                                                }
                                         }
+
                                     @endphp
                                     <option @php if(!$selected){echo "selected";} @endphp value="RESIDENTIAL">RESIDENTIAL</option>
                                     <option  value="COMMERCIAL">COMMERCIAL</option>
@@ -235,8 +246,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn waves-classic waves-light btn-small " type="submit">save changes</button>
-                    <a href="#!" class="btn modal-close waves-classic waves-light btn-small red darken-4">Cancel</a>
+                    <button id="btnSaveEmp" class="btn  btn-small " type="submit">save changes</button>
+                    <a href="#!" class="btn modal-close btn-small red darken-4">Cancel</a>
                 </div>
                 </form>
             </div><!--END OF CONTAINER -->

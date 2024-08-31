@@ -28,6 +28,9 @@ Route::apiResource('services', ServicesController::class)
     'update'=>'services.api.update',
     'destroy'=>'services.api.destroy',
 ]);
+Route::post('/confirm',[ServicesController::class,'confirm'])->name('service.api.confirm');
+
+
 Route::get('/commercial-schedule',[CommercialController::class,'index'])->name('commercial.api.index');
 Route::post('/commercial-schedule',[CommercialController::class,'store'])->name('commercial.api.store');
 Route::get('commercial-schedule/{id}/{fields}',[CommercialController::class ,'query'])->name('commercial.api.query');

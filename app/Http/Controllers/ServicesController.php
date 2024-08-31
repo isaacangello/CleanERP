@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //use App\View\Components\customer;
+use App\Helpers\Funcs;
 use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -86,8 +87,11 @@ class ServicesController extends Controller
 
             foreach ($employees as $row){
                 $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$numweek);;
-            }
 
+            }
+            /** Rendering HTML elements in server side SSR */
+        $html = Funcs::createResidentialCard($filteredWeekGroup,$numweek);
+//        dd($html);
 //        dd($filteredWeekGroup);
         // mensagem do formulario
         if($request->msg !== null and $msg === null ){
@@ -104,6 +108,7 @@ class ServicesController extends Controller
                 'employeesCol' => $this->employee->all()->sortBy('name'),
                 'customersCol' => $this->customer->all()->sortBy('name'),
                 'msg' => $msg,
+                'cardsHtml' => $html,
             ]
         );
     }

@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use stdClass;
+
 class EmployeeController extends Controller
 {
     private Employee $employee ;
@@ -15,6 +18,7 @@ class EmployeeController extends Controller
     public function __construct(Employee $employee)
     {
         $this->employee = $employee;
+        $this->st = new StdClass();
     }
 
     public function index(){
@@ -33,15 +37,26 @@ class EmployeeController extends Controller
         return $response;
 
     }
-    public function store(Request $request){
+    public function store(Request $request,string|null $msg=null){
         /**
          *  campos
-         name phone email birth address name_ref_one name_ref_two phone_ref_one phone_ref_two
-         restriction document description type status shift username password new_user
+        name phone email birth address name_ref_one name_ref_two phone_ref_one phone_ref_two
+        restriction document description type status shift username password new_user
          */
+
         $request->validate($this->employee->rules());
-        $retorun = $this->employee->create($request->all());
-        return response()->json($retorun,200);
+//        var_dump($request->all());
+//        echo"<br><br><hr>";
+        $array_data = $request->all();
+        $array_data['birth'] = Carbon::create($array_data['birth'])->format('Y-m-d' );
+        $array_data['password'] = Hash::make($array_data['password']);
+//        dd($array_data);
+        $return = $this->employee->create($array_data);
+
+        $this->st->msg = 'The employee <b>'.$return->name.'</b> is registered!';
+
+
+    return response()->json($return,200);
 
     }
     public function update($id, Request $req){

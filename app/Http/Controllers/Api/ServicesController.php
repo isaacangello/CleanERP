@@ -97,6 +97,7 @@ class ServicesController extends Controller
             'employeesCol' => $this->employee->all()->sortBy('name'),
             'customersCol' => $this->customer->all()->sortBy('name'),
             'msg' => $msg,
+            'cardsHtml' => $html,
         ]);
     }
     public function index(Request $req){
@@ -147,7 +148,16 @@ class ServicesController extends Controller
                 'who_saved_id'=>$req->who_saved_id,
             ]
         );
-        return response()->json(['message' => "Service has been scheduled on date $req->service_date, $req->service_time"],201);
+        $employees =  $this->employee->all()->sortBy('name');
+
+        foreach ($employees as $row){
+            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$req->numWeek);;
+
+        }
+        /** Rendering HTML elements in server side SSR */
+        $html = Funcs::createResidentialCard($filteredWeekGroup,$req->numWeek);
+
+        return response()->json(['message' => "Service has been scheduled on date $req->service_date, $req->service_time", 'html' => $html],201);
     }
 
     public function update($id, Request $req){
@@ -173,6 +183,32 @@ class ServicesController extends Controller
         return response()->json(['_token' => $req->_token,'fieldName' =>$req->fieldName,'value' => $val_update, $req->fieldName => $valOld ]);
     }
 
+    public function confirm(Request $req)
+    {
+
+        $service = $this->service->find($req->id);
+//        dd();
+        if ($service->confirmed === 0) {
+            $service->update(['confirmed' => 1]);
+            $msg = "Service has been confirmed";
+        } else {
+            $service->update(['confirmed' => 0]);
+            $msg = "Service has been decommitted";
+        }
+        $employees =  $this->employee->all()->sortBy('name');
+
+        foreach ($employees as $row){
+            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$req->numWeek);;
+
+        }
+        /** Rendering HTML elements in server side SSR */
+        $html = Funcs::createResidentialCard($filteredWeekGroup,$req->numWeek);
+
+            return response()->json(['message' =>  $msg, 'html' => $html ],200);
+    }
+    public function delete(Request $req, $id){
+
+    }
 
 
 
