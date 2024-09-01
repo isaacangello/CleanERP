@@ -55,8 +55,9 @@ function urlGenerate(model,response){
     return urlBase
 }
 function modal_changes(element,token,model){
-    const service_id = document.querySelector("#serviceId").innerText
-    const schedule_id = document.querySelector("#scheduleId").innerText
+    if(document.body.contains(document.querySelector("#serviceId"))){var service_id = document.querySelector("#serviceId").innerText}
+    if(document.body.contains(document.querySelector("#scheduleId"))){var schedule_id = document.querySelector("#scheduleId").innerText}
+    // let schedule_id = document.querySelector("#scheduleId").innerText
     switch (model) {
         case'services': field_change(element,urlGenerate(model,service_id),token); break;
         case'employees':
@@ -147,47 +148,42 @@ function select_billings_changes(El,formId,token,customerId) {
 }
 
 // confirm or not service
-function startConfirmButtons() {
+function startConfirmation(){
         let btnConfirm = document.querySelectorAll('.btn-confirm-form')
-        console.log(btnConfirm)
+        //console.log(btnConfirm)
 
         for (let i = 0; i < btnConfirm.length; i++) {
             btnConfirm[i].addEventListener('click',function (event) {
                 event.preventDefault()
-                let confirFormId =  btnConfirm[i].getAttribute('data-form-id')
-                let confirmForm = document.getElementById(confirFormId)
-
-                confirmForm.addEventListener('submit',function (event) {
-                    event.preventDefault()
-                })
-                    let data = new FormData(confirmForm)
                     let dataJson = {
 
-                        '_token': data.get('_token'),
-                        'id': data.get('id'),
-                        'numWeek': data.get('numWeek'),
-                        'confirmed': data.get('confirmed'),
+                        '_token': this.dataset.token,
+                        'id': this.dataset.serviceId,
+                        'numWeek': this.dataset.numWeek,
+                        'confirmed': this.dataset.confirmed,
 
                     }
-                    console.log(dataJson)
+                    //console.log(dataJson)
                 axios.post(' api/confirm',
                     dataJson
                 ).then(function (response) {
-                    console.log(response.data.html)
+                    //console.log(response.data.html)
                     document.getElementById('htmlContent').innerHTML = response.data.html
                     Toast.fire({
                         icon: "success",
                         title: response.data.message
                     });
-
+                    startConfirmation()
                 })
-                startConfirmButtons()
+
 
             })
 
         }
 }
+startConfirmation()
 
-startConfirmButtons()
+
+
 
 

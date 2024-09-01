@@ -135,25 +135,28 @@ class Funcs
 
                             $confirmation_service = $value->confirmed?'green darken-3':'red darken-3';
                             $spanRentalHouse = $value->cust_type === 'RENTALHOUSE'?Element::withTag('span')->class('material-symbols-outlined')->text('brightness_7'):'';
-                            $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')
+                            $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->class('valign-wrapper')
                                 ->addChildren(
                                         [
-                                            Div::create()->class('left valign-wrapper padding-0')->addChild(
-                                                Element::withTag('form')->attributes([ 'id'=>"confirmService$value->service_id"])->addChildren(
-                                                    [
-                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"_token" , 'value' => csrf_token() ]),
-                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"confirmed" , 'value' => $value->confirmed ]),
-                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"numWeek" , 'value' => $numweek ]),
-                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"id" , 'value' => $value->service_id ]),
+                                            Div::create()->class('left valign-wrapper center-align padding-0')->addChild(
+
+//                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"_token" , 'value' => csrf_token() ]),
+//                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"confirmed" , 'value' => $value->confirmed ]),
+//                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"numWeek" , 'value' => $numweek ]),
+//                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"id" , 'value' => $value->service_id ]),
+
                                                         Element::withTag('button')->attributes(
                                                             [
                                                                 'class'=> 'btn-confirm-form waves-effect waves-light btn-xm padding-0  z-depth-2 '.$confirmation_service,
-                                                                'data-form-id' => "confirmService$value->service_id"  ,
-                                                                'type'=>"submit",
+                                                                'data-service-id' => "$value->service_id"  ,
+                                                                'data-token' => csrf_token(),
+                                                                'data-confirmed' => $value->confirmed ,
+                                                                'data-num-week' => $numweek,
+                                                                'type'=>"button",
                                                             ])
                                                             ->addChild(html()->span()->class('white-text')->text(Funcs::carbonFormat($value->service_date,'h')))
-                                                    ]
-                                                )
+
+
                                             )
 
                                                 ,

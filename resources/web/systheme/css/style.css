@@ -8973,6 +8973,10 @@ html.ie11 .bs-searchbox .form-control {
     height: 25px;
 
 }
+.table-home tbody tr.yellow-row td div {
+    height: 100%;
+    justify-content: center;
+}
 .table-home tbody tr.yellow-row td span > span {
     color: #2e7d32;
     font-weight: bold;
