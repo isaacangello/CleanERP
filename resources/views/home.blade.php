@@ -7,19 +7,19 @@
 {{--css links para o head--}}
 @section('css-style')
     @include('layouts.generic_css')
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+{{--    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col s12">
             <div class="card">
-                <div class="header p-10">
+                <div class="header p-2">
                     <h2 class="uppercase uppercase-text">welcome, {{ Auth::user()->name }}</h2>
                 </div>
                 <div class="body align-center">
-                        <p class="font-12">{{ now()->timezone('America/New_York')->format('l jS \\of F Y ') }}</p>
-                    <p class="font-14"><b>Brasil:<span class="label bg-cyan p-5" id="brazil_time"></span> / <b>Florida:</b> <span class="label bg-teal p-5" id="florida_time"></span> </b></p>
+                        <p class="font-12 padding-0">{{ now()->timezone('America/New_York')->format('l jS \\of F Y ') }}</p>
+                    <p class="font-14 padding-0"><b>Florida: <span class="label bg-teal p-5" id="florida_time"></span> / Brasil:<span class="label bg-cyan p-5" id="brazil_time"></span> </b></p>
                 </div>
         </div>
     </div>

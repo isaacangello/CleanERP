@@ -1,6 +1,6 @@
 @php
 
-    if(empty($systemVersion)){$systemVersion = "0.7.02";}
+    if(empty($systemVersion)){$systemVersion = "0.7.22";}
     if(empty($userImg)){$userImg = "img/users/user.png";}
     if(!empty(Auth::user()->email)){$email = Auth::user()->email;}else{$email="email@email.com";}
     $userName = Auth::user()->name;
@@ -12,6 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @yield('title')
+    @if(isset($title)){{ $title??'JJL System'   }}@endif
+
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
@@ -23,7 +25,9 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     @yield('css-style')
+    @if(isset($cssStyle)) {{ $cssStyle }} @endif
     @yield('script-top')
+    @if(isset($scriptTop)) {{ $scriptTop }}@else <x-generic-css /> @endif
 
 </head>
 
@@ -159,9 +163,13 @@
 </section>
 
 <section class="content" id="site-content">
+    @if(isset($slot)) {{ $slot }} @endif
     @yield('content')
 </section>
 @yield('script-botton')
+
+@if(isset($scriptBotton)) {{ $scriptBotton }}@else <x-generic-js /> @endif
+
 </body>
 
 </html>

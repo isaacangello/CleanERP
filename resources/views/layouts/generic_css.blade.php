@@ -23,7 +23,7 @@
 
 <link href="{!!  asset('web/systheme/css/style.css') !!}" rel="stylesheet">
 
-<link href="{!! asset('js/node-waves/dist/waves.min.css') !!}" rel="stylesheet" />
+{{--<link href="{!! asset('js/node-waves/dist/waves.min.css') !!}" rel="stylesheet" />--}}
 
 <!-- Materialize Core Css -->
 <link href="{!! asset('web/materialize/css/materialize.css') !!}" rel="stylesheet">

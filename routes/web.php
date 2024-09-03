@@ -42,14 +42,21 @@ Route::resources([
 //#############################################################
 //############ ADVANCED ROUTES
 //#############################################################
-Route::get('employees/list/{filter}',[EmployeeController::class,'index'])->name('employees.filtered');
+//customers
+Route::get('customers/filter/{filter}',[CustomerController::class,'index'])->name('customers.filtered');
+Route::get('customers/filter/{filter}/order/{order}',[CustomerController::class,'index'])->name('customers.filtered');
+//employees
+Route::get('employees/filter/{filter}',[EmployeeController::class,'index'])->name('employees.filtered');
+Route::get('employees/filter/{filter}/order/{order}',[EmployeeController::class,'index'])->name('employees.filtered');
 //#############################################################
 //############ FINANCE
 //#############################################################
 Route::prefix('finances')->group(function () {
     Route::get('/', [FinanceController::class, 'index'])->middleware(['auth', 'verified'])->name('finances');
     Route::get('/detailer/{id}/{from}/{till}', [FinanceController::class, 'detail_employee'])->middleware(['auth', 'verified'])->name('finances.detailer');
+    Route::get('/billings', \App\Livewire\Billings::class);
 });
+
 
 //#############################################################
 //############ AUTH MIDDLEWARE

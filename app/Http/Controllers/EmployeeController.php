@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use AllowDynamicProperties;
 use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use stdClass;
 
-class EmployeeController extends Controller
+#[AllowDynamicProperties] class EmployeeController extends Controller
 {
     private Employee $employee ;
 
@@ -18,20 +19,22 @@ class EmployeeController extends Controller
     {
         $this->employee = $employee;
         $this->configpage = 50;
-           $this->st = new StdClass();
-           $this->st->status = true;
+        $this->st = new StdClass();
+        $this->st->status = true;
 
     }
-
+    public function employee_filter($type, $orderBy = 'name'){
+        return $this->employee->where('type','=',strtoupper($type))->orderBy($orderBy)->paginate($this->configpage);
+    }
     public function index(string  $filter = 'RESIDENTIAL',$msg = null){
         if(!isset($this->configpage))$this->configpage = 50;
-        switch ($filter){
+        switch (strtoupper($filter)){
             case'COMMERCIAL':
-                $filtered =  DB::table('employees')->where('type','=','COMMERCIAL' )->orderBy('name')->paginate($this->configpage);
+                $filtered =  $this->employee_filter('COMMERCIAL');
                 $filtered_type = 'COMMERCIAL';
                 break;
             default:
-                $filtered =  DB::table('employees')->where('type','=','RESIDENTIAL' )->orderBy('name')->paginate($this->configpage);
+                $filtered =  $this->employee_filter('RESIDENTIAL');;
                 $filtered_type = 'RESIDENTIAL';
             break;
         }

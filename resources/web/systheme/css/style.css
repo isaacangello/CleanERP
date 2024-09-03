@@ -8997,37 +8997,37 @@ html.ie11 .bs-searchbox .form-control {
 /* linhas ímpares (odd) */
 .table-home tbody tr.orange-row td {
     background-color: whitesmoke;
-    color: #f57f17;
+    color: #424242;
     font-weight: bold;
     font-size: var(--clamp-size) ;
 }
 .table-home tbody tr.orange-row:hover td {
-    background-color: whitesmoke;
+    background-color: #f57f17;
     text-decoration: underline;
-    color: #f57f17;
+    color: var(--jjl-green-color);
     font-weight: bold;
     font-size: var(--clamp-size) ;
 }
 .table-home tbody tr.orange-row td a {
-    background-color: whitesmoke;
-    color: #f57f17 !important;
+    background-color: transparent;
+    color: #424242 !important;
     font-weight: bold;
     font-size: var(--clamp-size) ;
 }
 .table-home tbody tr.orange-row:hover td a {
-    background-color: whitesmoke;
+    background-color: transparent;
     text-decoration: underline;
-    color: #f57f17;
+    color: #424242;
     font-weight: bold;
     font-size: var(--clamp-size) ;
 }
 .table-home tbody tr.orange-row td span > span {
-    color: #f57f17;
+    color: #424242;
     font-weight: bold;
     font-size: var(--clamp-size);
 }
 .table-home tbody tr.orange-row:hover td span > span {
-    color:  #f57f17;
+    color:  var(--jjl-green-color);
     text-decoration: underline;
     font-weight: bold;
     font-size: var(--clamp-size);

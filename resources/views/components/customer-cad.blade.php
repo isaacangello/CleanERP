@@ -33,10 +33,10 @@
                                         <div class="form-line success form-line-type">
                                             <select class="materialize-select" id="select-cad-customer-type" name="type" onchange="other_email()">
                                                 <option value="">Select one option</option>
-                                                @php if(!empty(old("type"))){echo"<option value='".old("type")."'>".old("type")."</option>";}@endphp
-                                                <option selected value="RESIDENTIAL">RESIDENTIAL</option>
-                                                <option value="COMMERCIAL">COMMERCIAL</option>
-                                                <option value="RENTALHOUSE">RENTAL HOUSE</option>
+                                                @php if(!empty(old("type"))){echo"<option selected value='".old("type")."'>".old("type")."</option>";}@endphp
+                                                <option @if(strtoupper($type) === "RESIDENTIAL") selected @endif value="RESIDENTIAL">RESIDENTIAL</option>
+                                                <option @if(strtoupper($type) === "COMMERCIAL") selected @endif value="COMMERCIAL">COMMERCIAL</option>
+                                                <option @if(strtoupper($type) === "RENTALHOUSE") selected @endif value="RENTALHOUSE">RENTAL HOUSE</option>
                                             </select>
                                         </div>
                                         <div class="help-info">select type of customer</div>

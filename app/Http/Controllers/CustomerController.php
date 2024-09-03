@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use AllowDynamicProperties;
 use App\Models\Billing;
 use Illuminate\Http\Request;
 use App\Models\Customer;
@@ -9,7 +10,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 
 
-class CustomerController extends Controller
+#[AllowDynamicProperties] class CustomerController extends Controller
 {
 
     public function __construct(Customer $cust)
@@ -17,16 +18,19 @@ class CustomerController extends Controller
         $this->configpage = 50;
         $this->cust = $cust;
     }
+    public function filter_customer(string $type = 'residential',string $orderBy = "name"){
+        return $this->cust->where('type', '=', strtoupper($type))->orWhere('type', '=', 'RENTALHOUSE')->orderBy($orderBy)->with('billings')->paginate($this->configpage);
+    }
+    public function index(string $type = 'residential',string $orderBy = "name" ,$msg = null){
 
-    public function index($msg = null){
-
-        $customers = $this->cust->orderBy('name')->with('billings')->paginate($this->configpage);
+        $customers = $this->filter_customer($type);
 
         return view('customers',
             [
                 'customers' => $customers,
                 'msg' => $msg,
-                'billings_all' => Billing::all()
+                'billings_all' => Billing::all(),
+                'type' => $type
 
             ]
         );
@@ -65,7 +69,7 @@ class CustomerController extends Controller
             'note' => $request->note,
         ]);
         return view('customers',[
-            'customers' => DB::table('customers')->orderBy('name')->paginate($this->configpage),
+            'customers' => $this->filter_customer($request->type),
             'success' => 'O Customer '.$request->name." Successfully saved!",
             'msg' => $msg
         ]);

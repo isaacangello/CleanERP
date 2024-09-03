@@ -54,10 +54,11 @@
                     <div class="row">
                         <div class="col s12 m12">
                             <button class="btn waves-effect waves-classic waves-light  btn-small modal-trigger"  href="#new-customer"  >New Customer</button>
-                            <span id="list-of-customer" class="m-l-35">LIST OF CUSTOMERS</span>
+                            <span id="list-of-customer" class="m-l-35">LIST OF CUSTOMERS {{ strtoupper($type) }}</span>
+
                                     <!-- ############  Blade  component customer-cad ###########################################################################################-->
                                     <!-- component register for register new customer-->
-                                    <x-customer-cad :billings='$billings_all' />
+                                    <x-customer-cad :billings='$billings_all' :$type />
 
 
                         </div>
