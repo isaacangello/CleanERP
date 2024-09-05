@@ -54,10 +54,10 @@
     <div class="row clearfix">
         <div class="col s12 m12">
             <div class="card">
-                <div class="header" style="padding-bottom: 0px;">
+                <div class="header" style="padding-bottom: 0;">
                     <div class="row">
                         <div class="col s12 m12">
-                            <button class="btn waves-effect waves-classic waves-light  btn-small modal-trigger"  href="#new-employee"  >New Employee</button>
+                            <a class="btn waves-effect waves-classic waves-light  btn-small modal-trigger"  href="#new-employee"  >New Employee</a>
                             <span id="list-of-employees" class="m-l-35">LIST OF EMPLOYEES {{ $type }}</span>
                                     <!-- ############  Blade  component employee-cad ###########################################################################################-->
                                     <!-- component register for register new employee-->
@@ -106,6 +106,7 @@
                                                         :employee-status="$employee->status"
                                                         :employee-type="$employee->type"
                                                         :count="$count"
+                                                        :type-url="$type"
                                                 >
                                                 </x-employee-view-edit>
                                         </div>
@@ -138,7 +139,7 @@
  <script>
      document.addEventListener('DOMContentLoaded',function () {
          let swlConfirmTrigger = document.querySelector("#SavedSwl")
-             Toast.fire({
+             toastAlert.fire({
                  icon: "success",
                  title: swlConfirmTrigger.innerText
              });

@@ -155,3 +155,10 @@ export function mountCard(eLContainer, options) {
 
 
 }
+
+export function date_format(dataInput) {
+    return moment(dataInput).format('L');
+}
+export function time_format(timeInput) {
+    return moment(timeInput).format('LT')
+}

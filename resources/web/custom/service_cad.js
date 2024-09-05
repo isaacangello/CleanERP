@@ -1,10 +1,12 @@
-// import axios  from "axios";
-function price_inject(idPush) {
+import {isValidElement,isNullOrUndef,serialize,errorShow} from "./helpers/funcs.js";
+
+
+function price_inject() {
     let selectCust = document.querySelector('#select-cad-service-customer')
     let idCust = selectCust.options[selectCust.selectedIndex].value
     axios.get('api/customer/'+idCust)
         .then(function (resp) {
-            let payments = document.querySelector(idPush)
+            // let payments = document.querySelector(idPush)
              // var instance = M.FormSelect.getInstance(payments);
             let SelectContainer = document.getElementById('select-cad-service-billings-container')
             //instance.destroy()
@@ -16,7 +18,7 @@ function price_inject(idPush) {
             SelectBillings.setAttribute('class','materialize-select')
             SelectBillings.setAttribute('id','select-cad-service-billings')
             SelectBillings.setAttribute('name','frequency_payment')
-        for(i=0;i<resp.data.billings.length;i++){
+        for(let i=0;i<resp.data.billings.length;i++){
             // console.log(payments.options[i].value)
             console.log(resp.data.billings[i].label)
                     SelectBillings.appendChild(new Option(`${resp.data.billings[i].label} / US$ ${resp.data.billings[i].value}`,`${resp.data.billings[i].id},${resp.data.billings[i].value}`)) //= resp.data.billings[i].label+" / R$" + resp.data.billings[i].value
@@ -36,12 +38,16 @@ function price_inject(idPush) {
 
 }// funçao price_inject
 
+// ouvindo mudanças no formulario de cadastro
+document.querySelector('#select-cad-service-customer').addEventListener('change',function () {
+    price_inject()
+})
 
 // logic async for modal to register services
 
-const ServiceForm = document.querySelector('#service-form')
+let ServiceForm = document.querySelector('#service-form')
 
-if (ServiceForm !== undefined){
+if (isValidElement(ServiceForm)){
 ServiceForm.addEventListener('submit',function (event) {
     event.preventDefault()
 
@@ -75,7 +81,7 @@ ServiceForm.addEventListener('submit',function (event) {
             let serviceCadModalElement = document.getElementById('new-service')
             let serviceCadModalInstance = M.Modal.getInstance(serviceCadModalElement)
             serviceCadModalInstance.close()
-            Toast.fire({
+            toastAlert.fire({
                 icon: "success",
                 title: resp.data.message
             });

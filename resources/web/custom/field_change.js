@@ -17,7 +17,7 @@ function field_change(element,urlBase,token){
     .then(resp =>{
                 console.log(resp.data.fieldName)
                     element.classList.add('teal', 'lighten-5')
-                Toast.fire({
+                toastAlert.fire({
                     icon: "success",
                     title: `New ${field} is successfully saved!`
                 });
@@ -47,10 +47,10 @@ function field_change(element,urlBase,token){
 function urlGenerate(model,response){
     var urlBase = "";
     switch (model) {
-        case'services': urlBase = `api/services/${response}`; break;
-        case'employees': urlBase = `api/employee/${response.data.employee1_id}` ; break;
-        case'customers': urlBase = `api/customer/${response.data.customer_id}`; break;
-        case'commercial': urlBase = `api/commercial-schedule/${response.data.customer_id}`; break;
+        case'services': urlBase = `/api/services/${response}`; break;
+        case'employees': urlBase = `/api/employee/${response.data.employee1_id}` ; break;
+        case'customers': urlBase = `/api/customer/${response.data.customer_id}`; break;
+        case'commercial': urlBase = `/api/commercial-schedule/${response.data.customer_id}`; break;
     }
     return urlBase
 }
@@ -62,14 +62,14 @@ function modal_changes(element,token,model){
         case'services': field_change(element,urlGenerate(model,service_id),token); break;
         case'employees':
         case'customers':
-                axios.get('api/services/'+service_id+'/all:id,customer_id,employee1_id')
+                axios.get('/api/services/'+service_id+'/all:id,customer_id,employee1_id')
                     .then(resp=>{
                         // console.info(resp)
                         field_change(element,urlGenerate(model,resp),token)
                     })
             break;
         case'commercial':
-            axios.get('api/commercial-schedule/'+schedule_id+'/all:id,customer_id,employee1_id')
+            axios.get('/api/commercial-schedule/'+schedule_id+'/all:id,customer_id,employee1_id')
                 .then(resp=>{
                     // console.info(resp)
                     field_change(element,urlGenerate(model,resp),token)
@@ -91,19 +91,19 @@ function dateTime_change(elementId1,elementId2,token){
     const service_id = document.querySelector("#serviceId").innerText
     //element.getAttribute('value')
     let value = `${date} ${time}`
-    const urlBase = `api/services/${service_id}`
-    console.log('alterando campo service_date Via axios com valor => '+value)
-    console.log("url => "+urlBase)
-    console.log("date=>"+date+" Time=>"+time)
+    const urlBase = `/api/services/${service_id}`
+    // console.log('alterando campo service_date Via axios com valor => '+value)
+    // console.log("url => "+urlBase)
+    // console.log("date=>"+date+" Time=>"+time)
     const DateToPost = moment(date+" "+time, "MM/DD/YYYY hh:mm").format("YYYY-MM-DD hh:mm:ss")
-    console.log("fotmated ->"+DateToPost)
+    // console.log("fotmated ->"+DateToPost)
     axios.patch(urlBase,
         {
             _token: token,
             fieldName: "service_date",
             value: DateToPost,
         }).then(resp =>{
-                console.log(resp)
+                // console.log(resp)
                 swalConfirm("field date or time" )
             }
 
@@ -134,11 +134,11 @@ function select_billings_changes(El,formId,token,customerId) {
          '_token':token,
         'billing_values_selected': formData.getAll('billing-values-selected[]')
     }
-    axios.post(' api/update-billing/'+customerId,
+    axios.post('/api/update-billing/'+customerId,
         dataJson
         ).then(function (response) {
             console.log(response)
-            Toast.fire({
+            toastAlert.fire({
                 icon: "success",
                 title: `The billing is successfully updated!`
             });
@@ -169,7 +169,7 @@ function startConfirmation(){
                 ).then(function (response) {
                     //console.log(response.data.html)
                     document.getElementById('htmlContent').innerHTML = response.data.html
-                    Toast.fire({
+                    toastAlert.fire({
                         icon: "success",
                         title: response.data.message
                     });
@@ -182,6 +182,8 @@ function startConfirmation(){
         }
 }
 startConfirmation()
+
+let ChangeFields = document.querySelectorAll('.modal-commercial-change')
 
 
 

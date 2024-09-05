@@ -82,14 +82,21 @@ class Funcs
             $trs_temp .= Element::withTag('tr')->class('label-green-lighten-1')->addChild(Element::withTag('td')->class('align-center')->text($EmpNameKey));
             foreach ($arr as $value){
                 $trs_temp .= Element::withTag('tr')->class('orange-row')->addChild(Element::withTag('td')
-                    ->addChild(Element::withTag('a')->attributes([
-                        'data-schedule-id' => $value->id,
-                        'href' => '#scheduleModal',
-                        'class'=> 'btn-link-underline modal-trigger m-l-5',
-                        'onclick' => "schedule_push(this)",
+                    ->addChildren(
+                        [
+                            Div::create()->attributes([
+                                'class' => 'hide',
+                                'id' => 'scheduleId'
+                            ]),
 
-                    ])
-                        ->text($value->denomination)));
+                            Element::withTag('a')->attributes([
+                            'data-schedule-id' => $value->id,
+                            'href' => '#scheduleModal',
+                            'class'=> 'btn-link-underline modal-trigger link-modal-commercial m-l-5',
+                            ])->text($value->denomination)
+                        ]
+                    )
+                );
             }
         }
 
@@ -138,6 +145,10 @@ class Funcs
                             $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->class('valign-wrapper')
                                 ->addChildren(
                                         [
+                                            Div::create()->class('hide')->attributes([
+                                                'id' => 'serviceId',
+                                                'class' => 'hide'
+                                            ]),
                                             Div::create()->class('left valign-wrapper center-align padding-0')->addChild(
 
 //                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"_token" , 'value' => csrf_token() ]),
@@ -145,7 +156,7 @@ class Funcs
 //                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"numWeek" , 'value' => $numweek ]),
 //                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"id" , 'value' => $value->service_id ]),
 
-                                                        Element::withTag('button')->attributes(
+                                                        Element::withTag('a')->attributes(
                                                             [
                                                                 'class'=> 'btn-confirm-form waves-effect waves-light btn-xm padding-0  z-depth-2 '.$confirmation_service,
                                                                 'data-service-id' => "$value->service_id"  ,
@@ -167,8 +178,7 @@ class Funcs
                                                         [
                                                             'data-service-id' => $value->service_id,
                                                             'href' => '#largeModal',
-                                                            'class' => 'btn-link-underline modal-trigger m-l-5',
-                                                            'onclick' => "push_run(this)",
+                                                            'class' => 'btn-link-underline link-modal-residential modal-trigger m-l-5',
                                                         ]
                                                     )->text(Funcs::nameShort($value->cust_name,' ',2))
                                                     ,

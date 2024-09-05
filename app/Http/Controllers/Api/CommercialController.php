@@ -165,6 +165,11 @@ class CommercialController extends Controller
            200
        );
     }
+    public function show($id)
+    {
+        $returned = $this->schedule->with('customer','employee')->find($id);
+        return response()->json($returned,200);
+    }
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate($this->schedule->rules);

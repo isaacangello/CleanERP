@@ -7,7 +7,7 @@
 <div class="row">
 <div class="col s1 m4"></div>
 <div class="col s10 m4">
-   <div class="login-box" style="opacity: 1;">
+   <div class="login-box " style="opacity: 1;">
         <div>
             <div class="p-t-5 p-b-10 center-align">
                 <a href="javascript:void(0);" class="white-text " style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>JJLSYSTEM 2</b></a><br>
@@ -33,7 +33,7 @@
            </div>
        @endif
 
-        <div class="card p-20">
+        <div class="card p-20 z-depth-4">
             <div class="body">
                 <form id="sign_in" method="POST" action="{{ route('login') }}">
                     @csrf

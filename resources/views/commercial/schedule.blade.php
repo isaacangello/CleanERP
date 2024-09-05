@@ -1,13 +1,13 @@
 @extends("layouts.main")
 
 @section('title')
-    <title>WEEK - main - JJL System 2</title>
+    <title>SCHEDULE - main - JJL System 2</title>
 @endsection
 
 {{--css links para o head--}}
 @section('css-style')
     @include('layouts.generic_css')
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+{{--    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -38,7 +38,7 @@
                             <div class="col s12 m2 input-field">
                                 <div class="form-group">
 
-                                    <button class="btn h-45 modal-trigger" href="#new-schedule">
+                                    <button class="btn btn-link font-15 h-45 modal-trigger" href="#new-schedule">
                                         New schedule
                                     </button>
                                 </div>
@@ -162,6 +162,6 @@
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
     @include('layouts.generic_js')
-
+    <script type="module"  src="{{ asset('web/custom/commercial/modalPush.js') }}"></script>
 @endsection
 

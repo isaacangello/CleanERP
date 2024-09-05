@@ -1,6 +1,7 @@
 <div>
             @php
-                $urlBase = "api/employee/".$employeeId;
+
+                $urlBase = "/api/employee/".$employeeId;
             @endphp
 
                 <div class="row label-employee-view-edit" >

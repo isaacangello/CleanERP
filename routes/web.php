@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
 //#############################################################
 Route::get('/commercial-schedule',[CommercialController::class,'index'])->name('commercial.schedule');
 
+
 //#############################################################
 //############ PROFLIE ROUTES
 //#############################################################

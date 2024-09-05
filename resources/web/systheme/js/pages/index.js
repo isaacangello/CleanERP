@@ -127,34 +127,25 @@ if (indexloaded === false) {
 
         var hidden = "true";
 
-        let HideSidebarBtn = document.querySelector('#hide-left-sidebar')
-        console.info("<br>"+HideSidebarBtn+"<br>")
-        if (HideSidebarBtn != null && HideSidebarBtn !== "undefined"){
-            HideSidebarBtn.addEventListener('click', function () {
-                /*
-                *   -moz-transition: 0.5s;
-                    -o-transition: 0.5s;
-                    -webkit-transition: 0.5s;
-                    transition: 0.5s;
-                * */
+        var HideSidebarBtn = document.querySelector('#btnCloseMenu')
+        console.log("<br>"+HideSidebarBtn+" <<<<<<<<<<< aqui <br>")
+        if (typeof HideSidebarBtn !== undefined){
+                HideSidebarBtn.addEventListener('click', function () {
+                    if (document.querySelector('#site-content').style.marginLeft === "15px") {
+                        document.querySelector('#leftsidebar').style.marginLeft = "0"
+                        document.querySelector('#site-content').style.marginLeft = "315px"
+                        hidden = "false";
+                        console.info("abrindo menu")
 
-                if (document.querySelector('#site-content').style.marginLeft === "15px") {
-                    document.querySelector('#leftsidebar').style.marginLeft = "0"
-                    // $("#leftsidebar").css('margin-left',"0");
-                    document.querySelector('#site-content').style.marginLeft = "315px"
-                    // $("#site-content").css('margin-left',"315px");
-                    hidden = "false";
+                    } else {
+                        document.querySelector('#leftsidebar').style.marginLeft = "-315px"
+                        document.querySelector('#site-content').style.marginLeft = "15px"
+                        hidden = "true";
+                        console.info("fechando menu")
+                    }
+                });
+            }
 
-                } else {
-                    document.querySelector('#leftsidebar').style.marginLeft = "-315px"
-                    // $("#leftsidebar").css('margin-left',"-315px");
-                    document.querySelector('#site-content').style.marginLeft = "15px"
-                    // $("#site-content").css('margin-left',"15px");
-                    hidden = "true";
-                }
-            });
-
-        }
 // var hidden1 = "true";
 
         //console.log('Arquivo index.js');

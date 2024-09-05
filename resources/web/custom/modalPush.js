@@ -1,4 +1,6 @@
-function push_run(btnParam,custId,empId){
+
+import {date_format,time_format} from './helpers/funcs.js'
+function push_run(btnParam){
 
     const btnModalId = btnParam.getAttribute('href')
     const modalInstance = M.Modal.getInstance(document.querySelector(btnModalId))
@@ -24,20 +26,6 @@ function push_run(btnParam,custId,empId){
         /**
          *  api/services/{service} route to det data
          * */
-        function date_format(dataInput) {
-            data = new Date(dataInput);
-            return data.toLocaleDateString('en-US', {timeZone: 'UTC'});
-        }
-        function time_format(timeInput) {
-            let convert = { '13':"01",'14':"02",'15':"02",'16':"04",'17':"05",'18':"06",'19':"07",'20':"08",'21':"09",'22':"10",'23':"11"}
-            let time_temp = timeInput.split(':')
-                if ( time_temp[0] > 12 ){
-                    return convert[time_temp[0]]+":"+time_temp[1]+' PM'
-
-                }else{
-                    return time_temp[0]+":"+time_temp[1]+' AM'
-                }
-        }
         function markSelected(itemId,itemSearch){
             let item = document.querySelector(itemId)
             let itemInstance = M.FormSelect.getInstance(item)
@@ -57,7 +45,7 @@ function push_run(btnParam,custId,empId){
         }
         axios.get("api/services/"+id)
             .then(response=>{
-                     console.info(response.data)
+                     console.info(response.data.service_date)
                     let serviceData = response.data
                     if(serviceData.customer.type === "RENTALHOUSE"){
                         defaultModalLabel.innerHTML = serviceData.customer.name+' <span class="material-symbols-outlined ">brightness_7</span>'
@@ -68,8 +56,8 @@ function push_run(btnParam,custId,empId){
                     markSelected("#selectServiceCustomer",serviceData.customer.name)
                     serviceAddress.value = serviceData.customer.address
                     servicePhone.value = serviceData.customer.phone
-                    serviceDate.value = date_format(serviceData.service_date.split()[0])
-                    serviceTime.value = time_format(serviceData.service_date.split(' ')[1])
+                    serviceDate.value = date_format(serviceData.service_date)
+                    serviceTime.value = time_format(serviceData.service_date)
                     serviceInTime.value = " "
                     serviceOutTime.value  = " "
                     serviceInformation.innerText = " "
@@ -81,4 +69,17 @@ function push_run(btnParam,custId,empId){
     }
     console.log(service_id)
     modalInstance.onOpenStart(populate(service_id))
+}
+
+//'onclick' => "push_run(this)",
+
+let modalLinks = document.querySelectorAll('.link-modal-residential')
+
+console.log(modalLinks.length)
+if (modalLinks.length > 0){
+    modalLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+            push_run(this)
+        })
+    })
 }

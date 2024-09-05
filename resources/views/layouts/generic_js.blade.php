@@ -24,7 +24,7 @@
 {{--<!--Added version 2 -->--}}
 
 {{--<script src="{{ asset('node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>--}}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Custom Js -->
 <script type="module" src="{{ asset('web/systheme/js/admin.js') }}"></script>
 
@@ -38,10 +38,10 @@
 <script src="{{ asset('web/systheme/plugins/moment/min/moment.min.js') }}"></script>
 
 <script  src="{{ asset('web/custom/helpers/plugins_init.js') }}"></script>
-<script type="module" src="{{ asset('web/custom/helpers/funcs.js') }}"></script>
+<script  src="{{ asset('web/custom/helpers/funcs.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="{{ asset('web/custom/service_cad.js') }}"></script>
-<script src="{{ asset('web/custom/field_change.js') }}"></script>
-<script src="{{ asset('web/custom/modalPush.js') }}"></script>
-<script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>
+<script type="module" src="{{ asset('web/custom/service_cad.js') }}"></script>
+<script type="module" src="{{ asset('web/custom/field_change.js') }}"></script>
+<script type="module" src="{{ asset('web/custom/modalPush.js') }}"></script>
+<script  type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>
 

@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @yield('title')
-    @if(isset($title)){{ $title??'JJL System'   }}@endif
+    @if(isset($title)){{ $title??'JJL System 2'   }}@endif
 
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -101,7 +101,7 @@
         <ul class="left">
             <li>
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a href="#" id="hide-left-sidebar"  class="hide-left-sidebar hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
+                <a href="#" id="btnCloseMenu"  class="btnCloseMenu hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
             </li>
             <li class="valign-wrapper p-l-3 p-t-12 center-align">
                 <span class="valign-wrapper "> <img src="{{asset('img/android-chrome-256x256.png')}}"  class="logo"  alt="jjl logo"/></span>

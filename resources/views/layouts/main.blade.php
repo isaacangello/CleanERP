@@ -25,9 +25,9 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     @yield('css-style')
-    @if(isset($cssStyle)) {{ $cssStyle }} @endif
+{{--    @if(isset($cssStyle)) {{ $cssStyle }} @endif--}}
     @yield('script-top')
-    @if(isset($scriptTop)) {{ $scriptTop }}@else <x-generic-css /> @endif
+{{--    @if(isset($scriptTop)) {{ $scriptTop }}@else <x-generic-css /> @endif--}}
 
 </head>
 
@@ -60,8 +60,8 @@
 
         <ul class="left">
             <li>
-                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a href="#" id="hide-left-sidebar"  class="hide-left-sidebar hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
+                <a href="javascript:void(0);" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="javascript:void(0);" id="btnCloseMenu"  class="btnCloseMenu hide-on-med-and-down white-text transparent " data-close="true"><i class="material-icons">menu</i></a>
             </li>
             <li class="valign-wrapper p-l-3 p-t-12 center-align">
                    <span class="valign-wrapper "> <img src="{{asset('img/android-chrome-256x256.png')}}"  class="logo"  alt="jjl logo"/></span>
@@ -103,7 +103,7 @@
 
 <section>
     <!--###### Left Sidebar ######################################### -->
-    <aside id="leftsidebar" class="ls-closed sidebar ">
+    <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
         <div class="user-info" id="userInfoDesktop">
             <div class="image">
@@ -163,12 +163,12 @@
 </section>
 
 <section class="content" id="site-content">
-    @if(isset($slot)) {{ $slot }} @endif
+{{--    @if(isset($slot)) {{ $slot }} @endif--}}
     @yield('content')
 </section>
 @yield('script-botton')
 
-@if(isset($scriptBotton)) {{ $scriptBotton }}@else <x-generic-js /> @endif
+{{--@if(isset($scriptBotton)) {{ $scriptBotton }}@else <x-generic-js /> @endif--}}
 
 </body>
 
