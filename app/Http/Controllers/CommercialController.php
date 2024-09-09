@@ -95,27 +95,8 @@ use Spatie\Html\Elements\Element;
             ->whereDate('schedule_date','<=' , $this->till )
             ->orderBy('schedule_date')
             ->get();
-//        dd($this->from);
-        $div_exemple = "
-        <div class='card green darken-3 white-text'>
-            <div class='card-content card-content-min'>
-                <span class='card-title font-12'> dayName - day </span>
-                <p>
-                <table class='table-home green darken-3 centered'>
-                    <tbody>
-                            <tr class='yellow-row'><td>&nbsp;</td></tr>
-                            <tr class='yellow-row'><td>&nbsp;</td></tr>
-                            <tr class='yellow-row'><td>&nbsp;</td></tr>
-                    </tbody>
-                </table>
 
-                </p>
-            </div>
-        </div>
 
-        
-        ";
-        $textRowTd = ['text1','text2','text3'];
 
         //dd($card);
 
@@ -166,8 +147,8 @@ use Spatie\Html\Elements\Element;
                 'numWeek' => $numweek,
                 'cards' => $cards,
                 'year' => $year,
-                'employeesCol' => $this->employee->all()->sortBy('name'),
-                'customersCol' => $this->customer->all()->sortBy('name'),
+                'employeesCol' => Populate::employeeFilter('commercial','name'),
+                'customersCol' => Populate::customerFilter('commercial','name'),
                 'msg' => $msg,
             ]
         );

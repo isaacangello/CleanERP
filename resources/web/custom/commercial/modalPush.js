@@ -22,6 +22,7 @@ function schedule_push(btnParam){
         const scheduleInformation= document.querySelector("#scheduleInformation")
         const scheduleNotes= document.querySelector("#scheduleNotes")
         const scheduleInstructions= document.querySelector("#scheduleInstructions")
+        const deleteBtn = document.querySelector('#btnDelete');deleteBtn.dataset.scheduleId = id
         /**
          *  api/commercial-schedule/{id} route to det data
          * */
@@ -50,23 +51,32 @@ function schedule_push(btnParam){
                     console.log("Axios reponse ====>>>>"+scheduleData)
 
                         defaultModalLabel.innerText = scheduleData.customer.name
-                    markSelected("#selectscheduleEmployee",scheduleData.employee.name)
-                    markSelected("#selectscheduleCustomer",scheduleData.customer.name)
+                    markSelected("#selectScheduleEmployee",scheduleData.employee.name)
+                    markSelected("#selectScheduleCustomer",scheduleData.customer.name)
                     scheduleAddress.value = scheduleData.customer.address
                     schedulePhone.value = scheduleData.customer.phone
                     scheduleDate.value = date_format(scheduleData.schedule_date)
-                    if(moment(scheduleData.schedule_date).format('H')>0 && moment(scheduleData.schedule_date).format('H')<12 ){
-                        schedulePeriod.value = "First"
-                    }
-                    if(moment(scheduleData.schedule_date).format('H')>=12 && moment(scheduleData.schedule_date).format('H')<18 ){
-                        schedulePeriod.value = "Second"
-                    }
-                    if(moment(scheduleData.schedule_date).format('H')>=12 && moment(scheduleData.schedule_date).format('H')<18 ){
-                        schedulePeriod.value = "Third"
-                    }
+                    if(moment(scheduleData.schedule_date).format('HH')>0 && moment(scheduleData.schedule_date).format('HH')<12 ){
+                        // schedulePeriod.value = "First"
 
-                    scheduleInTime.value = time_format(scheduleData.control.checkin_datetime)
-                    scheduleOutTime.value  = time_format(scheduleData.control.checkout_datetime)
+                        markSelected('#schedulePeriod',"First")
+                    }
+                    if(moment(scheduleData.schedule_date).format('HH')>=12 && moment(scheduleData.schedule_date).format('HH')<18 ){
+                        // schedulePeriod.value = "Second"
+                        markSelected('#schedulePeriod','Second')
+                    }
+                    if( moment(scheduleData.schedule_date).format('HH')>=18 ){
+                        // schedulePeriod.value = "Third"
+                        markSelected('#schedulePeriod',"Third")
+                    }
+                    console.log(moment(scheduleData.schedule_date).format('HH'))
+
+                    if(scheduleData.control) {
+                        scheduleInTime.value = time_format(scheduleData.control.checkin_datetime)
+                    }
+                    if (scheduleData.control) {
+                        scheduleOutTime.value = time_format(scheduleData.control.checkout_datetime)
+                    }
                     scheduleInformation.innerText = " "
                     scheduleNotes.innerText = scheduleData.notes
                     scheduleInstructions.innerText = scheduleData.instructions
@@ -76,7 +86,7 @@ function schedule_push(btnParam){
         return true
     }
     console.log(schedule_id)
-    modalInstanceCom.onOpenStart(populate(schedule_id))
+    // modalInstanceCom.onOpenStart(populate(schedule_id))
     populate(schedule_id)
 }
 

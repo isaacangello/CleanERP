@@ -13,6 +13,7 @@ use App\Models\Employee;
 use \App\Models\Customer;
 use App\Treatment\DateTreatment;
 use Carbon\CarbonPeriod;
+use phpDocumentor\Reflection\Type;
 use stdClass;
 class ServicesController extends Controller
 {
@@ -105,8 +106,8 @@ class ServicesController extends Controller
                 'weekArr' => $weekarr,
                 'numWeek' => $numweek,
                 'year' => $year,
-                'employeesCol' => $this->employee->all()->sortBy('name'),
-                'customersCol' => $this->customer->all()->sortBy('name'),
+                'employeesCol' => Populate::employeeFilter('residential','name'),
+                'customersCol' => Populate::customerFilter('residential','name'),
                 'msg' => $msg,
                 'cardsHtml' => $html,
             ]

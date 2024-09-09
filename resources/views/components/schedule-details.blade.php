@@ -17,13 +17,13 @@
                     <tr>
                         <th colspan="1" class="light-green lighten-4">Employee:</th>
                         <td colspan="3" class="p-l-2">
-                            <x-select-actors id="selectscheduleEmployee" name="employee1_id" :employees="$employees" class="modal-commercial-change" data-token="{{ csrf_token() }}" data-db-model="schedule"  />
+                            <x-select-actors id="selectScheduleEmployee" name="employee1_id" :employees="$employees" class="modal-commercial-change" data-token="{{ csrf_token() }}" data-db-model="schedule"  />
                         </td>
                     </tr>
                     <tr>
                         <th colspan="1" class="light-green lighten-4">Customer:</th>
                         <td colspan="3" class=" p-l-2">
-                            <x-select-actors  id="selectscheduleCustomer" name="customer_id" :customers="$customers" class="modal-commercial-change" data-token="{{ csrf_token() }}" data-db-model="schedule"/>
+                            <x-select-actors  id="selectScheduleCustomer" name="customer_id" :customers="$customers" class="modal-commercial-change" data-token="{{ csrf_token() }}" data-db-model="schedule"/>
                         </td>
                     </tr>
                     <tr>
@@ -40,7 +40,14 @@
                     </tr>
                     <tr>
                         <th class="light-green lighten-4">Date:</th><td><x-text-input :formGroupStyle="$style"  id="scheduleDate" name="schedule_date" class="datepicker modal-commercial-change" data-token="{{ csrf_token() }}" data-db-model="schedule" /></td>
-                        <th class="light-green lighten-4">Period:</th><td><x-text-input  :formGroupStyle="$style"  id="schedulePeriod" name="period" class="timepicker modal-commercial-change" data-token="{{ csrf_token() }}" data-db-model="schedule" /></td>
+                        <th class="light-green lighten-4">Period:</th><td>
+                            <select name="schedule_time" id="schedulePeriod" class="materialize-select modal-commercial-change" data-token="{{ csrf_token() }}" data-db-model="schedule">
+                                <option value="08:00">First</option>
+                                <option value="13:00">Second</option>
+                                <option value="18:01">Third</option>
+                            </select>
+{{--                            <x-text-input  :formGroupStyle="$style"  id="schedulePeriod" name="period" class="timepicker modal-commercial-change" data-token="{{ csrf_token() }}" data-db-model="schedule" />--}}
+                        </td>
                     </tr>
                     <tr>
                         <th class="light-green lighten-4">In:</th><td><x-text-input :formGroupStyle="$style"  id="scheduleInTime"  name="in" /> </td>
@@ -56,7 +63,8 @@
                         </td>
                     </tr>
 
-                    <tr><th colspan="4" class="light-green lighten-4 center-align">notes:</th></tr>
+                    <tr>
+                        <th colspan="4" class="light-green lighten-4 center-align">notes:</th></tr>
                     <tr>
                         <td  colspan="4" class="p-1">
                             <textarea  name="notes" id="scheduleNotes" cols="30" rows="10" class="modal-commercial-change" data-token="{{ csrf_token() }}" data-db-model="schedule">
@@ -76,7 +84,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-link">
+                <button type="button" id="btnDelete" class="btn btn-link btn-danger" data-schedule-id="">
                     <span class="material-symbols-outlined">
                     delete
                     </span>

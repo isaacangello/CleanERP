@@ -6,27 +6,16 @@ function price_inject() {
     let idCust = selectCust.options[selectCust.selectedIndex].value
     axios.get('api/customer/'+idCust)
         .then(function (resp) {
-            // let payments = document.querySelector(idPush)
-             // var instance = M.FormSelect.getInstance(payments);
             let SelectContainer = document.getElementById('select-cad-service-billings-container')
-            //instance.destroy()
-            // console.log(instance.dropdownOptions.children[0])
             console.log(resp.data)
-            // console.log(instance.dropdownOptions)
-            // console.log(instance.options)
             let SelectBillings = document.createElement('select')
             SelectBillings.setAttribute('class','materialize-select')
             SelectBillings.setAttribute('id','select-cad-service-billings')
             SelectBillings.setAttribute('name','frequency_payment')
         for(let i=0;i<resp.data.billings.length;i++){
             // console.log(payments.options[i].value)
-            console.log(resp.data.billings[i].label)
+            //console.log(resp.data.billings[i].label)
                     SelectBillings.appendChild(new Option(`${resp.data.billings[i].label} / US$ ${resp.data.billings[i].value}`,`${resp.data.billings[i].id},${resp.data.billings[i].value}`)) //= resp.data.billings[i].label+" / R$" + resp.data.billings[i].value
-                    // payments.options[i].innerText = resp.data.billings[i].label+" / R$" + resp.data.billings[i].value
-
-                    //li1.innerHTML = "<span> Eventual /  R$"+resp.data.price_weekly+"</span>"
-            // payments.options[i].innerText = payments.options[i].text
-            // console.log(payments.options[i].text)
         }
             SelectContainer.innerHTML = ''
             SelectContainer.appendChild(SelectBillings)
@@ -39,7 +28,8 @@ function price_inject() {
 }// funçao price_inject
 
 // ouvindo mudanças no formulario de cadastro
-document.querySelector('#select-cad-service-customer').addEventListener('change',function () {
+let selectCustomerService = document.querySelector('#select-cad-service-customer')
+if(isValidElement(selectCustomerService))document.querySelector('#select-cad-service-customer').addEventListener('change',function () {
     price_inject()
 })
 
@@ -79,6 +69,7 @@ ServiceForm.addEventListener('submit',function (event) {
             document.querySelector("#htmlContent").innerHTML = resp.data.html
             // get instance of modal and close it
             let serviceCadModalElement = document.getElementById('new-service')
+            HTMLFormElement.reset()
             let serviceCadModalInstance = M.Modal.getInstance(serviceCadModalElement)
             serviceCadModalInstance.close()
             toastAlert.fire({
@@ -92,7 +83,7 @@ ServiceForm.addEventListener('submit',function (event) {
             let boxMsgError = document.querySelector('#error-text')
             boxMsgError.style.fontSize = '18px'
             boxMsgError.innerText = " "+error.response.data.message;
-            console.info(infoBox.classList)
+            //console.info(infoBox.classList)
             if(infoBox.classList.contains('hide')){
             infoBox.classList.remove('hide')
             }

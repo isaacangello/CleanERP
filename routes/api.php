@@ -35,8 +35,8 @@ Route::get('/commercial-schedule',[CommercialController::class,'index'])->name('
 Route::post('/commercial-schedule',[CommercialController::class,'store'])->name('commercial.api.store');
 Route::get('/commercial-schedule/{id}',[CommercialController::class,'show'])->name('commercial.api.show');
 Route::get('commercial-schedule/{id}/{fields}',[CommercialController::class ,'query'])->name('commercial.api.query');
-Route::match(['put', 'patch'],'/commercial-schedule',[CommercialController::class,'update'])->name('commercial.api.update');
-
+Route::match(['put', 'patch'],'/commercial-schedule/{id}',[CommercialController::class,'update'])->name('commercial.api.update');
+Route::delete('/commercial-schedule/{id}',[CommercialController::class,'delete'])->name('commercial.api.delete');
 
 Route::get('services/{id}/{fields}',[ServicesController::class ,'query'])->name('services.api.query');
 Route::apiResource('customer', CustomerController::class)

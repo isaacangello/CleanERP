@@ -1,4 +1,20 @@
-import {isValidElement,isNullOrUndef,serialize,errorShow} from "./helpers/funcs.js";
+import {isValidElement,isNullOrUndef,serialize,errorShow} from "../helpers/funcs.js";
+function urlGenerate(model,parameter){
+    var urlBase = "";
+    switch (model) {
+        case'schedule':
+        case'commercial': urlBase = `/api/commercial-schedule/${parameter}`; break;
+        case'employees': urlBase = `/api/employee/${parameter}` ; break;
+        case'customers': urlBase = `/api/customer/${parameter}`; break;
+        case'schedule.delete':
+        case'commercial.delete':
+            urlBase = `/api/commercial-schedule/`; break
+        case'schedule.query':
+        case'commercial.query': urlBase = `/api/commercial-schedule/${parameter}`; break;
+    }
+    return urlBase
+}
+
 function field_change(element,urlBase,token){
     console.log("url => "+urlBase)
     let field = element.getAttribute('name')
@@ -43,56 +59,51 @@ function field_change(element,urlBase,token){
     )
 
 }
-function urlGenerate(model,response){
-    var urlBase = "";
-    switch (model) {
-        case'services': urlBase = `/api/services/${response}`; break;
-        case'employees': urlBase = `/api/employee/${response.data.employee1_id}` ; break;
-        case'customers': urlBase = `/api/customer/${response.data.customer_id}`; break;
-        case'commercial': urlBase = `/api/commercial-schedule/${response}`; break;
-    }
-    return urlBase
-}
 function modal_changes(element,token,model){
-    if (isValidElement(document.querySelector("#serviceId")))var service_id = document.querySelector("#serviceId").innerText
     if(isValidElement(document.querySelector("#scheduleId"))) var schedule_id = document.querySelector("#scheduleId").innerText
     // let schedule_id = document.querySelector("#scheduleId").innerText
     switch (model) {
-        case'services': field_change(element,urlGenerate(model,service_id),token); break;
+        case'schedule': field_change(element,urlGenerate(model,schedule_id),token); break;
         case'employees':
+            axios.get(urlGenerate('schedule',schedule_id+'/all:id,customer_id,employee_id'))
+                .then(resp=>{
+                    // console.info(resp)
+                    field_change(element,urlGenerate(model,resp.data.employee1_id),token)
+                })
+            break;
         case'customers':
-                axios.get('/api/services/'+service_id+'/all:id,customer_id,employee1_id')
+                axios.get(urlGenerate('schedule',schedule_id+'/all:id,customer_id,employee_id'))
                     .then(resp=>{
                         // console.info(resp)
-                        field_change(element,urlGenerate(model,resp),token)
+                        field_change(element,urlGenerate(model,resp.data.customer_id),token)
                     })
             break;
-        case'commercial':
-            axios.get('/api/commercial-schedule/'+schedule_id+'/all:id,customer_id,employee1_id')
+        case'commercial.query':
+            axios.get(urlGenerate('commercial.query',schedule_id+'/all:id,customer_id,employee_id'))
                 .then(resp=>{
                     // console.info(resp)
                     field_change(element,urlGenerate(model,resp),token)
                 })
     }
-    console.log("função modal_change service_id =>"+service_id)
+    console.log("função modal_change schedule_id =>"+schedule_id)
 }
 
 function dateTime_change(elementId1,elementId2,token,model){
     const date = document.getElementById(elementId1).value
     const time = document.getElementById(elementId2).value
-    const service_id = document.querySelector("#serviceId").innerText
+    const schedule_id = document.querySelector("#scheduleId").innerText
     //element.getAttribute('value')
     let value = `${date} ${time}`
-    const urlBase = `/api/services/${service_id}`
+    const urlBase = urlGenerate('schedule',schedule_id)
     // console.log('alterando campo service_date Via axios com valor => '+value)
     // console.log("url => "+urlBase)
-    // console.log("date=>"+date+" Time=>"+time)
-    const DateToPost = moment(date+" "+time, "MM/DD/YYYY hh:mm").format("YYYY-MM-DD hh:mm:ss")
-    // console.log("fotmated ->"+DateToPost)
+     console.log("date=>"+date+" Time=>"+time)
+    const DateToPost = moment(date+" "+time, "MM/DD/YYYY HH:mm").format("YYYY-MM-DD HH:mm:ss")
+    console.log("fotmated ->"+DateToPost)
     axios.patch(urlBase,
         {
             _token: token,
-            fieldName: "service_date",
+            fieldName: "schedule_date",
             value: DateToPost,
         }).then(resp =>{
                 // console.log(resp)
@@ -100,6 +111,8 @@ function dateTime_change(elementId1,elementId2,token,model){
             }
 
         ).catch( resp =>{
+
+            console.log(resp)
             date.classList.add('red', 'lighten-5')
             setTimeout(function () {
                 date.classList.remove('red', 'lighten-5')
@@ -175,19 +188,38 @@ function startConfirmation(){
 }
 startConfirmation()
 
-let ChangeResidentialModalFields = document.querySelectorAll('.modal-residential-change')
+let ChangeCommercialModalFields = document.querySelectorAll('.modal-commercial-change')
 
-
-    ChangeResidentialModalFields.forEach(function (el) {
-        el.addEventListener('change',function (ev) {
-            console.log('change event')
-            switch (this.getAttribute('name')) {
-                case'service_date':console.log('date');
-                case'service_time':console.log('time');dateTime_change('serviceDate','serviceTime',this.dataset.token)  ;break;
-                default:console.log('default');modal_changes(this,this.dataset.token,this.dataset.dbModel );
-            }
-        })
+ChangeCommercialModalFields.forEach(function (el) {
+    el.addEventListener('change',function (ev) {
+        console.log('change event')
+        switch (this.getAttribute('name')) {
+            case'schedule_date':console.log('date');
+            case'schedule_time':console.log('date');
+            case'schedulePeriod':console.log('time');dateTime_change('scheduleDate','schedulePeriod',this.dataset.token)  ;break;
+            default:console.log('default');modal_changes(this,this.dataset.token,this.dataset.dbModel );
+        }
     })
+})
 
+let btnDelete = document.querySelector('#btnDelete')
+
+if(isValidElement(btnDelete)){
+    btnDelete.addEventListener('click',function (event){
+        event.preventDefault()
+        swalConfirmCallback(
+            'did you actually wish delete this schedule ?',
+            'Yes',
+            ()=> {
+                axios.delete(urlGenerate('schedule',this.dataset.scheduleId)).then(
+                    function (response) {
+                        console.log(response)
+                    }
+                )
+            }
+        )
+
+    })
+}
 
 

@@ -38,7 +38,7 @@ export function serialize(form) {
                         }
                         break;
                     case"file":
-                        break
+                        break;
                 }
                 break;
             case"TEXTAREA":
@@ -70,7 +70,7 @@ export function serialize(form) {
         }
     }
     return q.join("&")
-};
+}
 
 export function errorShow(error, errorBox, errorInnexText, idsPrefix) {
     let error_messages = error.response.data.errors;
@@ -161,4 +161,11 @@ export function date_format(dataInput) {
 }
 export function time_format(timeInput) {
     return moment(timeInput).format('LT')
+}
+export function dateFormat(day){
+    var data = new Date(day),
+        dia  = data.getDate().toString().padStart(2, '0'),
+        mes  = (data.getMonth()+1).toString().padStart(2, '0'), //+1 pois no getMonth Janeiro começa com zero.
+        ano  = data.getFullYear();
+    return ano+"-"+mes+"-"+dia;
 }

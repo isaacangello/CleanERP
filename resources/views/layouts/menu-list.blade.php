@@ -33,10 +33,10 @@
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="javascript:void(0);">
-                                <i class="material-icons" style="font-size: 20px;">today</i>
-                                <span>Services today</span>
-                            </a>
+{{--                            <a href="javascript:void(0);">--}}
+{{--                                <i class="material-icons" style="font-size: 20px;">today</i>--}}
+{{--                                <span>Services today</span>--}}
+{{--                            </a>--}}
                             <a href="javascript:void(0);">
                                 <i class="material-icons" style="font-size: 20px;">calendar_view_week</i>
                                 <span>Services Week</span>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\Funcs;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\numberweek;
+use App\Http\Controllers\Populate;
 use App\Http\Controllers\year;
 use App\Models\Customer;
 use App\Models\Employee;
@@ -158,8 +159,8 @@ class CommercialController extends Controller
                'weekArr' => $weekarr,
                'numWeek' => $numweek,
                'year' => $year,
-               'employeesCol' => $this->employee->all()->sortBy('name'),
-               'customersCol' => $this->customer->all()->sortBy('name'),
+               'employeesCol' => Populate::employeeFilter('commercial','name'),
+               'customersCol' => Populate::customerFilter('commercial','name'),
                'msg' => $msg,
            ],
            200
@@ -232,6 +233,13 @@ class CommercialController extends Controller
             $status = 206;
         }
         return response()->json($service,$status);
+    }
+    public function delete($id)
+    {
+        $schedule = $this->schedule->find($id);
+        $schedule->delete();
+        return response()->json($schedule);
+
     }
 
 

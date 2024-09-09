@@ -29,68 +29,11 @@
                         <div class="header">
                             <h2 class="p-0">CALLS</h2>
                         </div>
-                        <div class="body">
-                            <div class="table-responsive ">
-                                <table class="table table-hover dashboard-task-infos highlight">
-                                    <thead>
-                                    <tr>
-                                        <th class="flow-text">#</th>
-                                        <th class="flow-text">Type</th>
-                                        <th class="flow-text">Title</th>
-                                        <th class="hide-on-small-and-down flow-text">Status</th>
-                                        <th class="hide-on-small-and-down flow-text">Link</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <!--
-                                        Chamada Principal
-                                        https://meet.google.com/pbx-ngck-evi
-                                        Chamada Residencial
-                                        https://meet.google.com/vvh-zxmn-cjc
-                                        Chamada Comercial
-                                        https://meet.google.com/cot-jkcr-dgw
-                                        Chamada Extra
-                                        https://meet.google.com/mec-cngi-feo
-                                    -->
-                                    <tr>
-                                        <td class="flow-text">1</td>
-                                        <td class="flow-text">Call</td>
-                                        <td class="font-14"><a target="_blank" href="https://meet.google.com/pbx-ngck-evi"><span class="label bg-green p-5 ">Chamada Principal</span></a></td>
-                                        <td class="hide-on-small-and-down flow-text">Unknown</td>
-                                        <td class="hide-on-small-and-down flow-text">
-                                            <span>https://meet.google.com/pbx-ngck-evi</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Call</td>
-                                        <td><a target="_blank" href="https://meet.google.com/vvh-zxmn-cjc"><span class="label bg-blue p-5 font-14">Chamada Residencial</span></a></td>
-                                        <td class="hide-on-small-and-down flow-text">Unknown</td>
-                                        <td class="hide-on-small-and-down flow-text">
-                                            <span>https://meet.google.com/vvh-zxmn-cjc</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Call</td>
-                                        <td><a target="_blank" href="https://meet.google.com/cot-jkcr-dgw"><span class="label bg-light-blue p-5 font-14">Chamada Comercial</span></a></td>
-                                        <td class="hide-on-small-and-down flow-text">Unknown</td>
-                                        <td class="hide-on-small-and-down flow-text">
-                                            <span>https://meet.google.com/cot-jkcr-dgw</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Call</td>
-                                        <td><a target="_blank" href="https://meet.google.com/mec-cngi-feo"><span class="label bg-orange p-5 font-14">Chamada Extra</span></a></td>
-                                        <td class="hide-on-small-and-down flow-text">Unknown</td>
-                                        <td class="hide-on-small-and-down flow-text">
-                                            <span>https://meet.google.com/mec-cngi-feo</span>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="body center-align">
+                            <a target="_blank" href="https://meet.google.com/pbx-ngck-evi"><span class="label bg-green p-5 font-14">Chamada Principal</span></a>
+                            <a target="_blank" href="https://meet.google.com/vvh-zxmn-cjc"><span class="label bg-blue p-5 font-14">Chamada Residencial</span></a>
+                            <a target="_blank" href="https://meet.google.com/cot-jkcr-dgw"><span class="label bg-light-blue p-5 font-14">Chamada Comercial</span></a>
+                            <a target="_blank" href="https://meet.google.com/mec-cngi-feo"><span class="label bg-orange p-5 font-14">Chamada Extra</span></a>
                         </div>
                     </div>
                 </div>
@@ -102,7 +45,6 @@
                         <h2 class="p-0">CALENDAR</h2>
                     </div>
                     <div class="body">
-{{--                        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&bgcolor=%230B8043&showPrint=0&src=ampsY2xlYW5zZXJ2aWNlc0BnbWFpbC5jb20&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4uY2hyaXN0aWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=cHQuYnJhemlsaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23EF6C00&color=%2333B679&color=%230B8043&color=%230B8043&color=%230B8043" style="border:solid 1px #777" width="100%" height="600px"  frameborder="0" scrolling="no"></iframe>--}}
                         <div id="cal-view"></div>
                     </div>
                 </div>

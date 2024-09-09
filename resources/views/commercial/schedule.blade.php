@@ -46,9 +46,9 @@
                             <div class="col s12 m2 input-field">
                                 <div class="form-group">
                                     <form action="{{ route('commercial.schedule') }}">
-                                        <button class="btn h-45">
+                                        <x-standard-btn type="submit" class="font-15 h-45">
                                             This week
-                                        </button>
+                                        </x-standard-btn>
                                     </form>
                                 </div>
                             </div>
@@ -79,11 +79,11 @@
                                         <form action="{{ route('week')}}">
                                             <x-text-input type="hidden" value="{{$numWeek_arrow_b}}" name="numberweek"></x-text-input>
                                             <x-text-input type="hidden" value="{{$year_arrow_b}}" name="year"></x-text-input>
-                                            <button class="btn h-45">
+                                            <x-standard-btn type="submit" class="font-15 h-45">
                                             <span class="material-symbols-outlined">
                                                 arrow_back
                                             </span>
-                                            </button>
+                                            </x-standard-btn>
                                         </form>
                                 </div>
                             </div>
@@ -115,9 +115,9 @@
                                     </div>
                                 </div>
                                 <div class="col s12 m1 input-field">
-                                    <button class="btn h-45">
+                                    <x-standard-btn type="submit" class="font-15 h-45">
                                         go
-                                    </button>
+                                    </x-standard-btn>
                                 </div>
                             </form>
                             <div class="col s12 m1 input-field align-left">
@@ -125,11 +125,11 @@
                                     <form action="{{ route('commercial.schedule')}}">
                                         <x-text-input type="hidden" value="{{$numWeek_arrow_f}}" name="numberweek"></x-text-input>
                                         <x-text-input type="hidden" value="{{$year_arrow_f}}" name="year"></x-text-input>
-                                        <button class="btn h-45">
+                                        <x-standard-btn type="submit" class="font-15 h-45">
                                             <span class="material-symbols-outlined">
                                                 arrow_forward
                                             </span>
-                                        </button>
+                                        </x-standard-btn>
                                     </form>
                                 </div>
                             </div>
@@ -162,6 +162,9 @@
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
     @include('layouts.generic_js')
+    <script  type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>
     <script type="module"  src="{{ asset('web/custom/commercial/modalPush.js') }}"></script>
+    <script  type="module" src="{{ asset('web/custom/commercial/field_change.js') }}"></script>
+
 @endsection
 
