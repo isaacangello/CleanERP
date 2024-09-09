@@ -58,8 +58,10 @@ function push_run(btnParam){
                     servicePhone.value = serviceData.customer.phone
                     serviceDate.value = date_format(serviceData.service_date)
                     serviceTime.value = time_format(serviceData.service_date)
-                    serviceInTime.value = " "
-                    serviceOutTime.value  = " "
+                    if(serviceData.control !== null){
+                        serviceInTime.value = time_format(serviceData.control.checkin_datetime)
+                        serviceOutTime.value  = time_format(serviceData.control.checkout_datetime)
+                    }
                     serviceInformation.innerText = " "
                     ServiceNotes.innerText = serviceData.notes
                     ServiceInstructions.innerText = serviceData.instructions
@@ -67,7 +69,7 @@ function push_run(btnParam){
             )
         return ""
     }
-    console.log(service_id)
+    //console.log(service_id)
     modalInstance.onOpenStart(populate(service_id))
 }
 

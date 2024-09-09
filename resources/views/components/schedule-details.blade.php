@@ -76,11 +76,11 @@
                 </table>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-danger btn-link">
-                <span class="material-symbols-outlined">
-                delete
-                </span>
-            </button>
+                <button type="button" class="btn btn-danger btn-link">
+                    <span class="material-symbols-outlined">
+                    delete
+                    </span>
+                </button>
                 <button type="button" class="modal-close btn btn-link" data-dismiss="modal">CLOSE</button>
             </div>
         </div>

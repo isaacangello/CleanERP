@@ -48,8 +48,8 @@ return new class extends Migration
     public function extracted(Blueprint $table): void
     {
         $table->string('checkin_local');
-        $table->string('checkin_lat');
-        $table->string('checkin_long');
+        $table->float('checkin_lat');
+        $table->float('checkin_long');
         $table->dateTime('checkin_datetime');
         $table->string('checkout_local');
         $table->float('checkout_lat');

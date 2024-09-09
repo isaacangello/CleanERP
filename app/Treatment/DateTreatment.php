@@ -39,25 +39,26 @@ class DateTreatment
          */
     }
 
-public function MakeArrayDays($firstdate = 0, $periodo = 'Wek', $periodo_meses = 9)
+public function MakeArrayDays($firstdate = 0, $periodo = "Wek", $periodo_meses = 9)
     {
         /*********************************************************************************
          * verificando segundo parametro
          * Verificando frequencia de repeticoes
          */
         switch ($periodo) {
-            case 'Wek':
-            case 'WK':
+            case "Wek":
+            case "WK":
                 $periodo_nun = 7;
                 break;
-            case 'Biw':
+            case "Biw":
                 $periodo_nun = 14;
                 break;
-            case 'Thr':
+            case "Thr":
                 $periodo_nun = 21;
                 break;
-            case 'Mon':
+            case "Mon":
                 $periodo_nun = 30;
+                break;
             default:
                 $periodo_nun = 7;
         }
@@ -71,7 +72,7 @@ public function MakeArrayDays($firstdate = 0, $periodo = 'Wek', $periodo_meses =
             $loop_year = date('Y');
             $firstday = date('Y-m-d');
         } else {
-            var_dump($firstdate);echo"<br>";
+            //var_dump($firstdate);echo"<br>";
             list($loop_month, $loop_day, $loop_year) = explode("/", $firstdate);
             $firstday = $firstdate;
         }

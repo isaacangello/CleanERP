@@ -19,6 +19,28 @@ class Service extends Model
         'price','justify_minus', 'minus',
         'justify_plus','plus', 'confirmed',
     ];
+    public $rules =  [
+        'customer_id' => 'required|numeric',
+        'employee1_id' => 'required|numeric',
+        'employee2_id' => 'nullable',
+        'service_date' => 'required|date',
+        'period' => 'alpha_num:ascii',
+        'frequency' => 'required',
+        'notes' => 'nullable',
+        'instructions' => 'nullable',
+        'paid_out' => 'nullable',
+        'fee' => 'nullable',
+        'fee_notes' => 'present_with:fee',
+        'payment' => 'nullable',
+        'who_saved' => 'string',
+        'who_saved_id' => 'nullable',
+        'price' => 'numeric',
+        'justify_plus' => 'present_with:plus',
+        'plus' => 'nullable',
+        'justify_minus' => 'present_with:minus',
+        'minus' => 'nullable',
+
+    ];
     public function customer()
     {
         return $this->belongsTo(Customer::class);
@@ -33,27 +55,10 @@ class Service extends Model
     }
     public function rules(): array
     {
-        return [
-            'customer_id' => 'required|numeric',
-            'employee1_id' => 'required|numeric',
-            'employee2_id' => 'nullable',
-            'service_date' => 'required|date',
-            'period' => 'alpha_num:ascii',
-            'frequency' => 'required',
-            'notes' => 'nullable',
-            'instructions' => 'nullable',
-            'paid_out' => 'nullable',
-            'fee' => 'nullable',
-            'fee_notes' => 'present_with:fee',
-            'payment' => 'nullable',
-            'who_saved' => 'string',
-            'who_saved_id' => 'nullable',
-            'price' => 'numeric',
-            'justify_plus' => 'present_with:plus',
-            'plus' => 'nullable',
-            'justify_minus' => 'present_with:minus',
-            'minus' => 'nullable',
-
-        ];
+        return $this->rules;
+    }
+    public function control()
+    {
+        return $this->hasOne(ServiceControl::class,'service_id');
     }
 }

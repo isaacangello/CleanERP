@@ -50,7 +50,7 @@ function urlGenerate(model,response){
         case'services': urlBase = `/api/services/${response}`; break;
         case'employees': urlBase = `/api/employee/${response.data.employee1_id}` ; break;
         case'customers': urlBase = `/api/customer/${response.data.customer_id}`; break;
-        case'commercial': urlBase = `/api/commercial-schedule/${response.data.customer_id}`; break;
+        case'commercial': urlBase = `/api/commercial-schedule/${response}`; break;
     }
     return urlBase
 }
@@ -183,9 +183,32 @@ function startConfirmation(){
 }
 startConfirmation()
 
-let ChangeFields = document.querySelectorAll('.modal-commercial-change')
+let ChangeCommercialModalFields = document.querySelectorAll('.modal-commercial-change')
+
+ChangeCommercialModalFields.forEach(function (el) {
+    el.addEventListener('change',function (ev) {
+        console.log('change event')
+        switch (this.getAttribute('name')) {
+            case'service_date':console.log('date');
+            case'service_time':console.log('time');dateTime_change('serviceDate','serviceTime',this.dataset.token)  ;break;
+            default:console.log('default');modal_changes(this,this.dataset.token,this.dataset.dbModel );
+        }
+    })
+})
+
+let ChangeResidentialModalFields = document.querySelectorAll('.modal-residential-change')
 
 
+    ChangeResidentialModalFields.forEach(function (el) {
+        el.addEventListener('change',function (ev) {
+            console.log('change event')
+            switch (this.getAttribute('name')) {
+                case'service_date':console.log('date');
+                case'service_time':console.log('time');dateTime_change('serviceDate','serviceTime',this.dataset.token)  ;break;
+                default:console.log('default');modal_changes(this,this.dataset.token,this.dataset.dbModel );
+            }
+        })
+    })
 
 
 

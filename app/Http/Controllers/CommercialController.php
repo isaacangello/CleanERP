@@ -90,7 +90,7 @@ use Spatie\Html\Elements\Element;
         if($request->msg !== null and $msg === null ){
             $msg = $request->msg;
         }
-        $data = $this->schedule->with('customer','employee')
+        $data = $this->schedule->with('customer','employee','control')
             ->whereDate('schedule_date','>=' , $this->from )
             ->whereDate('schedule_date','<=' , $this->till )
             ->orderBy('schedule_date')

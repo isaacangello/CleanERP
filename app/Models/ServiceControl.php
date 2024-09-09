@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ScheduleControl extends Model
+class ServiceControl extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = 'scheduling_control_commercial';
+    protected $table = 'scheduling_control_residential';
     protected $guarded= [];
+
 }

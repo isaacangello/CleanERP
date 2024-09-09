@@ -103,7 +103,7 @@ class ServicesController extends Controller
     public function index(Request $req){
     }
     public function show(Request $request, $id){
-        $service = $this->service->with('customer','employee', 'employee2')->find($id) ;
+        $service = $this->service->with('customer','employee', 'employee2','control')->find($id) ;
         $status = 200;
         return response()->json($service,$status);
     }
@@ -112,7 +112,7 @@ class ServicesController extends Controller
         $queryString = explode(':', $fields)[1];
         if($firstParam === "with"){
             if($fields){
-                $service = $this->service->selectRaw($queryString)->with('customer','employee', 'employee2')->find($id);
+                $service = $this->service->selectRaw($queryString)->with('customer','employee', 'employee2','control')->find($id);
                 $status = 206;
             }
         }else{

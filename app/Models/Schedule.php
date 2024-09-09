@@ -35,4 +35,8 @@ class Schedule extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+    public function control()
+    {
+        return $this->hasOne(ScheduleControl::class,'schedule_id');
+    }
 }

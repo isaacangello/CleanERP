@@ -167,7 +167,7 @@ class CommercialController extends Controller
     }
     public function show($id)
     {
-        $returned = $this->schedule->with('customer','employee')->find($id);
+        $returned = $this->schedule->with('customer','employee','control')->find($id);
         return response()->json($returned,200);
     }
     public function store(Request $request): \Illuminate\Http\JsonResponse
@@ -224,7 +224,7 @@ class CommercialController extends Controller
         $queryString = explode(':', $fields)[1];
         if($firstParam === "with"){
             if($fields){
-                $service = $this->schedule->selectRaw($queryString)->with('customer','employee', 'employee2')->find($id);
+                $service = $this->schedule->selectRaw($queryString)->with('customer','employee', 'employee2','control')->find($id);
                 $status = 206;
             }
         }else{

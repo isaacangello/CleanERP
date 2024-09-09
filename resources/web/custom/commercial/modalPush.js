@@ -65,8 +65,8 @@ function schedule_push(btnParam){
                         schedulePeriod.value = "Third"
                     }
 
-                    scheduleInTime.value = " "
-                    scheduleOutTime.value  = " "
+                    scheduleInTime.value = time_format(scheduleData.control.checkin_datetime)
+                    scheduleOutTime.value  = time_format(scheduleData.control.checkout_datetime)
                     scheduleInformation.innerText = " "
                     scheduleNotes.innerText = scheduleData.notes
                     scheduleInstructions.innerText = scheduleData.instructions
