@@ -76,7 +76,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-link">
+                <button type="button" class="btn btn-danger btn-link btnDeleteService" id="btnDeleteService" data-service-id="">
                     <span class="material-symbols-outlined">
                     delete
                     </span>

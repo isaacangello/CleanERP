@@ -18,14 +18,14 @@ class Schedule extends Model
     ];
     public array $rules = [
         'customer_id' => 'required',
-        'employee1_id' => 'nullable',
+        'employee_id' => 'required',
         'schedule_date' => 'required',
         'schedule_time' => 'required',
         'loop' => 'required',
         'notes' => 'nullable',
         'instructions' => 'nullable',
         'who_saved' => 'nullable',
-        'denomination' => 'required',
+        'denomination' => 'nullable',
     ];
     public function customer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

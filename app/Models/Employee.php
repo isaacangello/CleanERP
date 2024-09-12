@@ -104,7 +104,9 @@ class Employee extends Model
             $weekdayCarbon = Carbon::create($weekday);
             $arr_result[$key] = DB::table('services')
                 ->where('services.employee1_id','=',$emp_id)
+                ->where('employees.type','=','RESIDENTIAL')
                 ->whereDate('service_date',$weekdayCarbon->format('Y-m-d') )
+                ->whereNull('services.deleted_at')
                 ->join('employees', 'services.employee1_id','=','employees.id')
                 ->join('customers','services.customer_id','=', 'customers.id')
                 ->orderBy('service_date')
@@ -126,7 +128,7 @@ class Employee extends Model
     }
     public function servicesFromPeriodWhithEmpId($from,$till,$empId = null,$numberRegsPage = 15){
      if($empId == null){
-        return [];
+        return null;
      }else{
         $carbon_from = Carbon::create($from);
         $carbon_till = Carbon::create($till);
@@ -134,6 +136,7 @@ class Employee extends Model
       $result_services =  DB::table('services')
             ->where('employee1_id','=', $empId )
             ->whereDate('service_date',$carbon_from->format('Y-m-d'), )
+          ->whereNull('deleted_at')
             ->join('employees', 'services.employee1_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(

@@ -30,7 +30,7 @@
                         <x-msgs :$msg />
 
                     </div>
-                    <x-commercial-cad :employees="$employeesCol" :customers="$customersCol" :$weekArr>
+                    <x-commercial-cad :employees="$employeesCol" :customers="$customersCol" :$weekArr :$numWeek :$year>
 
                     </x-commercial-cad>
                     <div class="body">
@@ -156,7 +156,7 @@
         if(isset($customersCol)){$customersItems = $customersCol;}else{$customersItems = false;}
 //        dd($employeesCol);
     @endphp
-    <x-schedule-details :employees="$employeesItems" :customers="$customersItems" />
+    <x-schedule-details :employees="$employeesItems" :customers="$customersItems" :$numWeek :$year />
 @endsection
 
 {{-- inclusção de scripts  no final no corpo--}}

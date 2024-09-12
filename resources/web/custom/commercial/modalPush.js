@@ -89,13 +89,16 @@ function schedule_push(btnParam){
     // modalInstanceCom.onOpenStart(populate(schedule_id))
     populate(schedule_id)
 }
-
-let modalLinksCom = document.querySelectorAll('.link-modal-commercial')
-console.log(modalLinksCom.length)
-if (modalLinksCom.length > 0) {
-    modalLinksCom.forEach(function (link) {
-        link.addEventListener('click', function () {
-            schedule_push(this);
+function initModalLinksCom(){
+    let modalLinksCom = document.querySelectorAll('.link-modal-commercial')
+    console.log(modalLinksCom.length)
+    if (modalLinksCom.length > 0) {
+        modalLinksCom.forEach(function (link) {
+            link.addEventListener('click', function () {
+                schedule_push(this);
+            })
         })
-    })
+    }
 }
+initModalLinksCom()
+export {schedule_push}

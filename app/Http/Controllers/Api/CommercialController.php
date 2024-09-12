@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use AllowDynamicProperties;
 use App\Helpers\Funcs;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\numberweek;
@@ -15,7 +16,7 @@ use Illuminate\Http\Request;
 use App\Treatment\DateTreatment;
 use Illuminate\Support\Facades\DB;
 
-class CommercialController extends Controller
+#[AllowDynamicProperties] class CommercialController extends Controller
 {
 
     public DateTreatment $date;
@@ -31,86 +32,13 @@ class CommercialController extends Controller
     }
 
     //
-    public function index(Request $request, $msg = null)
+    public function buildCard($from,$till,$nunWeek,$year)
     {
-        /**
-         * Tratando dados recebidos no request ano e numero da semana
-         * @param year
-         * @param numberweek
-         */
-        if (isset($request->year)){$year = $request->year;}else{$year = 'current';}
-        /**
-         * Verificando tamanho das semanas do ano
-         *  casso a sentença seja falsa e retornadado um array com a semana atual
-         *  @retunn array
-         */
-        if(isset($request->numberweek) and intval($request->numberweek) >=1 and intval($request->numberweek) <=52 ){
-//            dd($request->numberweek);
-            $numweek = $request->numberweek;
-            $weekarr = $this->date->getWeekByNumberWeek($request->numberweek,$year);
-            $this->from = $weekarr['Monday'];
-            $this->till = $weekarr['Sunday'];
-            //dd($weekarr);
-        }else{
-
-            $numweek = $this->date->numberWeekByday(now()->format('Y-m-d'));
-            $weekarr = $this->date->getWeekByNumberWeek($numweek,$year);
-            $this->from = $weekarr['Monday'];
-            $this->till = $weekarr['Sunday'];
-        }
-        /**
-         * Montado dados para tela
-         *  percorrendo o array de datas da semana retornada e montando array de dados
-         * com os serviços da semana atual, filtrados por employee
-         */
-
-        $filteredWeekGroup= [];
-
-
-//
-//            dd($array_week);
-//            dd($filtered);
-        $weekarr['Monday'] = Carbon::create($weekarr['Monday'])->format('m/d/Y');
-        $weekarr['Tuesday'] = Carbon::create($weekarr['Tuesday'])->format('m/d/Y');
-        $weekarr['Wednesday'] = Carbon::create($weekarr['Wednesday'])->format('m/d/Y');
-        $weekarr['Thursday'] = Carbon::create($weekarr['Thursday'])->format('m/d/Y');
-        $weekarr['Friday'] = Carbon::create($weekarr['Friday'])->format('m/d/Y');
-        $weekarr['Saturday'] = Carbon::create($weekarr['Saturday'])->format('m/d/Y');
-        $weekarr['Sunday'] = Carbon::create($weekarr['Sunday'])->format('m/d/Y');
-
-        $employees =  $this->employee->all()->sortBy('name');
-
-        foreach ($employees as $row){
-            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$numweek);;
-        }
+        $weekArr = $this->date->getWeekByNumberWeek($nunWeek,$year);
 
 //        dd($filteredWeekGroup);
-        // mensagem do formulario
-        if($request->msg !== null and $msg === null ){
-            $msg = $request->msg;
-        }
-        $data = $this->schedule->with('customer','employee')->whereDate('schedule_date','>=' , $this->from )->whereDate('schedule_date','<=' , $this->till )->orderBy('schedule_date')->get();
+        $data = $this->schedule->with('customer','employee')->whereDate('schedule_date','>=' , $from )->whereDate('schedule_date','<=' , $till )->orderBy('schedule_date')->get();
 //        dd($this->from);
-        $div_exemple = "
-        <div class='card green darken-3 white-text'>
-            <div class='card-content card-content-min'>
-                <span class='card-title font-12'> dayName - day </span>
-                <p>
-                <table class='table-home green darken-3 centered'>
-                    <tbody>
-                            <tr class='yellow-row'><td>&nbsp;</td></tr>
-                            <tr class='yellow-row'><td>&nbsp;</td></tr>
-                            <tr class='yellow-row'><td>&nbsp;</td></tr>
-                    </tbody>
-                </table>
-
-                </p>
-            </div>
-        </div>
-
-        
-        ";
-        $textRowTd = ['text1','text2','text3'];
 
         //dd($card);
 
@@ -149,22 +77,78 @@ class CommercialController extends Controller
             if($dayName != "Saturday" and $dayName != "Sunday" ){
                 $textRowTd = [];
                 //dd($dataSchedule);
-                $cards .=  Funcs::createCommercialCard($dataSchedule, "$dayName - ".$weekarr[$dayName]);
+                $cards .=  Funcs::createCommercialCard($dataSchedule, "$dayName - ".$weekArr[$dayName]);
             }
         }
-       return response()->json(
-           [
-               'view' => 'commercial.schedule',
-                'cards' => $cards,
-               'weekArr' => $weekarr,
-               'numWeek' => $numweek,
-               'year' => $year,
-               'employeesCol' => Populate::employeeFilter('commercial','name'),
-               'customersCol' => Populate::customerFilter('commercial','name'),
-               'msg' => $msg,
-           ],
-           200
-       );
+        return $cards;
+    }
+    public function index(Request $request, $msg = null, )
+    {
+        /**
+         * Tratando dados recebidos no request ano e numero da semana
+         * @param year
+         * @param numberweek
+         */
+        if (isset($request->year)){$year = $request->year;}else{$year = 'current';}
+        // mensagem do formulario
+        if($request->msg !== null and $msg === null ){
+            $msg = $request->msg;
+        }
+        /**
+         * Verificando tamanho das semanas do ano
+         *  casso a sentença seja falsa e retornadado um array com a semana atual
+         *  @retunn array
+         */
+        if(isset($request->numberweek) and intval($request->numberweek) >=1 and intval($request->numberweek) <=52 ){
+//            dd($request->numberWeek);
+            $numWeek = $request->numberweek;
+            $weekArr = $this->date->getWeekByNumberWeek($request->numberweek,$year);
+            $this->from = $weekArr['Monday'];
+            $this->till = $weekArr['Sunday'];
+            //dd($weekArr);
+        }else{
+
+            $numWeek = $this->date->numberWeekByday(now()->format('Y-m-d'));
+            $weekArr = $this->date->getWeekByNumberWeek($numWeek,$year);
+            $this->from = $weekArr['Monday'];
+            $this->till = $weekArr['Sunday'];
+        }
+        /**
+         * Montado dados para tela
+         *  percorrendo o array de datas da semana retornada e montando array de dados
+         * com os serviços da semana atual, filtrados por employee
+         */
+
+
+            $cards = $this->buildCard($this->from,$this->till,$numWeek,$year);
+
+//
+//            dd($array_week);
+//            dd($filtered);
+        $weekArr['Monday'] = Carbon::create($weekArr['Monday'])->format('m/d/Y');
+        $weekArr['Tuesday'] = Carbon::create($weekArr['Tuesday'])->format('m/d/Y');
+        $weekArr['Wednesday'] = Carbon::create($weekArr['Wednesday'])->format('m/d/Y');
+        $weekArr['Thursday'] = Carbon::create($weekArr['Thursday'])->format('m/d/Y');
+        $weekArr['Friday'] = Carbon::create($weekArr['Friday'])->format('m/d/Y');
+        $weekArr['Saturday'] = Carbon::create($weekArr['Saturday'])->format('m/d/Y');
+        $weekArr['Sunday'] = Carbon::create($weekArr['Sunday'])->format('m/d/Y');
+
+        $employees =  Populate::employeeFilter('commercial');
+
+
+               return response()->json(
+                   [
+                       'view' => 'commercial.schedule',
+                        'cards' => $cards,
+                       'weekArr' => $weekArr,
+                       'numWeek' => $numWeek,
+                       'year' => $year,
+                       'employeesCol' => Populate::employeeFilter('commercial','name'),
+                       'customersCol' => Populate::customerFilter('commercial','name'),
+                       'msg' => $msg,
+                   ],
+                   200
+               );
     }
     public function show($id)
     {
@@ -174,14 +158,20 @@ class CommercialController extends Controller
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate($this->schedule->rules);
+        if(empty($request->denomination)){
+            $cust = $this->customer->find($request->customer_id);
+            $denomination = $cust->name;
+        }else{
+            $denomination = $request->denomination;
+        }
         $response = $this->schedule->create(
             [
                 'customer_id'=>$request->customer_id,
-                'employee_id'=> $request->employee1_id,
+                'employee_id'=> $request->employee_id,
                 'schedule_date' =>Funcs::dateTimeToDB($request->get('schedule_date'),$request->get('schedule_time')),
                 'notes' =>$request->notes,
                 'instructions' =>$request->instructions,
-                'denomination' =>$request->denomination,
+                'denomination' =>$denomination,
                 'who_saved' => $request->who_saved.":".$request->who_saved_id,
                 'loop' => json_encode($request->loop)
 
@@ -189,7 +179,7 @@ class CommercialController extends Controller
             ]
         );
 
-        return response()->json($response,200);
+        return response()->json([$response],201);
     }
 
     public function update($id, Request $req)
@@ -234,11 +224,29 @@ class CommercialController extends Controller
         }
         return response()->json($service,$status);
     }
-    public function delete($id)
+    public function delete(Request $req)
     {
-        $schedule = $this->schedule->find($id);
+        if(empty($req->id)){
+            return response()->json(['message'=>'service id not found.'],422);
+        }
+        $schedule = $this->schedule->find($req->id);
         $schedule->delete();
-        return response()->json($schedule);
+
+        $employees =  Populate::employeeFilter('commercial','name');
+        if(is_numeric($req->numWeek) && $req->numWeek > 0){
+            $weekNun = $req->numWeek;
+        }else{
+            $weekNun = $this->date->numberWeekByday(now()->format('Y-m-d'));
+        }
+        if(is_numeric($req->year) && $req->year > 0){
+            $year = $req->year;
+        }else{
+            $year = now()->format('Y');
+        }
+        $week = $this->date->getWeekByNumberWeek($weekNun,$year);
+        $html = $this->buildCard($week['Monday'],$week['Friday'],$weekNun,$year);
+
+        return response()->json(['message' =>  'Service has been deleted!', 'html' => $html ],200);
 
     }
 

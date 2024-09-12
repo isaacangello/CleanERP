@@ -1,4 +1,5 @@
 import {isValidElement,isNullOrUndef,serialize,errorShow} from "./helpers/funcs.js";
+import {push_run} from './modalPush.js'
 function field_change(element,urlBase,token){
     console.log("url => "+urlBase)
     let field = element.getAttribute('name')
@@ -142,7 +143,7 @@ function select_billings_changes(El,formId,token,customerId) {
 // confirm or not service
 function startConfirmation(){
         let btnConfirm = document.querySelectorAll('.btn-confirm-form')
-        //console.log(btnConfirm)
+        console.log(btnConfirm)
 
         for (let i = 0; i < btnConfirm.length; i++) {
             btnConfirm[i].addEventListener('click',function (event) {
@@ -189,5 +190,49 @@ let ChangeResidentialModalFields = document.querySelectorAll('.modal-residential
         })
     })
 
+function initModalLinks(){
+    let modalLinks = document.querySelectorAll('.link-modal-residential')
+    console.log(modalLinks.length)
+    if (modalLinks.length > 0){
+        modalLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                push_run(this)
+            })
+        })
+    }
+}
 
 
+function listenerDeleteBtn(){
+    let btnDeleteService = document.querySelector('#btnDeleteService')
+
+    if(isValidElement(btnDeleteService)){
+        btnDeleteService.addEventListener('click',function (event){
+            event.preventDefault()
+            //alert(urlGenerate('services',this.dataset.serviceId))
+            swalConfirmCallback(
+                'did you actually wish delete this schedule ?',
+                'Yes',
+                ()=> {
+                    axios.delete(urlGenerate('services',this.dataset.serviceId)).then(
+                        function (response) {
+                            console.log(response.data.html)
+                            document.getElementById('htmlContent').innerHTML = response.data.html
+                            M.Modal.getInstance(document.getElementById('largeModal')).close()
+                            toastAlert.fire({
+                                icon: "success",
+                                title: response.data.message
+                            });
+                            listenerDeleteBtn()
+                            startConfirmation()
+                            initModalLinks()
+                        }
+                    )
+
+                }
+            )
+
+        })
+    }
+}
+listenerDeleteBtn()

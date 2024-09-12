@@ -8,7 +8,7 @@ function urlGenerate(model,parameter){
         case'customers': urlBase = `/api/customer/${parameter}`; break;
         case'schedule.delete':
         case'commercial.delete':
-            urlBase = `/api/commercial-schedule/`; break
+            urlBase = `/api/commercial-schedule/delete`; break
         case'schedule.query':
         case'commercial.query': urlBase = `/api/commercial-schedule/${parameter}`; break;
     }
@@ -96,7 +96,7 @@ function dateTime_change(elementId1,elementId2,token,model){
     let value = `${date} ${time}`
     const urlBase = urlGenerate('schedule',schedule_id)
     // console.log('alterando campo service_date Via axios com valor => '+value)
-    // console.log("url => "+urlBase)
+     console.log("url => "+urlBase)
      console.log("date=>"+date+" Time=>"+time)
     const DateToPost = moment(date+" "+time, "MM/DD/YYYY HH:mm").format("YYYY-MM-DD HH:mm:ss")
     console.log("fotmated ->"+DateToPost)
@@ -172,8 +172,8 @@ function startConfirmation(){
                 axios.post(' api/confirm',
                     dataJson
                 ).then(function (response) {
-                    //console.log(response.data.html)
-                    document.getElementById('htmlContent').innerHTML = response.data.html
+                    console.log(response)
+                    // document.getElementById('htmlContent').innerHTML = response.data.html
                     toastAlert.fire({
                         icon: "success",
                         title: response.data.message
@@ -202,24 +202,68 @@ ChangeCommercialModalFields.forEach(function (el) {
     })
 })
 
-let btnDelete = document.querySelector('#btnDelete')
 
-if(isValidElement(btnDelete)){
-    btnDelete.addEventListener('click',function (event){
-        event.preventDefault()
-        swalConfirmCallback(
-            'did you actually wish delete this schedule ?',
-            'Yes',
-            ()=> {
-                axios.delete(urlGenerate('schedule',this.dataset.scheduleId)).then(
-                    function (response) {
-                        console.log(response)
+
+function listenerDeleteBtn(){
+    let btnDelete = document.querySelector('#btnDelete')
+    console.log('Listener btn commercial')
+    if(isValidElement(btnDelete)){
+        btnDelete.addEventListener('click',function (event){
+            event.preventDefault()
+            //alert(urlGenerate('services',this.dataset.serviceId))
+            swalConfirmCallback(
+                'did you actually wish delete this schedule ?',
+                'Yes',
+                ()=> {
+                    console.log(urlGenerate('commercial',this.dataset.scheduleId))
+                    let jsonData = {
+                        _token: this.dataset.token,
+                        id: this.dataset.scheduleId,
+                        nunWeek:  this.dataset.nunWeek,
+                        year:  this.dataset.year
+
                     }
-                )
-            }
-        )
+                    axios.post(urlGenerate('schedule.delete',this.dataset.scheduleId),jsonData)
+                        .then(
+                                function (response) {
+                                     console.log(response)
+                                    document.getElementById('renderSchedule').innerHTML = response.data.html
+                                    M.Modal.getInstance(document.getElementById('scheduleModal')).close()
+                                    toastAlert.fire({
+                                        icon: "success",
+                                        title: response.data.message
+                                    });
+                                    listenerDeleteBtn()
+                                    // startConfirmation()
+                                    // initModalLinks()
+                                }
+                       )
 
-    })
+                }
+            )
+
+        })
+    }
 }
+listenerDeleteBtn()
+
+// let btnDelete = document.querySelector('#btnDelete')
+// if(isValidElement(btnDelete)){
+//     btnDelete.addEventListener('click',function (event){
+//         event.preventDefault()
+//         swalConfirmCallback(
+//             'did you actually wish delete this schedule ?',
+//             'Yes',
+//             ()=> {
+//                 axios.delete(urlGenerate('schedule',this.dataset.scheduleId)).then(
+//                     function (response) {
+//                         console.log(response)
+//                     }
+//                 )
+//             }
+//         )
+//
+//     })
+// }
 
 

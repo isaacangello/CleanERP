@@ -28,6 +28,7 @@ Route::apiResource('services', ServicesController::class)
     'update'=>'services.api.update',
     'destroy'=>'services.api.destroy',
 ]);
+Route::post('/services/delete',[ServicesController::class, 'delete'])->name('services.api.delete');
 Route::post('/confirm',[ServicesController::class,'confirm'])->name('service.api.confirm');
 
 
@@ -36,7 +37,8 @@ Route::post('/commercial-schedule',[CommercialController::class,'store'])->name(
 Route::get('/commercial-schedule/{id}',[CommercialController::class,'show'])->name('commercial.api.show');
 Route::get('commercial-schedule/{id}/{fields}',[CommercialController::class ,'query'])->name('commercial.api.query');
 Route::match(['put', 'patch'],'/commercial-schedule/{id}',[CommercialController::class,'update'])->name('commercial.api.update');
-Route::delete('/commercial-schedule/{id}',[CommercialController::class,'delete'])->name('commercial.api.delete');
+Route::delete('/commercial-schedule/{id}',[CommercialController::class,'destroy'])->name('commercial.api.destroy');
+Route::post('/commercial-schedule/delete',[CommercialController::class,'delete'])->name('commercial.api.delete');
 
 Route::get('services/{id}/{fields}',[ServicesController::class ,'query'])->name('services.api.query');
 Route::apiResource('customer', CustomerController::class)

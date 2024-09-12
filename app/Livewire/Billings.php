@@ -7,10 +7,13 @@ use App\Models\config;
 use App\Models\Billing;
 class Billings extends Component
 {
-    public $billings;
+    public $billing;
+    public $id;
+    public $fieldName;
+    public $value;
     public function mount()
     {
-        $this->billings = Billing::all();
+        $this->billing = Billing::all();
     }
     public function render()
     {
@@ -19,6 +22,23 @@ class Billings extends Component
             ;
 
 
+
+    }
+    public function toast(){
+      $this->dispatch('                    
+                        toastAlert.fire({
+                        icon: "success",
+                        title: "teste de evento"
+                    });
+');
+
+    }
+    public function saveChange($id,$fieldName,$value){
+        $result = $this->billing->find($id);
+        $result->update([
+            $this->fieldName => $this->value
+        ]);
+        $result->save();
 
     }
 }

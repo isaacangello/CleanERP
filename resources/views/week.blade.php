@@ -30,7 +30,7 @@
                         <x-msgs :$msg />
 
                     </div>
-                    <x-service-cad :employees="$employeesCol" :customers="$customersCol" :num-week="$numWeek">
+                    <x-service-cad :employees="$employeesCol" :customers="$customersCol" :num-week="$numWeek" :$year>
 
                     </x-service-cad>
                     <div class="body">

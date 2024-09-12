@@ -23,6 +23,10 @@ function push_run(btnParam){
             const serviceInformation= document.querySelector("#serviceInformation")
             const ServiceNotes= document.querySelector("#ServiceNotes")
             const ServiceInstructions= document.querySelector("#ServiceInstructions")
+            const deleteBtn = document.querySelectorAll('.btnDeleteService');
+        deleteBtn.forEach(function (e) {
+            e.dataset.serviceId = id
+        })
         /**
          *  api/services/{service} route to det data
          * */
@@ -74,14 +78,18 @@ function push_run(btnParam){
 }
 
 //'onclick' => "push_run(this)",
-
+function initModalLinks(){
 let modalLinks = document.querySelectorAll('.link-modal-residential')
-
 console.log(modalLinks.length)
-if (modalLinks.length > 0){
-    modalLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-            push_run(this)
+    if (modalLinks.length > 0){
+        modalLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                push_run(this)
+            })
         })
-    })
+    }
 }
+
+initModalLinks()
+
+export {push_run};

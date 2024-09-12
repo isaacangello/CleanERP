@@ -24,7 +24,9 @@
                     @csrf
                         <input type="hidden" name="who_saved"  value="{{Funcs::replaceSpaces(Auth::user()->name)}}">
                         <input type="hidden" name="who_saved_id"  value="{{Auth::user()->id}}">
-                        <input type="hidden" name="numWeek"  value="{{$numWeek}}">
+                        <input type="hidden" name="numWeek"  value="{{ $numWeek }}">
+                        <input type="hidden" name="year"  value="{{ $year }}">
+
                     <div class="row">
                         <div class=" col s12 m4">
                             <div class="form-group">

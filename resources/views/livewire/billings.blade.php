@@ -8,10 +8,10 @@
     <div class="row clearfix">
         <div class="col s12 m12">
             <div class="card">
-                <div class="header" style="padding-bottom: 0px;">
+                <div class="header" style="padding-bottom: 0;">
                     <div class="row">
                         <div class="col s12 m12">
-                            <button class="btn waves-effect waves-classic waves-light  btn-small modal-trigger"  href="#new-billing"  >New Billings</button>
+                            <button class="btn btn-link font-12 h-45 modal-trigger"  href="#new-billing"  >New Billings</button>
                             <span id="list-of-billings" class="m-l-35">LIST OF BILLINGS</span>
 
                             <!-- ############  Blade  component customer-cad ###########################################################################################-->
@@ -53,15 +53,17 @@
                                                                 Chamada Extra
                                                                 https://meet.google.com/mec-cngi-feo
                                                             -->
-                                                        @foreach($billings as $row)
+
+                                                        @foreach($billing as $row)
                                                             <tr wire:key="{{ $row->id }}">
-                                                                <td class="flow-text"><input class="form-control flow-text" type="text" name="label" id="label" value="{{ $row->label }}"></td>
-                                                                <td class="flow-text"><input class="form-control flow-text" type="text" name="value" id="value" value="{{ $row->value }}"> </td>
-                                                                <td class="flow-text"><input class="form-control flow-text" type="text" name="hint" id="hint" value="{{ $row->hint }}"> </td>
+                                                                <td class="flow-text padding-0"><input class="form-control flow-text" type="text"  data-id="{{ $row->id }}" value="{{ $row->label }}"> </td>
+                                                                <td class="flow-text padding-0" ><input class="form-control flow-text" type="text"   data-id="{{ $row->id }}" value="{{ $row->value }}"> </td>
+                                                                <td class="flow-text padding-0" ><input class="form-control flow-text" type="text"   data-id="{{ $row->id }}" value="{{ $row->hint }}"> </td>
                                                             </tr>
                                                         @endforeach
                                                             </tbody>
                                                         </table>
+{{--                                                        <button class="btn btn-link white-text" wire:click="toast">Click</button>--}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,5 +74,4 @@
 
             </div>
         </div>
-    </div>
-</div>
+

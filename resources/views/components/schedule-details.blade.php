@@ -84,7 +84,13 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnDelete" class="btn btn-link btn-danger" data-schedule-id="">
+                <button type="button" id="btnDelete" class="btn btn-link btn-danger"
+                        data-schedule-id=""
+                        data-token="{{ csrf_token() }}"
+                        data-db-model="schedule.delete"
+                        data-nun-week="{{ $numWeek }}"
+                        data-year="{{ $year }}"
+                >
                     <span class="material-symbols-outlined">
                     delete
                     </span>

@@ -47,7 +47,6 @@ ServiceForm.addEventListener('submit',function (event) {
         '_token': data.get('_token') ,
         'who_saved': data.get('who_saved'),
         'who_saved_id': data.get('who_saved_id'),
-        'numWeek': data.get('numWeek'),
         'customer_id': data.get('customer_id'),
         'employee1_id': data.get('employee1_id'),
         'employee2_id': data.get('employee2_id'),
@@ -58,6 +57,8 @@ ServiceForm.addEventListener('submit',function (event) {
         'frequency': data.get('frequency'),
         'notes': data.get('notes'),
         'instructions': data.get('instructions'),
+        'numWeek': data.get('numWeek'),
+        'year': data.get('year'),
     }
     console.log(dataJson)
     axios.post('api/services', dataJson)
@@ -69,7 +70,7 @@ ServiceForm.addEventListener('submit',function (event) {
             document.querySelector("#htmlContent").innerHTML = resp.data.html
             // get instance of modal and close it
             let serviceCadModalElement = document.getElementById('new-service')
-            HTMLFormElement.reset()
+            //HTMLFormElement.reset()
             let serviceCadModalInstance = M.Modal.getInstance(serviceCadModalElement)
             serviceCadModalInstance.close()
             toastAlert.fire({

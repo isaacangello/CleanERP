@@ -5229,7 +5229,7 @@ section.content {
 
 /* Tables ====================================== */
 .table tbody tr td, .table tbody tr th {
-    padding: 10px;
+    padding: 0;
     font-weight: 700;
     font-size: small;
     border-top: 1px solid #eee;
@@ -5256,7 +5256,7 @@ section.content {
     color: #fff; }
 
 .table thead tr th {
-    padding: 10px;
+    padding: 0;
     font-weight: 700;
     font-size: small;
     border-bottom: 1px solid #eee; }

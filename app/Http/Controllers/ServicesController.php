@@ -84,7 +84,7 @@ class ServicesController extends Controller
             $weekarr['Saturday'] = Carbon::create($weekarr['Saturday'])->format('m/d/Y');
             $weekarr['Sunday'] = Carbon::create($weekarr['Sunday'])->format('m/d/Y');
 
-            $employees =  $this->employee->all()->sortBy('name');
+            $employees =  Populate::employeeFilter();
 
             foreach ($employees as $row){
                 $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$numweek);;

@@ -15,13 +15,15 @@ if(isValidElement(scheduleForm)){
             'who_saved_id': dataForm.get('who_saved_id'),
             'customer_id': dataForm.get('customer_id'),
             'denomination': dataForm.get('denomination'),
-            'employee1_id': dataForm.get('employee1_id'),
+            'employee_id': dataForm.get('employee_id'),
             'schedule_date': dataForm.get('schedule_date'),
             'schedule_time': dataForm.get('schedule_time'),
             'period': dataForm.get('period'),
             'loop': dataForm.getAll('loop[]'),
             'notes': dataForm.get('notes'),
             'instructions': dataForm.get('instructions'),
+            'nunWeek': dataForm.get('nunWeek'),
+            'year': dataForm.get('year'),
         }
         axios.post('  api/commercial-schedule',jsonData)
             .then(function (response) {
@@ -29,7 +31,7 @@ if(isValidElement(scheduleForm)){
                 axios.get('api/commercial-schedule')
                     .then(function (resp) {
                         console.log(resp)
-                            document.getElementById('renderSchedule').innerHTML = resp.data.cards
+                            document.getElementById('renderSchedule').innerHTML = resp.data.html
                          var elem = document.querySelector('#new-schedule')
                         var instance = M.Modal.getInstance(elem);
                         instance.close()

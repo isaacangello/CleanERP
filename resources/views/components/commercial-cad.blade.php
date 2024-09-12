@@ -25,6 +25,8 @@
                     @csrf
                     <input type="hidden" name="who_saved"  value="{{\App\Helpers\Funcs::replaceSpaces(Auth::user()->name)}}">
                     <input type="hidden" name="who_saved_id"  value="{{Auth::user()->id}}">
+                    <input type="hidden" name="nunWeek"  value="{{ $numWeek }}">
+                    <input type="hidden" name="year"  value="{{ $year }}">
                     <!-- Row ######################################################################################################-->
                     <div class="row">
                         <div class=" col s12 m4">
@@ -70,11 +72,11 @@
                         </div>
                         <div class=" col s12 m4">
                             <div class="form-group">
-                                <div class="form-line success form-line-employee1_id">
-                                    <select id="cad-schedule-employee1_id" name="employee1_id" class="materialize-select">
+                                <div class="form-line success form-line-employee_id">
+                                    <select id="cad-schedule-employee_id" name="employee_id" class="materialize-select">
                                         <option  value="none">Employee</option>
                                         @foreach($employees as $values)
-                                            @if(old('employee1_id') == $values->id)
+                                            @if(old('employee_id') == $values->id)
                                                 <option selected  value="{{$values->id}}">{{$values->name}} </option>
                                             @else
                                                 <option  value="{{$values->id}}">{{$values->name}} </option>
@@ -83,9 +85,9 @@
 
                                         @endforeach
                                     </select>
-                                    <label class="form-label"  for="select-cad-service-employee1">Employee</label>
+                                    <label class="form-label"  for="cad-schedule-employee_id">Employee</label>
                                 </div>
-                                <div id="help-info-employee1_id" class="help-info" >select the employee for service.</div>
+                                <div id="help-info-employee_id" class="help-info" >select the employee for service.</div>
                             </div>
                         </div>
                     </div>

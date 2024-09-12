@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 //use App\View\Components\customer;
 use App\Helpers\Funcs;
+use App\Http\Controllers\Populate;
 use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -148,7 +149,7 @@ class ServicesController extends Controller
                 'who_saved_id'=>$req->who_saved_id,
             ]
         );
-        $employees =  $this->employee->all()->sortBy('name');
+        $employees =  Populate::employeeFilter('residential','name');
 
         foreach ($employees as $row){
             $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$req->numWeek);;
@@ -195,7 +196,7 @@ class ServicesController extends Controller
             $service->update(['confirmed' => 0]);
             $msg = "Service has been decommitted";
         }
-        $employees =  $this->employee->all()->sortBy('name');
+        $employees =  Populate::employeeFilter('residential','name');
 
         foreach ($employees as $row){
             $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$req->numWeek);;
@@ -206,9 +207,58 @@ class ServicesController extends Controller
 
             return response()->json(['message' =>  $msg, 'html' => $html ],200);
     }
-    public function delete(Request $req, $id){
+    public function destroy($id,Request $req)
+    {
+        $schedule = $this->service->find($id);
+        $schedule->delete();
+
+        $employees =  Populate::employeeFilter('residential','name');
+        if(is_numeric($req->numWeek) && $req->numWeek > 0){
+            $weekNun = $req->numWeek;
+        }else{
+            $weekNun = $this->date->numberWeekByday(now()->format('Y-m-d'));
+        }
+
+        foreach ($employees as $row){
+            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$weekNun);;
+
+        }
+        /** Rendering HTML elements in server side SSR */
+        $html = Funcs::createResidentialCard($filteredWeekGroup,$weekNun);
+
+        return response()->json(['message' =>  'Service has been deleted!', 'html' => $html ],200);
 
     }
+    public function delete(Request $req)
+    {
+        if(empty($req->id)){
+            return response()->json(['message'=>'service id not found.'],422);
+        }
+        $schedule = $this->service->find($req->id);
+        $schedule->delete();
+
+        $employees =  Populate::employeeFilter('residential','name');
+        if(is_numeric($req->numWeek) && $req->numWeek > 0){
+            $weekNun = $req->numWeek;
+        }else{
+            $weekNun = $this->date->numberWeekByday(now()->format('Y-m-d'));
+        }
+        if(is_numeric($req->year) && $req->year > 0){
+            $year = $req->year;
+        }else{
+            $year = now()->format('Y');
+        }
+
+        foreach ($employees as $row){
+            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$weekNun,$year);;
+        }
+        /** Rendering HTML elements in server side SSR */
+        $html = Funcs::createResidentialCard($filteredWeekGroup,$weekNun);
+
+        return response()->json(['message' =>  'Service has been deleted!', 'html' => $html ],200);
+
+    }
+
 
 
 
