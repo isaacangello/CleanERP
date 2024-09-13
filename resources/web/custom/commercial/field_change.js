@@ -1,4 +1,5 @@
 import {isValidElement,isNullOrUndef,serialize,errorShow} from "../helpers/funcs.js";
+import {initModalLinksCom} from './modalPush.js'
 function urlGenerate(model,parameter){
     var urlBase = "";
     switch (model) {
@@ -215,7 +216,7 @@ function listenerDeleteBtn(){
                 'did you actually wish delete this schedule ?',
                 'Yes',
                 ()=> {
-                    console.log(urlGenerate('commercial',this.dataset.scheduleId))
+                    console.log(urlGenerate('schedule.delete',this.dataset.scheduleId))
                     let jsonData = {
                         _token: this.dataset.token,
                         id: this.dataset.scheduleId,
@@ -234,8 +235,7 @@ function listenerDeleteBtn(){
                                         title: response.data.message
                                     });
                                     listenerDeleteBtn()
-                                    // startConfirmation()
-                                    // initModalLinks()
+                                    initModalLinksCom()
                                 }
                        )
 

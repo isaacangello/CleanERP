@@ -86,8 +86,8 @@ use Illuminate\Support\Facades\DB;
     {
         /**
          * Tratando dados recebidos no request ano e numero da semana
-         * @param year
-         * @param numberweek
+         * @var $request year
+         * @var $request numberweek
          */
         if (isset($request->year)){$year = $request->year;}else{$year = 'current';}
         // mensagem do formulario
@@ -224,6 +224,7 @@ use Illuminate\Support\Facades\DB;
         }
         return response()->json($service,$status);
     }
+
     public function delete(Request $req)
     {
         if(empty($req->id)){

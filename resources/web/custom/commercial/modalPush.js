@@ -101,4 +101,4 @@ function initModalLinksCom(){
     }
 }
 initModalLinksCom()
-export {schedule_push}
+export {schedule_push,initModalLinksCom}
