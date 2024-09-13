@@ -238,3 +238,4 @@ function listenerDeleteBtn(){
     }
 }
 listenerDeleteBtn()
+export {startConfirmation,listenerDeleteBtn,initModalLinks}

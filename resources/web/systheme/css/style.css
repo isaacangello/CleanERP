@@ -5,6 +5,7 @@
     --modal-size: 16px;
     --jjl-green-color: #2e7d32;
 }
+
 .navbar {
     font-family: "Roboto", sans-serif;
     -webkit-border-radius: 0;
@@ -1680,7 +1681,7 @@ margin-bottom: 9px;}
     padding-top: 2px; }
 
 .p-r-2 {
-    padding-right: 2px; }
+    padding-right: 2px!important; }
 
 .p-b-2 {
     padding-bottom: 2px; }
@@ -2264,7 +2265,7 @@ margin-bottom: 9px;}
     padding-bottom: 125px; }
 
 .padding-0 {
-    padding: 0; }
+    padding: 0!important; }
 /**
     widths
  */
@@ -3055,6 +3056,49 @@ section.content {
     top: 6px; }
 
 /* Buttons ===================================== */
+
+.btn-custom {
+    text-decoration: none;
+    /*color: #fff;*/
+    background-color: #2A6F46;
+    border:none;
+    text-align: center;
+    line-height: 36px;
+    padding: 0 16px;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+}
+
+.btn-custom-large {
+    text-decoration: none;
+    /*color: #fff;*/
+    background-color: #2A6F46;
+    text-align: center;
+    line-height: 45px;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+}
+
+.btn-custom-small {
+    text-decoration: none;
+    /*color: #fff;*/
+    background-color: #2A6F46;
+    line-height: 25px;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+}
+
+.btn-custom:hover, .btn-custom-large:hover, .btn-custom-small:hover {
+    background-color: #2bbbad;
+}
+
 .btn:focus {
     outline: none !important; }
 
@@ -3083,15 +3127,36 @@ section.content {
 
 .btn-link:active, .btn-link:focus {
     text-decoration: none;
-    color: #333; }
+    color: #333!important; }
 .btn-link:hover {
-    text-decoration: none;
-    color: #333;
-    background-color: #ddd; }
+    text-decoration: none!important;
+    color: #333!important;;
+    background-color: #ddd!important;; }
 
 .btn-link-underline:hover{
-    text-decoration: underline;
+    text-decoration: underline!important;;
 }
+
+.red.darken-3.btn-link:hover {
+    text-decoration: none!important;
+    color: #c62828!important;;
+    background-color: #ddd!important;; }
+
+.btn-danger.btn-link:hover {
+    text-decoration: none!important;
+    color: #c62828!important;;
+    background-color: #ddd!important;; }
+
+.green.darken-3.btn-link:hover {
+    text-decoration: none!important;
+    color: #2e7d32!important;;
+    background-color: #ddd!important;; }
+
+.btn-link-underline:hover{
+    text-decoration: underline!important;;
+}
+
+.pointer {cursor: pointer;}
 
 .btn-circle-lg {
     border: none;
@@ -3130,10 +3195,13 @@ section.content {
     margin-left: 3px; }
 
 .btn-warning,
-.btn-warning:hover,
 .btn-warning:active,
 .btn-warning:focus {
     background-color: #ff9600 !important; }
+
+.btn-warning:hover{
+
+}
 
 .btn-danger,
 .btn-danger:active,
@@ -3143,28 +3211,31 @@ section.content {
     background-color: #c65448 !important;
 }
 .btn-info,
-.btn-info:hover,
 .btn-info:active,
 .btn-info:focus {
     background-color: #00b0e4 !important; }
+.btn-info:hover{}
 
 .btn-success,
-.btn-success:hover,
 .btn-success:active,
 .btn-success:focus {
     background-color: #2b982b !important; }
+.btn-success:hover{}
+
 
 .btn-primary,
-.btn-primary:hover,
 .btn-primary:active,
 .btn-primary:focus {
     background-color: #1f91f3 !important; }
+.btn-primary:hover{}
+
 
 .btn-default,
-.btn-default:hover,
 .btn-default:active,
 .btn-default:focus {
     background-color: #fff !important; }
+
+.btn-default:hover{}
 
 .btn-group,
 .btn-group-vertical {
@@ -9075,10 +9146,10 @@ html.ie11 .bs-searchbox .form-control {
     text-transform: uppercase;
     text-align: center;
 }
-.btn-xm{
+.btn.btn-xm{
     border:none;
-    margin: 0;
-    padding: 1px;
+    margin: 0!important;
+    padding: 1px !important;
     border-radius: 2px;
     font-weight: bold;
 }
@@ -9234,7 +9305,7 @@ input.select-dropdown {
     border-bottom: none!important;
 }
 .red:hover{
-    background-color: #ef9a9a!important;
+    background-color: #ef9a9a;
 }
 input.form-control:focus-visible{
     -webkit-box-shadow: 1px -2px 52px -17px rgba(107,105,107,1)!important;

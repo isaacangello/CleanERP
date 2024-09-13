@@ -158,7 +158,7 @@ class Funcs
 
                                                         Element::withTag('a')->attributes(
                                                             [
-                                                                'class'=> 'btn-confirm-form waves-effect waves-light btn-xm padding-0  z-depth-2 '.$confirmation_service,
+                                                                'class'=> $confirmation_service.' btn-link white-text btn-confirm-form btn-xm padding-0 z-depth-3 pointer p-l-2 p-r-2',
                                                                 'data-service-id' => "$value->service_id"  ,
                                                                 'data-token' => csrf_token(),
                                                                 'data-confirmed' => $value->confirmed ,
@@ -166,7 +166,7 @@ class Funcs
                                                                 'data-year' => $year,
                                                                 'type'=>"button",
                                                             ])
-                                                            ->addChild(html()->span()->class('white-text')->text(Funcs::carbonFormat($value->service_date,'h')))
+                                                            ->addChild(html()->span()->text(Funcs::carbonFormat($value->service_date,'h')))
 
 
                                             )

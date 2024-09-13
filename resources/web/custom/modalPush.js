@@ -24,7 +24,11 @@ function push_run(btnParam){
             const ServiceNotes= document.querySelector("#ServiceNotes")
             const ServiceInstructions= document.querySelector("#ServiceInstructions")
             const deleteBtn = document.querySelectorAll('.btnDeleteService');
+            const feeBtn = document.querySelectorAll('.btnFeeService');
         deleteBtn.forEach(function (e) {
+            e.dataset.serviceId = id
+        })
+        feeBtn.forEach(function (e) {
             e.dataset.serviceId = id
         })
         /**

@@ -1,5 +1,5 @@
 import {isValidElement,isNullOrUndef,serialize,errorShow} from "./helpers/funcs.js";
-
+import {startConfirmation,listenerDeleteBtn,initModalLinks } from './field_change.js'
 
 function price_inject() {
     let selectCust = document.querySelector('#select-cad-service-customer')
@@ -68,6 +68,9 @@ ServiceForm.addEventListener('submit',function (event) {
             console.info(resp)
             // repopulate screen
             document.querySelector("#htmlContent").innerHTML = resp.data.html
+            startConfirmation()
+            listenerDeleteBtn()
+            initModalLinks()
             // get instance of modal and close it
             let serviceCadModalElement = document.getElementById('new-service')
             //HTMLFormElement.reset()

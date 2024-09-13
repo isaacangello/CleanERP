@@ -76,12 +76,17 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-link btnDeleteService" id="btnDeleteService" data-service-id="">
+                <button type="button" class="btn btn-warning btn-link btnDeleteService z-depth-3" id="btnFeeService" data-service-id="">
                     <span class="material-symbols-outlined">
                     delete
                     </span>
                 </button>
-                <button type="button" class="modal-close btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn-custom btn-danger btn-link btnDeleteService " id="btnDeleteService" data-service-id="">
+                    <span class="material-symbols-outlined">
+                    delete
+                    </span>
+                </button>
+                <button type="button" class="modal-close btn-custom btn-link z-depth-3" data-dismiss="modal">CLOSE</button>
             </div>
         </div>
     </div>
