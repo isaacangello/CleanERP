@@ -199,11 +199,11 @@ class ServicesController extends Controller
         $employees =  Populate::employeeFilter('residential','name');
 
         foreach ($employees as $row){
-            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$req->numWeek);;
+            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$req->numWeek,$req->year);;
 
         }
         /** Rendering HTML elements in server side SSR */
-        $html = Funcs::createResidentialCard($filteredWeekGroup,$req->numWeek);
+        $html = Funcs::createResidentialCard($filteredWeekGroup,$req->numWeek,$req->year);
 
             return response()->json(['message' =>  $msg, 'html' => $html ],200);
     }
@@ -224,7 +224,7 @@ class ServicesController extends Controller
 
         }
         /** Rendering HTML elements in server side SSR */
-        $html = Funcs::createResidentialCard($filteredWeekGroup,$weekNun);
+        $html = Funcs::createResidentialCard($filteredWeekGroup,$weekNun,);
 
         return response()->json(['message' =>  'Service has been deleted!', 'html' => $html ],200);
 
@@ -253,7 +253,7 @@ class ServicesController extends Controller
             $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$weekNun,$year);;
         }
         /** Rendering HTML elements in server side SSR */
-        $html = Funcs::createResidentialCard($filteredWeekGroup,$weekNun);
+        $html = Funcs::createResidentialCard($filteredWeekGroup,$weekNun,$year);
 
         return response()->json(['message' =>  'Service has been deleted!', 'html' => $html ],200);
 

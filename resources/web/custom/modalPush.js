@@ -74,7 +74,7 @@ function push_run(btnParam){
         return ""
     }
     //console.log(service_id)
-    modalInstance.onOpenStart(populate(service_id))
+    populate(service_id)
 }
 
 //'onclick' => "push_run(this)",

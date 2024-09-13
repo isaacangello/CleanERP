@@ -139,20 +139,32 @@ function select_billings_changes(El,formId,token,customerId) {
         }
     )
 }
+function initModalLinks(){
+    let modalLinks = document.querySelectorAll('.link-modal-residential')
+    console.log(modalLinks.length)
+    if (modalLinks.length > 0){
+        modalLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                push_run(this)
+            })
+        })
+    }
+}
 
 // confirm or not service
 function startConfirmation(){
         let btnConfirm = document.querySelectorAll('.btn-confirm-form')
         console.log(btnConfirm)
 
-        for (let i = 0; i < btnConfirm.length; i++) {
-            btnConfirm[i].addEventListener('click',function (event) {
+    btnConfirm.forEach((element)=>{
+        element.addEventListener('click',function (event) {
                 event.preventDefault()
                     let dataJson = {
 
                         '_token': this.dataset.token,
                         'id': this.dataset.serviceId,
                         'numWeek': this.dataset.numWeek,
+                        'year': this.dataset.year,
                         'confirmed': this.dataset.confirmed,
 
                     }
@@ -167,12 +179,12 @@ function startConfirmation(){
                         title: response.data.message
                     });
                     startConfirmation()
+                    initModalLinks()
                 })
 
 
             })
-
-        }
+        })
 }
 startConfirmation()
 
@@ -190,17 +202,7 @@ let ChangeResidentialModalFields = document.querySelectorAll('.modal-residential
         })
     })
 
-function initModalLinks(){
-    let modalLinks = document.querySelectorAll('.link-modal-residential')
-    console.log(modalLinks.length)
-    if (modalLinks.length > 0){
-        modalLinks.forEach(function (link) {
-            link.addEventListener('click', function () {
-                push_run(this)
-            })
-        })
-    }
-}
+
 
 
 function listenerDeleteBtn(){

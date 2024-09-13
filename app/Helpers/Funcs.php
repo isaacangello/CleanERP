@@ -111,7 +111,7 @@ class Funcs
                 )->render();
 
     }
-    public static function createResidentialCard($data,$numweek):string{
+    public static function createResidentialCard($data, $numWeek, $year = '2024'):string{
 //        dd($data);
         $return = "";
 
@@ -162,7 +162,8 @@ class Funcs
                                                                 'data-service-id' => "$value->service_id"  ,
                                                                 'data-token' => csrf_token(),
                                                                 'data-confirmed' => $value->confirmed ,
-                                                                'data-num-week' => $numweek,
+                                                                'data-num-week' => $numWeek,
+                                                                'data-year' => $year,
                                                                 'type'=>"button",
                                                             ])
                                                             ->addChild(html()->span()->class('white-text')->text(Funcs::carbonFormat($value->service_date,'h')))
