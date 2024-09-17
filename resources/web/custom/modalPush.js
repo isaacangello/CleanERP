@@ -32,6 +32,11 @@ function push_run(btnParam){
             e.dataset.serviceId = id
         })
         /**
+         *  control fee algorithm
+         */
+        document.getElementById('idToFee').value = id
+
+        /**
          *  api/services/{service} route to det data
          * */
         function markSelected(itemId,itemSearch){

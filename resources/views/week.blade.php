@@ -76,7 +76,7 @@
 
                                     @endphp
                                     <form action="{{ route('week') }}">
-                                        <form action="{{ route('week')}}">
+
                                             <x-text-input type="hidden" value="{{$numWeek_arrow_b}}" name="numberweek"></x-text-input>
                                             <x-text-input type="hidden" value="{{$year_arrow_b}}" name="year"></x-text-input>
                                             <x-standard-btn type="submit" class="font-15 h-45">
@@ -135,25 +135,8 @@
                             </div>
 
                         </div>
-
                         <div class="row" id="htmlContent">
                             {!! $cardsHtml !!}
-{{--                            @php--}}
-{{--                                $c=0;--}}
-{{--                            @endphp--}}
-
-{{--                            @foreach($dataArr as $key => $row)--}}
-{{--                                <x-home-cards :emp-name="$key" :data="$row"/>--}}
-{{--                                @php--}}
-{{--                                    $c++;--}}
-{{--                                    if($c >= 4){--}}
-{{--                                        $c=0;--}}
-{{--                                        echo "</div><div class='row'>";--}}
-{{--                                    }--}}
-{{--                                @endphp--}}
-
-{{--                            @endforeach--}}
-
                         </div> <!--grid system row-->
                     </div> <!--card body-->
                 </div> <!--card -->
@@ -167,7 +150,10 @@
         if(isset($customersCol)){$customersItems = $customersCol;}else{$customersItems = false;}
 //        dd($employeesCol);
     @endphp
-    <x-service-details :employees="$employeesItems" :customers="$customersItems" />
+    <input type="hidden" id="numWeek" name="numWeek" value="{{$numWeek}}">
+    <input type="hidden" id="year" name="year" value="{{$year}}">
+    <input type="hidden" id="idToFee" name="year" value="">
+    <x-service-details  :employees="$employeesItems" :customers="$customersItems" />
 @endsection
 
 {{-- inclusção de scripts  no final no corpo--}}

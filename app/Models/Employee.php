@@ -118,6 +118,8 @@ class Employee extends Model
                     'period',
                     'who_saved',
                     'confirmed',
+                    'fee',
+                    'fee_notes',
                     'customers.name as cust_name',
                     'customers.type as cust_type',
                     'employees.name as emp_name'

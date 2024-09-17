@@ -35,6 +35,13 @@ class ServicesController extends Controller
         $this->today = now()->format('Y-m-d');
     }
 
+    /**
+     * @param Request $request
+     * @param $msg
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function home(Request $request, $msg = null){
         /**
          * Tratando dados recebidos no request ano e numero da semana
@@ -101,13 +108,31 @@ class ServicesController extends Controller
             'cardsHtml' => $html,
         ]);
     }
+
+    /**
+     * @param Request $req
+     * @return void
+     */
     public function index(Request $req){
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show(Request $request, $id){
         $service = $this->service->with('customer','employee', 'employee2','control')->find($id) ;
         $status = 200;
         return response()->json($service,$status);
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @param $fields
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function query(Request $request,$id, $fields){
         $firstParam = explode(':', $fields)[0];
         $queryString = explode(':', $fields)[1];
@@ -123,6 +148,10 @@ class ServicesController extends Controller
         return response()->json($service,$status);
     }
 
+    /**
+     * @param Request $req
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $req): \Illuminate\Http\JsonResponse
     {
         if($req->all() === null){
@@ -161,6 +190,11 @@ class ServicesController extends Controller
         return response()->json(['message' => "Service has been scheduled on date $req->service_date, $req->service_time", 'html' => $html],201);
     }
 
+    /**
+     * @param $id
+     * @param Request $req
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update($id, Request $req){
         //dd($req);
         $dynamic_rules = array();
@@ -184,6 +218,10 @@ class ServicesController extends Controller
         return response()->json(['_token' => $req->_token,'fieldName' =>$req->fieldName,'value' => $val_update, $req->fieldName => $valOld ]);
     }
 
+    /**
+     * @param Request $req
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function confirm(Request $req)
     {
 
@@ -207,6 +245,41 @@ class ServicesController extends Controller
 
             return response()->json(['message' =>  $msg, 'html' => $html ],200);
     }
+
+    public function fee(Request $req)
+    {
+        $service = $this->service->find($req->id);
+        if ($service->fee <= 0) {
+            $service->update([
+                'fee' => 1,
+                'fee_notes' => $req->fee_notes
+            ]);
+
+            $msg = "Service is canceled";
+        } else {
+            $service->update([
+            'fee' => 0,
+            'fee_notes' => $req->fee_notes
+            ]);
+            $msg = "Service is not canceled";
+        }
+        $employees =  Populate::employeeFilter('residential','name');
+
+        foreach ($employees as $row){
+            $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$req->numWeek,$req->year);;
+
+        }
+        /** Rendering HTML elements in server side SSR */
+        $html = Funcs::createResidentialCard($filteredWeekGroup,$req->numWeek,$req->year);
+        return response()->json(['message' => $msg, 'html' => $html ],206);
+    }
+
+
+    /**
+     * @param $id
+     * @param Request $req
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy($id,Request $req)
     {
         $schedule = $this->service->find($id);
@@ -224,11 +297,16 @@ class ServicesController extends Controller
 
         }
         /** Rendering HTML elements in server side SSR */
-        $html = Funcs::createResidentialCard($filteredWeekGroup,$weekNun,);
+        $html = Funcs::createResidentialCard($filteredWeekGroup,$weekNun);
 
         return response()->json(['message' =>  'Service has been deleted!', 'html' => $html ],200);
 
     }
+
+    /**
+     * @param Request $req
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete(Request $req)
     {
         if(empty($req->id)){
@@ -258,7 +336,6 @@ class ServicesController extends Controller
         return response()->json(['message' =>  'Service has been deleted!', 'html' => $html ],200);
 
     }
-
 
 
 

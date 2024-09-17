@@ -29,6 +29,7 @@ Route::apiResource('services', ServicesController::class)
     'destroy'=>'services.api.destroy',
 ]);
 Route::post('/services/delete',[ServicesController::class, 'delete'])->name('services.api.delete');
+Route::post('/fee',[ServicesController::class,'fee'])->name('service.api.fee');
 Route::post('/confirm',[ServicesController::class,'confirm'])->name('service.api.confirm');
 
 

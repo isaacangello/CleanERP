@@ -3,16 +3,23 @@ import {push_run} from './modalPush.js'
 function field_change(element,urlBase,token){
     console.log("url => "+urlBase)
     let field = element.getAttribute('name')
+    let type = element.nodeName
     let id = element.getAttribute('id')
-    let value = document.querySelector("#"+id) //element.getAttribute('value')
+    let selfElement = document.querySelector("#"+id) //element.getAttribute('value')
+    let selectedValue;
+    switch (type) {
+        // case"TEXTAREA":selectedValue = selfElement.innerHTML; console.log(selfElement); break;
+        case"INPUT":selectedValue = selfElement.value; break;
+        default:selectedValue = selfElement.value; break;
+    }
 
-    console.log('alterando campo '+field+" Via axios com valor => "+value.value)
+    console.log('alterando campo '+field+" do tipo "+type+" Via axios com valor => "+selectedValue)
     // console.log(value.value)
     axios.patch(urlBase,
         {
             _token: token,
             fieldName: field,
-            value: value.value,
+            value: selectedValue,
     })
     .then(resp =>{
                 console.log(resp.data.fieldName)
@@ -181,6 +188,7 @@ function startConfirmation(){
                     });
                     startConfirmation()
                     initModalLinks()
+                    listenerFeeButton()
                 })
 
 
@@ -268,6 +276,64 @@ function listenerChanges(){
 
 listenerChanges()
 
+function listenerFeeButton(){
+ document.querySelectorAll('.btnFeeService').forEach(function (eL) {
+     eL.addEventListener('click',function (evt)  {
+         evt.preventDefault()
+         document.getElementById('idToFee').value = this.dataset.serviceId
+         //console.log(this)
+         Swal.fire({
+             title:"Do you really want to change status this service?",
+             confirmButtonText: "Fee ?",
+             confirmButtonColor:"#2e7d32",
+             input: "textarea",
+             inputLabel: "Do you want to justify the cancellation?",
+             inputPlaceholder: "Enter a justification here...",
+             inputAttributes: {
+                 "aria-label": "Enter a justification here"
+             },
+             showCancelButton: true
+         }).then((result) => {
+             console.log(result)
+             /* Read more about isConfirmed, isDenied below */
+             if (result.isConfirmed) {
+                 let serviceId = document.getElementById('idToFee').value
+                 let numWeek = document.getElementById('numWeek').value
+                 let year = document.getElementById('year').value
+                    console.log(serviceId,numWeek,year,result.value)
+                axios.post('/api/fee',
+                    {
+                            'id':serviceId,
+                            'fee':1,
+                            'fee_notes':result.value,
+                            'numWeek': numWeek,
+                            'year': year
+                        }
+                ).then(function (resp) {
+                    console.log(resp)
+                    document.getElementById('htmlContent').innerHTML = resp.data.html
+                    startConfirmation()
+                    listenerDeleteBtn()
+                    initModalLinks()
+                    listenerFeeButton()
+                    toastAlert.fire({
+                        icon: "success",
+                        title: `${resp.data.message}`
+                    })
+
+                })
+                    .catch(function (error) {
+                        console.log(error)
+
+                    })
+
+             }
+         });
+     })
+ })
+
+}
+listenerFeeButton()
 export {
             startConfirmation,
             listenerDeleteBtn,
@@ -275,5 +341,6 @@ export {
             field_change,
             urlGenerate,
             select_billings_changes,
-            listenerChanges
+            listenerChanges,
+            listenerFeeButton
         }

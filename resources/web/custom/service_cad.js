@@ -12,11 +12,11 @@ function price_inject() {
             SelectBillings.setAttribute('class','materialize-select')
             SelectBillings.setAttribute('id','select-cad-service-billings')
             SelectBillings.setAttribute('name','frequency_payment')
-        for(let i=0;i<resp.data.billings.length;i++){
-            // console.log(payments.options[i].value)
-            //console.log(resp.data.billings[i].label)
-                    SelectBillings.appendChild(new Option(`${resp.data.billings[i].label} / US$ ${resp.data.billings[i].value}`,`${resp.data.billings[i].id},${resp.data.billings[i].value}`)) //= resp.data.billings[i].label+" / R$" + resp.data.billings[i].value
-        }
+            for(let i=0;i<resp.data.billings.length;i++){
+                // console.log(payments.options[i].value)
+                //console.log(resp.data.billings[i].label)
+                        SelectBillings.appendChild(new Option(`${resp.data.billings[i].label} / US$ ${resp.data.billings[i].value}`,`${resp.data.billings[i].id},${resp.data.billings[i].value}`)) //= resp.data.billings[i].label+" / R$" + resp.data.billings[i].value
+            }
             SelectContainer.innerHTML = ''
             SelectContainer.appendChild(SelectBillings)
             let element = document.getElementById('select-cad-service-billings')

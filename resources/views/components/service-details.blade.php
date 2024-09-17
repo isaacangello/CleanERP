@@ -2,6 +2,7 @@
     $style='style=margin-bottom:0;';
 
 @endphp
+
 <div class="modal fade in" id="largeModal" tabindex="-1" role="dialog" style="display: block;">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-col-white">
@@ -75,7 +76,13 @@
             </div>
             <div class="modal-footer">
                 <div>
-                    <button type="button" class="btn-custom btn-link orange darken-3 z-depth-3 btnFeeService" id="btnFeeService" data-service-id="">
+                    <button
+                            class="btn btn-link orange darken-3 z-depth-3 btnFeeService"
+                            id="btnFeeService"
+                            data-service-id=""
+                            data-num-week=""
+                            data-year=""
+                    >
                         <span class="material-symbols-outlined">
                             cancel
                         </span>
@@ -91,3 +98,4 @@
         </div>
     </div>
 </div>
+

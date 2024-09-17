@@ -139,8 +139,12 @@ class Funcs
 
                         if (collect($value)->isNotEmpty()) {
                             //dd($value);
-
-                            $confirmation_service = $value->confirmed?'green darken-3':'red darken-3';
+                            if($value->fee === 1) {
+                                $classes_service ="btnFeeService orange darken-3";
+                            }else{
+                                $confirmClass = $value->confirmed ? 'green darken-3' : 'red darken-3';
+                                $classes_service =" btn-confirm-form ".$confirmClass;
+                            }
                             $spanRentalHouse = $value->cust_type === 'RENTALHOUSE'?Element::withTag('span')->class('material-symbols-outlined')->text('brightness_7'):'';
                             $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->class('valign-wrapper')
                                 ->addChildren(
@@ -158,7 +162,7 @@ class Funcs
 
                                                         Element::withTag('a')->attributes(
                                                             [
-                                                                'class'=> $confirmation_service.' btn-link white-text btn-confirm-form btn-xm padding-0 z-depth-3 pointer p-l-2 p-r-2',
+                                                                'class'=> $classes_service.' btn-link white-text  btn-xm padding-0 z-depth-3 pointer p-l-2 p-r-2',
                                                                 'data-service-id' => "$value->service_id"  ,
                                                                 'data-token' => csrf_token(),
                                                                 'data-confirmed' => $value->confirmed ,

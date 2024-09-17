@@ -122,6 +122,10 @@
                afterSelect: function (values) {
                   console.log(this.options.token)
                    select_billings_changes(this.options.token,this.options.customerId)
+               },
+               afterDeselect: function (values) {
+                  console.log(this.options.token)
+                   select_billings_changes(this.options.token,this.options.customerId)
                }
            })
 

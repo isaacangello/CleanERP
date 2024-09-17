@@ -1,7 +1,7 @@
 
 <div>
     <form id="form-customer-crud-{{$customer->id}}">
-    @php $urlBase = "api/customer/".$customer->id; @endphp
+    @php $urlBase = "/api/customer/".$customer->id; @endphp
 
             <!-- ################################################################################################################################-->
     <div class="row label-employee-view-edit" >
@@ -38,8 +38,8 @@
                             data-token="{{ csrf_token() }}"
                     >
                         <option selected value="{{ $customer->type }}">{{ $customer->type }}</option>
-                        <option  value="RESIDENCIAL">RESIDENCIAL</option>
-                        <option value="COMMERCIAL">COMERCIAL</option>
+                        <option  value="RESIDENTIAL">RESIDENTIAL</option>
+                        <option value="COMMERCIAL">COMMERCIAL</option>
                         <option value="RENTALHOUSE">RENTAL HOUSE</option>
                     </select>
                 </div>
@@ -131,6 +131,34 @@
             </div>
         </div>
     </div>
+   @if($customer->type === "COMMERCIAL")
+        <div class="row clearfix">
+            <div class="col s12">
+                <label class="form-label" for="textarea-cad-costumer-other_emails{{$customer->id}}">Additional emails.</label>
+                <div class="form-group">
+                    <div class="form-line success">
+                        <textarea
+                                style="padding: 10px;"
+                                id="textarea-cad-costumer-other_emails{{$customer->id}}"
+                                name="others_emails"
+                                class="form-control custom-textarea listenerChanges"
+                                rows="4"
+                                placeholder="Please type additional emails here..."
+                                data-customer-id="{{$customer->id}}"
+                                data-url-base="{{ $urlBase }}"
+                                data-token="{{ csrf_token() }}"
+                        >{{ $customer->others_emails }}
+                        </textarea>
+                    </div>
+                    <div class="help-info">Type additional emails separated by commas here. max(3000 chars)</div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if($customer->type === "RESIDENTIAL" || $customer->type === "RENTALHOUSE")
+
+
     <!-- ################################################################################################################################-->
     <div class="row label-employee-view-edit" >
         <span class="label bg-light-green  label-padding">Billing price</span>
@@ -169,6 +197,7 @@
         </div>
         </div>
     </div>
+    @endif
     <!--################################################################################################################################-->
     <div class="row label-employee-view-edit" >
         <span class="label bg-light-green  label-padding">Services information</span>
