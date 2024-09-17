@@ -235,12 +235,13 @@ class Funcs
                 //dd($return);
         return $return;
     }
-    public function createCustomerList():bool{
-        return true;
+    static function altClass($nun,array $classes): string
+    {
+        if ($nun % 2 > 0 ){
+            return $classes[0];
+        }else{
+            return $classes[1];
+        }
     }
-    public function createEmployeeList():bool{
-        return true;
-    }
-
 
 }

@@ -77,7 +77,7 @@
                                         @php
                                             $count++ ;
                                         @endphp
-                                          <div class="collapsible-header green {{ altclass($count) }} white-text"><i class="material-icons">person</i>{{$customer->name}}</div>
+                                          <div class="collapsible-header  green {{ \App\Helpers\Funcs::altClass($count,['darken-3','darken-4']) }} white-text"><i class="material-icons">person</i>{{$customer->name}}</div>
                                             <div class="collapsible-body">
 {{--                                                {{ $customer }}--}}
                                                     <x-customer-crud :$customer :$count :billings-all="$billings_all"></x-customer-crud>
@@ -114,9 +114,17 @@
 @section('script-botton')
     @include("layouts.generic_js")
     <script src="{{ asset('web/custom/customers/modal_cad.js') }}"></script>
-    <script>
-        $('#id-customer-billing').multiSelect()
-        $('.customer-billing').multiSelect()
+    <script type="module" src="{{ asset('web/custom/field_change.js') }}"></script>
+    <script type="module">
+        import {select_billings_changes} from "../web/custom/field_change.js";
+        // $('#id-customer-billing').multiSelect()
+           $('.customer-billing').multiSelect({
+               afterSelect: function (values) {
+                  console.log(this.options.token)
+                   select_billings_changes(this.options.token,this.options.customerId)
+               }
+           })
+
     </script>
 @endsection
 

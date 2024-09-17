@@ -116,11 +116,12 @@ function dateTime_change(elementId1,elementId2,token,model){
 
 }
 
-function select_billings_changes(El,formId,token,customerId) {
+function select_billings_changes(token,customerId) {
     /**
      * the element of having the name billing-values-selected[]
      * */
-    let formEL = document.getElementById(formId)
+    console.log(`form-customer-crud-${customerId}`)
+    let formEL = document.getElementById(`form-customer-crud-${customerId}`)
     let formData  = new FormData(formEL)
 
     let dataJson = {
@@ -154,8 +155,8 @@ function initModalLinks(){
 // confirm or not service
 function startConfirmation(){
         let btnConfirm = document.querySelectorAll('.btn-confirm-form')
-        console.log(btnConfirm)
-
+        //console.log(btnConfirm)
+    if(btnConfirm.length > 0 ){
     btnConfirm.forEach((element)=>{
         element.addEventListener('click',function (event) {
                 event.preventDefault()
@@ -185,6 +186,7 @@ function startConfirmation(){
 
             })
         })
+    }
 }
 startConfirmation()
 
@@ -238,4 +240,40 @@ function listenerDeleteBtn(){
     }
 }
 listenerDeleteBtn()
-export {startConfirmation,listenerDeleteBtn,initModalLinks}
+
+function listenerBillings(){
+ let inputBillings = document.querySelectorAll('.customer-billing')
+    console.log(inputBillings)
+ inputBillings.forEach(function (element) {
+     console.log(element.getAttribute('id'))
+     console.log(document.getElementById(element.getAttribute('id')))
+ })
+}
+function listenerChanges(){
+    listenerBillings()
+    let inputs  = document.querySelectorAll('.listenerChanges')
+    inputs.forEach(function (eL) {
+            eL.addEventListener('change',function (event) {
+                event.preventDefault()
+
+                switch (this.getAttribute('name')) {
+                    case'': break;
+                    case'billing-values-selected[]': select_billings_changes(this.dataset.token,this.dataset.customerId); break;
+                    default: field_change(this,this.dataset.urlBase,this.dataset.token)
+                }
+
+            })
+    })
+}
+
+listenerChanges()
+
+export {
+            startConfirmation,
+            listenerDeleteBtn,
+            initModalLinks,
+            field_change,
+            urlGenerate,
+            select_billings_changes,
+            listenerChanges
+        }
