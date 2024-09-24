@@ -1,8 +1,8 @@
-export function isNullOrUndef(value) {
+ function isNullOrUndef(value) {
     return value === null || typeof value === 'undefined';
 }
 
-export function isValidElement(value) {
+function isValidElement(value) {
     return !(value === null || typeof value === 'undefined');
 }
 
@@ -11,7 +11,7 @@ export function isValidElement(value) {
  *  https://pt.stackoverflow.com/questions/287393/serialize-com-javascript-puro
  */
 
-export function serialize(form) {
+function serialize(form) {
     if (!form || form.nodeName !== "FORM") {
         return
     }
@@ -72,7 +72,7 @@ export function serialize(form) {
     return q.join("&")
 }
 
-export function errorShow(error, errorBox, errorInnexText, idsPrefix) {
+function errorShow(error, errorBox, errorInnexText, idsPrefix) {
     let error_messages = error.response.data.errors;
     // let errorBox =  document.getElementById('error-box')
     // let errorInnexText = document.getElementById('errorMsg')
@@ -104,7 +104,7 @@ export function errorShow(error, errorBox, errorInnexText, idsPrefix) {
     }
 }
 
-export function mountCard(eLContainer, options) {
+ function mountCard(eLContainer, options) {
     if (typeof eLContainer === 'undefined') {
         eLContainer = false
     }
@@ -156,16 +156,27 @@ export function mountCard(eLContainer, options) {
 
 }
 
-export function date_format(dataInput) {
+ function date_format(dataInput) {
     return moment(dataInput).format('L');
 }
-export function time_format(timeInput) {
+ function time_format(timeInput) {
     return moment(timeInput).format('LT')
 }
-export function dateFormat(day){
+ function dateFormat(day){
     var data = new Date(day),
         dia  = data.getDate().toString().padStart(2, '0'),
         mes  = (data.getMonth()+1).toString().padStart(2, '0'), //+1 pois no getMonth Janeiro começa com zero.
         ano  = data.getFullYear();
     return ano+"-"+mes+"-"+dia;
+}
+
+export {
+    isNullOrUndef,
+    isValidElement,
+    serialize,
+    errorShow,
+    mountCard,
+    date_format,
+    time_format,
+    dateFormat,
 }

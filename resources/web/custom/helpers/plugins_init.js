@@ -1,4 +1,6 @@
-   const toastAlert = Swal.mixin({
+window.Swal = Swal
+
+const toastAlert = Swal.mixin({
         toast: true,
         position: "top-end",
         showConfirmButton: false,

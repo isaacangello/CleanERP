@@ -55,11 +55,9 @@
                                                             -->
 
                                                         @foreach($billing as $row)
-                                                            <tr wire:key="{{ $row->id }}">
-                                                                <td class="flow-text padding-0"><input class="form-control flow-text" type="text"  data-id="{{ $row->id }}" value="{{ $row->label }}"> </td>
-                                                                <td class="flow-text padding-0" ><input class="form-control flow-text" type="text"   data-id="{{ $row->id }}" value="{{ $row->value }}"> </td>
-                                                                <td class="flow-text padding-0" ><input class="form-control flow-text" type="text"   data-id="{{ $row->id }}" value="{{ $row->hint }}"> </td>
-                                                            </tr>
+
+                                                                <livewire:td id="{{ $row->id }}"  value="{{ $row->value }}" />
+
                                                         @endforeach
                                                             </tbody>
                                                         </table>
@@ -73,5 +71,12 @@
                                 </div>
 
             </div>
+            <button
+                    class="btn btn-link"
+                    wire:click.prevent="showtoast"
+                    wire:confirm="Are you sure you want to delete this post?"
+            >
+                teste
+            </button>
         </div>
 

@@ -139,6 +139,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/type-resolver" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpdoc-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ta-tikoma/phpunit-architecture-test" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/dados" />
     </content>
     <content url="file://$MODULE_DIR$/../laravel7-docker">
       <sourceFolder url="file://$MODULE_DIR$/../laravel7-docker/src/app" isTestSource="false" packagePrefix="App\" />

@@ -255,7 +255,7 @@
 <script src="{{ asset('web/custom/modalPush.js') }}"></script>
 <script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>
 
-
+<livewire:toast-alert />
 </body>
 
 </html>

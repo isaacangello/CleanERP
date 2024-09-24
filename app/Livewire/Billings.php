@@ -11,6 +11,7 @@ class Billings extends Component
     public $id;
     public $fieldName;
     public $value;
+    public $hint;
     public function mount()
     {
         $this->billing = Billing::all();
@@ -24,21 +25,10 @@ class Billings extends Component
 
 
     }
-    public function toast(){
-      $this->dispatch('                    
-                        toastAlert.fire({
-                        icon: "success",
-                        title: "teste de evento"
-                    });
-');
 
-    }
-    public function saveChange($id,$fieldName,$value){
-        $result = $this->billing->find($id);
-        $result->update([
-            $this->fieldName => $this->value
-        ]);
-        $result->save();
-
+    public function showtoast()
+    {
+        //dd('ok');
+        $this->dispatch('toast-alert',icon:'success',message:"ok is a message!!!") ;
     }
 }

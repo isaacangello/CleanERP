@@ -23,7 +23,7 @@
                 <!-- Divider ######################################################################################################-->
                 <form id="billing-form"  method="post">
                     @csrf
-                    <input type="hidden" name="who_saved"  value="{{\App\Helpers\Funcs::replaceSpaces(Auth::user()->name)}}">
+                    <input type="hidden" wire:model="name" name="who_saved"  value="{{\App\Helpers\Funcs::replaceSpaces(Auth::user()->name)}}">
                     <input type="hidden" name="who_saved_id"  value="{{Auth::user()->id}}">
                     <!-- Row ######################################################################################################-->
                     <div class="row">

@@ -140,7 +140,7 @@ class Funcs
                         if (collect($value)->isNotEmpty()) {
                             //dd($value);
                             if($value->fee === 1) {
-                                $classes_service ="btnFeeService orange darken-3";
+                                $classes_service ="btnFeeService amber darken-3";
                             }else{
                                 $confirmClass = $value->confirmed ? 'green darken-3' : 'red darken-3';
                                 $classes_service =" btn-confirm-form ".$confirmClass;
