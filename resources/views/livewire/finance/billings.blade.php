@@ -23,9 +23,9 @@
                             <div class="switch">
                                 <label>
                                     Off
-                                    <input type="checkbox" wire:model="showHiddenRegs"  wire:change="toggleShowHiddenRegs">
+                                    <input type="checkbox" wire:model.live="showHiddenRegs"  wire:change="toggleShowHiddenRegs">
                                     <span class="lever"></span>
-{{--                                    {{var_export($showHiddenRegs)}}--}}
+                                    {{var_export($showHiddenRegs)}}
                                     On
                                 </label>
                             </div>
@@ -70,7 +70,7 @@
                                                         @foreach($billing as $row)
 
 
-                                                                <livewire:td id="{{ $row->id }}" :model="$row" value="{{ $row->value }}" :key="$row->id"  />
+                                                                <livewire:td id="{{ $row->id }}" :model="$row" value="{{ $row->value }}" :key="$row->id" :show-hidden-regs="$showHiddenRegs" />
 
                                                         @endforeach
                                                             </tbody>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Billings;
+use App\Livewire\Finance\Billings;
 use Livewire\Livewire;
 
 it('renders successfully', function () {

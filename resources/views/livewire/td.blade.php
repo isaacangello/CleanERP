@@ -40,12 +40,12 @@
 </td>
     <td>
         @if(!is_null($model->deleted_at))
-            <a class="btn-link-underline red-text darken-4">{{ $model->deleted_at }}</a>
+            <a wire:click="$dispatch('triggerRestoreBilling', { id:{{ $model->id }} })" class="btn-link-underline red-text darken-4">{{ $model->deleted_at }}</a>
         @else
-
-            <button class="btn btn-link btn-danger btn-delete" wire:click="deleteBilling({{ $model->id }})">
+{{--            {{ var_export($showHiddenRegs) }}--}}
+            <a  class="btn btn-link btn-danger btn-delete" wire:click="deleteBilling({{ $model->id }})">
                 <span class="material-symbols-outlined">delete</span>
-            </button>
+            </a>
 
         @endif
     </td>

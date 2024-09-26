@@ -18,6 +18,7 @@ use Livewire\Component;
     #[Validate('numeric')]
     public $id;
     public $model;
+    public $showHiddenRegs;
     public function saveChange($field){
         $this->validate();
 //        dd($id,$fieldName,$value);
@@ -38,12 +39,12 @@ use Livewire\Component;
     {
         $this->dispatch('remove-billing', id: $id);
     }
-    public function mount()
+    public function mount($showHiddenRegs = null)
     {
     //dd($this->showHiddenRegs);
       // $billing = Billing::find($this->id);
         //dd($this->model);
-
+        $this->showHiddenRegs = $showHiddenRegs;
         $this->value = $this->model->value;
         $this->label = $this->model->label;
         $this->hint = $this->model->hint;
@@ -57,4 +58,5 @@ use Livewire\Component;
     {
         return view('livewire.td');
     }
+
 }

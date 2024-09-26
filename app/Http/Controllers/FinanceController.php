@@ -103,16 +103,15 @@ class FinanceController extends Controller
      * https://laravel.com/docs/10.x/collections#method-flatten
      * esse metodo junta ps array de duas ou mais dimençoe em um
      */
-
-    public function index (Request $request, DateTreatment $date, $day = null){
-        $collection_employees = DB::table('employees')->orderBy('name', 'asc')->paginate($this->nunregpage);
+    public function getEmployeeServices(DateTreatment $date, $nunRegPage=15){
+        $collection_employees = DB::table('employees')->orderBy('name', 'asc')->paginate($nunRegPage);
         $i = 0;
-        $datefrom = $date->GetMondaySartuday();
+        $dateFrom = $date->GetMondaySartuday();
 //        dd($collection_employees->items());
         $array_temp =array();
         $sorted = $collection_employees;
         foreach ($collection_employees->items() as $employees){
-            $data_temp = $this->count_payment_employees($employees->id,$datefrom['monday'],$datefrom['saturday']);
+            $data_temp = $this->count_payment_employees($employees->id,$dateFrom['monday'],$dateFrom['saturday']);
 
             if (empty($data_temp) ){
                 $array_temp[$i]= [
@@ -127,6 +126,9 @@ class FinanceController extends Controller
 
             $i++;
         }
+        return $array_temp;
+    }
+    public function index (Request $request, DateTreatment $date, $day = null){
         /**
          * Alimentando chart
          */
@@ -137,7 +139,7 @@ class FinanceController extends Controller
           'setenta' => ($cem*0.7),
           'trinta' => ($cem*0.3)
         ];
-
+        $array_temp = $this->getEmployeeServices(new DateTreatment(),$this->nunregpage);
 
         return view('finance.finances',
         [

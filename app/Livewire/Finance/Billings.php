@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Finance;
 use App\Livewire\Forms\billingCad;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
@@ -34,30 +34,34 @@ class Billings extends Component
     #[On('remove-billing')]
     public function remove($id): void
     {
+        if($this->showHiddenRegs){
+            $this->dispatch('disabledBtnDelete');
+            return;
+        }
         $result = Billing::find($id);
         //$this->authorize('delete',$result);
         //dd($this->showHiddenRegs);
         $result->delete();
         $this->dispatch('toast-alert',icon:'success',message:"this billing has been deleted!!!") ;
-        $this->mount();
-        $this->render();
+        $this->refresh();
+
+        if($this->showHiddenRegs){
+            $this->dispatch('disabledBtnDelete');
+        }else{
+            $this->dispatch('enableBtnDelete');
+        }
+
     }
     public function toggleShowHiddenRegs():void{
-//        $this->showHiddenRegs =!$this->showHiddenRegs;
+        //dd($this->showHiddenRegs);
+        if($this->showHiddenRegs){
+            $this->dispatch('disabledBtnDelete');
+        }else{
+            $this->dispatch('enableBtnDelete');
+        }
         $this->mount();
         $this->render();
-        $this->dispatch('disabledBtnDelete');
 
-    }
-
-    public function mount()
-    {
-        if ($this->showHiddenRegs){
-            $this->billing = Billing::withTrashed()->get();
-        }else{
-        $this->billing = Billing::all();
-        //dd($this->billing);
-        }
     }
     #[On('refresh')]
     public function refresh()
@@ -66,15 +70,40 @@ class Billings extends Component
         $this->render();
 
     }
+
+    #[On('restoreBilling')]
+    public function restore($id): void
+    {
+        $result = Billing::withTrashed()->find($id);
+        $result->restore();
+        $this->dispatch('refresh')->to('billings');
+        $this->dispatch('tdRefresh')->to('td');
+        $this->dispatch('toast-alert',icon:'success',message:"This billing has been restored!!!");
+            $this->dispatch('disabledBtnDelete');
+
+    }
+    public function mount()
+    {
+
+        if ($this->showHiddenRegs){
+            $this->billing = Billing::withTrashed()->get();
+        }else{
+        $this->billing = Billing::all();
+        //dd($this->billing);
+        }
+    }
     public function render()
     {
-        return view('livewire.billings')
+        return view('livewire.finance.billings')
             ->extends('layouts.app');
     }
+    public function hydrate(){
+        if($this->showHiddenRegs){
+            $this->dispatch('disabledBtnDelete');
+        }else{
+            $this->dispatch('enableBtnDelete');
+        }
 
-    public function showtoast()
-    {
-        $this->dispatch('toast-alert',icon:'success',message:"ok is a message!!!") ;
-        $this->dispatch('Billings::updated');
+
     }
 }
