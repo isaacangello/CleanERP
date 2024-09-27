@@ -25,7 +25,7 @@ use Livewire\WithPagination;
     public $nextYear=0;
     public $previousWeek=0;
     public $nextWeek=0;
-    ne
+
     public function mount()
     {
 
