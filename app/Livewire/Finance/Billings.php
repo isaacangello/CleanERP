@@ -54,11 +54,12 @@ class Billings extends Component
     }
     public function toggleShowHiddenRegs():void{
         //dd($this->showHiddenRegs);
-        if($this->showHiddenRegs){
-            $this->dispatch('disabledBtnDelete');
-        }else{
-            $this->dispatch('enableBtnDelete');
-        }
+        $this->dispatch('tdRefresh',hiddenRegs:$this->showHiddenRegs)->to('finance.td' );
+//        if($this->showHiddenRegs){
+//            $this->dispatch('disabledBtnDelete');
+//        }else{
+//            $this->dispatch('enableBtnDelete');
+//        }
         $this->mount();
         $this->render();
 
@@ -76,8 +77,8 @@ class Billings extends Component
     {
         $result = Billing::withTrashed()->find($id);
         $result->restore();
-        $this->dispatch('refresh')->to('billings');
-        $this->dispatch('tdRefresh')->to('td');
+        $this->dispatch('refresh')->to('finance.billings');
+        $this->dispatch('tdRefresh',hiddenRegs:$this->showHiddenRegs)->to('finance.td' );
         $this->dispatch('toast-alert',icon:'success',message:"This billing has been restored!!!");
             $this->dispatch('disabledBtnDelete');
 
@@ -96,14 +97,5 @@ class Billings extends Component
     {
         return view('livewire.finance.billings')
             ->extends('layouts.app');
-    }
-    public function hydrate(){
-        if($this->showHiddenRegs){
-            $this->dispatch('disabledBtnDelete');
-        }else{
-            $this->dispatch('enableBtnDelete');
-        }
-
-
     }
 }

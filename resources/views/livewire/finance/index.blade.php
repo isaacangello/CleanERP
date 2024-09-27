@@ -5,23 +5,27 @@
         </h2>
     </div>
     <!-- Basic Examples -->
+
     <div class="row clearfix">
         <div class="col s12 m12">
             <div class="card">
+
                 <div class="header">
-                    <span id="list-of-customer" class="m-l-35">FINANCES</span>
+                    <span>RESIDENTIAL</span>
+
                 </div>
 
                 <div class="body">
+                    <x-layout.week-navigator :$numWeek :$year :$previousYear :$nextYear :$previousWeek :$nextWeek  />
                     <div class="row clearfix">
-                        <div class="col s6 m6">
+                        <div class="col s12 ">
                             <div class="panel panel-default" >
                                 <div class="panel-heading">
-                                    <small>Seach paid</small>
+                                    Seach
                                 </div>
-                                <div class="panel-body p-l-3 p-r-3" style="height:35vh;">
-                                    <div class="row">
-                                        <div class="input-field col s12 m12">
+                                <div class="panel-body" >
+                                    <div class="row clearfix">
+                                        <div class="input-field col s12 m2">
                                             <div class="form-group">
                                                 <div class="form-line success">
                                                     <select id="select-finance-employee" class="form-control materialize-select" name="finance-employee" >
@@ -37,9 +41,7 @@
                                                 <div class="help-info">Select employee.</div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col s12 m6 ">
+                                        <div class="input-field col s12 m2 ">
                                             <div class="form-group">
                                                 <div class="form-line success">
                                                     <input id="input-finance-from" name="finance-from" type="text" class="form-control date" value="">
@@ -48,7 +50,7 @@
                                                 <div class="help-info">Insert date from.</div>
                                             </div>
                                         </div>
-                                        <div class="input-field col s12 m6">
+                                        <div class="input-field col s12 m2">
                                             <div class="form-group">
                                                 <div class="form-line success">
                                                     <input id="input-finance-till" name="finance-till" type="text" class="form-control date" value="">
@@ -59,43 +61,43 @@
 
                                         </div>
                                     </div>
-                                    <button class="teal waves-effect waves-classic waves-light white-text btn btn-small">Search</button>
+
                                 </div>
                                 <div class="panel-footer">
                                     <div class="row">
-                                        <div class="col s1"></div>
-                                        <div class="col s11" >
-                                            &nbsp;
+                                        <div class="col s12" >
+                                            <button class="btn btn-success  valign-wrapper">Search</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col s6 m6" >
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <small>Payments of week</small>
-                                </div>
-                                <div class="panel-body p-l-3 p-r-3" style="height:35vh;">
-                                    <div class="chart-container align-center" style="position: relative; height:30vh;" >
-                                        <canvas id="chart-area"></canvas>
-                                    </div>
-                                </div>
-                                <div class="panel-footer" style="position: relative">
-                                    <div class="row">
-                                        <div class="col s1"></div>
-                                        <div class="col s11">
-                                            &nbsp;
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+{{--                        <div class="col s6 m6" >--}}
+{{--                            <div class="panel panel-default">--}}
+{{--                                <div class="panel-heading">--}}
+{{--                                    <small>Payments of week</small>--}}
+{{--                                </div>--}}
+{{--                                <div class="panel-body p-l-3 p-r-3" style="height:35vh;">--}}
+{{--                                    <div class="chart-container align-center" style="position: relative; height:30vh;" >--}}
+{{--                                        <canvas id="chart-area"></canvas>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="panel-footer" style="position: relative">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col s1"></div>--}}
+{{--                                        <div class="col s11">--}}
+{{--                                            &nbsp;--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
 
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col s12">
+{{--                        </div>--}}
+{{--                    </div>--}}
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+
                             <table class="table table-striped highlight">
                                 <thead>
                                 <tr class="green darken-3 white-text">
@@ -131,20 +133,14 @@
                                 @endif
                                 </tbody>
                             </table>
+                            </div>
                         </div>
-                    </div>
-
-
-                    <div class="row clearfix">
-                        <div class="s12 p-20">
-{{--                            @if($employees)--}}
-{{--                                {{ $employees->links() }}--}}
-{{--                            @endif--}}
-                        </div>
-                    </div>
+                        </div>{{--panel--}}
 
                 </div>
-            </div>
 
+            </div>
         </div>
+        </div>
+
     </div>

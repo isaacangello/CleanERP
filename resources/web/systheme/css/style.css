@@ -2288,8 +2288,16 @@ margin-bottom: 9px;}
     width:49%;
 }
 .w-50p{
-  width: 50%;
+  width: 49.99999997%;
 }
+.w-90p{
+    width:89.999999997% !important;
+}
+
+.w-full{
+    width: 100% !important;
+}
+
 
 
 .font-6 {
@@ -3233,26 +3241,43 @@ section.content {
 .btn-danger:focus {
     background-color: #fb483a !important; }
 .btn-danger:hover{
-    background-color: #c65448 !important;
+    text-decoration: none!important;
+    color: #fb483a!important;;
+    background-color: #ddd!important;
 }
 .btn-info,
 .btn-info:active,
 .btn-info:focus {
     background-color: #00b0e4 !important; }
-.btn-info:hover{}
+.btn-info:hover{
+    text-decoration: none!important;
+    color: #333!important;;
+    background-color: #ddd!important;
+
+}
 
 .btn-success,
 .btn-success:active,
 .btn-success:focus {
-    background-color: #2b982b !important; }
-.btn-success:hover{}
+    background-color: #2e7d32 !important; }
+.btn-success:hover{
+    text-decoration: none!important;
+    color: #333!important;;
+    background-color: #ddd!important;
+
+}
 
 
 .btn-primary,
 .btn-primary:active,
 .btn-primary:focus {
     background-color: #1f91f3 !important; }
-.btn-primary:hover{}
+.btn-primary:hover{
+    text-decoration: none!important;
+    color: #333!important;;
+    background-color: #ddd!important;
+
+}
 
 
 .btn-default,
@@ -3260,7 +3285,12 @@ section.content {
 .btn-default:focus {
     background-color: #fff !important; }
 
-.btn-default:hover{}
+.btn-default:hover{
+    text-decoration: none!important;
+    color: #333!important;;
+    background-color: #ddd!important;
+
+}
 
 .btn-group,
 .btn-group-vertical {
@@ -3548,13 +3578,15 @@ section.content {
 .card {
     background: #fff;
     min-height: 50px;
+    padding: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     position: relative;
     margin-bottom: 10px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
-    border-radius: 2px; }
+    border-radius: 2px;
+}
 .card .card-inside-title {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -3678,8 +3710,8 @@ section.content {
     color: #555;
     padding: 10px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: stretch;
+    justify-content: flex-start;
     column-gap: 10px;
     border-bottom: 1px solid rgba(204, 204, 204, 0.35);
 }
@@ -4853,7 +4885,7 @@ section.content {
     color: #fff !important;
     border: none !important; }
 
-.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+.bootstrap-select.btn-group.show-widthtick .dropdown-menu li.selected a span.check-mark {
     margin-top: 9px; }
 
 /* Tooltip & Popovers ========================== */

@@ -121,33 +121,34 @@ class Funcs
 
             foreach ($array as $weekDayLabel => $arr) {
                 //dd($arr);
-                if (array_key_exists(0, $arr)) {
-                    $text_print = Funcs::carbonFormat($arr[0]->service_date);
-                } else {
-                    $text_print = "";
+                if($weekDayLabel != 'Saturday' and $weekDayLabel != 'Sunday') {
+                    if (array_key_exists(0, $arr)) {
+                        $text_print = Funcs::carbonFormat($arr[0]->service_date);
+                    } else {
+                        $text_print = "";
 
-                }
-                $trs_temp .= Element::withTag('tr')->addChild(Element::withTag('td')->attributes(
-                    [
-                        'class' => 'align-center',
-                        'colspan' => '1',
-                    ]
-                )->text($weekDayLabel . " " . $text_print));
-                $arrayCount = sizeof($arr);
-                if (collect($arr)->isNotEmpty()) {
-                    foreach ($arr as $value) {
+                    }
+                    $trs_temp .= Element::withTag('tr')->addChild(Element::withTag('td')->attributes(
+                        [
+                            'class' => 'align-center',
+                            'colspan' => '1',
+                        ]
+                    )->text($weekDayLabel . " " . $text_print));
+                    $arrayCount = sizeof($arr);
+                    if (collect($arr)->isNotEmpty()) {
+                        foreach ($arr as $value) {
 
-                        if (collect($value)->isNotEmpty()) {
-                            //dd($value);
-                            if($value->fee === 1) {
-                                $classes_service ="btnFeeService amber darken-3";
-                            }else{
-                                $confirmClass = $value->confirmed ? 'green darken-3' : 'red darken-3';
-                                $classes_service =" btn-confirm-form ".$confirmClass;
-                            }
-                            $spanRentalHouse = $value->cust_type === 'RENTALHOUSE'?Element::withTag('span')->class('material-symbols-outlined')->text('brightness_7'):'';
-                            $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->class('valign-wrapper')
-                                ->addChildren(
+                            if (collect($value)->isNotEmpty()) {
+                                //dd($value);
+                                if ($value->fee === 1) {
+                                    $classes_service = "btnFeeService amber darken-3";
+                                } else {
+                                    $confirmClass = $value->confirmed ? 'green darken-3' : 'red darken-3';
+                                    $classes_service = " btn-confirm-form " . $confirmClass;
+                                }
+                                $spanRentalHouse = $value->cust_type === 'RENTALHOUSE' ? Element::withTag('span')->class('material-symbols-outlined')->text('brightness_7') : '';
+                                $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->class('valign-wrapper')
+                                    ->addChildren(
                                         [
                                             Div::create()->class('hide')->attributes([
                                                 'id' => 'serviceId',
@@ -155,27 +156,27 @@ class Funcs
                                             ]),
                                             Div::create()->class('left valign-wrapper center-align padding-0')->addChild(
 
-//                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"_token" , 'value' => csrf_token() ]),
-//                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"confirmed" , 'value' => $value->confirmed ]),
-//                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"numWeek" , 'value' => $numweek ]),
-//                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"id" , 'value' => $value->service_id ]),
+                                            //                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"_token" , 'value' => csrf_token() ]),
+                                            //                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"confirmed" , 'value' => $value->confirmed ]),
+                                            //                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"numWeek" , 'value' => $numweek ]),
+                                            //                                                        Element::withTag('input')->attributes(['type'=>"hidden",'name'=>"id" , 'value' => $value->service_id ]),
 
-                                                        Element::withTag('a')->attributes(
-                                                            [
-                                                                'class'=> $classes_service.' btn-link white-text  btn-xm padding-0 z-depth-3 pointer p-l-2 p-r-2',
-                                                                'data-service-id' => "$value->service_id"  ,
-                                                                'data-token' => csrf_token(),
-                                                                'data-confirmed' => $value->confirmed ,
-                                                                'data-num-week' => $numWeek,
-                                                                'data-year' => $year,
-                                                                'type'=>"button",
-                                                            ])
-                                                            ->addChild(html()->span()->text(Funcs::carbonFormat($value->service_date,'h')))
+                                                Element::withTag('a')->attributes(
+                                                    [
+                                                        'class' => $classes_service . ' btn-link white-text  btn-xm padding-0 z-depth-3 pointer p-l-2 p-r-2',
+                                                        'data-service-id' => "$value->service_id",
+                                                        'data-token' => csrf_token(),
+                                                        'data-confirmed' => $value->confirmed,
+                                                        'data-num-week' => $numWeek,
+                                                        'data-year' => $year,
+                                                        'type' => "button",
+                                                    ])
+                                                    ->addChild(html()->span()->text(Funcs::carbonFormat($value->service_date, 'h')))
 
 
                                             )
 
-                                                ,
+                                            ,
 
                                             Div::create()->class('valign-wrapper center-align padding-0')->addChildren(
                                                 [
@@ -185,7 +186,7 @@ class Funcs
                                                             'href' => '#largeModal',
                                                             'class' => 'btn-link-underline link-modal-residential modal-trigger m-l-5',
                                                         ]
-                                                    )->text(Funcs::nameShort($value->cust_name,' ',2))
+                                                    )->text(Funcs::nameShort($value->cust_name, ' ', 2))
                                                     ,
                                                     Element::withTag('span')->class('badge')->addChildren(
                                                         [
@@ -197,23 +198,25 @@ class Funcs
                                                 ]
                                             )
                                         ]
-                                )
-                            );
+                                    )
+                                );
+                            }
+                            //3º foreach
                         }
-                        //3º foreach
+
                     }
+                    switch ($arrayCount) {
+                        case 1:
+                            $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->text('&nbsp;'));
+                            break;
+                        case 0:
+                            $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->text('&nbsp;'));
+                            $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->text('&nbsp;'));
+                            break;
 
+
+                    }
                 }
-                switch($arrayCount) {
-                    case 1:$trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->text('&nbsp;'));break;
-                    case 0:
-                        $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->text('&nbsp;'));
-                        $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')->text('&nbsp;'));
-                        break;
-
-
-                }
-
                 //2º foreach
             }
             //1º foreach

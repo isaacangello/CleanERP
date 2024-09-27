@@ -70,7 +70,7 @@
                                                         @foreach($billing as $row)
 
 
-                                                                <livewire:td id="{{ $row->id }}" :model="$row" value="{{ $row->value }}" :key="$row->id" :show-hidden-regs="$showHiddenRegs" />
+                                                                <livewire:finance.td id="{{ $row->id }}" :model="$row" value="{{ $row->value }}" :key="$row->id" :show-hidden-regs="$showHiddenRegs" />
 
                                                         @endforeach
                                                             </tbody>

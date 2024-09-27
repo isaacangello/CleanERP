@@ -75,7 +75,7 @@
                                         }
                                         //dd($weekArr);
                                     @endphp
-                                    <form action="{{ route('commercial.schedule') }}">
+
                                         <form action="{{ route('week')}}">
                                             <x-text-input type="hidden" value="{{$numWeek_arrow_b}}" name="numberweek"></x-text-input>
                                             <x-text-input type="hidden" value="{{$year_arrow_b}}" name="year"></x-text-input>

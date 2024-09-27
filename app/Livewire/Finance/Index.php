@@ -19,10 +19,30 @@ use Livewire\WithPagination;
 //    public $employees;
 //    public $employees_services;
     public $nun_reg_pages = 5;
-
+    public $numWeek = null;
+    public $year = null;
+    public $previousYear=0;
+    public $nextYear=0;
+    public $previousWeek=0;
+    public $nextWeek=0;
+    ne
     public function mount()
     {
 
+        $date = new DateTreatment();
+        if ($this->numWeek === null) $this->numWeek = $date->numberWeekByday(now()->format('Y-m-d'));
+        //dd($this->numWeek);
+        if ($this->year === null) $this->year = date('Y');
+
+        $this->previousYear = $this->year - 1;
+        $this->nextYear = $this->year + 1;
+        if ($this->previousWeek === 0){
+            $this->previousWeek = $date->numberWeekByday($date->GetMondaySartuday()['monday']) - 1;
+        }else{
+            $this->previousWeek = $this->previousWeek - 1;
+        }
+
+        //dd($this->year);
         $userConfigs = Config::select()->where('user_id','=',Auth::user()->id)->first();
         //dd( $userConfigs->nun_reg_pages );
         $this->nun_reg_pages = $userConfigs->nun_reg_pages;
