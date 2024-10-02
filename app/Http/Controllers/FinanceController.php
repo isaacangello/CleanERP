@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use App\Treatment\DateTreatment;
+use App\Models\Config;
 
 class FinanceController extends Controller
 {
@@ -16,8 +18,8 @@ class FinanceController extends Controller
 
     public function __construct()
     {
-
-        $this->nunregpage = 20;
+        $config = new Config();
+        $this->nunregpage = 15;
 
     }
     public function total_price_services_period(string $from, string $till): float
@@ -103,10 +105,13 @@ class FinanceController extends Controller
      * https://laravel.com/docs/10.x/collections#method-flatten
      * esse metodo junta ps array de duas ou mais dimençoe em um
      */
-    public function getEmployeeServices(DateTreatment $date, $nunRegPage=15){
+    public function getEmployeeServices(DateTreatment $date, $day = null, $nunRegPage=15){
         $collection_employees = DB::table('employees')->orderBy('name', 'asc')->paginate($nunRegPage);
         $i = 0;
-        $dateFrom = $date->GetMondaySartuday();
+        if($day === null){
+            $day = Carbon::now()->format('Y-m-d');
+        }
+        $dateFrom = $date->GetMondaySartuday($day);
 //        dd($collection_employees->items());
         $array_temp =array();
         $sorted = $collection_employees;

@@ -21,7 +21,7 @@ class Schedule extends Model
         'employee_id' => 'required',
         'schedule_date' => 'required',
         'schedule_time' => 'required',
-        'loop' => 'required',
+        'loop' => 'nullable',
         'notes' => 'nullable',
         'instructions' => 'nullable',
         'who_saved' => 'nullable',

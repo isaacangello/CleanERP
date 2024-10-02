@@ -2284,6 +2284,12 @@ margin-bottom: 9px;}
 .w-25p{
     width:25%;
 }
+.w-30p{
+    width:30%;
+}
+.w-40p{
+    width:40%;
+}
 .w-49p{
     width:49%;
 }
@@ -3714,6 +3720,9 @@ section.content {
     justify-content: flex-start;
     column-gap: 10px;
     border-bottom: 1px solid rgba(204, 204, 204, 0.35);
+}
+.card .header.between {
+    justify-content: space-between!important;
 }
 .card .header .header-dropdown {
     list-style: none; }

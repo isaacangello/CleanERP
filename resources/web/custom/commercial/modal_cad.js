@@ -30,7 +30,7 @@ if(isValidElement(scheduleForm)){
                 //console.log(response)
                 axios.get('api/commercial-schedule')
                     .then(function (resp) {
-                        console.log(resp)
+                        console.log(resp.data);console.log('<< resp aqui');
                             document.getElementById('renderSchedule').innerHTML = resp.data.html
                          var elem = document.querySelector('#new-schedule')
                         var instance = M.Modal.getInstance(elem);

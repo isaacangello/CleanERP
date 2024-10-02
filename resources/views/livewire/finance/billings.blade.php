@@ -8,9 +8,9 @@
     <div class="row clearfix">
         <div class="col s12 m12">
             <div class="card">
-                <div class="header">
-                    <div class="w-25p">
-                            <button class="btn btn-link font-12 h-45 modal-trigger"  href="#new-billing"  >New Billings</button>
+                <div class="header between">
+                    <div class="w-30p">
+                            <button class="btn btn-link font-12  modal-trigger"  href="#new-billing"  >New Billings</button>
                             <span id="list-of-billings">LIST OF BILLINGS</span>
 
                             <!-- ############  Blade  component customer-cad ###########################################################################################-->
@@ -18,14 +18,14 @@
                             <x-billings-cad />
                     </div>
 
-                        <div class="w-25p valign-wrapper" style="display: flex; ">
+                        <div class="w-49p valign-wrapper" style="display: flex; justify-content: flex-end">
                             <h2 class="text-center valign-wrapper m-r-5">Show deleted items.</h2>
                             <div class="switch">
                                 <label>
                                     Off
                                     <input type="checkbox" wire:model.live="showHiddenRegs"  wire:change="toggleShowHiddenRegs">
                                     <span class="lever"></span>
-                                    {{var_export($showHiddenRegs)}}
+{{--                                    {{var_export($showHiddenRegs)}}--}}
                                     On
                                 </label>
                             </div>

@@ -1,16 +1,10 @@
 <div class="row">
     <div class="col s12 m2 input-field">
-        <div class="form-group">
-
-            <button class="btn btn-link font-15 h-45 modal-trigger" href="#new-schedule">
-                New schedule
-            </button>
-        </div>
     </div>
     <div class="col s12 m2 input-field">
         <div class="form-group">
-            <form action="{{ route('commercial.schedule') }}">
-                <x-standard-btn type="submit" class="font-15 h-45">
+            <form wire:submit.prevent="thisWeek()">
+                <x-standard-btn type="submit" class="font-15 h-45" >
                     This week
                 </x-standard-btn>
             </form>
@@ -19,32 +13,12 @@
     <div class="col s12 m1 input-field align-left">
         <div class="form-group">
             @php
-                //numberweek=28&year=current
-                if (!isset($year) || $year == "current"){$year=now()->format("Y");}
-//                dd($year);
-                if(isset($numWeek)){
-                    if($numWeek >= 52){
-                        $numWeek_arrow_f=1;
-                        $year_arrow_f = $year + 1;
-                    }else{
-                        $numWeek_arrow_f= $numWeek + 1;
-                        $year_arrow_f = $year;
-                    }
-                    if($numWeek <= 1){
-                        $numWeek_arrow_b=52;
-                        $year_arrow_b = $year - 1;
-
-                    }else{
-                        $numWeek_arrow_b= $numWeek - 1;
-                        $year_arrow_b = $year;
-                    }
-                }
-                //dd($weekArr);
+                //numbered=28&year=current
             @endphp
 
-                <form action="{{ route('week')}}">
-                    <x-text-input type="hidden" value="{{$numWeek_arrow_b??''}}" name="numberweek"></x-text-input>
-                    <x-text-input type="hidden" value="{{$year_arrow_b??''}}" name="year"></x-text-input>
+                <form >
+                    <x-text-input type="hidden"  name="numberweek"></x-text-input>
+                    <x-text-input type="hidden"  name="year"></x-text-input>
                     <x-standard-btn type="submit" class="font-15 h-45">
                                             <span class="material-symbols-outlined">
                                                 arrow_back
@@ -53,7 +27,7 @@
                 </form>
         </div>
     </div>
-    <form action="{{ route('commercial.schedule') }}">
+    <form >
         <div class="col s12 m2 input-field" >
             <div class="form-group">
                 <div class="form-line success">
@@ -81,16 +55,16 @@
             </div>
         </div>
         <div class="col s12 m1 input-field">
-            <x-standard-btn type="submit" class="font-15 h-45">
+            <x-standard-btn type="submit" class="font-15 h-45" wire:click.prevent="selectedWeek()">
                 go
             </x-standard-btn>
         </div>
     </form>
     <div class="col s12 m1 input-field align-left">
         <div class="form-group">
-            <form action="{{ route('commercial.schedule')}}">
-                <x-text-input type="hidden" value="{{$numWeek_arrow_f??''}}" name="numberweek"></x-text-input>
-                <x-text-input type="hidden" value="{{$year_arrow_f??''}}" name="year"></x-text-input>
+            <form wire:submit.prevent="forwardWeek('{{$numWeek_arrow_f??''}}','{{$year_arrow_f??''}}')">
+                <x-text-input type="hidden" value="{{$numWeek_arrow_f??''}}" wire:model="numWeek"></x-text-input>
+                <x-text-input type="hidden" value="{{$year_arrow_f??''}}" wire:model="year"></x-text-input>
                 <x-standard-btn type="submit" class="font-15 h-45">
                                             <span class="material-symbols-outlined">
                                                 arrow_forward
@@ -100,12 +74,13 @@
         </div>
     </div>
 <div>
-    week {{var_export($numWeek)}}//
-    year {{var_export($year)}}//
-    prev year{{var_export($previousYear)}}//
-    next year {{var_export($nextYear)}}//
-    prev week{{var_export($previousWeek)}} //
-    next week{{var_export($nextWeek)}} //
-
+    week {{var_export($numWeek??'')}}<br>
+    year {{var_export($year??'')}}<br>
+    prev year{{var_export($previousYear??'')}}<br>
+    next year {{var_export($nextYear??'')}}<br>
+    prev week{{var_export($previousWeek??'')}}<br>
+    next week {{var_export($numWeek_arrow_f??'')}}<br>
+<br>
+    {{ now()->format('D, d M Y H:i:s') }}
 </div>
 </div>

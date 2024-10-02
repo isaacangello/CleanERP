@@ -16,11 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('employee_id');
             $table->dateTime('schedule_date');
-            $table->string('loop');
-            $table->string('notes', 3000);
-            $table->string('instructions', 3000);
+            $table->string('loop')->nullable();
+            $table->string('notes', 3000)->nullable();
+            $table->string('instructions', 3000)->nullable();
             $table->string('who_saved');
-            $table->string('denomination',100);
+            $table->string('denomination',100)->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers');

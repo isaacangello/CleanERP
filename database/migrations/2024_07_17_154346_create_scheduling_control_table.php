@@ -17,9 +17,7 @@ return new class extends Migration
             $this->extracted($table);
             $table->foreign('service_id')->references('id')->on('services');
         });
-//        Schema::create('scheduling_control_residential_repetition',function (Blueprint $table){
-//
-//        });
+
         Schema::create('scheduling_control_commercial', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('schedule_id');
@@ -47,14 +45,14 @@ return new class extends Migration
      */
     public function extracted(Blueprint $table): void
     {
-        $table->string('checkin_local');
-        $table->float('checkin_lat');
-        $table->float('checkin_long');
-        $table->dateTime('checkin_datetime');
-        $table->string('checkout_local');
-        $table->float('checkout_lat');
-        $table->float('checkout_long');
-        $table->dateTime('checkout_datetime');
+        $table->string('checkin_local')->nullable();
+        $table->float('checkin_lat')->nullable();
+        $table->float('checkin_long')->nullable();
+        $table->dateTime('checkin_datetime')->nullable();
+        $table->string('checkout_local')->nullable();
+        $table->float('checkout_lat')->nullable();
+        $table->float('checkout_long')->nullable();
+        $table->dateTime('checkout_datetime')->nullable();
         $table->softDeletes();
         $table->timestamps();
     }

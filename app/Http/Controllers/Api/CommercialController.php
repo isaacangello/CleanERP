@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Api;
 use AllowDynamicProperties;
 use App\Helpers\Funcs;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\numberweek;
 use App\Http\Controllers\Populate;
-use App\Http\Controllers\year;
 use App\Models\Customer;
 use App\Models\Employee;
 use App\Models\Schedule;
@@ -140,6 +138,7 @@ use Illuminate\Support\Facades\DB;
                    [
                        'view' => 'commercial.schedule',
                         'cards' => $cards,
+                        'html' => $cards,
                        'weekArr' => $weekArr,
                        'numWeek' => $numWeek,
                        'year' => $year,
@@ -150,13 +149,16 @@ use Illuminate\Support\Facades\DB;
                    200
                );
     }
+    ################################################ show
     public function show($id)
     {
         $returned = $this->schedule->with('customer','employee','control')->find($id);
         return response()->json($returned,200);
     }
+    ################################################ store
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
+        if (isset($request->year)){$year = $request->year;}else{$year = now()->timezone('America/New_York')->format('Y');}
         $request->validate($this->schedule->rules);
         if(empty($request->denomination)){
             $cust = $this->customer->find($request->customer_id);
@@ -178,10 +180,33 @@ use Illuminate\Support\Facades\DB;
 
             ]
         );
+        if(isset($request->nunWeek) and intval($request->nunWeek) >=1 and intval($request->nunWeek) <=52 ){
+//            dd($request->numberWeek);
+            $numWeek = $request->nunWeek;
+            $weekArr = $this->date->getWeekByNumberWeek($request->nunWeek,$year);
+            $this->from = $weekArr['Monday'];
+            $this->till = $weekArr['Sunday'];
+            //dd($weekArr);
+        }else{
 
-        return response()->json([$response],201);
+            $numWeek = $this->date->numberWeekByday(now()->format('Y-m-d'));
+            $weekArr = $this->date->getWeekByNumberWeek($numWeek,$year);
+            $this->from = $weekArr['Monday'];
+            $this->till = $weekArr['Sunday'];
+        }
+        /**
+         * Montado dados para tela
+         *  percorrendo o array de datas da semana retornada e montando array de dados
+         * com os serviços da semana atual, filtrados por employee
+         */
+
+
+        $html = $this->buildCard($this->from,$this->till,$numWeek,$year);
+
+
+        return response()->json(['return' =>$response, 'html' => $html],201);
     }
-
+    ################################################ update
     public function update($id, Request $req)
     {
         //dd($req);
@@ -210,6 +235,7 @@ use Illuminate\Support\Facades\DB;
         $result->save();
         return response()->json(['_token' => $req->_token,'fieldName' =>$req->fieldName,'value' => $val_update, $req->fieldName => $valOld ]);
     }
+    ################################################  query
     public function query(Request $request,$id, $fields){
         $firstParam = explode(':', $fields)[0];
         $queryString = explode(':', $fields)[1];
