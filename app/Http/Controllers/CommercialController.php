@@ -54,7 +54,7 @@ use Spatie\Html\Elements\Element;
             //dd($weekarr);
         }else{
 
-            $numweek = $this->date->numberWeekByday(now()->format('Y-m-d'));
+            $numweek = $this->date->numberWeekByDay(now()->format('Y-m-d'));
             $weekarr = $this->date->getWeekByNumberWeek($numweek,$year);
             $this->from = $weekarr['Monday'];
             $this->till = $weekarr['Sunday'];

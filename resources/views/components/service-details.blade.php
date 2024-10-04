@@ -49,7 +49,7 @@
                     <tr><th colspan="4"  class="green  center-align">Info:</th></tr>
                     <tr>
                         <td  colspan="4"   class="p-1">
-                            <textarea name="info" id="serviceInformation" class="modal-residential-change" data-token="{{ csrf_token() }}"  data-db-model="customers"  cols="30" rows="10">
+                            <textarea name="info" id="serviceInformation" class="modal-residential-change" data-token="{{ csrf_token() }}"  data-db-model="services"  cols="30" rows="10">
 
                             </textarea>
                         </td>
@@ -58,7 +58,7 @@
                     <tr><th colspan="4" class="green  center-align">notes:</th></tr>
                     <tr>
                         <td  colspan="4" class="p-1">
-                            <textarea  name="notes" id="ServiceNotes" cols="30" rows="10" class="modal-residential-change" data-token="{{ csrf_token() }}"  data-db-model="customers"  cols="30" rows="10" >
+                            <textarea  name="notes" id="ServiceNotes" class="modal-residential-change" data-token="{{ csrf_token() }}"  data-db-model="services"  cols="30" rows="10" >
 
                             </textarea>
                         </td>
@@ -67,7 +67,7 @@
                     <tr><th colspan="4" class="green  center-align">instructions for employees:</th></tr>
                     <tr>
                         <td  colspan="4" class="grey-text text-darken-3 p-1">
-                            <textarea name="instructions" id="ServiceInstructions" class="modal-residential-change" data-token="{{ csrf_token() }}"  data-db-model="customers"  cols="30" rows="10">
+                            <textarea name="instructions" id="ServiceInstructions" class="modal-residential-change" data-token="{{ csrf_token() }}"  data-db-model="services"  cols="30" rows="10">
 
                             </textarea>
                         </td>

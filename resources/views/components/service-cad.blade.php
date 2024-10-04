@@ -168,11 +168,12 @@
                                                     $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
                                                     if(!empty(old("frequency_payment"))){
                                                         switch (old("frequency_payment")){
-                                                            case'One': $string_Eventual = "selected" ;break;
                                                             case'Wek':$string_Weekly = "selected";break;
                                                             case'Biw':$string_Biweekly = "selected";break;
                                                             case'Thr':$string_Three_weekly = "selected";break;
                                                             case'Mon':$string_Monthly = "selected";break;
+                                                            case'One':
+                                                            default: $string_Eventual = "selected"; break;
                                                         }
                                                     }else{
                                                         $string_none = "selected";
@@ -214,8 +215,8 @@
                         </div>
                     </div>
                             <div class="modal-footer">
-                                <button class="btn waves-classic waves-light btn-small " type="submit">save changes</button>
-                                <a href="#!" class="btn modal-close waves-classic waves-light btn-small red darken-4">Cancel</a>
+                                <button class="btn btn-small " type="submit">save changes</button>
+                                <a href="#" class="btn modal-close btn-small red darken-4">Cancel</a>
                             </div>
                     </form>
                 </div><!--END OF CONTAINER -->

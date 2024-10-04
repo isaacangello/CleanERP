@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @yield('title')
-    @if(isset($title)){{ $title??'JJL System 2'   }}@endif
+{{--    @if(isset($title)){{ $title??'JJL System 2'   }}@endif--}}
 
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -239,7 +239,7 @@
 <script type="module" src="{{ asset('web/systheme/js/admin.js') }}"></script>
 
 <script src="{{ asset('web/systheme/js/pages/index.js') }}"></script>
-<script src="{{ asset('web/systheme/js/pages/forms/form-validation.js') }}"></script>
+{{--<script src="{{ asset('web/systheme/js/pages/forms/form-validation.js') }}"></script>--}}
 <!-- Demo Js -->
 <script src="{{ asset('web/systheme/js/demo.js')}}"></script>
 <script src="{{ asset('web/systheme/js/systheme.js') }}"></script>
@@ -248,12 +248,12 @@
 <script src="{{ asset('web/systheme/plugins/moment/min/moment.min.js') }}"></script>
 
 <script  src="{{ asset('web/custom/helpers/plugins_init.js') }}"></script>
-<script type="module" src="{{ asset('web/custom/helpers/funcs.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="{{ asset('web/custom/service_cad.js') }}"></script>
-<script src="{{ asset('web/custom/field_change.js') }}"></script>
-<script src="{{ asset('web/custom/modalPush.js') }}"></script>
-<script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>
+{{--<script type="module" src="{{ asset('web/custom/helpers/funcs.js') }}"></script>--}}
+{{--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>--}}
+{{--<script type="module" src="{{ asset('web/custom/service_cad.js') }}"></script>--}}
+{{--<script type="module" src="{{ asset('web/custom/field_change.js') }}"></script>--}}
+{{--<script type="module" src="{{ asset('web/custom/modalPush.js') }}"></script>--}}
+{{--<script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>--}}
 
 </body>
 

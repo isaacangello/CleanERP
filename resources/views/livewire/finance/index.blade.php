@@ -11,12 +11,85 @@
             <div class="card">
 
                 <div class="header">
-                    <span>RESIDENTIAL</span>
+                    <span>RESIDENTIAL</span> Week Number {{ $numWeek }} / From {{ $from }} - Till {{ $till }}
 
                 </div>
 
                 <div class="body">
-                    <x-layout.week-navigator :$numWeek :$year :$previousYear :$nextYear :$previousWeek :$nextWeek  />
+{{--                    <x-layout.week-navigator :$numWeek :$year :$previousYear :$nextYear :$previousWeek :$nextWeek  />--}}
+                    <div class="row">
+                        <div class="col s12 m2 input-field">
+                        </div>
+                        <div class="col s12 m2 input-field">
+                            <div class="form-group">
+                                <form wire:submit.prevent="thisWeek()">
+                                    <x-standard-btn type="submit" class="font-15 h-45" >
+                                        This week
+                                    </x-standard-btn>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col s12 m1 input-field align-left">
+                            <div class="form-group">
+                                @php
+                                    //numbered=28&year=current
+                                @endphp
+
+                                <form wire:submit.prevent="backWeek()">
+                                    <x-standard-btn type="submit" class="font-15 h-45">
+                                            <span class="material-symbols-outlined">
+                                                arrow_back
+                                            </span>
+                                    </x-standard-btn>
+                                </form>
+                            </div>
+                        </div>
+                        <form wire:submit.prevent="selectWeek()">
+                            <div class="col s12 m2 input-field" >
+                                <div class="form-group">
+                                    <div class="form-line success">
+                                        <select wire:model="selectedWeek"  class="form-control  materialize-select" >
+                                            <option value="{{ $numWeek}}">week {{$numWeek}}</option>
+                                            @for ($i = 1; $i < 53; $i++)
+                                                <option value="{{$i}}">week {{$i}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m2 input-field">
+                                <div class="form-group">
+                                    <div class="form-line success">
+
+                                        <select wire:model="selectedYear"  class="form-control materialize-select">
+                                            <option value="{{$year}}">{{$year}}</option>
+                                            @for ($i = 2020; $i < 2031; $i++)
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m1 input-field">
+                                <x-standard-btn type="submit" class="font-15 h-45">
+                                    go
+                                </x-standard-btn>
+                            </div>
+                        </form>
+                        <div class="col s12 m1 input-field align-left">
+                            <div class="form-group">
+                                <form wire:submit.prevent="forwardWeek()">
+                                    <x-standard-btn type="submit" class="font-15 h-45">
+                                            <span class="material-symbols-outlined">
+                                                arrow_forward
+                                            </span>
+                                    </x-standard-btn>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row clearfix">
                         <div class="col s12 ">
                             <div class="panel panel-default" >
@@ -28,14 +101,12 @@
                                         <div class="input-field col s12 m2">
                                             <div class="form-group">
                                                 <div class="form-line success">
-                                                    <select id="select-finance-employee" class="form-control materialize-select" name="finance-employee" >
+                                                    <select id="select-finance-employee" class="form-control materialize-select" wire:model="selectedEmployee" >
                                                         <option selected value=""></option>
-                                                        @if($allEmployees)
+
                                                             @foreach($allEmployees as $employee)
                                                                 <option value="{{ $employee['id'] }}">{{ $employee['name'] }}</option>
                                                             @endforeach
-                                                        @endif
-
                                                     </select>
                                                 </div>
                                                 <div class="help-info">Select employee.</div>

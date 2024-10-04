@@ -61,7 +61,7 @@ class ServicesController extends Controller
             $this->till = $weekarr['Sunday'];
         }else{
 
-            $numweek = $this->date->numberWeekByday(now()->format('Y-m-d'));
+            $numweek = $this->date->numberWeekByDay(now()->format('Y-m-d'));
             $weekarr = $this->date->getWeekByNumberWeek($numweek,$year);
             $this->from = $weekarr['Monday'];
             $this->till = $weekarr['Sunday'];
@@ -89,7 +89,7 @@ class ServicesController extends Controller
             $employees =  $this->employee->all()->sortBy('name');
 
             foreach ($employees as $row){
-                $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$this->date->numberWeekByday(now()->format('Y-m-d')));;
+                $filteredWeekGroup[$row->name] = $this->employee->servicesFromWeekNumber($row->id,$this->date->numberWeekByDay(now()->format('Y-m-d')));;
             }
 
 //        dd($filteredWeekGroup);
@@ -289,7 +289,7 @@ class ServicesController extends Controller
         if(is_numeric($req->numWeek) && $req->numWeek > 0){
             $weekNun = $req->numWeek;
         }else{
-            $weekNun = $this->date->numberWeekByday(now()->format('Y-m-d'));
+            $weekNun = $this->date->numberWeekByDay(now()->format('Y-m-d'));
         }
 
         foreach ($employees as $row){
@@ -319,7 +319,7 @@ class ServicesController extends Controller
         if(is_numeric($req->numWeek) && $req->numWeek > 0){
             $weekNun = $req->numWeek;
         }else{
-            $weekNun = $this->date->numberWeekByday(now()->format('Y-m-d'));
+            $weekNun = $this->date->numberWeekByDay(now()->format('Y-m-d'));
         }
         if(is_numeric($req->year) && $req->year > 0){
             $year = $req->year;

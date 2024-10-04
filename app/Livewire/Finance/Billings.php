@@ -83,7 +83,7 @@ class Billings extends Component
             $this->dispatch('disabledBtnDelete');
 
     }
-    public function mount()
+    public function mount(): void
     {
 
         if ($this->showHiddenRegs){

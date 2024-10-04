@@ -3,121 +3,142 @@
 namespace App\Livewire\Finance;
 
 use AllowDynamicProperties;
+use App\Helpers\Finance\FinanceTrait;
 use App\Models\Config;
 use App\Models\Employee;
 use App\Treatment\DateTreatment;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use JetBrains\PhpStorm\NoReturn;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 use Livewire\Component;
-use App\Http\Controllers\FinanceController;
 use Livewire\WithPagination;
+use function Symfony\Component\String\u;
 
 #[AllowDynamicProperties] class Index extends Component
 {
     use WithPagination;
-    protected $listeners = ['refreshTable' => '$refresh'];
+    use FinanceTrait;
+    protected $listeners = ['refresh-index' => '$refresh'];
 
 //    public $employees;
 //    public $employees_services;
+    //public $dateTrait = "";
     public $nun_reg_pages = 5;
-    public $numWeek = -1;
-    public $year = -1;
+    public $numWeek = null;
+    public $data = null;
+    public $from ='';
+    public $till ='';
+
+    public $allEmployees = null;
+    public $employees = null;
+    public $employees_services = null;
+    public $total_services = null;
+    public $selectedEmployee = null;
+    public $selectedWeek = null;
+    public $selectedYear = null;
+
+    public $year = null;
     public $previousYear=0;
     public $nextYear=0;
     public $previousWeek=0;
     public $nextWeek=0;
-    public function thisWeek()
+    public function thisWeek(): void
     {
-        //dd('entrou');
-      $this->mount();
-      $this->render();
-      $this->dispatch('refreshTable')->self();
-    }
-    public function forwardWeek($numWeek, $year){
-
+        $dateTrait =new DateTreatment();
+        $this->numWeek =  $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
+        $this->year = now()->format('Y');
         $this->mount();
         $this->render();
-        $this->dispatch('refreshTable')->self();
     }
-    public function selectedWeek($numWeek, $year){
-        $this->numWeek = $numWeek;
-        $this->year = $year;
-        $this->mount();
+    public function backWeek(): void
+    {
+        $date = new DateTreatment();
+        if(($this->numWeek -1) <= 0 ){
+            $this->numWeek = 52;
+            $this->year--;
+
+        }else{
+            $this->numWeek--;
+        }
+        $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
+        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
+        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
+        $this->mount($this->numWeek,$this->year);
         $this->render();
-        $this->dispatch('refreshTable')->self();
+        $this->dispatch('refresh-index');
+
     }
-    public function getData($day = null)
+    public function forwardWeek(): void
     {
-        if($day === null)$day = Carbon::now()->timezone("America/New_York")->format("Y-m-d");
-        $model = new Employee();
-        $finance = new FinanceController();
+        if(($this->numWeek +1) > 52 ){
+            $this->numWeek = 1;
+            $this->year++;
+        }else{
+            $this->numWeek++;
+        }
         $date = new DateTreatment();
-        $all_employees = $model->select()->where('status' , '=', "ACTIVE")
-            ->where('type', '=',"RESIDENTIAL" )->orderBy('name')->get()->toArray();
-
-        $collection_employees = $model->select()->where('status' , '=', "ACTIVE")
-            ->where('type', '=',"RESIDENTIAL" )->orderBy('name')->paginate($this->nun_reg_pages)->toArray();
-        $array_temp = $finance->getEmployeeServices(new DateTreatment());
-        $dateFrom = $date->GetMondaySartuday($day);
-        $cem = $finance->total_price_services_period($dateFrom['monday'],$dateFrom['saturday']);
-        $total_services = [
-            'cem' => $cem,
-            'setenta' => ($cem*0.7),
-            'trinta' => ($cem*0.3)
-        ];
-
-        return[
-            'allEmployees' => $all_employees,
-            'employees' => $collection_employees,
-            'employees_services' => $array_temp,
-            'total_services' => $total_services,
-            'dateFrom' => $dateFrom,
-            'numWeek' => $this->numWeek,
-            'year' => $this->year,
-            'previousYear' => $this->previousYear,
-            'nextYear' => $this->nextYear,
-            'previousWeek' => $this->previousWeek,
-            'nextWeek' => $this->nextWeek,
-            'nun_reg_pages' => $this->nun_reg_pages,
-        ];
+        $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
+        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
+        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
+        $this->mount($this->numWeek,$this->year);
+        $this->render();
+        $this->dispatch('refresh-index');
+        //dd($this->allEmployees);
     }
-    public function mount($day = null)
+    #[NoReturn] public function selectWeek(): void
     {
-        if($day === null)$day = Carbon::now()->timezone("America/New_York")->format("Y-m-d");
-        $date = new DateTreatment();
-        if ($this->numWeek < 0) $this->numWeek = $date->numberWeekByday(now()->timezone('America/New_York')->format('Y-m-d'));
-        //dd($this->numWeek);
-        if ($this->year < 0) $this->year = date('Y');
 
+
+        dd($this->numWeek,$this->year,$this->selectedEmployee);
+    }
+    public function populate($nunWeek =null,$year=null): void
+    {
+        $date = new DateTreatment();
+        if($nunWeek === null){
+            $this->numWeek = $date->numberWeekByDay(now()->timezone('America/New_York')->format('Y-m-d'));
+        }else{
+            $this->numWeek = $nunWeek;
+        }
+        if ($year === null){
+            $this->year = now()->format('Y');
+        }else{
+            $this->year = $year;
+        }
+        $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
+        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
+        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
         $this->previousYear = $this->year - 1;
         $this->nextYear = $this->year + 1;
-        if ($this->previousWeek === 0){
-            $this->previousWeek = $date->numberWeekByday($date->GetMondaySartuday($day)['monday']) - 1;
-        }else{
-            $this->previousWeek = $this->previousWeek - 1;
-        }
+        $this->previousWeek = $this->numWeek - 1;
+
 
         //dd($this->year);
         $userConfigs = Config::select()->where('user_id','=',Auth::user()->id)->first();
         //dd( $userConfigs->nun_reg_pages );
         $this->nun_reg_pages = $userConfigs->nun_reg_pages;
+        $this->allEmployees = Employee::select()
+            ->where('status','=',"ACTIVE")
+            ->where('type','=',"RESIDENTIAL")
+            ->orderBy('name')
+            ->get();
 
+        if($this->data === null) $this->data = $this->getData($nunWeek,$year);
+        $this->allEmployees = $this->data['allEmployees'];
+        $this->employees_services = $this->data['employees_services'];
+        $this->employees = $this->data['employees'];
+        $this->total_services = $this->data['total_services'];
+    }
+    public function mount($nunWeek = null,$year = null)
+    {
+
+        $this->populate($nunWeek,$year);
 
     }
     public function render($data = null)
     {
-//        dd($cem);
-        if($data === null) $data = $this->getData();
-
-        //dd($all_employees);
-        return view('livewire.finance.index',
-                        [
-                            'allEmployees' => $data['allEmployees'],
-                            'employees' => $data['employees'],
-                            'employees_services' => $data['employees_services'],
-                            'total_services' => $data['total_services']
-                        ]
-                )
+        return view('livewire.finance.index')
                 ->extends('layouts.app');
     }
 }

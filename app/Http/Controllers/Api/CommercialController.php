@@ -106,7 +106,7 @@ use Illuminate\Support\Facades\DB;
             //dd($weekArr);
         }else{
 
-            $numWeek = $this->date->numberWeekByday(now()->format('Y-m-d'));
+            $numWeek = $this->date->numberWeekByDay(now()->format('Y-m-d'));
             $weekArr = $this->date->getWeekByNumberWeek($numWeek,$year);
             $this->from = $weekArr['Monday'];
             $this->till = $weekArr['Sunday'];
@@ -189,7 +189,7 @@ use Illuminate\Support\Facades\DB;
             //dd($weekArr);
         }else{
 
-            $numWeek = $this->date->numberWeekByday(now()->format('Y-m-d'));
+            $numWeek = $this->date->numberWeekByDay(now()->format('Y-m-d'));
             $weekArr = $this->date->getWeekByNumberWeek($numWeek,$year);
             $this->from = $weekArr['Monday'];
             $this->till = $weekArr['Sunday'];
@@ -263,7 +263,7 @@ use Illuminate\Support\Facades\DB;
         if(is_numeric($req->numWeek) && $req->numWeek > 0){
             $weekNun = $req->numWeek;
         }else{
-            $weekNun = $this->date->numberWeekByday(now()->format('Y-m-d'));
+            $weekNun = $this->date->numberWeekByDay(now()->format('Y-m-d'));
         }
         if(is_numeric($req->year) && $req->year > 0){
             $year = $req->year;

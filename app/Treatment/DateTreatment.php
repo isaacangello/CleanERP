@@ -301,10 +301,10 @@ public function MakeArrayDays($firstdate = 0, $periodo = "Wek", $periodo_meses =
         $weekArr["Sunday"] = date('Y-m-d', strtotime('Sunday this week', $day_string));
         return $weekArr;
     }
-    public function numberWeekByday(string $date): int
+    public function numberWeekByDay(string $date): int
     {
-        $datearr = explode('-',$date);
-        $dia=$datearr[2];$mes=$datearr[1];$ano=$datearr[0];
+        $dateArr = explode('-',$date);
+        $dia=$dateArr[2];$mes=$dateArr[1];$ano=$dateArr[0];
         $var=intval( date('z', mktime(0,0,0,$mes,$dia,$ano) ) / 7 ) + 1;
         return $var;
     }

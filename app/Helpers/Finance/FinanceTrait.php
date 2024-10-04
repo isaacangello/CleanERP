@@ -1,6 +1,10 @@
 <?php
 namespace App\Helpers\Finance;
+use App\Http\Controllers\FinanceController;
+use App\Models\Config;
+use App\Models\Employee;
 use App\Treatment\DateTreatment;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 trait FinanceTrait
@@ -42,6 +46,7 @@ trait FinanceTrait
                 'services.fee',
                 'services.fee_notes',
                 'services.payment',
+                'services.frequency',
                 'services.who_saved',
                 'services.price',
                 'services.plus',
@@ -51,5 +56,41 @@ trait FinanceTrait
                 'customers.address'
             )->get();
     }
+    public function getData($numWeek = null, $year = null)
+    {
+
+        $model = new Employee();
+        $finance = new FinanceController();
+        $date = new DateTreatment();
+        $getConfig = new Config();
+        $config = $getConfig->firstOrCreate(
+            ['user_id' => \Auth::id()],
+            [ 'nun_reg_pages' =>  15 ]
+        );
+        if($numWeek === null)$numWeek = $date->numberWeekByDay(now()->timezone('America/New_York')->format('Y-m-d'));
+        if ($year === null) $year = now()->format('Y');
+        $dateFrom = $date->getWeekByNumberWeek($numWeek,$year);
+        $all_employees = $model->select()->where('status' , '=', "ACTIVE")
+            ->where('type', '=',"RESIDENTIAL" )->orderBy('name')->get()->toArray();
+
+        $collection_employees = $model->select()->where('status' , '=', "ACTIVE")
+            ->where('type', '=',"RESIDENTIAL" )->orderBy('name')->paginate($config->nun_reg_pages)->toArray();
+        $array_temp = $finance->getEmployeeServices(new DateTreatment(),$dateFrom['Monday'],$config->nun_reg_pages);
+
+        $cem = $finance->total_price_services_period($dateFrom['Monday'],$dateFrom['Saturday']);
+        $total_services = [
+            'cem' => $cem,
+            'setenta' => ($cem*0.7),
+            'trinta' => ($cem*0.3)
+        ];
+
+        return[
+            'allEmployees' => $all_employees,
+            'employees' => $collection_employees,
+            'employees_services' => $array_temp,
+            'total_services' => $total_services,
+        ];
+    }
+
 
 }

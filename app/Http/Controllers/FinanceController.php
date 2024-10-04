@@ -25,80 +25,84 @@ class FinanceController extends Controller
     public function total_price_services_period(string $from, string $till): float
     {
         $collection_result =  DB::table('services')
-             ->whereBetween('service_date',[$from,$till] )
+             ->whereDate('service_date','>=',$from)
+             ->whereDate('service_date','<=',$till)
             ->join('employees', 'services.employee1_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(
-                'services.price',
+        'services.price',
+                'services.plus',
+                'services.minus',
             )->get();
-        $collection_result1 =  DB::table('services')
-             ->whereBetween('service_date',[$from,$till] )
-            ->join('employees', 'services.employee2_id','=','employees.id')
-            ->join('customers','services.customer_id','=', 'customers.id')
-            ->select(
-                'services.price',
-            )->get();
-        $returnvar =  ($collection_result->sum('price_weekly')+$collection_result1->sum('price_weekly'));
+//        $collection_result1 =  DB::table('services')
+//             ->whereBetween('service_date',[$from,$till] )
+//            ->join('employees', 'services.employee2_id','=','employees.id')
+//            ->join('customers','services.customer_id','=', 'customers.id')
+//            ->select(
+//                'services.price',
+//                'services.plus',
+//                'services.minus',
+//            )->get();
+        $returnvar =  ($collection_result->sum('services.price')+$collection_result->sum('services.plus')-$collection_result->sum('services.minus'));
         return $returnvar;
     }
     public function count_payment_employees(int $employee_id,string $from,string $till)
     {
         $array_result = array();
         $collection_result =  DB::table('services')->where('employee1_id', $employee_id)
-            ->whereBetween('service_date',[$from,$till] )
+            ->whereDate('service_date','>=',$from)
+            ->whereDate('service_date','<=',$till)
             ->join('employees', 'services.employee1_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(
-            'services.service_date',
-            'services.paid_out',
-            'services.fee',
-            'services.fee_notes',
-            'services.payment',
-            'services.who_saved',
-            'services.price',
-            'services.plus',
-            'services.minus',
-            'employees.name as emp_name',
-            'customers.name as cust_name',
-            'customers.address'
+        'services.price as price',
+                'services.plus as plus',
+                'services.minus as minus',
+                'employees.name as emp_name',
             )->get();
-        $collection_result1 =  DB::table('services')->where('employee2_id', $employee_id)
-            ->whereBetween('service_date',[$from,$till] )
-            ->join('employees', 'services.employee2_id','=','employees.id')
-            ->join('customers','services.customer_id','=', 'customers.id')
-            ->select(
-            'services.service_date',
-            'services.paid_out',
-            'services.fee',
-            'services.fee_notes',
-            'services.payment',
-            'services.who_saved',
-            'services.price',
-            'services.plus',
-            'services.minus',
-            'employees.name as emp_name',
-            'customers.name as cust_name',
-            'customers.address'
-            )->get();
+//        $collection_result1 =  DB::table('services')->where('employee2_id', $employee_id)
+//            ->whereBetween('service_date',[$from,$till] )
+//            ->join('employees', 'services.employee2_id','=','employees.id')
+//            ->join('customers','services.customer_id','=', 'customers.id')
+//            ->select(
+//            'services.service_date',
+//            'services.paid_out',
+//            'services.fee',
+//            'services.fee_notes',
+//            'services.payment',
+//            'services.who_saved',
+//            'services.price',
+//            'services.plus',
+//            'services.minus',
+//            'employees.name as emp_name',
+//            'customers.name as cust_name',
+//            'customers.address'
+//            )->get();
 
 
-            $total = $collection_result->sum('price');
-            $total1 = $collection_result1->sum('price');
-            $array_fromdb = $collection_result->toArray();
-            $array2_fromdb = $collection_result1->toArray();
-            $total = $total + $total1;
-            foreach ($array_fromdb as $row){
+            $array_from_db = $collection_result->toArray();
+
+
+//            if($total_price > 0){
+//                dd($total_price);
+//            }
+            foreach ($array_from_db as $row){
+//                var_dump($row->emp_name);
+//                var_dump($row->price);
+                $total = $row->price + $row->plus - $row->minus;
                 $array_result['emp_name'] = $row->emp_name;
                 $array_result['cem'] = number_format($total,2,'.',',');
                 $array_result['setenta'] = number_format(($total*0.7),2,'.',',');
                 $array_result['trinta'] = number_format(($total*0.3),2,'.',',');
             }
-            foreach ($array2_fromdb as $row){
-                $array_result['emp_name'] = $row->emp_name;
-                $array_result['cem'] = number_format($total1,2,'.',',');
-                $array_result['setenta'] = number_format(($total*0.7),2,'.',',');
-                $array_result['trinta'] = number_format(($total*0.3),2,'.',',');
-            }
+                //dd('depois do forresh');
+//            foreach ($array2_fromdb as $row){
+//                $array_result['emp_name'] = $row->emp_name;
+//                $array_result['cem'] = number_format($total1,2,'.',',');
+//                $array_result['setenta'] = number_format(($total*0.7),2,'.',',');
+//                $array_result['trinta'] = number_format(($total*0.3),2,'.',',');
+//            }
+
         return $array_result;
     }
     /**
@@ -106,7 +110,9 @@ class FinanceController extends Controller
      * esse metodo junta ps array de duas ou mais dimençoe em um
      */
     public function getEmployeeServices(DateTreatment $date, $day = null, $nunRegPage=15){
-        $collection_employees = DB::table('employees')->orderBy('name', 'asc')->paginate($nunRegPage);
+        $collection_employees = DB::table('employees')
+            ->where('employees.type','=','RESIDENTIAL')
+            ->orderBy('name', 'asc')->paginate($nunRegPage);
         $i = 0;
         if($day === null){
             $day = Carbon::now()->format('Y-m-d');
@@ -130,7 +136,10 @@ class FinanceController extends Controller
             }
 
             $i++;
+            var_dump($data_temp);
         }
+
+        //dd("aqui");
         return $array_temp;
     }
     public function index (Request $request, DateTreatment $date, $day = null){

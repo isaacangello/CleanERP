@@ -8,9 +8,9 @@ function field_change(element,urlBase,token){
     let selfElement = document.querySelector("#"+id) //element.getAttribute('value')
     let selectedValue;
     switch (type) {
-        // case"TEXTAREA":selectedValue = selfElement.innerHTML; console.log(selfElement); break;
-        case"INPUT":selectedValue = selfElement.value; break;
-        default:selectedValue = selfElement.value; break;
+        case"TEXTAREA":selectedValue = document.querySelector("#"+selfElement.getAttribute('id')).value; console.log(document.querySelector("#"+selfElement.getAttribute('id')).value); break;
+        case"INPUT":selectedValue = document.querySelector("#"+selfElement.getAttribute('id')).value; break;
+        default:selectedValue = document.querySelector("#"+selfElement.getAttribute('id')).value; break;
     }
 
     console.log('alterando campo '+field+" do tipo "+type+" Via axios com valor => "+selectedValue)
@@ -61,7 +61,7 @@ function urlGenerate(model,response){
     }
     return urlBase
 }
-function modal_changes(element,token,model){
+function modal_changes(element,token,model,trigger){
     if (isValidElement(document.querySelector("#serviceId")))var service_id = document.querySelector("#serviceId").innerText
     if(isValidElement(document.querySelector("#scheduleId"))) var schedule_id = document.querySelector("#scheduleId").innerText
     // let schedule_id = document.querySelector("#scheduleId").innerText
@@ -83,6 +83,7 @@ function modal_changes(element,token,model){
                 })
     }
     console.log("função modal_change service_id =>"+service_id)
+    trigger()
 }
 
 function dateTime_change(elementId1,elementId2,token,model){
@@ -197,7 +198,12 @@ function startConfirmation(){
     }
 }
 startConfirmation()
-
+/**
+ *
+ * algorithm listening to changes in residential modal fields
+ * #modalchanges
+ * @type {NodeListOf<Element>}
+ */
 let ChangeResidentialModalFields = document.querySelectorAll('.modal-residential-change')
 
 
@@ -213,8 +219,9 @@ let ChangeResidentialModalFields = document.querySelectorAll('.modal-residential
     })
 
 
-
-
+/**
+ *  algorithm listening to click delete button in residential modal fields
+ */
 function listenerDeleteBtn(){
     let btnDeleteService = document.querySelector('#btnDeleteService')
 
