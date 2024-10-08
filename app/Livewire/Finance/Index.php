@@ -37,11 +37,11 @@ use function Symfony\Component\String\u;
     public $allEmployees = null;
     public $employees = null;
     public $employees_services = null;
-    public $total_services = null;
+    public mixed $total_services = null;
     public $selectedEmployee = null;
     public $selectedWeek = null;
     public $selectedYear = null;
-    //public $dateTrait = null;
+
     #[Url]
     public $year = null;
     public $previousYear=0;
@@ -53,9 +53,6 @@ use function Symfony\Component\String\u;
         $dateTrait =new DateTreatment();
         $this->numWeek =  $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
         $this->year = now()->format('Y');
-        $this->mount();
-        $this->render();
-        //$this->dispatch('reloadMaterializeSelects');
     }
     public function backWeek(): void
     {
@@ -70,9 +67,6 @@ use function Symfony\Component\String\u;
         $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
         $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
-        $this->mount($this->numWeek,$this->year);
-        $this->render();
-        //$this->dispatch('reloadMaterializeSelects');
 
     }
     public function forwardWeek(): void
@@ -87,13 +81,15 @@ use function Symfony\Component\String\u;
         $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
         $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
+        $this->dispatch('reloadSelects');
     }
     #[NoReturn] public function selectWeek(): void
     {
 
-        //dd($this->selectedWeek,$this->selectedYear,$this->selectedEmployee);
+        
         $this->numWeek = $this->selectedWeek;
         $this->year = $this->selectedYear;
+        $this->dispatch('reloadSelects');
     }
 ########################################################################################################################
     ############################################################# populate

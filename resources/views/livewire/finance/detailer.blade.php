@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="body">
-{{--                    <x-layout.week-navigator :$numWeek :$year :$previousYear :$nextYear :$previousWeek :$nextWeek  />--}}
+                    {{--                    <x-layout.week-navigator :$numWeek :$year :$previousYear :$nextYear :$previousWeek :$nextWeek  />--}}
                     <div class="row">
                         <div class="col s12 m2 input-field">
                         </div>
@@ -36,11 +36,11 @@
                                 @endphp
 
 
-                                    <x-standard-btn wire:click="backWeek()" type="submit" class="font-15 h-45">
+                                <x-standard-btn wire:click="backWeek()" type="submit" class="font-15 h-45">
                                             <span class="material-symbols-outlined">
                                                 arrow_back
                                             </span>
-                                    </x-standard-btn>
+                                </x-standard-btn>
                             </div>
                         </div>
                         <form wire:submit.prevent="selectWeek()">
@@ -78,11 +78,11 @@
                         </form>
                         <div class="col s12 m1 input-field align-left">
                             <div class="form-group">
-                                    <x-standard-btn wire:click="forwardWeek()" type="submit" class="font-15 h-45">
+                                <x-standard-btn wire:click="forwardWeek()" type="submit" class="font-15 h-45">
                                             <span class="material-symbols-outlined">
                                                 arrow_forward
                                             </span>
-                                    </x-standard-btn>
+                                </x-standard-btn>
                             </div>
                         </div>
                     </div>
@@ -101,9 +101,9 @@
                                                     <select id="select-finance-employee" class="form-control browser-default livewire-select" wire:model="selectedEmployee" >
                                                         <option selected value=""></option>
 
-                                                            @foreach($this->populate['allEmployees'] as $employee)
-                                                                <option wire:key="empKey{{$employee['id']}}" value="{{$employee['id']}}">{{ $employee['name'] }}</option>
-                                                            @endforeach
+                                                        @foreach($this->allEmployees as $employee)
+                                                            <option wire:key="empKey{{$employee->id}}" value="{{$employee->id}}">{{ $employee->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="help-info">Select employee.</div>
@@ -140,89 +140,83 @@
                                 </div>
                             </div>
                         </div>
-{{--                        <div class="col s6 m6" >--}}
-{{--                            <div class="panel panel-default">--}}
-{{--                                <div class="panel-heading">--}}
-{{--                                    <small>Payments of week</small>--}}
-{{--                                </div>--}}
-{{--                                <div class="panel-body p-l-3 p-r-3" style="height:35vh;">--}}
-{{--                                    <div class="chart-container align-center" style="position: relative; height:30vh;" >--}}
-{{--                                        <canvas id="chart-area"></canvas>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="panel-footer" style="position: relative">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col s1"></div>--}}
-{{--                                        <div class="col s11">--}}
-{{--                                            &nbsp;--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                        {{--                        <div class="col s6 m6" >--}}
+                        {{--                            <div class="panel panel-default">--}}
+                        {{--                                <div class="panel-heading">--}}
+                        {{--                                    <small>Payments of week</small>--}}
+                        {{--                                </div>--}}
+                        {{--                                <div class="panel-body p-l-3 p-r-3" style="height:35vh;">--}}
+                        {{--                                    <div class="chart-container align-center" style="position: relative; height:30vh;" >--}}
+                        {{--                                        <canvas id="chart-area"></canvas>--}}
+                        {{--                                    </div>--}}
+                        {{--                                </div>--}}
+                        {{--                                <div class="panel-footer" style="position: relative">--}}
+                        {{--                                    <div class="row">--}}
+                        {{--                                        <div class="col s1"></div>--}}
+                        {{--                                        <div class="col s11">--}}
+                        {{--                                            &nbsp;--}}
+                        {{--                                        </div>--}}
+                        {{--                                    </div>--}}
+                        {{--                                </div>--}}
+                        {{--                            </div>--}}
 
 
-{{--                        </div>--}}
-{{--                    </div>--}}
+                        {{--                        </div>--}}
+                        {{--                    </div>--}}
                         <div class="panel panel-default">
                             <div class="panel-body">
 
-                            <table class="table table-striped highlight">
-                                <thead>
-                                <tr class="green darken-3 white-text">
-                                    <th>Employee</th>
-                                    <th>Total</th>
-                                    <th>70%</th>
-                                    <th>30%</th>
-                                    <th>&nbsp;</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if($this->populate['employees_services'] != null)
-                                    @php
-                                        $i=0;
-                                    @endphp
-                                    {{--                                        {{dd($employees_services)}}--}}
-                                    @foreach($this->populate['employees_services'] as $key =>  $data)
+                                <table class="table table-striped highlight">
+                                    <thead>
+                                    <tr class="green darken-3 white-text">
+                                        <th>Employee</th>
+                                        <th>Total</th>
+                                        <th>70%</th>
+                                        <th>30%</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if($this->getData != null)
                                         @php
-                                            //                                                    dd($row);
+                                            $i=0;
                                         @endphp
-                                        <tr class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}" >
-                                            <td>
-                                                <a
-                                                    href="{{ route('finances.detailer',[
-                                                        'id' => $data['employee_id'],
-                                                        'from' =>$data['from'],
-                                                        'till' =>$data['till'],
-                                                    ] ) }}"
-                                                    class="btn-link-underline grey-text text-darken-2 pointer"
-                                                >
-                                                    {{$data['emp_name']}}
-                                                </a>
-                                            </td>
-                                            <td>{{$data['cem']}}</td>
-                                            <td>{{$data['setenta']}}</td>
-                                            <td>{{$data['trinta']}}</td>
-                                            <td></td>
-                                        </tr>
+                                        {{--                                        {{dd($employees_services)}}--}}
+                                        @foreach($this->getData as $key =>  $data)
+                                            @php
+
+                                                if(is_null($data->minus)){ $data->minus = 0;}
+                                                if(is_null($data->plus)){ $data->plus = 0;}
+                                                  $total = $data->price + $data->plus - $data->minus;
+                                            @endphp
+                                            <tr class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}" >
+                                                <td>
+                                                    {{$data->emp_name}}
+                                                </td>
+                                                <td>$ {{number_format($data->price,2)}}</td>
+                                                <td>$ {{number_format(($total*0.7),2)}}</td>
+                                                <td>$ {{number_format(($total*0.3),2)}}</td>
+                                                <td></td>
+                                            </tr>
                                             @php($i++)
 
-                                    @endforeach
-                                @else
-                                    <tr>
-                                        <td colspan="5" style="padding: 10px"><p>Services not found in this week</p></td>
-                                    </tr>
-                                @endif
-                                </tbody>
-                            </table>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="5" style="padding: 10px"><p>Services not found in this week</p></td>
+                                        </tr>
+                                    @endif
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        </div>{{--panel--}}
+                    </div>{{--panel--}}
 
                 </div>
 
             </div>
         </div>
-        </div>
+    </div>
     @script
     <script>
         console.log(window)
@@ -245,9 +239,6 @@
             // time picker
 
         });
-        window.addEventListener('triggerRefresh',()=>{
-            $wire.$refresh()
-        })
     </script>
     @endscript
-    </div> {{-- end of container fluid --}}
+</div> {{-- end of container fluid --}}

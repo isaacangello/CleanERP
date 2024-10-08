@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Treatment\DateTreatment;
 use Cassandra\Type;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 trait FinanceTrait
@@ -37,6 +38,8 @@ trait FinanceTrait
         return [
                 'employee_id' => $employeeId,
                 'emp_name' => Employee::select('name')->where('id','=',$employeeId)->first()->name,
+                'from' => $from,
+                'till' => $till,
                 'total_services_price' => $cem,
                 'total_plus' => $collection_result->sum('plus'),
                 'total_minus' => $collection_result->sum('minus'),
@@ -59,10 +62,11 @@ trait FinanceTrait
     }
     public function servicesEmployee (int $employeeId,string $from,string $till,$orderBy=['employees.name','asc'] ,$type = "RESIDENTIAL"): \Illuminate\Support\Collection
     {
-
+//        var_dump($orderBy);
+//        dd($employeeId,$from,$till);
         return DB::table('services')
             ->where('employee1_id', $employeeId)
-            ->where('')->where('employees.status' , '=', "ACTIVE")
+            ->where('employees.status' , '=', "ACTIVE")
             ->where('employees.type', '=', $type)->orderBy($orderBy[0],$orderBy[1])
             ->whereDate('service_date','>=',$from )
             ->whereDate('service_date','<=',$till )
@@ -119,6 +123,12 @@ trait FinanceTrait
             'total_services' => $total_services,
         ];
     }
+    public function getEmployees ($type="RESIDENTIAL", $status="ACTIVE"): Collection
+    {
+        $model = new Employee();
+        return  $model->select()->where('status' , '=', $status)
+            ->where('type', '=', $type)->orderBy('name')->get();
 
+    }
 
 }

@@ -76,7 +76,7 @@ $("#buton-user-dropdown").click(function () {
 
 );
 });
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
     var instances = M.Datepicker.init(elems, {
         autoClose: true,
@@ -84,7 +84,9 @@ $("#buton-user-dropdown").click(function () {
         yearRange: 50,
         format:'mm/dd/yyyy',
     });
-  });
-      // time picker
-  $('.timepicker').timepicker();
+
+
+});
+// time picker
+$('.timepicker').timepicker();
 

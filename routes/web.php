@@ -53,7 +53,7 @@ Route::get('employees/filter/{filter}/order/{order}',[EmployeeController::class,
 //#############################################################
 Route::prefix('finances')->group(function () {
     Route::get('/', \App\Livewire\Finance\Index::class)->middleware(['auth', 'verified'])->name('finances');
-    Route::get('/detailer/{id}/{from}/{till}', [FinanceController::class, 'detail_employee'])->middleware(['auth', 'verified'])->name('finances.detailer');
+    Route::get('/detailer/{id}/{from}/{till}', \App\Livewire\Finance\Detailer::class)->middleware(['auth', 'verified'])->name('finances.detailer');
     Route::get('/billings', \App\Livewire\Finance\Billings::class);
 });
 

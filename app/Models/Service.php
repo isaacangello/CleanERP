@@ -18,6 +18,7 @@ class Service extends Model
         'who_saved','who_saved_id',
         'price','justify_minus', 'minus',
         'justify_plus','plus', 'confirmed',
+        'deleted_at'
     ];
     public $rules =  [
         'customer_id' => 'required|numeric',
