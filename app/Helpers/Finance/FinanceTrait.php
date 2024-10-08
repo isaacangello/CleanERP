@@ -1,17 +1,22 @@
 <?php
 namespace App\Helpers\Finance;
+use App\Helpers\Funcs;
 use App\Http\Controllers\FinanceController;
 use App\Models\Config;
 use App\Models\Employee;
 use App\Treatment\DateTreatment;
+use Cassandra\Type;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 trait FinanceTrait
 {
-    public function totalServicesPricesEmployees(int $employeeId,string $from,string $till): null|array{
+    public function totalServicesPricesEmployee(int $employeeId,string $from,string $till,$orderBy=['employees.name','asc'] ,$type = "RESIDENTIAL"): null|array{
         $array_result = array();
-        $collection_result =  DB::table('services')->where('employee1_id', $employeeId)
+        $collection_result =  DB::table('services')
+            ->where('employee1_id', $employeeId)
+            ->where('employees.status' , '=', "ACTIVE")
+            ->where('employees.type', '=', $type)->orderBy($orderBy[0],$orderBy[1])
             ->whereDate('service_date','>=',$from )
             ->whereDate('service_date','<=',$till )
             ->whereNull('services.deleted_at')
@@ -19,22 +24,46 @@ trait FinanceTrait
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(
                 'services.employee1_id',
+                        'employees.name as emp_name',
+                        'customers.name as cust_name',
                         'services.price',
                         'services.plus',
                         'services.minus',
             )->get();
-            $array_result = [
-                    'employee_id' => $employeeId,
-                    'total_services_price' => $collection_result->sum('price'),
-                    'total_plus' => $collection_result->sum('plus'),
-                    'total_minus' => $collection_result->sum('minus'),
-                ];
-        return $array_result;
+          $total_services_price = $collection_result->sum('price');
+          $total_plus = $collection_result->sum('plus');
+          $total_minus = $collection_result->sum('minus');
+          $cem = $total_services_price + $total_plus - $total_minus;
+        return [
+                'employee_id' => $employeeId,
+                'emp_name' => Employee::select('name')->where('id','=',$employeeId)->first()->name,
+                'total_services_price' => $cem,
+                'total_plus' => $collection_result->sum('plus'),
+                'total_minus' => $collection_result->sum('minus'),
+                'cem' => $cem,
+                'setenta' =>  ($cem*0.7),
+                'trinta'=>($cem*0.3)
+            ];
     }
-    public function servicesEmployee (int $employeeId,string $from,string $till): \Illuminate\Support\Collection
+    public function totalServicesPriceByPeriod($from,$till,$orderBy=['employees.name','asc'] ,$type = "RESIDENTIAL"): array
     {
-        //$array_result = array();
-        return DB::table('services')->where('employee1_id', $employeeId)
+        $arr = array();
+        $config = Funcs::getConfig();
+        $emps = Employee::where('type','=', $type)->orderBy($orderBy[0],$orderBy[1])->paginate($config->nun_reg_pages);
+        foreach ($emps as $emp){
+            $arr[$emp->id] = $this->totalServicesPricesEmployee($emp->id,$from,$till,$orderBy,$type);
+        }
+        //dd($arr);
+        Return $arr;
+
+    }
+    public function servicesEmployee (int $employeeId,string $from,string $till,$orderBy=['employees.name','asc'] ,$type = "RESIDENTIAL"): \Illuminate\Support\Collection
+    {
+
+        return DB::table('services')
+            ->where('employee1_id', $employeeId)
+            ->where('')->where('employees.status' , '=', "ACTIVE")
+            ->where('employees.type', '=', $type)->orderBy($orderBy[0],$orderBy[1])
             ->whereDate('service_date','>=',$from )
             ->whereDate('service_date','<=',$till )
             ->whereNull('services.deleted_at')
@@ -56,7 +85,7 @@ trait FinanceTrait
                 'customers.address'
             )->get();
     }
-    public function getData($numWeek = null, $year = null)
+    public function getData($numWeek,$year): array
     {
 
         $model = new Employee();
@@ -67,17 +96,16 @@ trait FinanceTrait
             ['user_id' => \Auth::id()],
             [ 'nun_reg_pages' =>  15 ]
         );
-        if($numWeek === null)$numWeek = $date->numberWeekByDay(now()->timezone('America/New_York')->format('Y-m-d'));
-        if ($year === null) $year = now()->format('Y');
         $dateFrom = $date->getWeekByNumberWeek($numWeek,$year);
         $all_employees = $model->select()->where('status' , '=', "ACTIVE")
-            ->where('type', '=',"RESIDENTIAL" )->orderBy('name')->get()->toArray();
+            ->where('type', '=',"RESIDENTIAL" )->orderBy('name')->get();
 
         $collection_employees = $model->select()->where('status' , '=', "ACTIVE")
-            ->where('type', '=',"RESIDENTIAL" )->orderBy('name')->paginate($config->nun_reg_pages)->toArray();
-        $array_temp = $finance->getEmployeeServices(new DateTreatment(),$dateFrom['Monday'],$config->nun_reg_pages);
+            ->where('type', '=',"RESIDENTIAL" )->orderBy('name')->paginate($config->nun_reg_pages);
 
-        $cem = $finance->total_price_services_period($dateFrom['Monday'],$dateFrom['Saturday']);
+
+        $array_temp = $this->totalServicesPriceByPeriod($dateFrom['Monday'],$dateFrom['Saturday']);
+        if(!isset($cem))$cem=0;
         $total_services = [
             'cem' => $cem,
             'setenta' => ($cem*0.7),

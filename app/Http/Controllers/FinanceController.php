@@ -43,8 +43,8 @@ class FinanceController extends Controller
 //                'services.plus',
 //                'services.minus',
 //            )->get();
-        $returnvar =  ($collection_result->sum('services.price')+$collection_result->sum('services.plus')-$collection_result->sum('services.minus'));
-        return $returnvar;
+
+        return ($collection_result->sum('services.price')+$collection_result->sum('services.plus')-$collection_result->sum('services.minus'));
     }
     public function count_payment_employees(int $employee_id,string $from,string $till)
     {
@@ -89,12 +89,12 @@ class FinanceController extends Controller
             foreach ($array_from_db as $row){
 //                var_dump($row->emp_name);
 //                var_dump($row->price);
-                $total = $row->price + $row->plus - $row->minus;
-                $array_result['emp_name'] = $row->emp_name;
-                $array_result['cem'] = number_format($total,2,'.',',');
-                $array_result['setenta'] = number_format(($total*0.7),2,'.',',');
-                $array_result['trinta'] = number_format(($total*0.3),2,'.',',');
+                $total += $row->price + $row->plus - $row->minus;
             }
+            $array_result['emp_name'] = $row->emp_name;
+            $array_result['cem'] = number_format($total,2,'.',',');
+            $array_result['setenta'] = number_format(($total*0.7),2,'.',',');
+            $array_result['trinta'] = number_format(($total*0.3),2,'.',',');
                 //dd('depois do forresh');
 //            foreach ($array2_fromdb as $row){
 //                $array_result['emp_name'] = $row->emp_name;
@@ -123,7 +123,6 @@ class FinanceController extends Controller
         $sorted = $collection_employees;
         foreach ($collection_employees->items() as $employees){
             $data_temp = $this->count_payment_employees($employees->id,$dateFrom['monday'],$dateFrom['saturday']);
-
             if (empty($data_temp) ){
                 $array_temp[$i]= [
                     'emp_name' => $employees->name,
@@ -136,7 +135,7 @@ class FinanceController extends Controller
             }
 
             $i++;
-            var_dump($data_temp);
+            //var_dump($data_temp);
         }
 
         //dd("aqui");

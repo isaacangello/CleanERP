@@ -2,7 +2,10 @@
 
 namespace App\Helpers;
 
+use App\Models\Config;
+use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Html\Html;
 use Spatie\Html\Elements\Div;
 use Spatie\Html\Elements\Element;
@@ -249,6 +252,13 @@ class Funcs
         }else{
             return $classes[1];
         }
+    }
+    public static function getConfig()
+    {
+     return Config::firstOrCreate(
+             ['user_id' => Auth::user()->id],
+             ['nun_reg_pages'=> 15]
+             );
     }
 
 

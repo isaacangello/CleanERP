@@ -35,23 +35,22 @@
                                     //numbered=28&year=current
                                 @endphp
 
-                                <form wire:submit.prevent="backWeek()">
-                                    <x-standard-btn type="submit" class="font-15 h-45">
+
+                                    <x-standard-btn wire:click="backWeek()" type="submit" class="font-15 h-45">
                                             <span class="material-symbols-outlined">
                                                 arrow_back
                                             </span>
                                     </x-standard-btn>
-                                </form>
                             </div>
                         </div>
                         <form wire:submit.prevent="selectWeek()">
                             <div class="col s12 m2 input-field" >
                                 <div class="form-group">
                                     <div class="form-line success">
-                                        <select wire:model="selectedWeek"  class="form-control  materialize-select" >
-                                            <option value="{{ $numWeek}}">week {{$numWeek}}</option>
+                                        <select wire:model="selectedWeek"  class="form-control browser-default  livewire-select" >
+                                            <option value="{{ $selectedWeek}}">week {{$selectedWeek}}</option>
                                             @for ($i = 1; $i < 53; $i++)
-                                                <option value="{{$i}}">week {{$i}}</option>
+                                                <option wire:key="selectedWeek{{$i}}" value="{{$i}}">week {{$i}}</option>
                                             @endfor
                                         </select>
                                     </div>
@@ -61,10 +60,10 @@
                                 <div class="form-group">
                                     <div class="form-line success">
 
-                                        <select wire:model="selectedYear"  class="form-control materialize-select">
-                                            <option value="{{$year}}">{{$year}}</option>
+                                        <select wire:model="selectedYear"  class="form-control browser-default livewire-select">
+                                            <option value="{{$selectedYear??now()->format('Y')}}">{{$selectedYear??now()->format('Y')}}</option>
                                             @for ($i = 2020; $i < 2031; $i++)
-                                                <option value="{{$i}}">{{$i}}</option>
+                                                <option wire:key="selectedYear{{$i}}" value="{{$i}}">{{$i}}</option>
                                             @endfor
 
                                         </select>
@@ -79,13 +78,11 @@
                         </form>
                         <div class="col s12 m1 input-field align-left">
                             <div class="form-group">
-                                <form wire:submit.prevent="forwardWeek()">
-                                    <x-standard-btn type="submit" class="font-15 h-45">
+                                    <x-standard-btn wire:click="forwardWeek()" type="submit" class="font-15 h-45">
                                             <span class="material-symbols-outlined">
                                                 arrow_forward
                                             </span>
                                     </x-standard-btn>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -101,11 +98,11 @@
                                         <div class="input-field col s12 m2">
                                             <div class="form-group">
                                                 <div class="form-line success">
-                                                    <select id="select-finance-employee" class="form-control materialize-select" wire:model="selectedEmployee" >
+                                                    <select id="select-finance-employee" class="form-control browser-default livewire-select" wire:model="selectedEmployee" >
                                                         <option selected value=""></option>
 
-                                                            @foreach($allEmployees as $employee)
-                                                                <option value="{{ $employee['id'] }}">{{ $employee['name'] }}</option>
+                                                            @foreach($this->populate['allEmployees'] as $employee)
+                                                                <option wire:key="empKey{{$employee['id']}}" value="{{$employee['id']}}">{{ $employee['name'] }}</option>
                                                             @endforeach
                                                     </select>
                                                 </div>
@@ -115,7 +112,7 @@
                                         <div class="input-field col s12 m2 ">
                                             <div class="form-group">
                                                 <div class="form-line success">
-                                                    <input id="input-finance-from" name="finance-from" type="text" class="form-control date" value="">
+                                                    <input id="input-finance-from" name="finance-from" type="text" class="form-control datepicker" value="">
                                                     <label class="form-label" for="input-finance-from">From</label>
                                                 </div>
                                                 <div class="help-info">Insert date from.</div>
@@ -124,7 +121,7 @@
                                         <div class="input-field col s12 m2">
                                             <div class="form-group">
                                                 <div class="form-line success">
-                                                    <input id="input-finance-till" name="finance-till" type="text" class="form-control date" value="">
+                                                    <input id="input-finance-till" name="finance-till" type="text" class="form-control datepicker" value="">
                                                     <label class="form-label" for="input-finance-till">Till</label>
                                                 </div>
                                                 <div class="help-info">Insert date till.</div>
@@ -180,22 +177,24 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if($employees_services != null)
+                                @if($this->populate['employees_services'] != null)
+                                    @php
+                                        $i=0;
+                                    @endphp
                                     {{--                                        {{dd($employees_services)}}--}}
-                                    @foreach($employees_services as $key =>  $row)
+                                    @foreach($this->populate['employees_services'] as $key =>  $data)
                                         @php
                                             //                                                    dd($row);
-                                                                                                extract($row);
                                         @endphp
-                                        @if($emp_name!=null)
-                                            <tr>
-                                                <td>{{$emp_name}}</td>
-                                                <td>{{$cem}}</td>
-                                                <td>{{$setenta}}</td>
-                                                <td>{{$trinta}}</td>
-                                                <td></td>
-                                            </tr>
-                                        @endif
+                                        <tr class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}" >
+                                            <td>{{$data['emp_name']}} </td>
+                                            <td>{{$data['cem']}}</td>
+                                            <td>{{$data['setenta']}}</td>
+                                            <td>{{$data['trinta']}}</td>
+                                            <td></td>
+                                        </tr>
+                                            @php($i++)
+
                                     @endforeach
                                 @else
                                     <tr>
@@ -213,5 +212,32 @@
             </div>
         </div>
         </div>
+    @script
+    <script>
 
-    </div>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.livewire-select');
+            var instances = M.FormSelect.init(elems, {});
+        });
+        window.addEventListener('triggerRefresh',()=>{
+            $wire.$refresh()
+        })
+        window.addEventListener('reloadSelects',event=>{
+            let elements = document.querySelectorAll('.livewire-select')
+            console.log(elements)
+            elements.forEach(eL=>{
+               let  inst = M.FormSelect.getInstance(eL, {});
+                    console.log(typeof inst)
+                if(typeof inst !== "undefined"){  // if select has been initialized already, destroy it and reinitialize it. else, initialize it.
+                    let ret = inst.destroy()
+                    console.log(ret)
+                }
+            })
+            elements = document.querySelectorAll('.livewire-select')
+            M.FormSelect.init(elements, {});
+            //M.updateTextFields();
+            console.log('reloaded materialize selects')
+        })
+    </script>
+    @endscript
+    </div> {{-- end of container fluid --}}

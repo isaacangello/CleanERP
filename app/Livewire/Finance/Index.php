@@ -10,10 +10,12 @@ use App\Treatment\DateTreatment;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use JetBrains\PhpStorm\NoReturn;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
+use function Laravel\Prompts\select;
 use function Symfony\Component\String\u;
 
 #[AllowDynamicProperties] class Index extends Component
@@ -26,6 +28,7 @@ use function Symfony\Component\String\u;
 //    public $employees_services;
     //public $dateTrait = "";
     public $nun_reg_pages = 5;
+    #[Url]
     public $numWeek = null;
     public $data = null;
     public $from ='';
@@ -38,7 +41,8 @@ use function Symfony\Component\String\u;
     public $selectedEmployee = null;
     public $selectedWeek = null;
     public $selectedYear = null;
-
+    //public $dateTrait = null;
+    #[Url]
     public $year = null;
     public $previousYear=0;
     public $nextYear=0;
@@ -51,6 +55,7 @@ use function Symfony\Component\String\u;
         $this->year = now()->format('Y');
         $this->mount();
         $this->render();
+        //$this->dispatch('reloadMaterializeSelects');
     }
     public function backWeek(): void
     {
@@ -67,7 +72,7 @@ use function Symfony\Component\String\u;
         $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
         $this->mount($this->numWeek,$this->year);
         $this->render();
-        $this->dispatch('refresh-index');
+        //$this->dispatch('reloadMaterializeSelects');
 
     }
     public function forwardWeek(): void
@@ -82,30 +87,33 @@ use function Symfony\Component\String\u;
         $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
         $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
-        $this->mount($this->numWeek,$this->year);
-        $this->render();
-        $this->dispatch('refresh-index');
-        //dd($this->allEmployees);
     }
     #[NoReturn] public function selectWeek(): void
     {
 
-
-        dd($this->numWeek,$this->year,$this->selectedEmployee);
+        //dd($this->selectedWeek,$this->selectedYear,$this->selectedEmployee);
+        $this->numWeek = $this->selectedWeek;
+        $this->year = $this->selectedYear;
     }
-    public function populate($nunWeek =null,$year=null): void
+########################################################################################################################
+    ############################################################# populate
+########################################################################################################################
+    /**
+     * @param $nunWeek
+     * @param $year
+     * @return void
+     */
+    #[Computed]
+    public function populate(): array
     {
         $date = new DateTreatment();
-        if($nunWeek === null){
-            $this->numWeek = $date->numberWeekByDay(now()->timezone('America/New_York')->format('Y-m-d'));
-        }else{
-            $this->numWeek = $nunWeek;
+        if($this->numWeek === null){
+            $this->numWeek = $date->numberWeekByDay(now()->format('Y-m-d'));
         }
-        if ($year === null){
+        if ($this->year === null){
             $this->year = now()->format('Y');
-        }else{
-            $this->year = $year;
         }
+
         $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
         $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
@@ -123,19 +131,28 @@ use function Symfony\Component\String\u;
             ->where('type','=',"RESIDENTIAL")
             ->orderBy('name')
             ->get();
-
-        if($this->data === null) $this->data = $this->getData($nunWeek,$year);
-        $this->allEmployees = $this->data['allEmployees'];
-        $this->employees_services = $this->data['employees_services'];
-        $this->employees = $this->data['employees'];
-        $this->total_services = $this->data['total_services'];
+        //var_dump($this->numWeek);
+        return $this->getData($this->numWeek,$this->year);
     }
-    public function mount($nunWeek = null,$year = null)
+########################################################################################################################
+    ############################################################# mount
+########################################################################################################################
+    /**
+     * @return void
+     */
+    public function mount(): void
     {
-
-        $this->populate($nunWeek,$year);
-
+        $dateTrait = new DateTreatment();
+        $this->selectedWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
+        $this->selectedYear = now()->format('Y');
     }
+########################################################################################################################
+    ############################################################# render
+########################################################################################################################
+    /**
+     * @param $data
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     */
     public function render($data = null)
     {
         return view('livewire.finance.index')
