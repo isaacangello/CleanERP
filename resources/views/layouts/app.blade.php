@@ -68,7 +68,7 @@
 
     <link href="{!! asset('web/systheme/plugins/lou-multi-select/css/multi-select.css') !!}" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body class="theme-teal">
@@ -254,6 +254,8 @@
 {{--<script type="module" src="{{ asset('web/custom/field_change.js') }}"></script>--}}
 {{--<script type="module" src="{{ asset('web/custom/modalPush.js') }}"></script>--}}
 {{--<script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>--}}
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 </body>
 

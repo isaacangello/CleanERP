@@ -257,5 +257,6 @@
     <orderEntry type="library" name="sweetalert2" level="application" />
     <orderEntry type="library" name="fullcalendar" level="application" />
     <orderEntry type="library" name="chart.js" level="application" />
+    <orderEntry type="library" name="flatpickr" level="application" />
   </component>
 </module>

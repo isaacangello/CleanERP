@@ -17,7 +17,7 @@
 
                 <div class="body">
 {{--                    <x-layout.week-navigator :$numWeek :$year :$previousYear :$nextYear :$previousWeek :$nextWeek  />--}}
-                    <div class="row">
+                    <div class="row m-b-0">
                         <div class="col s12 m2 input-field">
                         </div>
                         <div class="col s12 m2 input-field">
@@ -87,15 +87,15 @@
                         </div>
                     </div>
 
-                    <div class="clearfix row">
+                    <div class="clearfix row m-b-0">
                         <div class="col s12 ">
                             <div class="panel panel-default" >
-                                <div class="panel-heading">
+                                <div class="panel-heading p-l-15 p-t-2 p-r-2 p-b-2">
                                     Seach
                                 </div>
-                                <div class="panel-body" >
-                                    <div class="clearfix row">
-                                        <div class="input-field col s12 m2">
+                                <div class="panel-body " >
+                                    <div class="clearfix row m-b-0">
+                                        <div class="input-field col s12 m4">
                                             <div class="form-group">
                                                 <div class="form-line success">
                                                     <select id="select-finance-employee" class="form-control browser-default livewire-select" wire:model="selectedEmployee" >
@@ -109,34 +109,33 @@
                                                 <div class="help-info">Select employee.</div>
                                             </div>
                                         </div>
-                                        <div class="input-field col s12 m2 ">
+                                        <div class="input-field col s12 m3 ">
                                             <div class="form-group">
                                                 <div class="form-line success">
-                                                    <input id="input-finance-from" name="finance-from" type="text" class="form-control datepicker" value="">
+
+                                                    <x-date-flat-pickr id="input-finance-from" name="from" />
                                                     <label class="form-label" for="input-finance-from">From</label>
                                                 </div>
                                                 <div class="help-info">Insert date from.</div>
                                             </div>
                                         </div>
-                                        <div class="input-field col s12 m2">
+                                        <div class="input-field col s12 m3">
                                             <div class="form-group">
                                                 <div class="form-line success">
-                                                    <input id="input-finance-till" name="finance-till" type="text" class="form-control datepicker" value="">
+                                                    <x-date-flat-pickr id="input-finance-from" name="till" />
                                                     <label class="form-label" for="input-finance-till">Till</label>
                                                 </div>
                                                 <div class="help-info">Insert date till.</div>
                                             </div>
 
                                         </div>
-                                    </div>
-
-                                </div>
-                                <div class="panel-footer">
-                                    <div class="row">
-                                        <div class="col s12" >
-                                            <button class="btn btn-success valign-wrapper">Search</button>
+                                        <div class="input-field col s12 m2 valign-wrapper">
+                                            <div class="form-group valign-wrapper">
+                                                <button class="btn btn-success h-45">Search</button>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -226,25 +225,24 @@
     @script
     <script>
         console.log(window)
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.livewire-select');
-            var instances = M.FormSelect.init(elems, {});
-            document.addEventListener('DOMContentLoaded', function() {
-                var dateElems = document.querySelectorAll('.livewire-datepicker');
-                window.datePickerInstances = M.Datepicker.init(dateElems, {
+
+
+             M.FormSelect.init($wire.$el.querySelector('.livewire-select'), {});
+
+                 M.Datepicker.init($wire.$el.querySelector('.livewire-datepicker'), {
                     autoClose: true,
                     showClearBtn: true,
                     yearRange: 50,
                     format:'mm/dd/yyyy',
                 });
 
-                var TimeElems = document.querySelectorAll('.livewire-datepicker');
-                window.timePickerInstances = M.Timepicker.init(TimeElems, {});
 
-            });
+                 M.Timepicker.init($wire.$el.querySelector('.livewire-timepicker'), {})
+
+
             // time picker
 
-        });
+
         window.addEventListener('triggerRefresh',()=>{
             $wire.$refresh()
         })

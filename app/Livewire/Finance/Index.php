@@ -139,6 +139,15 @@ use function Symfony\Component\String\u;
     public function mount(): void
     {
         $dateTrait = new DateTreatment();
+        if($this->numWeek === null){
+            $this->numWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
+        }
+        if ($this->year === null){
+            $this->year = now()->format('Y');
+        }
+        $week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
+        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
+        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
         $this->selectedWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
         $this->selectedYear = now()->format('Y');
     }
