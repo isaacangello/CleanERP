@@ -14,6 +14,8 @@ trait FinanceTrait
 {
     public function totalServicesPricesEmployee(int $employeeId,string $from,string $till,$orderBy=['employees.name','asc'] ,$type = "RESIDENTIAL"): null|array{
         $array_result = array();
+        $from = Carbon::create($from)->format('Y-m-d H:i:s');
+        $till = Carbon::create($till)->format('Y-m-d H:i:s');
         $collection_result =  DB::table('services')
             ->where('employee1_id', $employeeId)
             ->where('employees.status' , '=', "ACTIVE")
@@ -62,8 +64,8 @@ trait FinanceTrait
     }
     public function servicesEmployee (int $employeeId,string $from,string $till,$orderBy=['employees.name','asc'] ,$type = "RESIDENTIAL"): \Illuminate\Support\Collection
     {
-//        var_dump($orderBy);
-//        dd($employeeId,$from,$till);
+        $from = Carbon::create($from)->format('Y-m-d H:i:s');
+        $till = Carbon::create($till)->format('Y-m-d H:i:s');
         return DB::table('services')
             ->where('employee1_id', $employeeId)
             ->where('employees.status' , '=', "ACTIVE")
@@ -74,6 +76,7 @@ trait FinanceTrait
             ->join('employees', 'services.employee1_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(
+                'services.id',
                 'services.service_date',
                 'services.paid_out',
                 'services.fee',
@@ -128,6 +131,24 @@ trait FinanceTrait
         $model = new Employee();
         return  $model->select()->where('status' , '=', $status)
             ->where('type', '=', $type)->orderBy('name')->get();
+
+    }
+    public function traitNullVars(): void
+    {
+        $dateTrait = new DateTreatment();
+        if($this->numWeek === null){
+            $this->numWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
+        }
+        if ($this->year === null){
+            $this->year = now()->format('Y');
+        }
+
+        $week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
+        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
+        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
+        $this->selectedWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
+        //dd($this->selectedWeek);
+        $this->selectedYear = now()->format('Y');
 
     }
 

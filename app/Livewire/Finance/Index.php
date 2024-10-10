@@ -64,10 +64,7 @@ use function Symfony\Component\String\u;
         }else{
             $this->numWeek--;
         }
-        $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
-        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
-        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
-
+        $this->traitNullVars();
     }
     public function forwardWeek(): void
     {
@@ -86,7 +83,6 @@ use function Symfony\Component\String\u;
     #[NoReturn] public function selectWeek(): void
     {
 
-        
         $this->numWeek = $this->selectedWeek;
         $this->year = $this->selectedYear;
         $this->dispatch('reloadSelects');
@@ -103,16 +99,7 @@ use function Symfony\Component\String\u;
     public function populate(): array
     {
         $date = new DateTreatment();
-        if($this->numWeek === null){
-            $this->numWeek = $date->numberWeekByDay(now()->format('Y-m-d'));
-        }
-        if ($this->year === null){
-            $this->year = now()->format('Y');
-        }
-
-        $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
-        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
-        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
+        $this->traitNullVars();
         $this->previousYear = $this->year - 1;
         $this->nextYear = $this->year + 1;
         $this->previousWeek = $this->numWeek - 1;
@@ -138,18 +125,7 @@ use function Symfony\Component\String\u;
      */
     public function mount(): void
     {
-        $dateTrait = new DateTreatment();
-        if($this->numWeek === null){
-            $this->numWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
-        }
-        if ($this->year === null){
-            $this->year = now()->format('Y');
-        }
-        $week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
-        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
-        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
-        $this->selectedWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
-        $this->selectedYear = now()->format('Y');
+        $this->traitNullVars();
     }
 ########################################################################################################################
     ############################################################# render
@@ -163,4 +139,11 @@ use function Symfony\Component\String\u;
         return view('livewire.finance.index')
                 ->extends('layouts.app');
     }
+    public function searchServices()
+    {
+        //Search services by employee, from, till
+        //dd($this->servicesEmployee($this->id,$this->from,$this->till));
+        return redirect()->route('finances.detailer', ['id' => $this->selectedEmployee, 'from' => Carbon::create($this->from)->format("Y-m-d"), 'till' => Carbon::create($this->till)->format("Y-m-d")]);
+    }
+
 }

@@ -3,8 +3,10 @@
 namespace App\Helpers;
 
 use App\Models\Config;
+use App\Models\Employee;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Html\Html;
 use Spatie\Html\Elements\Div;
@@ -260,6 +262,15 @@ class Funcs
              ['nun_reg_pages'=> 15]
              );
     }
+
+    public static function getEmployees ($type="RESIDENTIAL", $status="ACTIVE"): Collection
+    {
+        $model = new Employee();
+        return  $model->select()->where('status' , '=', $status)
+            ->where('type', '=', $type)->orderBy('name')->get();
+
+    }
+
 
 
 }

@@ -303,9 +303,6 @@ public function MakeArrayDays($firstdate = 0, $periodo = "Wek", $periodo_meses =
     }
     public function numberWeekByDay(string $date): int
     {
-        $dateArr = explode('-',$date);
-        $dia=$dateArr[2];$mes=$dateArr[1];$ano=$dateArr[0];
-        $var=intval( date('z', mktime(0,0,0,$mes,$dia,$ano) ) / 7 ) + 1;
-        return $var;
+        return Carbon::create($date)->weekOfYear();
     }
 }
