@@ -3,10 +3,27 @@
     if(is_null($this->computedService->minus)){ $this->computedService->minus = 0;}
     if(is_null($this->computedService->plus)){ $this->computedService->plus = 0;}
       $total = (float)$this->computedService->price + (float)$this->computedService->plus - (float)($this->computedService->minus*(-1));
+
 @endphp
 
 <tr class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}" >
-    <td>
+    <td class=" w-50">
+        <a
+                class="  pointer valign-wrapper @if($this->computedService->paid_out)btn btn-link btn-success white-text @else btn btn-link btn-danger white-text  @endif"
+                @if($this->computedService->paid_out) wire:click="confirmPaid('{{$this->computedService->id}}',false)" @else wire:click="confirmPaid('{{$this->computedService->id}}',true)" @endif
+        >
+            @if($this->computedService->paid_out)
+                <span class="material-symbols-outlined font-20">
+                task_alt
+                </span>
+            @else
+                <span class="material-symbols-outlined font-20">
+                    error
+                </span>
+            @endif
+        </a>
+    </td>
+    <td class="center-align">
         {{$data->cust_name}}
     </td>
     <td>{{$data->frequency}}</td>
@@ -36,5 +53,5 @@
         @enderror
 
     </td>
-    <td>&nbsp;</td>
+    <td><x-text-input /></td>
 </tr>

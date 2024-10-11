@@ -25,7 +25,8 @@
 
                     <div class="clearfix row m-b-0">
                         <div class="col s12 ">
-                            <x-finance-panel-search :employees="$this->populate['allEmployees']" />
+                            @php $id='1'; @endphp
+                            <x-finance-panel-search :id="$id" :employees="$this->populate['allEmployees']" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
                         </div>
 
                         <div class="panel panel-default">
@@ -91,22 +92,24 @@
     @script
     <script>
         console.log(window)
+        window.addEventListener('toast-alert', event =>{
+            // console.log(event)
+            toastAlert.fire({
+                icon: event.detail.icon,
+                title: event.detail.message
+            })
+            //console.log(window)
+        })
+        window.addEventListener('toast-btn-alert', event =>{
+            // console.log(event)
+            window.Swal.fire({
+                icon: event.detail.icon,
+                title: event.detail.title,
+                text: event.detail.text
+            })
+            //console.log(window)
+        })
 
-
-             M.FormSelect.init($wire.$el.querySelector('.livewire-select'), {});
-
-                 M.Datepicker.init($wire.$el.querySelector('.livewire-datepicker'), {
-                    autoClose: true,
-                    showClearBtn: true,
-                    yearRange: 50,
-                    format:'mm/dd/yyyy',
-                });
-
-
-                 M.Timepicker.init($wire.$el.querySelector('.livewire-timepicker'), {})
-
-
-            // time picker
 
 
         window.addEventListener('triggerRefresh',()=>{

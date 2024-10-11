@@ -18,7 +18,7 @@
                 </div>
                 <!-- Divider ######################################################################################################-->
                 <div class="row label-employee-view-edit" >
-                    <span class="label bg-light-green  label-padding">People involved in the service schedule</span>
+                    <span class="label label-padding">People involved in the service schedule</span>
                 </div>
                 <!-- Divider ######################################################################################################-->
                 <form id="schedule-form" action="{{ route('services.store') }}" method="post">
@@ -92,14 +92,14 @@
                         </div>
                     </div>
                     <div class="row label-employee-view-edit" >
-                        <span class="label bg-light-green  label-padding">Schedule information</span>
+                        <span class="label label-padding">Schedule information</span>
                     </div>
                     <!-- Row ######################################################################################################-->
                     <div class="row">
                         <div class="col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success form-line-schedule_date">
-                                    <input class="form-control datepicker"  id="cad-schedule-schedule_date" name="schedule_date" value="{{ old('schedule_date') }}" />
+                                    <x-date-flat-pickr id="cad-schedule-schedule_date" name="schedule_date" value="{{ old('schedule_date') }}" />
                                     <label class="form-label"  for="cad-schedule-schedule_date">Schedule start Date</label>
                                 </div>
                                 <div class="help-info" id="help-info-schedule_date">Select the Schedule execution date start.</div>
@@ -108,7 +108,7 @@
                         <div class="col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success form-line-schedule_time">
-                                    <input class="form-control timepicker"  id="cad-schedule-schedule_time" name="schedule_time" value="{{ old('schedule_time') }}" />
+                                    <x-time-flat-pickr id="cad-schedule-schedule_time" name="schedule_time" value="{{ old('schedule_time') }}" />
                                     <label class="form-label"  for="cad-schedule-schedule_time">Service Time</label>
                                 </div>
                                 <div class="help-info" id="help-info-schedule_time">Select the Schedule execution time.</div>
@@ -144,7 +144,7 @@
                     </div>
                     <!-- Divider ######################################################################################################-->
                     <div class="row label-employee-view-edit" >
-                        <span class="label bg-light-green  label-padding">Service Schedule repeat. </span>
+                        <span class="label label-padding">Service Schedule repeat. </span>
                     </div>
                     <!-- Divider ######################################################################################################-->
 
@@ -176,7 +176,7 @@
                     </div>
                     <!-- Divider ######################################################################################################-->
                     <div class="row label-employee-view-edit" >
-                        <span class="label bg-light-green  label-padding">Additional information</span>
+                        <span class="label label-padding">Additional information</span>
                     </div>
                     <!-- Divider ######################################################################################################-->
 

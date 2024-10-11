@@ -13,6 +13,7 @@ use JetBrains\PhpStorm\NoReturn;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithPagination;
 use function Laravel\Prompts\select;
@@ -38,6 +39,7 @@ use function Symfony\Component\String\u;
     public $employees = null;
     public $employees_services = null;
     public mixed $total_services = null;
+    #[Validate('required')]
     public $selectedEmployee = null;
     public $selectedWeek = null;
     public $selectedYear = null;
@@ -141,6 +143,7 @@ use function Symfony\Component\String\u;
     }
     public function searchServices()
     {
+        $this->validate();
         //Search services by employee, from, till
         //dd($this->servicesEmployee($this->id,$this->from,$this->till));
         return redirect()->route('finances.detailer', ['id' => $this->selectedEmployee, 'from' => Carbon::create($this->from)->format("Y-m-d"), 'till' => Carbon::create($this->till)->format("Y-m-d")]);

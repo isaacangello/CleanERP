@@ -11,7 +11,10 @@
             <div class="card">
 
                 <div class="header">
-                    <span>EMPLOYEE  <b>{{ $currentEmployee->name }}</b> </span>
+                    <span>
+                        @if(isset($currentEmployee->name)) EMPLOYEE @endif
+
+                              <b>{{ $currentEmployee->name??'' }}</b> </span>
                     <span>
                           Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
                             class="label-date-home">{{ $from }}</span> - Till <span
@@ -24,7 +27,7 @@
 
                     <div class="clearfix row">
                         <div class="col s12 ">
-                            <x-finance-panel-search :employees="$this->allEmployees()" />
+                            <x-finance-panel-search :employees="$this->allEmployees()" :$from :$till :id="$currentEmployee->id" />
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-body">
@@ -32,6 +35,7 @@
                                 <table class="table table-striped highlight">
                                     <thead>
                                     <tr class="green darken-3 white-text">
+                                        <th>Paid</th>
                                         <th>Customer</th>
                                         <th>Frequency</th>
                                         <th>Total</th>
@@ -90,25 +94,7 @@
             //console.log(window)
         })
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.livewire-select');
-            var instances = M.FormSelect.init(elems, {});
-            document.addEventListener('DOMContentLoaded', function() {
-                var dateElems = document.querySelectorAll('.livewire-datepicker');
-                window.datePickerInstances = M.Datepicker.init(dateElems, {
-                    autoClose: true,
-                    showClearBtn: true,
-                    yearRange: 50,
-                    format:'mm/dd/yyyy',
-                });
 
-                var TimeElems = document.querySelectorAll('.livewire-datepicker');
-                window.timePickerInstances = M.Timepicker.init(TimeElems, {});
-
-            });
-            // time picker
-
-        });
     </script>
     @endscript
 </div> {{-- end of container fluid --}}

@@ -1,6 +1,13 @@
 {{--https://forum.laravel-livewire.com/t/looking-for-a-date-time-picker-for-livewire/3682/6--}}
 {{--https://flatpickr.js.org/options/--}}
-@props(['options' => "{dateFormat:'Y-m-d', altFormat:'F j, Y', altInput:true, }"])
+@props(['options' => "
+        {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: 'h:i K' ,
+        }
+"
+])
 
 <div wire:ignore>
     <input

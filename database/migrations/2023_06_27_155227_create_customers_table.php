@@ -45,7 +45,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-        DB::table('users')->insert(
+        DB::table('customers')->insert(
             [
             ['id' => 1,'name' => "***OPEN****", 'address'=> "Espaço em aberto.", 'phone' => "0000", 'email' => fake()->email, 'status' => 'HIDDEN'  ],
             ['id' => 2,'name' => "-----------", 'address'=> "Solicitacao do Employee.", 'phone' => "0000", 'email' => fake()->email, 'status' => 'HIDDEN'  ]

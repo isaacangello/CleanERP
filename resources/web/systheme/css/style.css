@@ -1709,7 +1709,7 @@ margin-bottom: 9px;}
 }
 
 .p-l-4 {
-    padding-left: 4px; }
+    padding-left: 4px!important; }
 
 .p-t-4 {
     padding-top: 4px; }
@@ -2379,7 +2379,7 @@ margin-bottom: 9px;}
     font-size: 19px; }
 
 .font-20 {
-    font-size: 20px; }
+    font-size: 20px !important; }
 
 .font-21 {
     font-size: 21px; }
@@ -5456,6 +5456,9 @@ section.content {
 .label-danger {
     background-color: #fb483a; }
 
+.label-text-grey{
+    color:#757575;}
+
 /* Collapse ==================================== */
 .collapse .well,
 .collapse.in .well,
@@ -5911,7 +5914,8 @@ section.content {
     float: right;
     font-size: 12px;
     margin-top: 5px;
-    color: #999; }
+    /*color: #999; }*/
+    color: #757575; }
 .input-group label.error {
     font-size: 12px;
     display: block;
@@ -5990,7 +5994,7 @@ section.content {
     float: right;
     font-size: 12px;
     margin-top: 5px;
-    color: #999; }
+    color: #757575; }
 .form-group label.error {
     font-size: 12px;
     display: block;
@@ -6025,7 +6029,7 @@ section.content {
     border-bottom: 1px solid #1f91f3; }
 .form-group .form-line .form-label {
     font-weight: normal;
-    color: #aaa;
+    color: #757575;
     position: absolute;
     top: -10px;
     left: 0;
@@ -8680,10 +8684,10 @@ fieldset[disabled] .form-control {
 
 .nestable-dark-theme .dd-handle {
     background: #ccc !important;
-    border: 1px solid #999 !important; }
+    border: 1px solid #757575 !important; }
 
 .dd3-handle {
-    background: #999 !important; }
+    background: #757575 !important; }
 
 .dd3-content:hover {
     color: #2196F3; }
@@ -8878,7 +8882,7 @@ fieldset[disabled] .form-control {
     top: 7px; }
 .card-about-me .body ul li .content {
     margin-top: 10px;
-    color: #999;
+    color: #757575;
     font-size: 13px; }
 
 .panel-post {
@@ -9001,7 +9005,7 @@ fieldset[disabled] .form-control {
     left: 14px; }
 .search-bar .search-icon .material-icons {
     font-size: 32px;
-    color: #999; }
+    color: #757575; }
 .search-bar .close-search {
     position: absolute;
     cursor: pointer;
@@ -9009,7 +9013,7 @@ fieldset[disabled] .form-control {
     top: 16px;
     right: 18px; }
 .search-bar .close-search .material-icons {
-    color: #999;
+    color: #757575;
     opacity: 1;
     -moz-transition: 0.5s;
     -o-transition: 0.5s;
@@ -9082,7 +9086,7 @@ fieldset[disabled] .form-control {
     min-width: 400px;
     text-align: center;
     background-color: #fff;
-    border: 2px solid #999;
+    border: 2px solid #757575;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -9452,7 +9456,9 @@ textarea.custom-textarea:focus-visible{
 
 .label-employee-view-edit{
     color: white;
-    background-color: #8BC34A !important;
+    font-weight: bold;
+    /*background-color: #757575  !important;*/
+    background-color: #607D8B  !important;
     padding: 4px;
 }
 .label-crud{

@@ -5,7 +5,7 @@
 
             <!-- ################################################################################################################################-->
     <div class="row label-employee-view-edit" >
-        <span class="label bg-light-green  label-padding">Personal information</span>
+        <span class="label label-padding">Personal information</span>
     </div>
     <!-- ################################################################################################################################-->
     <div class="row clearfix">
@@ -161,7 +161,7 @@
 
     <!-- ################################################################################################################################-->
     <div class="row label-employee-view-edit" >
-        <span class="label bg-light-green  label-padding">Billing price</span>
+        <span class="label label-padding">Billing price</span>
     </div>
     <!-- ################################################################################################################################-->
     <div class="row clearfix">
@@ -200,7 +200,7 @@
     @endif
     <!--################################################################################################################################-->
     <div class="row label-employee-view-edit" >
-        <span class="label bg-light-green  label-padding">Services information</span>
+        <span class="label label-padding">Services information</span>
     </div>
     <!--################################################################################################################################-->
 <div class=" row clearfix">
@@ -272,7 +272,7 @@ if (isset($customer->tatus)){
 
     </div>
     <div class="row label-employee-view-edit" >
-        <span class="label bg-light-green  label-padding">Additional information</span>
+        <span class="label label-padding">Additional information</span>
     </div>
 
     <div class="row clearfix">

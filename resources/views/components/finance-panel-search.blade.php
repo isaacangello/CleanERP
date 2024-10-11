@@ -10,12 +10,20 @@
                         <div class="form-group">
                             <div class="form-line success">
                                 <select id="select-finance-employee" class="form-control browser-default livewire-select font-15" wire:model="selectedEmployee" >
-                                    <option selected value="{{$id??'1'}}">This employee</option>
+                                    <option  value="{{$id??'1'}}">This employee</option>
 
                                     @foreach($employees as $employee)
-                                        <option wire:key="empKey{{$employee['id']}}" value="{{$employee['id']}}">{{ $employee['name'] }}</option>
+                                        <option wire:key="empKey{{$employee['id']}}"  value="{{$employee['id']}}" @if($id === $employee['id']) selected @endif >{{ $employee['name'] }}</option>
                                     @endforeach
                                 </select>
+                                @error('selectedEmployee')
+                                    @script
+                                        <script>
+                                            console.log("error in plus")
+                                                $wire.dispatch('toast-btn-alert', {icon:'error', title:"Error", text:"{{$message}}"})
+                                        </script>
+                                    @endscript
+                                @enderror
                             </div>
                             <div class="help-info">Select employee.</div>
                         </div>
@@ -24,7 +32,7 @@
                         <div class="form-group">
                             <div class="form-line success">
 
-                                <x-date-flat-pickr id="input-finance-from" wire:model="from" />
+                                <x-date-flat-pickr id="input-finance-from" wire:model="from" value="{{$this->from}}"  />
                                 <label class="form-label" for="input-finance-from">From</label>
                             </div>
                             <div class="help-info">Insert date from.</div>
@@ -33,7 +41,7 @@
                     <div class="input-field col s12 m3">
                         <div class="form-group">
                             <div class="form-line success">
-                                <x-date-flat-pickr id="input-finance-from" wire:model="till" />
+                                <x-date-flat-pickr id="input-finance-from" wire:model="till" value="{{$this->till}}"/>
                                 <label class="form-label" for="input-finance-till">Till</label>
                             </div>
                             <div class="help-info">Insert date till.</div>

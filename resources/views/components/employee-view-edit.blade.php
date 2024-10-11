@@ -5,7 +5,7 @@
             @endphp
 
                 <div class="row label-employee-view-edit" >
-                    <span class="label bg-light-green  label-padding">Personal information</span>
+                    <span class="label label-padding">Personal information</span>
                 </div>
 
                 <div class="row clearfix">
@@ -83,7 +83,7 @@
 
 
                 <div class="row label-employee-view-edit" >
-                    <span class="label bg-light-green  label-padding">Document information and references.</span>
+                    <span class="label label-padding">Document information and references.</span>
                 </div>
 
                 <div class="row clearfix">
@@ -141,7 +141,7 @@
                 </div>
 
                 <div class="row label-employee-view-edit" >
-                    <span class="label bg-light-green  label-padding">Additional information</span>
+                    <span class="label label-padding">Additional information</span>
                 </div>
                 <div class="row clearfix">
                     <div class="col s12 m6">

@@ -47,4 +47,16 @@ class DetailerTr extends Component
     {
         return view('livewire.finance.detailer-tr');
     }
+    public function confirmPaid($id,$boolValue): void
+    {
+        $result =    Service::find($id)->update([
+            'paid_out'=> $boolValue
+        ]);
+        if($boolValue){
+            $this->dispatch('toast-alert', icon:'success', message:'Service marked as paid!');
+        }else{
+            $this->dispatch('toast-alert', icon:'warning', message:'Service marked as not paid!');
+        }
+    }
+
 }

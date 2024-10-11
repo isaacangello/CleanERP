@@ -4,12 +4,14 @@ namespace App\Livewire\Finance;
 
 use App\Helpers\Finance\FinanceTrait;
 use App\Models\Employee;
+use App\Models\Service;
 use App\Treatment\DateTreatment;
 use http\Env\Request;
 use Illuminate\Support\Carbon;
 use JetBrains\PhpStorm\NoReturn;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Detailer extends Component
@@ -21,6 +23,7 @@ class Detailer extends Component
     public $till;
     public $numWeek = null;
     public $year = null;
+    #[Validate('required')]
     public $selectedEmployee = null;
     public $currentEmployee = null;
     public $selectedWeek = null;
@@ -95,6 +98,10 @@ class Detailer extends Component
     public function searchServices(){
         //Search services by employee, from, till
         //dd($this->servicesEmployee($this->id,$this->from,$this->till));
+        $this->validate();
+        if(($this->selectedEmployee === 1) or is_null($this->selectedEmployee)){
+            $this->selectedEmployee = $this->currentEmployee->id;
+        }
         return redirect()->route('finances.detailer', ['id' => $this->selectedEmployee, 'from' => Carbon::create($this->from)->format("Y-m-d"), 'till' => Carbon::create($this->till)->format("Y-m-d")]);
     }
 }

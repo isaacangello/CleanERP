@@ -6,18 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class DateFlatPickr extends Component
+class btnPaidOut extends Component
 {
     /**
      * Create a new component instance.
      */
-    public $defaultDate;
     public function __construct()
     {
-        if(is_null($this->defaultDate)){
-            $this->defaultDate = now()->format("Y-m-d");
-        }
-
+        //
     }
 
     /**
@@ -25,6 +21,6 @@ class DateFlatPickr extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.date-flat-pickr');
+        return view('components.btn-paid-out');
     }
 }

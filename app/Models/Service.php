@@ -54,12 +54,15 @@ class Service extends Model
     {
         return $this->belongsTo(Employee::class,'employee2_id');
     }
-    public function rules(): array
-    {
-        return $this->rules;
-    }
     public function control()
     {
         return $this->hasOne(ServiceControl::class,'service_id');
+    }
+    public function payment(){
+        return $this->belongsTo(Payment::class,'payment');
+    }
+    public function rules(): array
+    {
+        return $this->rules;
     }
 }

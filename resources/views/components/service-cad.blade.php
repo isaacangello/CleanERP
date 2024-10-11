@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="row label-employee-view-edit" >
-                        <span class="label bg-light-green  label-padding">People involved in the service</span>
+                        <span class="label label-padding">People involved in the service</span>
                     </div>
                     <form id="service-form" action="{{ route('services.store') }}" method="post">
                     @csrf
@@ -99,14 +99,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row label-employee-view-edit" >
-                        <span class="label bg-light-green  label-padding">Service information</span>
+                    <div class="row label-employee-view-edit grey" >
+                        <span class="label   label-padding">Service information</span>
                     </div>
                     <div class="row">
                         <div class="col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success">
-                                <input class="form-control datepicker"  id="input-cad-service-date" name="service_date" value="{{ old('service_date') }}" />
+{{--                                <input class="form-control datepicker"  id="input-cad-service-date" name="service_date" value="{{ old('service_date') }}" />--}}
+                                    <x-date-flat-pickr id="input-cad-service-date" name="service_date" value="{{ old('service_date') }}" />
                                 <label class="form-label"  for="input-cad-service-date">Service Date</label>
                             </div>
                             <div class="help-info">Select the service execution date.</div>
@@ -115,7 +116,8 @@
                         <div class="col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success">
-                                <input class="form-control timepicker"  id="input-cad-service-time" name="service_time" value="{{ old('service_time') }}" />
+{{--                                    <input class="form-control timepicker"  id="input-cad-service-time" name="service_time" value="{{ old('service_time') }}" />--}}
+                                    <x-time-flat-pickr id="input-cad-service-time" name="service_time" value="{{ old('service_time') }}" />
                                 <label class="form-label"  for="input-cad-service-time">Service Time</label>
                             </div>
                             <div class="help-info">Select the service execution time.</div>

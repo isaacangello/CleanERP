@@ -8,7 +8,7 @@
                 @csrf
                 <input type="hidden" name="status" value="ACTIVE">
                 <div class="row label-employee-view-edit" >
-                    <span class="label bg-light-green  label-padding">Personal information</span>
+                    <span class="label label-padding">Personal information</span>
                 </div>
 
                 <div class="row clearfix">
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <div class="form-line success">
 {{--                                datepicker--}}
-                                <input class="form-control datepicker" type="text"  id="input-view-edit-birth" name="birth"  value="{{ old('birth') }}" />
+                                <x-date-flat-pickr id="input-view-edit-birth" name="birth"  value="{{ old('birth') }}" />
                                 <label class="form-label"  for="input-view-edit-birth">Birth date</label>
                             </div>
                             <div class="help-info">Insert employee birthdate.</div>
@@ -69,7 +69,7 @@
 
 
                 <div class="row label-employee-view-edit" >
-                    <span class="label bg-light-green  label-padding">Document information and references.</span>
+                    <span class="label label-padding">Document information and references.</span>
                 </div>
 
                 <div class="row clearfix">
@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="row label-employee-view-edit" >
-                    <span class="label bg-light-green  label-padding">Additional information</span>
+                    <span class="label label-padding">Additional information</span>
                 </div>
                 <div class="row clearfix">
                     <div class="col s12 m6">

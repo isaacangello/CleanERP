@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                             <div class="row label-employee-view-edit" >
-                                <span class="label bg-light-green  label-padding">Personal information</span>
+                                <span class="label label-padding">Personal information</span>
                             </div>
                             <div class="row clearfix">
                                 <div class="col s12 m8">
@@ -93,7 +93,7 @@
 
                             </div>
                     <div class="row label-employee-view-edit" >
-                        <span class="label bg-light-green  label-padding">Billing price</span>
+                        <span class="label label-padding">Billing price</span>
                     </div>
                     <div class="row clearfix">
                         <div class="col s12 m12">
@@ -122,7 +122,7 @@
 
 
                             <div class="row label-employee-view-edit" >
-                                <span class="label bg-light-green  label-padding">Service information</span>
+                                <span class="label label-padding">Service information</span>
                             </div>
                             <div class="row clearfix">
                                 <div class="col s12 m8">
