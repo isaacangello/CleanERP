@@ -99,7 +99,7 @@ function dateTime_change(elementId1,elementId2,token,model){
     // console.log('alterando campo service_date Via axios com valor => '+value)
      console.log("url => "+urlBase)
      console.log("date=>"+date+" Time=>"+time)
-    const DateToPost = moment(date+" "+time, "MM/DD/YYYY HH:mm").format("YYYY-MM-DD HH:mm:ss")
+    const DateToPost = date+" "+time
     console.log("fotmated ->"+DateToPost)
     axios.patch(urlBase,
         {

@@ -33,7 +33,7 @@ class CustomerFactory extends Factory
             'complement' => fake()->text(20) ,
             'phone' => fake()->e164PhoneNumber() ,
             'email' => fake()->unique()->safeEmail(),
-            'type' => $custType,
+            'type' => $arrCusType[$custType],
             'status' => 'ACTIVE',
             'frequency' => $frequencevals[$frekey] ,
             'others_emails'=> fake()->unique()->safeEmail().','.fake()->unique()->safeEmail().','.fake()->unique()->safeEmail(),

@@ -25,12 +25,9 @@ public array $names = [
     'José Raúl Capablanca',
     'Alexander Alekhine',
     'Max Euwe',
-    'Alexander Alekhine',
     'Mikhail Botvinnik',
     'Vasily Smyslov',
-    'Mikhail Botvinnik',
     'Mikhail Tal',
-    'Mikhail Botvinnik',
     'Tigran Petrosian',
     'Boris Spassky',
     'Bobby Fischer',
@@ -39,9 +36,19 @@ public array $names = [
 
     public function run(): void
     {
-            foreach ($this->names as $name) {
+        $i = 0;
+
+        foreach ($this->names as $name) {
+
+            if ($i++ >= 15) {
+                $custType = 'RENTALHOUSE';
+            }else{
+                $custType ='RESIDENTIAL';
+            }
+
                 Customer::factory()->create([
                     'name' => $name,
+                    'type' => $custType,
                 ]);
             }
     }

@@ -38,7 +38,7 @@
                             <div class="col s12 m2 input-field">
                                 <div class="form-group">
 
-                                    <button class="btn btn-link font-15 h-45 modal-trigger" href="#new-schedule">
+                                    <button class="btn btn-link btn-small valign-wrapper modal-trigger" href="#new-schedule">
                                         New schedule
                                     </button>
                                 </div>
@@ -46,7 +46,7 @@
                             <div class="col s12 m2 input-field">
                                 <div class="form-group">
                                     <form action="{{ route('commercial.schedule') }}">
-                                        <x-standard-btn type="submit" class="font-15 h-45">
+                                        <x-standard-btn type="submit" class="btn btn-link btn-small valign-wrapper">
                                             This week
                                         </x-standard-btn>
                                     </form>
@@ -76,10 +76,10 @@
                                         //dd($weekArr);
                                     @endphp
 
-                                        <form action="{{ route('week')}}">
+                                        <form action="{{ route('commercial.schedule')}}">
                                             <x-text-input type="hidden" value="{{$numWeek_arrow_b}}" name="numberweek"></x-text-input>
                                             <x-text-input type="hidden" value="{{$year_arrow_b}}" name="year"></x-text-input>
-                                            <x-standard-btn type="submit" class="font-15 h-45">
+                                            <x-standard-btn type="submit" class="btn btn-link btn-small valign-wrapper">
                                             <span class="material-symbols-outlined">
                                                 arrow_back
                                             </span>
@@ -91,7 +91,7 @@
                                 <div class="col s12 m2 input-field" >
                                     <div class="form-group">
                                         <div class="form-line success">
-                                            <select name="numberweek" class="form-control h-30 materialize-select" style="height: 30px">
+                                            <select name="numberweek" class="form-control  materialize-select browser-default h-30" >
                                                 <option value="{{ $numWeek?$numWeek:'' }}">week {{$numWeek?$numWeek:''}}</option>
                                                 @for ($i = 1; $i < 53; $i++)
                                                     <option value="{{$i}}">week {{$i}}</option>
@@ -104,7 +104,7 @@
                                     <div class="form-group">
                                         <div class="form-line success">
 
-                                            <select name="year" class="form-control materialize-select">
+                                            <select name="year" class="form-control materialize-select browser-default h-30">
                                                 <option value="{{$year?$year:now()->format("Y")}}">{{$year?$year:'current year'}}</option>
                                                 @for ($i = 2020; $i < 2031; $i++)
                                                     <option value="{{$i}}">{{$i}}</option>
@@ -115,7 +115,7 @@
                                     </div>
                                 </div>
                                 <div class="col s12 m1 input-field">
-                                    <x-standard-btn type="submit" class="font-15 h-45">
+                                    <x-standard-btn type="submit" class="btn btn-link btn-small valign-wrapper">
                                         go
                                     </x-standard-btn>
                                 </div>
@@ -125,7 +125,7 @@
                                     <form action="{{ route('commercial.schedule')}}">
                                         <x-text-input type="hidden" value="{{$numWeek_arrow_f}}" name="numberweek"></x-text-input>
                                         <x-text-input type="hidden" value="{{$year_arrow_f}}" name="year"></x-text-input>
-                                        <x-standard-btn type="submit" class="font-15 h-45">
+                                        <x-standard-btn type="submit" class="btn btn-link btn-small valign-wrapper">
                                             <span class="material-symbols-outlined">
                                                 arrow_forward
                                             </span>

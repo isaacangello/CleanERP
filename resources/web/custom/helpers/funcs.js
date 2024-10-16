@@ -1,9 +1,14 @@
- function isNullOrUndef(value) {
+
+
+function isNullOrUndef(value) {
     return value === null || typeof value === 'undefined';
 }
 
 function isValidElement(value) {
     return !(value === null || typeof value === 'undefined');
+}
+function isValidFunction(value) {
+    return  (typeof value === 'function');
 }
 
 /**
@@ -169,14 +174,38 @@ function errorShow(error, errorBox, errorInnexText, idsPrefix) {
         ano  = data.getFullYear();
     return ano+"-"+mes+"-"+dia;
 }
+function flatPickrInit(id,type,date) {
+    if(type === "date"){
+        flatpickr( id,     {
+            weekNumbers:true,
+            monthSelectorType:'static',
+            dateFormat:'Y-m-d',
+            altFormat:'F j, Y',
+            altInput:true,
+            defaultDate:`${date}`,
+        })
+    }
+    if(type === "time"){
+        flatpickr( id,     {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: 'H:i:S' ,
+            altFormat:'h:i K',
+            altInput:true,
+            defaultDate:`${date}`,
+        })
 
+    }
+}
 export {
     isNullOrUndef,
     isValidElement,
+    isValidFunction,
     serialize,
     errorShow,
     mountCard,
     date_format,
     time_format,
     dateFormat,
+    flatPickrInit,
 }

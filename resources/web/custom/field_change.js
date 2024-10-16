@@ -1,4 +1,4 @@
-import {isValidElement,isNullOrUndef,serialize,errorShow} from "./helpers/funcs.js";
+import {isValidElement, isNullOrUndef, serialize, errorShow, isValidFunction} from "./helpers/funcs.js";
 import {push_run} from './modalPush.js'
 function field_change(element,urlBase,token){
     console.log("url => "+urlBase)
@@ -83,7 +83,9 @@ function modal_changes(element,token,model,trigger){
                 })
     }
     console.log("função modal_change service_id =>"+service_id)
-    trigger()
+    if(isValidFunction(trigger)){
+        trigger()
+    }
 }
 
 function dateTime_change(elementId1,elementId2,token,model){
@@ -95,9 +97,9 @@ function dateTime_change(elementId1,elementId2,token,model){
     const urlBase = `/api/services/${service_id}`
     // console.log('alterando campo service_date Via axios com valor => '+value)
     // console.log("url => "+urlBase)
-    // console.log("date=>"+date+" Time=>"+time)
-    const DateToPost = moment(date+" "+time, "MM/DD/YYYY hh:mm").format("YYYY-MM-DD hh:mm:ss")
-    // console.log("fotmated ->"+DateToPost)
+     console.log("date=>"+date+" Time=>"+time)
+    const DateToPost = date+" "+time
+    console.log("fotmated ->"+DateToPost)
     axios.patch(urlBase,
         {
             _token: token,

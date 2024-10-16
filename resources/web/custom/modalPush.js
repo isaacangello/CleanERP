@@ -1,5 +1,5 @@
 
-import {date_format,time_format} from './helpers/funcs.js'
+import {date_format, isValidElement, time_format} from './helpers/funcs.js'
 function push_run(btnParam){
 
     const btnModalId = btnParam.getAttribute('href')
@@ -42,23 +42,34 @@ function push_run(btnParam){
         function markSelected(itemId,itemSearch){
             let item = document.querySelector(itemId)
             let itemInstance = M.FormSelect.getInstance(item)
-            console.info(itemInstance)
-            itemInstance.input.value = itemSearch
-            for(var c = 0; c< itemInstance.dropdownOptions.children.length;c++){
-                //console.info(itemSearch)
-                if(itemInstance.dropdownOptions.children[c].classList.contains("selected")){
-                    let l1 = document.querySelector('#'+itemInstance.dropdownOptions.children[c].id)
-                    l1.classList.remove("selected")
+            console.info()
+            if(isValidElement(itemInstance)){
+                itemInstance.input.value = itemSearch
+                for(var c = 0; c< itemInstance.dropdownOptions.children.length;c++){
+                    //console.info(itemSearch)
+                    if(itemInstance.dropdownOptions.children[c].classList.contains("selected")){
+                        let l1 = document.querySelector('#'+itemInstance.dropdownOptions.children[c].id)
+                        l1.classList.remove("selected")
+                    }
+                    if (itemInstance.dropdownOptions.children[c].innerText === itemSearch){
+                        let l1 = document.querySelector('#'+itemInstance.dropdownOptions.children[c].id)
+                        l1.classList.add("selected")
+                    }
                 }
-                if (itemInstance.dropdownOptions.children[c].innerText === itemSearch){
-                    let l1 = document.querySelector('#'+itemInstance.dropdownOptions.children[c].id)
-                    l1.classList.add("selected")
+            }else{
+                item.options[item.options.selectedIndex].removeAttribute("selected")
+                for(var i=0;i<item.options.length;i++){
+                    // console.log(item.options[i].value)
+                    if (item.options[i].innerText === itemSearch){
+                        item.options[i].setAttribute("selected", "selected")
+
+                    }
                 }
             }
         }
         axios.get("api/services/"+id)
             .then(response=>{
-                     console.info(response.data.service_date)
+                     console.info(response.data)
                     let serviceData = response.data
                     if(serviceData.customer.type === "RENTALHOUSE"){
                         defaultModalLabel.innerHTML = serviceData.customer.name+' <span class="material-symbols-outlined ">brightness_7</span>'
@@ -67,10 +78,31 @@ function push_run(btnParam){
                     }
                     markSelected("#selectServiceEmployee",serviceData.employee.name)
                     markSelected("#selectServiceCustomer",serviceData.customer.name)
+                    // let selectEmp = document.querySelector("#selectServiceEmployee")
+                    // let selectCust = document.querySelector("#selectServiceCustomer")
                     serviceAddress.value = serviceData.customer.address
                     servicePhone.value = serviceData.customer.phone
-                    serviceDate.value = date_format(serviceData.service_date)
-                    serviceTime.value = time_format(serviceData.service_date)
+                        flatpickr( '#serviceDate',     {
+                        weekNumbers:true,
+                        monthSelectorType:'static',
+                        dateFormat:'Y-m-d',
+                        altFormat:'F j, Y',
+                        altInput:true,
+                        defaultDate:`${serviceData.service_date}`
+                    })
+
+                flatpickr( '#serviceTime',    {
+                    enableTime: true,
+                        noCalendar: true,
+                    dateFormat: 'H:i:S' ,
+                    altFormat:'h:i K',
+                    altInput:true,
+                    defaultDate:`${serviceData.service_date}`
+                })
+
+                    // serviceDate.value = date_format(serviceData.service_date)
+                    // serviceTime.value = time_format(serviceData.service_date)
+                    console.log(serviceData.control)
                     if(serviceData.control !== null){
                         serviceInTime.value = time_format(serviceData.control.checkin_datetime)
                         serviceOutTime.value  = time_format(serviceData.control.checkout_datetime)

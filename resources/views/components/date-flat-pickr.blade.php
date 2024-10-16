@@ -7,7 +7,7 @@
         dateFormat:'Y-m-d',
         altFormat:'F j, Y',
         altInput:true,
-        defaultDate:'today'
+
     }
     "])
 
@@ -18,7 +18,7 @@
             x-ref="input"
             type="text"
             data-input
-            {{ $attributes->merge(['class' => 'form-control grey-text text-darken-3', 'aria-label' => "m/d/Y"]) }}
+            {{ $attributes->merge(['class' => 'form-control grey-text text-darken-4', 'aria-label' => "m/d/Y"]) }}
     />
 </div>
 

@@ -2,7 +2,9 @@
 @import url(../../materialize/css/materialize.css);
 :root{
     --clamp-size: clamp(0.6em, 0.7em + 1vw, 1em);
-    --modal-size: 16px;
+    --modal-size: clamp(0.6em, 0.7em + 1vw, 1em);
+    --modal-small: clamp(0.5em, 0.5em + 0.9vw, 0.9em);
+    --clamp-small:clamp(0.5em, 0.5em + 0.9vw, 0.9em);
     --jjl-green-color: #2e7d32;
 }
 
@@ -2335,6 +2337,12 @@ margin-bottom: 9px;}
 }
 
 
+.font-small{
+    font-size: var(--clamp-small); }
+
+
+.font-medium {
+    font-size: var(--clamp-size); }
 
 .font-6 {
     font-size: 6px; }
@@ -9159,7 +9167,7 @@ html.ie11 .bs-searchbox .form-control {
 .card-content-min span.card-title {
     margin: 0px 0px 0px 0px;
     padding: 2px;
-    font-size: 16px;
+    font-size: var(--clamp-small);
 }
 .card-content-min .card .body  {
     font-size: 10px;
@@ -9200,7 +9208,7 @@ html.ie11 .bs-searchbox .form-control {
     background-color:#274e13 ;
     color:white;
     font-weight: bold;
-    font-size: var(--clamp-size);
+    font-size: var(--clamp-small);
     text-transform: uppercase;
     margin: 0;
     padding: 0;
@@ -9212,7 +9220,7 @@ html.ie11 .bs-searchbox .form-control {
     background-color: whitesmoke;
     color: #2e7d32;
     font-weight: bold;
-    font-size: var(--clamp-size);
+    font-size: var(--clamp-small);
     margin: 0;
     padding: 0 0 0 2px;
     height: 25px;
@@ -9226,7 +9234,7 @@ html.ie11 .bs-searchbox .form-control {
     color: #2e7d32;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: var(--clamp-size);
+    font-size: var(--clamp-small);
     margin: 0;
     padding: 0;
 
@@ -9234,7 +9242,7 @@ html.ie11 .bs-searchbox .form-control {
 .table-home tbody tr.yellow-row td a {
     color: #2e7d32;
     font-weight: bold;
-    font-size: var(--clamp-size);
+    font-size: var(--clamp-small);
     margin: 0;
     padding: 0 0 0 2px;
 
@@ -9244,64 +9252,175 @@ html.ie11 .bs-searchbox .form-control {
     background-color: whitesmoke;
     color: #424242;
     font-weight: bold;
-    font-size: var(--clamp-size) ;
+    font-size: var(--clamp-small) ;
 }
 .table-home tbody tr.orange-row:hover td {
     background-color: #f57f17;
     text-decoration: underline;
     color: var(--jjl-green-color);
     font-weight: bold;
-    font-size: var(--clamp-size) ;
+    font-size: var(--clamp-small) ;
 }
 .table-home tbody tr.orange-row td a {
     background-color: transparent;
     color: #424242 !important;
     font-weight: bold;
-    font-size: var(--clamp-size) ;
+    font-size: var(--clamp-small) ;
 }
 .table-home tbody tr.orange-row:hover td a {
     background-color: transparent;
     text-decoration: underline;
     color: #424242;
     font-weight: bold;
-    font-size: var(--clamp-size) ;
+    font-size: var(--clamp-small) ;
 }
 .table-home tbody tr.orange-row td span > span {
     color: #424242;
     font-weight: bold;
-    font-size: var(--clamp-size);
+    font-size: var(--clamp-small);
 }
 .table-home tbody tr.orange-row:hover td span > span {
     color:  var(--jjl-green-color);
     text-decoration: underline;
     font-weight: bold;
-    font-size: var(--clamp-size);
+    font-size: var(--clamp-small);
 }
 .table-home tbody tr td:nth-child(odd) a{
     color: #2e7d32;
     font-weight: bold;
-    font-size: var(--clamp-size);
+    font-size: var(--clamp-small);
 
 }
 .table-home tbody tr.yellow-row:hover > td{
     background-color:#fff176;
     color: #2e7d32;
     font-weight: bold;
-    font-size: var(--clamp-size);
+    font-size: var(--clamp-small);
 
 }
 .table-home tbody tr.yellow-row:hover td a {
     color: #2e7d32;
     font-weight: bold;
-    font-size: var(--clamp-size);
+    font-size: var(--clamp-small);
 
 }
 .table-home tbody tr.yellow-row:hover td a{
     color: #00695c;
     font-weight: bold;
-    font-size: var(--clamp-size);
+    font-size: var(--clamp-small);
 
 }
+
+ /* media query =========================================================*/
+/*Media screem for home screen*/
+@media screen and (min-width: 1370px) {
+    .table-home tbody td:first-child[colspan] {
+        background-color:#274e13 ;
+        color:white;
+        font-weight: bold;
+        font-size: var(--clamp-size);
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+        height: 25px;
+
+    }
+    .table-home tbody tr.yellow-row td {
+        flex-direction: row;
+        background-color: whitesmoke;
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: var(--clamp-size);
+        margin: 0;
+        padding: 0 0 0 2px;
+        height: 25px;
+
+    }
+    .table-home tbody tr.yellow-row td div {
+        height: 100%;
+        justify-content: center;
+    }
+    .table-home tbody tr.yellow-row td span > span {
+        color: #2e7d32;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: var(--clamp-size);
+        margin: 0;
+        padding: 0;
+
+    }
+    .table-home tbody tr.yellow-row td a {
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: var(--clamp-size);
+        margin: 0;
+        padding: 0 0 0 2px;
+
+    }
+    /* linhas ímpares (odd) */
+    .table-home tbody tr.orange-row td {
+        background-color: whitesmoke;
+        color: #424242;
+        font-weight: bold;
+        font-size: var(--clamp-size) ;
+    }
+    .table-home tbody tr.orange-row:hover td {
+        background-color: #f57f17;
+        text-decoration: underline;
+        color: var(--jjl-green-color);
+        font-weight: bold;
+        font-size: var(--clamp-size) ;
+    }
+    .table-home tbody tr.orange-row td a {
+        background-color: transparent;
+        color: #424242 !important;
+        font-weight: bold;
+        font-size: var(--clamp-size) ;
+    }
+    .table-home tbody tr.orange-row:hover td a {
+        background-color: transparent;
+        text-decoration: underline;
+        color: #424242;
+        font-weight: bold;
+        font-size: var(--clamp-size) ;
+    }
+    .table-home tbody tr.orange-row td span > span {
+        color: #424242;
+        font-weight: bold;
+        font-size: var(--clamp-size);
+    }
+    .table-home tbody tr.orange-row:hover td span > span {
+        color:  var(--jjl-green-color);
+        text-decoration: underline;
+        font-weight: bold;
+        font-size: var(--clamp-size);
+    }
+    .table-home tbody tr td:nth-child(odd) a{
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: var(--clamp-size);
+
+    }
+    .table-home tbody tr.yellow-row:hover > td{
+        background-color:#fff176;
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: var(--clamp-size);
+
+    }
+    .table-home tbody tr.yellow-row:hover td a {
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: var(--clamp-size);
+
+    }
+    .table-home tbody tr.yellow-row:hover td a{
+        color: #00695c;
+        font-weight: bold;
+        font-size: var(--clamp-size);
+
+    }
+} /* media query =========================================================*/
 /* label of date on home screen */
 .label-date-home{
     padding: 5px;
@@ -9346,18 +9465,21 @@ html.ie11 .bs-searchbox .form-control {
     margin: 0;
 }
 .table-modal-services-details tbody tr th{
-    width:20%;
-    font-size: var(--modal-size);
+    width:17%;
+    font-size: var(--modal-small);
 }
 .table-modal-services-details tbody tr td{
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    font-size: var(--modal-size);
+    font-size: var(--modal-small);
     color: rgba(0,0,0,0.9) !important;
 }
 .table-modal-services-details tbody tr td input{
     border:none;
+    font-size: var(--modal-small);
+    height: 30px;
+
 }
 .table-modal-details{
     border-collapse: collapse;
@@ -9366,17 +9488,19 @@ html.ie11 .bs-searchbox .form-control {
 }
 .table-modal-details tbody tr th{
     width:20%;
-    font-size: var(--modal-size);
+    font-size: var(--modal-small);
 }
 .table-modal-details tbody tr td{
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    font-size: var(--modal-size);
+    font-size: var(--modal-small);
     color: rgba(0,0,0,0.9) !important;
 }
 .table-modal-details tbody tr td input{
     border:none;
+    font-size: var(--modal-small);
+    height: 30px;
 }
 /* modal customization*/
 
@@ -9444,7 +9568,7 @@ textarea.custom-textarea:focus-visible{
 .card-content-min span.card-title {
     margin: 0;
     padding: 2px;
-    font-size: 1.5em;
+    font-size: var(--clamp-size);
 }
 .displaytest{
     display: none;

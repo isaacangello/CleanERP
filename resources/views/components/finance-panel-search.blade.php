@@ -9,7 +9,7 @@
                     <div class="input-field col s12 m4">
                         <div class="form-group">
                             <div class="form-line success">
-                                <select id="select-finance-employee" class="form-control browser-default livewire-select font-15" wire:model="selectedEmployee" >
+                                <select id="select-finance-employee" class="form-control browser-default livewire-select font-12 h-30" wire:model="selectedEmployee" >
                                     <option  value="{{$id??'1'}}">This employee</option>
 
                                     @foreach($employees as $employee)
@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <div class="form-line success">
 
-                                <x-date-flat-pickr id="input-finance-from" wire:model="from" value="{{$this->from}}"  />
+                                <x-date-flat-pickr id="input-finance-from" class="font-12 h-30" wire:model="from" value="{{$this->from}}"  />
                                 <label class="form-label" for="input-finance-from">From</label>
                             </div>
                             <div class="help-info">Insert date from.</div>
@@ -41,7 +41,7 @@
                     <div class="input-field col s12 m3">
                         <div class="form-group">
                             <div class="form-line success">
-                                <x-date-flat-pickr id="input-finance-from" wire:model="till" value="{{$this->till}}"/>
+                                <x-date-flat-pickr id="input-finance-from" class="font-12 h-30" wire:model="till" value="{{$this->till}}"/>
                                 <label class="form-label" for="input-finance-till">Till</label>
                             </div>
                             <div class="help-info">Insert date till.</div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="input-field col s12 m2 valign-wrapper">
                         <div class="form-group valign-wrapper">
-                            <button type="submit" class="btn btn-success h-45">Search</button>
+                            <button type="submit" class="btn btn-link btn-small">Search</button>
                         </div>
                     </div>
             </form>

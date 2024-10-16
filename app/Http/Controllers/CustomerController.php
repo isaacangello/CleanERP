@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\DB;
 
     public function __construct(Customer $cust)
     {
+
         $this->configpage = 50;
         $this->cust = $cust;
-    }
-    public function filter_customer(string $type = 'residential',string $orderBy = "name"){
-        return $this->cust->where('type', '=', strtoupper($type))->orWhere('type', '=', 'RENTALHOUSE')->orderBy($orderBy)->with('billings')->paginate($this->configpage);
+        $this->populate = new Populate();
     }
     public function index(string $type = 'residential',string $orderBy = "name" ,$msg = null){
 
-        $customers = $this->filter_customer($type);
+
+        $customers = $this->populate->filter_customer($type,$orderBy,$this->configpage);
 
         return view('customers',
             [
@@ -69,7 +69,7 @@ use Illuminate\Support\Facades\DB;
             'note' => $request->note,
         ]);
         return view('customers',[
-            'customers' => $this->filter_customer($request->type),
+            'customers' => $this->populate->filter_customer($request->type,'name',$this->configpage),
             'success' => 'O Customer '.$request->name." Successfully saved!",
             'msg' => $msg
         ]);

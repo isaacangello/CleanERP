@@ -16,30 +16,31 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
-        $customArrayId =  array(3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24);
+        $customArrayId =  array(3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21);
         $daysOfThisWeek =  CarbonPeriod::between(now()->startOfWeek(), now()->endOfWeek());
-
+        for($i=0;$i < 10;$i++){
+        $employee = Employee::factory()->create(
+            ['type'=>'RESIDENTIAL']
+        );
         foreach ($daysOfThisWeek as $day){
-            $employee = Employee::factory()->create(
-                ['type'=>'RESIDENTIAL']
-            );
-            $key = array_rand($customArrayId);
-            Service::factory()
-                ->create([
-                    'customer_id' => $customArrayId[$key],
-                    'employee1_id' => $employee->id,
-                    'employee2_id' => $employee->id,
-                    'service_date' => $day->format('Y-m-d 08:00:00'),
-                ]);
-            $key1 = array_rand($customArrayId);
-            Service::factory()
-                ->create([
-                    'customer_id' => $customArrayId[$key1],
-                    'employee1_id' => $employee->id,
-                    'employee2_id' => $employee->id,
-                    'service_date' => $day->format('Y-m-d 012:01:00'),
-                ]);
+                $key = array_rand($customArrayId);
+                Service::factory()
+                    ->create([
+                        'customer_id' => $customArrayId[$key],
+                        'employee1_id' => $employee->id,
+                        'employee2_id' => $employee->id,
+                        'service_date' => $day->format('Y-m-d 08:00:00'),
+                    ]);
+                $key1 = array_rand($customArrayId);
+                Service::factory()
+                    ->create([
+                        'customer_id' => $customArrayId[$key1],
+                        'employee1_id' => $employee->id,
+                        'employee2_id' => $employee->id,
+                        'service_date' => $day->format('Y-m-d 012:01:00'),
+                    ]);
 
+            }
         }
     }
 }

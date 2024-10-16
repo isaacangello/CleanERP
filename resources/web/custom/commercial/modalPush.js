@@ -1,4 +1,4 @@
-import {date_format,time_format} from '../helpers/funcs.js'
+import {date_format, flatPickrInit, isValidElement, time_format} from '../helpers/funcs.js'
 function schedule_push(btnParam){
 
     const btnModalId = btnParam.getAttribute('href')
@@ -31,17 +31,29 @@ function schedule_push(btnParam){
             let item = document.querySelector(itemId)
             let itemInstance = M.FormSelect.getInstance(item)
             console.info(itemInstance)
-            itemInstance.input.value = itemSearch
-            for(var c = 0; c< itemInstance.dropdownOptions.children.length;c++){
-                //console.info(itemSearch)
-                if(itemInstance.dropdownOptions.children[c].classList.contains("selected")){
-                    let l1 = document.querySelector('#'+itemInstance.dropdownOptions.children[c].id)
-                    l1.classList.remove("selected")
+            if (isValidElement(itemInstance)){
+                    itemInstance.input.value = itemSearch
+                for(var c = 0; c< itemInstance.dropdownOptions.children.length;c++){
+                    //console.info(itemSearch)
+                    if(itemInstance.dropdownOptions.children[c].classList.contains("selected")){
+                        let l1 = document.querySelector('#'+itemInstance.dropdownOptions.children[c].id)
+                        l1.classList.remove("selected")
+                    }
+                    if (itemInstance.dropdownOptions.children[c].innerText === itemSearch){
+                        let l1 = document.querySelector('#'+itemInstance.dropdownOptions.children[c].id)
+                        l1.classList.add("selected")
+                    }
                 }
-                if (itemInstance.dropdownOptions.children[c].innerText === itemSearch){
-                    let l1 = document.querySelector('#'+itemInstance.dropdownOptions.children[c].id)
-                    l1.classList.add("selected")
+            }else{
+                item.options[item.options.selectedIndex].removeAttribute("selected")
+                for(var i=0;i<item.options.length;i++) {
+                    // console.log(item.options[i].value)
+                    if (item.options[i].innerText === itemSearch) {
+                        item.options[i].setAttribute("selected", "selected")
+
+                    }
                 }
+
             }
         }
         axios.get("/api/commercial-schedule/"+id)
@@ -50,12 +62,14 @@ function schedule_push(btnParam){
                     let scheduleData = response.data
                     console.log("Axios reponse ====>>>>"+scheduleData)
 
-                        defaultModalLabel.innerText = scheduleData.customer.name
+                    defaultModalLabel.innerText = scheduleData.customer.name
                     markSelected("#selectScheduleEmployee",scheduleData.employee.name)
                     markSelected("#selectScheduleCustomer",scheduleData.customer.name)
                     scheduleAddress.value = scheduleData.customer.address
                     schedulePhone.value = scheduleData.customer.phone
-                    scheduleDate.value = date_format(scheduleData.schedule_date)
+                    // scheduleDate.value = date_format(scheduleData.schedule_date)
+                    flatPickrInit('#scheduleDate','date',scheduleData.schedule_date)
+
                     if(moment(scheduleData.schedule_date).format('HH')>0 && moment(scheduleData.schedule_date).format('HH')<12 ){
                         // schedulePeriod.value = "First"
 
@@ -77,7 +91,7 @@ function schedule_push(btnParam){
                     if (scheduleData.control) {
                         scheduleOutTime.value = time_format(scheduleData.control.checkout_datetime)
                     }
-                    scheduleInformation.innerText = " "
+                    // scheduleInformation.innerText = " "
                     scheduleNotes.innerText = scheduleData.notes
                     scheduleInstructions.innerText = scheduleData.instructions
                 }

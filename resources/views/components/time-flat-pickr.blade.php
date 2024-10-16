@@ -4,7 +4,10 @@
         {
             enableTime: true,
             noCalendar: true,
-            dateFormat: 'h:i K' ,
+            dateFormat: 'H:i:S' ,
+            altFormat:'h:i K',
+            altInput:true,
+
         }
 "
 ])
@@ -16,7 +19,7 @@
             x-ref="input"
             type="text"
             data-input
-            {{ $attributes->merge(['class' => 'form-control grey-text text-darken-3']) }}
+            {{ $attributes->merge(['class' => 'form-control grey-text text-darken-4']) }}
     />
 </div>
 
