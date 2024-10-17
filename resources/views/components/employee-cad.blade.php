@@ -4,6 +4,14 @@
     <div id="new-employee" class="modal bottom-sheet">
         <div class="modal-content">
             <div class="container z-depth-3" style="width: 95%">
+                <div class="row clearfix">
+                    <div class="col s12">
+                        <div id="error-box" class="alert alert-danger p-10 m-t-5 animate__animated animate__shakeX hide" role="alert">
+                            <span class="font-18" id="errorMsg">Mensagem aqui</span>
+                        </div>
+                    </div>
+                </div>
+
                 <form id="formEmp" action="{{route('employees.store',['filtered_type' => $type])}}" method="post">
                 @csrf
                 <input type="hidden" name="status" value="ACTIVE">
@@ -14,9 +22,9 @@
                 <div class="row clearfix">
                     <div class="col s12 m12">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text" id="input-view-edit-employee-name" name="name" value="{{ old('name') }}" />
-                                <label class="form-label" for="input-view-edit-employee-name">Employee Name</label>
+                            <div class="form-line success form-line-name">
+                                <input class="form-control" type="text" id="input-cad-employee-name" name="name" value="{{ old('name') }}" />
+                                <label class="form-label" for="input-cad-employee-name">Employee Name</label>
                             </div>
                             <div class="help-info">Insert employee name.</div>
                         </div>
@@ -25,9 +33,9 @@
                 <div class="row clearfix">
                     <div class="col s12 m12">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text" id="input-view-edit-employee-address" name="address" value="{{ old('address') }}" />
-                                <label class="form-label"  for="input-view-edit-employee-address">Employee Address</label>
+                            <div class="form-line success form-line-address">
+                                <input class="form-control" type="text" id="input-cad-employee-address" name="address" value="{{ old('address') }}" />
+                                <label class="form-label"  for="input-cad-employee-address">Employee Address</label>
                             </div>
                             <div class="help-info">Insert employee address.</div>
                         </div>
@@ -36,19 +44,19 @@
                 <div class="row clearfix">
                     <div class="col s12 m6">
                         <div class="form-group">
-                            <div class="form-line success">
+                            <div class="form-line success form-line-birth">
 {{--                                datepicker--}}
-                                <x-date-flat-pickr id="input-view-edit-birth" name="birth"  value="{{ old('birth') }}" />
-                                <label class="form-label"  for="input-view-edit-birth">Birth date</label>
+                                <x-date-flat-pickr id="input-cad-birth" name="birth"  value="{{ old('birth') }}" />
+                                <label class="form-label"  for="input-cad-birth">Birth date</label>
                             </div>
                             <div class="help-info">Insert employee birthdate.</div>
                         </div>
                     </div>
                     <div class="col s12 m6">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text" id="input-view-edit-email" name="email" value="{{ old('email') }}" />
-                    <label class="form-label"  for="input-view-edit-">Employee email</label>
+                            <div class="form-line success form-line-email">
+                                <input class="form-control" type="text" id="input-cad-email" name="email" value="{{ old('email') }}" />
+                    <label class="form-label"  for="input-cad-">Employee email</label>
                             </div>
                             <div class="help-info">Insert employee email contact.</div>
                         </div>
@@ -58,9 +66,9 @@
                 <div class="row clearfix">
                     <div class="col s12 m12">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text" id="input-view-edit-phone" name="phone" value="{{ old('phone') }}" />
-                                <label class="form-label"  for="input-view-edit-phone">Phone</label>
+                            <div class="form-line success form-line-phone">
+                                <input class="form-control" type="text" id="input-cad-phone" name="phone" value="{{ old('phone') }}" />
+                                <label class="form-label"  for="input-cad-phone">Phone</label>
                             </div>
                             <div class="help-info">Insert employee phone.</div>
                         </div>
@@ -75,9 +83,9 @@
                 <div class="row clearfix">
                     <div class="col s12 m12">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text" id="input-view-edit-document" name="document" value="{{ old('document') }}" />
-                                <label class="form-label"  for="input-view-edit-document">Document</label>
+                            <div class="form-line success form-line-document">
+                                <input class="form-control" type="text" id="input-cad-document" name="document" value="{{ old('document') }}" />
+                                <label class="form-label"  for="input-cad-document">Document</label>
                             </div>
                             <div class="help-info">Insert one employee Document number.</div>
                         </div>
@@ -88,18 +96,18 @@
                 <div class="row clearfix">
                     <div class="col s12 m7">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text" id="input-view-edit-ref1" name="name_ref_one" value="{{ old('name_ref_one') }}" />
-                                <label class="form-label"  for="input-view-edit-ref1">First reference Name.</label>
+                            <div class="form-line success form-line-name_ref_one">
+                                <input class="form-control" type="text" id="input-cad-name_ref_one" name="name_ref_one" value="{{ old('name_ref_one') }}" />
+                                <label class="form-label"  for="input-cad-ref1">First reference Name.</label>
                             </div>
                             <div class="help-info">Insert the first employee reference name.</div>
                         </div>
                     </div>
                     <div class="col s12 m5">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text" id="input-view-edit-ref2" name="phone_ref_one" value="{{ old('phone_ref_one') }}" />
-                                <label class="form-label"  for="input-view-edit-ref2">First reference phone.</label>
+                            <div class="form-line success form-line-phone_ref_one">
+                                <input class="form-control" type="text" id="input-cad-phone_ref_one" name="phone_ref_one" value="{{ old('phone_ref_one') }}" />
+                                <label class="form-label"  for="input-cad-ref2">First reference phone.</label>
                             </div>
                             <div class="help-info">Insert the first employee reference phone.</div>
                         </div>
@@ -108,18 +116,18 @@
                 <div class="row clearfix">
                     <div class="col s12 m7">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text" id="input-view-edit-ref1" name="name_ref_two" value="{{ old('name_ref_two') }}" />
-                                <label class="form-label"  for="input-view-edit-ref1">Second Reference Name</label>
+                            <div class="form-line success form-line-name_ref_two">
+                                <input class="form-control" type="text" id="input-cad-name_ref_two" name="name_ref_two" value="{{ old('name_ref_two') }}" />
+                                <label class="form-label"  for="input-cad-ref1">Second Reference Name</label>
                             </div>
                             <div class="help-info">Insert the second employee reference name.</div>
                         </div>
                     </div>
                     <div class="col s12 m5">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text" id="input-view-edit-ref2" name="phone_ref_two" value="{{ old('phone_ref_two') }}" />
-                                <label class="form-label"  for="input-view-edit-ref2">Reference Phone 2</label>
+                            <div class="form-line success form-line-phone_ref_two">
+                                <input class="form-control" type="text" id="input-cad-phone_ref_two" name="phone_ref_two" value="{{ old('phone_ref_two') }}" />
+                                <label class="form-label"  for="input-cad-ref2">Reference Phone 2</label>
                             </div>
                             <div class="help-info">Insert the second employee reference phone.</div>
                         </div>
@@ -132,7 +140,7 @@
                 <div class="row clearfix">
                     <div class="col s12 m6">
                         <div class="form-group">
-                            <div class="form-line success">
+                            <div class="form-line success form-line-type">
                                 <select id="select-cad-service-frequency" name="type" class="materialize-select">
                                     @php
                                         $selected = false;
@@ -164,7 +172,7 @@
                     </div>
                     <div class="col s12 m6">
                         <div class="form-group">
-                            <div class="form-line success">
+                            <div class="form-line success form-line-shift">
                                 <select id="select-cad-service-frequency" name="shift" class="materialize-select">
                                     @php $selected = false; if(!empty(old("shift"))){
 
@@ -189,9 +197,9 @@
                 <div class="row clearfix">
                     <div class="col s12 m6">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text" id="input-view-edit-username" name="username" value="{{ old('username') }}" />
-                                <label class="form-label"  for="input-view-edit-username">User name</label>
+                            <div class="form-line success form-line-username">
+                                <input class="form-control" type="text" id="input-cad-username" name="username" value="{{ old('username') }}" />
+                                <label class="form-label"  for="input-cad-username">User name</label>
                             </div>
                             <div class="help-info">Insert Username to create  Employee login.</div>
                         </div>
@@ -199,9 +207,9 @@
                     </div>
                     <div class="col s12 m6">
                         <div class="form-group">
-                            <div class="form-line success">
-                                <input class="form-control" type="text"  id="input-view-edit-password" name="password" value="{{ old('password') }}" />
-                                <label class="form-label"  for="input-view-edit-password">Password</label>
+                            <div class="form-line success form-line-password">
+                                <input class="form-control" type="text"  id="input-cad-password" name="password" value="{{ old('password') }}" />
+                                <label class="form-label"  for="input-cad-password">Password</label>
                             </div>
                             <div class="help-info">Insert Password to create  Employee login.</div>
                         </div>
@@ -212,7 +220,7 @@
                 <div class="row clearfix">
                     <div class="col s12 m12">
                         <div class="form-group">
-                            <div class="form-line success">
+                            <div class="form-line success form-line-restriction">
                                 <label for="textarea-crud-costumer-restriction">Restriction field.</label>
                                 <textarea style="padding: 10px;"
                                id="textarea-crud-costumer-restriction"
@@ -230,7 +238,7 @@
                 <div class="row clearfix">
                     <div class="col s12 m12">
                         <div class="form-group">
-                            <div class="form-line success">
+                            <div class="form-line success form-line-note">
                                 <label for="textarea-crud-costumer-note">Notes.</label>
                     <textarea style="padding: 10px;"
                               id="textarea-crud-costumer-note"

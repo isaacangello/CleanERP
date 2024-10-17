@@ -8,13 +8,6 @@
                 @csrf
                 <input type="hidden" value="ACTIVE" name="status">
                 <div class="container z-depth-3" style="width: 95%">
-                            <div class="row clearfix">
-                                <div class="col s12">
-                                    <div id="error-box" class="alert alert-danger p-10 m-t-5 animate__animated animate__shakeX hide" role="alert">
-                                        <span class="font-18" id="errorMsg">Mensagem aqui</span>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row label-employee-view-edit" >
                                 <span class="label label-padding">Personal information</span>
                             </div>

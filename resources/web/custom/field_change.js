@@ -269,6 +269,7 @@ function listenerBillings(){
 function listenerChanges(){
     listenerBillings()
     let inputs  = document.querySelectorAll('.listenerChanges')
+    console.log(inputs)
     inputs.forEach(function (eL) {
             eL.addEventListener('change',function (event) {
                 event.preventDefault()
@@ -284,7 +285,7 @@ function listenerChanges(){
 }
 
 listenerChanges()
-
+console.log("passou listenerChanges")
 function listenerFeeButton(){
  document.querySelectorAll('.btnFeeService').forEach(function (eL) {
      eL.addEventListener('click',function (evt)  {

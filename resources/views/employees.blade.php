@@ -57,7 +57,7 @@
                 <div class="header" style="padding-bottom: 0;">
                     <div class="row">
                         <div class="col s12 m12">
-                            <a class="btn waves-effect waves-classic waves-light  btn-small modal-trigger"  href="#new-employee"  >New Employee</a>
+                            <a class="btn btn-link btn-small modal-trigger font-12"  href="#new-employee"  >New Employee</a>
                             <span id="list-of-employees" class="m-l-35">LIST OF EMPLOYEES {{ $type }}</span>
                                     <!-- ############  Blade  component employee-cad ###########################################################################################-->
                                     <!-- component register for register new employee-->
@@ -136,17 +136,9 @@
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
  @include('layouts.generic_js')
- <script>
-     document.addEventListener('DOMContentLoaded',function () {
-         let swlConfirmTrigger = document.querySelector("#SavedSwl")
-             toastAlert.fire({
-                 icon: "success",
-                 title: swlConfirmTrigger.innerText
-             });
 
-     })
-
- </script>
+ <script type="module" src="{{asset('web/custom/field_change.js')}}" ></script>
+ <script type="module" src="{{asset('web/custom/employees/modal_cad.js')}}" ></script>
 
 @endsection
 

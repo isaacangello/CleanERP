@@ -1,12 +1,13 @@
 
 function other_email() {
     let selectType = document.querySelector('#select-cad-customer-type')
-    let selectedType = selectType.options[selectType.selectedIndex].value
-    // console.log(selectedType)
-    if(selectedType === 'COMMERCIAL') {
-        // console.info('foi')
+    selectType.addEventListener('change',function () {
+        let selectedType = selectType.options[selectType.selectedIndex].value
+        console.log(selectedType)
+        if(selectedType === 'COMMERCIAL') {
+            // console.info('foi')
 
-        let newField = `
+            let newField = `
                             
                                 <div class="col s12">
                                     <label for="textarea-cad-costumer-other_emails">Additional emails.</label>
@@ -18,20 +19,22 @@ function other_email() {
                                     </div>
                                 </div>
        `
-        tempField = document.getElementById('other-emails')
+            tempField = document.getElementById('other-emails')
 
-        tempField.classList.add('row', 'clearfix')
-        tempField.innerHTML = newField
-        tempField.classList.remove('hide')
-        // console.log(tempField)
-        tempField.style.height = 'auto'
-    }else{
-        tempField.innerHTML = ''
-        tempField.classList.remove('row', 'clearfix')
-        tempField.classList.add('hide')
-        tempField.style.height = '0'
-    }
-    console.log()
+            tempField.classList.add('row', 'clearfix')
+            tempField.innerHTML = newField
+            tempField.classList.remove('hide')
+            // console.log(tempField)
+            tempField.style.height = 'auto'
+        }else{
+            tempField.innerHTML = ''
+            tempField.classList.remove('row', 'clearfix')
+            tempField.classList.add('hide')
+            tempField.style.height = '0'
+        }
+        console.log()
+
+    })
 }
 
 /**
@@ -179,41 +182,43 @@ formCustomers.addEventListener('submit',function (event) {
                 // console.log("data => "+data)
                 // console.log("dataJson => "+dataJson.billing_labels)
                 // console.info("Axios >"+axios)
+
                 axios.post('/api/customer',dataJson)
-                    .then(function (resp) {
-                    if(resp.status ===201){
-                        console.log(resp.data)
-                        window.location.reload()
+                            .then(function (resp) {
+                            if(resp.status ===201){
+                                console.log(resp.data)
+                                window.location.reload()
 
-                    }// location.reload()
-                }).catch(function (error) {
-                    // manipula erros da requisição
-                    let error_messages = error.response.data.errors
+                            }// location.reload()
+                        })
+                    .catch(function (error) {
+                            // manipula erros da requisição
+                            let error_messages = error.response.data.errors
 
-                    let errorBox =  document.getElementById('error-box')
-                    let errorInnexText = document.getElementById('errorMsg')
-                    // console.log(errorBox)
-                    if(errorBox.classList.contains('hide')){errorBox.classList.remove('hide')}
-                    errorInnexText.innerText =  error.response.data.message
-                    errorInnexText.style.fontStyle = 'bold'
-                    let item
-                    for (const chave in error_messages) {
-                        if (error_messages.hasOwnProperty(chave)) {
-                            // console.log(`adicionando classe error ${chave}: ${error_messages[chave]}`);
-                            item = document.getElementsByClassName(`form-line-${chave}`)
-                            // console.log(item)
-                            for(c=0;c<item.length;c++){
-                                if(item[c].classList.contains('success')){
-                                    item[c].classList.remove('success')
-                                    item[c].classList.add('error')
-                                    document.getElementById('input-cad-customer-'+chave).style.backgroundColor ='#ffebee'
+                            let errorBox =  document.getElementById('error-box')
+                            let errorInnexText = document.getElementById('errorMsg')
+                            // console.log(errorBox)
+                            if(errorBox.classList.contains('hide')){errorBox.classList.remove('hide')}
+                            errorInnexText.innerText =  error.response.data.message
+                            errorInnexText.style.fontStyle = 'bold'
+                            let item
+                            for (const chave in error_messages) {
+                                if (error_messages.hasOwnProperty(chave)) {
+                                    // console.log(`adicionando classe error ${chave}: ${error_messages[chave]}`);
+                                    item = document.getElementsByClassName(`form-line-${chave}`)
+                                    // console.log(item)
+                                    for(c=0;c<item.length;c++){
+                                        if(item[c].classList.contains('success')){
+                                            item[c].classList.remove('success')
+                                            item[c].classList.add('error')
+                                            document.getElementById('input-cad-customer-'+chave).style.backgroundColor ='#ffebee'
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    }
 
 
-                })
+                        })
 
             });
 

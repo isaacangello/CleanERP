@@ -31,6 +31,7 @@ formEmp.addEventListener('submit',function (e) {
         'address': data.get('address'),
         'phone': data.get('phone'),
         'email': data.get('email'),
+        'birth': data.get('birth'),
         'type': data.get('type'),
         'status': data.get('status'),
         'name_ref_one': data.get('name_ref_one'),
@@ -45,5 +46,43 @@ formEmp.addEventListener('submit',function (e) {
         'password': data.get('password'),
         'new_user': data.get('new_user'),
     }
+
+    axios.post('/api/employee',dataJson)
+        .then(function (resp) {
+            if(resp.status ===201){
+                console.log(resp.data)
+                window.location.reload()
+
+            }// location.reload()
+        })
+        .catch(function (error) {
+            // manipula erros da requisição
+            let error_messages = error.response.data.errors
+
+            let errorBox =  document.getElementById('error-box')
+            let errorInnexText = document.getElementById('errorMsg')
+            // console.log(errorBox)
+            if(errorBox.classList.contains('hide')){errorBox.classList.remove('hide')}
+            errorInnexText.innerText =  error.response.data.message
+            errorInnexText.style.fontStyle = 'bold'
+            let item
+            for (const chave in error_messages) {
+                if (error_messages.hasOwnProperty(chave)) {
+                    // console.log(`adicionando classe error ${chave}: ${error_messages[chave]}`);
+                    item = document.getElementsByClassName(`form-line-${chave}`)
+                    // console.log(item)
+                    for(let c=0;c<item.length;c++){
+                        if(item[c].classList.contains('success')){
+                            item[c].classList.remove('success')
+                            item[c].classList.add('error','red','lighten-5')
+                            //document.getElementById('input-cad-'+chave).style.backgroundColor ='#ffebee'
+                        }
+                    }
+                }
+            }
+
+
+        })
+
 
 })

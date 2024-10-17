@@ -56,7 +56,7 @@ class EmployeeController extends Controller
         $this->st->msg = 'The employee <b>'.$return->name.'</b> is registered!';
 
 
-    return response()->json($return,200);
+    return response()->json($return,201);
 
     }
     public function update($id, Request $req){
