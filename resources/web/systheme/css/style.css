@@ -9202,8 +9202,11 @@ html.ie11 .bs-searchbox .form-control {
     indigo darken 4 #1a237e
     #00695c teal darken-3
 */
+.card-gradient-background{
+    background-image: linear-gradient(to bottom left, #2e7d32, #366728);
+}
 .table-home tbody th {
-    background-color:#274e13 ;
+    background-color:transparent ;
     color:white;
     margin: 0;
     padding: 0;

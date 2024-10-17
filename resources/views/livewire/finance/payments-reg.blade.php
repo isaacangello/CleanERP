@@ -9,7 +9,7 @@
         <div class="col s12 m12">
             <div class="card">
                 <div class="header between">
-                    <div class="w-30p">
+                    <div class="w-49p">
                         <button class="btn btn-link font-12  modal-trigger"  href="#new-payment"  >New Payments</button>
                         <span id="list-of-payment">LIST OF PAYMENT METHODS</span>
 
