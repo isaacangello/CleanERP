@@ -227,7 +227,7 @@ class Funcs
             //1º foreach
             $return.= Div::create()->class("col s12 m3")
                 ->addChild(
-                            Div::create()->class('card green darken-3 white-text')
+                            Div::create()->class('card card-gradient-background z-depth-3 white-text')
                                 ->addChild(
                                     Div::create()->class('card-content card-content-min')
                                     ->addChildren(
@@ -255,7 +255,7 @@ class Funcs
             return $classes[1];
         }
     }
-    public static function getConfig()
+    public static function getConfig(): config
     {
      return Config::firstOrCreate(
              ['user_id' => Auth::user()->id],
