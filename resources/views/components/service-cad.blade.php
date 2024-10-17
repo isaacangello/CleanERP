@@ -20,30 +20,16 @@
                     <div class="row label-employee-view-edit" >
                         <span class="label label-padding">People involved in the service</span>
                     </div>
-                    <form id="service-form" action="{{ route('services.store') }}" method="post">
+                    <form id="service-form"  method="post">
                     @csrf
                         <input type="hidden" name="who_saved"  value="{{Funcs::replaceSpaces(Auth::user()->name)}}">
                         <input type="hidden" name="who_saved_id"  value="{{Auth::user()->id}}">
-                        <input type="hidden" name="numWeek"  value="{{ $numWeek }}">
-                        <input type="hidden" name="year"  value="{{ $year }}">
 
                     <div class="row">
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success">
-                                    @php
-                                        $prices = array();
-                                        $i=0;
-                                        /**
-                                        *  @var
-                                         */
-                                        foreach ($customers as $value){
-                                           $prices[$i]['price_weekly']  = $value->price_weekly;
-                                           $prices[$i]['price_biweekly']  = $value->price_biweekly;
-                                           $prices[$i]['price_monthly']  = $value->price_monthly ;
-                                        }
-                                    @endphp
-                                    <select class="materialize-select" id="select-cad-service-customer" name="customer_id" onchange="price_inject('#select-cad-service-charge')">
+                                    <select class="materialize-select" id="select-cad-service-customer" name="customer_id" wire:change="price_inject('#select-cad-service-charge')">
                                         <option @if(empty(old('customer_id'))) selected @endif  value="">Customer</option>
                                         @foreach($customers as  $value)
                                             @if(old('customer_id') == $value->id)

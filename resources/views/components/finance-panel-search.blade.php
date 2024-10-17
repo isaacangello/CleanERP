@@ -31,8 +31,20 @@
                     <div class="input-field col s12 m3 ">
                         <div class="form-group">
                             <div class="form-line success">
-
-                                <x-date-flat-pickr id="input-finance-from" class="font-12 h-30" wire:model="from" value="{{$this->from}}"  />
+                                @php
+                                        $from = Carbon\Carbon::create($this->from)->format("Y-m-d");
+                                        $options = "
+                                        {
+                                            weekNumbers:true,
+                                            monthSelectorType:'static',
+                                            dateFormat:'Y-m-d',
+                                            altFormat:'F j, Y',
+                                            altInput:true,
+                                            defaultDate:'$from'
+                                        }
+                                        ";
+                                @endphp
+                                <x-date-flat-pickr id="input-finance-from" options="{!! $options !!}" class="font-12 h-30" wire:model="from" value="{{$this->from}}"   />
                                 <label class="form-label" for="input-finance-from">From</label>
                             </div>
                             <div class="help-info">Insert date from.</div>
@@ -41,7 +53,20 @@
                     <div class="input-field col s12 m3">
                         <div class="form-group">
                             <div class="form-line success">
-                                <x-date-flat-pickr id="input-finance-from" class="font-12 h-30" wire:model="till" value="{{$this->till}}"/>
+                                @php
+                                    $till = Carbon\Carbon::create($this->till)->format("Y-m-d");
+                                        $options = "
+                                        {
+                                            weekNumbers:true,
+                                            monthSelectorType:'static',
+                                            dateFormat:'Y-m-d',
+                                            altFormat:'F j, Y',
+                                            altInput:true,
+                                            defaultDate: '$till'
+                                        }
+                                        ";
+                                @endphp
+                                <x-date-flat-pickr id="input-finance-from" options="{!! $options !!}"  class="font-12 h-30" wire:model="till" />
                                 <label class="form-label" for="input-finance-till">Till</label>
                             </div>
                             <div class="help-info">Insert date till.</div>

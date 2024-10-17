@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
 //#############################################################
 
     Route::get('/home',[IndexController::class,'home'])->name('home');
-    Route::get('/week',[ServicesController::class,'week'])->name('week');
+    Route::get('/week',\App\Livewire\Residential\Week::class)->name('week');
     Route::post('/confirm/{id}',[ServicesController::class,'confirm'])->name('confirm');
 //#############################################################
 //############ RESIDENTIAL ROUTES
