@@ -39,7 +39,7 @@
     <span colspan="3" class="red-text text-darken-3 text-wrap"> {{ $message }}  </span>
     @enderror
 </td>
-    <td>
+    <td class="align-right">
         @if(!is_null($model->deleted_at))
             <a wire:click="$dispatch('triggerRestoreBilling', { id:{{ $model->id }} })" class="btn-link-underline red-text darken-4">{{ $model->deleted_at }}</a>
         @else

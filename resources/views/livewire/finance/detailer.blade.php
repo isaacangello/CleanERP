@@ -35,14 +35,15 @@
                                 <table class="table table-striped highlight">
                                     <thead>
                                     <tr class="green darken-3 white-text">
-                                        <th>Paid</th>
-                                        <th>Customer</th>
+                                        <th class="center-align">Paid</th>
+                                        <th class="center-align">Customer</th>
                                         <th>Frequency</th>
-                                        <th>Total</th>
+                                        <th>Price</th>
                                         <th>70%</th>
                                         <th>30%</th>
                                         <th>Plus</th>
                                         <th>Minus</th>
+                                        <th>Total</th>
                                         <th>Payment</th>
                                     </tr>
                                     </thead>
@@ -53,6 +54,7 @@
                                         @endphp
                                         {{--                                        {{dd($employees_services)}}--}}
                                         @foreach($this->Data as $key =>  $data)
+{{--                                            @php dd($data); @endphp--}}
                                             <livewire:finance.detailer-tr wire:key="tr{{$key}}" :i="$i" :$data />
                                             @php($i++)
                                         @endforeach

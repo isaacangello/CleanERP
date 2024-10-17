@@ -96,6 +96,10 @@
                         <i class="material-icons" style="font-size: 20px;">payments</i>
                         <span>Billings Registration</span>
                     </a>
+                    <a href="{{ route('finances') }}/payments">
+                        <i class="material-icons" style="font-size: 20px;">add_card</i>
+                        <span>Payments Registration</span>
+                    </a>
                 </li>
             </ul>
         </li>

@@ -89,6 +89,7 @@ trait FinanceTrait
                 'services.minus',
                 'employees.name as emp_name',
                 'customers.name as cust_name',
+                'services.customer_id as customer_id',
                 'customers.address'
             )->get();
     }
