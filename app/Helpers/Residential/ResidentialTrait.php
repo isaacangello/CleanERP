@@ -60,7 +60,7 @@ trait ResidentialTrait
                                 //dd($value);
                                 if ($value->fee === 1) {
                                     $classes_service = "btnFeeService amber darken-3";
-                                    $wireclick = "feeCancel($value->service_id)";
+                                    $wireclick = "\$dispatch('trigger-cancel-fee',{id:$value->service_id})";
                                 } else {
                                     $confirmClass = $value->confirmed ? 'green darken-3' : 'red darken-3';
                                     $classes_service = " btn-confirm-form " . $confirmClass;
@@ -99,8 +99,9 @@ trait ResidentialTrait
                                                     Element::withTag('a')->attributes(
                                                         [
                                                             'data-service-id' => $value->service_id,
+                                                            'wire:click' => "populateModal($value->service_id)",
                                                             'href' => '#largeModal',
-                                                            'class' => 'btn-link-underline link-modal-residential modal-trigger m-l-5',
+                                                            'class' => 'btn-link-underline link-modal-residential modal-trigger m-l-5'
                                                         ]
                                                     )->text(Funcs::nameShort($value->cust_name, ' ', 2))
                                                     ,

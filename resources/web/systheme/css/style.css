@@ -5447,6 +5447,10 @@ section.content {
     color: #333!important;;
     background-color: #ddd!important;
 }
+.modal .fade. .in{
+    background-color: #0c0b0e;
+    opacity: 0.5;
+}
 
 /* Labels ====================================== */
 .label {

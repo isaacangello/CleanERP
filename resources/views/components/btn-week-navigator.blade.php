@@ -5,7 +5,7 @@
 
     <div class="col s12 m1 input-field">
         <form action="{{route($route)}}">
-            <x-standard-btn type="submit" class="btn-small" >
+            <x-standard-btn type="submit" class="btn-small z-depth-3" >
                 <span class="material-symbols-outlined font-15">
                 house
                 </span>
@@ -15,7 +15,7 @@
     <div class="col s12 m2 input-field">
         <div class="form-group">
             <form wire:submit.prevent="thisWeek()">
-                <x-standard-btn type="submit" class="btn-small" >
+                <x-standard-btn type="submit" class="btn-small z-depth-3" >
                     This week
                 </x-standard-btn>
             </form>
@@ -28,7 +28,7 @@
             @endphp
 
 
-            <x-standard-btn wire:click="backWeek()" type="submit" class="btn-small">
+            <x-standard-btn wire:click="backWeek()" type="submit" class="btn-small z-depth-3">
                 <span class="material-symbols-outlined">
                     arrow_back
                 </span>
@@ -61,14 +61,14 @@
             </div>
         </div>
         <div class="col s12 m1 input-field">
-            <x-standard-btn type="submit" class="btn-small">
+            <x-standard-btn type="submit" class="btn-small z-depth-3">
                 go
             </x-standard-btn>
         </div>
     </form>
     <div class="col s12 m1 input-field align-left">
         <div class="form-group">
-            <x-standard-btn wire:click="forwardWeek()" type="submit" class="btn-small">
+            <x-standard-btn wire:click="forwardWeek()" type="submit" class="btn-small z-depth-3">
                 <span class="material-symbols-outlined">
                     arrow_forward
                 </span>

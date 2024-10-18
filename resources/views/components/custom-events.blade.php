@@ -68,6 +68,56 @@
                     window.Livewire.dispatch('restoreBilling',{id:event.detail.id})
                 })
             })
+        window.addEventListener('populate-date', event=>{
+            flatpickr( event.detail.idElement,     {
+                weekNumbers:true,
+                monthSelectorType:'static',
+                dateFormat:'Y-m-d',
+                altFormat:'F j, Y',
+                altInput:true,
+                defaultDate:`${event.detail.date}`
+            })
+
+        })
+        window.addEventListener('populate-time', event=>{
+            flatpickr( event.detail.idElement,
+                {
+                    enableTime: true,
+                    noCalendar: true,
+                    dateFormat: 'H:i',
+                    altFormat: 'h:i K',
+                    altInput: true,
+                    defaultDate: `${event.detail.time}`
+
+                }
+            )
+
+        })
+            window.addEventListener('trigger-confirm-fee', function (event){
+                console.log("event fee")
+                swalConfirmCallback('Do you want to change fee status?','Yes?', ()=> {
+                    window.Livewire.dispatch('toggle-fee')
+                })
+            })
+            window.addEventListener('trigger-confirm-fee', function (event){
+                console.log("event fee")
+                swalConfirmCallback('Do you want to change fee status?','Yes?', ()=> {
+                    window.Livewire.dispatch('toggle-fee')
+                })
+            })
+            window.addEventListener('trigger-cancel-fee', function (event){
+                console.log("event cancel fee")
+                swalConfirmCallback('Do you want to change fee status?','Yes?', ()=> {
+                    window.Livewire.dispatch('cancel-fee', {id:event.detail.id})
+                })
+            })
+
+            window.addEventListener('trigger-confirm-delete', function (event){
+
+                swalConfirmCallback('Do you want to delete this record?','Yes?', ()=> {
+                    window.Livewire.dispatch('delete-service')
+                })
+            })
 
     </script>
     @endscript

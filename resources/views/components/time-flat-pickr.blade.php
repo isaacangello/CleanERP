@@ -1,5 +1,5 @@
-{{--https://forum.laravel-livewire.com/t/looking-for-a-date-time-picker-for-livewire/3682/6--}}
-{{--https://flatpickr.js.org/options/--}}
+{{-- https://forum.laravel-livewire.com/t/looking-for-a-date-time-picker-for-livewire/3682/6 --}}
+{{-- https://flatpickr.js.org/options/ --}}
 @props(['options' => "
         {
             enableTime: true,

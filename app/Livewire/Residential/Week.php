@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Treatment\DateTreatment;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -33,7 +34,18 @@ use App\Http\Controllers\PopulateController;
     public $selectedYear = null;
     public $route = 'week';
     public $populate;
-    public $cardsHtml ='';
+
+    /**
+     * @var string modal vars
+     */
+    public $customer_id='',$employee1_id, $address='',$date='',$phone='',$info,$notes='',$instructions='',$service_date='',$service_time='',$checkin_datetime='',$checkout_datetime='';
+    public $modalData = '';
+    public $tempDate  = '';
+    public $tempTime  = '';
+    public $tempControlInTime  = '';
+    public $tempControlOutTime  = '';
+
+     public $cardsHtml ='';
     protected $listeners = [
         'refresh-week' => '$refresh'
     ];
@@ -102,6 +114,63 @@ use App\Http\Controllers\PopulateController;
             $this->dispatch('toast-alert',icon:'warning', message:"Service has been decommitted!!!") ;
         }
     }
+    #[On('toggle-fee')]
+    public function toggleFee(){
+        //TODO: logica de cancelamento de serviço
+        $currentService = Service::find($this->modalData->id);
+//        dd($currentService);
+        if ($currentService->fee === 1) {
+            $currentService->fee = 0;
+        } else {
+            $currentService->fee = 1;
+        }
+        $currentService->save();
+
+        $this->dispatch('toast-alert',icon:'warning', message:"Service has been Canceled!!!") ;
+    }
+    #[On('cancel-fee')]
+    public function cancelFee($id){
+        //TODO: logica de cancelamento de serviço
+        $currentService = Service::find($id);
+//        dd($currentService);
+        if ($currentService->fee === 1) {
+            $currentService->fee = 0;
+        } else {
+            $currentService->fee = 1;
+        }
+        $currentService->save();
+
+        $this->dispatch('toast-alert',icon:'success', message:"Service has been Canceled!!!") ;
+    }
+    #[On('delete-service')]
+    public function delete(){
+        //TODO: apagando serviço com soft delete
+        $currentService = Service::find($this->modalData->id);
+        $currentService->delete();
+        $this->dispatch('refresh-week');
+        $this->dispatch('toast-alert',icon:'success',message:"Service has been deleted!!!") ;
+
+    }
+
+    public function populateModal($id): void
+    {
+        $currentService = Service::with('customer','employee','control')->find($id);
+        $this->tempDate = Carbon::create($currentService->service_date)->format('Y-m-d');
+        $this->tempTime = Carbon::create($currentService->service_date)->format('H:i');
+        $this->dispatch('populate-date', idElement:"#serviceDate",date:$this->tempDate);
+        $this->dispatch('populate-time', idElement:"#serviceTime",time:$this->tempTime);
+        if($currentService->control){
+            $this->tempControlInTime = Carbon::create($currentService->control->checkin_datetime)->format('H:i');
+            $this->tempControlOutTime = Carbon::create($currentService->control->checkout_datetime)->format('H:i');
+        }
+        $this->customer_id= $currentService->customer->id; $this->employee1_id=$currentService->employee->id; $this->phone=$currentService->customer->phone;
+        $this->address=$currentService->customer->address; $this->info=$currentService->customer->info;
+        $this->notes=$currentService->notes;$this->instructions=$currentService->instructions;
+        //dd($this->tempDate);
+        $this->modalData = $currentService;
+//        dd($this->modalData);
+    }
+
     public function mount(){
 
         if($this->from and ($this->numWeek === null)){
@@ -111,11 +180,10 @@ use App\Http\Controllers\PopulateController;
         if ($this->selectedWeek === null){$this->selectedWeek = $this->numWeek;}
         if($this->selectedYear === null){$this->selectedYear = $this->year;}
 
-
-
         $this->traitNullVars();
         $this->selectOptionsEmployees = Populate::employeeFilter();
         $this->selectOptionsCustomers = Populate::customerFilter();
+
 
     }
 
