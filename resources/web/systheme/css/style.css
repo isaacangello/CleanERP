@@ -9981,7 +9981,6 @@ input.form-control:focus-visible{
 .h-45{
     height: 45px !important;
 }
-
 .uppercase-text {
     text-transform: uppercase!important;
 }
@@ -9991,7 +9990,6 @@ input.form-control:focus-visible{
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }
-
 .grid-schedules {
     display: flex!important;
     flex-direction: row!important;
@@ -10002,6 +10000,3 @@ input.form-control:focus-visible{
     width: 19.8%;
     /*border: 1px solid lightslategrey;*/
 }
-
-
-

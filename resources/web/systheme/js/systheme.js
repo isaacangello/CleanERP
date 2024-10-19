@@ -3,8 +3,8 @@ var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, {
         preventScrolling: true,
         dismissible: false,
-        inDuration: 300,
-        outDuration:200,
+        inDuration: 400,
+        outDuration:400,
         startingTop: '0%',
         endingTop: '10%',
     });
