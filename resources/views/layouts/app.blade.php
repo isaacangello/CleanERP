@@ -54,7 +54,7 @@
     <!-- Materialize Core Css -->
     <link href="{!! asset('web/materialize/css/materialize.css') !!}" rel="stylesheet">
     <!-- jquery ui  Css -->
-    <link href="{!! asset('web/jquery-ui/jquery-ui.css') !!}" rel="stylesheet" />
+{{--    <link href="{!! asset('web/jquery-ui/jquery-ui.css') !!}" rel="stylesheet" />--}}
     <!-- Animation Css -->
     <link href="{!! asset('js/animate.css/animate.css') !!}" rel="stylesheet" />
 

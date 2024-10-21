@@ -100,8 +100,8 @@ trait ResidentialTrait
                                                         [
                                                             'data-service-id' => $value->service_id,
                                                             'wire:click' => "populateModal($value->service_id)",
-                                                            'href' => '#largeModal',
-                                                            'class' => 'btn-link-underline link-modal-residential modal-trigger m-l-5'
+                                                            '@click'=>"open = !open",
+                                                            'class' => 'btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer modal-trigger'
                                                         ]
                                                     )->text(Funcs::nameShort($value->cust_name, ' ', 2))
                                                     ,

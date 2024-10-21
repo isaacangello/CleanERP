@@ -1,4 +1,4 @@
-    <div class="container-fluid">
+    <div class="container-fluid" x-data="{ open: false }">
         <div class="block-header">
             <h2>
                 <small>EMPLOYEES SERVICES</small>
@@ -14,7 +14,7 @@
                                         class="label-date-home">{{ $from }}</span> - Till <span
                                         class="label-date-home">{{ $till }} </span><div class="displaytest">Iphone</div>
                             </span>
-                            <span> erro no servidor contornado Tela sendo Refeita porem ao cancelar o serviço a janela de exibição é desativada, volta recarregando a página. é preciso revisar 12 arquvos .
+                            <span> proximo passo acicionar novamente metodos de fee e delete, termina amanhã pela manhã é preciso revisar ≃7 arquvos .
                             </span>
                     </div>
                     <x-service-cad :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year>
@@ -34,9 +34,9 @@
             </div><!-- col -->
             {{$this->modalData->id??'vazio'}}
         </div>  <!-- row -->
-        <x-service-details  :id="$this->modalData->id??'0'">
+        <x-service-details   :id="$this->modalData->id??'0'">
             <x-slot:title>
-                {{$this->modalData->customer->name??''}}
+                {{$this->modalData->customer->name??'título'}}
             </x-slot>
             <table class="table-modal-services-details">
                 <tr>
@@ -158,6 +158,11 @@
             </table>
 
         </x-service-details>
+
+
+
+        <x-mary-button label="Open"   class="btn btn-link btn-small z-depth-3 m-b-20" />
+
         <x-custom-events />
     </div>
 

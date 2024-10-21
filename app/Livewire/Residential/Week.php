@@ -25,6 +25,7 @@ use App\Http\Controllers\PopulateController;
     public $till;
     public $numWeek = null;
     public $year = null;
+
     public $selectOptionsEmployees='';
     public $selectOptionsCustomers='';
     #[Validate('required')]
@@ -44,7 +45,7 @@ use App\Http\Controllers\PopulateController;
     public $tempTime  = '';
     public $tempControlInTime  = '';
     public $tempControlOutTime  = '';
-
+    public  $showModal = 'hide';
      public $cardsHtml ='';
     protected $listeners = [
         'refresh-week' => '$refresh'
@@ -82,6 +83,14 @@ use App\Http\Controllers\PopulateController;
             $this->numWeek++;
         }
         $this->traitNullVars();
+    }
+    public function selectWeek()
+    {
+        if(is_null($this->numWeek) || is_null($this->year)  ){
+            $this->dispatch('toast-alert',icon:'error', message:"you need select number week and Year") ;
+        }
+        $this->numWeek = $this->selectedWeek;
+        $this->year  = $this->selectedYear;
     }
     #[Computed]
     public function dataCard(){
@@ -172,7 +181,7 @@ use App\Http\Controllers\PopulateController;
     }
 
     public function mount(){
-
+        $this->showModal= "hide";
         if($this->from and ($this->numWeek === null)){
             $dateTrait = new DateTreatment();
             $this->numWeek = $dateTrait->numberWeekByDay(Carbon::create($this->from)->nextWeekday()->format('Y-m-d'));

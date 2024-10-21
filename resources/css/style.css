@@ -4863,25 +4863,39 @@ section.content {
     font-size: 17px; }
 
 /* Modals ====================================== */
-.modal .modal-header {
+.modal-default{
+    background-color: rgba(5, 103, 43, 0.5);
+    position: fixed!important;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.modal-default.modal-header {
     border: none;
     padding: 25px 25px 5px 25px; }
-.modal .modal-header .modal-title {
+.modal-default.modal-header .modal-title {
     font-weight: bold;
     font-size: 16px; }
 
-.modal .modal-content {
+.modal-default.modal-content {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     border-radius: 0;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.31) !important;
     border: none; }
-.modal .modal-content .modal-body {
+.modal-default.modal-content .modal-body {
     color: #777;
     padding: 15px 25px; }
 
-.modal .modal-footer {
+.modal-default.modal-footer {
     border: none; }
 
 .modal-col-red {

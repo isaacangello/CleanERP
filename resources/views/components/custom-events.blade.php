@@ -3,20 +3,7 @@
     @script
 
     <script>
-        document.addEventListener('livewire:initialized', () => {
-            // Runs immediately after Livewire has finished initializing
-            // on the page...
-            var elems = document.querySelectorAll('.modal-on-livewire');
-            var ModalAllInstances = M.Modal.init(elems, {
-                preventScrolling: true,
-                dismissible: false,
-                inDuration: 400,
-                outDuration:400,
-                startingTop: '0%',
-                endingTop: '10%',
-            });
 
-        })
         // console.log('aqui é o livewire')
         // console.log(Livewire)
             Livewire.on('wire-toast-alert', (event) => {
@@ -132,7 +119,6 @@
                     window.Livewire.dispatch('delete-service')
                 })
             })
-
     </script>
     @endscript
 
