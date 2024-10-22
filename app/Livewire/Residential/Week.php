@@ -182,7 +182,6 @@ use App\Http\Controllers\PopulateController;
     }
 
     public function mount(){
-        $this->showModal= "hide";
         if($this->from and ($this->numWeek === null)){
             $dateTrait = new DateTreatment();
             $this->numWeek = $dateTrait->numberWeekByDay(Carbon::create($this->from)->nextWeekday()->format('Y-m-d'));
