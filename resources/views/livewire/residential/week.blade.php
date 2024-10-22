@@ -17,7 +17,7 @@
                                         class="label-date-home">{{ $from }}</span> - Till <span
                                         class="label-date-home">{{ $till }} </span><div class="displaytest">Iphone</div>
                             </span>
-                            <span> proximo passo acicionar novamente metodos de fee e delete, termina amanhã pela manhã é preciso revisar ≃7 arquvos .
+                            <span> proximo passo acicionar impressão do que parece ser um roteiro.
                             </span>
                     </div>
                     <x-service-cad :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year :$populateBillings>
