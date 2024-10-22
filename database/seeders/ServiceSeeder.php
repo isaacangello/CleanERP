@@ -17,7 +17,7 @@ class ServiceSeeder extends Seeder
     public function run(): void
     {
         $customArrayId =  array(3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21);
-        $daysOfThisWeek =  CarbonPeriod::between(now()->startOfWeek(), now()->endOfWeek());
+        $daysOfThisWeek =  CarbonPeriod::between(now()->subWeeks(3)->startOfWeek(), now()->endOfWeek());
         for($i=0;$i < 10;$i++){
         $employee = Employee::factory()->create(
             ['type'=>'RESIDENTIAL']
