@@ -35,7 +35,7 @@
 
 
             </div><!-- col -->
-            {{$this->modalData->id??'vazio'}}
+{{--            {{$this->modalData->id??'vazio'}}--}}
         </div>  <!-- row -->
         <x-service-details   :id="$this->modalData->id??'0'">
             <x-slot:title>
