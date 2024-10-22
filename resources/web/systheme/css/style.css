@@ -5102,7 +5102,7 @@ section.content {
 .modal-default{
     background-color: rgba(5, 103, 43, 0.5);
     position: fixed!important;
-    z-index: 9999;
+    z-index: 1059;
     top: 0;
     left: 0;
     width: 100vw;
@@ -5116,9 +5116,6 @@ section.content {
 .modal-default .modal-dialog{
     min-width: 50%;
     padding: 5px;
-}
-.modal-default .modal-content{
-
 }
 
 
@@ -5150,6 +5147,29 @@ section.content {
     padding: 20px;
     border: 1px solid #777;
 
+}
+
+.modal-default.bottom-sheet {
+    background-color: rgba(5, 103, 43, 0.5);
+    position: fixed!important;
+    z-index: 1059;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.modal-default.bottom-sheet > .modal-content{
+    position: absolute;
+    top: 10%;
+    width: 100vw!important;
+}
+.modal-default.bottom-sheet.modal-content.modal-content-bs{
+    width: 95%;
 }
 
 .modal-col-red {

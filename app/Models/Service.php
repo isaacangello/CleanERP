@@ -40,7 +40,10 @@ class Service extends Model
         'plus' => 'nullable',
         'justify_minus' => 'present_with:minus',
         'minus' => 'nullable',
-
+        'checkin_datetime' => 'date',
+        'checkout_datetime' => 'date',
+        'phone' => 'nullable',
+        'address' => 'nullable'
     ];
     public function customer()
     {

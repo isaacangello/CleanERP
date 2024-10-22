@@ -1,4 +1,7 @@
-    <div class="container-fluid" x-data="{ open: $wire.entangle('showModal') }">
+    <div class="container-fluid" x-data="{
+        open: $wire.entangle('showModal'),
+        cadOpen: $wire.entangle('showCadModal')
+    }">
         <div class="block-header">
             <h2>
                 <small>EMPLOYEES SERVICES</small>
@@ -17,12 +20,12 @@
                             <span> proximo passo acicionar novamente metodos de fee e delete, termina amanhã pela manhã é preciso revisar ≃7 arquvos .
                             </span>
                     </div>
-                    <x-service-cad :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year>
+                    <x-service-cad :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year :$populateBillings>
 
                     </x-service-cad>
                     <div class="body">
                         <x-btn-week-navigator :$route :$selectedWeek>
-                            <x-standard-btn >   New service  </x-standard-btn>
+                            <x-standard-btn class="btn-small" @click="cadOpen = true">   New service  </x-standard-btn>
                         </x-btn-week-navigator>
                         <div class="row" id="htmlContent">
                             {!! $this->dataCard() !!}
@@ -37,6 +40,9 @@
         <x-service-details   :id="$this->modalData->id??'0'">
             <x-slot:title>
                 {{$this->modalData->customer->name??'título'}}
+                @foreach ($errors->all() as $error)
+                    <span class="red-text text-darken-4">{{ $error }}</span>
+                @endforeach
             </x-slot>
             <table class="table-modal-services-details">
                 <tr>
@@ -44,6 +50,7 @@
                     <td colspan="3" >
                         <x-livewire-select-modal
                                 wire:model="employee1_id"
+                                wire:change="field_change('employee1_id')"
                                 id="selectServiceEmployee"
                                 class="p-l-0"
                                 :data="$selectOptionsEmployees"
@@ -56,6 +63,7 @@
                     <td colspan="3" class=" ">
                         <x-livewire-select-modal
                                 wire:model="customer_id"
+                                wire:change="field_change('customer_id')"
                                 class="p-l-0"
                                 id="selectServiceCustomer"
                                 :data="$selectOptionsCustomers"
@@ -68,6 +76,7 @@
                     <td colspan="3"  >
                         <x-text-input
                                 wire:model="address"
+                                wire:change="field_change('address')"
                                 class="p-l-2 h-30 font-12 grey-text text-darken-4"
                                 id="serviceAddress"
                                 type="text"
@@ -77,24 +86,23 @@
                 <tr>
                     <th colspan="1" class="green h-30">Phone:</th>
                     <td  colspan="3"  >
-                        <x-text-input wire:model="phone" class="p-l-2 h-30 font-12 grey-text text-darken-4" id="servicePhone" type="text" />
+                        <x-text-input
+                                wire:model="phone"
+                                wire:change="field_change('phone')"
+                                class="p-l-2 h-30 font-12 grey-text text-darken-4"
+                                id="servicePhone"
+                                type="text"
+                        />
                     </td>
                 </tr>
                 <tr>
                     <th class="green h-30">Date:</th>
-                    <td>
+                    <td colspan="3">
 
                         <x-date-flat-pickr
                                 wire:model="service_date"
+                                wire:change="field_change('service_date')"
                                 id="serviceDate"
-                                class="p-l-2 modal-residential-change h-30 font-12 grey-text text-darken-4"
-                        />
-                    </td>
-                    <th class="green h-30">Time:</th>
-
-                    <td><x-time-flat-pickr
-                                wire:model="service_time"
-                                id="serviceTime"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text text-darken-4"
                         />
                     </td>
@@ -103,7 +111,9 @@
                     <th class="green h-30">In:</th>
                     <td>
                         <x-time-flat-pickr
+
                                 wire:model="checkin_datetime"
+                                wire:change="field_change('checkin_datetime')"
                                 id="serviceInTime"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text darken-4"
                         />
@@ -112,6 +122,7 @@
                     <td>
                         <x-time-flat-pickr
                                 wire:model="checkout_datetime"
+                                wire:change="field_change('checkout_datetime')"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text darken-4"
                                 id="serviceOutTime"
                         />
@@ -122,6 +133,7 @@
                 <tr class="hide">
                     <td  colspan="4"   class="p-1">
                             <textarea wire:model="info"
+                                      wire:change="field_change('info')"
                                       id="serviceInformation"
                                       class="p-l-2 modal-residential-change" cols="30" rows="10"
                             >
@@ -135,6 +147,7 @@
                     <td  colspan="4" class="p-1">
                             <textarea
                                     wire:model="notes"
+                                    wire:change="field_change('notes')"
                                     id="ServiceNotes"
                                     class="p-l-2 modal-residential-change"  cols="30" rows="10"
                             >
@@ -148,6 +161,7 @@
                     <td  colspan="4" class="grey-text text-darken-3 p-1">
                             <textarea
                                     wire:model="instructions"
+                                    wire:change="field_change('instructions')"
                                     id="ServiceInstructions"
                                     class="modal-residential-change"
                                     cols="30" rows="10">

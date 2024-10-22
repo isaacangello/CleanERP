@@ -3,13 +3,13 @@
 
 @endphp
 <div>
-        <div id="modal-default" class="modal-default  "
+        <div id="modal-default" class="modal-default"
                 x-show="open"
         >
             <div class="modal-dialog"
                  x-show="open"
-                 x-transition:enter="animate__animated animate__jackInTheBox"
-                 x-transition:leave="animate__animated animate__hinge"
+                 x-transition:enter="animate__animated animate__zoomInUp animate__faster"
+                 x-transition:leave="animate__animated animate__zoomOutUp animate__faster"
             >
                 <div class="modal-content modal-col-white">
                     <div class="modal-header">

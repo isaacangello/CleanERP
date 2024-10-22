@@ -3,12 +3,16 @@
 namespace App\Livewire\Residential;
 
 use AllowDynamicProperties;
+use App\Helpers\Funcs;
 use App\Helpers\Residential\ResidentialTrait;
 use App\Http\Controllers\Populate;
+use App\Livewire\Forms\ServiceForm;
+use App\Models\Customer;
 use App\Models\Employee;
 use App\Models\Service;
 use App\Treatment\DateTreatment;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -19,12 +23,15 @@ use App\Http\Controllers\PopulateController;
 #[AllowDynamicProperties] class Week extends Component
 {
     use ResidentialTrait;
+    public ServiceForm $form;
     #[Url]
     public $id;
     public $from;
     public $till;
     public $numWeek = null;
     public $year = null;
+    public $customer_id='',$employee1_id, $address='',$date='',$phone='',$info,$notes='',$instructions='',$service_date='',$service_time='',$checkin_datetime='',$checkout_datetime='';
+    public $populateBillings = null;
 
     public $selectOptionsEmployees='';
     public $selectOptionsCustomers='';
@@ -35,17 +42,31 @@ use App\Http\Controllers\PopulateController;
     public $selectedYear = null;
     public $route = 'week';
     public $populate;
-
+    public $fieldTitles =[
+        'employee1_id' => 'employee identification',
+        'employee2_id' => 'second employee identification',
+        'customer_id' => "Customer identification",
+        'info' => 'Customer adtional information',
+        'phone' => 'Customer phone',
+        'notes' => 'Notes',
+        'instructions' => 'instructions for employees',
+        'service_date' => "date of service",
+        'service_time' => "time of service",
+        'checkin_datetime' => 'date and time employee checkin',
+        'checkout_datetime' =>  'date and time employee checkout',
+        'address' =>  'address of service.',
+    ];
     /**
      * @var string modal vars
      */
-    public $customer_id='',$employee1_id, $address='',$date='',$phone='',$info,$notes='',$instructions='',$service_date='',$service_time='',$checkin_datetime='',$checkout_datetime='';
+
     public $modalData = '';
     public $tempDate  = '';
     public $tempTime  = '';
     public $tempControlInTime  = '';
     public $tempControlOutTime  = '';
     public  $showModal = false;
+    public  $showCadModal = false;
      public $cardsHtml ='';
     protected $listeners = [
         'refresh-week' => '$refresh'
@@ -106,6 +127,115 @@ use App\Http\Controllers\PopulateController;
         /** Rendering HTML elements in server side SSR */
         return $this->createResidentialCard($filteredWeekGroup,$this->numWeek,$this->year);
     }
+    public function price_inject()
+    {
+//        dd($this->form->customer_id);
+        $temp_customer = Customer::with('billings')->find($this->form->customer_id);
+        $this->populateBillings = $temp_customer->billings;
+    }
+
+    /***================================================================================================================
+     * @param $field
+     * @return void|int
+     *================================================================================================================*/
+    public function field_change($field){
+        if(empty($this->modalData->id)){
+            $this->dispatch('toast-btn-alert', icon:'error', title:"Error", text:"Service not found  it should be trying changing field value!!");;
+            return 0;
+        }
+        $serviceModel =  Service::with('control')->find($this->modalData->id);
+        $customerModel =  Customer::find($serviceModel->customer_id);
+        if($field === 'employee1_id'){
+        $employeeModel =  Employee::find($serviceModel->employee1_id);
+        }
+        if($field === 'employee2_id'){
+            $employeeModel =  Employee::find($serviceModel->employee2_id);
+        }
+        $model ="";
+        $value = '';
+        $dynamic_rules = array();
+        $direction = 'services';
+
+//        foreach ($serviceModel->rules() as $input => $rule ){
+//            if(array_key_exists($input, $req->all())){
+//                $dynamic_rules[$input] = $rule;
+//            }
+//        }
+        //dd($this->modalData->id);
+        $dynamic_rules[$field] = $serviceModel->rules()[$field];
+
+        $this->validate($dynamic_rules);
+        switch ($field){
+            case'customer_id':
+                $value = $this->customer_id; $model = $serviceModel;
+            break;
+            case'employee1_id': $value = $this->employee1_id; $model = $serviceModel;   break;
+            case'employee2_id': $value = $this->employee2_id; $model = $serviceModel;   break;
+            case'info': $value = $this->info; $model = $customerModel;                  break;
+            case'phone': $value = $this->phone; $model = $customerModel;                break;
+            case'notes': $value = $this->notes; $model = $serviceModel;                 break;
+            case'instructions': $value = $this->instructions; $model = $serviceModel;   break;
+            case'service_date': $value = $this->service_date; $model = $serviceModel;   break;
+            case'service_time': $value = $this->service_time; $model = $serviceModel;   break;
+            case'checkin_datetime': $direction = 'checkIn'; $id =$this->modalData->id;  break;
+            case'checkout_datetime': $direction = 'cheOut'; $id =$this->modalData->id;  break;
+            case'address': $value = $this->address; $model = $customerModel;            break;
+            default: $this->dispatch('toast-btn-alert', icon:'error', title:"Error", text:"An error occurred when changing field value!!");;
+        }
+        //dd($model);
+        //dd($field .'=>'. $value);
+      switch ($direction)
+      {
+          case'checkIn':
+          DB::table('scheduling_control_residential')->updateOrInsert(
+              ['service_id' => $id],
+              [
+                  'service_id' => $id,
+                  'checkin_local' => "salvo no escritório",
+                  'checkin_lat' => 0,
+                  'checkin_long' => 0,
+                  'checkin_datetime' => Carbon::create($this->checkin_datetime)->format('Y-m-d H:i:s'),
+              ]
+
+          );break;
+          case'cheOut':DB::table('scheduling_control_residential')->updateOrInsert(
+              ['service_id' => $id],
+              [
+                  'service_id' => $id,
+                  'checkin_local' => "salvo no escritório",
+                  'checkin_lat' => 0,
+                  'checkin_long' => 0,
+                  'checkout_datetime' => Carbon::create($this->checkout_datetime)->format('Y-m-d H:i:s'),
+              ]
+
+          );break;
+          default:
+              //dd($model);
+              $model->update(
+                  [
+                      $field => $value
+                  ]
+              );
+              $model->save();
+
+      }
+
+        $this->dispatch('refresh-week');
+        $this->dispatch('toast-alert',icon:"success",message:"The ".$this->fieldTitles[$field]." field  has been Updated !!!");
+
+    }
+    public function store(){
+        $return = $this->form->store();
+        if($return){
+            $this->showCadModal = false;
+            $this->dispatch('toast-alert',icon:"success",message:'New service has been created !!!');
+        }
+    }
+
+    /***================================================================================================================
+     * @param $id
+     * @return void
+     *================================================================================================================*/
     public function confirmService($id): void
     {
         //TODO: implementar logica para confirmar serviço
@@ -124,6 +254,10 @@ use App\Http\Controllers\PopulateController;
             $this->dispatch('toast-alert',icon:'warning', message:"Service has been decommitted!!!") ;
         }
     }
+
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
     #[On('toggle-fee')]
     public function toggleFee(){
         //TODO: logica de cancelamento de serviço
@@ -138,6 +272,11 @@ use App\Http\Controllers\PopulateController;
         $this->showModal = false;
         $this->dispatch('toast-alert',icon:'warning', message:"Service has been Canceled!!!") ;
     }
+
+    /***============================================== cancelFee =======================================================
+     * @param $id
+     * @return void
+     *================================================================================================================*/
     #[On('cancel-fee')]
     public function cancelFee($id){
         //TODO: logica de cancelamento de serviço
@@ -152,7 +291,12 @@ use App\Http\Controllers\PopulateController;
         $this->showModal = false;
         $this->dispatch('toast-alert',icon:'success', message:"Service has been Canceled!!!") ;
     }
+
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
     #[On('delete-service')]
+
     public function delete(){
         //TODO: apagando serviço com soft delete
         $currentService = Service::find($this->modalData->id);
@@ -162,17 +306,21 @@ use App\Http\Controllers\PopulateController;
 
     }
 
+    /***================================================================================================================
+     * @param $id
+     * @return void
+     *================================================================================================================*/
     public function populateModal($id): void
     {
         $currentService = Service::with('customer','employee','control')->find($id);
-        $this->tempDate = Carbon::create($currentService->service_date)->format('Y-m-d');
-        $this->tempTime = Carbon::create($currentService->service_date)->format('H:i');
-        $this->dispatch('populate-date', idElement:"#serviceDate",date:$this->tempDate);
-        $this->dispatch('populate-time', idElement:"#serviceTime",time:$this->tempTime);
+        $this->dispatch('populate-date-time', idElement:"#serviceDate",dateTime:$currentService->service_date);
         if($currentService->control){
-            $this->tempControlInTime = Carbon::create($currentService->control->checkin_datetime)->format('H:i');
-            $this->tempControlOutTime = Carbon::create($currentService->control->checkout_datetime)->format('H:i');
+            $this->tempControlInTime = Carbon::create($currentService->control->checkin_datetime)->format('Y-m-d H:i:s');
+            $this->tempControlOutTime = Carbon::create($currentService->control->checkout_datetime)->format('Y-m-d H:i:s');
         }
+        $this->dispatch('populate-date-time', idElement:"#serviceInTime",dateTime:$this->tempControlInTime);
+        $this->dispatch('populate-date-time', idElement:"#serviceOutTime",dateTime:$this->tempControlOutTime);
+
         $this->customer_id= $currentService->customer->id; $this->employee1_id=$currentService->employee->id; $this->phone=$currentService->customer->phone;
         $this->address=$currentService->customer->address; $this->info=$currentService->customer->info;
         $this->notes=$currentService->notes;$this->instructions=$currentService->instructions;
@@ -181,6 +329,9 @@ use App\Http\Controllers\PopulateController;
 //        dd($this->modalData);
     }
 
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
     public function mount(){
         if($this->from and ($this->numWeek === null)){
             $dateTrait = new DateTreatment();
@@ -196,6 +347,9 @@ use App\Http\Controllers\PopulateController;
 
     }
 
+    /***================================================================================================================
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     *================================================================================================================*/
     public function render()
     {
 

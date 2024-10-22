@@ -94,6 +94,21 @@
             )
 
         })
+        window.addEventListener('populate-date-time', event=>{
+            flatpickr( event.detail.idElement,
+                {
+                    weekNumbers:true,
+                    monthSelectorType:'static',
+                    enableTime: true,
+                    dateFormat: "Y-m-d H:i",
+                    altFormat: 'F j, Y h:i K',
+                    altInput: true,
+                    defaultDate: `${event.detail.dateTime}`
+
+                }
+            )
+
+        })
             window.addEventListener('trigger-confirm-fee', function (event){
                 console.log("event fee")
                 console.log($wire)
@@ -106,6 +121,8 @@
                 swalConfirmCallback('Do you want to change fee status?','Yes?', ()=> {
                     window.Livewire.dispatch('cancel-fee', {id:event.detail.id})
                 })
+
+
             })
 
             window.addEventListener('trigger-confirm-delete', function (event){
