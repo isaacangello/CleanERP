@@ -175,8 +175,5 @@
 
 
 
-        <x-mary-button label="Open"   class="btn btn-link btn-small z-depth-3 m-b-20" />
-
-        <x-custom-events />
     </div>
 
