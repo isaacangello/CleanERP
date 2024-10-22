@@ -14,7 +14,7 @@
             })
             window.addEventListener('toast-alert', event =>{
                 // console.log(event)
-                window.toastAlert.fire({
+                toastAlert.fire({
                     icon: event.detail.icon,
                     title: event.detail.message
                 })

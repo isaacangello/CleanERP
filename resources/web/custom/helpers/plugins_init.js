@@ -1,6 +1,6 @@
 window.Swal = Swal
 
-window.toastAlert = Swal.mixin({
+const toastAlert = Swal.mixin({
         toast: true,
         position: "top-end",
         showConfirmButton: false,
@@ -22,7 +22,7 @@ window.toastAlert = Swal.mixin({
             toast.onmouseleave = Swal.resumeTimer;
         }
     });
-    window.swalConfirm =  function (fields,callback) {
+    function swalConfirm(fields,callback) {
         const {value:accept}=  Swal.fire({
             title: `The ${fields} have been modified, it is necessary to reload the window to reflect the changes.`,
             icon: "question",
@@ -41,7 +41,7 @@ window.toastAlert = Swal.mixin({
             }
         })
     }
-    window.swalConfirmCallback =    function (title,confBtnText,callback) {
+    function swalConfirmCallback(title,confBtnText,callback) {
         const {value:accept}=  Swal.fire({
             title: `${title}`,
             icon: "question",
