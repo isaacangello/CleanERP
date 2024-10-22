@@ -45,7 +45,7 @@ use App\Http\Controllers\PopulateController;
     public $tempTime  = '';
     public $tempControlInTime  = '';
     public $tempControlOutTime  = '';
-    public  $showModal = 'hide';
+    public  $showModal = false;
      public $cardsHtml ='';
     protected $listeners = [
         'refresh-week' => '$refresh'
@@ -117,6 +117,7 @@ use App\Http\Controllers\PopulateController;
         }
         $curentService->save();
         $this->dispatch('refresh-week');
+
         if($curentService->confirmed === 1){
             $this->dispatch('toast-alert',icon:'success',message:"Service has been confirmed!!!") ;
         }else{
@@ -134,7 +135,7 @@ use App\Http\Controllers\PopulateController;
             $currentService->fee = 1;
         }
         $currentService->save();
-
+        $this->showModal = false;
         $this->dispatch('toast-alert',icon:'warning', message:"Service has been Canceled!!!") ;
     }
     #[On('cancel-fee')]
@@ -148,7 +149,7 @@ use App\Http\Controllers\PopulateController;
             $currentService->fee = 1;
         }
         $currentService->save();
-
+        $this->showModal = false;
         $this->dispatch('toast-alert',icon:'success', message:"Service has been Canceled!!!") ;
     }
     #[On('delete-service')]

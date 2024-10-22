@@ -96,12 +96,7 @@
         })
             window.addEventListener('trigger-confirm-fee', function (event){
                 console.log("event fee")
-                swalConfirmCallback('Do you want to change fee status?','Yes?', ()=> {
-                    window.Livewire.dispatch('toggle-fee')
-                })
-            })
-            window.addEventListener('trigger-confirm-fee', function (event){
-                console.log("event fee")
+                console.log($wire)
                 swalConfirmCallback('Do you want to change fee status?','Yes?', ()=> {
                     window.Livewire.dispatch('toggle-fee')
                 })
@@ -114,7 +109,7 @@
             })
 
             window.addEventListener('trigger-confirm-delete', function (event){
-
+                console.log($wire)
                 swalConfirmCallback('Do you want to delete this record?','Yes?', ()=> {
                     window.Livewire.dispatch('delete-service')
                 })

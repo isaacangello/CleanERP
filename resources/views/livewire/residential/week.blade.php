@@ -1,4 +1,4 @@
-    <div class="container-fluid" x-data="{ open: false }">
+    <div class="container-fluid" x-data="{ open: $wire.entangle('showModal') }">
         <div class="block-header">
             <h2>
                 <small>EMPLOYEES SERVICES</small>
