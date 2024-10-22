@@ -98,11 +98,25 @@
                 <tr>
                     <th class="green h-30">Date:</th>
                     <td colspan="3">
+            @php
+                $options = "
+                {
+                    weekNumbers:true,
+                    monthSelectorType:'static',
+                    enableTime: true,
+                    dateFormat: 'Y-m-d H:i',
+                    altFormat: 'F j, Y h:i K',
+                    altInput: true,
+                    defaultDate: '".($this->modalData->service_date??'')."'
 
+                }
+                ";
+            @endphp
                         <x-date-flat-pickr
                                 wire:model="service_date"
                                 wire:change="field_change('service_date')"
                                 id="serviceDate"
+                                :options="$options"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text text-darken-4"
                         />
                     </td>
@@ -172,7 +186,7 @@
             </table>
 
         </x-service-details>
-
+        <x-custom-events />
 
 
     </div>
