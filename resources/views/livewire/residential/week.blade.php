@@ -17,7 +17,7 @@
                                         class="label-date-home">{{ $from }}</span> - Till <span
                                         class="label-date-home">{{ $till }} </span><div class="displaytest">Iphone</div>
                             </span>
-                            <span> proximo passo acicionar impressão do que parece ser um roteiro.
+                            <span> proximo passo acicionar impressão do que parece ser um roteiro. o que aconteceu ?
                             </span>
                     </div>
                     <x-service-cad :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year :$populateBillings>
