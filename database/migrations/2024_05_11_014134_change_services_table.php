@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //
         Schema::table('services', function (Blueprint $table){
-            $table->timestamp('service_date')->change();
+            $table->dateTime('service_date')->change();
             $table->string('who_saved_id')->nullable();
         });
     }
