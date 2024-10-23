@@ -244,7 +244,7 @@ use App\Http\Controllers\PopulateController;
         $confirm = 0;
 
         $curentService->confirmed = !$curentService->confirmed;
-        dd($curentService);
+//        dd($curentService);
         $curentService->save();
         $this->dispatch('refresh-week');
 
