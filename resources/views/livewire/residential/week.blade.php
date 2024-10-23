@@ -44,7 +44,26 @@
                     <span class="red-text text-darken-4">{{ $error }}</span>
                 @endforeach
             </x-slot>
-            <table class="table-modal-services-details">
+            <table wire:loading class="table-modal-services-details w-full ">
+                <tr>
+                    <td class="center-align " style="height:484px;display: flex;justify-content: center;">
+
+                        <div  class="valign-wrapper" >
+                            <div class="preloader  pl-size-xl">
+                                <div class="spinner-layer pl-teal">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table wire:loading.remove class="table-modal-services-details">
                 <tr>
                     <th colspan="1" class="green">Employee:</th>
                     <td colspan="3" >
