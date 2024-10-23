@@ -246,7 +246,7 @@ use App\Http\Controllers\PopulateController;
         $curentService->confirmed = !$curentService->confirmed;
 //        dd($curentService);
         $curentService->save();
-        $this->dispatch('refresh-week');
+
 
         if($confirm){
             $this->dispatch('toast-alert',icon:'success',message:"Service has been confirmed!!!") ;
@@ -301,7 +301,6 @@ use App\Http\Controllers\PopulateController;
         //TODO: apagando serviço com soft delete
         $currentService = Service::find($this->modalData->id);
         $currentService->delete();
-        $this->dispatch('refresh-week');
         $this->dispatch('toast-alert',icon:'success',message:"Service has been deleted!!!") ;
 
     }
