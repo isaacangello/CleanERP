@@ -312,6 +312,7 @@ use App\Http\Controllers\PopulateController;
      *================================================================================================================*/
     public function populateModal($id): void
     {
+        sleep(2);
         $currentService = Service::with('customer','employee','control')->find($id);
         $this->dispatch('populate-date-time', idElement:"#serviceDate",dateTime:$currentService->service_date);
         if($currentService->control){
@@ -321,7 +322,8 @@ use App\Http\Controllers\PopulateController;
         $this->dispatch('populate-date-time', idElement:"#serviceInTime",dateTime:$this->tempControlInTime);
         $this->dispatch('populate-date-time', idElement:"#serviceOutTime",dateTime:$this->tempControlOutTime);
 
-        $this->customer_id= $currentService->customer->id; $this->employee1_id=$currentService->employee->id; $this->phone=$currentService->customer->phone;
+        $this->customer_id= $currentService->customer->id; $this->employee1_id=$currentService->employee->id;
+        $this->phone=$currentService->customer->phone;
         $this->address=$currentService->customer->address; $this->info=$currentService->customer->info;
         $this->notes=$currentService->notes;$this->instructions=$currentService->instructions;
         //dd($this->tempDate);

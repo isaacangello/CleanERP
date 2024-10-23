@@ -2901,7 +2901,11 @@ margin-bottom: 9px;}
 
 .demo-preloader .preloader {
     margin-right: 10px; }
-
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .irs-demo {
     margin-bottom: 40px; }
 .irs-demo .irs {

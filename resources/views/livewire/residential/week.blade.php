@@ -39,31 +39,41 @@
         </div>  <!-- row -->
         <x-service-details   :id="$this->modalData->id??'0'">
             <x-slot:title>
-                {{$this->modalData->customer->name??'título'}}
+                <span wire:loading.remove> {{$this->modalData->customer->name??'Loading...'}} </span>
+                    <span wire:loading>Loading...</span>
                 @foreach ($errors->all() as $error)
                     <span class="red-text text-darken-4">{{ $error }}</span>
                 @endforeach
             </x-slot>
-            <table wire:loading class="table-modal-services-details w-full ">
+            <table  wire:loading style="width: 100%; border-collapse: collapse;  height:40vh; ">
+                <tbody>
                 <tr>
-                    <td class="center-align " style="height:484px;display: flex;justify-content: center;">
 
-                        <div  class="valign-wrapper" >
-                            <div class="preloader  pl-size-xl">
-                                <div class="spinner-layer pl-teal">
-                                    <div class="circle-clipper left">
-                                        <div class="circle"></div>
+                    <td style="width: 40vw; border-bottom:none!important;">
+
+
+                         <div wire:loading.flex style="margin-left: 22vw; margin-top: 10vh" >
+
+                                <div style="width: 25vw;">
+                                    <div class="preloader pl-size-xl">
+                                        <div class="spinner-layer pl-teal">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="circle-clipper right">
-                                        <div class="circle"></div>
-                                    </div>
+                                    <p>Please wait...</p>
                                 </div>
-                            </div>
-                        </div>
+
+                         </div>
                     </td>
                 </tr>
+                </tbody>
             </table>
-            <table wire:loading.remove class="table-modal-services-details">
+            <table wire:loading.remove class="table-modal-services-details ">
                 <tr>
                     <th colspan="1" class="green">Employee:</th>
                     <td colspan="3" >
