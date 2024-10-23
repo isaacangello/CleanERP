@@ -105,7 +105,7 @@ class Employee extends Model
             $arr_result[$key] = DB::table('services')
                 ->where('services.employee1_id','=',$emp_id)
                 ->where('employees.type','=','RESIDENTIAL')
-                ->whereDate('service_date',$weekdayCarbon->format('Y-m-d') )
+                ->whereDate('service_date',$weekdayCarbon->format('Y-m-d H:i:s') )
                 ->whereNull('services.deleted_at')
                 ->join('employees', 'services.employee1_id','=','employees.id')
                 ->join('customers','services.customer_id','=', 'customers.id')

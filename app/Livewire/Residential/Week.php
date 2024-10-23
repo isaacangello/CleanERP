@@ -240,15 +240,18 @@ use App\Http\Controllers\PopulateController;
     {
         //TODO: implementar logica para confirmar serviço
         $curentService = Service::find($id);
+        $confirm = 0;
         if ($curentService->confirmed === 1) {
-            $curentService->confirmed = 0;
+            $confirm = 0;
         } else {
-            $curentService->confirmed = 1;
+            $confirm = 1;
         }
-        $curentService->save();
+        $curentService->update([
+            'confirmed' => $confirm
+        ]);
         $this->dispatch('refresh-week');
 
-        if($curentService->confirmed === 1){
+        if($confirm === 1){
             $this->dispatch('toast-alert',icon:'success',message:"Service has been confirmed!!!") ;
         }else{
             $this->dispatch('toast-alert',icon:'warning', message:"Service has been decommitted!!!") ;
