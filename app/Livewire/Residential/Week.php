@@ -242,11 +242,10 @@ use App\Http\Controllers\PopulateController;
         //TODO: implementar logica para confirmar serviço
         $curentService = Service::find($id);
         $confirm = 0;
-            dd($curentService);
-            $confirm = !$curentService->confirmed;
-        $curentService->update([
-            'confirmed' => $confirm
-        ]);
+
+        $curentService->confirmed = !$curentService->confirmed;
+        dd($curentService);
+        $curentService->save();
         $this->dispatch('refresh-week');
 
         if($confirm){
