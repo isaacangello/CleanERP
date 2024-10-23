@@ -68,14 +68,9 @@
                     </td>
                 </tr>
             @endforeach
-        @switch($c)
-            @case(1)
+        @if($c === 1)
                 <tr class="yellow-row"><td>&nbsp;&nbsp;<span class="badge">&nbsp;</span>&nbsp;</td></tr>
-                @break
-            @case(2)
-                <tr class="yellow-row"><td>&nbsp;&nbsp;<span class="badge">&nbsp;</span>&nbsp;</td></tr>
-                @break
-        @endswitch
+        @endif
                 @if($arrayCount == 0)
                     <tr class="yellow-row"><td>&nbsp;&nbsp;<span class="badge">&nbsp;</span>&nbsp;</td></tr>
                     <tr class="yellow-row"><td>&nbsp;&nbsp;<span class="badge">&nbsp;</span>&nbsp;</td></tr>
