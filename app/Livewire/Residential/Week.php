@@ -125,7 +125,8 @@ use App\Http\Controllers\PopulateController;
 
         }
         /** Rendering HTML elements in server side SSR */
-        return $this->createResidentialCard($filteredWeekGroup,$this->numWeek,$this->year);
+        return $filteredWeekGroup;
+//        return $this->createResidentialCard($filteredWeekGroup,$this->numWeek,$this->year);
     }
     public function price_inject()
     {
@@ -321,6 +322,9 @@ use App\Http\Controllers\PopulateController;
         if($currentService->control){
             $this->tempControlInTime = Carbon::create($currentService->control->checkin_datetime)->format('Y-m-d H:i:s');
             $this->tempControlOutTime = Carbon::create($currentService->control->checkout_datetime)->format('Y-m-d H:i:s');
+        }else{
+            $this->tempControlInTime = ' ';
+            $this->tempControlOutTime= ' ';
         }
         $this->dispatch('populate-date-time', idElement:"#serviceInTime",dateTime:$this->tempControlInTime);
         $this->dispatch('populate-date-time', idElement:"#serviceOutTime",dateTime:$this->tempControlOutTime);

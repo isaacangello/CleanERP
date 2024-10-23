@@ -101,7 +101,7 @@ trait ResidentialTrait
                                                             'data-service-id' => $value->service_id,
                                                             'wire:click' => "populateModal($value->service_id)",
                                                             '@click'=>"open = !open",
-                                                            'class' => 'btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer modal-trigger'
+                                                            'class' => 'btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer'
                                                         ]
                                                     )->text(Funcs::nameShort($value->cust_name, ' ', 2))
                                                     ,

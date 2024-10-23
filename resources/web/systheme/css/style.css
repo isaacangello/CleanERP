@@ -3168,6 +3168,12 @@ section.content {
     transition: background-color .2s ease-out;
     cursor: pointer;
 }
+.btn-custom span, .btn-custom-large span, .btn-custom-small span{
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+
+}
 .btn-custom:hover, .btn-custom-large:hover, .btn-custom-small:hover{
     text-decoration: none!important;
     color: #333!important;;
@@ -3183,6 +3189,10 @@ section.content {
     text-decoration: none!important;
     color: #333!important;;
     background-color: #ddd!important;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+
 }
 
 .btn:focus {
@@ -3223,6 +3233,19 @@ section.content {
 .btn-link-underline:hover{
     text-decoration: underline!important;;
 }
+.amber.darken-3{
+    background-color: #ff8f00;
+}
+
+.red.darken-3.btn-link , .green.darken-3.btn-link , .amber.darken-3.btn-link{
+    color: white;
+}
+.amber.darken-3.btn-link:hover{
+    text-decoration: none!important;
+    color: #ff8f00!important;;
+    background-color: #ddd!important;;
+}
+
 
 .red.darken-3.btn-link:hover {
     text-decoration: none!important;
@@ -3293,6 +3316,7 @@ section.content {
 .btn-danger,
 .btn-danger:active,
 .btn-danger:focus {
+    color:white;
     background-color: #fb483a !important; }
 .btn-danger:hover{
     text-decoration: none!important;
@@ -9308,7 +9332,50 @@ html.ie11 .bs-searchbox .form-control {
     padding: 0 0 0 2px;
 
 }
-/* linhas ímpares (odd) */
+
+.table-home tbody tr.yellow-row:hover > td{
+    background-color:#fff176;
+    color: #2e7d32;
+    font-weight: bold;
+    font-size: var(--clamp-small);
+
+}
+.table-home tbody tr.yellow-row td a{
+    padding: 0 2px 0 2px!important;
+}
+.table-home tbody tr.yellow-row:hover td a {
+    color: #2e7d32;
+    font-weight: bold;
+    padding: 0 2px 0 2px!important;
+    font-size: var(--clamp-small);
+
+}
+.table-home tbody tr.yellow-row td a.red,
+.table-home tbody tr.yellow-row td a.green,
+.table-home tbody tr.yellow-row td a.amber{
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+
+}
+
+.table-home tbody tr.yellow-row:hover td a.red,
+.table-home tbody tr.yellow-row:hover td a.green,
+.table-home tbody tr.yellow-row:hover td a.amber{
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+
+}
+.table-home tbody tr.yellow-row:hover td a{
+    color: #00695c;
+    font-weight: bold;
+    font-size: var(--clamp-small);
+
+
+
+
+    /* linhas ímpares (odd) */
 .table-home tbody tr.orange-row td {
     background-color: whitesmoke;
     color: #424242;
@@ -9352,24 +9419,6 @@ html.ie11 .bs-searchbox .form-control {
     font-size: var(--clamp-small);
 
 }
-.table-home tbody tr.yellow-row:hover > td{
-    background-color:#fff176;
-    color: #2e7d32;
-    font-weight: bold;
-    font-size: var(--clamp-small);
-
-}
-.table-home tbody tr.yellow-row:hover td a {
-    color: #2e7d32;
-    font-weight: bold;
-    font-size: var(--clamp-small);
-
-}
-.table-home tbody tr.yellow-row:hover td a{
-    color: #00695c;
-    font-weight: bold;
-    font-size: var(--clamp-small);
-
 }
 
  /* media query =========================================================*/
@@ -9663,9 +9712,9 @@ input.select-dropdown {
     margin-bottom: 0!important;
     border-bottom: none!important;
 }
-.red:hover{
-    background-color: #ef9a9a;
-}
+/*.red:hover{*/
+/*    background-color: #ef9a9a;*/
+/*}*/
 input.form-control:focus-visible{
     -webkit-box-shadow: 1px -2px 52px -17px rgba(107,105,107,1)!important;
     -moz-box-shadow: 1px -2px 52px -17px rgba(107,105,107,1) !important;
@@ -10022,6 +10071,12 @@ input.form-control:focus-visible{
 }
 .panel-danger > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #ebccd1;
+}
+.h-20{
+    height:20px!important;
+}
+.h-25{
+    height: 25px !important;
 }
 .h-30{
     height:30px!important;

@@ -10,9 +10,10 @@
 
                 $text_print = ' ';
             }
+
         @endphp
 
-@if($weekDayLabel != 'Sunday')
+@if($weekDayLabel != 'Sunday' and $weekDayLabel != 'Saturday')
         <tr><td class="text-uppercase" colspan="1">{{ $weekDayLabel }} {!! $text_print !!} </td></tr>
 
 
@@ -20,27 +21,42 @@
                 @php
 //                    dd($row->service_id);
                     $title="Service id: $row->service_id \n customer id: $row->cust_id \n employee1 is: $row->emp_id \n customer: $row->cust_name";
+                    if ($row->fee === 1) {
+                        $classes_service = "btnFeeService amber darken-3";
+                        $wire_click = "\$dispatch('trigger-cancel-fee',{id:$row->service_id})";
+                    } else {
+                        $confirmClass = $row->confirmed ? 'green darken-3' : 'red darken-3';
+                        $classes_service = " btn-confirm-form " . $confirmClass;
+                        $wire_click = "confirmService($row->service_id)";
+                    }
+
                 @endphp
                 @php($c++)
                 <tr class="yellow-row">
-                    <td class="">
-                        <div class="left valign-wrapper">
-                        <form action="{{route('confirm',['id' => $row->service_id])}}" method="post">
-                            @csrf
-                            <input type="hidden" name="confirmed" value="{{ $row->confirmed }}">
-                            <input type="hidden" name="id" value="{{ $row->service_id }}">
+                    <td class="valign-wrapper">
+                        <div class="left valign-wrapper center-align padding-0">
+                            <a
+                                    class="{{$classes_service}}  btn-link h-20  padding-0 z-depth-3 pointer p-l-2 p-r-2"
+                                    wire:click="{!! $wire_click !!}"
+                                    title="{{$title}}"
 
-                            <button class="waves-effect waves-light btn-xm {{$row->confirmed?'green darken-3':'red darken-3'}} padding-0  z-depth-2" type="submit" title="{{$title}}">
-
-                                <span class="white-text">
+                            >
+                                <span>
                                     {{ Funcs::carbonFormat($row->service_date,'h')}}
                                 </span>
-                            </button>
-                        </form>
+                            </a>
                         </div>
-                        <div class="valign-wrapper center-align ">
+                        <div class="valign-wrapper center-align padding-0 ">
 
-                            <a href="#largeModal" data-service-id="{{$row->service_id}}" onclick="push_run(this)" class="btn-link-underline modal-trigger m-l-5">{{ Funcs::nameShort($row->cust_name,' ',2) }}</a>
+                            <a
+                                    data-service-id="{{$row->service_id}}"
+                                    class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer"
+                                    wire:click ="populateModal({{$row->service_id}})"
+                                    @click="open = !open"
+
+                            >
+                                {{ Funcs::nameShort($row->cust_name,' ',2) }}
+                            </a>
 
                         <span class="badge">
                             <span class="material-symbols-outlined ">mark_unread_chat_alt</span>
