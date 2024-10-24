@@ -17,7 +17,7 @@
                                         class="label-date-home">{{ $from }}</span> - Till <span
                                         class="label-date-home">{{ $till }} </span><div class="displaytest">Iphone</div>
                             </span>
-                            <span> Apos unimeras tentativas de concertar o erro que voltou  por falta de biblioteca no servidor mas uma tentativa.
+                            <span> Ok.
                             </span>
                     </div>
                     <x-service-cad :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year :$populateBillings>
@@ -56,7 +56,7 @@
                     <td style="width: 40vw; border-bottom:none!important;">
 
 
-                         <div wire:loading.flex style="margin-left: 22vw; margin-top: 10vh" >
+                         <div wire:loading.flex  style="margin-left: 22vw; margin-top: 10vh" >
 
                                 <div style="width: 25vw;">
                                     <div class="preloader pl-size-xl">
@@ -108,7 +108,7 @@
                     <th colspan="1" class="green font-12 h-30">Address:</th>
                     <td colspan="3"  >
                         <x-text-input
-                                wire:model="address"
+                                wire:model.blur="address"
                                 wire:change="field_change('address')"
                                 class="p-l-2 h-30 font-12 grey-text text-darken-4"
                                 id="serviceAddress"
@@ -121,7 +121,7 @@
                     <td  colspan="3"  >
                         <x-text-input
                                 wire:model="phone"
-                                wire:change="field_change('phone')"
+                                wire:change.blur="field_change('phone')"
                                 class="p-l-2 h-30 font-12 grey-text text-darken-4"
                                 id="servicePhone"
                                 type="text"
@@ -133,7 +133,7 @@
                     <td colspan="3">
                         <x-date-flat-pickr
                                 wire:model="service_date"
-                                wire:change="field_change('service_date')"
+                                wire:change.blur="field_change('service_date')"
                                 id="serviceDate"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text text-darken-4"
                         />
@@ -144,8 +144,8 @@
                     <td>
                         <x-time-flat-pickr
 
-                                wire:model="checkin_datetime"
-                                wire:change="field_change('checkin_datetime')"
+                                wire:model.blur="checkin_datetime"
+                                wire:change.blur="field_change('checkin_datetime')"
                                 id="serviceInTime"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text darken-4"
                         />
@@ -153,7 +153,7 @@
                     <th class="green h-30">Out:</th>
                     <td>
                         <x-time-flat-pickr
-                                wire:model="checkout_datetime"
+                                wire:model.blur="checkout_datetime"
                                 wire:change="field_change('checkout_datetime')"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text darken-4"
                                 id="serviceOutTime"
@@ -164,7 +164,7 @@
                 <tr class="hide"><th colspan="4"  class="green  center-align">Info:</th></tr>
                 <tr class="hide">
                     <td  colspan="4"   class="p-1">
-                            <textarea wire:model="info"
+                            <textarea wire:model.blur="info"
                                       wire:change="field_change('info')"
                                       id="serviceInformation"
                                       class="p-l-2 modal-residential-change" cols="30" rows="10"
@@ -178,7 +178,7 @@
                 <tr>
                     <td  colspan="4" class="p-1">
                             <textarea
-                                    wire:model="notes"
+                                    wire:model.blur="notes"
                                     wire:change="field_change('notes')"
                                     id="ServiceNotes"
                                     class="p-l-2 modal-residential-change"  cols="30" rows="10"
@@ -193,7 +193,7 @@
                     <td  colspan="4" class="grey-text text-darken-3 p-1">
                             <textarea
                                     wire:model="instructions"
-                                    wire:change="field_change('instructions')"
+                                    wire:change.blur="field_change('instructions')"
                                     id="ServiceInstructions"
                                     class="modal-residential-change"
                                     cols="30" rows="10">

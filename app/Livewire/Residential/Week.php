@@ -14,13 +14,16 @@ use App\Treatment\DateTreatment;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use App\Http\Controllers\PopulateController;
 
-#[AllowDynamicProperties] class Week extends Component
+#[AllowDynamicProperties]
+
+class Week extends Component
 {
     use ResidentialTrait;
     public ServiceForm $form;
@@ -71,10 +74,18 @@ use App\Http\Controllers\PopulateController;
     protected $listeners = [
         'refresh-week' => '$refresh'
     ];
+
+    /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+     * @return void
+     *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     public function __constructor(){
         $this->populate = new PopulateController();
         $this->dateTrait =new DateTreatment();
     }
+
+    /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+     * @return void
+     *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     public function thisWeek(): void
     {
         $dateTrait =new DateTreatment();
@@ -82,6 +93,10 @@ use App\Http\Controllers\PopulateController;
         $this->year = now()->format('Y');
         $this->traitNullVars();
     }
+
+    /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+     * @return void
+     *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     public function backWeek(): void
     {
         $date = new DateTreatment();
@@ -95,6 +110,10 @@ use App\Http\Controllers\PopulateController;
         $this->traitNullVars();
 
     }
+
+    /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+     * @return void
+     *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     public function forwardWeek(): void
     {
         if(($this->numWeek +1) > 52 ){
@@ -105,6 +124,10 @@ use App\Http\Controllers\PopulateController;
         }
         $this->traitNullVars();
     }
+
+    /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+     * @return void
+     *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     public function selectWeek()
     {
         if(is_null($this->numWeek) || is_null($this->year)  ){
@@ -113,6 +136,10 @@ use App\Http\Controllers\PopulateController;
         $this->numWeek = $this->selectedWeek;
         $this->year  = $this->selectedYear;
     }
+
+    /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+     * @return array
+     *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     #[Computed]
     public function dataCard(){
 
@@ -128,6 +155,10 @@ use App\Http\Controllers\PopulateController;
         return $filteredWeekGroup;
 //        return $this->createResidentialCard($filteredWeekGroup,$this->numWeek,$this->year);
     }
+
+    /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+     * @return void
+     *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     public function price_inject()
     {
 //        dd($this->form->customer_id);
@@ -225,6 +256,10 @@ use App\Http\Controllers\PopulateController;
         $this->dispatch('toast-alert',icon:"success",message:"The ".$this->fieldTitles[$field]." field  has been Updated !!!");
 
     }
+
+    /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+     * @return void
+     *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     public function store(){
         $return = $this->form->store();
         if($return){
@@ -241,7 +276,7 @@ use App\Http\Controllers\PopulateController;
     {
         //TODO: implementar logica para confirmar serviço
         $curentService = Service::find($id);
-        $confirm = 0;
+        $confirm = !$curentService->confirmed;
 
         $curentService->confirmed = !$curentService->confirmed;
 //        dd($curentService);
