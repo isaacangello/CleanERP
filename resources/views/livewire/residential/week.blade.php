@@ -56,7 +56,7 @@
                     <td style="width: 40vw; border-bottom:none!important;">
 
 
-                         <div wire:loading.flex  style="margin-left: 22vw; margin-top: 10vh" >
+                         <div  wire:loading.flex  style="margin-left: 22vw; margin-top: 10vh" >
 
                                 <div style="width: 25vw;">
                                     <div class="preloader pl-size-xl">
@@ -132,8 +132,8 @@
                     <th class="green h-30">Date:</th>
                     <td colspan="3">
                         <x-date-flat-pickr
-                                wire:model="service_date"
-                                wire:change.blur="field_change('service_date')"
+                                wire:model.blur="service_date"
+                                wire:change="field_change('service_date')"
                                 id="serviceDate"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text text-darken-4"
                         />
@@ -145,7 +145,7 @@
                         <x-time-flat-pickr
 
                                 wire:model.blur="checkin_datetime"
-                                wire:change.blur="field_change('checkin_datetime')"
+                                wire:change="field_change('checkin_datetime')"
                                 id="serviceInTime"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text darken-4"
                         />

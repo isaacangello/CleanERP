@@ -111,7 +111,7 @@ class Employee extends Model
                 ->join('customers','services.customer_id','=', 'customers.id')
                 ->orderBy('service_date')
                 ->select(
-                    'services.id as service_id',
+            'services.id as service_id',
                     'customer_id as cust_id',
                     'employee1_id as emp_id',
                     'service_date',

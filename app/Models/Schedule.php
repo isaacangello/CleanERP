@@ -12,7 +12,7 @@ class Schedule extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'customer_id','employee_id','period','schedule_time',
+        'id','customer_id','employee_id','period','schedule_time',
         'schedule_date', 'notes', 'instructions','who_saved',
         'loop','denomination'
     ];

@@ -15,6 +15,8 @@ use App\Treatment\DateTreatment;
 use Spatie\Html\Html;
 use Spatie\Html\Elements\Div;
 use Spatie\Html\Elements\Element;
+use function Laravel\Prompts\select;
+
 #[AllowDynamicProperties] class CommercialController extends Controller
 {
 

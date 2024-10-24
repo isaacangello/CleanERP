@@ -83,10 +83,22 @@ class Funcs
         //dd($trTds);
         $trs_temp = '';
         foreach ($trTds as $EmpNameKey => $arr){
+
             //dd($arr);
-            $trs_temp .= Element::withTag('tr')->class('label-green-lighten-1')->addChild(Element::withTag('td')->class('align-center')->text($EmpNameKey));
+            $trs_temp .= Element::withTag('tr')->class('blue-grey white-text')->addChild(Element::withTag('td')->class('align-center p-t-5 p-b-5')->addChild(Element::withTag('h6')->class('font-12 margin-0')->text($EmpNameKey)));
             foreach ($arr as $value){
-                $trs_temp .= Element::withTag('tr')->class('orange-row')->addChild(Element::withTag('td')
+                $schedule_date = Carbon::create($value->schedule_date);
+//                dd($value->id, $schedule_date->format('l F\\, jS\\, Y h:i a'));
+                if($schedule_date->format('H')< 12 ){
+                    $denomination_class = "light-blue-text  text-darken-4";
+                }
+                if($schedule_date->format('H')>= 12 and $schedule_date->format('H') < 18){
+                    $denomination_class = "blue-grey-text  text-darken-4";
+                }
+                if($schedule_date->format('H')>= 18 ){
+                    $denomination_class = "deep-orange-text  text-darken-4";
+                }
+                $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')
                     ->addChildren(
                         [
                             Div::create()->attributes([
@@ -97,8 +109,9 @@ class Funcs
                             Element::withTag('a')->attributes([
                             'data-schedule-id' => $value->id,
                             'href' => '#scheduleModal',
-                            'class'=> 'btn-link-underline modal-trigger link-modal-commercial m-l-5',
-                            ])->text($value->denomination)
+                            'class'=> "btn-link-underline modal-trigger link-modal-commercial m-l-5 $denomination_class" ,
+                            'title' => "$value->denomination - ".$schedule_date->format('h:i a'),
+                            ])->text($schedule_date->format('h:i a')." - ".Funcs::nameShort($value->denomination,' ',1  ))
                         ]
                     )
                 );
@@ -106,11 +119,14 @@ class Funcs
         }
 
         return Div::create()->addChild(
-                    Div::create()->class('card green darken-3 white-text')
+                    Div::create()->class('modal-dialog z-depth-3')
                         ->addChild(
-                                    Div::create()->class('card-content card-content-min')
-                                    ->addChild(Element::withTag('span')->class('card-title font-12')->text($cardTile))
-                                    ->addChild(Element::withTag('p')->addChild(Element::withTag('table')->class('table-home green darken-3')->addchild($trs_temp))
+                                    Div::create()->class('modal-content modal-col-white')
+                                    ->addChild(
+                                        Div::create()->class('header font-12 p-t-10 p-b-10')->addChild(Element::withTag('h5')->class('modal-title green-text text-darken-4 font-13 padding-0 margin-0')->text($cardTile))
+                                    )
+                                    ->addChild(Element::withTag('p')->addChild(Element::withTag('table')->class('table-commercial')->addchild($trs_temp))
+                                    ->addChild(Div::create()->class('modal-footer footer-commercial-card p-t-10 p-b-10')->text('&nbsp;'))
                                 )
                         )
                 )->render();

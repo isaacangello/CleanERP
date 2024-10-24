@@ -4,7 +4,7 @@
         <div class="modal-header">
             <h6>Create a new Schedule. </h6>
         </div>
-        <div class="modal-content modal-content-bs">
+        <div class="modal-content modal-col-white">
             <div class="container z-depth-3" style="width: 95%">
 
                 <div class="hide info-box-3 bg-red hover-zoom-effect animate__animated animate__shakeX" id="error_infobox">

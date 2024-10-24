@@ -1731,13 +1731,13 @@ margin-bottom: 9px;}
     padding-left: 5px !important; }
 
 .p-t-5 {
-    padding-top: 5px; }
+    padding-top: 5px!important; }
 
 .p-r-5 {
-    padding-right: 5px; }
+    padding-right: 5px!important; }
 
 .p-b-5 {
-    padding-bottom: 5px; }
+    padding-bottom: 5px!important; }
 
 /*+==================+*/
 .p-6{
@@ -9421,10 +9421,10 @@ html.ie11 .bs-searchbox .form-control {
 }
 }
 
- /* media query =========================================================*/
+ /* commercial front end =========================================================*/
 /*Media screem for home screen*/
-@media screen and (min-width: 1370px) {
-    .table-home tbody td:first-child[colspan] {
+
+    .table-commercial tbody td:first-child[colspan] {
         background-color:#274e13 ;
         color:white;
         font-weight: bold;
@@ -9435,22 +9435,22 @@ html.ie11 .bs-searchbox .form-control {
         height: 25px;
 
     }
-    .table-home tbody tr.yellow-row td {
+    .table-commercial tbody tr.yellow-row td {
         flex-direction: row;
-        background-color: whitesmoke;
+        background-color: floralwhite;
         color: #2e7d32;
         font-weight: bold;
         font-size: var(--clamp-size);
         margin: 0;
-        padding: 0 0 0 2px;
-        height: 25px;
+        padding: 0 0 0 5px ;
+        height: 25px!important;
 
     }
-    .table-home tbody tr.yellow-row td div {
+    .table-commercial tbody tr.yellow-row td div {
         height: 100%;
         justify-content: center;
     }
-    .table-home tbody tr.yellow-row td span > span {
+    .table-commercial tbody tr.yellow-row td span > span {
         color: #2e7d32;
         font-weight: bold;
         text-transform: uppercase;
@@ -9459,7 +9459,7 @@ html.ie11 .bs-searchbox .form-control {
         padding: 0;
 
     }
-    .table-home tbody tr.yellow-row td a {
+    .table-commercial tbody tr.yellow-row td a {
         color: #2e7d32;
         font-weight: bold;
         font-size: var(--clamp-size);
@@ -9468,69 +9468,69 @@ html.ie11 .bs-searchbox .form-control {
 
     }
     /* linhas ímpares (odd) */
-    .table-home tbody tr.orange-row td {
+    .table-commercial tbody tr.orange-row td {
         background-color: whitesmoke;
         color: #424242;
         font-weight: bold;
         font-size: var(--clamp-size) ;
     }
-    .table-home tbody tr.orange-row:hover td {
+    .table-commercial tbody tr.orange-row:hover td {
         background-color: #f57f17;
         text-decoration: underline;
         color: var(--jjl-green-color);
         font-weight: bold;
         font-size: var(--clamp-size) ;
     }
-    .table-home tbody tr.orange-row td a {
+    .table-commercial tbody tr.orange-row td a {
         background-color: transparent;
         color: #424242 !important;
         font-weight: bold;
         font-size: var(--clamp-size) ;
     }
-    .table-home tbody tr.orange-row:hover td a {
+    .table-commercial tbody tr.orange-row:hover td a {
         background-color: transparent;
         text-decoration: underline;
         color: #424242;
         font-weight: bold;
         font-size: var(--clamp-size) ;
     }
-    .table-home tbody tr.orange-row td span > span {
+    .table-commercial tbody tr.orange-row td span > span {
         color: #424242;
         font-weight: bold;
         font-size: var(--clamp-size);
     }
-    .table-home tbody tr.orange-row:hover td span > span {
+    .table-commercial tbody tr.orange-row:hover td span > span {
         color:  var(--jjl-green-color);
         text-decoration: underline;
         font-weight: bold;
         font-size: var(--clamp-size);
     }
-    .table-home tbody tr td:nth-child(odd) a{
+    .table-commercial tbody tr td:nth-child(odd) a{
         color: #2e7d32;
         font-weight: bold;
         font-size: var(--clamp-size);
 
     }
-    .table-home tbody tr.yellow-row:hover > td{
+    .table-commercial tbody tr.yellow-row:hover > td{
         background-color:#fff176;
         color: #2e7d32;
         font-weight: bold;
         font-size: var(--clamp-size);
 
     }
-    .table-home tbody tr.yellow-row:hover td a {
+    .table-commercial tbody tr.yellow-row:hover td a {
         color: #2e7d32;
         font-weight: bold;
         font-size: var(--clamp-size);
 
     }
-    .table-home tbody tr.yellow-row:hover td a{
+    .table-commercial tbody tr.yellow-row:hover td a{
         color: #00695c;
         font-weight: bold;
         font-size: var(--clamp-size);
 
     }
-} /* media query =========================================================*/
+ /* commercial front end=========================================================*/
 /* label of date on home screen */
 .label-date-home{
     padding: 5px;
@@ -9567,7 +9567,7 @@ html.ie11 .bs-searchbox .form-control {
     vertical-align: middle;
 
 }
-/** modal service details */
+/** modal-default service details */
 
 .table-modal-services-details{
     border-collapse: collapse;
@@ -9576,6 +9576,7 @@ html.ie11 .bs-searchbox .form-control {
 }
 .table-modal-services-details tbody tr th{
     width:17%;
+    height: 30px;
     font-size: var(--modal-small);
 }
 .table-modal-services-details tbody tr td{

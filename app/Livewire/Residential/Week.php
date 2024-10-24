@@ -135,6 +135,10 @@ class Week extends Component
         }
         $this->numWeek = $this->selectedWeek;
         $this->year  = $this->selectedYear;
+        $dateTrait = new DateTreatment();
+        $week = $dateTrait->getWeekByNumberWeek($this->selectedWeek);
+        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
+        $this->till = Carbon::create($week['Sunday'])->format('m/d/Y');
     }
 
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
