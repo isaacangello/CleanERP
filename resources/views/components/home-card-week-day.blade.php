@@ -34,36 +34,39 @@
                 @php($c++)
                 <tr class="yellow-row">
                     <td class="valign-wrapper">
-                        <div class="left valign-wrapper center-align padding-0">
+                        <div class="left valign-wrapper center-align padding-0 p-l-4 p-r-4">
                             <a
-                                    class="{{$classes_service}}  btn-link h-20  padding-0 z-depth-3 pointer p-l-2 p-r-2"
+                                    class="p-l-4 p-r-4 {{$classes_service}}  btn-link padding-0 z-depth-3 pointer "
                                     wire:click="{!! $wire_click !!}"
                                     title="{{$title}}"
 
                             >
-                                <span>
-                                    {{ Funcs::carbonFormat($row->service_date,'h')}}
-                                </span>
+
+                                {{ Funcs::carbonFormat($row->service_date,'h')}}
+
                             </a>
                         </div>
-                        <div class="valign-wrapper center-align padding-0 ">
+                        <div class="valign-wrapper left-align padding-0 ">
 
                             <a
                                     data-service-id="{{$row->service_id}}"
                                     class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer"
                                     wire:click ="populateModal({{$row->service_id}})"
                                     @click="open = !open"
-
+                                    title="{{$title}}"
                             >
                                 {{ Funcs::nameShort($row->cust_name,' ',2) }}
                             </a>
 
-                        <span class="badge">
-                            <span class="material-symbols-outlined ">mark_unread_chat_alt</span>
-                           @if($row->cust_type === 'RENTALHOUSE')
-                            <span class="material-symbols-outlined ">brightness_7</span>
-                            @endif
-                        </span>
+                        </div>
+                        <div title="{{$title}}">
+                            <span class="badge">
+                                <span class="material-symbols-outlined ">mark_unread_chat_alt</span>
+                               @if($row->cust_type === 'RENTALHOUSE')
+                                    <span class="material-symbols-outlined ">brightness_7</span>
+                                @endif
+                            </span>
+
                         </div>
                     </td>
                 </tr>

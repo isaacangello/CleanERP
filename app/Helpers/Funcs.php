@@ -127,7 +127,7 @@ class Funcs
                                             Element::withTag('h5')->class('modal-title w-full center-align green-text text-darken-4 font-13 padding-0 margin-0')->text($cardTile)
                                         )
                                     )
-                                    ->addChild(Element::withTag('p')->addChild(Element::withTag('table')->class('table-commercial')->addchild($trs_temp))
+                                    ->addChild(Element::withTag('p')->addChild(Element::withTag('table')->class('table-card')->addchild($trs_temp))
                                     ->addChild(Div::create()->class('modal-footer footer-commercial-card p-t-10 p-b-10')->text('&nbsp;'))
                                 )
                         )

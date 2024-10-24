@@ -14,7 +14,7 @@
                 <div class="modal-header">
                     <h6>Create a new service.</h6>
                 </div>
-                <div class="container z-depth-3" style="width: 95%">
+                <div class="container z-depth-3">
 
                     <div class="hide info-box-3 bg-red hover-zoom-effect animate__animated animate__shakeX" id="error_infobox">
                         <div class="icon">

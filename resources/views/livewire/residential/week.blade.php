@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="header">
                             <span>
-                              Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
+                              Week Number <span class="yellow-text text-darken-4 font-bold">{{ $numWeek }}</span> / From <span
                                         class="label-date-home">{{ $from }}</span> - Till <span
                                         class="label-date-home">{{ $till }} </span><div class="displaytest">Iphone</div>
                             </span>

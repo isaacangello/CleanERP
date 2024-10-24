@@ -10,11 +10,13 @@
         */
     -->
                             <div class="col s12 m3">
-                                <div class="card card-gradient-background z-depth-3 white-text">
-                                    <div class="card-content card-content-min">
-                                        <span class="card-title">{{$empName}}</span>
-                                        <p>
-                                            <table class="table-home green darken-3 centered">
+                                <div class="modal-dialog z-depth-3 m-b-20">
+                                    <div class="modal-content modal-col-white">
+                                        <div class="header center-align font-12 p-t-10 p-b-10">
+                                        <span class="card-title font-12 font-bold">{{$empName}}</span>
+                                        </div>
+
+                                            <table class="table-card centered">
                                                 <tbody>
 {{--                                                @php dd($data) @endphp--}}
                                                 @foreach($data as $weekDayLabel => $row)
@@ -23,7 +25,10 @@
                                                 @endforeach
                                                 </tbody>
                                             </table>
-                                        </p>
+
+                                        <div class="modal-footer footer-commercial-card p-t-10 p-b-10">
+                                                &nbsp;
+                                        </div>
                                     </div>
                                 </div>
                             </div>
