@@ -2317,13 +2317,13 @@ margin-bottom: 9px;}
     width:15%;
 }
 .w-20p{
-    width:20%;
+    width:19.9999% !important;
 }
 .w-25p{
     width:25%;
 }
 .w-30p{
-    width:30%;
+    width:29.9999% !important;
 }
 .w-40p{
     width:40%;

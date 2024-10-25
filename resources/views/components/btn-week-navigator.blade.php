@@ -4,13 +4,7 @@
     </div>
 
     <div class="col s12 m1 input-field">
-        <form action="{{route($route)}}">
-            <x-standard-btn type="submit" class="btn-small z-depth-3" >
-                <span class="material-symbols-outlined font-15">
-                house
-                </span>
-            </x-standard-btn>
-        </form>
+        {!! $slot2??"&nbsp;" !!}
     </div>
     <div class="col s12 m2 input-field">
         <div class="form-group">

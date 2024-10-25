@@ -10,7 +10,7 @@
 {{--            x-transition:leave-end="opacity-0 scale-90"--}}
 
        >
-            <div class="modal-content modal-content-bs">
+            <div class="modal-content modal-content-bs modal-col-white">
                 <div class="modal-header">
                     <h6>Create a new service.</h6>
                 </div>

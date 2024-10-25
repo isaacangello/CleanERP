@@ -74,7 +74,7 @@ Route::middleware('auth')->group(function () {
 //#############################################################
 //############ RESIDENTIAL ROUTES
 //#############################################################
-Route::get('/commercial-schedule',[CommercialController::class,'index'])->name('commercial.schedule');
+Route::get('/commercial-schedule',\App\Livewire\Commercial\Schedule::class)->name('commercial.schedule');
 
 
 //#############################################################

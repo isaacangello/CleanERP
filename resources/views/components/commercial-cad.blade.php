@@ -1,11 +1,21 @@
 <div>
 
-    <div id="new-schedule" class="modal bottom-sheet">
-        <div class="modal-header">
-            <h6>Create a new Schedule. </h6>
-        </div>
-        <div class="modal-content modal-col-white">
-            <div class="container z-depth-3" style="width: 95%">
+    <div id="new-schedule" class="modal-default bottom-sheet"
+         x-show="cadOpen"
+         x-transition:enter="animate__animated animate__slideInUp animate__faster"
+         {{--            x-transition:enter-start="opacity-0 scale-90"--}}
+         {{--            x-transition:enter-end="opacity-100 scale-100"--}}
+         x-transition:leave="animate__animated animate__slideOutDown animate__faster"
+            {{--            x-transition:leave-start="opacity-100 scale-100"--}}
+            {{--            x-transition:leave-end="opacity-0 scale-90"--}}
+
+    >
+
+        <div class="modal-content modal-content-bs modal-col-white">
+            <div class="modal-header">
+                <h6>Create a new Schedule. </h6>
+            </div>
+            <div class="container z-depth-3" >
 
                 <div class="hide info-box-3 bg-red hover-zoom-effect animate__animated animate__shakeX" id="error_infobox">
                     <div class="icon">
@@ -44,7 +54,7 @@
                                            $prices[$i]['price_monthly']  = $value->price_monthly ;
                                         }
                                     @endphp
-                                    <select class="materialize-select" id="cad-schedule-customer_id" name="customer_id" >
+                                    <select class="materialize-select browser-default" id="cad-schedule-customer_id" name="customer_id" >
                                         <option @if(empty(old('customer_id'))) selected @endif  value="">Customer</option>
                                         @foreach($customers as  $value)
                                             @if(old('customer_id') == $value->id)
@@ -73,7 +83,7 @@
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success form-line-employee_id">
-                                    <select id="cad-schedule-employee_id" name="employee_id" class="materialize-select">
+                                    <select id="cad-schedule-employee_id" name="employee_id" class="materialize-select browser-default">
                                         <option  value="none">Employee</option>
                                         @foreach($employees as $values)
                                             @if(old('employee_id') == $values->id)
@@ -117,7 +127,7 @@
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success form-line-period">
-                                    <select class="materialize-select" id="cad-schedule-period" name="period">
+                                    <select class="materialize-select browser-default" id="cad-schedule-period" name="period">
                                         @php
                                             $string_first = ""; $string_second = "";$string_third="";$string_none= "";
                                             if(!empty(old("period"))){
@@ -154,7 +164,7 @@
                             <label class="form-label"  for="cad-schedule-loop">Schedule repeat.</label>
                             <div class="form-group p-10 form-line-loop" id="cad-schedule-loop">
                                 <div class="grid-schedules m-b-5">
-                                    @foreach($weekArr as $key => $day)
+                                    @foreach($weekArr??[] as $key => $day)
                                         @if($key !== 'Saturday' and $key !== 'Sunday')
                                         <div class="switch">
                                             <label>
@@ -202,8 +212,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn  btn-small " type="submit">save changes</button>
-                        <a href="#!" class="btn modal-close  btn-small red darken-4">Cancel</a>
+                        <button class="btn btn-link font-12 btn-small " type="submit">save changes</button>
+                        <a href="#" @click="cadOpen = false" class="btn btn-link btn-small font-12 red darken-4">Cancel</a>
                     </div>
                 </form>
             </div><!--END OF CONTAINER -->

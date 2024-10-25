@@ -35,7 +35,10 @@ use Illuminate\Support\Facades\DB;
         $weekArr = $this->date->getWeekByNumberWeek($nunWeek,$year);
 
 //        dd($filteredWeekGroup);
-        $data = $this->schedule->with('customer','employee')->whereDate('schedule_date','>=' , $from )->whereDate('schedule_date','<=' , $till )->orderBy('schedule_date')->get();
+        $data = $this->schedule->with('customer','employee','control')
+            ->whereDate('schedule_date','>=' , Carbon::create($from)->format('Y-m-d H:i:s') )
+            ->whereDate('schedule_date','<=' , Carbon::create($till)->format('Y-m-d H:i:s') )
+            ->orderBy('schedule_date')->get();
 //        dd($this->from);
 
         //dd($card);

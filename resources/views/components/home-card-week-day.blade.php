@@ -20,7 +20,7 @@
             @foreach($data as $row)
                 @php
 //                    dd($row->service_id);
-                    $title="Service id: $row->service_id \n customer id: $row->cust_id \n employee1 is: $row->emp_id \n customer: $row->cust_name";
+                    $title=" customer: $row->cust_name \n employee: $row->emp_name \n";
                     if ($row->fee === 1) {
                         $classes_service = "btnFeeService amber darken-3";
                         $wire_click = "\$dispatch('trigger-cancel-fee',{id:$row->service_id})";
@@ -38,6 +38,10 @@
                             <a
                                     class="p-l-4 p-r-4 {{$classes_service}}  btn-link padding-0 z-depth-3 pointer "
                                     wire:click="{!! $wire_click !!}"
+                                    wire:loading.class="animate__animated"
+                                    wire:loading.class="animate__pulse "
+                                    wire:loading.class="animate__infinite"
+                                    wire:loading.class="infinite"
                                     title="{{$title}}"
 
                             >
