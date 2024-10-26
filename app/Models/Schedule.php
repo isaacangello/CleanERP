@@ -14,19 +14,28 @@ class Schedule extends Model
     protected $fillable = [
         'id','customer_id','employee_id','period','schedule_time',
         'schedule_date', 'notes', 'instructions','who_saved',
-        'loop','denomination'
+        'loop','denomination','team','team_id'
     ];
     public array $rules = [
         'customer_id' => 'required',
         'employee_id' => 'required',
+        'denomination' => 'nullable',
         'schedule_date' => 'required',
-        'schedule_time' => 'required',
-        'loop' => 'nullable',
+        'team' => 'nullable',
+        'team_id' => 'nullable',
         'notes' => 'nullable',
         'instructions' => 'nullable',
         'who_saved' => 'nullable',
-        'denomination' => 'nullable',
+        'who_saved_id' => 'nullable',
+        'checkin_datetime' => 'required',
+        'checkout_datetime' => 'required',
+
+
     ];
+    public function rules()
+    {
+        return $this->rules;
+    }
     public function customer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Customer::class);

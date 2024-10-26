@@ -17,7 +17,7 @@
                                         class="label-date-home">{{ $from }}</span> - Till <span
                                         class="label-date-home">{{ $till }} </span><div class="displaytest">Iphone</div>
                             </span>
-                            <span> Ok.
+                            <span>
                             </span>
                     </div>
                     <x-service-cad :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year :$populateBillings>
@@ -27,6 +27,9 @@
                         <x-btn-week-navigator :$route :$selectedWeek>
                             <x-standard-btn class="btn-small" @click="cadOpen = true">   New service  </x-standard-btn>
                         </x-btn-week-navigator>
+                        <x-btn-week-mobile-navigator :$route :$selectedWeek>
+                            <x-standard-btn class="btn-small" @click="cadOpen = true">   New service  </x-standard-btn>
+                        </x-btn-week-mobile-navigator>
                         <div class="row" id="htmlContent">
                             @foreach($this->dataCard() as $empName => $data )
                                 <x-home-cards :emp-name="$empName" :$data />
@@ -120,8 +123,8 @@
                     <th colspan="1" class="green h-30">Phone:</th>
                     <td  colspan="3"  >
                         <x-text-input
-                                wire:model="phone"
-                                wire:change.blur="field_change('phone')"
+                                wire:model.blur="phone"
+                                wire:change="field_change('phone')"
                                 class="p-l-2 h-30 font-12 grey-text text-darken-4"
                                 id="servicePhone"
                                 type="text"
@@ -133,7 +136,7 @@
                     <td colspan="3">
                         <x-date-flat-pickr
                                 wire:model.blur="service_date"
-                                wire:change="field_change('service_date')"
+                                wire:change.debounce="field_change('service_date')"
                                 id="serviceDate"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text text-darken-4"
                         />

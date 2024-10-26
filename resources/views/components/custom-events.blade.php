@@ -5,7 +5,17 @@
     <script>
 
         // console.log('aqui é o livewire')
-        // console.log(Livewire)
+
+            console.log(window)
+       let tab =        document.querySelectorAll('.tabs')
+                let options = {
+                    swipeable: true
+                }
+                 var instance = window.M.Tabs.init(tab, options);
+                console.log(instance+" instancia tab")
+
+
+
             Livewire.on('wire-toast-alert', (event) => {
                 toastAlert.fire({
                     icon: event.detail.icon,
@@ -103,6 +113,10 @@
                     dateFormat: "Y-m-d H:i",
                     altFormat: 'F j, Y h:i K',
                     altInput: true,
+                    onChange: function(selectedDates, dateStr, instance){
+                        if (dateStr)
+                            instance.close();
+                    },
                     defaultDate: `${event.detail.dateTime}`
 
                 }

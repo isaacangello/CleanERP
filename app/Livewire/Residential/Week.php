@@ -256,7 +256,7 @@ class Week extends Component
 
       }
 
-        $this->dispatch('refresh-week');
+//        $this->dispatch('refresh-week');
         $this->dispatch('toast-alert',icon:"success",message:"The ".$this->fieldTitles[$field]." field  has been Updated !!!");
 
     }

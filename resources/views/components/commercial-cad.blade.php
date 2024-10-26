@@ -31,33 +31,21 @@
                     <span class="label label-padding">People involved in the service schedule</span>
                 </div>
                 <!-- Divider ######################################################################################################-->
-                <form id="schedule-form" action="{{ route('services.store') }}" method="post">
+                <form id="schedule-form"  wire:submit.prevent="store">
                     @csrf
-                    <input type="hidden" name="who_saved"  value="{{\App\Helpers\Funcs::replaceSpaces(Auth::user()->name)}}">
-                    <input type="hidden" name="who_saved_id"  value="{{Auth::user()->id}}">
-                    <input type="hidden" name="nunWeek"  value="{{ $numWeek }}">
-                    <input type="hidden" name="year"  value="{{ $year }}">
                     <!-- Row ######################################################################################################-->
                     <div class="row">
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success form-line-customer_id">
-                                    @php
-                                        $prices = array();
-                                        $i=0;
-                                        /**
-                                        *  @var
-                                         */
-                                        foreach ($customers as $value){
-                                           $prices[$i]['price_weekly']  = $value->price_weekly;
-                                           $prices[$i]['price_biweekly']  = $value->price_biweekly;
-                                           $prices[$i]['price_monthly']  = $value->price_monthly ;
-                                        }
-                                    @endphp
-                                    <select class="materialize-select browser-default" id="cad-schedule-customer_id" name="customer_id" >
-                                        <option @if(empty(old('customer_id'))) selected @endif  value="">Customer</option>
+                                    <select
+                                            wire:model="form.customer_id"
+                                            id="cad-schedule-customer_id"
+                                            class="materialize-select browser-default"
+                                    >
+                                        <option @if(empty(old('form.customer_id'))) selected @endif  value="">Customer</option>
                                         @foreach($customers as  $value)
-                                            @if(old('customer_id') == $value->id)
+                                            @if(old('form.customer_id') == $value->id)
                                                 <option selected value="{{$value->id}}">{{$value->name}} </option>
                                             @else
                                                 <option  value="{{$value->id}}">{{$value->name}} </option>
@@ -68,25 +56,40 @@
                                     </select>
                                     <label class="form-label"  for="cad-schedule-customer">Customer</label>
                                 </div>
-                                <div class="help-info" id="help-info-customer_id">select the customer for service schedule.</div>
+                                @error('form.customer_id')
+                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                @enderror
+
+                                <div class="@error('form.customer_id') hide @enderror help-info" id="help-info-customer_id">select the customer for service schedule.</div>
                             </div>
                         </div>
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success form-line-denomination">
                                     <label class="form-label"  for="cad-schedule-denomination">Denomination</label>
-                                    <input class="form-control"  id="cad-schedule-denomination" name="denomination" value="{{ old('denomination') }}" />
+                                    <input
+                                            wire:model.blur="form.denomination"
+                                            class="form-control"  id="cad-schedule-denomination"
+                                            value="{{ old('form.denomination') }}"
+                                    />
                                 </div>
-                                <div class="help-info" id="help-info-denomination">Type one denomination.</div>
+                                @error('form.denomination')
+                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                @enderror
+                                <div class="@error('form.denomination') hide @enderror help-info" id="help-info-denomination">Type one denomination.</div>
                             </div>
                         </div>
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success form-line-employee_id">
-                                    <select id="cad-schedule-employee_id" name="employee_id" class="materialize-select browser-default">
+                                    <select
+                                            wire:model.blur="form.employee_id"
+                                            id="cad-schedule-employee_id"
+                                            class="materialize-select browser-default"
+                                    >
                                         <option  value="none">Employee</option>
                                         @foreach($employees as $values)
-                                            @if(old('employee_id') == $values->id)
+                                            @if(old('form.employee_id') == $values->id)
                                                 <option selected  value="{{$values->id}}">{{$values->name}} </option>
                                             @else
                                                 <option  value="{{$values->id}}">{{$values->name}} </option>
@@ -97,7 +100,10 @@
                                     </select>
                                     <label class="form-label"  for="cad-schedule-employee_id">Employee</label>
                                 </div>
-                                <div id="help-info-employee_id" class="help-info" >select the employee for service.</div>
+                                @error('form.employee_id')
+                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                @enderror
+                                <div id="help-info-employee_id" class="@error('form.employee_id') hide @enderror help-info" >select the employee for service.</div>
                             </div>
                         </div>
                     </div>
@@ -106,49 +112,54 @@
                     </div>
                     <!-- Row ######################################################################################################-->
                     <div class="row">
-                        <div class="col s12 m4">
+                        <div class="col s12 m6">
                             <div class="form-group">
                                 <div class="form-line success form-line-schedule_date">
-                                    <x-date-flat-pickr id="cad-schedule-schedule_date" name="schedule_date" value="{{ old('schedule_date') }}" />
+                                    <x-date-flat-pickr
+                                            wire:model.debounce="form.schedule_date"
+                                            id="cad-schedule-schedule_date"
+                                            value="{{ old('schedule_date') }}"
+                                    />
                                     <label class="form-label"  for="cad-schedule-schedule_date">Schedule start Date</label>
                                 </div>
-                                <div class="help-info" id="help-info-schedule_date">Select the Schedule execution date start.</div>
+                                @error('form.schedule_date')
+                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                @enderror
+                                <div class="@error('form.schedule_date') hide @enderror help-info" id="help-info-schedule_date">Select the Schedule execution date start.</div>
                             </div>
                         </div>
-                        <div class="col s12 m4">
-                            <div class="form-group">
-                                <div class="form-line success form-line-schedule_time">
-                                    <x-time-flat-pickr id="cad-schedule-schedule_time" name="schedule_time" value="{{ old('schedule_time') }}" />
-                                    <label class="form-label"  for="cad-schedule-schedule_time">Service Time</label>
-                                </div>
-                                <div class="help-info" id="help-info-schedule_time">Select the Schedule execution time.</div>
-                            </div>
-                        </div>
-                        <div class=" col s12 m4">
+                        <div class=" col s12 m6">
                             <div class="form-group">
                                 <div class="form-line success form-line-period">
-                                    <select class="materialize-select browser-default" id="cad-schedule-period" name="period">
+                                    <select
+                                            wire:model.blur="form.team"
+                                            class="materialize-select browser-default"
+                                            id="cad-schedule-team"
+                                    >
                                         @php
-                                            $string_first = ""; $string_second = "";$string_third="";$string_none= "";
-                                            if(!empty(old("period"))){
-                                                switch (old("period")){
-                                                    case'first': $string_first = "selected" ;break;
-                                                    case'second':$string_second = "selected";break;
-                                                    case'third':$string_third = "selected";break;
+                                            $string_first = "selected"; $string_second = "";$string_none= "";
+                                            if(!empty(old("form.team"))){
+                                                $string_first = ""; $string_second = "";$string_none= "";
+                                                switch (old("form.team")){
+                                                    case'scale1': $string_first = "selected" ;break;
+                                                    case'scale2':$string_second = "selected";break;
                                                 }
                                             }else{
-                                                $string_none = "selected";
+                                                $string_first = "selected";
                                             }
 
                                         @endphp
-                                        <option {{ $string_none }} value="">period</option>
-                                        <option {{ $string_first }} value="first">First</option>
-                                        <option  {{ $string_second }} value="second">Second</option>
-                                        <option  {{ $string_third }} value="third">third</option>
+                                        <option {{ $string_none }} value="scale1">select Scale</option>
+                                        <option {{ $string_first }} value="scale1">Scale 1</option>
+                                        <option  {{ $string_second }} value="scale2">Scale 2</option>
                                     </select>
-                                    <label class="form-label"  for="select-cad-service-period">Service Period.</label>
+                                    <label class="form-label"  for="select-cad-service-period">Team.</label>
                                 </div>
-                                <div class="help-info" id="help-info-loop">Select the period of the day.</div>
+                                @error('form.team')
+                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                @enderror
+
+                                <div class="@error('form.team') hide @enderror help-info" id="help-info-loop">Select theTeam of this schedule.</div>
                             </div>
                         </div>
                     </div>
@@ -160,27 +171,94 @@
 
                     <!-- Row ######################################################################################################-->
                     <div class="row">
-                        <div class=" col s12 ">
-                            <label class="form-label"  for="cad-schedule-loop">Schedule repeat.</label>
-                            <div class="form-group p-10 form-line-loop" id="cad-schedule-loop">
-                                <div class="grid-schedules m-b-5">
-                                    @foreach($weekArr??[] as $key => $day)
-                                        @if($key !== 'Saturday' and $key !== 'Sunday')
-                                        <div class="switch">
-                                            <label>
-                                                <span class="green-text text-darken-4">{{$key}}</span>
-                                                Off
-                                                <input  name="loop[]" type="checkbox" value="{{$key}}">
-                                                <span class="lever"></span>
-                                                On
-                                            </label>
-                                        </div>
-                                        @endif
+                        <div class=" col s12 m6">
+                            <label class="form-label"  for="cad-schedule-loop">frequency of repetition.</label>
+                            <div class="form-group p-t-10 p-b-10 form-line-loop" id="cad-schedule-loop">
+                                <div class="form-line success form-line-period">
+                                    <select
+                                            wire:model="form.repeat_frequency"
+                                            id="select-cad-service-form.repeat_frequency"
+                                            class="materialize-select browser-default"
+                                    >
+                                        @php
+                                            $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
+                                            if(!empty(old("form.repeat_frequency"))){
+                                                switch (old("form.repeat_frequency")){
+                                                    case'Wek':$string_Weekly = "selected";break;
+                                                    case'Biw':$string_Biweekly = "selected";break;
+                                                    case'Thr':$string_Three_weekly = "selected";break;
+                                                    case'Mon':$string_Monthly = "selected";break;
+                                                    case'One':
+                                                    default: $string_Eventual = "selected"; break;
+                                                }
+                                            }else{
+                                                $string_none = "selected";
+                                            }
 
-                                    @endforeach
+                                        @endphp
+                                        <option {{ $string_none }} value="">Select one option</option>
+                                        <option {{ $string_Eventual }} value="One">Eventual</option>
+                                        <option {{ $string_Weekly }} value="Wek">Weekly</option>
+                                        <option {{ $string_Biweekly }} value="Biw">Biweekly</option>
+                                        <option {{ $string_Three_weekly }} value="Thr">Three-weekly</option>
+                                        <option {{ $string_Monthly }} value="Mon">Monthly</option>
+
+                                    </select>
+{{--                                    <label class="form-label"  for="select-cad-service-period">frequency of repetition.</label>--}}
                                 </div>
 
-                                <div class="help-info" id="help-info-loop">Select day for repeat Service Schedule.</div>
+                                @error('form.repeat_frequency')
+                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                @enderror
+
+                                <div class="@error('form.repeat_frequency') hide @enderror help-info" id="help-info-loop">Select frequency of repetition Service Schedule.</div>
+                            </div>
+                        </div>
+                        <div class=" col s12 m6">
+                            <label class="form-label"  for="cad-schedule-loop">month(s) to repeat</label>
+                            <div class="form-group p-t-10 p-b-10 form-line-loop" id="cad-schedule-loop">
+                                <div class="form-line success form-line-period">
+                                    <select
+                                            wire:model="form.repeat_months"
+                                            class="materialize-select browser-default"
+                                            id="cad-schedule-team"
+                                    >
+                                        @php
+                                                $string_0= "";
+                                                $string_1= "";
+                                                $string_2 = "";
+                                                $string_3 = "";
+                                                $string_6 = "";
+                                                $string_12 = "";
+                                                if(!empty(old("form.repeat_months"))){
+                                                    switch (old("form.repeat_months")){
+                                                        case'1': $string_1 = "selected" ;break;
+                                                        case'2': $string_2 = "selected" ;break;
+                                                        case'3': $string_3 = "selected" ;break;
+                                                        case'6': $string_6 = "selected" ;break;
+                                                        case'12': $string_12 = "selected" ;break;
+                                                    }
+                                                }else{
+                                                    $string_none = "selected";
+                                                }
+
+                                        @endphp
+                                        <option  {{ $string_none }} value="0">select month(s) to repeat</option>
+                                        <option  {{ $string_1 }} value="0">no repeat</option>
+                                        <option  {{ $string_1 }} value="1">1 month</option>
+                                        <option  {{ $string_2 }} value="2">2 months</option>
+                                        <option  {{ $string_3 }} value="3">3 months</option>
+                                        <option  {{ $string_6 }} value="6">6 months</option>
+                                        <option  {{ $string_12 }} value="12">12 months</option>
+                                    </select>
+{{--                                    <label class="form-label"  for="select-cad-service-period">month(s) to repeat</label>--}}
+                                </div>
+
+                                @error('form.repeat_months')
+                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                @enderror
+
+                                <div class="@error('form.repeat_months') hide @enderror help-info" id="help-info-loop">Select month(s) to repeat Service Schedule.</div>
                             </div>
                         </div>
                     </div>

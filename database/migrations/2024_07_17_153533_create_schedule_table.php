@@ -20,7 +20,10 @@ return new class extends Migration
             $table->string('notes', 3000)->nullable();
             $table->string('instructions', 3000)->nullable();
             $table->string('who_saved');
+            $table->string('who_saved_id');
             $table->string('denomination',100)->nullable();
+            $table->string('team')->nullable();
+            $table->unsignedBigInteger('team_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers');

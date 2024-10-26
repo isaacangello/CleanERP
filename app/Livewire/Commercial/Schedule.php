@@ -5,8 +5,12 @@ namespace App\Livewire\Commercial;
 use AllowDynamicProperties;
 use App\Helpers\WeekNavigation;
 use App\Http\Controllers\Populate;
+use App\Livewire\Forms\scheduleForm;
+use App\Models\Customer;
+use App\Models\Employee;
 use App\Models\Schedule as Service;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -30,6 +34,21 @@ class Schedule extends Component
      * @var string
      */
     public $modalData = '';
+    public $fieldTitles =[
+        'employee1_id' => 'employee identification',
+        'employee2_id' => 'second employee identification',
+        'customer_id' => "Customer identification",
+        'info' => 'Customer adtional information',
+        'denomination' => 'denomination of customer',
+        'phone' => 'Customer phone',
+        'notes' => 'Notes',
+        'instructions' => 'instructions for employees',
+        'schedule_date' => "date of schedule",
+        'checkin_datetime' => 'date and time employee checkin',
+        'checkout_datetime' =>  'date and time employee checkout',
+        'address' =>  'address of service.',
+    ];
+    public scheduleForm $form;
     public $customer_id='',$denomination="",$employee1_id, $address='',$date='',$phone='',$info,$notes='',$instructions='',$service_date='',$service_time='',$checkin_datetime='',$checkout_datetime='';
     public $tempDate  = '';
     public $tempTime  = '';
@@ -57,6 +76,107 @@ class Schedule extends Component
         $this->dispatch('toast-alert',icon:'success',message:"Service has been deleted!!!") ;
 
     }
+
+    /***================================================================================================================
+     * @method store
+     * @return void
+     *================================================================================================================*/
+    public function store(){
+        $return = $this->form->submit();
+        if($return){
+            $this->showCadModal = false;
+            $this->dispatch('toast-alert',icon:"success",message:'New service has been created !!!');
+        }
+    }
+
+
+    /***================================================================================================================
+     * @param $field
+     * @return void|int
+     *================================================================================================================*/
+    public function field_change($field){
+        if(empty($this->modalData->id)){
+            $this->dispatch('toast-btn-alert', icon:'error', title:"Error", text:"Service not found  it should be trying changing field value!!");;
+            return 0;
+        }
+        $serviceModel =  \App\Models\Schedule::with('control')->find($this->modalData->id);
+        $customerModel =  Customer::find($serviceModel->customer_id);
+        if($field === 'employee_id'){
+            $employeeModel =  Employee::find($serviceModel->employee_id);
+        }
+        $model ="";
+        $value = '';
+        $dynamic_rules = array();
+        $direction = 'services';
+
+//        foreach ($serviceModel->rules() as $input => $rule ){
+//            if(array_key_exists($input, $req->all())){
+//                $dynamic_rules[$input] = $rule;
+//            }
+//        }
+        //dd($this->modalData->id);
+        $dynamic_rules[$field] = $serviceModel->rules()[$field];
+
+        $this->validate($dynamic_rules);
+        switch ($field){
+            case'customer_id':
+                $value = $this->customer_id; $model = $serviceModel;
+                break;
+            case'employee1_id': $value = $this->employee_id; $model = $serviceModel;   break;
+
+            case'info': $value = $this->info; $model = $customerModel;                  break;
+            case'phone': $value = $this->phone; $model = $customerModel;                break;
+            case'notes': $value = $this->notes; $model = $serviceModel;                 break;
+            case'instructions': $value = $this->instructions; $model = $serviceModel;   break;
+            case'schedule_date': $value = $this->service_date; $model = $serviceModel;   break;
+            case'checkin_datetime': $direction = 'checkIn'; $id =$this->modalData->id;  break;
+            case'checkout_datetime': $direction = 'cheOut'; $id =$this->modalData->id;  break;
+            case'address': $value = $this->address; $model = $customerModel;            break;
+            default: $this->dispatch('toast-btn-alert', icon:'error', title:"Error", text:"An error occurred when changing field value!!");;
+        }
+        //dd($model);
+        //dd($field .'=>'. $value);
+        switch ($direction)
+        {
+            case'checkIn':
+                DB::table('scheduling_control_residential')->updateOrInsert(
+                    ['service_id' => $id],
+                    [
+                        'service_id' => $id,
+                        'checkin_local' => "salvo no escritório",
+                        'checkin_lat' => 0,
+                        'checkin_long' => 0,
+                        'checkin_datetime' => Carbon::create($this->checkin_datetime)->format('Y-m-d H:i:s'),
+                    ]
+
+                );break;
+            case'cheOut':DB::table('scheduling_control_residential')->updateOrInsert(
+                ['service_id' => $id],
+                [
+                    'service_id' => $id,
+                    'checkin_local' => "salvo no escritório",
+                    'checkin_lat' => 0,
+                    'checkin_long' => 0,
+                    'checkout_datetime' => Carbon::create($this->checkout_datetime)->format('Y-m-d H:i:s'),
+                ]
+
+            );break;
+            default:
+                //dd($model);
+                $model->update(
+                    [
+                        $field => $value
+                    ]
+                );
+                $model->save();
+
+        }
+
+        $this->dispatch('refresh-week');
+        $this->dispatch('toast-alert',icon:"success",message:"The ".$this->fieldTitles[$field]." field  has been Updated !!!");
+
+    }
+
 
     /***================================================================================================================
      * @param $id

@@ -22,8 +22,9 @@ class ScheduleFactory extends Factory
             'schedule_date'=> fake()->dateTimeInInterval(now()->format('Y-m-d H:i:s'), '+ 5 days'),
             'notes'=>fake()->paragraph,
             'instructions'=>fake()->paragraph,
-            'loop' => '["Monday","Tuesday","Wednesday","Thursday","Friday"]',
-            'who_saved'=>'isaac:10',
+            'team'=> 'scale1',
+            'who_saved'=>'isaac',
+            'who_saved_id' => 1,
             'denomination'=> fake()->company,
         ];
     }

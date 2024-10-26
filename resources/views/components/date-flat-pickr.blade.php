@@ -2,11 +2,16 @@
 {{-- https://flatpickr.js.org/options/ --}}
 @props(['options' => "
     {
-        weekNumbers:true,
-        monthSelectorType:'static',
-        dateFormat:'Y-m-d',
-        altFormat:'F j, Y',
-        altInput:true,
+                    weekNumbers:true,
+                    monthSelectorType:'static',
+                    enableTime: true,
+                    dateFormat: 'Y-m-d H:i',
+                    altFormat: 'F j, Y h:i K',
+                    altInput: true,
+                    onChange: function(selectedDates, dateStr, instance){
+                        if (dateStr)
+                            instance.close();
+                    }
 
     }
     "])
