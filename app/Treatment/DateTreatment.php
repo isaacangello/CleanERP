@@ -199,13 +199,16 @@ public function MakeArrayDays($firstdate = 0, $periodo = "Wek", $periodo_meses =
     }
 
     /**
-     *
+     * @param $numberWeek
+     * @param $year
+     * @return array|string[]
      */
-    public function getWeekByNumberWeek($numberWeek, $year = 'current'):array{
+    public function getWeekByNumberWeek($numberWeek, string $year = 'current'):array{
         if(is_nan($numberWeek)){
             return ['error' => "numberWeek var is not a number"];
         }
         if ($year == 'current'){
+
 //            dd(now()->startOfYear()->isSunday())
 //            $period = CarbonPeriod::between(now()->startOfYear(), now()->endOfYear())
 //            ->filter(fn ($date) => $date->isMonday());
