@@ -72,7 +72,7 @@
 
 
                             >
-                                <h6>Scale 1</h6>
+                                <h6 class="m-b-5">Scale 1</h6>
                                 <div class="hide-on-small-and-down">
 
                                     <div class="row grid-schedules " id="htmlContent">
@@ -97,7 +97,7 @@
                                  x-transition:enter="animate__animated animate__fadeIn animate__faster"
 
                             >
-                                <b>Scale 2</b>
+                                <h6 class="m-b-5">Scale 2</h6>
                                 <div class="hide-on-small-and-down">
 
                                     <div class="row grid-schedules " id="htmlContent">
