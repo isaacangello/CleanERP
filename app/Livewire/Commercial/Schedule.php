@@ -25,7 +25,8 @@ class Schedule extends Component
 
     public  $showModal = false;
     public  $showCadModal = false;
-
+    public $showTab1 = true;
+    public $showTab2 = false;
     public $selectOptionsEmployees;
     public $selectOptionsCustomers;
 
@@ -57,11 +58,11 @@ class Schedule extends Component
     public string $tempControlOutTime;
 
     #[Computed]
-    public function dataCard(): string
+    public function dataCard($team = 'scale1'): string
     {
         $this->initVars();
 
-        return empty($this->buildCard($this->from,$this->till,$this->numWeek,$this->year))?"<div style='width: 300px'><h5 class='font-15'>No schedule found.</h5> </div>":$this->buildCard($this->from,$this->till,$this->numWeek,$this->year);
+        return empty($this->buildCard($this->from,$this->till,$this->numWeek,$this->year,$team))?"<div style='width: 300px'><h5 class='font-15'>No schedule found.</h5> </div>":$this->buildCard($this->from,$this->till,$this->numWeek,$this->year,$team);
     }
 
     /***================================================================================================================
@@ -85,7 +86,7 @@ class Schedule extends Component
         $return = $this->form->submit();
         if($return){
             $this->showCadModal = false;
-            $this->dispatch('toast-alert',icon:"success",message:'New service has been created !!!');
+            $this->dispatch('toast-alert',icon:"success",message:"$return !!!");
         }
     }
 

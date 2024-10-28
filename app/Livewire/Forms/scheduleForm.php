@@ -40,7 +40,7 @@ class scheduleForm extends Form
         $this->validateOnly($propertyName);
     }
 
-    public function submit(): bool
+    public function submit(): string
     {
         //dd($this->repeat_frequency);
         $this->validate();
@@ -50,28 +50,31 @@ class scheduleForm extends Form
         if(empty($this->denomination)){
             $this->denomination = Customer::find($this->customer_id)->name;
         }
-
-        $data_insert =  $this->repeat($this->all(),$this->repeat_frequency,$this->repeat_months);
-        $ids = array();
-        foreach ($data_insert as $key => $data){
-         $ids[$key] = DB::table('schedules')->insertGetId($data);
+        if($this->repeat_months == 0){
+            Schedule::create([
+                'customer_id' => $this->customer_id,
+                'employee_id' => $this->employee_id,
+                'denomination' => $this->denomination,
+                'schedule_date' => $this->schedule_date,
+                'notes' => $this->notes,
+                'instructions' => $this->instructions,
+                'team' => $this->team,
+                'team_id' => $this->team_id,
+                'who_saved' => auth()->user()->name,
+                'who_saved_id' => auth()->id(),
+            ]);
+            return "Schedule created successfully";
         }
-        dd( implode(", " , $ids ));
-//        Schedule::create([
-//            'customer_id' => $this->customer_id,
-//            'employee_id' => $this->employee_id,
-//            'denomination' => $this->denomination,
-//            'schedule_date' => $this->schedule_date,
-//            'notes' => $this->notes,
-//            'instructions' => $this->instructions,
-//            'team' => $this->team,
-//            'team_id' => $this->team_id,
-//            'who_saved' => auth()->user()->name,
-//            'who_saved_id' => auth()->id(),
-//        ]);
-        // Execution doesn't reach here if validation fails.
-
-        // Do something with the data
-        return true;
+        if($this->repeat_months > 0){
+            $data_insert =  $this->repeat($this->all(),$this->repeat_frequency,$this->repeat_months,'commercial');
+            $ids = array();
+            foreach ($data_insert as $key => $data){
+                $id = DB::table('schedules')->insertGetId($data);
+                DB::table('customers_schedules')->insert( ['customer_id' => $this->customer_id,'schedule_id' => $id]);
+                $ids[$key] = $id;
+            }
+        }
+        $this->reset();
+        return 'Schedule repeat created successfully';
     }
 }

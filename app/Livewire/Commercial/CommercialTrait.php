@@ -80,9 +80,10 @@ trait CommercialTrait
      * @param $till
      * @param $nunWeek
      * @param $year
+     * @param $team
      * @return string
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    public function buildCard($from,$till,$nunWeek,$year): string
+    public function buildCard($from,$till,$nunWeek,$year,string $team='scale1'): string
     {
         $dateTrait = new DateTreatment();
         $weekArr = $dateTrait->getWeekByNumberWeek($nunWeek,$year);
@@ -90,8 +91,10 @@ trait CommercialTrait
 //        dd($filteredWeekGroup);
         $schedule = new ScheduleModel();
         $data = $schedule->with('customer','employee')
+
             ->whereDate('schedule_date','>=' , Carbon::create($from)->format('Y-m-d H:i:s') )
             ->whereDate('schedule_date','<=' , Carbon::create($till)->format('Y-m-d H:i:s') )
+            ->where('team',$team)
             ->orderBy('schedule_date')->get();
         //dd($data);
 

@@ -11,11 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_cycles', function (Blueprint $table) {
+        Schema::create('customers_schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_id');
-            $table->string('ids');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('schedule_id');
+            $table->DateTime('date');
+            $table->softDeletes();
             $table->timestamps();
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('schedule_id')->references('id')->on('schedules');
+        });
+        Schema::create('customers_services', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('service_id');
+            $table->DateTime('date');
+            $table->softDeletes();
+            $table->timestamps();
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('service_id')->references('id')->on('services');
         });
     }
 
@@ -23,7 +37,17 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
+
     {
-        Schema::dropIfExists('service_cycles');
+        Schema::table('customers_schedules', function (Blueprint $table) {
+            $table->dropForeign('customers_schedules_customer_id_foreign');
+            $table->dropForeign('customers_schedules_schedule_id_foreign');
+        });
+        Schema::table('customers_services', function (Blueprint $table) {
+            $table->dropForeign('customers_services_customer_id_foreign');
+            $table->dropForeign('customers_services_service_id_foreign');
+        });
+        Schema::dropIfExists('customers_services');
+        Schema::dropIfExists('customers_schedules');
     }
 };
