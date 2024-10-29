@@ -48,4 +48,6 @@ class Schedule extends Model
     {
         return $this->hasOne(ScheduleControl::class,'schedule_id');
     }
+
+
 }

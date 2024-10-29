@@ -115,146 +115,153 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row label-employee-view-edit grey" >
-                        <span class="label   label-padding">Service information</span>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m4">
-                            <div class="form-group">
-                                <div class="form-line success">
-{{--                                <input class="form-control datepicker"  id="input-cad-service-date" name="service_date" value="{{ old('service_date') }}" />--}}
-                                    <x-date-flat-pickr
-                                            wire:model="form.service_date"
-                                            id="input-cad-service-date"
-                                            value="{{ old('form.service_date') }}"
-                                    />
-                                <label class="form-label"  for="input-cad-service-date">Service Date</label>
-                            </div>
-                                @error('form.service_date')
-                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
-                                @enderror
-                            <div class=" @error('form.service_date') hide @enderror help-info">Select the service execution date.</div>
-                            </div>
+                        <!-- Divider ######################################################################################################-->
+                        <div class="row label-employee-view-edit" >
+                            <span class="label label-padding">Service repeat. </span>
                         </div>
-                        <div class="col s12 m4">
-                            <div class="form-group">
-                                <div class="form-line success">
-{{--                                    <input class="form-control timepicker"  id="input-cad-service-time" name="service_time" value="{{ old('service_time') }}" />--}}
-                                    <x-time-flat-pickr
-                                            wire:model="form.service_time"
-                                            id="input-cad-service-time"
-                                            value="{{ old('form.service_time') }}"
-                                    />
-                                <label class="form-label"  for="input-cad-service-time">Service Time</label>
-                            </div>
-                            @error('form.service_time')
-                            <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
-                            @enderror
-                            <div class="@error('form.service_time') hide @enderror help-info">Select the service execution time.</div>
+                        <!-- Divider ######################################################################################################-->
 
-                            </div>
-                        </div>
-                        <div class=" col s12 m4">
-                            <div class="form-group">
-                                <div class="form-line success">
-                                    <select
-                                            wire:model="form.period"
-                                            id="select-cad-service-period"
-                                            class="materialize-select browser-default"
-                                    >
-                                                @php
-                                                    $string_first = ""; $string_second = "";$string_third="";$string_none= "";
-                                                    if(!empty(old("period"))){
-                                                        switch (old("period")){
-                                                            case'first': $string_first = "selected" ;break;
-                                                            case'second':$string_second = "selected";break;
-                                                            case'third':$string_third = "selected";break;
-                                                        }
-                                                    }else{
-                                                        $string_none = "selected";
+                        <!-- Row ######################################################################################################-->
+                        <div class="row">
+                            <div class=" col s12 m6">
+                                <label class="form-label"  for="cad-schedule-loop">Service frequency.</label>
+                                <div class="form-group p-t-10 p-b-10 form-line-loop" id="cad-schedule-loop">
+                                    <div class="form-line success form-line-period">
+                                        <select
+                                                wire:model="form.repeat_frequency"
+                                                id="select-cad-service-form.repeat_frequency"
+                                                class="materialize-select browser-default"
+                                        >
+                                            @php
+                                                $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
+                                                if(!empty(old("form.repeat_frequency"))){
+                                                    switch (old("form.repeat_frequency")){
+                                                        case'Wek':$string_Weekly = "selected";break;
+                                                        case'Biw':$string_Biweekly = "selected";break;
+                                                        case'Thr':$string_Three_weekly = "selected";break;
+                                                        case'Mon':$string_Monthly = "selected";break;
+                                                        case'One':
+                                                        default: $string_Eventual = "selected"; break;
                                                     }
+                                                }else{
+                                                    $string_none = "selected";
+                                                }
 
-                                                @endphp
-                                        <option {{ $string_none }} value="">period</option>
-                                        <option {{ $string_first }} value="first">First</option>
-                                        <option  {{ $string_second }} value="second">Second</option>
-                                        <option  {{ $string_third }} value="third">third</option>
-                                    </select>
-                                    <label class="form-label"  for="select-cad-service-period">Service Period.</label>
-                                </div>
-                                @error('form.period')
-                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
-                                @enderror
+                                            @endphp
+                                            <option {{ $string_none }} value="">Select one option</option>
+                                            <option {{ $string_Eventual }} value="One">Eventual</option>
+                                            <option {{ $string_Weekly }} value="Wek">Weekly</option>
+                                            <option {{ $string_Biweekly }} value="Biw">Biweekly</option>
+                                            <option {{ $string_Three_weekly }} value="Thr">Three-weekly</option>
+                                            <option {{ $string_Monthly }} value="Mon">Monthly</option>
 
-                                <div class="@error('form.period') hide @enderror help-info">Select the period of the day.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class=" col s12 m6">
-                            <div class="form-group">
-                                <div class="form-line success" id="select-cad-service-billings-container">
-                                    <select
-                                            wire:model="form.frequency_payment"
-                                            id="select-cad-service-billings"
-                                            class="materialize-select browser-default"
-                                            value
-                                    >
-                                        @if($populateBillings??array())
-                                            @foreach($populateBillings as $billing)
-                                                <option value="{{$billing->id}},{{$billing->value}}">{{$billing->label}} / {{ $billing->value }}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                    <label class="form-label"  for="select-cad-service-billings">type of billing.</label>
+                                        </select>
+                                        {{--                                    <label class="form-label"  for="select-cad-service-period">frequency of repetition.</label>--}}
+                                    </div>
+
+                                    @error('form.repeat_frequency')
+                                    <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                    @enderror
+
+                                    <div class="@error('form.repeat_frequency') hide @enderror help-info" id="help-info-loop">Select the service execution frequency</div>
                                 </div>
-                                @error('form.frequency_payment')
-                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
-                                @enderror
-                                <div class="@error('form.frequency_payment') hide @enderror help-info">Select type of billing.</div>
                             </div>
-                        </div>
-                        <div class=" col s12 m6">
-                            <div class="form-group">
-                                <div class="form-line success">
-                                    <select
-                                            wire:model="form.frequency"
-                                            id="select-cad-service-frequency"
-                                            class="materialize-select browser-default"
-                                    >
-                                                @php
-                                                    $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
-                                                    if(!empty(old("frequency"))){
-                                                        switch (old("frequency")){
-                                                            case'Wek':$string_Weekly = "selected";break;
-                                                            case'Biw':$string_Biweekly = "selected";break;
-                                                            case'Thr':$string_Three_weekly = "selected";break;
-                                                            case'Mon':$string_Monthly = "selected";break;
-                                                            case'One':
-                                                            default: $string_Eventual = "selected"; break;
-                                                        }
-                                                    }else{
-                                                        $string_none = "selected";
+                            <div class=" col s12 m6">
+                                <label class="form-label"  for="cad-schedule-loop">month(s) to repeat</label>
+                                <div class="form-group p-t-10 p-b-10 form-line-loop" id="cad-schedule-loop">
+                                    <div class="form-line success form-line-period">
+                                        <select
+                                                wire:model="form.repeat_months"
+                                                class="materialize-select browser-default"
+                                                id="cad-schedule-team"
+                                        >
+                                            @php
+                                                $string_0= "";
+                                                $string_1= "";
+                                                $string_2 = "";
+                                                $string_3 = "";
+                                                $string_6 = "";
+                                                $string_12 = "";
+                                                if(!empty(old("form.repeat_months"))){
+                                                    switch (old("form.repeat_months")){
+                                                        case'1': $string_1 = "selected" ;break;
+                                                        case'2': $string_2 = "selected" ;break;
+                                                        case'3': $string_3 = "selected" ;break;
+                                                        case'6': $string_6 = "selected" ;break;
+                                                        case'12': $string_12 = "selected" ;break;
                                                     }
+                                                }else{
+                                                    $string_none = "selected";
+                                                }
 
-                                                @endphp
-                                        <option {{ $string_none }} value="">Select one option</option>
-                                        <option {{ $string_Eventual }} value="One">Eventual</option>
-                                        <option {{ $string_Weekly }} value="Wek">Weekly</option>
-                                        <option {{ $string_Biweekly }} value="Biw">Biweekly</option>
-                                        <option {{ $string_Three_weekly }} value="Thr">Three-weekly</option>
-                                        <option {{ $string_Monthly }} value="Mon">Monthly</option>
+                                            @endphp
+                                            <option  {{ $string_none }} value="0">select month(s) to repeat</option>
+                                            <option  {{ $string_1 }} value="0">no repeat</option>
+                                            <option  {{ $string_1 }} value="1">1 month</option>
+                                            <option  {{ $string_2 }} value="2">2 months</option>
+                                            <option  {{ $string_3 }} value="3">3 months</option>
+                                            <option  {{ $string_6 }} value="6">6 months</option>
+                                            <option  {{ $string_12 }} value="12">12 months</option>
+                                        </select>
+                                        {{--                                    <label class="form-label"  for="select-cad-service-period">month(s) to repeat</label>--}}
+                                    </div>
 
-                                    </select>
-                                    <label class="form-label"  for="select-cad-service-frequency">Service frequency.</label>
+                                    @error('form.repeat_months')
+                                    <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                    @enderror
+
+                                    <div class="@error('form.repeat_months') hide @enderror help-info" id="help-info-loop">Select month(s) to repeat Service Schedule.</div>
                                 </div>
-                                @error('form.frequency')
-                                <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
-                                @enderror
-                                <div class="@error('form.frequency') hide @enderror  help-info">Select the service execution frequency.</div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row label-employee-view-edit grey" >
+                            <span class="label   label-padding">Service information</span>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6">
+                                <div class="form-group">
+                                    <div class="form-line success">
+                                        {{--                                <input class="form-control datepicker"  id="input-cad-service-date" name="service_date" value="{{ old('service_date') }}" />--}}
+                                        <x-date-flat-pickr
+                                                wire:model="form.service_date"
+                                                id="input-cad-service-date"
+                                                value="{{ old('form.service_date') }}"
+                                        />
+                                        <label class="form-label"  for="input-cad-service-date">Service Date</label>
+                                    </div>
+                                    @error('form.service_date')
+                                    <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                    @enderror
+                                    <div class=" @error('form.service_date') hide @enderror help-info">Select the service execution date.</div>
+                                </div>
+                            </div>
+                            <div class=" col s12 m6">
+                                <div class="form-group">
+                                    <div class="form-line success" id="select-cad-service-billings-container">
+                                        <select
+                                                wire:model="form.frequency_payment"
+                                                id="select-cad-service-billings"
+                                                class="materialize-select browser-default"
+                                                value
+                                        >
+                                            @if($populateBillings??array())
+                                                @foreach($populateBillings as $billing)
+                                                    <option value="{{$billing->id}},{{$billing->value}}">{{$billing->label}} / {{ $billing->value }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        <label class="form-label"  for="select-cad-service-billings">type of billing.</label>
+                                    </div>
+                                    @error('form.frequency_payment')
+                                    <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
+                                    @enderror
+                                    <div class="@error('form.frequency_payment') hide @enderror help-info">Select type of billing.</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
                     <div class="row">
                         <div class=" col s12 m6">
                                 <label for="textarea-cad-service-note">type service notes.</label>

@@ -51,4 +51,12 @@ class Customer extends Model
     {
         return $this->belongsToMany(Billing::class,'billings_customers','customer_id','billing_id');
     }
+    public function schedules_repeat()
+    {
+        return $this->belongsToMany(Schedule::class,'schedules_customers','customer_id','schedule_id');
+    }
+    public function services_repeat()
+    {
+        return $this->belongsToMany(Service::class,'services_customers','customer_id','service_id');
+    }
 }
