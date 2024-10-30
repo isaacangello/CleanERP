@@ -11,6 +11,7 @@
         <a
                 class="  pointer valign-wrapper @if($this->computedService->paid_out)btn btn-link btn-success btn-small white-text @else btn btn-link btn-small btn-danger white-text  @endif"
                 @if($this->computedService->paid_out) wire:click="confirmPaid('{{$this->computedService->id}}',false)" @else wire:click="confirmPaid('{{$this->computedService->id}}',true)" @endif
+
         >
             @if($this->computedService->paid_out)
                 <span class="material-symbols-outlined font-15">
@@ -23,7 +24,7 @@
             @endif
         </a>
     </td>
-    <td class="center-align">
+    <td class="center-align" title="{{$this->title}}">
         {{$data->cust_name}}
     </td>
     <td>{{$data->frequency}}</td>

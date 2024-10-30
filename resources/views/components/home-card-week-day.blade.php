@@ -38,15 +38,12 @@
                             <a
                                     class="p-l-4 p-r-4 {{$classes_service}}  btn-link padding-0 z-depth-3 pointer "
                                     wire:click="{!! $wire_click !!}"
-                                    wire:loading.class="animate__animated"
-                                    wire:loading.class="animate__pulse "
-                                    wire:loading.class="animate__infinite"
-                                    wire:loading.class="infinite"
+
                                     title="{{$title}}"
 
                             >
 
-                                {{ Funcs::carbonFormat($row->service_date,'h')}}
+                                <span class="button__text"> {{ Funcs::carbonFormat($row->service_date,'h')}}</span>
 
                             </a>
                         </div>

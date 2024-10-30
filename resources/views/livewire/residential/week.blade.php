@@ -31,8 +31,15 @@
                             <x-standard-btn class="btn-small" @click="cadOpen = true">   New service  </x-standard-btn>
                         </x-btn-week-mobile-navigator>
                         <div class="row" id="htmlContent">
+                            @php($count = 0)
                             @foreach($this->dataCard() as $empName => $data )
                                 <x-home-cards :emp-name="$empName" :$data />
+                                @php($count++)
+                                @if($count == 4)
+                                    @php($count = 0)
+                                    </div>
+                                    <div class="row">
+                                @endif
                             @endforeach
 
 

@@ -4,6 +4,7 @@ namespace App\Livewire\Forms;
 
 use App\Helpers\Funcs;
 use App\Livewire\RepeatTrait;
+use App\Models\Customer;
 use App\Models\Service;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -95,13 +96,24 @@ class ServiceForm extends Form
                 DB::table('customers_services')->insert( [
                     'customer_id' => $this->customer_id,
                     'service_id' => $id,
-                    'date' =>  $this->service_date,
+                    'date' =>  $data['service_date'],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
 
                 ]);
                 $ids[$key] = $id;
+                $dates[$key] = $data['service_date'];
             }
+            $data = [
+                'customer_id' => $this->customer_id,
+                'customer_name' => Customer::find($this->customer_id)->name,
+                'ids' => implode(',',$ids),
+                'dates' => implode(',',$dates),
+                'frequency' => $this->repeat_frequency,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+            $return = DB::table('services_cycles')->insert($data);
             $this->reset();
             return 'Service repeat created successfully';
 

@@ -12,8 +12,9 @@
                             <div class="col s12 m3">
                                 <div class="modal-dialog z-depth-3 m-b-20">
                                     <div class="modal-content modal-col-white">
-                                        <div class="header center-align font-12 p-t-10 p-b-10">
+                                        <div class="header left-align font-12 p-t-10 p-b-10">
                                         <span class="card-title font-12 font-bold">{{$empName}}</span>
+                                            <div wire:loading wire:target="confirmService ,btnFeeService" class="left button--loading"></div>
                                         </div>
 
                                             <table class="table-card centered">

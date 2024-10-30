@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('employee1_id');
             $table->unsignedBigInteger('employee2_id')->nullable();
             $table->dateTime('service_date');
-            $table->string('period');
+            $table->string('period')->nullable();
             $table->string('frequency')->default('ONE');
             $table->string('notes', 3000)->nullable();
             $table->string('instructions', 3000)->nullable();

@@ -62,6 +62,8 @@ class scheduleForm extends Form
                 'team_id' => $this->team_id,
                 'who_saved' => auth()->user()->name,
                 'who_saved_id' => auth()->id(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
             return "Schedule created successfully";
         }
@@ -70,9 +72,27 @@ class scheduleForm extends Form
             $ids = array();
             foreach ($data_insert as $key => $data){
                 $id = DB::table('schedules')->insertGetId($data);
-                DB::table('customers_schedules')->insert( ['customer_id' => $this->customer_id,'schedule_id' => $id]);
+                DB::table('customers_schedules')->insert( [
+                    'customer_id' => $this->customer_id,
+                    'schedule_id' => $id,
+                    'date' => $data['schedule_date'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+
+                ]);
                 $ids[$key] = $id;
+                $dates[$key] = $data['schedule_date'];
             }
+            $data = [
+                'customer_id' => $this->customer_id,
+                'customer_name' => $this->denomination,
+                'ids' => implode(',',$ids),
+                'dates' => implode(',',$dates),
+                'frequency' => $this->repeat_frequency,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            DB::table('schedule_cycles')->insert($data);
         }
         $this->reset();
         return 'Schedule repeat created successfully';

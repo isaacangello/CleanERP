@@ -3268,6 +3268,51 @@ section.content {
 
 .pointer {cursor: pointer;}
 
+/** Button spinings */
+
+
+.button:active {
+    background: #2e7d32;
+}
+
+.button__text {
+    font: inherit;
+    transition: all 0.2s;
+}
+
+.button--loading .button__text {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.button--loading {
+    content: "";
+    position: relative;
+    width: 12px;
+    height: 12px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    border-top: 2px solid #000000;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+
 .btn-circle-lg {
     border: none;
     outline: none !important;

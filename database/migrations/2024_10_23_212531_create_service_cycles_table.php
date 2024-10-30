@@ -21,6 +21,16 @@ return new class extends Migration
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('schedule_id')->references('id')->on('schedules');
         });
+        Schema::create('schedule_cycles', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('customer_id');
+            $table->string('customer_name');
+            $table->string('ids',3000);
+            $table->string('dates',3000);
+            $table->string('frequency');
+            $table->softDeletes();
+            $table->timestamps();
+        });
         Schema::create('customers_services', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
@@ -31,6 +41,17 @@ return new class extends Migration
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('service_id')->references('id')->on('services');
         });
+        Schema::create('services_cycles', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('customer_id');
+            $table->string('customer_name');
+            $table->string('ids',3000);
+            $table->string('dates',3000);
+            $table->string('frequency');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -47,6 +68,8 @@ return new class extends Migration
             $table->dropForeign('customers_services_customer_id_foreign');
             $table->dropForeign('customers_services_service_id_foreign');
         });
+        Schema::dropIfExists('services_cycles');
+        Schema::dropIfExists('schedule_cycles');
         Schema::dropIfExists('customers_services');
         Schema::dropIfExists('customers_schedules');
     }

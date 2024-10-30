@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Finance;
 
+use App\Livewire\RepeatTrait;
 use App\Models\Customer;
 use App\Models\Payment;
 use App\Models\Service;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use JetBrains\PhpStorm\NoReturn;
 use Livewire\Attributes\Computed;
@@ -15,6 +17,7 @@ use stdClass;
 
 class DetailerTr extends Component
 {
+    use RepeatTrait;
     public $data;
     public $key = null;
     #[Validate('numeric')]
@@ -26,6 +29,8 @@ class DetailerTr extends Component
     public float $price;
     #[Validate('required')]
     public string $payment='';
+
+    public $title ='';
     protected $listeners = [
         'detailer-refresh' => '$refresh'
     ];
@@ -46,6 +51,18 @@ class DetailerTr extends Component
     public function computedService(): Collection|Service|array|null
     {
         //dd(Service::find($this->data->id));
+        $result = $this->searchServiceCycleById($this->data->id);
+        //var_dump($result);
+        if($result){
+            $dates = explode(',',$result->dates);
+            $this->title = "dates: \n";
+            foreach ($dates as $date){
+                $this->title .= Carbon::create($date)->format('m/d/Y')."\n";
+            }
+
+        }else{
+            $this->title = "No repeat found";
+        }
         return Service::find($this->data->id);
     }
     #[Computed]
