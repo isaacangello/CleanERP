@@ -34,7 +34,7 @@
 <body>
 <div class="w-11/12 mx-auto">
     <div  @if($pdf) style="display: none" @endif class="w-3/12 mx-auto mt-10 text-center no-print"><a class="mx-auto p-4 bg-gray-400 hover:bg-gray-300 rounded-lg" target="_blank" href="{{route('week.pdf.export',[$from,$till])}}">Print</a></div>
-    <table class="mt-10 w-full mx-auto">
+    <table class="@if(!$pdf) mt-10 @endif  w-full mx-auto">
         <tr>
             <td rowspan="3" class="w-3/12  text-center"
             style="width: 25%;

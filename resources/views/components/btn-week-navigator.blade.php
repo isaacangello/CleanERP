@@ -6,7 +6,7 @@
             </div>
 
             <div class="col s4 m1 input-field">
-                {{ $btn }}
+                {{ $btn??'' }}
             </div>
             <div class="col s4 m2 input-field">
                 <div class="form-group">
