@@ -57,7 +57,12 @@ class Funcs
     public static function nameShort(String $name,string $delimiter = ' ',int $index = 0):string
     {
         if(sizeof(explode($delimiter,trim($name))) > 1) {
+            if(sizeof(explode($delimiter,trim($name))) < $index){
+                return $name;
+            }
             $exploded = explode($delimiter,$name);
+
+
             if ($index > 0) {
                 $string = '';
                 for ($i=0;$i<$index;$i++){

@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Service;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+
+
+
+class PdfController extends Controller
+{
+
+    public function index($from = null,$till=null )
+    {
+        $from = $from ?? now()->startOfWeek(Carbon::MONDAY)->format('Y-m-d');
+        $till = $till ?? now()->endOfWeek(Carbon::SUNDAY)->format('Y-m-d');
+
+        $services = Service::select('services.*','customers.name as customer_name','employees.name as employee_name'
+        )->with('customer','employee','control')
+            ->join('customers','services.customer_id','=','customers.id')
+            ->join('employees','services.employee1_id','=','employees.id')
+            ->whereBetween('service_date',[$from,$till])
+            ->get();
+        $countedAllServices = $services->count();
+        $counted = $services->countBy('customer_id');
+        $countedTotalOpen = $counted[1];
+        $allServicesClosed = $countedAllServices - $counted[1];
+        $groupedServices = $services->groupBy('employee_name');
+        $pdf = false;
+//        dd(
+//            $from,$till,
+//            "All services ".$countedAllServices,
+//            "All services open ".$allServicesClosed,
+//            "Total em aberto => ".$counted[1],
+//            $services->all()[0],
+//            $services->groupBy('employee_name'),
+//            $services->countBy('employee_name'),
+//
+//        );
+        return view('livewire.residential.dashpdf',
+            compact(
+                'services',
+                'from',
+                'till',
+                'countedAllServices',
+                'allServicesClosed',
+                'countedTotalOpen',
+                'groupedServices',
+                'pdf'
+            ));
+    }
+    //
+    public function generatePDF($from = null,$till=null)
+    {
+        $from = $from ?? now()->startOfWeek(Carbon::MONDAY)->format('Y-m-d');
+        $till = $till ?? now()->endOfWeek(Carbon::SUNDAY)->format('Y-m-d');
+
+        $services = Service::select('services.*','customers.name as customer_name','employees.name as employee_name'
+        )->with('customer','employee','control')
+            ->join('customers','services.customer_id','=','customers.id')
+            ->join('employees','services.employee1_id','=','employees.id')
+            ->whereBetween('service_date',[$from,$till])
+            ->get();
+        $countedAllServices = $services->count();
+        $counted = $services->countBy('customer_id');
+        $countedTotalOpen = $counted[1];
+        $allServicesClosed = $countedAllServices - $counted[1];
+        $groupedServices = $services->groupBy('employee_name');
+        $data = [
+            'services' => $services,
+            'from' => $from,
+            'till' => $till,
+            'countedAllServices' => $countedAllServices,
+            'allServicesClosed' => $allServicesClosed,
+            'countedTotalOpen' => $countedTotalOpen,
+            'groupedServices' => $groupedServices,
+            'pdf' => true
+        ];
+        return PDF::loadView('livewire.residential.dashpdf', $data )
+            ->setPaper('a4', 'portrait')
+            ->stream('week-From'.$from.'_till_'.$till.'.pdf');
+    }
+}
