@@ -1,3 +1,3 @@
-<div>
-    <!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
-</div>
+<a {{ $attributes->merge(['target' => '_blank', 'class' => 'btn btn-link z-depth-3'  ]) }}>
+    {{ $slot }}
+</a>

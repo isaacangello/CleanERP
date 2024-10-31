@@ -93,7 +93,9 @@ class Week extends Component
         $this->year = now()->format('Y');
         $this->traitNullVars();
     }
-
+    public function exportPdf(){
+        return redirect()->route('week.pdf.export', [ 'from' => Carbon::create($this->from)->format("Y-m-d"), 'till' => Carbon::create($this->till)->format("Y-m-d")]);
+    }
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
      * @return void
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/

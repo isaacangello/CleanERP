@@ -1,12 +1,12 @@
     <div class="row m-b-0 hide-on-small-and-down">
 
         {{--========================= desktop   ============================================================================--}}
-            <div class="col s4 m2 input-field">
+            <div class="col s4 m1 input-field">
                 {{ $slot }}
             </div>
 
             <div class="col s4 m1 input-field">
-                {!! $slot2??"&nbsp;" !!}
+                {{ $btn }}
             </div>
             <div class="col s4 m2 input-field">
                 <div class="form-group">

@@ -44,6 +44,8 @@ class PdfController extends Controller
 //            $services->countBy('employee_name'),
 //
 //        );
+        //dd(public_path('logo.png'));
+        $logo = '<img src="data:image/svg+xml;base64,' . base64_encode(public_path('logo.png')) . '" ...>';
         return view('livewire.residential.dashpdf',
             compact(
                 'services',
@@ -53,7 +55,8 @@ class PdfController extends Controller
                 'allServicesClosed',
                 'countedTotalOpen',
                 'groupedServices',
-                'pdf'
+                'pdf',
+                'logo'
             ));
     }
     //
@@ -91,10 +94,5 @@ class PdfController extends Controller
         return PDF::loadView('livewire.residential.dashpdf', $data )
             ->setPaper('a4', 'portrait')
             ->stream('week-From'.$from.'_till_'.$till.'.pdf');
-//        return Browsershot::url(route('week.pdf',[$from,$till]))
-//            ->format('A4')
-//            ->showBackground()
-//            ->margins(10, 10, 10, 10)
-//            ->savePdf('week-From'.$from.'_till_'.$till.'.pdf');
     }
 }
