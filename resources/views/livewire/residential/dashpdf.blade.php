@@ -21,12 +21,17 @@
 </head>
 <body>
 <div class="w-11/12 mx-auto">
-    <div  @if($pdf) style="display: none" @endif class="   w-3/12 mx-auto mt-10"><a class="mx-auto p-4 bg-gray-400 hover:bg-gray-300 rounded-lg" target="_blank" href="{{route('week.pdf.export',[$from,$till])}}">Print</a></div>
+    <div  @if($pdf) style="display: none" @endif class="   w-3/12 mx-auto mt-10 text-center"><a class="mx-auto p-4 bg-gray-400 hover:bg-gray-300 rounded-lg" target="_blank" href="{{route('week.pdf.export',[$from,$till])}}">Print</a></div>
     <table class="mt-10 w-full mx-auto">
         <tr>
             <td rowspan="3" class="w-3/12 border border-1 text-center"
-            style="width: 25%;"
-            ><img class="w-28 mx-auto" src="/img/jjllogo.png'" alt="JJL_Logo"></td>
+            style="width: 25%;
+            background-image: url('/logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            ">
+            <img class="w-full mx-auto" src="{{url('logo.png')}}" alt="JJL_Logo"></td>
             <td colspan="6" class="border border-1 text-center ">
 
                     <span class="font-normal text-3xl">JJL Cleaning Services</span>

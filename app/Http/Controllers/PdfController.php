@@ -6,7 +6,7 @@ use App\Models\Service;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Spatie\Browsershot\Browsershot;
 
 
 class PdfController extends Controller
@@ -25,8 +25,13 @@ class PdfController extends Controller
             ->get();
         $countedAllServices = $services->count();
         $counted = $services->countBy('customer_id');
-        $countedTotalOpen = $counted[1];
-        $allServicesClosed = $countedAllServices - $counted[1];
+        if(array_search(1, $counted->keys()->all())){
+            $countedVal = $counted[1];
+        }else{
+            $countedVal = 0;
+        }
+        $countedTotalOpen = $countedVal;
+        $allServicesClosed = $countedAllServices - $countedVal;
         $groupedServices = $services->groupBy('employee_name');
         $pdf = false;
 //        dd(
@@ -65,8 +70,13 @@ class PdfController extends Controller
             ->get();
         $countedAllServices = $services->count();
         $counted = $services->countBy('customer_id');
-        $countedTotalOpen = $counted[1];
-        $allServicesClosed = $countedAllServices - $counted[1];
+        if(array_search(1, $counted->keys()->all())){
+            $countedVal = $counted[1];
+        }else{
+            $countedVal = 0;
+        }
+        $countedTotalOpen = $countedVal;
+        $allServicesClosed = $countedAllServices - $countedVal;
         $groupedServices = $services->groupBy('employee_name');
         $data = [
             'services' => $services,
@@ -81,5 +91,10 @@ class PdfController extends Controller
         return PDF::loadView('livewire.residential.dashpdf', $data )
             ->setPaper('a4', 'portrait')
             ->stream('week-From'.$from.'_till_'.$till.'.pdf');
+//        return Browsershot::url(route('week.pdf',[$from,$till]))
+//            ->format('A4')
+//            ->showBackground()
+//            ->margins(10, 10, 10, 10)
+//            ->savePdf('week-From'.$from.'_till_'.$till.'.pdf');
     }
 }
