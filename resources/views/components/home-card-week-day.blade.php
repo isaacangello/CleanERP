@@ -19,7 +19,7 @@
 
             @foreach($data as $row)
                 @php
-//                    dd($row->service_id);
+                    //dd($row);
                     $title=" customer: $row->cust_name \n employee: $row->emp_name \n";
                     if ($row->fee === 1) {
                         $classes_service = "btnFeeService amber darken-3";
@@ -62,7 +62,9 @@
                         </div>
                         <div title="{{$title}}">
                             <span class="badge">
+                                @if(!empty($row->notes))
                                 <span class="material-symbols-outlined ">mark_unread_chat_alt</span>
+                                @endif
                                @if($row->cust_type === 'RENTALHOUSE')
                                     <span class="material-symbols-outlined ">brightness_7</span>
                                 @endif

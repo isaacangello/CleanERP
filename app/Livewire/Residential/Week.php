@@ -33,7 +33,7 @@ class Week extends Component
     public $till;
     public $numWeek = null;
     public $year = null;
-    public $customer_id='',$employee1_id, $address='',$date='',$phone='',$info,$notes='',$instructions='',$service_date='',$service_time='',$checkin_datetime='',$checkout_datetime='';
+    public $customer_id='',$employee1_id, $address='',$date='',$phone='',$info,$notes='',$instructions='',$service_date='',$service_time='',$checkin_datetime='',$checkout_datetime='',$customer_type='';
     public $populateBillings = null;
 
     public $selectOptionsEmployees='';
@@ -371,6 +371,11 @@ class Week extends Component
         $this->address=$currentService->customer->address; $this->info=$currentService->customer->info;
         $this->notes=$currentService->notes;$this->instructions=$currentService->instructions;
         //dd($this->tempDate);
+        if ($currentService->customer->type === "RENTALHOUSE"){
+            $this->customer_type = "<span class='material-symbols-outlined '>brightness_7</span>";
+        }else{
+            $this->customer_type = "<span class='material-symbols-outlined '>person</span>";
+        }
         $this->modalData = $currentService;
 //        dd($this->modalData);
     }

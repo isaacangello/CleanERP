@@ -10,7 +10,7 @@
             </div>
             <div class="col s4 m2 input-field">
                 <div class="form-group">
-                    <form wire:submit.prevent="thisWeek()">
+                    <form wire:submit.prevent="thisWeek()" title="Go to current week.">
                         <x-standard-btn type="submit" class="btn-small z-depth-3" >
                             This week
                         </x-standard-btn>
@@ -19,7 +19,7 @@
             </div>
             <div class="col s6 m1 input-field align-left ">
                 <div class="form-group">
-                    <x-standard-btn wire:click="backWeek()" type="submit" class="btn-small z-depth-3">
+                    <x-standard-btn  wire:click="backWeek()" type="submit" class="btn-small z-depth-3" title="Back one week.">
                         <span class="material-symbols-outlined">
                             arrow_back
                         </span>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="col s2 m1 input-field">
-                    <x-standard-btn type="submit" class="btn-small z-depth-3">
+                    <x-standard-btn type="submit" class="btn-small z-depth-3" title="Select week and year and go.">
                         go
                     </x-standard-btn>
                 </div>
@@ -60,7 +60,7 @@
 
             <div class="col s6 m1 input-field align-right">
                 <div class="form-group">
-                    <x-standard-btn wire:click="forwardWeek()" type="submit" class="btn-small z-depth-3">
+                    <x-standard-btn wire:click="forwardWeek()" type="submit" class="btn-small z-depth-3" title="Forward one week.">
                         <span class="material-symbols-outlined">
                             arrow_forward
                         </span>

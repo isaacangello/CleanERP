@@ -26,17 +26,17 @@
                     <div class="body">
                         <x-btn-week-navigator :$route :$selectedWeek>
                             <x-slot:btn>
-                                <x-link-btn href="{{route('week.pdf.export',[\Carbon\Carbon::create($from)->format('Y-m-d'),\Carbon\Carbon::create($till)->format('Y-m-d')])}}" class="btn-small z-depth-3" >
+                                <x-link-btn title="Print weekly report" href="{{route('week.pdf.export',[\Carbon\Carbon::create($from)->format('Y-m-d'),\Carbon\Carbon::create($till)->format('Y-m-d')])}}" class="btn-small z-depth-3" >
                                     Print
                                 </x-link-btn>
                             </x-slot>
 
-                                <x-standard-btn class="btn-small" @click="cadOpen = true">   New service  </x-standard-btn>
+                                <x-standard-btn class="btn-small" @click="cadOpen = true" title="New Service">New</x-standard-btn>
 
 
                         </x-btn-week-navigator>
                         <x-btn-week-mobile-navigator :$route :$selectedWeek>
-                            <x-standard-btn class="btn-small" @click="cadOpen = true">   New service  </x-standard-btn>
+                            <x-standard-btn class="btn-small" @click="cadOpen = true" title="New Service">   New  </x-standard-btn>
                         </x-btn-week-mobile-navigator>
                         <div class="row" id="htmlContent">
                             @php($count = 0)
@@ -61,7 +61,7 @@
         </div>  <!-- row -->
         <x-service-details   :id="$this->modalData->id??'0'">
             <x-slot:title>
-                <span wire:loading.remove> {{$this->modalData->customer->name??'Loading...'}} </span>
+                <span wire:loading.remove> {{$this->modalData->customer->name??'Loading...'}}</span> {!! $this->customer_type !!}
                     <span wire:loading>Loading...</span>
                 @foreach ($errors->all() as $error)
                     <span class="red-text text-darken-4">{{ $error }}</span>

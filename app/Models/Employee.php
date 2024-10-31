@@ -116,6 +116,7 @@ class Employee extends Model
                     'employee1_id as emp_id',
                     'service_date',
                     'period',
+                    'notes',
                     'who_saved',
                     'confirmed',
                     'fee',
