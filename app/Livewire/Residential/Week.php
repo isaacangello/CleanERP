@@ -279,7 +279,7 @@ class Week extends Component
     public function confirmService($id): void
     {
         //TODO: implementar logica para confirmar serviço
-        sleep(3);
+//        sleep(3);
         $curentService = Service::find($id);
         $confirm = !$curentService->confirmed;
 
