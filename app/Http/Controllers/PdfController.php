@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Spatie\Browsershot\Browsershot;
 
@@ -73,6 +74,7 @@ class PdfController extends Controller
             ->get();
         $countedAllServices = $services->count();
         $counted = $services->countBy('customer_id');
+//        dd(array_search(1, $counted->keys()->all()));
         if(array_search(1, $counted->keys()->all())){
             $countedVal = $counted[1];
         }else{
@@ -91,8 +93,9 @@ class PdfController extends Controller
             'groupedServices' => $groupedServices,
             'pdf' => true
         ];
-        return PDF::loadView('livewire.residential.dashpdf', $data )
-            ->setPaper('a4', 'portrait')
-            ->stream('week-From'.$from.'_till_'.$till.'.pdf');
+        $fileName = 'relatorio_semanal_'.'week-from_'.$from.'_till_'.$till.'.pdf';
+        return Pdf::loadView('livewire.residential.dashpdf', $data )
+            ->setPaper('a4','portrait')
+            ->stream($fileName);
     }
 }

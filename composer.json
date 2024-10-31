@@ -6,9 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "ext-dom": "*",
-        "ext-http": "*",
-        "barryvdh/laravel-dompdf": "^3.0",
+        "barryvdh/laravel-dompdf": "v2.2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4",
