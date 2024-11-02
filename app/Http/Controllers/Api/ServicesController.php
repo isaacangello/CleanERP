@@ -252,14 +252,14 @@ class ServicesController extends Controller
         if ($service->fee <= 0) {
             $service->update([
                 'fee' => 1,
-                'fee_notes' => $req->fee_notes
+                'finance_notes' => $req->finance_notes
             ]);
 
             $msg = "Service is canceled";
         } else {
             $service->update([
             'fee' => 0,
-            'fee_notes' => $req->fee_notes
+            'finance_notes' => $req->finance_notes
             ]);
             $msg = "Service is not canceled";
         }

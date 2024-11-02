@@ -1,4 +1,8 @@
-<div class="container-fluid">
+<div class="container-fluid"
+     x-data="{
+        notesOpen: $wire.entangle('notesOpen')
+        }"
+>
     <div class="block-header">
         <h2>
             <small>FINANCES</small>
@@ -26,7 +30,7 @@
                     <x-layout.week-navigator :$numWeek :$year :$selectedWeek :$selectedYear   />
 
                     <div class="clearfix row">
-                        <div class="col s12 ">
+                        <div class="col s12">
                             <x-finance-panel-search :employees="$this->allEmployees()" :$from :$till :id="$currentEmployee->id" />
                         </div>
                         <div class="panel panel-default">
@@ -66,6 +70,19 @@
                                     @endif
                                     </tbody>
                                 </table>
+                                <div class="">
+                                    <x-standard-btn class="btn btn-success btn-link btn-small h-30" wire:click="notesOpen = ! notesOpen">Type notes</x-standard-btn>
+                                    <x-standard-btn class="btn btn-success btn-link btn-small h-30" wire:click="printReport">Print Report</x-standard-btn>
+                                    <p x-show="notesOpen" x-collapse.duration.500ms>
+                                            <textarea id="textarea-finance-notes"
+                                                      wire:model="finance_notes"
+                                                      class="form-control custom-textarea "
+                                                      rows="4"
+                                                      placeholder="Type notes..."
+
+                                            ></textarea>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>{{--panel--}}

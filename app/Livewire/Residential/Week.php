@@ -130,7 +130,7 @@ class Week extends Component
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
      * @return void
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    public function selectWeek()
+    public function selectWeek(): void
     {
         if(is_null($this->numWeek) || is_null($this->year)  ){
             $this->dispatch('toast-alert',icon:'error', message:"you need select number week and Year") ;
@@ -147,7 +147,8 @@ class Week extends Component
      * @return array
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     #[Computed]
-    public function dataCard(){
+    public function dataCard(): array
+    {
 
         $this->traitNullVars();
         $employees =  Populate::employeeFilter();
@@ -165,7 +166,7 @@ class Week extends Component
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
      * @return void
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    public function price_inject()
+    public function price_inject(): void
     {
 //        dd($this->form->customer_id);
         $temp_customer = Customer::with('billings')->find($this->form->customer_id);

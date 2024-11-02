@@ -23,6 +23,8 @@ class Detailer extends Component
     public $till;
     public $numWeek = null;
     public $year = null;
+    public $notesOpen = true;
+    public $finance_notes = null;
     #[Validate('required')]
     public $selectedEmployee = null;
     public $currentEmployee = null;
@@ -104,4 +106,13 @@ class Detailer extends Component
         }
         return redirect()->route('finances.detailer', ['id' => $this->selectedEmployee, 'from' => Carbon::create($this->from)->format("Y-m-d"), 'till' => Carbon::create($this->till)->format("Y-m-d")]);
     }
+    public function printReport(){
+        //Search services by employee, from, till
+        //dd($this->servicesEmployee($this->id,$this->from,$this->till));
+
+        return redirect()->route('finances.report.export',
+            ['id' => $this->currentEmployee->id, 'from' => Carbon::create($this->from)->format("Y-m-d"),  'till' => Carbon::create($this->till)->format("Y-m-d"), 'message'=> $this->finance_notes??"&nbsp;" ]
+        );
+    }
+
 }

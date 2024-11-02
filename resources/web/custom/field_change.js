@@ -315,7 +315,7 @@ function listenerFeeButton(){
                     {
                             'id':serviceId,
                             'fee':1,
-                            'fee_notes':result.value,
+                            'finance_notes':result.value,
                             'numWeek': numWeek,
                             'year': year
                         }

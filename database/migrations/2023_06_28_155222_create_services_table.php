@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('instructions', 3000)->nullable();
             $table->boolean('paid_out')->default(false);
             $table->boolean('fee')->default(false);
-            $table->string('fee_notes',500)->nullable();
+            $table->string('finance_notes',500)->nullable();
             $table->string('frequency_payment')->nullable();
             $table->string('payment')->nullable();
             $table->string('who_saved')->nullable();

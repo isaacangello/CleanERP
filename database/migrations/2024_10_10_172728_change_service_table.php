@@ -13,6 +13,7 @@ return new class extends Migration
     {
         //
         Schema::table('services', function (Blueprint $table){
+            $table->boolean('is_closed')->default(false);
             $table->unsignedBigInteger('payment')->nullable()->change();
             $table->foreign('payment')->references('id')->on('payments');
         });

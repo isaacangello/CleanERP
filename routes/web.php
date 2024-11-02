@@ -54,6 +54,8 @@ Route::get('employees/filter/{filter}/order/{order}',[EmployeeController::class,
 Route::prefix('finances')->group(function () {
     Route::get('/', \App\Livewire\Finance\Index::class)->middleware(['auth', 'verified'])->name('finances');
     Route::get('/detailer/{id}/{from}/{till}', \App\Livewire\Finance\Detailer::class)->middleware(['auth', 'verified'])->name('finances.detailer');
+    Route::get('/report/{id}/{from}/{till}/{message?}', [\App\Http\Controllers\FinanceReportController::class, 'index'])->middleware(['auth', 'verified'])->name('finances.report');
+    Route::get('/report/{id}/{from}/{till}/{message?}/export', [\App\Http\Controllers\FinanceReportController::class, 'generate_pdf'])->middleware(['auth', 'verified'])->name('finances.report.export');
     Route::get('/billings', \App\Livewire\Finance\Billings::class);
     Route::get('/payments',\App\Livewire\Finance\PaymentsReg::class);
 });

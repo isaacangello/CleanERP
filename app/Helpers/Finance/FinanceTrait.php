@@ -80,7 +80,7 @@ trait FinanceTrait
                 'services.service_date',
                 'services.paid_out',
                 'services.fee',
-                'services.fee_notes',
+                'services.finance_notes',
                 'services.payment',
                 'services.frequency',
                 'services.who_saved',

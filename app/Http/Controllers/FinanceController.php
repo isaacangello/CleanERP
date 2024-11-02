@@ -68,7 +68,7 @@ class FinanceController extends Controller
 //            'services.service_date',
 //            'services.paid_out',
 //            'services.fee',
-//            'services.fee_notes',
+//            'services.finance_notes',
 //            'services.payment',
 //            'services.who_saved',
 //            'services.price',
