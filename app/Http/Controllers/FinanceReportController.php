@@ -37,7 +37,7 @@ class FinanceReportController extends Controller
         ];
         $fileName = 'relatorio_semanal_'.'week-from_'.$from.'_till_'.$till.'.pdf';
         return Pdf::loadView('livewire.finance.report', $data )
-            ->setPaper('a4','portrait')
+            ->setPaper('a4', 'landscape')
             ->stream($fileName);
 
     }
