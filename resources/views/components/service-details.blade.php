@@ -37,7 +37,7 @@
                             <button type="button"
                                     wire:click="$dispatch('trigger-confirm-delete')"
                                     @click="open = false"
-                                    class=" btn-custom btn-link btn-small red darken-3  z-depth-3"
+                                    class=" btn btn-link btn-small red darken-3  z-depth-3"
                                     id="btnDeleteService"
                             >
                                 <span class="material-symbols-outlined">
@@ -46,7 +46,7 @@
                             </button>
                         </div>
                         <div>
-                            <button type="button"  @click="open = false" class=" btn-custom btn-link btn-small green darken-3  z-depth-3" data-dismiss="modal">CLOSE</button>
+                            <button type="button"  @click="open = false" class=" btn btn-link btn-small green darken-3  z-depth-3 " >CLOSE</button>
                         </div>
                     </div>
                 </div>

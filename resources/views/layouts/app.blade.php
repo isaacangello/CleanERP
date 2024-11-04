@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @vite('resources/css/app.css')
     @yield('title')
 {{--    @if(isset($title)){{ $title??'JJL System 2'   }}@endif--}}
 
@@ -28,18 +29,22 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     {{--@use('Illuminate\Support\Facades\Vite')--}}
-    <!-- Waves Effect Css -->
-    <link href="{!!  asset('js/node-waves/dist/waves.min.css') !!}" rel="stylesheet" />
-
-    <!-- Materialize Core Css -->
-    <link href="{!! asset('web/materialize/css/materialize.css') !!}" rel="stylesheet">
-    <!-- jquery ui  Css -->
-    <link href="{!! asset('web/jquery-ui/jquery-ui.css') !!}" rel="stylesheet" />
     <!-- Animation Css -->
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+
+
+
+    {{--<link href="{!! asset('js/node-waves/dist/waves.min.css') !!}" rel="stylesheet" />--}}
+
+    <!-- Materialize Core Css -->
+    <link href="{!! asset('web/materialize/css/materialize.css') !!}" rel="stylesheet">
+    <!-- jquery ui  Css -->
+{{--    <link href="{!! asset('web/jquery-ui/jquery-ui.css') !!}" rel="stylesheet" />--}}
+{{--    <!-- Animation Css -->--}}
+{{--    <link href="{!! asset('js/animate.css/animate.css') !!}" rel="stylesheet" />--}}
 
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
@@ -48,23 +53,6 @@
     <link href="{!! asset('web/custom/mobile.css') !!} " rel="stylesheet">
 
     <link href="{!!  asset('web/systheme/css/style.css') !!}" rel="stylesheet">
-
-    {{--<link href="{!! asset('js/node-waves/dist/waves.min.css') !!}" rel="stylesheet" />--}}
-
-    <!-- Materialize Core Css -->
-    <link href="{!! asset('web/materialize/css/materialize.css') !!}" rel="stylesheet">
-    <!-- jquery ui  Css -->
-{{--    <link href="{!! asset('web/jquery-ui/jquery-ui.css') !!}" rel="stylesheet" />--}}
-    <!-- Animation Css -->
-    <link href="{!! asset('js/animate.css/animate.css') !!}" rel="stylesheet" />
-
-
-    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="{!! asset('web/systheme/css/themes/all-themes.css') !!}" rel="stylesheet" />
-    <!-- Custom Css -->
-    <link href="{!! asset('web/custom/mobile.css') !!} " rel="stylesheet">
-
-    <link href="{!! asset('web/systheme/css/style.css') !!}" rel="stylesheet">
 
     <link href="{!! asset('web/systheme/plugins/lou-multi-select/css/multi-select.css') !!}" rel="stylesheet">
 
@@ -212,24 +200,24 @@
 {{--@use(Illuminate\Support\Facades\Vite)--}}
 <!-- Jquery core js -->
 <script  src="{{ asset('web/jquery/jquery-3.7.1.min.js') }}"></script>
-<!-- Jquery-ui Js -->
-<script src="{{ asset('web/jquery-ui/jquery-ui.js') }}"></script>
+{{--<!-- Jquery-ui Js -->--}}
+{{--<script src="{{ asset('web/jquery-ui/jquery-ui.js') }}"></script>--}}
 
 <!-- Materialize Core Js -->
 <script src="{{ asset('web/materialize/js/materialize.min.js') }}"></script>
 
-<!-- Waves Effect Plugin Js -->
-<script src="{{ asset('web/systheme/plugins/node-waves/dist/waves.min.js') }}"></script>
+{{--<!-- Waves Effect Plugin Js -->--}}
+{{--<script src="{{ asset('web/systheme/plugins/node-waves/dist/waves.min.js') }}"></script>--}}
 
 
 <!-- Slimscroll Plugin Js -->
 <script src="{{ asset('web/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
 
-<!-- Jquery Validation Plugin Css -->
-<script src="{{ asset('web/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>
+{{--<!-- Jquery Validation Plugin Css -->--}}
+{{--<script src="{{ asset('web/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>--}}
 
-<!-- JQuery Steps Plugin Js -->
-<script src="{{ asset('web/systheme/plugins/jquery-steps/jquery.steps.js') }}"></script>
+{{--<!-- JQuery Steps Plugin Js -->--}}
+{{--<script src="{{ asset('web/systheme/plugins/jquery-steps/jquery.steps.js') }}"></script>--}}
 
 {{--<!-- Sweet Alert Plugin Js -->--}}
 {{--<!--Added version 2 -->--}}

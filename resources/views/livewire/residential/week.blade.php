@@ -222,6 +222,7 @@
             </table>
 
         </x-service-details>
+        <x-standard-btn class="btn-small waves-effect waves-teal" > teste waves</x-standard-btn>
         <x-custom-events />
 
 

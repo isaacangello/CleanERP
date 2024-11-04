@@ -5136,7 +5136,7 @@ small {
     background-color: transparent;
     border-radius: 2px;
     color: #fff;
-    min-height: 36px;
+    min-height: 30px;
     line-height: 120%;
     opacity: 0;
     position: absolute;
@@ -5168,8 +5168,8 @@ small {
     border: none;
     border-radius: 2px;
     display: inline-block;
-    height: 36px;
-    line-height: 36px;
+    height: 30px !important;
+    line-height: 30px;
     padding: 0 16px;
     text-transform: uppercase;
     vertical-align: middle;
@@ -5200,7 +5200,7 @@ small {
     -webkit-box-shadow: none;
     box-shadow: none;
     color: #9F9F9F !important;
-    cursor: default;
+    cursor: pointer;
 }
 
 .btn.disabled:hover, .disabled.btn-large:hover, .disabled.btn-small:hover,
@@ -5231,8 +5231,9 @@ small {
 .btn-large,
 .btn-small,
 .btn-flat {
-    font-size: 14px;
+    font-size: 12px;
     outline: 0;
+    vertical-align: middle;
 }
 
 .btn i, .btn-large i, .btn-small i,
@@ -5243,10 +5244,20 @@ small {
     font-size: 1.3rem;
     line-height: inherit;
 }
+.btn span, .btn-large span, .btn-small span,
+.btn-floating span,
+.btn-large span,
+.btn-small span,
+.btn-flat span {
+
+    font-size: 1rem;
+    line-height: inherit;
+}
 
 .btn:focus, .btn-large:focus, .btn-small:focus,
 .btn-floating:focus {
     background-color: #1d7d74;
+    color:white;
 }
 
 .btn, .btn-large, .btn-small {
@@ -5992,7 +6003,7 @@ body.keyboard-focused .dropdown-content li:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
     margin: 0 0 8px 0;
-    min-height: 45px;
+    min-height: 30px;
     outline: none;
     -webkit-transition: all .3s;
     transition: all .3s;

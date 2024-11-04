@@ -12,7 +12,6 @@
         "laravel/sanctum": "^4",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
-        "robsontenorio/mary": "^1.41",
         "snapappointments/bootstrap-select": "^1.13",
         "spatie/browsershot": "^4.3",
         "spatie/laravel-html": "^3.11",
