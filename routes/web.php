@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/home',[IndexController::class,'home'])->name('home');
     Route::get('/week',\App\Livewire\Residential\Week::class)->name('week');
+    Route::get('/week/search',\App\Livewire\Residential\SearchRepeat::class)->name('week.search');
     Route::get('/week/pdf',[\App\Http\Controllers\PdfController::class, 'index'])->name('week.pdf');
     Route::get('/week/pdf/{from}/{till}',[\App\Http\Controllers\PdfController::class, 'index'])->name('week.pdf');
     Route::get('/week/pdf/{from}/{till}/export',[\App\Http\Controllers\PdfController::class, 'generatePDF'])->name('week.pdf.export');
