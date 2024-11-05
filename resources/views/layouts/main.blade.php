@@ -1,6 +1,6 @@
 @php
 
-    if(empty($systemVersion)){$systemVersion = "0.7.50";}
+    if(empty($systemVersion)){$systemVersion = "0.7.51";}
     if(empty($userImg)){$userImg = "/img/users/user.png";}
     if(!empty(Auth::user()->email)){$email = Auth::user()->email;}else{$email="email@email.com";}
     $userName = Auth::user()->name;

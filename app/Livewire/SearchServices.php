@@ -19,10 +19,11 @@ class SearchServices extends Component
     public $employees;
     public $customers;
     public $id = 0;
+    public $selectAll = false;
     public $filterType = "RESIDENTIAL";
     public $selectedEmployee=0;
     public $selectedCustomer=0;
-
+    public $selectedServices = [];
     public function searchedServices()
     {
         //$this->dispatch('toast-alert',icon:'info', title:"Info", text:'Searching services');
@@ -56,5 +57,14 @@ class SearchServices extends Component
     public function render()
     {
         return view('livewire.search-services');
+    }
+    public function updatedSelectAll()
+    {
+        if($this->selectAll)
+        {
+            $this->selectedServices = array_column($this->services['data'],'id');
+        }else{
+            $this->selectedServices = [];
+        }
     }
 }

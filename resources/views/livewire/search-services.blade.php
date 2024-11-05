@@ -115,21 +115,21 @@
                             <th>customer</th>
                             <th>employee</th>
                             <th>frequency</th>
-                            <th>Confirmed</th>
-                            <th>Canceled</th>
-                            <th><input id="default-checkbox" type="checkbox" checked="checked" class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
+                            <th class="text-center">Confirmed</th>
+                            <th class="text-center">Canceled</th>
+                            <th><input id="default-checkbox" type="checkbox" wire:model="selectAll"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
                         </tr>
                         @foreach($this->services['data'] as $service)
-                            <tr wire:key="{{ $service['id'] }}">
+                            <tr wire:key="tr{{ $service['id'] }}">
 
                                 <td>{{ Carbon\Carbon::create($service['service_date'] )->format('l, m/d/Y h:i A')  }}</td>
                                 <td>{{$service['customer']['name']}}</td>
                                 <td>{{$service['employee']['name']}}</td>
                                 <td>{{$service['frequency']}}</td>
-                                <td>{!! $service['confirmed']===1?"<span class='material-symbols-outlined text-teal-700 text-sm'>verified</span>":"" !!}</td>
-                                <td>{!! $service['fee']===1?"<span class='material-symbols-outlined text-amber-700 text-sm'>verified</span>":"" !!}</td>
+                                <td class="text-center">{!! $service['confirmed']===1?"<span class='material-symbols-outlined text-teal-700 text-sm'>verified</span>":"" !!}</td>
+                                <td class="text-center">{!! $service['fee']===1?"<span class='material-symbols-outlined text-amber-700 text-sm'>verified</span>":"" !!}</td>
                                 <td>
-                                    <input id="default-checkbox" type="checkbox" checked="checked" class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <input id="default-checkbox" wire:model="selectedServices" value="{{ $service['id'] }}" type="checkbox" checked="checked" class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 {{--                                    <label>--}}
 {{--                                        <input type="checkbox" class="materialize-checkbox filled-in" checked="checked"  />--}}
 {{--                                        <span></span>--}}
