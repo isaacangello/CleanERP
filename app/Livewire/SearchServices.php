@@ -67,4 +67,8 @@ class SearchServices extends Component
             $this->selectedServices = [];
         }
     }
+    public function updated()
+    {
+        $this->updatedSelectAll();
+    }
 }

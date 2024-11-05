@@ -117,7 +117,7 @@
                             <th>frequency</th>
                             <th class="text-center">Confirmed</th>
                             <th class="text-center">Canceled</th>
-                            <th><input id="default-checkbox" type="checkbox" wire:model="selectAll"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
+                            <th><input id="default-checkbox" type="checkbox" wire:model.live="selectAll"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
                         </tr>
                         @foreach($this->services['data'] as $service)
                             <tr wire:key="tr{{ $service['id'] }}">
