@@ -2,7 +2,7 @@
     <!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
     <ul id="slide-out" class="sidenav">
     <li>
-        <div class="user-info" id="userInfoMobile" style="background: url('img/898_300X135.jpg') no-repeat no-repeat;">
+        <div class="user-info" id="userInfoMobile" style="background: url('/img/898_300X135.jpg') no-repeat no-repeat;">
             <div class="image">
             <div class="image">
                 <img src="{{$userImg}}" width="48" height="48" alt="User"/>

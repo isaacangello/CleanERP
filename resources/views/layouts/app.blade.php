@@ -13,7 +13,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @livewireStyles
     @vite(['resources/js/app.js'])
-    @vite('resources/css/app.css')
+{{--    @vite('resources/css/app.css')--}}
 
 
     @yield('title')
@@ -249,7 +249,7 @@
 {{--<script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>--}}
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-@livewireScriptConfig
+{{--@livewireScriptConfig--}}
 </body>
 
 </html>

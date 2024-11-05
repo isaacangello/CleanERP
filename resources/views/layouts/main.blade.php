@@ -1,7 +1,7 @@
 @php
 
-    if(empty($systemVersion)){$systemVersion = "0.7.22";}
-    if(empty($userImg)){$userImg = "img/users/user.png";}
+    if(empty($systemVersion)){$systemVersion = "0.7.50";}
+    if(empty($userImg)){$userImg = "/img/users/user.png";}
     if(!empty(Auth::user()->email)){$email = Auth::user()->email;}else{$email="email@email.com";}
     $userName = Auth::user()->name;
 @endphp
@@ -15,11 +15,11 @@
     @if(isset($title)){{ $title??'JJL System'   }}@endif
 
     <!-- Favicon-->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('./img/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('./img/favicon-16x16.png')}}">
-    <link rel="manifest" href="./img/site.webmanifest">
+    <link rel="manifest" href="/img/site.webmanifest">
     <link rel="mask-icon" href="{{ asset('./img/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#00a300">
     <meta name="theme-color" content="#ffffff">
