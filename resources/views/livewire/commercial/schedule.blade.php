@@ -69,8 +69,6 @@
                                  x-trap="tab1"
                                  x-init="tab1 = true; tab2 = false"
                                  x-transition:enter="animate__animated animate__fadeIn animate__faster"
-
-
                             >
                                 <h6 class="m-b-5">Scale 1</h6>
                                 <div class="hide-on-small-and-down">
@@ -113,7 +111,8 @@
                                         {!! $this->dataCard('scale2') !!}
 
                                     </div> <!--grid system row-->
-                                </div>                            </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

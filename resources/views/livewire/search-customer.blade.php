@@ -1,0 +1,3 @@
+<div>
+    tabCustomer Component
+</div>

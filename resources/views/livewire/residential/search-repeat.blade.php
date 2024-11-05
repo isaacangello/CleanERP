@@ -1,8 +1,6 @@
 <div>
     <div class="container-fluid" x-data="
 {
-                                        open: $wire.entangle('showModal'),
-                                        cadOpen: $wire.entangle('showCadModal'),
                                         tabService: $wire.entangle('tabService'),
                                         tabRepeat: $wire.entangle('tabRepeat'),
                                         tabCustomer: $wire.entangle('tabCustomer'),
@@ -69,36 +67,64 @@
                                             class="label-date-home">{{ $till }} </span>
                                 </span>
                     </div>
-                <hr>
+                <div class="body">
                     <ul class="nav nav-tabs tab-col-green flex m-l-2" role="tablist">
                         <li role="presentation"  x-ref="tabServiceElement" class="px-5 active success">
-                            <a  class="pointer" data-toggle="tab" @click="selectTab('tabService')" >
-                                <span class="material-symbols-outlined">search</span> Services
+                            <a  class="pointer " data-toggle="tab" @click="selectTab('tabService')" >
+                                <span class="text-sm material-symbols-outlined">search</span>
+                                <span class="uppercase">Services</span>
                             </a>
                         </li>
                         <li role="presentation" x-ref="tabRepeatElement" class="px-5">
                             <a  class="pointer" data-toggle="tab" @click="selectTab('tabRepeat')" >
-                                <span class="material-symbols-outlined">
-                                mystery
-                                </span> Search Repetition
+                                <span class="text-sm material-symbols-outlined">mystery</span>
+                                <span class="uppercase">Search Repetition</span>
                             </a>
                         </li>
                         <li role="presentation" x-ref="tabCustomerElement" class="px-5">
                             <a  class="pointer" data-toggle="tab" @click="selectTab('tabCustomer')">
-                                <span class="material-symbols-outlined">
-                                mystery
-                                </span> Search Customer
+                                <span class="text-sm material-symbols-outlined">group_search</span>
+                                <span class="uppercase" >Search Customer</span>
                             </a>
                         </li>
                         <li role="presentation" x-ref="tabEmployeeElement" class="px-5">
                             <a  class="pointer" data-toggle="tab" @click="selectTab('tabEmployee')" >
-                                <span class="material-symbols-outlined">
-                                mystery
-                                </span> Search Employee
+                                <span class="text-sm material-symbols-outlined">data_loss_prevention</span>
+                                <span class="uppercase">Search Employee</span>
                             </a>
                         </li>
                     </ul>
-
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="scale_1"
+                             x-show="tabService"
+                             x-trap="tabService"
+                             x-transition:enter="animate__animated animate__fadeIn animate__faster"
+                        >
+                            <livewire:search-services />
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in active" id="scale_1"
+                             x-show="tabRepeat"
+                             x-trap="tabRepeat"
+                             x-transition:enter="animate__animated animate__fadeIn animate__faster"
+                        >
+                            <livewire:search-repeat />
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in active" id="scale_1"
+                             x-show="tabCustomer"
+                             x-trap="tabCustomer"
+                             x-transition:enter="animate__animated animate__fadeIn animate__faster"
+                        >
+                            <livewire:search-customer />
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in active" id="scale_1"
+                             x-show="tabEmployee"
+                             x-trap="tabEmployee"
+                             x-transition:enter="animate__animated animate__fadeIn animate__faster"
+                        >
+                            <livewire:search-employee />
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
