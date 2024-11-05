@@ -35,3 +35,12 @@
 // import "../web/custom/service_cad.js"
 // import "../web/custom/field_change.js"
 //  import "../web/custom/modalPush.js"
+
+
+import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
+
+// Alpine.data('searchComponent', () => ({
+//
+// }))
+
+Livewire.start()

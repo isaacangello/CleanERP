@@ -1,8 +1,11 @@
 <div>
-    <div class="container-fluid" x-data="
-{
-                                        open: $wire.entangle('showModal'),
-                                        cadOpen: $wire.entangle('showCadModal'),
+
+        <script>
+                document.addEventListener('livewire:load', () => {
+                        document.addEventListener('alpine:init', () => {
+                                Alpine.data('searchComponent', () => ({
+                                        // open: $wire.entangle('showModal'),
+                                        // cadOpen: $wire.entangle('showCadModal'),
                                         tabService: $wire.entangle('tabService'),
                                         tabRepeat: $wire.entangle('tabRepeat'),
                                         tabCustomer: $wire.entangle('tabCustomer'),
@@ -50,60 +53,10 @@
                                                                 this.$refs.tabEmployeeElement.classList.add('active', 'success');
                                                                 break;
                                                 }
-                                        }
-                                }
-    ">
-        <div class="block-header">
-            <h2>
-                <small>SEARCHES</small>
-            </h2>
-        </div>
-        <!-- Basic Examples -->
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                                <span>
-                                  Week Number <span class="yellow-text text-darken-4 font-bold">{{ $numWeek }}</span> / From <span
-                                            class="label-date-home">{{ $from }}</span> - Till <span
-                                            class="label-date-home">{{ $till }} </span>
-                                </span>
-                    </div>
-                <hr>
-                    <ul class="nav nav-tabs tab-col-green flex m-l-2" role="tablist">
-                        <li role="presentation"  x-ref="tabServiceElement" class="px-5 active success">
-                            <a  class="pointer" data-toggle="tab" @click="selectTab('tabService')" >
-                                <span class="material-symbols-outlined">search</span> Services
-                            </a>
-                        </li>
-                        <li role="presentation" x-ref="tabRepeatElement" class="px-5">
-                            <a  class="pointer" data-toggle="tab" @click="selectTab('tabRepeat')" >
-                                <span class="material-symbols-outlined">
-                                mystery
-                                </span> Search Repetition
-                            </a>
-                        </li>
-                        <li role="presentation" x-ref="tabCustomerElement" class="px-5">
-                            <a  class="pointer" data-toggle="tab" @click="selectTab('tabCustomer')">
-                                <span class="material-symbols-outlined">
-                                mystery
-                                </span> Search Customer
-                            </a>
-                        </li>
-                        <li role="presentation" x-ref="tabEmployeeElement" class="px-5">
-                            <a  class="pointer" data-toggle="tab" @click="selectTab('tabEmployee')" >
-                                <span class="material-symbols-outlined">
-                                mystery
-                                </span> Search Employee
-                            </a>
-                        </li>
-                    </ul>
+                                        },
+                                }));
+                        });
+                });
+        </script>
 
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <x-search-javascript />
 </div>

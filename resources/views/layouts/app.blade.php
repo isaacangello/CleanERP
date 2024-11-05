@@ -11,7 +11,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @livewireStyles
+    @vite(['resources/js/app.js'])
     @vite('resources/css/app.css')
+
+
     @yield('title')
 {{--    @if(isset($title)){{ $title??'JJL System 2'   }}@endif--}}
 
@@ -20,7 +24,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('./img/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('./img/favicon-16x16.png')}}">
-    <link rel="manifest" href="./img/site.webmanifest">
+{{--    <link rel="manifest" href="./img/site.webmanifest">--}}
     <link rel="mask-icon" href="{{ asset('./img/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#00a300">
     <meta name="theme-color" content="#ffffff">
@@ -245,7 +249,7 @@
 {{--<script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>--}}
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
+@livewireScriptConfig
 </body>
 
 </html>

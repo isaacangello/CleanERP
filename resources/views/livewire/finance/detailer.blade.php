@@ -1,3 +1,6 @@
+@php
+use Carbon\Carbon;
+@endphp
 <div class="container-fluid"
      x-data="{
         notesOpen: $wire.entangle('notesOpen')
@@ -16,7 +19,7 @@
 
                 <div class="header">
                     <span>
-                        @if(isset($currentEmployee->name)) EMPLOYEE @endif
+                        @if(isset($currentEmployee->name)) Employee @endif
 
                               <b>{{ $currentEmployee->name??'' }}</b> </span>
                     <span>
@@ -70,10 +73,16 @@
                                     @endif
                                     </tbody>
                                 </table>
-                                <div class="">
+                                <div class="mt-5">
                                     <x-standard-btn class="btn btn-success btn-link btn-small h-30" wire:click="notesOpen = ! notesOpen">Type notes</x-standard-btn>
-                                    <x-standard-btn class="btn btn-success btn-link btn-small h-30" wire:click="printReport">Print Report</x-standard-btn>
-                                    <p x-show="notesOpen" x-collapse.duration.500ms>
+
+                                    <x-link-btn
+                                            href="{{  route('finances.report.export', [ 'id' => $currentEmployee->id, 'from' => Carbon::create($from)->format('Y-m-d'),  'till' => Carbon::create($till)->format('Y-m-d'), 'message'=> $finance_notes??'&nbsp;' ] ) }} "
+                                    >
+                                        Print Report
+                                    </x-link-btn>
+
+                                    <p x-show="notesOpen" x-collapse.duration.500ms class="mt-3 ">
                                             <textarea id="textarea-finance-notes"
                                                       wire:model="finance_notes"
                                                       class="form-control custom-textarea "

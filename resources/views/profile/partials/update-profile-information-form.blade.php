@@ -57,7 +57,7 @@
             <div class="form-line success">
 
 
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-standard-btn>{{ __('Save') }}</x-standard-btn>
 
             @if (session('status') === 'profile-updated')
                 <p

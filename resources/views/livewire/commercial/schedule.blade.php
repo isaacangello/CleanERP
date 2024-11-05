@@ -21,7 +21,7 @@
                                         class="label-date-home">{{ $from }}</span> - Till <span
                                         class="label-date-home">{{ $till }} </span><div class="displaytest">Iphone</div>
                             </span>
-                    <span>
+                            <span>
                             </span>
                 </div>
                 <x-commercial-cad :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :$numWeek :$year>
@@ -29,10 +29,10 @@
                 </x-commercial-cad>
                 <div class="body">
                     <x-btn-week-navigator  :$selectedWeek>
-                        <x-standard-btn class="btn-small" @click="cadOpen = true">   New <span class="hide-on-small-and-down">schedule</span>  </x-standard-btn>
+                        <x-standard-btn class="btn-small" @click="cadOpen = true">   New schedule  </x-standard-btn>
                     </x-btn-week-navigator>
                     <x-btn-week-mobile-navigator  :$selectedWeek>
-                        <x-standard-btn class="btn-small" @click="cadOpen = true">   New <span class="hide-on-small-and-down">schedule</span>  </x-standard-btn>
+                        <x-standard-btn class="btn-small" @click="cadOpen = true">   New   </x-standard-btn>
                     </x-btn-week-mobile-navigator>
                     <div class="body">
                         <!-- Nav tabs -->
@@ -301,7 +301,7 @@
             <button type="button"
                     wire:click="delete"
                     @click="open = false"
-                    class=" btn-custom btn-link btn-small red darken-3  z-depth-3"
+                    class=" btn btn-link btn-small red darken-3  z-depth-3 waves-effect waves-red"
                     id="btnDeleteSchedule"
             >
                 <span class="material-symbols-outlined">
@@ -310,11 +310,13 @@
             </button>
         </div>
         <div>
-            <button type="button"  @click="open = false" class=" btn-custom btn-link btn-small green darken-3  z-depth-3" data-dismiss="modal">CLOSE</button>
+            <button type="button"  @click="open = false" class=" btn btn-link btn-small green darken-3  z-depth-3" data-dismiss="modal">CLOSE</button>
         </div>
     </x-slot>
     </x-modal-alphine>
+
     <x-custom-events />
+    <x-search-javascript />
 
 
 </div>

@@ -1,6 +1,6 @@
 <div class="panel panel-default" >
     <div class="panel-heading p-l-15 p-t-2 p-r-2 p-b-2">
-        Seach
+        Search
     </div>
 
     <div class="panel-body " >

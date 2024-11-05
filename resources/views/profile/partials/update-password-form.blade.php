@@ -39,7 +39,7 @@
         <div class="form-group">
             <div class="form-line success">
                 <div class="">
-                    <x-primary-button>{{ __('Save') }}</x-primary-button>
+                    <x-standard-btn class="btn-small">{{ __('Save') }}</x-standard-btn>
 
                     @if (session('status') === 'password-updated')
                         <p

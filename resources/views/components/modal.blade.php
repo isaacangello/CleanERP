@@ -1,7 +1,3 @@
-@php
-    $style='style=margin-bottom:0;';
-
-@endphp
 <div>
     <div id="modal-default" class="modal-default"
          x-show="open"
@@ -21,7 +17,7 @@
 
                 </div>
                 <div class="modal-footer">
-                        {{$footer??''}}
+                    {{$footer??''}}
                 </div>
             </div>
         </div>

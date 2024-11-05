@@ -23,7 +23,7 @@ class Detailer extends Component
     public $till;
     public $numWeek = null;
     public $year = null;
-    public $notesOpen = true;
+    public $notesOpen = false;
     public $finance_notes = null;
     #[Validate('required')]
     public $selectedEmployee = null;

@@ -1,4 +1,4 @@
-<section class="space-y-6">
+<section class="space-y-6" x-data="{ open:false }">
     <header>
         <h2 class="grey-text text-darken-3 flow-text">
             {{ __('Delete Account') }}
@@ -11,7 +11,7 @@
 
     <x-danger-button
         x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+        x-on:click.prevent="open = ! open"
     >{{ __('Delete Account') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
@@ -42,7 +42,7 @@
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
+                <x-secondary-button x-on:click="open = ! open" class="m-r-5">
                     {{ __('Cancel') }}
                 </x-secondary-button>
 
