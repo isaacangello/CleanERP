@@ -5,6 +5,10 @@ const toastAlert = Swal.mixin({
         position: "top-end",
         showConfirmButton: false,
         timer: 3000,
+        customClass: {
+            confirmButton: "btn btn-link waves-effect waves-light",
+            cancelButton: "btn btn-link btn-danger waves-effect waves-light"
+        },
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.onmouseenter = Swal.stopTimer;
@@ -31,6 +35,10 @@ const toastAlert = Swal.mixin({
             cancelButtonText: "Cancel",
             showCancelButton: true,
             showCloseButton: true,
+            customClass: {
+                confirmButton: "btn btn-link waves-effect waves-light",
+                cancelButton: "btn btn-link btn-danger waves-effect waves-light"
+            },
             confirmButtonColor:"#2e7d32",
             iconColor:"#2e7d32"
         }).then((result) => {

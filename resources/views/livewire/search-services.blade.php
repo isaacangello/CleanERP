@@ -108,6 +108,9 @@
             </div>
             <div class="row">
                     @if($this->services)
+                        @php
+                            $counter = 0;
+                        @endphp
                     <table>
                         <tr>
 
@@ -120,7 +123,7 @@
                             <th><input id="default-checkbox" type="checkbox" wire:model.live="selectAll"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
                         </tr>
                         @foreach($this->services['data'] as $service)
-                            <tr wire:key="tr{{ $service['id'] }}">
+                            <tr wire:key="tr{{ $service['id'] }}" class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100',' ']) }}" >
 
                                 <td>{{ Carbon\Carbon::create($service['service_date'] )->format('l, m/d/Y h:i A')  }}</td>
                                 <td>{{$service['customer']['name']}}</td>
@@ -136,11 +139,12 @@
 {{--                                    </label>--}}
                                 </td>
                             </tr>
+                            @php($counter++)
                         @endforeach
                         <tr>
                             <td colspan="7" class="text-end">
                                 <x-danger-button wire:click="deleteServices" >
-                                    Delete selected services
+                                    Delete
                                 </x-danger-button>
                             </td>
                         </tr>

@@ -9,7 +9,7 @@ use Livewire\Component;
 class SearchRepeat extends Component
 {
     use WeekNavigation;
-    public $search = '';
+
     public $searchResults = "";
     public $tabService = true;
     public $tabRepeat = false;

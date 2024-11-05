@@ -8,6 +8,7 @@
         "php": "^8.2",
         "barryvdh/laravel-dompdf": "v2.2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "highsolutions/laravel-searchy": "^11.0",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4",
         "laravel/tinker": "^2.9",

@@ -16,6 +16,7 @@ class Customer extends Model
         'other_services','justify_inactive','info',
         'drive_licence','key','more_girl','gate_code',
         'house_description','note','charges_customers',
+        'created_at'
     ];
     public function rules(): array
     {

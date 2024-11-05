@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e8cbb0cc1373d153d63ff7be31622d9",
+    "content-hash": "ca18978c1af287e71adff97defcba641",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1192,6 +1192,72 @@
                 }
             ],
             "time": "2023-12-03T19:50:20+00:00"
+        },
+        {
+            "name": "highsolutions/laravel-searchy",
+            "version": "11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/highsolutions/laravel-searchy.git",
+                "reference": "5feb5456a57b25e7d9cde7fb9ca390c10fe82a58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/highsolutions/laravel-searchy/zipball/5feb5456a57b25e7d9cde7fb9ca390c10fe82a58",
+                "reference": "5feb5456a57b25e7d9cde7fb9ca390c10fe82a58",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+                "php": "^5.5.9 || ^7.0 || ^8.0 || ^8.1 || ^8.2 || ^8.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.*|4.*|5.*|6.*|7.*|8.*|9.*|10.*",
+                "phpunit/phpunit": "6.*|7.*|8.*|9.*|10.*|11.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "HighSolutions\\LaravelSearchy\\LaravelSearchyServiceProvider"
+                    ],
+                    "aliases": {
+                        "Searchy": "HighSolutions\\LaravelSearchy\\Facades\\Searchy"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "HighSolutions\\LaravelSearchy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Lingham",
+                    "email": "tjlingham@gmail.com"
+                },
+                {
+                    "name": "HighSolutions",
+                    "email": "adam@highsolutions.pl"
+                }
+            ],
+            "description": "Laravel Searchy makes user driven searching easy with fuzzy search, basic string matching, Levenshtein Distance and more.",
+            "keywords": [
+                "fuzzy",
+                "laravel",
+                "search"
+            ],
+            "support": {
+                "source": "https://github.com/highsolutions/laravel-searchy/tree/11.0"
+            },
+            "time": "2024-04-22T14:05:28+00:00"
         },
         {
             "name": "laravel/framework",
