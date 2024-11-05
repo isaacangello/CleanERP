@@ -11,9 +11,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    @livewireStyles
-    @vite(['resources/js/app.js'])
-{{--    @vite('resources/css/app.css')--}}
+{{--    @livewireStyles--}}
+{{--    @vite(['resources/js/app.js'])--}}
+    @vite('resources/css/app.css')
 
 
     @yield('title')
@@ -61,6 +61,8 @@
     <link href="{!! asset('web/systheme/plugins/lou-multi-select/css/multi-select.css') !!}" rel="stylesheet">
 
     <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
+
+    <link rel="stylesheet" href="{!! asset('build/assets/app-9408a24e.css') !!}">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 </head>
 

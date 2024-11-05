@@ -43,5 +43,7 @@
 <link href="{!! asset('web/systheme/plugins/lou-multi-select/css/multi-select.css') !!}" rel="stylesheet">
 
 <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
+
+<link rel="stylesheet" href="{!! asset('build/assets/app-9408a24e.css') !!}">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 
