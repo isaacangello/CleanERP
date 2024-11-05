@@ -67,8 +67,21 @@ class SearchServices extends Component
             $this->selectedServices = [];
         }
     }
-    public function updated()
+
+    public function deleteServices()
     {
-        $this->updatedSelectAll();
+        //dd($this->selectedServices);
+        if(count($this->selectedServices) === 0)
+        {
+            $this->dispatch('toast-btn-alert',icon:'error', title:"Error", text:'Please select a service to delete');
+            return;
+        }
+        $services = Service::whereIn('id',$this->selectedServices)->get();
+        foreach($services as $service)
+        {
+            $service->delete();
+        }
+        $this->dispatch('toast-alert',icon:'success', message:"Services deleted !!");
+        $this->searchedServices();
     }
 }

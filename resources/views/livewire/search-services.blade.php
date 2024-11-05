@@ -129,7 +129,7 @@
                                 <td class="text-center">{!! $service['confirmed']===1?"<span class='material-symbols-outlined text-teal-700 text-sm'>verified</span>":"" !!}</td>
                                 <td class="text-center">{!! $service['fee']===1?"<span class='material-symbols-outlined text-amber-700 text-sm'>verified</span>":"" !!}</td>
                                 <td>
-                                    <input id="default-checkbox" wire:model="selectedServices" value="{{ $service['id'] }}" type="checkbox" checked="checked" class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <input id="default-checkbox" wire:model.live.debounce="selectedServices" value="{{ $service['id'] }}" type="checkbox"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 {{--                                    <label>--}}
 {{--                                        <input type="checkbox" class="materialize-checkbox filled-in" checked="checked"  />--}}
 {{--                                        <span></span>--}}
@@ -137,6 +137,13 @@
                                 </td>
                             </tr>
                         @endforeach
+                        <tr>
+                            <td colspan="7" class="text-end">
+                                <x-danger-button wire:click="deleteServices" >
+                                    Delete selected services
+                                </x-danger-button>
+                            </td>
+                        </tr>
                     </table>
                     @endif
             </div>

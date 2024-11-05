@@ -3249,12 +3249,12 @@ section.content {
 
 .red.darken-3.btn-link:hover {
     text-decoration: none!important;
-    color: #c62828!important;;
+    color: rgb(153 27 27)!important;;
     background-color: #ddd!important;; }
 
 .btn-danger.btn-link:hover {
     text-decoration: none!important;
-    color: #c62828!important;;
+    color: rgb(153 27 27)!important;;
     background-color: #ddd!important;; }
 
 .green.darken-3.btn-link:hover {
@@ -3362,10 +3362,10 @@ section.content {
 .btn-danger:active,
 .btn-danger:focus {
     color:white;
-    background-color: #fb483a !important; }
+    background-color: rgb(153 27 27) !important; }
 .btn-danger:hover{
     text-decoration: none!important;
-    color: #fb483a!important;;
+    color: rgb(153 27 27)!important;;
     background-color: #ddd!important;
 }
 .btn-info,
