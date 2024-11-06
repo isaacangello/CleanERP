@@ -29,7 +29,7 @@
                 </x-commercial-cad>
                 <div class="body">
                     <x-btn-week-navigator  :$selectedWeek>
-                        <x-standard-btn class="btn-small" @click="cadOpen = true">   New schedule  </x-standard-btn>
+                        <x-standard-btn class="btn-small" @click="cadOpen = true"> New </x-standard-btn>
                     </x-btn-week-navigator>
                     <x-btn-week-mobile-navigator  :$selectedWeek>
                         <x-standard-btn class="btn-small" @click="cadOpen = true">   New   </x-standard-btn>

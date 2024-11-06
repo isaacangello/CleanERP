@@ -50,7 +50,7 @@ API.txt for details.
 		}
 
 		if (dayNames == null) {
-			dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+			dayNames = ["Sun", "MON", "Tue", "Wed", "Thu", "Fri", "Sat"];
 		}
 
 		var hours12;

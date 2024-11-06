@@ -144,9 +144,9 @@
                                                     }
                                                 @endphp
                                                 <option selected value="One">Eventual</option>
-                                                <option  value="Wek">Weekly</option>
-                                                <option  value="Biw">Biweekly</option>
-                                                <option  value="Mon">Monthly</option>
+                                                <option  value="WEK">Weekly</option>
+                                                <option  value="BIW">Biweekly</option>
+                                                <option  value="MON">Monthly</option>
                                             </select>
                                             <label class="form-label"  for="select-cad-service-frequency">Service frequency.</label>
                                         </div>

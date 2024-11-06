@@ -62,17 +62,17 @@ trait RepeatTrait
 
                 $previos_month = $reference_date->month;
                 switch ($repeat_frequency) {
-                    case "Wek":
+                    case "WEK":
                     case "WK":
                         $reference_date->addWeek();
                         break;
-                    case "Biw":
+                    case "BIW":
                         $reference_date->addWeeks(2);
                         break;
-                    case "Thr":
+                    case "THR":
                         $reference_date->addWeeks(3);
                         break;
-                    case "Mon":
+                    case "MON":
                         $reference_date->addMonth();
                         $count_months++;
                         break;

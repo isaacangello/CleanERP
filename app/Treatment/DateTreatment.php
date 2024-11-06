@@ -40,24 +40,24 @@ class DateTreatment
          */
     }
 
-public function MakeArrayDays($firstdate = 0, $periodo = "Wek", $periodo_meses = 9)
+public function MakeArrayDays($firstdate = 0, $periodo = "WEK", $periodo_meses = 9)
     {
         /*********************************************************************************
          * verificando segundo parametro
          * Verificando frequencia de repeticoes
          */
         switch ($periodo) {
-            case "Wek":
+            case "WEK":
             case "WK":
                 $periodo_nun = 7;
                 break;
-            case "Biw":
+            case "BIW":
                 $periodo_nun = 14;
                 break;
-            case "Thr":
+            case "THR":
                 $periodo_nun = 21;
                 break;
-            case "Mon":
+            case "MON":
                 $periodo_nun = 30;
                 break;
             default:

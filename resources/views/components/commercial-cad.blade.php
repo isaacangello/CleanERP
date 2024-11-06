@@ -198,10 +198,10 @@
                                         @endphp
                                         <option {{ $string_none }} value="">Select one option</option>
                                         <option {{ $string_Eventual }} value="One">Eventual</option>
-                                        <option {{ $string_Weekly }} value="Wek">Weekly</option>
-                                        <option {{ $string_Biweekly }} value="Biw">Biweekly</option>
-                                        <option {{ $string_Three_weekly }} value="Thr">Three-weekly</option>
-                                        <option {{ $string_Monthly }} value="Mon">Monthly</option>
+                                        <option {{ $string_Weekly }} value="WEK">Weekly</option>
+                                        <option {{ $string_Biweekly }} value="BIW">Biweekly</option>
+                                        <option {{ $string_Three_weekly }} value="THR">Three-weekly</option>
+                                        <option {{ $string_Monthly }} value="MON">Monthly</option>
 
                                     </select>
 {{--                                    <label class="form-label"  for="select-cad-service-period">frequency of repetition.</label>--}}
