@@ -274,7 +274,7 @@
                             <label for="cad-schedule-note">type service notes.</label>
                             <div class="form-group">
                                 <div class="form-line success form-line-notes">
-                                    <textarea style="padding: 10px;"  id="cad-schedule-note" name="notes"  class="form-control custom-textarea"  rows="4" placeholder="Please type service notes here...">{{ old('notes') }}</textarea>
+                                    <textarea style="padding: 10px;"  id="cad-schedule-note" wire:model="form.notes"  class="form-control custom-textarea"  rows="4" placeholder="Please type service notes here...">{{ old('notes') }}</textarea>
                                 </div>
                                 <div class="help-info" id="help-info-notes">Type customer notes </div>
                             </div>
@@ -283,7 +283,7 @@
                             <label for="textarea-cad-costumer-instructions">Instructions for employees.</label>
                             <div class="form-group">
                                 <div class="form-line success form-line-instructions">
-                                    <textarea style="padding: 10px;"  id="textarea-cad-costumer-instructions" name="instructions"  class="form-control custom-textarea"  rows="4" placeholder="Please type instructions for employees here...">{{ old('instructions') }}</textarea>
+                                    <textarea style="padding: 10px;"  id="textarea-cad-costumer-instructions" wire:model="form.instructions"  class="form-control custom-textarea"  rows="4" placeholder="Please type instructions for employees here...">{{ old('instructions') }}</textarea>
                                 </div>
                                 <div class="help-info" id="help-info-instructions">Type instructions for employees. </div>
                             </div>

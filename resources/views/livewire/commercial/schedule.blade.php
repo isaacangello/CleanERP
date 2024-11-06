@@ -275,7 +275,7 @@
                                     wire:change="field_change('notes')"
                                     id="scheduleNotes"
                                     class="p-l-2 modal-residential-change"  cols="30" rows="10"
-                            >
+                            >{{$notes}}
 
                             </textarea>
                 </td>
@@ -289,7 +289,7 @@
                                     wire:change.blur="field_change('instructions')"
                                     id="scheduleInstructions"
                                     class="modal-residential-change"
-                                    cols="30" rows="10">
+                                    cols="30" rows="10">{{$instructions}}
 
                             </textarea>
                 </td>
