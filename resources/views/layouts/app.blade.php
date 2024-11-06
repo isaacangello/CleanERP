@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 {{--    @livewireStyles--}}
-{{--    @vite(['resources/js/app.js'])--}}
+    @vite(['resources/js/app.js'])
     @vite('resources/css/app.css')
 
 
@@ -62,7 +62,7 @@
 
     <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
 
-    <link rel="stylesheet" href="{!! asset('build/assets/app-9408a24e.css') !!}">
+    <link rel="stylesheet" href="{!! asset('build/assets/app-f9dd25ed.css') !!}">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 </head>
 
@@ -251,6 +251,7 @@
 {{--<script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>--}}
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{{asset('build/assets/app-f9dd25ed.js')}}"></script>
 {{--@livewireScriptConfig--}}
 </body>
 

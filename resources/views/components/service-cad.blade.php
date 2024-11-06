@@ -136,11 +136,11 @@
                                                 $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
                                                 if(!empty(old("form.repeat_frequency"))){
                                                     switch (old("form.repeat_frequency")){
-                                                        case'Wek':$string_Weekly = "selected";break;
-                                                        case'Biw':$string_Biweekly = "selected";break;
-                                                        case'Thr':$string_Three_weekly = "selected";break;
+                                                        case'WEK':$string_Weekly = "selected";break;
+                                                        case'BIW':$string_Biweekly = "selected";break;
+                                                        case'THR':$string_Three_weekly = "selected";break;
                                                         case'Mon':$string_Monthly = "selected";break;
-                                                        case'One':
+                                                        case'MON':
                                                         default: $string_Eventual = "selected"; break;
                                                     }
                                                 }else{
@@ -149,11 +149,11 @@
 
                                             @endphp
                                             <option {{ $string_none }} value="">Select one option</option>
-                                            <option {{ $string_Eventual }} value="One">Eventual</option>
-                                            <option {{ $string_Weekly }} value="Wek">Weekly</option>
-                                            <option {{ $string_Biweekly }} value="Biw">Biweekly</option>
-                                            <option {{ $string_Three_weekly }} value="Thr">Three-weekly</option>
-                                            <option {{ $string_Monthly }} value="Mon">Monthly</option>
+                                            <option {{ $string_Eventual }} value="ONE">Eventual</option>
+                                            <option {{ $string_Weekly }} value="WEK">Weekly</option>
+                                            <option {{ $string_Biweekly }} value="BIW">Biweekly</option>
+                                            <option {{ $string_Three_weekly }} value="THR">Three-weekly</option>
+                                            <option {{ $string_Monthly }} value="MON">Monthly</option>
 
                                         </select>
                                         {{--                                    <label class="form-label"  for="select-cad-service-period">frequency of repetition.</label>--}}

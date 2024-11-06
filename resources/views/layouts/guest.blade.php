@@ -37,7 +37,7 @@
         <div class="">
             <div class="container align-center" style="background-color: transparent;">
                 <a href="{{ route('index') }}"  class="">
-                    <img src="./img/icon-81.png" style="width: 5em;" alt="JJL logo" />
+                    <img src="{{asset('/img/icon-81.png')}}" style="width: 5em;" alt="JJL logo" />
                 </a>
             </div>
 

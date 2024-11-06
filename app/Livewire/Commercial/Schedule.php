@@ -27,6 +27,7 @@ class Schedule extends Component
     public  $showCadModal = false;
     public $showTab1 = true;
     public $showTab2 = false;
+    
     public $selectOptionsEmployees;
     public $selectOptionsCustomers;
 

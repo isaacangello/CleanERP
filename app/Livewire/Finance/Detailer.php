@@ -3,6 +3,8 @@
 namespace App\Livewire\Finance;
 
 use App\Helpers\Finance\FinanceTrait;
+use App\Helpers\Funcs;
+use App\Livewire\RepeatTrait;
 use App\Models\Employee;
 use App\Models\Service;
 use App\Treatment\DateTreatment;
@@ -17,6 +19,7 @@ use Livewire\Component;
 class Detailer extends Component
 {
     use FinanceTrait;
+    use RepeatTrait;
     #[Url]
     public $id;
     public $from;
@@ -24,12 +27,69 @@ class Detailer extends Component
     public $numWeek = null;
     public $year = null;
     public $notesOpen = false;
-    public $finance_notes = null;
+    public $modalKey = null;
+    public $modalOpen = false;
+    public $modalMarkedFrequency = null;
+    public $modal_dates = null;
+    public $financeNotes = null;
+    public $frequencyStrings = [
+        'ONE'=>'Eventual',
+        'WEK'=>'Weekly',
+        'BIW'=>'Biweekly',
+        'THR'=>'Triweekly',
+        'MON'=>'Monthly',
+        ];
     #[Validate('required')]
     public $selectedEmployee = null;
     public $currentEmployee = null;
     public $selectedWeek = null;
     public $selectedYear = null;
+
+    public function toggleModal(): void
+    {
+        $this->modalOpen = !$this->modalOpen;
+    }
+    public function openAndPopulateModal($key): void
+    {
+        $this->modalKey = $key;
+        //dd($this->Data()[$key]);
+        $this->financeNotes = $this->Data()[$key]->finance_notes ;
+        $result = $this->searchServiceCycleById($this->data[$key]->id);
+        //var_dump($result);
+        if($result){
+            $dates = explode(',',$result->dates);
+            $this->modal_dates = "";
+            $c=0;
+            foreach ($dates as $date){
+                $this->modal_dates .= "<span class='".Funcs::altClass($c,['text-gray-500',''])."'>".Carbon::create($date)->format('m/d/Y')."</span> <span class='text-yellow-800 px-1.5'>  |  </span>    ";
+                $c++;
+                if($c === 6){
+                    $this->modal_dates .= "<br>";
+                    $c = 0;
+                }
+
+            }
+            $this->modalMarkedFrequency =  $this->frequencyStrings[strtoupper($result->frequency)];
+
+        }else{
+            $this->modal_dates = "No repeat found";
+            $this->modalMarkedFrequency = "No Frequency found";
+        }
+
+        $this->modalOpen = true;
+
+    }
+    public function saveFinanceNotes(): void
+    {
+        $this->validate([
+            'financeNotes' => 'nullable|string'
+        ]);
+        $service = Service::find($this->data[$this->modalKey]->id);
+        $service->finance_notes = $this->financeNotes??" ";
+        $service->save();
+        //$this->modalOpen = false;
+        $this->dispatch('toast-alert', icon: 'success', message: 'Finance notes saved');
+    }
     public function thisWeek(): void
     {
         $dateTrait =new DateTreatment();

@@ -70,7 +70,7 @@
                             </p>
                         </div>
                         <div class="col s12 m6 right-align">
-                            <button class="waves-effect waves-light btn bg-teal" type="submit">SIGN IN</button>
+                            <button class="btn btn-link waves-effect waves-teal " type="submit">SIGN IN</button>
                         </div>
                     </div>
                     <div class="row m-t-15">

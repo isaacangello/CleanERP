@@ -3,7 +3,8 @@ use Carbon\Carbon;
 @endphp
 <div class="container-fluid"
      x-data="{
-        notesOpen: $wire.entangle('notesOpen')
+        notesOpen: $wire.entangle('notesOpen'),
+        open: $wire.entangle('modalOpen')
         }"
 >
     <div class="block-header">
@@ -62,7 +63,7 @@ use Carbon\Carbon;
                                         {{--                                        {{dd($employees_services)}}--}}
                                         @foreach($this->Data as $key =>  $data)
 {{--                                            @php dd($data); @endphp--}}
-                                            <livewire:finance.detailer-tr wire:key="tr{{$key}}" :i="$i" :$data />
+                                            <livewire:finance.detailer-tr wire:key="tr{{$key}}" :i="$i" :$data @openModal="openAndPopulateModal({{$key}})" />
                                             @php($i++)
                                         @endforeach
                                     @else
@@ -101,6 +102,52 @@ use Carbon\Carbon;
             </div>
         </div>
     </div>
+    <x-modal>
+        <x-slot:title>
+            Finance Information.
+        </x-slot>
+         <div class="w-full  mt-3.5 mb-12">
+             <div class="row">
+                 <div class=" col s12 m12">
+                     <label for="textarea-cad-costumer-instructions">Finance Notes.</label>
+                     <div class="form-group">
+                         <div class="form-line success form-line-instructions">
+                             <textarea style="padding: 10px;"  id="textarea-cad-costumer-instructions" wire:model="financeNotes"  wire:change.debounce="saveFinanceNotes" class="form-control custom-textarea"  rows="2" placeholder="Please type notes here...">
+                                 {{$financeNotes??''}}
+                             </textarea>
+                         </div>
+                         <div class="help-info" id="help-info-instructions">type notes here. </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="col s12">
+                     <label for="textarea-cad-costumer-instructions">Repeat dates</label>
+                     <div class="form-group">
+                         <div class="form-line success form-line-instructions">
+                                {!! $this->modal_dates??'' !!}
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="col s12">
+                     <label for="textarea-cad-costumer-instructions">Marked frequency</label>
+                     <div class="form-group">
+                         <div class="form-line success form-line-instructions">
+                             <span class="text-yellow-800">{{$this->modalMarkedFrequency??""}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+         </div>
+
+        <x-slot:footer>
+            <x-standard-btn class="btn btn-link btn-small" @click="open = !open ">Close</x-standard-btn>
+        </x-slot>
+    </x-modal>
     @script
     <script>
         console.log(window)

@@ -17,7 +17,7 @@
 
                         <!-- Name -->
                         <div class="form-group">
-                            <div class="form-line">
+                            <div class="form-line success">
                                 <x-input-label for="name" :value="__('Name')" />
                                 <x-text-input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                                 <x-input-error :messages="$errors->get('name')" class="" />
@@ -26,7 +26,7 @@
 
                         <!-- Email Address -->
                         <div class="form-group">
-                            <div class="form-line">
+                            <div class="form-line success">
                                 <div class="mt-4">
                                     <x-input-label for="email" :value="__('Email')" />
                                     <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autocomplete="username" />
@@ -36,7 +36,7 @@
                         </div>
                         <!-- Password -->
                         <div class="form-group">
-                            <div class="form-line">
+                            <div class="form-line success">
                                 <div class="mt-4">
                                     <x-input-label for="password" :value="__('Password')" />
 
@@ -52,7 +52,7 @@
 
                         <!-- Confirm Password -->
                         <div class="form-group">
-                            <div class="form-line">
+                            <div class="form-line success">
 
                                 <div class="mt-4">
                                     <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
@@ -70,7 +70,7 @@
                                 {{ __('Already registered?') }}
                             </a>
 
-                            <x-primary-button class="btn btn-sm green darken-3 waves-effect waves-classic waves-light">
+                            <x-primary-button class="btn btn-link btn-small  waves-effect waves-teal">
                                 {{ __('Register') }}
                             </x-primary-button>
                         </div>

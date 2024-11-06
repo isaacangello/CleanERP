@@ -18,16 +18,16 @@
 
                     <!-- Email Address -->
                     <div class="form-group">
-                        <div class="form-line">
+                        <div class="form-line success">
                             <x-input-label class="form-label" for="email" :value="__('Email')" />
                             <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
                             <x-input-error :messages="$errors->get('email')" class="red-text text-darken-4" />
                         </div>
                     </div>
                     <div class="align-right">
-                        <x-primary-button>
+                        <x-standard-btn type="submit">
                             {{ __('Email Password Reset Link') }}
-                        </x-primary-button>
+                        </x-standard-btn>
                     </div>
                 </form>
             </div>

@@ -9692,7 +9692,7 @@ html.ie11 .bs-searchbox .form-control {
 }
 /*adjust textarea*/
 textarea.custom-textarea{
-    height: 170px;
+    height: 120px;
 }
 textarea.custom-textarea:focus{
     border: none!important;

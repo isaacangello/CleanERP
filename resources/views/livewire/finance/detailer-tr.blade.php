@@ -25,7 +25,7 @@
         </a>
     </td>
     <td class="center-align" title="{{$this->title}}">
-        {{$data->cust_name}}
+       <a class="btn-link-underline pointer" wire:click.prevent="modalCall"> {{$data->cust_name}}</a>
     </td>
     <td>{{$data->frequency}}</td>
     <td>

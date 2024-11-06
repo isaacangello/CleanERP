@@ -34,6 +34,13 @@ class DetailerTr extends Component
     protected $listeners = [
         'detailer-refresh' => '$refresh'
     ];
+
+    public function modalCall()
+    {
+        // TODO: Implement modalCall() method.
+        $this->dispatch('open-modal', referenceId: $this->data->id);
+    }
+
     #[NoReturn] public function changeValues(): void
     {
         $this->validate([

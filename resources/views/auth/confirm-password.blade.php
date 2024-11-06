@@ -15,7 +15,7 @@
     <div class="col s1 m3"></div>
     <div class="col s10 m6">
        <div class="form-group">
-            <div class="form-line">
+            <div class="form-line success">
                 <x-input-label class="form-label" for="password" :value="__('Password')" />
 
                 <x-text-input id="password" class="form-control"

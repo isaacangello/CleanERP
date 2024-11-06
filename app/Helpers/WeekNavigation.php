@@ -15,6 +15,8 @@ trait WeekNavigation
     public string|int|null $week = null;
     public string|int|null $from;
     public string|int|null $till;
+
+    public string|int|null $currentTab = null;
     public string|int|null $currentEmployee = null;
     public string|int|null $selectedWeek = null;
     public string|int|null $selectedYear = null;

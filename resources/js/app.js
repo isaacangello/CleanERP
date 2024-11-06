@@ -37,10 +37,10 @@
 //  import "../web/custom/modalPush.js"
 
 
-import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
-
-// Alpine.data('searchComponent', () => ({
+// import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
 //
-// }))
-
-Livewire.start()
+// // Alpine.data('searchComponent', () => ({
+// //
+// // }))
+//
+// Livewire.start()
