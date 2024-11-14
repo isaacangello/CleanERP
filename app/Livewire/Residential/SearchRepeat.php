@@ -4,6 +4,7 @@ namespace App\Livewire\Residential;
 
 use App\Helpers\WeekNavigation;
 use App\Livewire\Forms\CustomerForm;
+use App\Livewire\Forms\EmployeeForm;
 use App\Models\Billing;
 use App\Models\Customer;
 use App\Models\Employee;
@@ -15,7 +16,7 @@ class SearchRepeat extends Component
 {
     use WeekNavigation;
     public CustomerForm $fcustomer;
-
+    public EmployeeForm $femployee;
     public $searchResults = "";
     public $tabService = true;
     public $tabRepeat = false;
@@ -28,7 +29,7 @@ class SearchRepeat extends Component
     public $selectedValues = [];
     public $billingsSelected = [];
     public $customer;
-    public $status = 'active';
+    public $status = 'ACTIVE';
     public $employee;
 
     public function editCustomer($id): void
@@ -81,20 +82,72 @@ class SearchRepeat extends Component
         $this->showCustomerEdit = true;
 
     }
-    public function editEmployee($id): void
-    {
-        $this->employee = Employee::find($id);
-        $this->showEmployeeEdit = true;
-    }
+
     public function updateCustomer($id): void
     {
         $this->fcustomer->billing_values_selected = $this->billingsSelected;
-
         $this->fcustomer->update($id);
         $this->showCustomerEdit = false;
         $this->dispatch('toast-alert', icon:'success',message:'Customer updated successfully');
     }
+    public function editEmployee($id): void
+    {
+        $this->employee = Employee::find($id);
+        $this->femployee->name = $this->employee->name;
+        $this->femployee->phone = $this->employee->phone;
+        $this->femployee->email = $this->employee->email;
+        $this->femployee->birth = $this->employee->birth;
+        $this->dispatch('populate-date', idElement:"#input-edit-employee-birth", date:$this->employee->birth);
+        $this->femployee->address = $this->employee->address;
+        $this->femployee->name_ref_one = $this->employee->name_ref_one;
+        $this->femployee->name_ref_two = $this->employee->name_ref_two;
+        $this->femployee->phone_ref_one = $this->employee->phone_ref_one;
+        $this->femployee->phone_ref_two = $this->employee->phone_ref_two;
+        $this->femployee->restriction = $this->employee->restriction;
+        $this->femployee->description = $this->employee->description;
+        $this->femployee->document = $this->employee->document;
+        $this->femployee->type = $this->employee->type;
+        $this->femployee->status = $this->employee->status;
+        $this->femployee->shift = $this->employee->shift;
+        $this->femployee->username = $this->employee->username;
+        $this->femployee->password = $this->employee->password;
+        $this->femployee->new_user = $this->employee->new_user;
+        $this->femployee->id = $this->employee->id;
 
+        $this->showEmployeeEdit = true;
+    }
+
+    public function updateEmployee($id): void
+    {
+        $this->femployee->update($id);
+        $this->showEmployeeEdit = false;
+        $this->dispatch('toast-alert', icon:'success',message:'Employee updated successfully');
+    }
+    public function changeStatus($id,$who): void
+    {
+        if($who == 'customer') {
+            $this->customer = Customer::find($id);
+                if ($this->customer->status == 'ACTIVE') {
+                $this->customer->status = 'INACTIVE';
+            } else {
+                $this->customer->status = 'ACTIVE';
+            }
+            $this->customer->save();
+            $this->dispatch('toast-alert', icon:'success',message:'Customer status changed successfully');
+            return;
+        }
+        if($who == 'employee') {
+            $this->employee = Employee::find($id);
+            if ($this->employee->status == 'ACTIVE') {
+                $this->employee->status = 'INACTIVE';
+            } else {
+                $this->employee->status = 'ACTIVE';
+            }
+            $this->employee->save();
+            $this->dispatch('toast-alert', icon:'success',message:'Employee status changed successfully');
+
+        }
+    }
     public function mount()
     {
         $this->initVars();

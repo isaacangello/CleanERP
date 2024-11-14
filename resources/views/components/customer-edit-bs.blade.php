@@ -213,8 +213,8 @@
                             <div class="row clearfix">
                                 <div class="col s12 m5">
                                     <div class="checkbox-float">
-                                        <label for="md-checkbox-keys">
-                                            <input type="checkbox" wire:model="fcustomer.key" id="md-checkbox-keys" class="accent-green-800" @if(isset($this->customer->key) and  $this->customer->key) checked="checked" @endif>
+                                        <label for="md-checkbox-keys{{$this->customer->id??"$$1"}}">
+                                            <input type="checkbox" wire:model="fcustomer.key" id="md-checkbox-keys{{$this->customer->id??"$$1"}}" class="accent-green-800" @if(isset($this->customer->key) and  $this->customer->key) checked="checked" @endif>
                                             <span>Keys in office?</span>
                                         </label>
                                     </div>

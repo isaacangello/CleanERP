@@ -44,7 +44,7 @@
                                         }
                                         ";
                                 @endphp
-                                <x-date-flat-pickr id="input-finance-from" options="{!! $options !!}" class="font-12 h-30" wire:model="from" value="{{$this->from}}"   />
+                                <x-date-flat-pickr id="input-search-panel-from" options="{!! $options !!}" class="font-12 h-30" wire:model="from" value="{{$this->from}}"   />
                                 <label class="form-label" for="input-finance-from">From</label>
                             </div>
                             <div class="help-info">Insert date from.</div>
@@ -66,7 +66,7 @@
                                         }
                                         ";
                                 @endphp
-                                <x-date-flat-pickr id="input-finance-from" options="{!! $options !!}"  class="font-12 h-30" wire:model="till" />
+                                <x-date-flat-pickr id="input-search-panel-till" options="{!! $options !!}"  class="font-12 h-30" wire:model="till" />
                                 <label class="form-label" for="input-finance-till">Till</label>
                             </div>
                             <div class="help-info">Insert date till.</div>

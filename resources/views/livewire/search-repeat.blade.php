@@ -11,15 +11,15 @@
                         <div class="input-field col s12 m3 offset-m3">
                             <div class="form-group">
                                 <div class="form-line success">
-                                    <select id="select-finance-employee" class="form-control browser-default livewire-select font-12 h-30" wire:model="selectedCustomer" >
+                                    <select id="select-repeat-customer" class="form-control browser-default livewire-select font-12 h-30" wire:model="selectedCustomer" >
                                         <option  value="{{$id??'0'}}">No Customers</option>
                                         @if(isset($customers) and !empty($customers))
                                             @foreach($customers as $customer)
-                                                <option wire:key="empKey{{$customer['id']}}"  value="{{$customer['id']}}" @if($id === $customer['id']) selected @endif >{{ $customer['name'] }}</option>
+                                                <option wire:key="custKey{{$customer['id']}}"  value="{{$customer['id']}}" @if($id === $customer['id']) selected @endif >{{ $customer['name'] }}</option>
                                             @endforeach
                                         @endif
                                     </select>
-                                    @error('selectedEmployee')
+                                    @error('selectedCustomer')
                                     @script
                                     <script>
                                         console.log("error in plus")
@@ -40,15 +40,23 @@
                     </form>
                 </div>
                 <div class="row">
+                    <table wire:loading.flex>
+                        <tr>
+                            <td colspan="3">
+                                <img src="{{asset('img/loading.gif')}}" alt="loading" class="w-36 " style="margin-left: 40vw; margin-top: 10vh">
+                            </td>
+                        </tr>
+                    </table>
+
                     @if($this->cycles)
-                        <table>
+                        <table wire:loading.remove>
                             <tr>
 
                                 <th>Created At</th>
                                 <th>customer</th>
                                 <th>frequency</th>
                                 <th class="text-center">Dates</th>
-                                <th><input id="default-checkbox" type="checkbox" wire:model.live="selectAll"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
+                                <th><input  type="checkbox" wire:model.live="selectAll"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
                             </tr>
                             @php
                                 $counter = 0;
@@ -76,7 +84,7 @@
                                         ...
                                     </td>
                                     <td>
-                                        <input id="default-checkbox" wire:model.live.debounce="selectedCycles" value="{{ $cycle->id }}" type="checkbox"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <input  wire:model.live.debounce="selectedCycles" value="{{ $cycle->id }}" type="checkbox"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     </td>
                                 </tr>
                             @php($counter++)

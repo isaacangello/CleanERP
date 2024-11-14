@@ -12,11 +12,11 @@
                             <span class="text-sm material-symbols-outlined">search</span>
                             <x-text-input
 
-                                label="Search Customer"
-                                placeholder="Search Customer"
-                                wire:model.live.debounce="search"
-                                wire:keydown.enter="searchedCustomers"
-                                class="text-sm h-30"
+                                    label="Search Customer"
+                                    placeholder="Search Customer"
+                                    wire:model.live.debounce="search"
+                                    wire:keydown.enter="searchedCustomers"
+                                    class="text-sm h-30"
                             />
 
                         </div>
@@ -27,30 +27,40 @@
             <div class="row">
                 <div class="col s12">
                     <table>
-                        @if($this->data)
-                        <tr>
-                            <th>Created At</th>
-                            <th>customer</th>
-                            <th>Status</th>
-                            <th></th>
+                        <tr wire:loading.flex >
+                            <td colspan="3">
+                                <img src="{{asset('/img/loading.gif')}}" alt="loading" class="w-36 " style="margin-left: 40vw; margin-top: 10vh">
+                            </td>
                         </tr>
 
-                            @php $counter = 0; @endphp
-                        @foreach($this->data as $key => $data)
-
-
-                            <tr wire:key="cust{{$key}}"  class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100','bg-white text-gray-600']) }}">
-                                <td class="p-0">{{Carbon\Carbon::create($data->created_at)->format('l, m/d/Y h:i A')}}</td>
-                                <td class="p-0"><a class="btn-link-underline pointer waves-effect waves-grey" wire:click="editCustomerEvent({{ $data->id }})">{{$data->name}}</a></td>
-                                <td class="p-0" colspan="2">
-                                    <select class="block text-gray-600  {{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100','bg-white']) }} border border-gray-300  shadow-sm m-0  text-left cursor-default focus:outline-none focus:ring-1 focus:ring-green-800 focus:border-green-800 sm:text-sm" wire:model="status" wire:change="changeStatus({{$data->id}})">
-                                        <option value="active" @if($data->status == 'ACTIVE') selected @endif>Active</option>
-                                        <option value="inactive" @if($data->status == 'INACTIVE') selected @endif>Inactive</option>
-                                    </select>
-                                </td>
+                        @if($this->data)
+                            <tr>
+                                <th>Created At</th>
+                                <th>customer</th>
+                                <th>Status</th>
                             </tr>
-                            @php $counter++; @endphp
-                        @endforeach
+
+                            @php $counter = 0; @endphp
+                            @foreach($this->data as $key => $data)
+                                @php
+
+                                @endphp
+
+                                <tr wire:key="cust{{$key}}"  class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100','bg-white text-gray-600']) }}">
+                                    <td class="p-0">{{Carbon\Carbon::create($data->created_at)->format('l, m/d/Y h:i A')}}</td>
+                                    <td class="p-0"><a class="btn-link-underline pointer waves-effect waves-grey" wire:click="editCustomerEvent({{ $data->id }})">{{$data->name}}</a></td>
+                                    <td class="p-0" colspan="2">
+                                        <select  class="block text-gray-600  {{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100','bg-white']) }} border border-gray-300  shadow-sm m-0  text-left cursor-default focus:outline-none focus:ring-1 focus:ring-green-800 focus:border-green-800 sm:text-sm"
+                                                wire:model="status" wire:change="changeStatus({{$data->id}})"
+                                        >
+{{--                                            <option value="{{ $data->status }}">{{ $data->status }}</option>--}}
+                                            <option @if($data->status === "ACTIVE") selected="selected" @endif value="ACTIVE">ACTIVE</option>
+                                            <option @if($data->status === "INACTIVE") selected="selected" @endif value="INACTIVE">INACTIVE</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                @php $counter++; @endphp
+                            @endforeach
 
 
                         @else

@@ -29,6 +29,7 @@ class CustomerForm extends Form
     public $gate_code;
     public $justify_inactive;
     public $info;
+    public $status;
     public function update($id)
     {
 //        dd($this->billing_values_selected);
@@ -63,5 +64,12 @@ class CustomerForm extends Form
         $this->customer->save();
         $this->customer->billings()->sync($this->billing_values_selected);
             return true;
-    }    
+    }
+    public function changeStatus($id): true
+    {
+        $this->customer = Customer::find($id);
+        $this->customer->status = $this->status;
+        $this->customer->save();
+        return true;
+    }
 }
