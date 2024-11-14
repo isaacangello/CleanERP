@@ -36,8 +36,8 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-    @vite(['resources/js/app.js'])
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css','resources/js/app.js'])
+
 
 
 
@@ -62,7 +62,7 @@
 
     <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
 
-    <link rel="stylesheet" href="{{ asset('/build/assets/app-f9dd25ed.css')  }}">
+    <link rel="stylesheet" href="{{ asset('/build/assets/app-bd448e57.css')  }}">
 
     {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 </head>
@@ -252,7 +252,7 @@
 {{--<script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>--}}
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-{{--<script src="{{asset('build/assets/app-752f1665.js')}}"></script>--}}
+<script src="{{asset('build/assets/app-4ed993c7.js')}}"></script>
 {{--@livewireScriptConfig--}}
 </body>
 
