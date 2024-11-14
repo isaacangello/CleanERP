@@ -106,7 +106,8 @@ trait RepeatTrait
 //            }
 //        }
     }
-    public function searchScheduleCycleByDate(){
+    public function searchScheduleCycleByDate(): void
+    {
 
          $cycles = DB::table('schedule_cycles')
             ->select('customer_id','ids','dates','frequency')

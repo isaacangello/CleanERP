@@ -23,6 +23,7 @@
                     text: event.detail.text
                 })
                 //console.log(window)
+
             })
         </script>
         @endscript

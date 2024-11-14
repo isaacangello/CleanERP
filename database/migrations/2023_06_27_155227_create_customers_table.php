@@ -47,8 +47,8 @@ return new class extends Migration
         });
         DB::table('customers')->insert(
             [
-            ['id' => 1,'name' => "***OPEN****", 'address'=> "Espaço em aberto.", 'phone' => "0000", 'email' => fake()->email, 'status' => 'HIDDEN'  ],
-            ['id' => 2,'name' => "-----------", 'address'=> "Solicitacao do Employee.", 'phone' => "0000", 'email' => fake()->email, 'status' => 'HIDDEN'  ]
+            ['id' => 1,'name' => "***OPEN****", 'address'=> "Espaço em aberto.", 'phone' => "0000", 'email' => fake()->email, 'status' => 'HIDDEN','note' => "Espaço em aberto."],
+            ['id' => 2,'name' => "-----------", 'address'=> "Solicitacao do Employee.", 'phone' => "0000", 'email' => fake()->email, 'status' => 'HIDDEN', 'note' => 'Solicitacao do Employee.'  ]
             ]
         );
     }

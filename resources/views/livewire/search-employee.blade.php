@@ -38,7 +38,7 @@
 
 
                                 <tr wire:key="cust{{$key}}"  class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100',' ']) }}">
-                                    <td>{{$data->created_at}}</td>
+                                    <td>{{\Carbon\Carbon::create($data->created_at)->format('l, m/d/Y h:i A')}}</td>
                                     <td>{{$data->name}}</td>
                                     <td>{{$data->status}}</td>
                                 </tr>

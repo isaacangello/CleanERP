@@ -1,6 +1,6 @@
 <div>
     <div class="container-fluid" x-data="
-{
+                            {
                                         tabService: $wire.entangle('tabService'),
                                         tabRepeat: $wire.entangle('tabRepeat'),
                                         tabCustomer: $wire.entangle('tabCustomer'),
@@ -49,7 +49,8 @@
                                                                 break;
                                                 }
                                         }
-                                }
+
+                            }
     ">
         <div class="block-header">
             <h2>
@@ -114,22 +115,33 @@
                              x-trap="tabCustomer"
                              x-transition:enter="animate__animated animate__fadeIn animate__faster"
                         >
-                            <livewire:search-customer />
+                            <livewire:search-customer @edit-customer="editCustomer($event.detail.id);selectTab('tabCustomer')" />
+
+                            <div x-data="{
+                                        showCustomerEdit: $wire.entangle('showCustomerEdit'),
+                                        showEmployeeEdit: $wire.entangle('showEmployeeEdit')
+                                    }"
+                            >
+                                <x-customer-edit-bs :$billings />
+
+
+                            </div>
+
                         </div>
                         <div role="tabpanel" class="tab-pane fade in active" id="scale_1"
                              x-show="tabEmployee"
                              x-trap="tabEmployee"
                              x-transition:enter="animate__animated animate__fadeIn animate__faster"
                         >
-                            <livewire:search-employee />
+                            <livewire:search-employee  />
                         </div>
                     </div>
                 </div>
                 </div>
             </div>
         </div>
-
     </div>
+
 
     <x-search-javascript />
 </div>

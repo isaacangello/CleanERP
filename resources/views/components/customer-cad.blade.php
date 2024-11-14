@@ -15,7 +15,7 @@
                                 <div class="col s12 m8">
                                     <div class="form-group">
                                         <div class="form-line success form-line-name">
-                                            <input id="input-cad-customer-name" name="name" type="text" class="form-control" value="{{ old('name') }}">
+                                            <x-text-input id="input-cad-customer-name" name="name" type="text" class="form-control" value="{{ old('name') }}" />
                                             <label class="form-label" for="input-cad-customer-name">Name Customer</label>
                                         </div>
                                         <div class="help-info">Insert name Customer</div>
@@ -135,17 +135,18 @@
                                             <select class="materialize-select" id="select-cad-service-frequency" name="frequency">
                                                 @php if(!empty(old("frequency"))){
                                                         switch (old("frequency")){
-                                                            case'One': $string_val = "Eventual" ;break;
-                                                            case'Wek':$string_val = "Weekly";break;
-                                                            case'Biw':$string_val = "Biweekly";break;
-                                                            case'Mon':$string_val = "Monthly";break;
+                                                            case'ONE':$string_val = "Eventual" ;break;
+                                                            case'WEK':$string_val = "Weekly";break;
+                                                            case'BIW':$string_val = "Biweekly";break;
+                                                            case'MON':$string_val = "Monthly";break;
                                                         }
                                                         echo"<option value='".old("frequency")."'>".$string_val."</option>";
                                                     }
                                                 @endphp
-                                                <option selected value="One">Eventual</option>
+                                                <option selected value="ONE">Eventual</option>
                                                 <option  value="WEK">Weekly</option>
                                                 <option  value="BIW">Biweekly</option>
+                                                <option  value="TRH">Triweekly</option>
                                                 <option  value="MON">Monthly</option>
                                             </select>
                                             <label class="form-label"  for="select-cad-service-frequency">Service frequency.</label>
@@ -212,7 +213,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button class="btn waves-classic waves-light btn-small" id="btnCadCustomer" type="submit">save changes</button>
-                                <a href="#!" class="btn modal-close waves-classic waves-light btn-small red darken-4">Cancel</a>
+                                <a href="#!" class="btn btn-link red darken-3 waves-classic waves-red">Cancel</a>
                             </div>
                 </div><!--END OF CONTAINER -->
             </form>

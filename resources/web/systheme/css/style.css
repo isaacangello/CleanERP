@@ -3230,8 +3230,8 @@ section.content {
     background-color: #ddd!important;
 }
 
-.btn-link-underline:hover{
-    text-decoration: underline!important;;
+.btn-link-underline{
+    text-decoration: none!important;;
 }
 .amber.darken-3{
     background-color: #ff8f00;

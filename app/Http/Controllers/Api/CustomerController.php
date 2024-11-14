@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use AllowDynamicProperties;
 use App\Models\Billing;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class CustomerController extends Controller
+#[AllowDynamicProperties] class CustomerController extends Controller
 {
 
     public function __construct(Customer $cust,Billing $billing)
