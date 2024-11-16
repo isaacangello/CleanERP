@@ -11,14 +11,26 @@ use Livewire\Component;
 class SearchEmployee extends Component
 {
     public $search = '';
+    public $searchFilterType = 'ALL';
+
     public EmployeeForm $femployee;
     #[Computed]
     public function data(){
         if($this->search){
-//            dd(Searchy::search('employees')->fields('name')->query($this->search)
-//                ->getQuery()->limit(10)->get()->toArray());
-            return Searchy::search('employees')->fields('name')->query($this->search)
-                ->getQuery()->limit(10)->get()->toArray();
+
+          if($this->searchFilterType == 'ALL') {
+              return Searchy::search('employees')->fields('name')->query($this->search)
+                  ->getQuery()->limit(10)->get()->toArray();
+          }
+          if($this->searchFilterType == 'COMMERCIAL') {
+              return Searchy::search('employees')->fields('name')->query($this->search)
+                  ->getQuery()->where('type', 'COMMERCIAL')->limit(10)->get()->toArray();
+          }else{
+                return Searchy::search('employees')->fields('name')->query($this->search)
+                    ->getQuery()->where('type', 'RESIDENTIAL')->orWhere('type', 'HENTALHOUSE')->limit(10)->get()->toArray();
+          }
+
+
         }else{
             return [];
         }

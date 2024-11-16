@@ -77,8 +77,16 @@ class EmployeeForm extends Form
     }
     public function changeStatus($id): true
     {
+
         $this->employee = Employee::find($id);
-        $this->employee->status = $this->status;
+        if ($this->employee->status == 'ACTIVE') {
+            $this->employee->status = 'INACTIVE';
+        } else {
+            $this->employee->status = 'ACTIVE';
+        }
+        if(is_null($this->employee->status)){
+            $this->employee->status = 'ACTIVE';
+        }
         $this->employee->save();
         return true;
 

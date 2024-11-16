@@ -1,4 +1,9 @@
 <div class="w-full">
+    <div wire:loading class="fixed w-full h-full">
+        <div>
+            <img src="{{asset('img/loading.gif')}}" alt="loading" class="w-36 " style="margin-left: 40vw; margin-top: 10vh">
+        </div>
+    </div>
     <div class="panel panel-default" >
         <div class="panel-heading p-l-15 p-t-2 p-r-2 p-b-2">
             Search
@@ -6,7 +11,7 @@
 
         <div class="panel-body " >
             <div class="clearfix row m-b-0">
-                <form wire:submit.prevent="searchedServices()">
+                <form wire:submit.prevent="searchServices()">
                     <div class="input-field col s12 m3">
                         <div class="form-group">
                             <div class="form-line success">
@@ -107,14 +112,7 @@
                 </form>
             </div>
             <div class="row">
-                <table wire:loading.flex>
-                    <tr>
-                        <td colspan="3">
-                            <img src="{{asset('img/loading.gif')}}" alt="loading" class="w-36 " style="margin-left: 40vw; margin-top: 10vh">
-                        </td>
-                    </tr>
-                </table>
-                    @if($this->services)
+                    @if($this->searchedServices)
                         @php
                             $counter = 0;
                         @endphp
@@ -129,19 +127,19 @@
                             <th>frequency</th>
                             <th class="text-center">Confirmed</th>
                             <th class="text-center">Canceled</th>
-                            <th><input  type="checkbox" wire:model.live="selectAll"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
+                            <th class="p-0"><input  type="checkbox" wire:model.live="selectAll"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
                         </tr>
-                        @foreach($this->services['data'] as $service)
-                            <tr wire:key="tr{{ $service['id'] }}" class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100',' ']) }}" >
+                        @foreach($this->searchedServices as $service)
+                            <tr wire:key="tr{{ $service->id }}" class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100',' ']) }}" >
 
-                                <td>{{ Carbon\Carbon::create($service['service_date'] )->format('l, m/d/Y h:i A')  }}</td>
-                                <td>{{$service['customer']['name']}}</td>
-                                <td>{{$service['employee']['name']}}</td>
-                                <td>{{$service['frequency']}}</td>
-                                <td class="text-center">{!! $service['confirmed']===1?"<span class='material-symbols-outlined text-teal-700 text-sm'>verified</span>":"" !!}</td>
-                                <td class="text-center">{!! $service['fee']===1?"<span class='material-symbols-outlined text-amber-700 text-sm'>verified</span>":"" !!}</td>
-                                <td>
-                                    <input  wire:model.live.debounce="selectedServices" value="{{ $service['id'] }}" type="checkbox"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <td class="p-0">{{ Carbon\Carbon::create($service['service_date'] )->format('l, m/d/Y h:i A')  }}</td>
+                                <td class="p-0">{{$service->customer->name}}</td>
+                                <td class="p-0">{{$service->employee->name}}</td>
+                                <td class="p-0">{{$service->frequency}}</td>
+                                <td class="p-0 text-center">{!! $service->confirmed===1?"<span class='material-symbols-outlined text-teal-700 text-sm'>verified</span>":"" !!}</td>
+                                <td class="p-0 text-center">{!! $service->fee===1?"<span class='material-symbols-outlined text-amber-700 text-sm'>verified</span>":"" !!}</td>
+                                <td class="p-0">
+                                    <input  wire:model.live.debounce="selectedServices" value="{{ $service->id }}" type="checkbox"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 {{--                                    <label>--}}
 {{--                                        <input type="checkbox" class="materialize-checkbox filled-in" checked="checked"  />--}}
 {{--                                        <span></span>--}}
@@ -160,7 +158,17 @@
                     </table>
                     @endif
             </div>
+            @if($this->searchedServices)
+            <div class="row">
+                <div class="col s12">
+                    <div class="flex justify-center">
+                        {{ $this->searchedServices->links() }}
+                    </div>
+                </div>
+            </div>
+            @endif
 
         </div>
     </div>
 </div>
+

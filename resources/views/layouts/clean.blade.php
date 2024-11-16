@@ -62,7 +62,7 @@
 {{--    </div>--}}
     <!-- #END# Search Bar -->
     <!-- Top Bar -->
-    <nav class="navbar">
+    <nav class="nav-materialize navbar">
         <div class="nav-wrapper p-l-20">
                 <a class="brand-logo font-16 " href="{{route('index')}}">JJL - SYSTEM 2</a>
         </div>

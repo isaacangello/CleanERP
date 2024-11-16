@@ -24,12 +24,12 @@ class SearchServices extends Component
     public $selectedEmployee=0;
     public $selectedCustomer=0;
     public $selectedServices = [];
-    public function searchedServices()
+    #[Computed]
+    public function searchedServices(): \LaravelIdea\Helper\App\Models\_IH_Service_C|\Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Pagination\LengthAwarePaginator|array|null
     {
         //$this->dispatch('toast-alert',icon:'info', title:"Info", text:'Searching services');
         $tempServices = new Service();
         if($this->selectedEmployee === 0 and $this->selectedCustomer === 0){
-            $this->dispatch('toast-btn-alert',icon:'error', title:"Error", text:'Please select a customer or an employee');
             return null;
         }
         $tempServices = $tempServices->with('employee','customer','control');
@@ -44,7 +44,12 @@ class SearchServices extends Component
         $tempServices = $tempServices->where('service_date','>=',$this->from)->where('service_date','<=',$this->till)->orderBy('service_date','desc');
 
         $this->services =  $tempServices->paginate(10)->toArray();
-//        dd($this->services);
+        return $tempServices->paginate(10);
+//
+    }
+    public function searchServices()
+    {
+        $this->searchedServices();
     }
     public function mount()
     {
@@ -53,6 +58,7 @@ class SearchServices extends Component
         $this->employees = Populate::employeeFilter('RESIDENTIAL')->toArray();
 
         $this->initVars();
+        $this->searchedServices();
     }
     public function render()
     {

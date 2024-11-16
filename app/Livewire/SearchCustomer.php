@@ -17,6 +17,7 @@ use App\Livewire\Forms\CustomerForm;
     public $search = '';
     public $billings = [];
     public $status = '';
+    public $searchFilterType = 'ALL';
     public CustomerForm $fcustomer;
     public $customer;
 
@@ -32,9 +33,20 @@ public function editCustomerEvent($id){
 //        $this->billings = Billing::get()->toArray();
 //        dd($this->billings);
         if($this->search){
-            $result = Searchy::search('customers')->fields('name')->query($this->search)
-                ->getQuery()->limit(10)->get()->toArray();
-         return $result;
+            if($this->searchFilterType == 'ALL') {
+                return  Searchy::search('customers')->fields('name')->query($this->search)
+                    ->getQuery()->limit(10)->get()->toArray();
+
+            }
+            if($this->searchFilterType == 'COMMERCIAL') {
+                return Searchy::search('customers')->fields('name')->query($this->search)
+                    ->getQuery()->where('type', 'COMMERCIAL')->limit(10)->get()->toArray();
+            }
+            if($this->searchFilterType == 'RESIDENTIAL') {
+                return Searchy::search('customers')->fields('name')->query($this->search)
+                    ->getQuery()->where('type', 'RESIDENTIAL')->orWhere('type','HENTALHOUSE')->limit(10)->get()->toArray();
+            }
+
         }else{
             return [];
         }
@@ -47,7 +59,6 @@ public function editCustomerEvent($id){
     }
     public function changeStatus($id): void
     {
-        $this->fcustomer->status = $this->status ;
         $this->fcustomer->changeStatus($id);
         $this->dispatch('toast-alert', icon:'success',message:'Customer status changed successfully');
     }

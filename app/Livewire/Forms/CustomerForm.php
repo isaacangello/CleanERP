@@ -68,7 +68,15 @@ class CustomerForm extends Form
     public function changeStatus($id): true
     {
         $this->customer = Customer::find($id);
-        $this->customer->status = $this->status;
+        if ( $this->customer->status == 'INACTIVE'){
+            $this->customer->status = 'ACTIVE';
+        }else{
+            $this->customer->status = 'INACTIVE';
+        }
+        if(is_null($this->customer->status)){
+            $this->customer->status = 'ACTIVE';
+        }
+
         $this->customer->save();
         return true;
     }

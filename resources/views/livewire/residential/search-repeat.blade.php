@@ -96,21 +96,21 @@
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade in active" id="scale_1"
+                            <div role="tabpanel" class="tab-pane fade in active" id="tab_service"
                                  x-show="tabService"
                                  x-trap="tabService"
                                  x-transition:enter="animate__animated animate__fadeIn animate__faster"
                             >
                                 <livewire:search-services />
                             </div>
-                            <div role="tabpanel" class="tab-pane fade in active" id="scale_1"
+                            <div role="tabpanel" class="tab-pane fade in active" id="TabRepeat"
                                  x-show="tabRepeat"
                                  x-trap="tabRepeat"
                                  x-transition:enter="animate__animated animate__fadeIn animate__faster"
                             >
                                 <livewire:search-repeat />
                             </div>
-                            <div role="tabpanel" class="tab-pane fade in active" id="scale_1"
+                            <div role="tabpanel" class="tab-pane fade in active" id="tab_customer"
                                  x-show="tabCustomer"
                                  x-trap="tabCustomer"
                                  x-transition:enter="animate__animated animate__fadeIn animate__faster"
@@ -118,7 +118,7 @@
                                 <livewire:search-customer @edit-customer="editCustomer($event.detail.id);selectTab('tabCustomer')" />
 
                                 <div x-data="{
-                                        showCustomerEdit: $wire.entangle('showCustomerEdit'),
+                                        showCustomerEdit: $wire.entangle('showCustomerEdit')
                                     }"
                                 >
                                     <x-customer-edit-bs :$billings />
@@ -127,7 +127,7 @@
                                 </div>
 
                             </div>
-                            <div role="tabpanel" class="tab-pane fade in active" id="scale_1"
+                            <div role="tabpanel" class="tab-pane fade in active" id="tab_employee"
                                  x-show="tabEmployee"
                                  x-trap="tabEmployee"
                                  x-transition:enter="animate__animated animate__fadeIn animate__faster"

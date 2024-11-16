@@ -55,7 +55,7 @@
 <!-- Search Bar -->
 <!-- #END# Search Bar -->
 <!-- Top NavBar -->
-<nav class="navbar nav">
+<nav class="nav-materialize navbar nav">
     <div class="nav-wrapper">
 
         <ul class="left">
