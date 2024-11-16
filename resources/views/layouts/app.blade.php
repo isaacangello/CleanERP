@@ -62,7 +62,7 @@
 
     <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
 
-    <link rel="stylesheet" href="{{ asset('/build/assets/app-bd448e57.css')  }}">
+    <link rel="stylesheet" href="{{ asset('/build/assets/app-f8b2d4ab.css')  }}">
 
     {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 </head>
@@ -143,7 +143,7 @@
         <!-- User Info -->
         <div class="user-info" id="userInfoDesktop">
             <div class="image">
-                <img src="{{asset('img/users/user.png')}}" width="48" height="48" alt="User"/>
+                <img src="{{asset('/img/users/user.png')}}" width="48" height="48" alt="User"/>
             </div>
             <div class="info-container">
                 <div class="name person-shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</div>
