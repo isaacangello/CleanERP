@@ -1,4 +1,10 @@
 <div>
+    <div wire:loading class="fixed w-full h-full">
+        <div>
+            <img src="{{asset('img/loading.gif')}}" alt="loading" class="w-36 " style="margin-left: 40vw; margin-top: 10vh">
+        </div>
+    </div>
+
     <div class="panel panel-default" >
         <div class="panel-heading p-l-15 p-t-2 p-r-2 p-b-2">
             Search customer
@@ -42,11 +48,6 @@
             <div class="row">
                 <div class="col s12">
                     <table>
-                        <tr wire:loading.flex >
-                            <td colspan="3">
-                                <img src="{{asset('/img/loading.gif')}}" alt="loading" class="w-36 " style="margin-left: 40vw; margin-top: 10vh">
-                            </td>
-                        </tr>
 
                         @if($this->data)
                             <tr>
