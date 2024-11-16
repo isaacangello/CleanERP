@@ -100,6 +100,26 @@
                                     </div>
                                 </div>
                             </div>
+                            @isset($this->customer->type)
+                            @if( isset($this->customer->type) and $this->customer->type == "COMMERCIAL" )
+                                <div class="row clearfix">
+                                    <div class="col s12">
+                                        <label for="textarea-edit-customer-note">Other Emails</label>
+                                        <div class="form-group">
+                                            <div class="form-line success">
+                                                <textarea wire:model="fcustomer.others_emails" id="textarea-edit-customer-note" class="form-control custom-textarea" rows="4" placeholder="Type customer other_emails here..."></textarea>
+                                            </div>
+                                            @error('fcustomer.others_emails')
+                                            <div class="help-info red-text text-darken-4">{{ $message }}</div>
+                                            @enderror
+                                            <div class="help-info @error('fcustomer.others_emails') hide @enderror">Type customer notes</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            @endif
+
+                            @if(isset($this->customer->type) and ( $this->customer->type  === "RESIDENTIAL") or ($this->customer->type  === "RENTALHOUSE") )
                             <div class="row label-employee-view-edit">
                                 <span class="label label-padding">Billing Price</span>
                             </div>
@@ -174,9 +194,12 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
+                            @endisset
                             <div class="row label-employee-view-edit">
                                 <span class="label label-padding">Service Information</span>
                             </div>
+
                             <div class="row clearfix">
                                 <div class="col s12 m7">
                                     <label for="textarea-edit-customer-other-services">Other Services</label>

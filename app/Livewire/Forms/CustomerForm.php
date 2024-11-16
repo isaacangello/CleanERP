@@ -19,6 +19,7 @@ class CustomerForm extends Form
     public $email;
     public $billing_values_selected = [];
 
+    public $others_emails;
     public $other_services;
     public $frequency;
     public $house_description;

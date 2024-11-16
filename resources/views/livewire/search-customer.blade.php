@@ -52,6 +52,7 @@
                             <tr>
                                 <th>Created At</th>
                                 <th>customer</th>
+                                <th>Type</th>
                                 <th>Status</th>
                             </tr>
 
@@ -64,6 +65,7 @@
                                 <tr wire:key="cust{{$key}}"  class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100','bg-white text-gray-600']) }}">
                                     <td class="p-0">{{Carbon\Carbon::create($data->created_at)->format('l, m/d/Y h:i A')}}</td>
                                     <td class="p-0"><a title="Click to Edit customer information." class="btn-link-underline pointer waves-effect waves-grey" wire:click="editCustomerEvent({{ $data->id }})">{{$data->name}}</a></td>
+                                    <td class="p-0"><span class=" @if($data->type == "COMMERCIAL") text-gray-700 @else text-green-700 @endif ">{{$data->type}}</span> </td>
                                     <td class="p-0" colspan="2">
                                         <a class="btn-link-underline pointer" wire:click="changeStatus({{$data->id}})"
                                            title="Click to change status."

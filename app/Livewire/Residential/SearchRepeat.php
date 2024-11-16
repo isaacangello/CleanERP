@@ -52,6 +52,7 @@ class SearchRepeat extends Component
         }
         //dd($this->customer->drive_licence,$temp, $temp->pluck('billing_id')->all());
 
+        $this->fcustomer->others_emails = $this->customer->others_emails;
         $this->fcustomer->other_services = $this->customer->other_services;
         $this->fcustomer->frequency = $this->customer->frequency;
         $this->fcustomer->house_description = $this->customer->house_description;
