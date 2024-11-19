@@ -13,7 +13,7 @@
 
         @endphp
 
-@if($weekDayLabel != 'Sunday' and $weekDayLabel != 'Saturday')
+@if($weekDayLabel != 'Sunday')
         <tr><td class="text-uppercase" colspan="1">{{ $weekDayLabel }} {!! $text_print !!} </td></tr>
 
 
