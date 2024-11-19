@@ -112,7 +112,7 @@ class CopyData extends Command
                     'justify_minus' => $event->justify_sub,
                     'justify_plus' => $event->justify_plus,
                     'service_date' => $serviceDate,
-                    'price' => $price,
+                    'price' => (float)$price,
                 ]);
             }
         }
