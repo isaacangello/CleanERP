@@ -62,7 +62,7 @@ trait FinanceTrait
         Return $arr;
 
     }
-    public function servicesEmployee (int $employeeId,string $from,string $till,$orderBy=['employees.name','asc'] ,$type = "RESIDENTIAL"): \Illuminate\Support\Collection
+    public function servicesEmployee (int $employeeId,string $from,string $till,$orderBy=['services.service_date','asc'] ,$type = "RESIDENTIAL"): \Illuminate\Support\Collection
     {
         $from = Carbon::create($from)->format('Y-m-d H:i:s');
         $till = Carbon::create($till)->format('Y-m-d H:i:s');

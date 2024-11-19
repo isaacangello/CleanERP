@@ -92,6 +92,32 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
+        'mysql_source' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_SOURCE', '127.0.0.1'),
+            'port' => env('DB_PORT_SOURCE', '3306'),
+            'database' => env('DB_DATABASE_SOURCE', 'jjsystem_db'),
+            'username' => env('DB_USERNAME_SOURCE', 'jjsystem_db'),
+            'password' => env('DB_PASSWORD_SOURCE', 'JJLjjl6323:)'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+        'mysql_target' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_TARGET', '127.0.0.1'),
+            'port' => env('DB_PORT_TARGET', '3306'),
+            'database' => env('DB_DATABASE_TARGET', 'jjsystem_sys2'),
+            'username' => env('DB_USERNAME_TARGET', 'jjsystem_db'),
+            'password' => env('DB_PASSWORD_TARGET', 'JJLjjl6323:)'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ]
 
     ],
 

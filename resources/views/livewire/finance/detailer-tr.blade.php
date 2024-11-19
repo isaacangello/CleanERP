@@ -7,7 +7,7 @@
 @endphp
 
 <tr class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}" >
-    <td class=" w-50">
+    <td class="">
         <a
                 class="  pointer valign-wrapper @if($this->computedService->paid_out)btn btn-link btn-success btn-small white-text @else btn btn-link btn-small btn-danger white-text  @endif"
                 @if($this->computedService->paid_out) wire:click="confirmPaid('{{$this->computedService->id}}',false)" @else wire:click="confirmPaid('{{$this->computedService->id}}',true)" @endif
@@ -24,13 +24,14 @@
             @endif
         </a>
     </td>
-    <td class="center-align" title="{{$this->title}}">
-       <a class="btn-link-underline pointer" wire:click.prevent="modalCall"> {{$data->cust_name}}</a>
+    <td class="center-align font-10" title="{{Carbon\Carbon::create($data->service_date)->format('l, m/d/Y h:i A') }}">{{Carbon\Carbon::create($data->service_date)->format('m/d') }}</td>
+    <td class="center-align font-10" title="{{$this->title}}">
+       <a class="btn-link-underline pointer font-10" wire:click.prevent="modalCall"> {{$data->cust_name}}</a>
     </td>
-    <td>{{$data->frequency}}</td>
-    <td>
+    <td class="font-10">{{$data->frequency}}</td>
+    <td class="font-10">
     <span class="valign-wrapper left h-45">$</span>
-        <select class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}  w-90 materialize-select browser-default font-13 " wire:change="changePrice" wire:model="price" >
+        <select class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}  w-90 materialize-select browser-default font-10 " wire:change="changePrice" wire:model="price" >
             @if($this->computedService->price <= 0){
                 <option value="0" selected >
                     No Price
@@ -57,10 +58,10 @@
 
     </td>
 
-    <td>$ {{number_format(($total*0.7),2)}}</td>
-    <td>$ {{number_format(($total*0.3),2)}}</td>
-    <td class="w-100">
-        <span class="valign-wrapper left h-45 right-align m-l-2">$</span> <x-text-input class=" font-13 w-50" wire:change="changeValues" wire:model="plus" value="{{$this->computedService->plus}}"/>
+    <td class="font-10">$ {{number_format(($total*0.7),2)}}</td>
+    <td class="font-10">$ {{number_format(($total*0.3),2)}}</td>
+    <td class="w-100 font-10">
+        <span class="valign-wrapper left h-45 right-align m-l-2">$</span> <x-text-input class=" font-10 w-50" wire:change="changeValues" wire:model="plus" value="{{$this->computedService->plus}}"/>
         @error('plus')
             @script
             <script>
@@ -70,8 +71,8 @@
             @endscript
         @enderror
     </td>
-    <td class="w-100">
-            <span class="valign-wrapper left h-45">$</span> <x-text-input class=" font-13 w-50" wire:change="changeValues" wire:model="minus" value="{{$this->computedService->minus}}"/>
+    <td class="w-100 font-10">
+            <span class="valign-wrapper left h-45">$</span> <x-text-input class=" font-10 w-50" wire:change="changeValues" wire:model="minus" value="{{$this->computedService->minus}}"/>
         @error('minus')
         @script
             <script>
@@ -82,9 +83,9 @@
         @enderror
 
     </td>
-    <td>$ {{number_format($total,2)}}</td>
+    <td class="font-10">$ {{number_format($total,2)}}</td>
     <td>
-        <select name="" id="" class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }} materialize-select browser-default font-13" wire:model="payment" wire:change="changePayment">
+        <select name="" id="" class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }} materialize-select browser-default font-10" wire:model="payment" wire:change="changePayment">
             @if(is_null($this->computedService->payment) || $this->computedService->payment === 0)
                 <option value="0" selected="selected">&nbsp;</option>
                 @else

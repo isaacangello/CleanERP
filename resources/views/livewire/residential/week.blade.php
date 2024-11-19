@@ -41,12 +41,17 @@
                         <div class="row" id="htmlContent">
                             @php($count = 0)
                             @foreach($this->dataCard() as $empName => $data )
-                                <x-home-cards :emp-name="$empName" :$data />
-                                @php($count++)
-                                @if($count == 4)
-                                    @php($count = 0)
-                                    </div>
-                                    <div class="row">
+                                @if(Collect($data['Monday'])->isNotEmpty() || Collect($data['Tuesday'])->isNotEmpty() || Collect($data['Wednesday'])->isNotEmpty() || Collect($data['Thursday'])->isNotEmpty() || Collect($data['Friday'])->isNotEmpty() || Collect($data['Saturday'])->isNotEmpty() || Collect($data['Sunday'])->isNotEmpty())
+
+                                    <x-home-cards :emp-name="$empName" :$data />
+
+                                    @php($count++)
+
+                                    @if($count === 4)
+                                        @php($count = 0)
+                                        </div>
+                                        <div class="row">
+                                    @endif
                                 @endif
                             @endforeach
 
@@ -222,7 +227,6 @@
             </table>
 
         </x-service-details>
-        <x-standard-btn class="btn-small waves-effect waves-teal" > teste waves</x-standard-btn>
         <x-custom-events />
 
 

@@ -159,6 +159,7 @@ class Week extends Component
 
         }
         /** Rendering HTML elements in server side SSR */
+//        dd($filteredWeekGroup);
         return $filteredWeekGroup;
 //        return $this->createResidentialCard($filteredWeekGroup,$this->numWeek,$this->year);
     }

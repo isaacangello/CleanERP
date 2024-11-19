@@ -44,6 +44,7 @@ use Carbon\Carbon;
                                     <thead>
                                     <tr class="green darken-3 white-text">
                                         <th class="center-align">Paid</th>
+                                        <th class="center-align">date</th>
                                         <th class="center-align">Customer</th>
                                         <th>Frequency</th>
                                         <th>Price</th>

@@ -19,7 +19,7 @@ return new class extends Migration
         }
         Schema::table('customers',function (Blueprint $table){
 
-            $table->string('others_emails',3000);
+            $table->string('others_emails',3000)->nullable();
         });//
 
         Schema::create('billings_customers',function (Blueprint $table){

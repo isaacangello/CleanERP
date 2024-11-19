@@ -81,7 +81,15 @@
                                 </tbody>
                             </table>
                             </div>
-                        </div>
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="btn-group">
+                                            {{$this->populate['employees']->links()}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>{{--panel--}}
 
                 </div>

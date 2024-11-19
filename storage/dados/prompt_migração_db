@@ -1,0 +1,56 @@
+copie dados de banco de dados mysql de nome jjsystem_db para o banco de dados jjlsystem_sys2 utilizando laravel
+onde jjsystem_db tem as tabela
+- customers com os campos: 
+        jjsystem_db.customers.id_customer que deve ser renomeado para id
+        jjsystem_db.customers.nome que deve ser renomeado para name
+        jjsystem_db.customers.adress que deve ser renomedo para address  
+        jjsystem_db.customers.phone
+        jjsystem_db.customers.email
+        jjsystem_db.customers.tipo que deve ser renomeado para type e caso o campo jjsystem_db.customers.veraneio for igual a true o type de ser salvo como "HELTALHOUSE"
+        jjsystem_db.customers.frequence que deve ser renomeado para frequency e deve ser cortado para no máximo 255 caracteres        
+        jjsystem_db.customers.notes que deve ser renomeado para note                        
+        jjsystem_db.customers.info
+        jjsystem_db.customers.chavec deve ser renomeado para key
+        jjsystem_db.customers.driver deve ser renomeado para drive_licence
+        jjsystem_db.customers.senha deve ser renomeado para gate_code
+        jjsystem_db.customers.status
+- employees com os campos:
+    jjsystem_db.employees.id_employee que deve ser  renomeado para id
+    jjsystem_db.employees.nome que deve ser renomeado para name
+    jjsystem_db.employees.phone
+    jjsystem_db.employees.email
+    jjsystem_db.employees.adress que deve ser renomeado para address
+    jjsystem_db.employees.nomerefone que deve ser renomeado para name_ref_one
+    jjsystem_db.employees.phonerefone que deve ser renomeado para phone_ref_one 
+    jjsystem_db.employees.nomereftwo que deve ser renomeado para name_ref_two
+    jjsystem_db.employees.phonereftwo que deve ser renomeado para phone_ref_two
+    jjsystem_db.employees.notes que deve ser renomeado para  description
+    jjsystem_db.employees.tipo que deve ser renomeado para type
+    jjsystem_db.employees.status
+     no  banco alvo terão tres campos que será copiados de uma tabela chamada func que tem o id_employee correpndedo ao func.id_user
+     onde o func.user será copiado para o campo username caso func.user seja nulo gere um username com base no nome sem espaços no meio no incício e no final e deve ser unico
+     o campo func.senha para jjsystem_sys2.employees.password caso func.senha seja nulo gere um hash bcrypt com a palavra "1234" 
+     o campo func.nova para jjsystem_sys2.employees.new_user caso func.nova seja nulo atribua o valor 0 
+     
+- tabela de nome events foi renomeada para services com os campos
+    jjsystem_db.events.id_event que deve ser renomeado para id
+    jjsystem_db.events.id_employee que deve ser renomeado para employee1_id
+    jjsystem_db.events.id_customer que deve ser renomeado para customer_id       
+    jjsystem_db.events.period    
+    jjsystem_db.events.frequence que deve ser renomeado para frequency 
+    jjsystem_db.events.notas que deve ser renomeado para notes
+    jjsystem_db.events.price que deve ser renomeado para plus é preciso verifica é um decimal ou inteiro valido caso não seja atribuir o valor zero
+    jjsystem_db.events.menos que deve ser renomeado para minus é preciso verifica é um decimal ou inteiro valido caso não seja atribuir o valor zero 
+    jjsystem_db.events.confirma deve ser renomeado para comfirmed tem um valor booleano onde S é true e N false
+    jjsystem_db.events.salvou deve ser renomeado para who_saved    
+    jjsystem_db.events.recebido deve ser renomeado para paid_out e tem um valor booleano onde S é true e N false e o restante também é falso   
+    jjsystem_db.events.finotas deve ser renomeado para finance_notes
+    jjsystem_db.events.fee tem um valor booleano onde S é true e N false
+    jjsystem_db.events.instructions
+    jjsystem_db.events.justify_sub deve ser renomeado para justify_minus
+    jjsystem_db.events.justify_plus 
+     
+    na tabela alvo o campo jjsystem_sys2.service_date deve ser preenchido com os valores dateTime com a data sendo jjsystem_db.events.date e a hora sendo jjsystem_db.events.hora
+    
+    na tabela alvo o campo  price deve ser preenchido com o valoR do campo jjsystem_db.customers.price tendo como referencia o campo jjsystem_db.events.id_customer, é preciso verifica é um decimal ou inteiro valido caso não seja atribuir o valor zero
+OBS todos os registro duplicados devem ser ignorados

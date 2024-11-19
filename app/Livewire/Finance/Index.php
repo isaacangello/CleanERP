@@ -4,6 +4,7 @@ namespace App\Livewire\Finance;
 
 use AllowDynamicProperties;
 use App\Helpers\Finance\FinanceTrait;
+use App\Helpers\Funcs;
 use App\Models\Config;
 use App\Models\Employee;
 use App\Treatment\DateTreatment;
@@ -108,7 +109,7 @@ use function Symfony\Component\String\u;
 
 
         //dd($this->year);
-        $userConfigs = Config::select()->where('user_id','=',Auth::user()->id)->first();
+        $userConfigs = Funcs::getConfig();
         //dd( $userConfigs->nun_reg_pages );
         $this->nun_reg_pages = $userConfigs->nun_reg_pages;
         $this->allEmployees = Employee::select()

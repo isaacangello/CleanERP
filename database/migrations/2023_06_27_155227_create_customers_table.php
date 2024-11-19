@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('email',40);
             $table->string('type',11)->default('RESIDENTIAL');
             $table->string('status',8)->default('ACTIVE');
-            $table->string('frequency',3)->default('ONE');
+            $table->string('frequency')->default('ONE');
             $table->string('price_weekly')->nullable();
             $table->string('price_biweekly')->nullable();
             $table->string('price_monthly')->nullable();
