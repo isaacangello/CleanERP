@@ -38,8 +38,8 @@
                                         data-url-base="{{ $urlBase }}"
                                         data-token="{{ csrf_token() }}"
                                 >
-                                    <option value='{{ $employeeStatus }}'>{{ $employeeStatus }}</option>
-                                    <option selected value="ACTIVE">ACTIVE</option>
+                                    <option selected value='{{ $employeeStatus }}'>{{ $employeeStatus }}</option>
+                                    <option  value="ACTIVE">ACTIVE</option>
                                     <option  value="INACTIVE">INACTIVE</option>
                                 </select>
                                 <label class="form-label"  for="select-cad-service-frequency">Status.</label>

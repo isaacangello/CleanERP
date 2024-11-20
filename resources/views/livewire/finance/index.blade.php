@@ -12,9 +12,10 @@
                 <div class="header">
                             <span>RESIDENTIAL  </span>
                             <span>
-                              Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
+                              Reference Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
                                         class="label-date-home">{{ $from }}</span> - Till <span
-                                        class="label-date-home">{{ $till }} </span><div class="displaytest">Iphone</div>
+                                        class="label-date-home">{{ $till }} </span>
+
                             </span>
 
 
@@ -26,7 +27,7 @@
                     <div class="clearfix row m-b-0">
                         <div class="col s12 ">
                             @php $id='1'; @endphp
-                            <x-finance-panel-search :id="$id" :employees="$this->populate['allEmployees']" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
+                            <x-finance-panel-search :id="$id" :employees="$this->populate->allEmployees" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
                         </div>
 
                         <div class="panel panel-default">
@@ -43,12 +44,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if($this->populate['employees_services'] != null)
+{{--                                @php dd($this->populate) @endphp--}}
+                                @if($this->populate->employees_services != null)
                                     @php
                                         $i=0;
+//                                    dd($this->populate['employees_services']);
                                     @endphp
                                     {{--                                        {{dd($employees_services)}}--}}
-                                    @foreach($this->populate['employees_services'] as $key =>  $data)
+                                    @foreach($this->populate->employees_services as $key =>  $data)
                                         @php
                                             //                                                    dd($row);
                                         @endphp
@@ -57,8 +60,8 @@
                                                 <a
                                                     href="{{ route('finances.detailer',[
                                                         'id' => $data['employee_id'],
-                                                        'from' =>$data['from'],
-                                                        'till' =>$data['till'],
+                                                        'from' =>Carbon\Carbon::create($data['from'])->format('Y-m-d'),
+                                                        'till' =>Carbon\Carbon::create($data['till'])->format('Y-m-d'),
                                                     ] ) }}"
                                                     class="btn-link-underline grey-text text-darken-2 pointer"
                                                 >
@@ -85,7 +88,7 @@
                                 <div class="row">
                                     <div class="col s12">
                                         <div class="btn-group">
-                                            {{$this->populate['employees']->links()}}
+
                                         </div>
                                     </div>
                                 </div>

@@ -9,6 +9,7 @@ use App\Models\Config;
 use App\Models\Employee;
 use App\Treatment\DateTreatment;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use JetBrains\PhpStorm\NoReturn;
 use Livewire\Attributes\Computed;
@@ -83,12 +84,14 @@ use function Symfony\Component\String\u;
         $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
         $this->dispatch('reloadSelects');
     }
-    #[NoReturn] public function selectWeek(): void
+    #[NoReturn] public
+    function selectWeek(): void
     {
 
         $this->numWeek = $this->selectedWeek;
         $this->year = $this->selectedYear;
-        $this->dispatch('reloadSelects');
+        $this->dispatch('refresh-index');
+
     }
 ########################################################################################################################
     ############################################################# populate
@@ -99,7 +102,7 @@ use function Symfony\Component\String\u;
      * @return void
      */
     #[Computed]
-    public function populate(): array
+    public function populate(): \stdClass
     {
         $date = new DateTreatment();
         $this->traitNullVars();
@@ -115,9 +118,11 @@ use function Symfony\Component\String\u;
         $this->allEmployees = Employee::select()
             ->where('status','=',"ACTIVE")
             ->where('type','=',"RESIDENTIAL")
+            ->orWhere('type','=','RENTALHOUSE')
             ->orderBy('name')
             ->get();
         //var_dump($this->numWeek);
+        //dd($this->getData($this->numWeek,$this->year));
         return $this->getData($this->numWeek,$this->year);
     }
 ########################################################################################################################

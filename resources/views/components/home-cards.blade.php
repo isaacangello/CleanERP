@@ -9,7 +9,7 @@
         green darken-3: #2e7d32;
         */
     -->
-                            <div class="col s12 m3">
+                            <div class="">
                                 <div class="modal-dialog z-depth-3 m-b-20">
                                     <div class="modal-content modal-col-white">
                                         <div class="header left-align font-12 p-t-10 p-b-10">
