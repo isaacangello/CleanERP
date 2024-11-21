@@ -99,10 +99,10 @@ use function Symfony\Component\String\u;
     /**
      * @param $nunWeek
      * @param $year
-     * @return void
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     #[Computed]
-    public function populate(): \stdClass
+    public function populate(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
         $date = new DateTreatment();
         $this->traitNullVars();
@@ -112,17 +112,6 @@ use function Symfony\Component\String\u;
 
 
         //dd($this->year);
-        $userConfigs = Funcs::getConfig();
-        //dd( $userConfigs->nun_reg_pages );
-        $this->nun_reg_pages = $userConfigs->nun_reg_pages;
-        $this->allEmployees = Employee::select()
-            ->where('status','=',"ACTIVE")
-            ->where('type','=',"RESIDENTIAL")
-            ->orWhere('type','=','RENTALHOUSE')
-            ->orderBy('name')
-            ->get();
-        //var_dump($this->numWeek);
-        //dd($this->getData($this->numWeek,$this->year));
         return $this->getData($this->numWeek,$this->year);
     }
 ########################################################################################################################
@@ -134,6 +123,14 @@ use function Symfony\Component\String\u;
     public function mount(): void
     {
         $this->traitNullVars();
+
+        $this->allEmployees = Employee::select()
+            ->where('status','=',"ACTIVE")
+            ->where('type','=',"RESIDENTIAL")
+            ->orWhere('type','=','RENTALHOUSE')
+            ->orderBy('name')
+            ->get();
+
     }
 ########################################################################################################################
     ############################################################# render
@@ -151,7 +148,18 @@ use function Symfony\Component\String\u;
     {
         $this->validate();
         //Search services by employee, from, till
-        //dd($this->servicesEmployee($this->id,$this->from,$this->till));
+        if($this->numWeek === 1){
+            $this->previousWeek = 52;
+            $this->previousYear= $this->year - 1;
+        }else{
+            $this->previousWeek = $this->numWeek - 1;
+            $this->previousYear = $this->year;
+        }
+        if($this->numWeek === 52){
+            $this->nextWeek = 1;
+            $this->nextYear = $this->year + 1;
+        }
+
         return redirect()->route('finances.detailer', ['id' => $this->selectedEmployee, 'from' => Carbon::create($this->from)->format("Y-m-d"), 'till' => Carbon::create($this->till)->format("Y-m-d")]);
     }
 

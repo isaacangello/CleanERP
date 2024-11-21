@@ -12,6 +12,7 @@ use http\Env\Request;
 use Illuminate\Support\Carbon;
 use JetBrains\PhpStorm\NoReturn;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -32,6 +33,7 @@ class Detailer extends Component
     public $modalMarkedFrequency = null;
     public $modal_dates = null;
     public $financeNotes = null;
+    protected $listeners = ['detailer-refresh' => '$refresh'];
     public $frequencyStrings = [
         'ONE'=>'Eventual',
         'WEK'=>'Weekly',
@@ -90,6 +92,18 @@ class Detailer extends Component
         //$this->modalOpen = false;
         $this->dispatch('toast-alert', icon: 'success', message: 'Finance notes saved');
     }
+
+    #[computed]
+    public function sumTotals(): float
+    {
+        $total_services_price = 0; $total_plus = 0; $total_minus = 0;
+        foreach ($this->Data() as $item) {
+            $total_services_price += $item->price;
+            $total_plus += $item->plus;
+            $total_minus += $item->minus;
+        }
+        return (float)$total_services_price + (float)$total_plus + -1 *((float)($total_minus));
+    }
     public function thisWeek(): void
     {
         $dateTrait =new DateTreatment();
@@ -120,7 +134,8 @@ class Detailer extends Component
         }
         $this->traitNullVars();
     }
-    #[NoReturn] public function selectWeek(): void
+    #[NoReturn]
+    public function selectWeek(): void
     {
 
         $this->numWeek = $this->selectedWeek;
@@ -141,6 +156,8 @@ class Detailer extends Component
         $this->traitNullVars();
     }
 
+
+
     #[Computed]
     public function Data(): \Illuminate\Support\Collection
     {
@@ -153,6 +170,7 @@ class Detailer extends Component
     {
         return $this->getEmployees();
     }
+    #[On('sum-totals')]
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\View\View
     {
         return view('livewire.finance.detailer')->extends('layouts.app');

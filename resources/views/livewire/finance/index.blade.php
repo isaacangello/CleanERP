@@ -27,7 +27,7 @@
                     <div class="clearfix row m-b-0">
                         <div class="col s12 ">
                             @php $id='1'; @endphp
-                            <x-finance-panel-search :id="$id" :employees="$this->populate->allEmployees" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
+                            <x-finance-panel-search :id="$id" :employees="$this->allEmployees" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
                         </div>
 
                         <div class="panel panel-default">
@@ -45,13 +45,13 @@
                                 </thead>
                                 <tbody>
 {{--                                @php dd($this->populate) @endphp--}}
-                                @if($this->populate->employees_services != null)
+                                @if($this->populate != null)
                                     @php
                                         $i=0;
 //                                    dd($this->populate['employees_services']);
                                     @endphp
                                     {{--                                        {{dd($employees_services)}}--}}
-                                    @foreach($this->populate->employees_services as $key =>  $data)
+                                    @foreach($this->populate as $key =>  $data)
                                         @php
                                             //                                                    dd($row);
                                         @endphp
@@ -59,18 +59,18 @@
                                             <td>
                                                 <a
                                                     href="{{ route('finances.detailer',[
-                                                        'id' => $data['employee_id'],
-                                                        'from' =>Carbon\Carbon::create($data['from'])->format('Y-m-d'),
-                                                        'till' =>Carbon\Carbon::create($data['till'])->format('Y-m-d'),
+                                                        'id' => $data->id,
+                                                        'from' =>Carbon\Carbon::create($from)->format('Y-m-d'),
+                                                        'till' =>Carbon\Carbon::create($till)->format('Y-m-d'),
                                                     ] ) }}"
                                                     class="btn-link-underline grey-text text-darken-2 pointer"
                                                 >
-                                                    {{$data['emp_name']}}
+                                                    {{$data->name}}
                                                 </a>
                                             </td>
-                                            <td>{{$data['cem']}}</td>
-                                            <td>{{$data['setenta']}}</td>
-                                            <td>{{$data['trinta']}}</td>
+                                            <td>{{$data->total_price}}</td>
+                                            <td>{{($data->total_price*0.7)}}</td>
+                                            <td>{{($data->total_price*0.3)}}</td>
                                             <td></td>
                                         </tr>
                                             @php($i++)
@@ -88,7 +88,7 @@
                                 <div class="row">
                                     <div class="col s12">
                                         <div class="btn-group">
-
+                                                {{ $this->populate->links() }}
                                         </div>
                                     </div>
                                 </div>

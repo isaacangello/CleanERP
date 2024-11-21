@@ -3,22 +3,22 @@
     if(is_null($this->computedService->minus)){ $this->computedService->minus = 0;}
     if(is_null($this->computedService->plus)){ $this->computedService->plus = 0;}
       $total = (float)$this->computedService->price + (float)$this->computedService->plus + -1 *((float)($this->computedService->minus));
-
+//        $this->dispatch('sum-totals', val: $total);
 @endphp
 
 <tr class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}" >
     <td class="">
         <a
-                class="  pointer valign-wrapper @if($this->computedService->paid_out)btn btn-link btn-success btn-small white-text @else btn btn-link btn-small btn-danger white-text  @endif"
+                class="  pointer valign-wrapper  @if($this->computedService->paid_out)btn btn-link btn-success btn-small white-text @else btn btn-link btn-small btn-danger white-text  @endif"
                 @if($this->computedService->paid_out) wire:click="confirmPaid('{{$this->computedService->id}}',false)" @else wire:click="confirmPaid('{{$this->computedService->id}}',true)" @endif
 
         >
             @if($this->computedService->paid_out)
-                <span class="material-symbols-outlined font-15">
+                <span class="material-symbols-outlined ">
                 task_alt
                 </span>
             @else
-                <span class="material-symbols-outlined font-15">
+                <span class="material-symbols-outlined ">
                     error
                 </span>
             @endif
@@ -26,7 +26,7 @@
     </td>
     <td class="center-align font-10" title="{{Carbon\Carbon::create($data->service_date)->format('l, m/d/Y h:i A') }}">{{Carbon\Carbon::create($data->service_date)->format('m/d') }}</td>
     <td class="center-align font-10" title="{{$this->title}}">
-       <a class="btn-link-underline pointer font-10" wire:click.prevent="modalCall"> {{$data->cust_name}}</a>
+       <a class="btn-link-underline pointer font-10 @if($this->computedService->fee) text-amber-500 @endif " wire:click.prevent="modalCall"> {{$data->cust_name}}</a>
     </td>
     <td class="font-10">{{$data->frequency}}</td>
     <td class="font-10">

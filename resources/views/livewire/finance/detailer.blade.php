@@ -20,10 +20,6 @@ use Carbon\Carbon;
 
                 <div class="header">
                     <span>
-                        @if(isset($currentEmployee->name)) Employee @endif
-
-                              <b>{{ $currentEmployee->name??'' }}</b> </span>
-                    <span>
                           Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
                             class="label-date-home">{{ $from }}</span> - Till <span
                             class="label-date-home">{{ $till }} </span><div class="displaytest">Iphone</div>
@@ -39,6 +35,21 @@ use Carbon\Carbon;
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-body">
+
+                                    <div class="panel-default pb-2">
+                                        <div class="header bg-blue-grey">
+                                            <h2>
+                                                <span class="text-xl">
+                                                          <b>{{ $currentEmployee->name??'' }}</b>
+                                                </span>
+                                                <small>Total $ {{number_format($this->sumTotals,2)}}</small>
+                                            </h2>
+
+                                        </div>
+                                    </div>
+
+
+
 
                                 <table class="table table-striped highlight">
                                     <thead>
@@ -64,7 +75,7 @@ use Carbon\Carbon;
                                         {{--                                        {{dd($employees_services)}}--}}
                                         @foreach($this->Data as $key =>  $data)
 {{--                                            @php dd($data); @endphp--}}
-                                            <livewire:finance.detailer-tr wire:key="tr{{$key}}" :i="$i" :$data @openModal="openAndPopulateModal({{$key}})" />
+                                            <livewire:finance.detailer-tr wire:key="tr{{$key}}" :i="$i" :$data @openModal="openAndPopulateModal({{$key}})"  />
                                             @php($i++)
                                         @endforeach
                                     @else
@@ -83,6 +94,7 @@ use Carbon\Carbon;
                                     >
                                         Print Report
                                     </x-link-btn>
+
 
                                     <p x-show="notesOpen" x-collapse.duration.500ms class="mt-3 ">
                                             <textarea id="textarea-finance-notes"

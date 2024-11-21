@@ -156,50 +156,37 @@ trait FinanceTrait
                 'customers.address'
             )->get();
     }
-    public function getData($numWeek,$year): stdClass
+
+    public function getTotalPricesByEmployee(string $from,string $till,$orderBy=['employees.name','asc'] ,$type = "RESIDENTIAL", $nun_reg_pages = 15): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
+        $from = Carbon::create($from)->format('Y-m-d');
+        $till = Carbon::create($till)->format('Y-m-d');
+        $results = DB::table('services')
+            ->join('employees', 'services.employee1_id', '=', 'employees.id')
+            ->where('employees.status', '=', "ACTIVE")
+            ->where('employees.type', '=', $type)
+            ->whereDate('services.service_date', '>=', $from)
+            ->whereDate('services.service_date', '<=', $till)
+            ->select(
+                'employees.name',
+                        'employees.id',
+                DB::raw('SUM(services.price + services.plus - services.minus) as total_price')
+            )
+            ->groupBy('employees.name','employees.id')
+            ->havingRaw('SUM(services.price + services.plus - services.minus) != 0')
+            ->orderBy($orderBy[0], $orderBy[1])
+            ->paginate((int)$nun_reg_pages); // Ajuste o número de itens por página conforme necessário
 
-        $model = new Employee();
+        return $results;
+    }
+    public function getData($numWeek,$year): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    {
         $date = new DateTreatment();
-        $getConfig = new Config();
-        $config = $getConfig->firstOrCreate(
-            ['user_id' => \Auth::id()],
-            [ 'nun_reg_pages' =>  15 ]
-        );
+        $getConfig = Funcs::getConfig();
         $dateFrom = $date->getWeekByNumberWeek($numWeek,$year);
-        $all_employees = $model->select()->where('status' , '=', "ACTIVE")
-            ->orWhere('type', '=',"RESIDENTIAL" )->orWhere('type','=','HENTALHOUSE')->orderBy('name')->get();
 
-        $collection_employees = $model->select()->where('status' , '=', "ACTIVE")
-            ->orWhere('type', '=',"RESIDENTIAL" )->orWhere('type','=','HENTALHOUSE')->orderBy('name')->paginate($config->nun_reg_pages);
-
-
-        $array_temp = $this->totalServicesPriceByPeriod($dateFrom['Monday'],$dateFrom['Sunday']);
-        //dd($this->totalServicesPriceByPeriod($dateFrom['Monday'],$dateFrom['Saturday']));
-        $cem = 0;
-        foreach ($array_temp as $key => $value){
-            $cem = $array_temp[$key]['cem'] + $cem;
-        }
-        //dd($array_temp);
-
-        $total_services = [
-            'cem' => $cem,
-            'setenta' => ($cem*0.7),
-            'trinta' => ($cem*0.3)
-        ];
-        $return = new stdClass();
-        $return->allEmployees = $all_employees;
-            $return->employees = $collection_employees;
-        $return->employees_services = $array_temp;
-        $return->total_services = $total_services;
-
-        return $return;
-//        return[
-//            'allEmployees' => $all_employees,
-//            'employees' => $collection_employees,
-//            'employees_services' => $array_temp,
-//            'total_services' => $total_services,
-//        ];
+//        dd($this->getTotalPricesByEmployee($dateFrom['Monday'],$dateFrom['Sunday'],['employees.name','asc'],"RESIDENTIAL",$getConfig->nun_reg_pages));
+        return $this->getTotalPricesByEmployee($dateFrom['Monday'],$dateFrom['Sunday'],['employees.name','asc'],"RESIDENTIAL",$getConfig->nun_reg_pages);
     }
     public function getEmployees ($type="RESIDENTIAL", $status="ACTIVE"): Collection
     {
@@ -208,16 +195,16 @@ trait FinanceTrait
         if($type === "RESIDENTIAL" || $type === "RENTALHOUSE")return $model->select()->where('status' , '=', $status)->where('type', '=', $type)->orderBy('name')->get();
         if($type === "COMMERCIAL")return $model->select()->where('status' , '=', $status)->where('type', '=', $type)->orderBy('name')->get();
 
-
+        return collect();
     }
     public function traitNullVars(): void
     {
         $dateTrait = new DateTreatment();
         if($this->numWeek === null){
-            $this->numWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
+            $this->numWeek = $dateTrait->numberWeekByDay(Carbon::now()->subWeek()->format('Y-m-d'));
         }
         if ($this->year === null){
-            $this->year = now()->format('Y');
+            $this->year = Carbon::now()->subWeek()->format('Y');
         }
 
 
