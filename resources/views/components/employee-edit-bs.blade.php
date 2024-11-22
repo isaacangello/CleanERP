@@ -140,7 +140,10 @@
                                     <div class="form-group">
                                         <label class="form-label" for="select-edit-employee-type">Type</label>
                                         <div class="form-line success form-line-type">
-                                            <select id="select-edit-employee-type" wire:model="femployee.type" class="block text-gray-600  bg-white border border-gray-300  shadow-sm h-45  text-left cursor-default focus:outline-none focus:ring-1 focus:ring-green-800 focus:border-green-800 sm:text-sm">
+                                            <select id="select-edit-employee-type" wire:model="femployee.type"
+                                                    class="block text-gray-600  bg-white  border-t-0 border-b border-x-0 border-gray-300  shadow-sm h-45  text-left cursor-default
+                                                    focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm"
+                                            >
                                                 <option @if(isset($this->femployee->type) and $this->femployee->type === "RESIDENTIAL") @endif  value="RESIDENTIAL">RESIDENTIAL</option>
                                                 <option @if(isset($this->femployee->type) and $this->femployee->type === "COMMERCIAL") @endif value="COMMERCIAL">COMMERCIAL</option>
                                             </select>

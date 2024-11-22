@@ -42,7 +42,7 @@ use Carbon\Carbon;
                                                 <span class="text-xl">
                                                           <b>{{ $currentEmployee->name??'' }}</b>
                                                 </span>
-                                                <small>Total $ {{number_format($this->sumTotals,2)}}</small>
+                                                <small><b>Total <span class="text-amber-300">$ {{number_format($this->sumTotals,2)}}</span></b></small>
                                             </h2>
 
                                         </div>
