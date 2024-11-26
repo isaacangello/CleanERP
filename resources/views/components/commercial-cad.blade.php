@@ -71,7 +71,7 @@
                                     <input
                                             wire:model.blur="form.denomination"
                                             class="form-control"  id="cad-schedule-denomination"
-                                            value="{{ old('form.denomination') }}"
+                                            value="{!! old('form.denomination') !!}"
                                     />
                                 </div>
                                 @error('form.denomination')

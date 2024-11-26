@@ -19,6 +19,7 @@ class Schedule extends Model
     public array $rules = [
         'customer_id' => 'required',
         'employee_id' => 'required',
+        'employee1_id' => 'required',
         'denomination' => 'nullable',
         'schedule_date' => 'required',
         'team' => 'nullable',

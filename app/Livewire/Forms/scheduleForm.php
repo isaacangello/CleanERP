@@ -18,7 +18,7 @@ class scheduleForm extends Form
     #[Validate('required', message: 'Please select the Employee')]
     public  $employee_id;
     #[Validate('nullable')]
-    public  $denomination="&nbsp;";
+    public  $denomination="";
     #[Validate('required', message: 'Please select the Date')]
     public  $schedule_date='';
     #[Validate('nullable')]

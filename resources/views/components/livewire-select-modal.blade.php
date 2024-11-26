@@ -1,6 +1,6 @@
 <select  {{ $attributes->merge(['class'=>'materialize-select browser-default h-30']) }}>
 
-    <option value="null" @if(is_null($selected) or !isset($selected) ) selected @endif @endifdisabled>Options</option>
+    <option value="null" @if(is_null($selected) or !isset($selected) ) selected @endif disabled>Options</option>
 
     @foreach($data as $dataRow)
        @if($selected === $dataRow->id)

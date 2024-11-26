@@ -51,7 +51,7 @@ class Schedule extends Component
         'address' =>  'address of service.',
     ];
     public scheduleForm $form;
-    public $customer_id='',$denomination="",$employee1_id, $address='',$date='',$phone='',$info,$notes='',$instructions='',$service_date='',$service_time='',$checkin_datetime='',$checkout_datetime='';
+    public $customer_id='',$denomination="",$employee1_id,$employee_id, $address='',$date='',$phone='',$info,$notes='',$instructions='',$service_date='',$service_time='',$checkin_datetime='',$checkout_datetime='';
     public $tempDate  = '';
     public $tempTime  = '';
     public string $tempControlInTime;
@@ -125,7 +125,7 @@ class Schedule extends Component
                 $value = $this->customer_id; $model = $serviceModel;
                 break;
             case'denomination': $value = empty($this->denomination)?"&nbsp;":$this->denomination; $model = $customerModel;  break;
-            case'employee1_id': $value = $this->employee_id; $model = $serviceModel;    break;
+            case'employee1_id': $value = $this->employee_id; $model = $serviceModel; dd($this->employee_id);   break;
             case'info': $value = $this->info; $model = $customerModel;                  break;
             case'phone': $value = $this->phone; $model = $customerModel;                break;
             case'notes': $value = $this->notes; $model = $serviceModel;                 break;
@@ -163,16 +163,14 @@ class Schedule extends Component
                 ]
 
             );break;
-            default:
-                //dd($model);
-                $model->update(
-                    [
-                        $field => $value
-                    ]
-                );
-                $model->save();
 
         }
+        $model->update(
+            [
+                $field => $value
+            ]
+        );
+        $model->save();
 
         $this->dispatch('refresh-week');
         $this->dispatch('toast-alert',icon:"success",message:"The ".$this->fieldTitles[$field]." field  has been Updated !!!");
