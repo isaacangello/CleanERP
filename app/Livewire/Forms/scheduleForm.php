@@ -5,6 +5,7 @@ namespace App\Livewire\Forms;
 use App\Livewire\RepeatTrait;
 use App\Models\Customer;
 use App\Models\Schedule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -17,7 +18,7 @@ class scheduleForm extends Form
     #[Validate('required', message: 'Please select the Employee')]
     public  $employee_id;
     #[Validate('nullable')]
-    public  $denomination="";
+    public  $denomination="&nbsp;";
     #[Validate('required', message: 'Please select the Date')]
     public  $schedule_date='';
     #[Validate('nullable')]
@@ -60,8 +61,8 @@ class scheduleForm extends Form
                 'instructions' => $this->instructions,
                 'team' => $this->team,
                 'team_id' => $this->team_id,
-                'who_saved' => auth()->user()->name,
-                'who_saved_id' => auth()->id(),
+                'who_saved' => Auth::user()->name,
+                'who_saved_id' => Auth::id(),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

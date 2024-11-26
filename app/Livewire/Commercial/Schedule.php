@@ -124,8 +124,8 @@ class Schedule extends Component
             case'customer_id':
                 $value = $this->customer_id; $model = $serviceModel;
                 break;
-            case'employee1_id': $value = $this->employee_id; $model = $serviceModel;   break;
-
+            case'denomination': $value = empty($this->denomination)?"&nbsp;":$this->denomination; $model = $customerModel;  break;
+            case'employee1_id': $value = $this->employee_id; $model = $serviceModel;    break;
             case'info': $value = $this->info; $model = $customerModel;                  break;
             case'phone': $value = $this->phone; $model = $customerModel;                break;
             case'notes': $value = $this->notes; $model = $serviceModel;                 break;

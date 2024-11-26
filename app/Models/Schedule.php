@@ -13,7 +13,7 @@ class Schedule extends Model
 
     protected $fillable = [
         'id','customer_id','employee_id','period','schedule_time',
-        'schedule_date', 'notes', 'instructions','who_saved',
+        'schedule_date', 'notes', 'instructions','who_saved', 'who_saved_id',
         'loop','denomination','team','team_id'
     ];
     public array $rules = [

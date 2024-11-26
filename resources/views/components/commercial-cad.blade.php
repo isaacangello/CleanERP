@@ -33,6 +33,7 @@
                 <!-- Divider ######################################################################################################-->
                 <form id="schedule-form"  wire:submit.prevent="store">
                     @csrf
+                    <input type="hidden" name="who_saved_id" value="{{Auth::id()}}" id="cad-schedule-who_saved_id">
                     <!-- Row ######################################################################################################-->
                     <div class="row">
                         <div class=" col s12 m4">
