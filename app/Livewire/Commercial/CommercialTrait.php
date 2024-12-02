@@ -19,6 +19,7 @@ trait CommercialTrait
             //dd($arr);
             $trs_temp .= Element::withTag('tr')->class('blue-grey white-text')->addChild(Element::withTag('td')->class('align-center p-t-5 p-b-5')->addChild(Element::withTag('h6')->class('font-12 margin-0')->text($EmpNameKey)));
             foreach ($arr as $value){
+                $customer_print = '';
                 $schedule_date = Carbon::create($value->schedule_date);
 //                dd($value->id, $schedule_date->format('l F\\, jS\\, Y h:i a'));
                 if($schedule_date->format('H')< 12 ){
@@ -32,9 +33,15 @@ trait CommercialTrait
                 }
                 $cust = $value->customer->name;
                 $emp = $value->employee->name;
-                $customer_print = empty($value->denomination)?Funcs::nameShort($value->customer->name,' ',2):$value->denomination;
+                if(empty($value->denomination) || $value->denomination == "&nbsp;") {
+                    $customer_print = Funcs::nameShort($value->customer->name, ' ', 2);
+                    $customer_title_print = $value->customer->name;
+                }else{
+                    $customer_print = Funcs::nameShort($value->denomination, ' ', 2);
+                    $customer_title_print = $value->denomination;
+                }
                 $title ="
-                Denomination: $customer_print  \r\nCustomer: $cust  \r\nEmployee: $emp \r\nSchedule Date: ".$schedule_date->format('l F\\, jS\\, Y \\/ h:i a')."\r\n";
+                Denomination: $customer_title_print  \r\nCustomer: $cust  \r\nEmployee: $emp \r\nSchedule Date: ".$schedule_date->format('l F\\, jS\\, Y \\/ h:i a')."\r\n";
 
                 $trs_temp .= Element::withTag('tr')->class('yellow-row')->addChild(Element::withTag('td')
                     ->addChildren(
@@ -50,7 +57,7 @@ trait CommercialTrait
                                 '@click'=>"open = !open",
                                 'class'=> "btn-link-underline pointer link-modal-commercial m-l-5 $denomination_class" ,
                                 'title' => $title,
-                            ])->text($schedule_date->format('h:i a')." - ".Funcs::nameShort($customer_print,' ',1  ))
+                            ])->text($schedule_date->format('h:i a')." - ".$customer_print)
                         ]
                     )
                 );

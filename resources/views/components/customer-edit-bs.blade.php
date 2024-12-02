@@ -151,7 +151,7 @@
                                                     <div class="mt-1 relative">
                                                         <button type="button" @click="selectOpen = !selectOpen" class="relative w-full h-45 bg-white border border-gray-300  shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-green-800 focus:border-green-800 sm:text-sm">
                                                             <span class="block truncate text-gray-600"
-                                                                  x-text="selectedOptions.length ? selectedValues.join(', ') : 'Select options'"
+                                                                  x-text="selectedOptions.length ? joinSelectedValues() : 'Select options'"
                                                             >
                                                             </span>
                                                             <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">

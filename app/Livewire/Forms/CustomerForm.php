@@ -40,7 +40,7 @@ class CustomerForm extends Form
             'address' => 'required|string|max:255',
             'complement' => 'nullable|string|max:255',
             'phone' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'nullable|email|max:255',
             'billing_values_selected' => 'nullable|array',
             'other_services' => 'nullable|string',
             'frequency' => 'required|string|max:255',

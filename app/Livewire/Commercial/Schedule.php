@@ -37,6 +37,7 @@ class Schedule extends Component
      */
     public $modalData = '';
     public $fieldTitles =[
+        'employee_id' => 'employee identification',
         'employee1_id' => 'employee identification',
         'employee2_id' => 'second employee identification',
         'customer_id' => "Customer identification",
@@ -124,13 +125,14 @@ class Schedule extends Component
             case'customer_id':
                 $value = $this->customer_id; $model = $serviceModel;
                 break;
-            case'denomination': $value = empty($this->denomination)?"&nbsp;":$this->denomination; $model = $customerModel;  break;
-            case'employee1_id': $value = $this->employee_id; $model = $serviceModel; dd($this->employee_id);   break;
+            case'denomination':if(empty($this->denomination) || $this->denomination == "&nbsp;"){$value = $customerModel->name;}else{$value = $this->denomination;}$model = $serviceModel;break;
+            case'employee1_id': $value = $this->employee1_id; $model = $serviceModel;   break;
+            case'employee_id': $value = $this->employee_id; $model = $serviceModel;     break;
             case'info': $value = $this->info; $model = $customerModel;                  break;
             case'phone': $value = $this->phone; $model = $customerModel;                break;
             case'notes': $value = $this->notes; $model = $serviceModel;                 break;
             case'instructions': $value = $this->instructions; $model = $serviceModel;   break;
-            case'schedule_date': $value = $this->service_date; $model = $serviceModel;   break;
+            case'schedule_date': $value = $this->service_date; $model = $serviceModel;  break;
             case'checkin_datetime': $direction = 'checkIn'; $id =$this->modalData->id;  break;
             case'checkout_datetime': $direction = 'cheOut'; $id =$this->modalData->id;  break;
             case'address': $value = $this->address; $model = $customerModel;            break;

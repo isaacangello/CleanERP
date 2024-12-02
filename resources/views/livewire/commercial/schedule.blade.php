@@ -165,8 +165,8 @@
                 <th colspan="1" class="green">Employee:</th>
                 <td colspan="3" >
                     <x-livewire-select-modal
-                            wire:model="employee1_id"
-                            wire:change="field_change('employee1_id')"
+                            wire:model="employee_id"
+                            wire:change="field_change('employee_id')"
                             id="selectServiceEmployee"
                             class="p-l-0"
                             :data="$selectOptionsEmployees"

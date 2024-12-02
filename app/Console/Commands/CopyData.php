@@ -72,9 +72,15 @@ class CopyData extends Command
             $employeeExists = DB::connection('mysql_target')->table('employees')->where('id', $event->id_employee)->exists();
             if ($customerExists && $employeeExists) {
                 $customerPrice = DB::connection('mysql_source')->table('customers')->where('id_customer', $event->id_customer)->value('price');
+                if (is_numeric($customerPrice)){
+                    $price = $customerPrice;
+                }else{
+                    $customerPriceStr = explode('-', $customerPrice);
+                    $price = is_numeric($customerPriceStr[0]) ? $customerPriceStr[0] : 0;
+                }
                 $plus = is_numeric($event->price) ? $event->price : 0;
                 $minus = is_numeric($event->menos) ? $event->menos : 0;
-                $price = is_numeric($customerPrice) ? $customerPrice : 0;
+//                $price = is_numeric($customerPrice) ? $customerPrice : 0;
                 if(strlen(trim($event->hora)) === 5) {
                     $event->hora = $event->hora . ':00';
                 }
