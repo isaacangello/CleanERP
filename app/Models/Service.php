@@ -27,6 +27,7 @@ class Service extends Model
         'service_date' => 'required|date',
         'period' => 'alpha_num:ascii',
         'frequency' => 'required',
+        'info' => 'nullable',
         'notes' => 'nullable',
         'instructions' => 'nullable',
         'paid_out' => 'nullable',

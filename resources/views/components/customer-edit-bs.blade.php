@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             @isset($this->customer->type)
-                            @if( isset($this->customer->type) and $this->customer->type == "COMMERCIAL" )
+                            @if($this->customer->type == "COMMERCIAL" )
                                 <div class="row clearfix">
                                     <div class="col s12">
                                         <label for="textarea-edit-customer-note">Other Emails</label>
@@ -122,7 +122,7 @@
 
                             @endif
 
-                            @if(isset($this->customer->type) and ( $this->customer->type  === "RESIDENTIAL") or ($this->customer->type  === "RENTALHOUSE") )
+                            @if( $this->customer->type  === "RESIDENTIAL" or $this->customer->type  === "RENTALHOUSE")
                             <div class="row label-employee-view-edit">
                                 <span class="label label-padding">Billing Price</span>
                             </div>

@@ -79,7 +79,7 @@ class SearchRepeat extends Component
             $this->fcustomer->gate_code = false;
         }
 
-
+        //dd($this->customer->type);
         $this->showCustomerEdit = true;
 
     }

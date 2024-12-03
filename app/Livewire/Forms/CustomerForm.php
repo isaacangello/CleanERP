@@ -43,7 +43,7 @@ class CustomerForm extends Form
             'email' => 'nullable|email|max:255',
             'billing_values_selected' => 'nullable|array',
             'other_services' => 'nullable|string',
-            'frequency' => 'required|string|max:255',
+            'frequency' => 'nullable|string|max:255',
             'house_description' => 'nullable|string',
             'note' => 'nullable|string',
         ]);

@@ -29,7 +29,7 @@ class CopyData extends Command
                 'address' => $customer->adress,
                 'phone' => $customer->phone,
                 'email' => $customer->email,
-                'type' => $customer->veraneio ? 'HELTALHOUSE' : $customer->tipo,
+                'type' => $customer->veraneio ? 'RENTALHOUSE' : $customer->tipo,
                 'frequency' =>  substr($customer->frequence, 0, 254),
                 'note' => $customer->notes,
                 'info' => $customer->info,

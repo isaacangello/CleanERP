@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('price_monthly')->nullable();
             $table->string('other_services')->nullable();
             $table->string('justify_inactive',320)->nullable();
-            $table->string('info',320)->nullable();
+            $table->string('info',3000)->nullable();
             $table->boolean('drive_licence')->default(0);
             $table->boolean('key')->default(0);
             $table->boolean('more_girl')->default(0);

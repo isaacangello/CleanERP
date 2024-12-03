@@ -255,7 +255,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id="btnSaveEmp" class="btn  btn-small " type="submit">save changes</button>
-                    <a href="#!" class="btn modal-close btn-small red darken-4">Cancel</a>
+                    <a href="#!" class="btn modal-close  btn-small red darken-4">Cancel</a>
                 </div>
                 </form>
             </div><!--END OF CONTAINER -->

@@ -186,8 +186,8 @@
                     </td>
                 </tr>
 
-                <tr class="hide"><th colspan="4"  class="green  center-align">Info:</th></tr>
-                <tr class="hide">
+                <tr><th colspan="4"  class="green  center-align">Info:</th></tr>
+                <tr>
                     <td  colspan="4"   class="p-1">
                             <textarea wire:model.blur="info"
                                       wire:change="field_change('info')"

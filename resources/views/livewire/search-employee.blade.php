@@ -20,7 +20,6 @@
                                     label="Search Employee"
                                     placeholder="Search Employee"
                                     wire:model.live.debounce="search"
-                                    wire:keydown.enter="searchedEmployee"
                                     class="text-sm h-30"
                             />
                         </div>
