@@ -108,7 +108,7 @@ public function countOpenCustomerRecords()
             ->get();
         $countedAllServices = $services->count();
         $counted = $services->countBy('customer_id');
-        dd($counted->keys()->all());
+//        dd($counted->keys()->all());
 //        dd(array_search($this->OpenCustomerId, $counted->keys()->all()));
         if(array_search($this->openCustomerId, $counted->keys()->all())){
             $countedVal = $counted[$this->openCustomerId];
