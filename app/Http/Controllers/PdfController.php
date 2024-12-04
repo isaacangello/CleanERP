@@ -129,7 +129,7 @@ public function countOpenCustomerRecords()
             'groupedServices' => $groupedServices,
             'pdf' => true
         ];
-        $fileName = 'relatorio_semanal_'.'week-from_'.$from.'_till_'.$till.'.pdf';
+        $fileName = 'Weekly_Report_'.'from_'.$from.'_till_'.$till.'.pdf';
         return Pdf::loadView('livewire.residential.dashpdf', $data )
             ->setPaper('a4','portrait')
             ->stream($fileName);
