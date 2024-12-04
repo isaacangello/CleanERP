@@ -45,13 +45,12 @@ public function countOpenCustomerRecords()
     {
         $from = $from ?? now()->startOfWeek(Carbon::MONDAY)->format('Y-m-d');
         $till = $till ?? now()->endOfWeek(Carbon::SUNDAY)->format('Y-m-d');
-        $CustOpenData = $this->countOpenCustomerRecords();
-//        dd($CustOpenData);
         $services = Service::select('services.*','customers.name as customer_name','employees.name as employee_name'
         )->with('customer','employee','control')
             ->join('customers','services.customer_id','=','customers.id')
             ->join('employees','services.employee1_id','=','employees.id')
             ->whereBetween('service_date',[$from,$till])
+            ->orderBY('service_date','asc')
             ->get();
         $countedAllServices = $services->count();
         //dd($services->countBy('customer_id'));
@@ -105,6 +104,7 @@ public function countOpenCustomerRecords()
             ->join('customers','services.customer_id','=','customers.id')
             ->join('employees','services.employee1_id','=','employees.id')
             ->whereBetween('service_date',[$from,$till])
+            ->orderBY('service_date','asc')
             ->get();
         $countedAllServices = $services->count();
         $counted = $services->countBy('customer_id');
