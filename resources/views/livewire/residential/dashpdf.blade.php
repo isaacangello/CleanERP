@@ -83,8 +83,8 @@
             <td style="width: 33.333333333%" class=" text-center"><span class="text-center">Spots:<span style="font-weight: bold" class=" font-bold">{{$groupedServices[$key]->count()}}</span></span></td>
             <td style="width: 33.333333333%" class=" text-center">
                     @php
-                     if($groupedServices[$key]->countBy('customer_id')->keys()->contains(1)){
-                         $allOpens = $groupedServices[$key]->countBy('customer_id')[1];
+                     if($groupedServices[$key]->countBy('customer_id')->keys()->contains($openCustomerId)){
+                         $allOpens = $groupedServices[$key]->countBy('customer_id')[$openCustomerId];
                      }else{
                          $allOpens = 0;
                      }
