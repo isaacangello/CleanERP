@@ -45,6 +45,7 @@ class Week extends Component
     public $selectedYear = null;
     public $route = 'week';
     public $populate;
+    public $dateTrait;
     public $fieldTitles =[
         'employee1_id' => 'employee identification',
         'employee2_id' => 'second employee identification',
@@ -71,6 +72,8 @@ class Week extends Component
     public  $showModal = false;
     public  $showCadModal = false;
      public $cardsHtml ='';
+     public array $week = [];
+
     protected $listeners = [
         'refresh-week' => '$refresh'
     ];
@@ -78,9 +81,10 @@ class Week extends Component
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
      * @return void
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    public function __constructor(){
+    public function __constructor(): void
+    {
         $this->populate = new PopulateController();
-        $this->dateTrait =new DateTreatment();
+        $this->dateTrait = new DateTreatment();
     }
 
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
@@ -154,6 +158,8 @@ class Week extends Component
         $employees =  Populate::employeeFilter();
         $filteredWeekGroup = [];
         $employeesClass = new Employee();
+        $dateTrait = new DateTreatment();
+        $this->week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
         foreach ($employees as $row){
             $filteredWeekGroup[$row->name] = $employeesClass->servicesFromWeekNumber($row->id,$this->numWeek,$this->year);;
 
@@ -386,14 +392,15 @@ class Week extends Component
      * @return void
      *================================================================================================================*/
     public function mount(){
+        $dateTrait = new DateTreatment();
         if($this->from and ($this->numWeek === null)){
-            $dateTrait = new DateTreatment();
             $this->numWeek = $dateTrait->numberWeekByDay(Carbon::create($this->from)->nextWeekday()->format('Y-m-d'));
         }
         if ($this->selectedWeek === null){$this->selectedWeek = $this->numWeek;}
         if($this->selectedYear === null){$this->selectedYear = $this->year;}
 
         $this->traitNullVars();
+        $this->week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->selectOptionsEmployees = Populate::employeeFilter();
         $this->selectOptionsCustomers = Populate::customerFilter();
 
@@ -409,5 +416,9 @@ class Week extends Component
         return view('livewire.residential.week')
             ->extends('layouts.app');
 
+    }
+    public function closeModal():void
+    {
+        $this->showModal = false;
     }
 }

@@ -14,10 +14,10 @@ trait ResidentialTrait
     public function traitNullVars(): void
     {
         $dateTrait = new DateTreatment();
-        if($this->numWeek === null){
+        if(empty($this->numWeek)){
             $this->numWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
         }
-        if ($this->year === null){
+        if (empty($this->year)){
             $this->year = now()->format('Y');
         }
 

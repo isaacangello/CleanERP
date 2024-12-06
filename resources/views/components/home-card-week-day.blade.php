@@ -14,22 +14,26 @@
         @endphp
 
 @if($weekDayLabel != 'Sunday')
-        <tr><td class="text-uppercase" colspan="1">{{ $weekDayLabel }} {!! $text_print !!} </td></tr>
+        <tr><td class="text-uppercase " colspan="1">{{ $weekDayLabel }} {!! Carbon::create($week[$weekDayLabel])->format('m/d') !!} </td></tr>
 
 
             @foreach($data as $row)
                 @php
                     //dd($row);
                     $title=" customer: $row->cust_name \n employee: $row->emp_name \n";
-                    if ($row->fee === 1) {
-                        $classes_service = "btnFeeService amber darken-3";
-                        $wire_click = "\$dispatch('trigger-cancel-fee',{id:$row->service_id})";
-                    } else {
-                        $confirmClass = $row->confirmed ? 'green darken-3' : 'red darken-3';
-                        $classes_service = " btn-confirm-form " . $confirmClass;
-                        $wire_click = "confirmService($row->service_id)";
+                    if ($row->cust_id == 712) {
+                        $classes_service = "btnFeeService secondary disabled p-l-2 p-r-2";
+                        $wire_click = "\$dispatch('refresh-week')";
+                    }else{
+                        if ($row->fee === 1) {
+                            $classes_service = "btnFeeService amber darken-3";
+                            $wire_click = "\$dispatch('trigger-cancel-fee',{id:$row->service_id})";
+                        } else {
+                            $confirmClass = $row->confirmed ? 'green darken-3' : 'red darken-3';
+                            $classes_service = " btn-confirm-form " . $confirmClass;
+                            $wire_click = "confirmService($row->service_id)";
+                        }
                     }
-
                 @endphp
                 @php($c++)
                 <tr class="yellow-row">
@@ -40,11 +44,13 @@
                                     wire:click="{!! $wire_click !!}"
 
                                     title="{{$title}}"
-
+                            @if($row->cust_id == 712) disabled @endif
                             >
-
+                            @if($row->cust_id == 712)
+                                <span class="button__text p-l-10 p-r-10"> OPEN </span>
+                                @else
                                 <span class="button__text"> {{ Funcs::carbonFormat($row->service_date,'h')}}</span>
-
+                            @endif
                             </a>
                         </div>
                         <div class="valign-wrapper left-align padding-0 ">
@@ -75,11 +81,11 @@
                 </tr>
             @endforeach
         @if($c === 1)
-                <tr class="yellow-row"><td>&nbsp;&nbsp;<span class="badge">&nbsp;</span>&nbsp;</td></tr>
+            <tr class="yellow-row"><td class="flex content-center"><div class="w-full text-center"><a class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer">***OPEN***</a></div></td></tr>
         @endif
                 @if($arrayCount == 0)
-                    <tr class="yellow-row"><td>&nbsp;&nbsp;<span class="badge">&nbsp;</span>&nbsp;</td></tr>
-                    <tr class="yellow-row"><td>&nbsp;&nbsp;<span class="badge">&nbsp;</span>&nbsp;</td></tr>
+                    <tr class="yellow-row"><td class="flex content-center"><div class="w-full text-center"><a class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer">***OPEN***</a></div></td></tr>
+                    <tr class="yellow-row"><td class="flex content-center"><div class="w-full text-center"><a class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer">***OPEN***</a></div></td></tr>
                 @endif
 
 @endif

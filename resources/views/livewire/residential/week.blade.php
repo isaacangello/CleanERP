@@ -38,25 +38,16 @@
                         <x-btn-week-mobile-navigator :$route :$selectedWeek>
                             <x-standard-btn class="btn-small" @click="cadOpen = true" title="New Service">   New  </x-standard-btn>
                         </x-btn-week-mobile-navigator>
-                        @php($count = 0)
-                        <div class="grid grid-cols-4 gap-4" @if($count === 4) style="margin-right: 0;" @endif>
+
+                        <div class="grid grid-cols-4 gap-4" >
 
                             @foreach($this->dataCard() as $empName => $data )
                                 @if(Collect($data['Monday'])->isNotEmpty() || Collect($data['Tuesday'])->isNotEmpty() || Collect($data['Wednesday'])->isNotEmpty() || Collect($data['Thursday'])->isNotEmpty() || Collect($data['Friday'])->isNotEmpty() || Collect($data['Saturday'])->isNotEmpty() || Collect($data['Sunday'])->isNotEmpty())
 
-                                    <x-home-cards  :emp-name="$empName" :$data />
+                                    <x-home-cards  :emp-name="$empName" :$data :$week />
 
-{{--                                    @php($count++)--}}
-
-{{--                                    @if($count === 4)--}}
-
-{{--                                        </div>--}}
-{{--                                        <div class="row">--}}
-{{--                                            @php($count = 0)--}}
-{{--                                    @endif--}}
                                 @endif
                             @endforeach
-                            @php($count = 0)
 
                         </div> <!--grid system row-->
                     </div> <!--card body-->
@@ -102,7 +93,7 @@
                 </tr>
                 </tbody>
             </table>
-            <table wire:loading.remove class="table-modal-services-details ">
+            <table wire:loading.remove class="table-modal-services-details">
                 <tr>
                     <th colspan="1" class="green">Employee:</th>
                     <td colspan="3" >
