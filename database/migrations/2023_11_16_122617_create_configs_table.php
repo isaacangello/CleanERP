@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer('nun_reg_pages')->default(15);
+            $table->string('theme')->default('light');
+            $table->integer('spots')->default(11);
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
@@ -41,7 +43,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('configs');
         Schema::dropIfExists('business_data');
+        Schema::enableForeignKeyConstraints();
     }
 };

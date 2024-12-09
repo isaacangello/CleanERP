@@ -113,16 +113,32 @@
                     dateFormat: "Y-m-d H:i",
                     altFormat: 'F j, Y h:i K',
                     altInput: true,
-                    onChange: function(selectedDates, dateStr, instance){
-                        if (dateStr)
-                            instance.close();
-                    },
+                    // onChange: function(selectedDates, dateStr, instance){
+                    //     if (dateStr)
+                    //         instance.close();
+                    // },
                     defaultDate: `${event.detail.dateTime}`
 
                 }
             )
 
         })
+
+        document.addEventListener('select-cad-employee', event => {
+            const empId = event.detail.empId;
+            const selectElement = document.getElementById('select-cad-service-employee1');
+
+            selectElement.querySelectorAll('option').forEach(option => {
+                if (option.value === empId) {
+                    option.setAttribute('selected', 'selected');
+                } else {
+                    option.removeAttribute('selected');
+                }
+            });
+            window.Livewire.dispatch('populate-date-time', {idElement: "#input-cad-service-date", dateTime: event.detail.dateTime});
+            $wire.showCadModal = true;
+        });
+
             window.addEventListener('trigger-confirm-fee', function (event){
                 console.log("event fee")
                 console.log($wire)

@@ -20,7 +20,7 @@
                             <span>
                             </span>
                     </div>
-                    <x-service-cad :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year :$populateBillings>
+                    <x-service-cad :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year :$populateBillings :emp-from-open="$this->empFromOpen">
 
                     </x-service-cad>
                     <div class="body">
@@ -44,7 +44,7 @@
                             @foreach($this->dataCard() as $empName => $data )
                                 @if(Collect($data['Monday'])->isNotEmpty() || Collect($data['Tuesday'])->isNotEmpty() || Collect($data['Wednesday'])->isNotEmpty() || Collect($data['Thursday'])->isNotEmpty() || Collect($data['Friday'])->isNotEmpty() || Collect($data['Saturday'])->isNotEmpty() || Collect($data['Sunday'])->isNotEmpty())
 
-                                    <x-home-cards  :emp-name="$empName" :$data :$week />
+                                    <x-home-cards  :emp-name="$empName" :$data :$week :employee-id="$this->employeesIds[$empName]" />
 
                                 @endif
                             @endforeach
@@ -124,7 +124,7 @@
                     <th colspan="1" class="green font-12 h-30">Address:</th>
                     <td colspan="3"  >
                         <x-text-input
-                                wire:model.blur="address"
+                                wire:model="address"
                                 wire:change="field_change('address')"
                                 class="p-l-2 h-30 font-12 grey-text text-darken-4"
                                 id="serviceAddress"
@@ -136,7 +136,7 @@
                     <th colspan="1" class="green h-30">Phone:</th>
                     <td  colspan="3"  >
                         <x-text-input
-                                wire:model.blur="phone"
+                                wire:model="phone"
                                 wire:change="field_change('phone')"
                                 class="p-l-2 h-30 font-12 grey-text text-darken-4"
                                 id="servicePhone"
@@ -148,8 +148,8 @@
                     <th class="green h-30">Date:</th>
                     <td colspan="3">
                         <x-date-flat-pickr
-                                wire:model.blur="service_date"
-                                wire:change.debounce="field_change('service_date')"
+                                wire:model="service_date"
+                                wire:change.debounce.3000ms="field_change('service_date')"
                                 id="serviceDate"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text text-darken-4"
                         />
@@ -160,8 +160,8 @@
                     <td>
                         <x-time-flat-pickr
 
-                                wire:model.blur="checkin_datetime"
-                                wire:change="field_change('checkin_datetime')"
+                                wire:model="checkin_datetime"
+                                wire:change.debounce.3000ms="field_change('checkin_datetime')"
                                 id="serviceInTime"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text darken-4"
                         />
@@ -169,8 +169,8 @@
                     <th class="green h-30">Out:</th>
                     <td>
                         <x-time-flat-pickr
-                                wire:model.blur="checkout_datetime"
-                                wire:change="field_change('checkout_datetime')"
+                                wire:model="checkout_datetime"
+                                wire:change.debounce.3000ms="field_change('checkout_datetime')"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text darken-4"
                                 id="serviceOutTime"
                         />

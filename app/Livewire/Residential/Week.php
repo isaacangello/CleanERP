@@ -3,7 +3,6 @@
 namespace App\Livewire\Residential;
 
 use AllowDynamicProperties;
-use App\Helpers\Funcs;
 use App\Helpers\Residential\ResidentialTrait;
 use App\Http\Controllers\Populate;
 use App\Livewire\Forms\ServiceForm;
@@ -14,7 +13,6 @@ use App\Treatment\DateTreatment;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
@@ -45,6 +43,8 @@ class Week extends Component
     public $selectedYear = null;
     public $route = 'week';
     public $populate;
+    public $employeesIds = [];
+    public $empFromOpen = 0;
     public $dateTrait;
     public $fieldTitles =[
         'employee1_id' => 'employee identification',
@@ -162,10 +162,11 @@ class Week extends Component
         $this->week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
         foreach ($employees as $row){
             $filteredWeekGroup[$row->name] = $employeesClass->servicesFromWeekNumber($row->id,$this->numWeek,$this->year);;
-
+            $this->employeesIds[$row->name] = $row->id;
         }
         /** Rendering HTML elements in server side SSR */
 //        dd($filteredWeekGroup);
+
         return $filteredWeekGroup;
 //        return $this->createResidentialCard($filteredWeekGroup,$this->numWeek,$this->year);
     }
@@ -420,5 +421,12 @@ class Week extends Component
     public function closeModal():void
     {
         $this->showModal = false;
+    }
+    public function createService($date,$emp_id):void
+    {
+        $this->empFormOpen = $emp_id;
+        $this->dispatch('populate-date-time', idElement:"#input-cad-service-date",dateTime:$date);
+        //dd($date,$emp_id);
+        $this->showCadModal = true;
     }
 }

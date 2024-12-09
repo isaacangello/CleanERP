@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\Customer;
+use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -45,6 +46,15 @@ public function countOpenCustomerRecords()
     {
         $from = $from ?? now()->startOfWeek(Carbon::MONDAY)->format('Y-m-d');
         $till = $till ?? now()->endOfWeek(Carbon::SUNDAY)->format('Y-m-d');
+
+        $periodo = CarbonPeriod::between($from, $till);
+        $weekArray = [];
+        $c = 0;
+        foreach ($periodo as $data) {
+            $weekArray[$c] = $data->format('Y-m-d');
+            $c++;
+        }
+
         $services = Service::select('services.*','customers.name as customer_name','employees.name as employee_name'
         )->with('customer','employee','control')
             ->join('customers','services.customer_id','=','customers.id')
@@ -66,16 +76,17 @@ public function countOpenCustomerRecords()
         $allServicesClosed = $countedAllServices - $countedVal;
         $groupedServices = $services->groupBy('employee_name');
         $pdf = false;
-//        dd(
-//            $from,$till,
-//            "All services ".$countedAllServices,
-//            "All services open ".$allServicesClosed,
-//            "Total em aberto => ".$counted[$this->OpenCustomerId],
-//            $services->all()[0],
-//            $services->groupBy('employee_name'),
-//            $services->countBy('employee_name'),
-//
-//        );
+        dd(
+            $from,$till,
+            "All services ".$countedAllServices,
+            "All services open ".$allServicesClosed,
+            "Total em aberto => ".$counted[$this->openCustomerId],
+            $services->all()[0],
+            $services->groupBy('employee_name')->count(),
+            $weekArray,
+            $services->countBy('employee_name'),
+
+        );
         //dd(public_path('logo.png'));
         $logo = '<img src="data:image/svg+xml;base64,' . base64_encode(public_path('logo.png')) . '" ...>';
         $openCustomerId = $this->openCustomerId;
@@ -85,6 +96,7 @@ public function countOpenCustomerRecords()
                 'services',
                 'from',
                 'till',
+                'weekArray',
                 'countedAllServices',
                 'allServicesClosed',
                 'countedTotalOpen',

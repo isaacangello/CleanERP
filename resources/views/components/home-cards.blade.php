@@ -19,10 +19,10 @@
 
                                             <table class="table-card centered">
                                                 <tbody>
-{{--                                                @php dd($data,$week) @endphp--}}
+{{--                                                @php dd($employeesIds, $data,$week) @endphp--}}
                                                 @foreach($data as $weekDayLabel => $row)
 {{--                                                        @php(var_dump($row)."<br><br>")--}}
-                                                        <x-home-card-week-day :week-day-label="$weekDayLabel" :data="$row"  :$week />
+                                                        <x-home-card-week-day :week-day-label="$weekDayLabel" :data="$row"  :$week :emp-name="$empName" :employee-id="$employeeId" />
                                                 @endforeach
                                                 </tbody>
                                             </table>

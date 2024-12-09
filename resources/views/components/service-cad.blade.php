@@ -104,6 +104,8 @@
                                         @foreach($employees as $values)
                                              @if(old('form.employee2_id') == $values->id)
                                                  <option selected  value="{{$values->id}}">{{$values->name}} </option>
+                                            @elseif($values->id === $empFromOpen)
+                                                <option selected  value="{{$values->id}}">{{$values->name}} </option>
                                             @else
                                                  <option  value="{{$values->id}}">{{$values->name}} </option>
                                             @endif

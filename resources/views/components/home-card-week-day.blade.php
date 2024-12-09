@@ -10,7 +10,7 @@
 
                 $text_print = ' ';
             }
-
+            //dd($weekDayLabel,$empName,$employeeId);
         @endphp
 
 @if($weekDayLabel != 'Sunday')
@@ -19,7 +19,7 @@
 
             @foreach($data as $row)
                 @php
-                    //dd($row);
+//                    dd($row);
                     $title=" customer: $row->cust_name \n employee: $row->emp_name \n";
                     if ($row->cust_id == 712) {
                         $classes_service = "btnFeeService secondary disabled p-l-2 p-r-2";
@@ -81,11 +81,11 @@
                 </tr>
             @endforeach
         @if($c === 1)
-            <tr class="yellow-row"><td class="flex content-center"><div class="w-full text-center"><a class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer">***OPEN***</a></div></td></tr>
+            <tr class="yellow-row"><td class="flex content-center"><div class="w-full text-center"><a class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer" wire:click="$dispatch('select-cad-employee', {empId:'{{$employeeId}}',dateTime:'{{$week[$weekDayLabel]}}'} )" >***OPEN***</a></div></td></tr>
         @endif
                 @if($arrayCount == 0)
-                    <tr class="yellow-row"><td class="flex content-center"><div class="w-full text-center"><a class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer">***OPEN***</a></div></td></tr>
-                    <tr class="yellow-row"><td class="flex content-center"><div class="w-full text-center"><a class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer">***OPEN***</a></div></td></tr>
+                    <tr class="yellow-row"><td class="flex content-center"><div class="w-full text-center"><a class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer" wire:click="$dispatch('select-cad-employee', {empId:'{{$employeeId}}',dateTime:'{{$week[$weekDayLabel]}}'} )" >***OPEN***</a></div></td></tr>
+                    <tr class="yellow-row"><td class="flex content-center"><div class="w-full text-center"><a class="btn-link-underline link-modal-residential modal-on-livewire m-l-5 pointer" wire:click="$dispatch('select-cad-employee', {empId:'{{$employeeId}}',dateTime:'{{$week[$weekDayLabel]}}'} )" >***OPEN***</a></div></td></tr>
                 @endif
 
 @endif

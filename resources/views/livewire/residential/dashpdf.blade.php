@@ -1,3 +1,6 @@
+@php
+    $config = \App\Helpers\Funcs::getConfig()
+@endphp
 <!doctype html>
 <html lang="en">
 <head>
@@ -97,7 +100,7 @@
         @foreach($groupedService as $row)
         <tr>
             <td class=" text-center">
-                <span class="text-center"><span style="font-weight: bold" class=" font-bold">{{Carbon\Carbon::create($row->service_date)->format('l')}}</span></span>
+                <span class="text-center"><span style="font-weight: bold" class=" font-bold">{{Carbon\Carbon::create($row->service_date)->format('l * m/d')}}</span></span>
             </td>
             <td class=" text-center">
                 <span >__</span>
