@@ -89,7 +89,7 @@
                                 <tr wire:key="tr{{ $counter }}"  class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100',' ']) }}">
 
                                     <td class="p-0" >{{ Carbon\Carbon::create($cycle->created_at )->format('l, m/d/Y h:i A')  }}</td>
-                                    <td class="p-0">{{$cycle->customer_name}}</td>
+                                    <td class="p-0 @if($cycle->origin === "scheduleCycle") text-green-800 @endif" @if($cycle->origin === "scheduleCycle") title="RESIDENTIAL" @else title="COMMERCIAL" @endif>{{$cycle->customer_name}}</td>
                                     <td class="p-0">{{$cycle->frequency}}</td>
                                     @php
                                         $dates = explode(',', $cycle->dates);

@@ -62,7 +62,7 @@
 
     <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
 
-    <link rel="stylesheet" href="{{ asset('/build/assets/app-6cd23d95.css')  }}">
+    <link rel="stylesheet" href="{{ asset('/build/assets/app-181528c1.css')  }}">
 
     {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 </head>
@@ -155,7 +155,7 @@
                             <a href="{{ route('profile.edit') }}" class="waves-effect waves-classic waves-light"><i class="material-icons">person</i><span>Profile</span></a>
                         </li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0);" class="waves-effect waves-classic waves-light"><i class="material-icons">settings_applications</i><span>Config</span></a></li>
+                        <li><a href="{{route('config')}}" class="waves-effect waves-classic waves-light"><i class="material-icons">settings_applications</i><span>Config</span></a></li>
                         <li role="separator" class="divider"></li>
                         <li style="background-color: transparent">
                             <form action="{{ route('logout') }}" method="post" >

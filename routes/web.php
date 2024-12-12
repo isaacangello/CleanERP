@@ -8,7 +8,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\ServicesController;
 use Illuminate\Support\Facades\Route;
-
+use App\Livewire\ConfigEditor;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -91,6 +91,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+//#############################################################
+//############ CONFIG AND OTHERS ROUTES
+//#############################################################
+Route::get('/config',\App\Livewire\ConfigEditor::class)->name('config');
+
 //#############################################################
 //############ API
 //#############################################################

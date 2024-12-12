@@ -94,7 +94,7 @@ class SearchRepeat extends Component
         {
             if($this->selectedCustomer <=0)
             {
-                $this->cycles = ScheduleCycle::paginate(10)->toArray();
+                $this->cycles = ScheduleCycle::paginate($config->nun_reg_pages)->toArray();
                 return ScheduleCycle::paginate($config->nun_reg_pages);
 
             }

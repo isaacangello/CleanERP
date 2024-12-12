@@ -282,7 +282,11 @@ class Funcs
     {
      return Config::firstOrCreate(
              ['user_id' => Auth::user()->id],
-             ['nun_reg_pages'=> 15]
+             ['nun_reg_pages'=> 15,
+                    'theme' => 'light',
+                    'spots' => 11
+
+             ]
              );
     }
 
