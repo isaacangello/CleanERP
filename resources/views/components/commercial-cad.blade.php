@@ -272,19 +272,19 @@
                         <!-- Row ######################################################################################################-->
                     <div class="row">
                         <div class=" col s12 m6">
-                            <label for="cad-schedule-note">type service notes.</label>
+                            <label for="cad-schedule-note">type schedule notes.</label>
                             <div class="form-group">
                                 <div class="form-line success form-line-notes">
-                                    <textarea style="padding: 10px; height: 50px"  id="cad-schedule-note" wire:model="form.notes"  class="form-control custom-textarea"  rows="2" placeholder="Please type service notes here...">{{ old('notes') }}</textarea>
+                                    <textarea style="padding: 10px; height: 100px"  id="cad-schedule-note" wire:model="form.notes"  class="form-control custom-textarea"  rows="2" placeholder="Please type schedule notes here...">aa{{ old('notes') }}</textarea>
                                 </div>
-                                <div class="help-info" id="help-info-notes">Type customer notes </div>
+                                <div class="help-info" id="help-info-notes">Type schedule notes </div>
                             </div>
                         </div>
                         <div class=" col s12 m6">
                             <label for="textarea-cad-costumer-instructions">Instructions for employees.</label>
                             <div class="form-group">
                                 <div class="form-line success form-line-instructions">
-                                    <textarea style="padding: 10px;"  id="textarea-cad-costumer-instructions" wire:model="form.instructions"  class="form-control custom-textarea"  rows="2" placeholder="Please type instructions for employees here...">{{ old('instructions') }}</textarea>
+                                    <textarea style="padding: 10px; height: 100px"  id="textarea-cad-costumer-instructions" wire:model="form.instructions"  class="form-control custom-textarea"  rows="2" placeholder="Please type instructions for employees here...">{{ old('instructions') }}</textarea>
                                 </div>
                                 <div class="help-info" id="help-info-instructions">Type instructions for employees. </div>
                             </div>
