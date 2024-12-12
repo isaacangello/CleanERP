@@ -127,7 +127,7 @@
                             <th>frequency</th>
                             <th class="text-center">Confirmed</th>
                             <th class="text-center">Canceled</th>
-                            <th class="p-0"><input  type="checkbox" wire:model.live="selectAll"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
+                            <th class="p-0"><input  type="checkbox"  wire:change="$dispatch('select-all-checkboxes', { checkboxClass: 'services-entries-found' } )"   class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
                         </tr>
                         @foreach($this->searchedServices as $service)
                             <tr wire:key="tr{{ $service->id }}" class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100',' ']) }}" >
@@ -139,7 +139,7 @@
                                 <td class="p-0 text-center">{!! $service->confirmed===1?"<span class='material-symbols-outlined text-teal-700 text-sm'>verified</span>":"" !!}</td>
                                 <td class="p-0 text-center">{!! $service->fee===1?"<span class='material-symbols-outlined text-amber-700 text-sm'>verified</span>":"" !!}</td>
                                 <td class="p-0">
-                                    <input  wire:model.live.debounce="selectedServices" value="{{ $service->id }}" type="checkbox"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <input  wire:model="selectedServices" value="{{ $service->id }}" type="checkbox"  class="services-entries-found w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 {{--                                    <label>--}}
 {{--                                        <input type="checkbox" class="materialize-checkbox filled-in" checked="checked"  />--}}
 {{--                                        <span></span>--}}

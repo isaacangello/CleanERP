@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('spots')->default(11);
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
 
         Schema::create('business_data', function (Blueprint $table) {

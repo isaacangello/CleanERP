@@ -35,9 +35,9 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('employee1_id')->references('id')->on('employees');
-            $table->foreign('employee2_id')->references('id')->on('employees');
+            $table->foreign('customer_id')->references('id')->on('customers')->cascadeOnDelete();
+            $table->foreign('employee1_id')->references('id')->on('employees')->cascadeOnDelete();
+            $table->foreign('employee2_id')->references('id')->on('employees')->cascadeOnDelete();
 
         });
     }

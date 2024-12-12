@@ -28,8 +28,8 @@ return new class extends Migration
             $table->unsignedBigInteger('billing_id');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('billing_id')->references('id')->on('billings');
+            $table->foreign('customer_id')->references('id')->on('customers')->cascadeOnDelete();
+            $table->foreign('billing_id')->references('id')->on('billings')->cascadeOnDelete();
 
         });
     }

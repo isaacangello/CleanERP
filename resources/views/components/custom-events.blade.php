@@ -139,6 +139,24 @@
             $wire.showCadModal = true;
         });
 
+        // window.addEventListener('select-all-checkboxes', event => {
+        //         const checkboxClass = event.detail.checkboxClass;
+        //         const checkboxes = document.querySelectorAll(`.${checkboxClass}`);
+        //
+        //         checkboxes.forEach(checkbox => {
+        //             checkbox.checked = true;
+        //         });
+        //     });
+        document.addEventListener('select-all-checkboxes', event => {
+            console.log("select-all-checkboxes:  ".event)
+            const checkboxClass = event.detail.checkboxClass;
+            const checkboxes = document.querySelectorAll(`.${checkboxClass}`);
+            const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = !allChecked;
+            });
+        });
             window.addEventListener('trigger-confirm-fee', function (event){
                 console.log("event fee")
                 console.log($wire)

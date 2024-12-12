@@ -56,6 +56,10 @@
                         <i class="material-icons" style="font-size: 20px;">calendar_view_week</i>
                         <span>Services Schedule</span>
                     </a>
+                    <a href="{{ route('commercial.schedule.search') }}" class="waves-effect waves-teal">
+                        <i class="material-icons" style="font-size: 20px;">manage_search</i>
+                        <span>Search</span>
+                    </a>
                     <a href="{{route('customers.index')}}/filter/commercial" class="waves-effect waves-teal">
                         <i class="material-icons" style="font-size: 20px;">group_add</i>
                         <span>Customers Registration</span>
@@ -95,6 +99,10 @@
                     <a href="{{ route('finances') }}" class="waves-effect waves-teal">
                         <i class="material-icons" style="font-size: 20px;">price_change</i>
                         <span>Home</span>
+                    </a>
+                    <a href="{{ route('week.search') }}" class="waves-effect waves-teal">
+                        <i class="material-icons" style="font-size: 20px;">manage_search</i>
+                        <span>Search</span>
                     </a>
                     <a href="{{ route('finances') }}/billings" class="waves-effect waves-teal">
                         <i class="material-icons" style="font-size: 20px;">payments</i>

@@ -18,15 +18,15 @@ return new class extends Migration
             $table->DateTime('date');
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('schedule_id')->references('id')->on('schedules');
+            $table->foreign('customer_id')->references('id')->on('customers')->cascadeOnDelete();
+            $table->foreign('schedule_id')->references('id')->on('schedules')->cascadeOnDelete();
         });
         Schema::create('schedule_cycles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->string('customer_name');
-            $table->string('ids',3000);
-            $table->string('dates',3000);
+            $table->string('ids',5000);
+            $table->string('dates',5000);
             $table->string('frequency');
             $table->softDeletes();
             $table->timestamps();
@@ -38,15 +38,15 @@ return new class extends Migration
             $table->DateTime('date');
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('customer_id')->references('id')->on('customers')->cascadeOnDelete();
+            $table->foreign('service_id')->references('id')->on('services')->cascadeOnDelete();
         });
         Schema::create('services_cycles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->string('customer_name');
-            $table->string('ids',3000);
-            $table->string('dates',3000);
+            $table->string('ids',5000);
+            $table->string('dates',5000);
             $table->string('frequency');
             $table->softDeletes();
             $table->timestamps();

@@ -105,7 +105,7 @@ class CopyData extends Command
                     'employee1_id' => $event->id_employee,
                     'customer_id' => $event->id_customer,
                     'period' => $event->period,
-                    'frequency' => substr($event->frequence, 0, 254),
+                    'frequency' => strtoupper(substr($event->frequence, 0, 254)),
                     'notes' => $event->notas,
                     'plus' => $plus,
                     'minus' => $minus,

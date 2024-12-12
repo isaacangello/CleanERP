@@ -68,7 +68,8 @@ class SearchServices extends Component
     {
         if($this->selectAll)
         {
-            $this->selectedServices = array_column($this->services['data'],'id');
+//            $this->selectedServices = array_column($this->services['data'],'id');
+            $this->dispatch('select-all-checkboxes',  checkboxClass: 'services-entries-found'  );
         }else{
             $this->selectedServices = [];
         }

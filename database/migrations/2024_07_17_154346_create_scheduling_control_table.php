@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('service_id');
             $this->extracted($table);
-            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('service_id')->references('id')->on('services')->cascadeOnDelete();
         });
 
         Schema::create('scheduling_control_commercial', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('schedule_id');
             $this->extracted($table);
-            $table->foreign('schedule_id')->references('id')->on('schedules');
+            $table->foreign('schedule_id')->references('id')->on('schedules')->cascadeOnDelete();
         });
     }
 

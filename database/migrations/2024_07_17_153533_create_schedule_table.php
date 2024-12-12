@@ -26,8 +26,8 @@ return new class extends Migration
             $table->unsignedBigInteger('team_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('customer_id')->references('id')->on('customers')->cascadeOnDelete();
+            $table->foreign('employee_id')->references('id')->on('employees')->cascadeOnDelete();
         });
     }
 

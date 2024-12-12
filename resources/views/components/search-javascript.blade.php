@@ -36,6 +36,34 @@
                     })
 
             })
+            document.addEventListener('select-all-checkboxes', event => {
+                    console.log("select-all-checkboxes:  "+event)
+                    const checkboxClass = event.detail.checkboxClass;
+                    const checkboxes = document.querySelectorAll(`.${checkboxClass}`);
+                    const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+                    checkboxes.forEach(checkbox => {
+                            checkbox.checked = !allChecked;
+                    });
+            });
+            window.addEventListener('confirm-del-cycles', event => {
+                console.log("confirm-delete:  "+event)
+                window.Swal.fire({
+                    title: event.detail.title,
+                    text: event.detail.text,
+                    icon: event.detail.icon,
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No',
+                        confirmButtonColor:"#2e7d32",
+                        iconColor:"#2e7d32",
+                    cancelButtonColor: '#882020',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.Livewire.dispatchTo('search-repeat','confirmed-del-cycles', {id: event.detail.id, origin: event.detail.origin} );
+                    }
+                });
+            });
 
         </script>
         @endscript

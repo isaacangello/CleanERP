@@ -1,5 +1,12 @@
 {{--https://forum.laravel-livewire.com/t/looking-for-a-date-time-picker-for-livewire/3682/6--}}
 {{-- https://flatpickr.js.org/options/ --}}
+{{--
+                    onChange: function(selectedDates, dateStr, instance){
+                        if (dateStr)
+                            instance.close();
+                    }
+
+--}}
 @props(['options' => "
     {
                     weekNumbers:true,
@@ -7,12 +14,7 @@
                     enableTime: true,
                     dateFormat: 'Y-m-d H:i',
                     altFormat: 'F j, Y h:i K',
-                    altInput: true,
-                    onChange: function(selectedDates, dateStr, instance){
-                        if (dateStr)
-                            instance.close();
-                    }
-
+                    altInput: true
     }
     "])
 
