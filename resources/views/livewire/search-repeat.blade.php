@@ -51,7 +51,7 @@
                                             wire:change="$refresh"
                                             title="select type of customer to search"
                                             class="block text-gray-600  bg-white  border-t-0 border-b border-x-0 border-gray-300  shadow-sm h-30  text-left cursor-default
-                                    focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm"
+                                                    focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm"
                                     >
                                         <option value="ALL"> All </option>
                                         <option value="COMMERCIAL">Commercial</option>
@@ -109,8 +109,8 @@
                                     </td>
                                     <td class="p-0 text-end">
 {{--                                        <input  wire:model.live.debounce="selectedCycles" value="{{ $cycle->id }}" type="checkbox"  class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">--}}
-                                        <x-danger-button wire:click="$dispatch('confirm-del-cycles',{ icon:'question', title:'confirm ?', text:'you want to remove this cycle?',id:{{$cycle->id}},origin: '{{$cycle->origin??false}}' })" >
-                                            <span class="material-icons">delete</span>
+                                        <x-danger-button  wire:click="$dispatch('confirm-del-cycles',{ icon:'question', title:'confirm ?', text:'you want to remove this cycle?',id:{{$cycle->id}},origin: '{{$cycle->origin??false}}' })" >
+                                            <span class="material-symbols-outlined relative right-2">delete</span>
                                         </x-danger-button>
 
                                     </td>
