@@ -52,17 +52,17 @@
 
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="{!!   asset('web/systheme/css/themes/all-themes.css') !!}" rel="stylesheet" />
+    <link href="{!! asset('web/systheme/css/themes/all-themes.css') !!}" rel="stylesheet" />
     <!-- Custom Css -->
     <link href="{!! asset('web/custom/mobile.css') !!} " rel="stylesheet">
 
-    <link href="{!!  asset('web/systheme/css/style.css') !!}" rel="stylesheet">
+    <link href="{!! asset('web/systheme/css/style.css') !!}" rel="stylesheet">
 
     <link href="{!! asset('web/systheme/plugins/lou-multi-select/css/multi-select.css') !!}" rel="stylesheet">
 
     <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
 
-    <link rel="stylesheet" href="{{ asset('/build/assets/app-6d4f2270.css')  }}">
+    <link rel="stylesheet" href="{{  asset('/build/assets/app-6d4f2270.css') }}">
 
     {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 </head>
