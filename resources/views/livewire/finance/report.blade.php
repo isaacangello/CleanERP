@@ -106,11 +106,11 @@
             </td>
         </tr>
     </table>
-    @if(!empty($message) || $message !== "$nbsp;")
+    @if(!($message === "&nbsp;"))
         <table style="width: 100%; border-top: 1px solid dimgrey;margin: 5px 0; ">
             <tr>
                 <td style="width: 100%; border-top: 1px solid dimgrey; padding-left: 2px">
-                    <b>Notes: </b> {{$message}}
+                    <b>Notes: </b> {!! $message !!}
                 </td>
             </tr>
 
@@ -190,7 +190,7 @@ $count = 0;
                     <td style="{{$style}}{{Funcs::altClass($count,$classArray)}}" class="ps-1 pt-0 pb-0 pe-0 border border-1 border-green-700 text-xs">$ {{number_format($total,2)}} </td>
                     <td style="{{$style}}{{Funcs::altClass($count,$classArray)}}" class="ps-1 pt-0 pb-0 pe-0 border border-1 border-green-700 text-xs">$ {{number_format( ($total*0.7)  ,2)}}  </td>
                     <td style="{{$style}}{{Funcs::altClass($count,$classArray)}}" class="ps-1 pt-0 pb-0 pe-0 border border-1 border-green-700 text-xs">$ {{number_format( ($total*0.3)  ,2)}} </td>
-                    <td style="{{$style}}{{Funcs::altClass($count,$classArray)}}" class="ps-1 pt-0 pb-0 pe-0 border border-1 border-green-700 text-xs">{{$row->finance_notes??" "}}</td>
+                    <td style="{{$style}}{{Funcs::altClass($count,$classArray)}}" class="ps-1 pt-0 pb-0 pe-0 border border-1 border-green-700 text-xs">{!! $row->finance_notes??" " !!}</td>
                     <td style="{{$style}}{{Funcs::altClass($count,$classArray)}}" class="ps-1 pt-0 pb-0 pe-0 border border-1 border-green-700 text-xs">{!! $payment_string !!} </td>
                     <td style="{{$style}}{{Funcs::altClass($count,$classArray)}}" class="ps-1 pt-0 pb-0 pe-0 border border-1 border-green-700 text-xs">@if($row->paid_out) Paid @endif</td>
                 </tr>

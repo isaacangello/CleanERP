@@ -75,7 +75,7 @@ use Carbon\Carbon;
                                         {{--                                        {{dd($employees_services)}}--}}
                                         @foreach($this->Data as $key =>  $data)
 {{--                                            @php dd($data); @endphp--}}
-                                            <livewire:finance.detailer-tr wire:key="tr{{$key}}" :i="$i" :$data @openModal="openAndPopulateModal({{$key}})"  />
+                                            <livewire:finance.detailer-tr :key="$data->id.$i" :count="$i" :$data @openModal="openAndPopulateModal({{$key}})"  />
                                             @php($i++)
                                         @endforeach
                                     @else
@@ -90,7 +90,7 @@ use Carbon\Carbon;
                                     <x-standard-btn class="btn btn-success btn-link btn-small h-30" wire:click="notesOpen = ! notesOpen">Type notes</x-standard-btn>
 
                                     <x-link-btn
-                                            href="{{  route('finances.report.export', [ 'id' => $currentEmployee->id, 'from' => Carbon::create($from)->format('Y-m-d'),  'till' => Carbon::create($till)->format('Y-m-d'), 'message'=> $finance_notes??'&nbsp;' ] ) }} "
+                                            href="{{  route('finances.report.export', [ 'id' => $currentEmployee->id, 'from' => Carbon::create($from)->format('Y-m-d'),  'till' => Carbon::create($till)->format('Y-m-d'), 'message'=> $financeNotes??'&nbsp;' ] ) }} "
                                     >
                                         Print Report
                                     </x-link-btn>
@@ -98,7 +98,7 @@ use Carbon\Carbon;
 
                                     <p x-show="notesOpen" x-collapse.duration.500ms class="mt-3 ">
                                             <textarea id="textarea-finance-notes"
-                                                      wire:model="finance_notes"
+                                                      wire:model.live.debounce="financeNotes"
                                                       class="form-control custom-textarea "
                                                       rows="4"
                                                       placeholder="Type notes..."

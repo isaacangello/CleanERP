@@ -109,6 +109,7 @@ class Detailer extends Component
         $dateTrait =new DateTreatment();
         $this->numWeek =  $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
         $this->year = now()->format('Y');
+        $this->dispatch('detailer-tr-refresh')->component('finance.detailerTr');
         $this->traitNullVars();
     }
     public function backWeek(): void
@@ -121,8 +122,9 @@ class Detailer extends Component
         }else{
             $this->numWeek--;
         }
-        $this->traitNullVars();
 
+        $this->traitNullVars();
+        $this->dispatch('detailer-tr-refresh')->component('finance.detailerTr');
     }
     public function forwardWeek(): void
     {
@@ -133,6 +135,7 @@ class Detailer extends Component
             $this->numWeek++;
         }
         $this->traitNullVars();
+        $this->dispatch('detailer-tr-refresh')->component('finance.detailerTr');
     }
     #[NoReturn]
     public function selectWeek(): void
@@ -140,12 +143,12 @@ class Detailer extends Component
 
         $this->numWeek = $this->selectedWeek;
         $this->year = $this->selectedYear;
-
+        $this->dispatch('detailer-tr-refresh')->component('finance.detailerTr');
     }
 ###
     public function mount(): void
     {
-        if ($this->id){
+        if($this->id){
             $this->currentEmployee = Employee::find($this->id);
         }
         if($this->from and ($this->numWeek === null)){
@@ -154,6 +157,7 @@ class Detailer extends Component
         }
 
         $this->traitNullVars();
+//        dd($this->from, $this->till, $this->numWeek, $this->year);
     }
 
 

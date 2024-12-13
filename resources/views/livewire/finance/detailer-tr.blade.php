@@ -6,7 +6,7 @@
 //        $this->dispatch('sum-totals', val: $total);
 @endphp
 
-<tr class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }} " >
+<tr class="{{ \App\Helpers\Funcs::altClass($count,['bg-gray-300','']) }}" >
     <td class="p-0 my-0">
         <a
                 class="  pointer valign-wrapper w-7 h-7  @if($this->computedService->paid_out)btn btn-link btn-success btn-flat white-text @else btn btn-link btn-flat btn-danger white-text  @endif"
@@ -23,17 +23,18 @@
                 </span>
             @endif
         </a>
+        {{$count}}
     </td>
-    <td class="center-align font-10 h-7 p-0 my-0" title="{{Carbon\Carbon::create($data->service_date)->format('l, m/d/Y h:i A') }}">{{Carbon\Carbon::create($data->service_date)->format('m/d') }}</td>
+    <td class="center-align font-10 h-7 p-0 my-0" title="{{Carbon\Carbon::create($this->computedService->service_date)->format('l, m/d/Y h:i A') }}">{{Carbon\Carbon::create($this->computedService->service_date)->format('m/d') }}</td>
     <td class="center-align font-10 p-0 my-0" title="{{$this->title}}">
-       <a class="btn-link-underline pointer font-10 @if($this->computedService->fee) text-amber-500 @endif " wire:click.prevent="modalCall"> {{$data->cust_name}}</a>
+       <a class="btn-link-underline pointer font-10 @if($this->computedService->fee) text-amber-500 @endif " wire:click.prevent="modalCall"> {{$this->computedService->cust_name}}</a>
     </td>
-    <td class="font-10 h-7 p-0 my-0">{{$data->frequency}}</td>
+    <td class="font-10 h-7 p-0 my-0">{{$this->computedService->frequency}}</td>
     <td class="font-10 flex p-0 my-0">
         <span class="">$</span>
         <select
-                class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}
-                w-90   block text-gray-600  bg-white  border-t-0 border-b border-x-0 border-gray-300  shadow-sm h-30  text-left cursor-default
+                class="{{ \App\Helpers\Funcs::altClass($count,['bg-gray-300','']) }}
+                w-90   block text-gray-600    border-t-0 border-b border-x-0 border-gray-300  shadow-sm h-30  text-left cursor-default
                 focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm font-10"
                 wire:change="changePrice"
                 wire:model="price"
@@ -96,8 +97,8 @@
     <td class="font-10 p-0 my-0">$ {{number_format($total,2)}}</td>
     <td class="p-0 my-0">
         <select name="" id=""
-                class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}
-                   block text-gray-600  bg-white  border-t-0 border-b border-x-0 border-gray-300 h-7  shadow-sm   text-left cursor-default
+                class="{{ \App\Helpers\Funcs::altClass($count,['bg-gray-300','']) }}
+                   block text-gray-600    border-t-0 border-b border-x-0 border-gray-300 h-7  shadow-sm   text-left cursor-default
                 focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm font-10"
                 wire:model="payment" wire:change="changePayment"
         >

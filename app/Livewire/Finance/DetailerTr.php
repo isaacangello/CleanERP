@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Finance;
 
+use App\Helpers\Finance\FinanceTrait;
 use App\Livewire\RepeatTrait;
 use App\Models\Customer;
 use App\Models\Payment;
@@ -18,13 +19,14 @@ use stdClass;
 class DetailerTr extends Component
 {
     use RepeatTrait;
+    use FinanceTrait;
     public $data;
     public $key = null;
     #[Validate('numeric')]
     public  $plus = 0;
     #[Validate('numeric')]
     public  $minus = 0;
-    public int $i;
+    public int $count;
     #[Validate('required')]
     public float $price;
     #[Validate('required')]
@@ -32,7 +34,7 @@ class DetailerTr extends Component
 
     public $title ='';
     protected $listeners = [
-        'detailer-refresh' => '$refresh'
+        'detailer-tr-refresh' => '$refresh'
     ];
 
     public function modalCall()
@@ -51,11 +53,11 @@ class DetailerTr extends Component
         $CurrentService->plus =  (float)$this->plus;
         $CurrentService->minus =  (float)$this->minus;
         $CurrentService->save();
-        $this->dispatch('detailer-refresh')->component('finance.detailer');
+        $this->dispatch('detailer-tr-refresh')->self();
         $this->dispatch('toast-alert',icon:'success',message:"this fields has bean changed !!!") ;
     }
     #[Computed]
-    public function computedService(): Collection|Service|array|null
+    public function computedService(): Collection|stdClass|Service|array|null
     {
         //dd(Service::find($this->data->id));
         $result = $this->searchServiceCycleById($this->data->id);
@@ -70,7 +72,8 @@ class DetailerTr extends Component
         }else{
             $this->title = "No repeat found";
         }
-        return Service::find($this->data->id);
+        //dd($this->getServicesById($this->data->id)->first());
+        return $this->getServicesById($this->data->id)->first();
     }
     #[Computed]
     public function computedPayments(): \Illuminate\Database\Eloquent\Collection
@@ -117,7 +120,23 @@ class DetailerTr extends Component
     public function mount(){
         $this->plus = (float)$this->data->plus;
         $this->minus = (float)$this->data->minus;
-//        $this->i = $this->key; // Assuming $key is a unique identifier for each row. You should replace it with your own unique identifier.
+        $this->price = (float)$this->data->price;
+        $this->payment = $this->data->payment??'';
+        $this->i = $this->key??0; // Assuming $key is a unique identifier for each row. You should replace it with your own unique identifier.
+        $result = $this->searchServiceCycleById($this->data->id);
+        //var_dump($result);
+        if($result){
+            $dates = explode(',',$result->dates);
+            $this->title = "dates: \n";
+            foreach ($dates as $date){
+                $this->title .= Carbon::create($date)->format('m/d/Y')."\n";
+            }
+
+        }else{
+            $this->title = "No repeat found";
+        }
+
+
     }
     public function render()
     {

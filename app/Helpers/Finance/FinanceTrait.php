@@ -125,6 +125,32 @@ trait FinanceTrait
         Return $arr;
 
     }
+
+    public function getServicesById($id): Collection
+    {
+        return DB::table('services')
+            ->where('services.id', $id)
+            ->join('employees', 'services.employee1_id','=','employees.id')
+            ->join('customers','services.customer_id','=', 'customers.id')
+            ->select(
+                'services.id',
+                'services.service_date',
+                'services.paid_out',
+                'services.fee',
+                'services.finance_notes',
+                'services.payment',
+                'services.frequency',
+                'services.who_saved',
+                'services.price',
+                'services.plus',
+                'services.minus',
+                'employees.name as emp_name',
+                'customers.name as cust_name',
+                'services.customer_id as customer_id',
+                'customers.address'
+            )->get();
+
+    }
     public function servicesEmployee (int $employeeId,string $from,string $till,$orderBy=['services.service_date','asc'] ,$type = "RESIDENTIAL"): \Illuminate\Support\Collection
     {
         $from = Carbon::create($from)->format('Y-m-d H:i:s');
@@ -139,7 +165,7 @@ trait FinanceTrait
             ->join('employees', 'services.employee1_id','=','employees.id')
             ->join('customers','services.customer_id','=', 'customers.id')
             ->select(
-                'services.id',
+                'services.id as id',
                 'services.service_date',
                 'services.paid_out',
                 'services.fee',
