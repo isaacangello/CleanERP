@@ -48,7 +48,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'jjsystem_teste'),
+            'database' => env('DB_DATABASE', 'jjsystem_sys2'),
             'username' => env('DB_USERNAME', 'jjsystem_db'),
             'password' => env('DB_PASSWORD', 'JJLjjl6323:)'),
             'unix_socket' => env('DB_SOCKET', ''),
