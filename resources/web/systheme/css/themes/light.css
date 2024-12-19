@@ -402,6 +402,7 @@
   -webkit-appearance: menulist;
   -moz-appearance: menulist;
   width: auto;
+  display: block;
 }
 .flatpickr-current-month .flatpickr-monthDropdown-months:focus,
 .flatpickr-current-month .flatpickr-monthDropdown-months:active {

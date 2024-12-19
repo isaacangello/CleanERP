@@ -149,9 +149,10 @@
                             @php($counter++)
                         @endforeach
                         <tr>
-                            <td colspan="7" class="text-end">
-                                <x-danger-button wire:click="deleteServices" >
-                                    Delete
+                            <td colspan="6"></td>
+                            <td  class="text-start p-0">
+                                <x-danger-button wire:click="deleteServices" title="Delete selected services" >
+                                    <span class="material-symbols-outlined relative bottom-2 right-2">delete</span>
                                 </x-danger-button>
                             </td>
                         </tr>

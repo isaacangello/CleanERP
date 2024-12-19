@@ -2,7 +2,7 @@
         @script
         <script>
 
-            console.log(window)
+
             window.addEventListener('toast-alert', event =>{
                 // console.log(event)
                 toastAlert.fire({
@@ -37,7 +37,7 @@
 
             })
             document.addEventListener('select-all-checkboxes', event => {
-                    console.log("select-all-checkboxes:  "+event)
+
                     const checkboxClass = event.detail.checkboxClass;
                     const checkboxes = document.querySelectorAll(`.${checkboxClass}`);
                     const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
@@ -47,7 +47,7 @@
                     });
             });
             window.addEventListener('confirm-del-cycles', event => {
-                console.log("confirm-delete:  "+event)
+
                 window.Swal.fire({
                     title: event.detail.title,
                     text: event.detail.text,

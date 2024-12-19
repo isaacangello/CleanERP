@@ -10,11 +10,13 @@ use App\Models\Customer;
 use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 
 class SearchScreen extends Component
 {
     use WeekNavigation;
+
     public CustomerForm $fcustomer;
     public EmployeeForm $femployee;
     public $searchResults = "";
