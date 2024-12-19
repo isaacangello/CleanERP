@@ -6,8 +6,7 @@
       <paths name="Hostgator">
         <serverdata>
           <mappings>
-            <mapping deploy="/jjlsystem-layout" local="$PROJECT_DIR$" web="/" />
-            <mapping local="" />
+            <mapping deploy="/jjlsystem-develop" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

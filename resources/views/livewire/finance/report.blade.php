@@ -65,7 +65,7 @@
 >
     <table class="w-full" style=" margin-bottom: 20px;">
         <tr>
-            <td  style="width: 24.9999%;">
+            <td  style="">
                 <img  alt="Logo" class="w-36  border border-1 border-gray-200 rounded"
                       style="
                                 width: 7rem;
@@ -77,7 +77,7 @@
 
             </td>
             <td>
-                <table class="mt-3" style="margin-top:0.75rem; width: 100%">
+                <table class="mt-3" style="margin-top:0.75rem; width: 50%">
 
                     <tr>
                         <th colspan="6" class="text-start" style="text-align: left; vertical-align: top;"><h4 class="text-2xl" style="font-size: 1.5rem;line-height: 2rem; ">JJL Cleaning Services</h4></th>

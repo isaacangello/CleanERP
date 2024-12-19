@@ -415,6 +415,7 @@ class Week extends Component
     {
 
         return view('livewire.residential.week')
+            ->section('title', 'Residential Week Schedule')
             ->extends('layouts.app');
 
     }

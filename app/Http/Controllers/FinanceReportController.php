@@ -13,7 +13,7 @@ class FinanceReportController extends Controller
 {
     //
     use FinanceTrait;
-    public function index($id=null,$from = null,$till =null)
+    public function index($id=null,$from = null,$till =null,$message= null)
     {
         if(empty($id)){
             $id = 4;
@@ -23,7 +23,8 @@ class FinanceReportController extends Controller
         return view('livewire.finance.report',[
                 'totalServicesPriceEmployee' => $this->totalServicesPricesEmployee($id,$from,$till),
                 "ServicesEmployee" => $this->servicesEmployee($id,$from,$till),
-                "payments" => Payment::all()->toArray()
+                "payments" => Payment::all()->toArray(),
+                'message' => $message
             ]
         );
     }

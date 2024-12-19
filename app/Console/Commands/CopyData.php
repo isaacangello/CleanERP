@@ -59,7 +59,7 @@ class CopyData extends Command
                 'description' => $employee->notes,
                 'type' => $employee->tipo??'RESIDENTIAL',
                 'status' => $employee->status??'ACTIVE',
-                'username' => $func->user ?? str_replace(' ', '', strtolower(trim($employee->nome))).rand(1, 100),
+                'username' => $func->user?? uniqid(str_replace(' ', '', strtolower(trim($employee->nome)))."_"),
                 'password' => $func->senha??bcrypt('1234'),
                 'new_user' => $func->nova??0,
             ]);
@@ -123,6 +123,6 @@ class CopyData extends Command
             }
         }
 
-        $this->info('Data copied successfully!');
+        $this->info('  \n Data copied successfully!       \n ');
     }
 }

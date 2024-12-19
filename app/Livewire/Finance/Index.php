@@ -142,6 +142,7 @@ use function Symfony\Component\String\u;
     public function render($data = null)
     {
         return view('livewire.finance.index')
+            ->section('title', 'Finance')
                 ->extends('layouts.app');
     }
     public function searchServices()

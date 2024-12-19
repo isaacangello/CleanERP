@@ -177,7 +177,7 @@ class Detailer extends Component
     #[On('sum-totals')]
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\View\View
     {
-        return view('livewire.finance.detailer')->extends('layouts.app');
+        return view('livewire.finance.detailer')->section('title','Finance details' )->extends('layouts.app');
     }
     public function searchServices(){
         //Search services by employee, from, till
