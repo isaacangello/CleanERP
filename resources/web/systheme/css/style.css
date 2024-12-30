@@ -5239,7 +5239,7 @@ section.content {
 .modal-default.bottom-sheet > .modal-content{
     position: absolute;
     top: 10%;
-    width: 99vw!important;
+    width: 100vw!important;
     overflow: scroll;
     overflow-y: visible;
 }

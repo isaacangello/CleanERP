@@ -10,13 +10,16 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use App\Models\Customer;
+use Livewire\WithPagination;
 
 class CustomerRegistration extends Component
 {
+    use WithPagination;
     public $search = '';
     public $status = '';
     public $showCustomerEdit = false;
-    public $formType = 'CREATE';
+    public $show = false;
+    public $formType = 'EDIT';
     public $searchFilterType = 'ALL';
     public $filterType = 'ALL';
     public $showEmployeeEdit = false;
@@ -28,65 +31,94 @@ class CustomerRegistration extends Component
     public CustomerForm $fcustomer;
     public $customer;
 
-    public function mount()
+    public function mount():void
     {
 
         $this->billings = Billing::all()->toArray();
     }
-    public function createCustomerEvent(){
-        $this->fcustomer->reset($this->filterType);
+    public function createCustomerEvent():void{
+
+        $this->fcustomer->resetForm($this->filterType);
+        $this->formType = 'CREATE';
         $this->showCustomerEdit = true;
     }
+    public function createCustomerTest():void{
+        $this->formType = 'CREATE';
+        $this->fcustomer->fill(
+            [
+                'name' => '',
+                'email' => ' ',
+                'phone' => ' ',
+                'address' => ' ',
+                'complement' => ' ',
+                'type' => $this->filterType,
+                'billing_values_selected' => [],
+                'others_emails' => ' ',
+                'other_services' => ' ',
+                'frequency' => ' ',
+                'house_description' => ' ',
+                'note' => ' ',
+                'info' => ' ',
+                'drive_licence' => false,
+                'key' => false,
+                'more_girl' => false,
+                'gate_code' => false,
+                'status' => 'ACTIVE',
+            ]
+        );
 
-    public function editCustomerEvent($id){
+        $this->show = true;
+    }
 
-        $this->customer = \App\Models\Customer::find($id);
-        //dd("clicou" ,$this->customer);
-        $this->fcustomer->name = $this->customer->name;
-        $this->fcustomer->email = $this->customer->email;
-        $this->fcustomer->phone = $this->customer->phone;
-        $this->fcustomer->address = $this->customer->address;
-        $this->fcustomer->complement = $this->customer->complement;
-        $this->fcustomer->type = $this->customer->type;
-        $temp = DB::table('billings_customers')->where('customer_id', $this->customer->id)->get();
-        $this->billingsSelected = $temp->pluck('billing_id')->all();
+    public function saveNewCustomer():void{
+        $this->fcustomer->formType = 'CREATE';
+       // dd($this->fcustomer);
+        $result = $this->fcustomer->create();
+        if($result){
+            $this->dispatch('toast-alert', icon:'success',message:'Customer created successfully');
+            $this->showCustomerEdit = false;
+        }else{
+            $this->dispatch('toast-alert', icon:'error',message:'Error creating customer');
+            return;
+        }
+        $this->dispatch('toast-alert', icon:'success',message:'Customer created successfully');
+        $this->showCustomerEdit = false;
+    }
+
+public function editCustomerEvent($id)
+{
+    $this->customer = \App\Models\Customer::find($id);
+
+    $this->fcustomer->fill([
+        'name' => $this->customer->name,
+        'email' => $this->customer->email,
+        'phone' => $this->customer->phone,
+        'address' => $this->customer->address,
+        'complement' => $this->customer->complement,
+        'type' => $this->customer->type,
+        'billing_values_selected' => DB::table('billings_customers')->where('customer_id', $this->customer->id)->pluck('billing_id')->all(),
+        'others_emails' => $this->customer->others_emails,
+        'other_services' => $this->customer->other_services,
+        'frequency' => $this->customer->frequency,
+        'house_description' => $this->customer->house_description,
+        'note' => $this->customer->note,
+        'info' => $this->customer->info,
+        'drive_licence' => $this->customer->drive_licence == 1,
+        'key' => $this->customer->key == 1,
+        'more_girl' => $this->customer->more_girl == 1,
+        'gate_code' => $this->customer->gate_code == 1,
+    ]);
+
+    $this->showCustomerEdit = true;
+}
+    public function updateCustomer($id): void
+    {
         $this->fcustomer->billing_values_selected = $this->billingsSelected;
-        foreach ($this->billingsSelected as $key => $value) {
-            $billing_temp = DB::table('billings')->where('id', $value)->first();
-            $this->selectedValues []= $billing_temp->value;
-        }
-        //dd($this->customer->drive_licence,$temp, $temp->pluck('billing_id')->all());
-
-        $this->fcustomer->others_emails = $this->customer->others_emails;
-        $this->fcustomer->other_services = $this->customer->other_services;
-        $this->fcustomer->frequency = $this->customer->frequency;
-        $this->fcustomer->house_description = $this->customer->house_description;
-        $this->fcustomer->note = $this->customer->note;
-        $this->fcustomer->info = $this->customer->info;
-        if($this->customer->drive_licence == 1) {
-            $this->fcustomer->drive_licence = true;
-        }else{
-            $this->fcustomer->drive_licence = false;
-        }
-        if($this->customer->key == 1) {
-            $this->fcustomer->key = true;
-        }else{
-            $this->fcustomer->key = false;
-        }
-        if($this->customer->more_girl == 1) {
-            $this->fcustomer->more_girl = true;
-        }else{
-            $this->fcustomer->more_girl = false;
-        }
-        if($this->customer->gate_code == 1) {
-            $this->fcustomer->gate_code = true;
-        }else{
-            $this->fcustomer->gate_code = false;
-        }
-
-        //dd($this->customer->type);
-        $this->showCustomerEdit = true;
+        $this->fcustomer->update($id);
+        $this->showCustomerEdit = false;
+        $this->dispatch('toast-alert', icon:'success',message:'Customer updated successfully');
     }
+
     #[Computed]
     public function data(){
         $config = Funcs::getConfig();
@@ -108,7 +140,7 @@ class CustomerRegistration extends Component
             }
 
         }else{
-            return  Customer::where('type', $this->filterType)->paginate($config->nun_reg_pages);
+            return  Customer::where('type', $this->filterType)->orderBy('name')->paginate($config->nun_reg_pages);
         }
 
 

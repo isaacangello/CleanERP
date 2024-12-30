@@ -1,15 +1,64 @@
+@props(['showCustomerEdit' => false , 'formType' => "EDIT", 'customer', 'billings' , 'name' => 'EditCustomer', ])
 <div>
+@php
+    if($this->formType === 'CREATE'){
+        $formType = 'CREATE';
+    }
+    elseif($this->formType === 'EDIT'){
+        $formType = 'EDIT';
+    }
+@endphp
     <div id="edit-fcustomer" class="modal-default bottom-sheet"
+                 x-init="$watch('showCustomerEdit', value => {
+                if (value) {
+                    document.body.classList.add('overflow-y-hidden');
+                    {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}
+                } else {
+                    document.body.classList.remove('overflow-y-hidden');
+                }
+            })"
+
+         x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"
+         x-on:close-modal.window="$event.detail == '{{ $name }}' ? show = false : null"
+         x-on:close.stop="showCustomerEdit = false"
+         x-on:keydown.escape.window="showCustomerEdit = false"
+         x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
+         x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
+         style="display: {{ $showCustomerEdit ? 'block' : 'none' }};"
          x-show="showCustomerEdit"
          x-transition:enter="animate__animated animate__slideInUp animate__faster"
          x-transition:leave="animate__animated animate__slideOutDown animate__faster"
+
     >
         <div class="modal-content modal-content-bs modal-col-white">
             <div class="container">
 
                 <div class="modal-content">
-                    <form id="customer-form-edit" wire:submit.prevent="updateCustomer({{$this->customer->id??0}})">
+                    <form
+
+                            @if($formType === 'CREATE')
+                                id="customer-form-create" wire:submit.prevent="saveNewCustomer()"
+                            @else
+                                id="customer-form-edit" wire:submit.prevent="updateCustomer({{$this->customer->id??0}})"
+                            @endif
+                            @if($formType === 'EDIT')
+                                id="customer-form-edit" wire:submit.prevent="updateCustomer({{$this->customer->id??0}})"
+                            @endif
+                    >
                         <div class="container " style="width: 95%">
+                            <div class="row">
+                                <div class="col s12 text-start ">
+                                    <h5 class="m-0 p-0 text-start font-bold relative right-2">
+                                        @if($formType === 'CREATE')
+                                            New Customer
+                                        @endif
+                                        @if($formType === 'EDIT')
+                                            Edit Customer
+                                        @endif
+                                    </h5>
+                                </div>
+                            </div>
+
                             <div class="row label-employee-view-edit">
                                 <span class="label label-padding">Personal Information</span>
                             </div>
@@ -236,29 +285,33 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row clearfix">
                                 <div class="col s12 m5">
                                     <div class="checkbox-float">
                                         <label for="md-checkbox-keys{{$this->customer->id??"$$1"}}">
-                                            <input type="checkbox" wire:model="fcustomer.key" id="md-checkbox-keys{{$this->customer->id??"$$1"}}" class="accent-green-800" @if(isset($this->customer->key) and  $this->customer->key) checked="checked" @endif>
+                                            <input type="checkbox" wire:model="fcustomer.key" id="md-checkbox-keys{{$this->customer->id??"$$1"}}" class="accent-green-800" >
                                             <span>Keys in office?</span>
                                         </label>
                                     </div>
+
                                     <div class="checkbox-float">
                                         <label for="md-checkbox-drive-licence">
-                                            <input type="checkbox" wire:model="fcustomer.drive_licence" id="md-checkbox-drive-licence" class=" accent-green-800" @if(isset($this->fcustomer->drive_licence) and $this->fcustomer->drive_licence) checked="checked" @endif>
+                                            <input type="checkbox" wire:model="fcustomer.drive_licence" id="md-checkbox-drive-licence" class=" accent-green-800" >
                                             <span>Need driver licence?</span>
                                         </label>
                                     </div>
+
                                     <div class="checkbox-float">
                                         <label for="md-checkbox-gate-code">
-                                            <input type="checkbox" wire:model="fcustomer.gate_code" id="md-checkbox-gate-code" class="accent-green-800" @if(isset($this->cfustomer->gate_code) and $this->customer->gate_code) checked="checked" @endif>
+                                            <input type="checkbox" wire:model="fcustomer.gate_code" id="md-checkbox-gate-code" class="accent-green-800" >
                                             <span>Need door or gate code?</span>
                                         </label>
                                     </div>
+
                                     <div class="checkbox-float">
                                         <label for="md-checkbox-more-girl">
-                                            <input type="checkbox" wire:model="fcustomer.more_girl" id="md-checkbox-more-girl" class="accent-green-800"  @if(isset($this->fcustomer->more_girl) and $this->customer->more_girl) checked="checked" @endif>
+                                            <input type="checkbox" wire:model="fcustomer.more_girl" id="md-checkbox-more-girl" class="accent-green-800"  >
                                             <span>More than one girl?</span>
                                         </label>
                                     </div>

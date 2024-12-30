@@ -33,6 +33,7 @@ class SearchScreen extends Component
     public $customer;
     public $status = 'ACTIVE';
     public $employee;
+    public $formType = 'EDIT';
 
     public function editCustomer($id): void
     {

@@ -1,10 +1,23 @@
 <div
         x-data="{
                     showCustomerEdit: $wire.entangle('showCustomerEdit'),
-                    selectTab: ()=> console.log('Provide Compatibility')
+                    selectTab: ()=> console.log('Provide Compatibility'),
+                    focusables() {
+                        // All focusable element types...
+                        let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+                        return [...$el.querySelectorAll(selector)]
+                            // All non-disabled elements...
+                            .filter(el => ! el.hasAttribute('disabled'))
+                    },
+                    firstFocusable() { return this.focusables()[0] },
+                    lastFocusable() { return this.focusables().slice(-1)[0] },
+                    nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+                    prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+                    nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+                    prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
+                }"
 
-                }
-                "
+
 >
     <div wire:loading.class.remove="hidden" class="hidden fixed w-full h-full">
         <div>
@@ -21,7 +34,7 @@
             <div class="clearfix row m-b-0">
                 <div class="col s12 m3">
                     <div class="form-group">
-                        <div class="form-line success form-line-customer_id flex gap-3">
+                        <div class="form-line success form-line-customer_id text-start">
                             <x-standard-btn wire:click="createCustomerEvent">
                                 <span class="material-symbols-outlined">person_add </span>
                             </x-standard-btn>
@@ -80,8 +93,11 @@
                                         @endphp
 
                                 <tr wire:key="cust{{$key}}"  class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100','bg-white text-gray-600']) }}">
-                                    <td class="p-0">{{Carbon\Carbon::create($data->created_at)->format('l, m/d/Y h:i A')}}</td>
-                                    <td class="p-0"><a title="Click to Edit customer information." class="btn-link-underline pointer waves-effect waves-grey" wire:click="editCustomerEvent({{ $data->id }})">{{$data->name}}</a></td>
+                                    <td class="p-0">
+                                        <span class="hidden md:block">{{Carbon\Carbon::create($data->created_at)->format('l, m/d/Y h:i A')}}</span>
+                                        <span class="block md:hidden text-sm">{{Carbon\Carbon::create($data->created_at)->format('m/d/Y')}}</span>
+                                    </td>
+                                    <td class="pt-0 pr-0 pb-0 pl-2  "><a title="Click to Edit customer information." class="btn-link-underline pointer waves-effect waves-grey text-green-950" wire:click="editCustomerEvent({{ $data->id }})">{{$data->name}}</a></td>
                                     <td class="p-0 hidden md:block"><span class=" @if($data->type == "COMMERCIAL") text-gray-700 @else text-green-700 @endif ">{{$data->type}}</span> </td>
                                     <td class="p-0" colspan="2">
                                         <a class="btn-link-underline pointer" wire:click="changeStatus({{$data->id}})"
@@ -108,14 +124,20 @@
             <div class="row">
                 <div class="col s12 m12">
                     <div class="flex justify-center">
-                        @empty($this->data)
-                            <div class="text-center text-gray-600">No data found</div>
-                        {{ $this->data->links() }}
-                        @endempty
+
+                        @if(!is_array($this->data))
+                            {{ $this->data->links() }}
+                        @endif
+
+
                     </div>
                 </div>
         </div>
     </div>
-    <x-customer-edit-bs :$billings  />
+        <x-modal-alphine-bs name="Create">
+            <x-customer-create-bs />
+        </x-modal-alphine-bs>
+    <x-customer-edit-bs :$billings :$showCustomerEdit />
+        <x-custom-events />
 </div>
 

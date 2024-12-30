@@ -6,10 +6,12 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class CustomerForm extends Form
 {
     //
+    public $formType = 'EDIT';
     public $customer;
     public $name;
     public $type;
@@ -24,10 +26,14 @@ class CustomerForm extends Form
     public $frequency;
     public $house_description;
     public $note;
-    public $drive_licence;
-    public $key;
-    public $more_girl;
-    public $gate_code;
+    #[Validate('nullable')]
+    public ?bool $drive_licence;
+    #[Validate('nullable')]
+    public ?bool $key;
+    #[Validate('nullable')]
+    public ?bool $more_girl ;
+    #[Validate('nullable')]
+    public ?bool $gate_code;
     public $justify_inactive;
     public $info;
     public $status;
@@ -68,6 +74,7 @@ class CustomerForm extends Form
     }
     public function create()
 {
+    //dd($this->all());
     $this->validate([
         'name' => 'required|string|max:255',
         'type' => 'required|string|max:255',
@@ -133,10 +140,10 @@ class CustomerForm extends Form
             $this->frequency = '';
             $this->house_description = '';
             $this->note = '';
-            $this->drive_licence = '';
-            $this->key = '';
-            $this->more_girl = '';
-            $this->gate_code = '';
+            $this->drive_licence = false;
+            $this->key = false;
+            $this->more_girl = false;
+            $this->gate_code = false;
             $this->justify_inactive = '';
             $this->info = '';
             $this->status = '';
