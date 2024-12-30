@@ -38,25 +38,23 @@
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success">
+
                                     <select
-                                            wire:model="form.customer_id"
+                                            wire:model.live="form.customer_id"
                                             wire:change="price_inject()"
                                             class="materialize-select browser-default"
                                             id="select-cad-service-customer"
                                     >
-                                        <option @if(empty(old('customer_id'))) selected @endif  value="">Customer</option>
+                                        <option selected><div wire:loading class="block button--loading"></div></option>
+                                        <option>Customer</option>
                                         @foreach($customers as  $value)
-                                            @if(old('form.customer_id') == $value->id)
-                                                <option selected value="{{$value->id}}">{{$value->name}} </option>
-                                            @else
-                                                <option  value="{{$value->id}}">{{$value->name}} </option>
-                                            @endif
-
+                                            <option  value="{{$value->id}}">{{$value->name}} </option>
                                         @endforeach
 
                                     </select>
 
                                     <label class="form-label"  for="select-cad-service-customer">Customer</label>
+                                    <div  wire:loading class="absolute top-4 left-1/2 bg-white w-2/6 h-8"><div class="button--loading relative top-1"></div></div>
                                 </div>
                                 @error('form.customer_id')
                                 <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
@@ -67,23 +65,21 @@
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success">
+
                                     <select
-                                            wire:model="form.employee1_id"
+                                            wire:model.live="form.employee1_id"
                                             id="select-cad-service-employee1"
                                             class="materialize-select browser-default"
                                     >
+
                                         <option  value="none">Employee</option>
+
                                         @foreach($employees as $values)
-                                             @if(old('form.employee1_id') == $values->id)
-                                                 <option selected  value="{{$values->id}}">{{$values->name}} </option>
-                                            @else
-                                                 <option  value="{{$values->id}}">{{$values->name}} </option>
-                                            @endif
-
-
+                                             <option  value="{{$values->id}}">{{$values->name}} </option>
                                         @endforeach
                                     </select>
                                     <label class="form-label"  for="select-cad-service-employee1">Employee</label>
+                                    <div  wire:loading class="absolute top-4 left-1/2 bg-white w-2/6 h-8"><div class="button--loading relative top-1"></div></div>
                                 </div>
                                 @error('form.employee1_id')
                                 <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
@@ -134,29 +130,12 @@
                                                 id="select-cad-service-form.repeat_frequency"
                                                 class="materialize-select browser-default"
                                         >
-                                            @php
-                                                $string_Eventual = ""; $string_Weekly = "";$string_Biweekly= "";$string_Three_weekly="";$string_Monthly= "";$string_none= "";
-                                                if(!empty(old("form.repeat_frequency"))){
-                                                    switch (old("form.repeat_frequency")){
-                                                        case'WEK':$string_Weekly = "selected";break;
-                                                        case'BIW':$string_Biweekly = "selected";break;
-                                                        case'THR':$string_Three_weekly = "selected";break;
-                                                        case'Mon':$string_Monthly = "selected";break;
-                                                        case'MON':
-                                                        default: $string_Eventual = "selected"; break;
-                                                    }
-                                                }else{
-                                                    $string_none = "selected";
-                                                }
-
-                                            @endphp
-                                            <option {{ $string_none }} value="">Select one option</option>
-                                            <option {{ $string_Eventual }} value="ONE">Eventual</option>
-                                            <option {{ $string_Weekly }} value="WEK">Weekly</option>
-                                            <option {{ $string_Biweekly }} value="BIW">Biweekly</option>
-                                            <option {{ $string_Three_weekly }} value="THR">Three-weekly</option>
-                                            <option {{ $string_Monthly }} value="MON">Monthly</option>
-
+                                            <option value="ONE">Select one option</option>
+                                            <option  value="ONE">Eventual</option>
+                                            <option  value="WEK">Weekly</option>
+                                            <option  value="BIW">Biweekly</option>
+                                            <option  value="THR">Three-weekly</option>
+                                            <option  value="MON">Monthly</option>
                                         </select>
                                         {{--                                    <label class="form-label"  for="select-cad-service-period">frequency of repetition.</label>--}}
                                     </div>

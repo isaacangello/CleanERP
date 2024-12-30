@@ -389,6 +389,50 @@ class Week extends Component
 //        dd($this->modalData);
     }
 
+    #[On('populate-on-open')]
+    public function populateOnOpen($empId,$date): void
+    {
+        //dd($this->form);
+        $this->form->fill([
+            'employee1_id'=> $empId,
+            'service_date' => $date,
+            'customer_id' => 712,
+        ]);
+
+    }
+
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
+    public function toggleCadModal():void
+    {
+        $this->showCadModal =!$this->showCadModal;
+    }
+
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
+    public function toggleModal():void
+    {
+        $this->showModal =!$this->showModal;
+    }
+
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
+    public function toggleEmpForm():void
+    {
+        $this->empFormOpen =!$this->empFormOpen;
+    }
+
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
+    public function toggleEmpFormConfirm():void
+    {
+        $this->empFormConfirm =!$this->empFormConfirm;
+    }
+
     /***================================================================================================================
      * @return void
      *================================================================================================================*/
@@ -404,6 +448,7 @@ class Week extends Component
         $this->week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->selectOptionsEmployees = Populate::employeeFilter();
         $this->selectOptionsCustomers = Populate::customerFilter();
+
 
 
     }
