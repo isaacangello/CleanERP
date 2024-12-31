@@ -25,7 +25,7 @@ trait ResidentialTrait
         $week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
         $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
-        dd($this->numWeek,$this->year, $week);
+        //dd($this->numWeek,$this->year, $week);
         if ($this->selectedWeek === null){$this->selectedWeek = $this->numWeek;}
         if($this->selectedYear === null){$this->selectedYear = $this->year;}
 
