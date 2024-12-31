@@ -94,7 +94,7 @@ class Week extends Component
     {
         $dateTrait =new DateTreatment();
         $this->numWeek =  $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
-        $this->year = now()->format('Y');
+        $this->year = $dateTrait->referenceYear(now()->format('Y-m-d'));
         $this->traitNullVars();
     }
     public function exportPdf(){
@@ -437,14 +437,16 @@ class Week extends Component
      * @return void
      *================================================================================================================*/
     public function mount(){
+
         $dateTrait = new DateTreatment();
+        $this->traitNullVars();
         if($this->from and ($this->numWeek === null)){
             $this->numWeek = $dateTrait->numberWeekByDay(Carbon::create($this->from)->nextWeekday()->format('Y-m-d'));
         }
         if ($this->selectedWeek === null){$this->selectedWeek = $this->numWeek;}
         if($this->selectedYear === null){$this->selectedYear = $this->year;}
 
-        $this->traitNullVars();
+
         $this->week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->selectOptionsEmployees = Populate::employeeFilter();
         $this->selectOptionsCustomers = Populate::customerFilter();

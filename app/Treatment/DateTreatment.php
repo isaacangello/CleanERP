@@ -255,4 +255,8 @@ public function MakeArrayDays($firstdate = 0, $periodo = "WEK", $periodo_meses =
     {
         return Carbon::create($date)->weekOfYear();
     }
+    public function referenceYear($date)
+    {
+        return Carbon::create($date)->endOfWeek()->year;
+    }
 }
