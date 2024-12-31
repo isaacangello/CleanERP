@@ -44,7 +44,7 @@
 
 <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
 
-<link rel="stylesheet" href="{!! asset('build/assets/app-3b249328.css') !!}">
+<link rel="stylesheet" href="{!! asset('build/assets/app-55e5c2a6.css') !!}">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 
 @vite(['resources/css/app.css','resources/js/app.js'])

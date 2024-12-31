@@ -54,7 +54,7 @@
                                     </select>
 
                                     <label class="form-label"  for="select-cad-service-customer">Customer</label>
-                                    <div  wire:loading class="absolute top-4 left-1/2 bg-white w-2/6 h-8"><div class="button--loading relative top-1"></div></div>
+                                    <div  wire:loading class="absolute top-3 left-1/2 bg-white w-2/6 h-8"><div class="button--loading relative top-1"></div></div>
                                 </div>
                                 @error('form.customer_id')
                                 <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
