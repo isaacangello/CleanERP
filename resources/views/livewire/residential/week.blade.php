@@ -72,9 +72,6 @@
             <x-slot:title>
                 <span wire:loading.remove> {{$this->modalData->customer->name??'Loading...'}}</span> {!! $this->customer_type !!}
                     <span wire:loading>Loading...</span>
-                @foreach ($errors->all() as $error)
-                    <span class="red-text text-darken-4">{{ $error }}</span>
-                @endforeach
             </x-slot>
             <table  wire:loading style="width: 100%; border-collapse: collapse;  height:40vh; ">
                 <tbody>
