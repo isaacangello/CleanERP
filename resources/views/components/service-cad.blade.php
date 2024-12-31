@@ -37,9 +37,10 @@
                     <div class="row">
                         <div class=" col s12 m4">
                             <div class="form-group">
-                                <div class="form-line success">
-
+                                <div class="form-line success" >
+                                    <div  wire:loading class="absolute top-2 left-1/2 mt-4 ml-14  bg-white w-2/6 h-8"><div class="button--loading absolute top-0"></div></div>
                                     <select
+
                                             wire:model.live="form.customer_id"
                                             wire:change="price_inject()"
                                             class="materialize-select browser-default"
@@ -54,7 +55,7 @@
                                     </select>
 
                                     <label class="form-label"  for="select-cad-service-customer">Customer</label>
-                                    <div  wire:loading class="absolute top-3 left-1/2 bg-white w-2/6 h-8"><div class="button--loading relative top-1"></div></div>
+
                                 </div>
                                 @error('form.customer_id')
                                 <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
@@ -65,7 +66,7 @@
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success">
-
+                                    <div  wire:loading class="absolute top-2 left-1/2 mt-4 ml-14  bg-white w-2/6 h-8 right"><div class=" button--loading absolute top-0"></div></div>
                                     <select
                                             wire:model.live="form.employee1_id"
                                             id="select-cad-service-employee1"
@@ -79,7 +80,7 @@
                                         @endforeach
                                     </select>
                                     <label class="form-label"  for="select-cad-service-employee1">Employee</label>
-                                    <div  wire:loading class="absolute top-4 left-1/2 bg-white w-2/6 h-8"><div class="button--loading relative top-1"></div></div>
+
                                 </div>
                                 @error('form.employee1_id')
                                 <div class="help-info red-text text-darken-4" id="help-info-title">{{ $message }}</div>
