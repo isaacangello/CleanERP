@@ -53,8 +53,8 @@
                 <div class="header" style="padding-bottom: 0px;">
                     <div class="row">
                         <div class="col s12 m12">
-                            <button class="btn waves-effect waves-classic waves-light  btn-small modal-trigger"  href="#new-customer"  >New Customer</button>
-                            <span id="list-of-customer" class="m-l-35">LIST OF CUSTOMERS {{ strtoupper($type) }}</span>
+{{--                            <button class="btn btn-link waves-effect waves-light  btn-small modal-trigger"  href="#new-customer"  >New Customer</button>--}}
+                            <span id="list-of-customer" >LIST OF CUSTOMERS {{ strtoupper($type) }}</span>
 
                                     <!-- ############  Blade  component customer-cad ###########################################################################################-->
                                     <!-- component register for register new customer-->
@@ -67,38 +67,7 @@
                                                 <!-- tratando variáveis do componentes customer-viewedit -->
 
                 <div class="body">
-                    <x-msgs :$msg />
-                    <div class="row">
-                        <div class="col s12">
-                                <ul class="collapsible popout">
-                                @foreach($customers as $customer)
-                                    <!---#####################colapsable item ####################################################-->
-                                    <li>
-                                        @php
-                                            $count++ ;
-                                        @endphp
-                                          <div class="collapsible-header  green {{ \App\Helpers\Funcs::altClass($count,['darken-3','darken-4']) }} white-text"><i class="material-icons">person</i>{{$customer->name}}</div>
-                                            <div class="collapsible-body">
-{{--                                                {{ $customer }}--}}
-                                                    <x-customer-crud :$customer :$count :billings-all="$billings_all"></x-customer-crud>
-                                            </div>
-                                    </li>
-                                @endforeach
-                              </ul>
-
-                        </div>
-
-                    </div>
-                    <!---##################### row pagination ####################################################-->
-                    <div class="row">
-                        <div class="col s1 m2"></div>
-                        <div class="col s10 m8 valign-wrapper center-align" style="align-content: center;align-items: center;justify-content: center">
-                            {{ $customers->links() }}
-                        </div>
-                        <div class="col s1 m2"></div>
-
-
-                    </div>
+                    <livewire:registration.customer-registration filter-type="{{ $type }}" />
 
                 </div>
             </div>

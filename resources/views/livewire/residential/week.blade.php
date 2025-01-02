@@ -1,6 +1,17 @@
     <div class="container-fluid" x-data="{
         open: $wire.entangle('showModal'),
-        cadOpen: $wire.entangle('showCadModal')
+        cadOpen: $wire.entangle('showCadModal'),
+        focusables() {
+            let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+            return [...$el.querySelectorAll(selector)]
+                .filter(el => ! el.hasAttribute('disabled'))
+        },
+        firstFocusable() { return this.focusables()[0] },
+        lastFocusable() { return this.focusables().slice(-1)[0] },
+        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
     }">
         <div class="block-header">
             <h2>
@@ -57,13 +68,10 @@
             </div><!-- col -->
 {{--            {{$this->modalData->id??'vazio'}}--}}
         </div>  <!-- row -->
-        <x-service-details   :id="$this->modalData->id??'0'">
+        <x-service-details   :id="$this->modalData->id??'0'" :showModal="$this->showModal" >
             <x-slot:title>
                 <span wire:loading.remove> {{$this->modalData->customer->name??'Loading...'}}</span> {!! $this->customer_type !!}
                     <span wire:loading>Loading...</span>
-                @foreach ($errors->all() as $error)
-                    <span class="red-text text-darken-4">{{ $error }}</span>
-                @endforeach
             </x-slot>
             <table  wire:loading style="width: 100%; border-collapse: collapse;  height:40vh; ">
                 <tbody>

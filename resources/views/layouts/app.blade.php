@@ -1,6 +1,6 @@
 @php
 
-    if(empty($systemVersion)){$systemVersion = "0.7.51";}
+    if(empty($systemVersion)){$systemVersion = "0.8.01";}
     if(empty($userImg)){$userImg = "/img/users/user.png";}
     if(!empty(Auth::user()->email)){$email = Auth::user()->email;}else{$email="email@email.com";}
     $userName = Auth::user()->name;
@@ -36,7 +36,7 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-    @vite(['resources/css/app.css','resources/js/app.js'])
+{{--    @vite(['resources/css/app.css','resources/js/app.js'])--}}
 
 
 
@@ -62,7 +62,7 @@
 
     <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
 
-    <link rel="stylesheet" href="{{  asset('/build/assets/app-6d4f2270.css') }}">
+    <link rel="stylesheet" href="{{  asset('/build/assets/app-55e5c2a6.css') }}">
 
     {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 </head>

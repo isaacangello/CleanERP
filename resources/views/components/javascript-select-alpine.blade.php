@@ -10,6 +10,9 @@
                     selectedOptions: $wire.entangle('billingsSelected'),
                     selectedValues: $wire.entangle('selectedValues'),
                     joinSelectedValues() {
+                        if(this.selectedValues.length === 0) {
+                            return 'Select options';
+                        }
                         const tempValues = new  Set(this.selectedValues);
                         return Array.from(tempValues).join(', ');
                     },

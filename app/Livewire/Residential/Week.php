@@ -94,7 +94,7 @@ class Week extends Component
     {
         $dateTrait =new DateTreatment();
         $this->numWeek =  $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
-        $this->year = now()->format('Y');
+        $this->year = $dateTrait->referenceYear(now()->format('Y-m-d'));
         $this->traitNullVars();
     }
     public function exportPdf(){
@@ -389,21 +389,68 @@ class Week extends Component
 //        dd($this->modalData);
     }
 
+    #[On('populate-on-open')]
+    public function populateOnOpen($empId,$date): void
+    {
+        //dd($this->form);
+        $this->form->fill([
+            'employee1_id'=> $empId,
+            'service_date' => $date,
+            'customer_id' => 712,
+        ]);
+
+    }
+
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
+    public function toggleCadModal():void
+    {
+        $this->showCadModal =!$this->showCadModal;
+    }
+
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
+    public function toggleModal():void
+    {
+        $this->showModal =!$this->showModal;
+    }
+
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
+    public function toggleEmpForm():void
+    {
+        $this->empFormOpen =!$this->empFormOpen;
+    }
+
+    /***================================================================================================================
+     * @return void
+     *================================================================================================================*/
+    public function toggleEmpFormConfirm():void
+    {
+        $this->empFormConfirm =!$this->empFormConfirm;
+    }
+
     /***================================================================================================================
      * @return void
      *================================================================================================================*/
     public function mount(){
+
         $dateTrait = new DateTreatment();
+        $this->traitNullVars();
         if($this->from and ($this->numWeek === null)){
             $this->numWeek = $dateTrait->numberWeekByDay(Carbon::create($this->from)->nextWeekday()->format('Y-m-d'));
         }
         if ($this->selectedWeek === null){$this->selectedWeek = $this->numWeek;}
         if($this->selectedYear === null){$this->selectedYear = $this->year;}
 
-        $this->traitNullVars();
+
         $this->week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->selectOptionsEmployees = Populate::employeeFilter();
         $this->selectOptionsCustomers = Populate::customerFilter();
+
 
 
     }

@@ -17,14 +17,15 @@ trait ResidentialTrait
         if(empty($this->numWeek)){
             $this->numWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
         }
+
         if (empty($this->year)){
-            $this->year = now()->format('Y');
+            $this->year = $dateTrait->referenceYear(now()->format('Y-m-d'));
         }
 
         $week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
         $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
-
+        //dd($this->numWeek,$this->year, $week);
         if ($this->selectedWeek === null){$this->selectedWeek = $this->numWeek;}
         if($this->selectedYear === null){$this->selectedYear = $this->year;}
 

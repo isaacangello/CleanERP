@@ -6,10 +6,12 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class CustomerForm extends Form
 {
     //
+    public $formType = 'EDIT';
     public $customer;
     public $name;
     public $type;
@@ -24,10 +26,14 @@ class CustomerForm extends Form
     public $frequency;
     public $house_description;
     public $note;
-    public $drive_licence;
-    public $key;
-    public $more_girl;
-    public $gate_code;
+    #[Validate('nullable')]
+    public ?bool $drive_licence;
+    #[Validate('nullable')]
+    public ?bool $key;
+    #[Validate('nullable')]
+    public ?bool $more_girl ;
+    #[Validate('nullable')]
+    public ?bool $gate_code;
     public $justify_inactive;
     public $info;
     public $status;
@@ -66,6 +72,45 @@ class CustomerForm extends Form
         $this->customer->billings()->sync($this->billing_values_selected);
             return true;
     }
+    public function create()
+{
+    //dd($this->all());
+    $this->validate([
+        'name' => 'required|string|max:255',
+        'type' => 'required|string|max:255',
+        'address' => 'required|string|max:255',
+        'complement' => 'nullable|string|max:255',
+        'phone' => 'required|string|max:255',
+        'email' => 'nullable|email|max:255',
+        'billing_values_selected' => 'nullable|array',
+        'other_services' => 'nullable|string',
+        'frequency' => 'nullable|string|max:255',
+        'house_description' => 'nullable|string',
+        'note' => 'nullable|string',
+    ]);
+
+    $customer = new Customer();
+    $customer->name = $this->name;
+    $customer->type = $this->type;
+    $customer->address = $this->address;
+    $customer->complement = $this->complement;
+    $customer->phone = $this->phone;
+    $customer->email = $this->email;
+    $customer->other_services = $this->other_services;
+    $customer->frequency = $this->frequency;
+    $customer->house_description = $this->house_description;
+    $customer->note = $this->note;
+    $customer->drive_licence = $this->drive_licence;
+    $customer->key = $this->key;
+    $customer->more_girl = $this->more_girl;
+    $customer->gate_code = $this->gate_code;
+    $customer->status = 'ACTIVE'; // Definindo status padrão como 'ACTIVE'
+    $customer->save();
+
+    $customer->billings()->sync($this->billing_values_selected);
+
+    return true;
+}
     public function changeStatus($id): true
     {
         $this->customer = Customer::find($id);
@@ -81,4 +126,26 @@ class CustomerForm extends Form
         $this->customer->save();
         return true;
     }
+    public function resetForm($filterType = "RESIDENTIAL"):void
+        {
+            $this->name = '';
+            $this->type = $filterType;
+            $this->address = '';
+            $this->complement = '';
+            $this->phone = '';
+            $this->email = '';
+            $this->billing_values_selected = [];
+            $this->others_emails = '';
+            $this->other_services = '';
+            $this->frequency = '';
+            $this->house_description = '';
+            $this->note = '';
+            $this->drive_licence = false;
+            $this->key = false;
+            $this->more_girl = false;
+            $this->gate_code = false;
+            $this->justify_inactive = '';
+            $this->info = '';
+            $this->status = '';
+        }
 }

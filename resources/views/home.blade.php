@@ -30,10 +30,10 @@
                             <h2 class="p-0">CALLS</h2>
                         </div>
                         <div class="body center-align">
-                            <a target="_blank" href="https://meet.google.com/pbx-ngck-evi"><span class="label bg-green p-5 font-14">Chamada Principal</span></a>
-                            <a target="_blank" href="https://meet.google.com/vvh-zxmn-cjc"><span class="label bg-blue p-5 font-14">Chamada Residencial</span></a>
-                            <a target="_blank" href="https://meet.google.com/cot-jkcr-dgw"><span class="label bg-light-blue p-5 font-14">Chamada Comercial</span></a>
-                            <a target="_blank" href="https://meet.google.com/mec-cngi-feo"><span class="label bg-orange p-5 font-14">Chamada Extra</span></a>
+                            <a target="_blank" href="https://meet.google.com/pbx-ngck-evi"><span class="label bg-green text-white p-5  font-13">Chamada Principal</span></a>
+                            <a target="_blank" href="https://meet.google.com/vvh-zxmn-cjc"><span class="label bg-blue text-white p-5  font-13">Chamada Residencial</span></a><br class="md:hidden"><br class="md:hidden">
+                            <a target="_blank" href="https://meet.google.com/cot-jkcr-dgw"><span class="label bg-gray-500 text-white p-5 font-13">Chamada Comercial</span></a>
+                            <a target="_blank" href="https://meet.google.com/mec-cngi-feo"><span class="label bg-amber-600 text-white p-5 font-13">Chamada Extra</span></a>
                         </div>
                     </div>
                 </div>

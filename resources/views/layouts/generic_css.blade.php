@@ -10,10 +10,10 @@
 <!-- jquery ui  Css -->
 <link href="{!! asset('web/jquery-ui/jquery-ui.css') !!}" rel="stylesheet" />
 <!-- Animation Css -->
-<link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
+{{--<link--}}
+{{--        rel="stylesheet"--}}
+{{--        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"--}}
+{{--/>--}}
 
 
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
@@ -44,6 +44,7 @@
 
 <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
 
-<link rel="stylesheet" href="{!! asset('build/assets/app-6d4f2270.css') !!}">
+<link rel="stylesheet" href="{!! asset('build/assets/app-55e5c2a6.css') !!}">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 
+@vite(['resources/css/app.css','resources/js/app.js'])

@@ -16,9 +16,9 @@ class ServiceForm extends Form
     use RepeatTrait;
     public $who_saved;
     public $who_saved_id;
-    #[Validate('required|numeric')]
-    public $customer_id='';
-    #[Validate('required|numeric')]
+    #[Validate('required|integer')]
+    public $customer_id;
+    #[Validate('required|integer')]
     public $employee1_id;
     #[Validate('nullable')]
     public $employee2_id;
@@ -54,7 +54,7 @@ class ServiceForm extends Form
                     'employee2_id' => $employee2_id,
                     'service_date' => $this->service_date,
                     'period' => $this->period,
-                    'frequency' => $this->repeat_frequency,
+                    'frequency' => $this->repeat_frequency??'ONE',
                     'notes' => $this->notes,
                     'instructions' => $this->instructions,
                     'frequency_payment' => $frequency_payment[0] ?? null,
@@ -77,10 +77,10 @@ class ServiceForm extends Form
                 'employee2_id' => $employee2_id,
                 'service_date' => $this->service_date,
                 'period' => $this->period,
-                'frequency' => $this->repeat_frequency,
+                'frequency' => $this->repeat_frequency??'ONE',
                 'notes' => $this->notes,
                 'instructions' => $this->instructions,
-                'frequency_payment' => $frequency_payment[0] ?? null,
+                'frequency_payment' => $frequency_payment[0] ?? 0,
                 'price' => $frequency_payment[1] ?? 0,
                 'payment' => null,
                 'who_saved' => \Auth::user()->name,

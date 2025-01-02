@@ -126,16 +126,25 @@
 
         document.addEventListener('select-cad-employee', event => {
             const empId = event.detail.empId;
-            const selectElement = document.getElementById('select-cad-service-employee1');
-
-            selectElement.querySelectorAll('option').forEach(option => {
-                if (option.value === empId) {
-                    option.setAttribute('selected', 'selected');
-                } else {
-                    option.removeAttribute('selected');
-                }
-            });
+            // const selectElementC = document.getElementById('select-cad-service-customer');
+            // selectElementC.querySelectorAll('option').forEach(option => {
+            //     if (option.value === '712') {
+            //         option.setAttribute('selected', 'selected');
+            //     } else {
+            //         option.removeAttribute('selected');
+            //     }
+            // });
+            // const selectElementE = document.getElementById('select-cad-service-employee1');
+            //
+            // selectElementE.querySelectorAll('option').forEach(option => {
+            //     if (option.value === empId) {
+            //         option.setAttribute('selected', 'selected');
+            //     } else {
+            //         option.removeAttribute('selected');
+            //     }
+            // });
             window.Livewire.dispatch('populate-date-time', {idElement: "#input-cad-service-date", dateTime: event.detail.dateTime});
+            window.Livewire.dispatch('populate-on-open', {empId: empId,date: event.detail.dateTime});
             $wire.showCadModal = true;
         });
 

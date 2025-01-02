@@ -28,14 +28,17 @@ class EmployeeForm extends Form
     public $username;
     public $password;
     public $new_user;
+    public function store()
+    {
 
-    public function update($id)
+    }
+    public function create()
     {
         $this->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'birth' => 'required|string|max:255',
+            'birth' => 'nullable|string|max:255',
             'address' => 'required|string|max:255',
             'name_ref_one' => 'nullable|string|max:255',
             'name_ref_two' => 'nullable|string|max:255',
@@ -45,12 +48,75 @@ class EmployeeForm extends Form
             'description' => 'nullable|string|max:255',
             'document' => 'nullable|string|max:255',
             'type' => 'required|string|max:255',
-            'status' => 'required|string|max:255',
+            'status' => 'nullable|string|max:255',
             'shift' => 'nullable|string|max:255',
             'username' => 'required|string|max:255',
             'password' => 'nullable|string|max:255',
             'new_user' => 'nullable|boolean|max:255',
         ]);
+        $this->employee = new Employee();
+        $this->employee->name = $this->name;
+        $this->employee->phone = $this->phone;
+        $this->employee->email = $this->email;
+        $this->employee->birth = $this->birth;
+        $this->employee->document = $this->document;
+        $this->employee->address = $this->address;
+        $this->employee->name_ref_one = $this->name_ref_one;
+        $this->employee->name_ref_two = $this->name_ref_two;
+        $this->employee->phone_ref_one = $this->phone_ref_one;
+        $this->employee->phone_ref_two = $this->phone_ref_two;
+        $this->employee->restriction = $this->restriction;
+        $this->employee->description = $this->description;
+        $this->employee->type = $this->type;
+        $this->employee->status = "ACTIVE";
+        $this->employee->shift = $this->shift;
+        $this->employee->username = $this->username;
+        $this->employee->password = $this->password ? Hash::make($this->password): Hash::make('1234');
+        $this->employee->new_user = $this->new_user??true;
+        $this->employee->save();
+        return true;
+    }
+    public function update($id)
+    {
+        $validated = \Validator::make([
+            'name' => $this->name,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'birth' => $this->birth,
+            'address' => $this->address,
+            'name_ref_one' => $this->name_ref_one,
+            'name_ref_two' => $this->name_ref_two,
+            'phone_ref_one' => $this->phone_ref_one,
+            'phone_ref_two' => $this->phone_ref_two,
+            'restriction' => $this->restriction,
+            'description' => $this->description,
+            'document' => $this->document,
+            'type' => $this->type,
+            'status' => $this->status,
+            'shift' => $this->shift,
+            'username' => $this->username,
+            'password' => $this->password,
+            'new_user' => $this->new_user,
+        ], [
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'birth' => 'nullable|string|max:255',
+            'address' => 'required|string|max:255',
+            'name_ref_one' => 'nullable|string|max:255',
+            'name_ref_two' => 'nullable|string|max:255',
+            'phone_ref_one' => 'nullable|string|max:255',
+            'phone_ref_two' => 'nullable|string|max:255',
+            'restriction' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'document' => 'nullable|string|max:255',
+            'type' => 'required|string|max:255',
+            'status' => 'nullable|string|max:255',
+            'shift' => 'nullable|string|max:255',
+            'username' => 'required|string|max:255',
+            'password' => 'nullable|string|max:255',
+            'new_user' => 'nullable|boolean|max:255',
+        ])->validate();
 
         $this->employee = Employee::find($id);
         $this->employee->name = $this->name;

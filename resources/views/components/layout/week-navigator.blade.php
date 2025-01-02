@@ -49,7 +49,7 @@
                 <div class="form-line success">
                     <select wire:model="selectedYear"  class="form-control browser-default h-30 font-12">
                         <option value="{{$selectedYear??now()->format('Y')}}">{{$selectedYear??now()->format('Y')}}</option>
-                        @for ($i = 2020; $i < 2031; $i++)
+                        @for ($i = 2020; $i < ((int)now()->format('Y'))+5; $i++)
                             <option wire:key="selectedYear{{$i}}" value="{{$i}}">{{$i}}</option>
                         @endfor
                     </select>

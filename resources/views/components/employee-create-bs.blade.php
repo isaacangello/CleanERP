@@ -1,4 +1,4 @@
-@props(['showEmployeeEdit' => false , 'formType' => "EDIT",  'name' => 'EditEmployee', ])
+@props(['showEmployeeCreate' => false , 'formType' => "EDIT",  'name' => 'CreateEmployee', ])
 <div>
     @php
         if($this->formType === 'CREATE'){
@@ -9,27 +9,43 @@
         }
     @endphp
     <div id="edit-fcustomer" class="modal-default bottom-sheet"
-         x-init="$watch('showEmployeeEdit', value => {
-                if (value) {
-                    document.body.classList.add('overflow-y-hidden');
-                    {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}
-                } else {
-                    document.body.classList.remove('overflow-y-hidden');
-                }
-            })"
+{{--         x-init="$watch('showEmployeeCreate', value => {--}}
+{{--                if (value) {--}}
+{{--                    document.body.classList.add('overflow-y-hidden');--}}
+{{--                    {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}--}}
+{{--                } else {--}}
+{{--                    document.body.classList.remove('overflow-y-hidden');--}}
+{{--                }--}}
+{{--            })"--}}
 
-         x-on:open-modal.window="$event.detail == '{{ $name }}' ? showEmployeeEdit = true : null"
-         x-on:close-modal.window="$event.detail == '{{ $name }}' ? showEmployeeEdit = false : null"
-         x-on:close.stop="showEmployeeEdit = false"
-         x-on:keydown.escape.window="showEmployeeEdit = false"
+         x-on:open-modal.window="$event.detail == '{{ $name }}' ? showEmployeeCreate = true : null"
+         x-on:close-modal.window="$event.detail == '{{ $name }}' ? showEmployeeCreate = false : null"
+         x-on:close.stop="showEmployeeCreate = false"
+         x-on:keydown.escape.window="showEmployeeCreate = false"
          x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
          x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
-         style="display: {{ $showEmployeeEdit ? 'block' : 'none' }};"
-         x-show="showEmployeeEdit"
+         style="display: {{ $showEmployeeCreate ? 'block' : 'none' }};"
+         x-show="showEmployeeCreate"
          x-transition:enter="animate__animated animate__slideInUp animate__faster"
          x-transition:leave="animate__animated animate__slideOutDown animate__faster"
 
     >
+        <div
+                x-show="showEmployeeCreate"
+                class="fixed inset-0 transform transition-all"
+                x-on:click="showEmployeeCreate = false"
+                {{--            x-transition:enter="ease-out duration-300"--}}
+                x-transition:enter="animate__animated animate__fadeInUpBig "
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                {{--            x-transition:leave="ease-in duration-200"--}}
+                x-transition:leave="animate__animated animate__fadeOutDownBig "
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+        >
+            <div class="fixed inset-0 bg-green-700 dark:bg-gray-900 opacity-75"></div>
+        </div>
+
 
         <div class="modal-content modal-content-bs modal-col-white">
             <div class="container">
@@ -38,12 +54,12 @@
                     <form
 
                             @if($formType === 'CREATE')
-                                id="customer-form-create" wire:submit.prevent="updateEmployee()"
+                                id="customer-form-create" wire:submit.prevent="createEmployee"
                             @else
-                                id="customer-form-edit" wire:submit.prevent="updateEmployee({{$this->employee->id??0}})"
+                                id="customer-form-edit" wire:submit.prevent="updateEmployee({{$this->femployee->id??0}})"
                             @endif
                             @if($formType === 'EDIT')
-                                id="customer-form-edit" wire:submit.prevent="updateEmployee({{$this->employee->id??0}})"
+                                id="customer-form-edit" wire:submit.prevent="updateEmployee({{$this->femployee->id??0}})"
                             @endif
                     >
                         <div class="container " style="width: 95%">
@@ -170,11 +186,11 @@
                                         <label class="form-label" for="input-edit-employee-new_user">&nbsp;</label>
                                         <div class="form-line success form-line-new_user h-45  ">
                                             <div class="h-full align-middle">
-{{--                                            <input id="input-edit-employee-new_user" wire:model="femployee.new_user" type="checkbox" class="form-control"/>--}}
-                                            <label for="md-checkbox-keys" >
-                                                <input type="checkbox" wire:model="femployee.new_user" id="md-checkbox-keys" class="accent-green-800">
-                                                <span>New User?</span>
-                                            </label>
+                                                {{--                                            <input id="input-edit-employee-new_user" wire:model="femployee.new_user" type="checkbox" class="form-control"/>--}}
+                                                <label for="md-checkbox-keys" >
+                                                    <input type="checkbox" wire:model="femployee.new_user" id="md-checkbox-keys" class="accent-green-800">
+                                                    <span>New User?</span>
+                                                </label>
                                             </div>
 
                                         </div>
@@ -194,8 +210,8 @@
                                                     class="block text-gray-600  bg-white  border-t-0 border-b border-x-0 border-gray-300  shadow-sm h-45  text-left cursor-default
                                                     focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm"
                                             >
-                                                <option @if(isset($this->femployee->type) and $this->femployee->type === "RESIDENTIAL") @endif  value="RESIDENTIAL">RESIDENTIAL</option>
-                                                <option @if(isset($this->femployee->type) and $this->femployee->type === "COMMERCIAL") @endif value="COMMERCIAL">COMMERCIAL</option>
+                                                <option     value="RESIDENTIAL">RESIDENTIAL</option>
+                                                <option     value="COMMERCIAL">COMMERCIAL</option>
                                             </select>
                                         </div>
                                         @error('femployee.type')
@@ -311,7 +327,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-link btn-small waves-effect waves-green" type="submit">Save Changes</button>
-                            <a @click="showEmployeeEdit = false;selectTab('tabEmployee');" class="btn btn-link red darken-4 waves-effect waves-red">Cancel</a>
+                            <a @click="showEmployeeCreate = false;selectTab('tabEmployee');" class="btn btn-link red darken-4 waves-effect waves-red">Cancel</a>
                         </div>
                     </form>
                 </div>

@@ -1,6 +1,6 @@
 @php
 
-    if(empty($systemVersion)){$systemVersion = "0.7.51";}
+    if(empty($systemVersion)){$systemVersion = "0.8.01";}
     if(empty($userImg)){$userImg = "/img/users/user.png";}
     if(!empty(Auth::user()->email)){$email = Auth::user()->email;}else{$email="email@email.com";}
     $userName = Auth::user()->name;
@@ -119,7 +119,7 @@
                             <a href="{{ route('profile.edit') }}" class="waves-effect waves-classic waves-light"><i class="material-icons">person</i><span>Profile</span></a>
                         </li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0);" class="waves-effect waves-classic waves-light"><i class="material-icons">settings_applications</i><span>Config</span></a></li>
+                        <li><a href="{{route('config')}}" class="waves-effect waves-classic waves-light"><i class="material-icons">settings_applications</i><span>Config</span></a></li>
                         <li role="separator" class="divider"></li>
                         <li style="background-color: transparent">
                             <form action="{{ route('logout') }}" method="post" >
