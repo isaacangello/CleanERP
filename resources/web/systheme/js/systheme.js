@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, {
-        preventScrolling: true,
-        dismissible: false,
-        inDuration: 400,
-        outDuration:400,
-        startingTop: '0%',
-        endingTop: '10%',
-    });
+const elems = document.querySelectorAll('.modal');
+        if (elems.length > 0) {
+            var instances = M.Modal.init(elems, {
+                preventScrolling: true,
+                dismissible: false,
+                inDuration: 400,
+                outDuration:400,
+                startingTop: '0%',
+                endingTop: '10%',
+            });
+        }
   });
 
 $(document).ready(function () {
@@ -27,14 +29,17 @@ $(document).ready(function () {
   } );
 
     var elems = document.querySelectorAll('.modal');
-    var ModalAllInstances = M.Modal.init(elems, {
-        preventScrolling: true,
-        dismissible: false,
-        inDuration: 400,
-        outDuration:400,
-        startingTop: '0%',
-        endingTop: '10%',
-    });
+
+    if (elems.length > 0) {
+        var ModalAllInstances = window.M.Modal.init(elems, {
+            preventScrolling: true,
+            dismissible: false,
+            inDuration: 400,
+            outDuration:400,
+            startingTop: '0%',
+            endingTop: '10%',
+        });
+    }
     /** dropdown materialize */
 /*
   document.addEventListener('DOMContentLoaded', function() {
@@ -55,10 +60,10 @@ $("#buton-user-dropdown").click(function () {
         transition: 0.5s;
     * */
              $("#dropdown-left-sidebar").css({
-                    "-moz-transition":"left 0.5s",
-                    "-o-transition":"left 0.5s",
-                    "-webkit-transition":"left 0.5s",
-                    "transition":"left 0.5s",
+                    "-moz-transition":"easeInOutCubic 0.5s",
+                    "-o-transition":"easeInOutCubic 0.5s",
+                    "-webkit-transition":"easeInOutCubic 0.5s",
+                    "transition":"easeInOutCubic 0.5s",
                  });
 
         if(hidden == true){

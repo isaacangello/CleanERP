@@ -5,6 +5,7 @@
 @endsection
 {{--css links para o head--}}
 @section('css-style')
+
     @include('layouts.generic_css')
     <style>
         input.form-control {
@@ -27,7 +28,9 @@
         }
     </style>
 @endsection
-
+@section('script-top')
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+@endsection
 
 @section('content')
 <div class="container-fluid">

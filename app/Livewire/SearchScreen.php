@@ -101,7 +101,10 @@ class SearchScreen extends Component
         $this->femployee->phone = $this->employee->phone;
         $this->femployee->email = $this->employee->email;
         $this->femployee->birth = $this->employee->birth;
-        $this->dispatch('populate-date', idElement:"#input-edit-employee-birth", date:$this->employee->birth);
+        if($this->employee->birth) {
+            $this->dispatch('populate-date', idElement:"#input-edit-employee-birth", date:$this->employee->birth);
+        }
+        
         $this->femployee->address = $this->employee->address;
         $this->femployee->name_ref_one = $this->employee->name_ref_one;
         $this->femployee->name_ref_two = $this->employee->name_ref_two;
@@ -123,7 +126,9 @@ class SearchScreen extends Component
 
     public function updateEmployee($id): void
     {
-        $this->femployee->update($id);
+        $updateResult = $this->femployee->update($id);
+        dd($this->errors);
+
         $this->showEmployeeEdit = false;
         $this->dispatch('toast-alert', icon:'success',message:'Employee updated successfully');
     }

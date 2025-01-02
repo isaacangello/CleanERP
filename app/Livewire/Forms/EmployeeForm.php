@@ -4,7 +4,7 @@ namespace App\Livewire\Forms;
 
 use App\Models\Employee;
 use Illuminate\Support\Facades\Hash;
-use Livewire\Attributes\Validate;
+//use Illuminate\Support\Facades\Validator;
 use Livewire\Form;
 
 class EmployeeForm extends Form
@@ -28,11 +28,34 @@ class EmployeeForm extends Form
     public $username;
     public $password;
     public $new_user;
+    public function rules(): array
+    {
+        return [
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'birth' => 'nullable|string|max:255',
+            'address' => 'required|string|max:255',
+            'name_ref_one' => 'nullable|string|max:255',
+            'name_ref_two' => 'nullable|string|max:255',
+            'phone_ref_one' => 'nullable|string|max:255',
+            'phone_ref_two' => 'nullable|string|max:255',
+            'restriction' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'document' => 'nullable|string|max:255',
+            'type' => 'required|string|max:255',
+            'status' => 'nullable|string|max:255',
+            'shift' => 'nullable|string|max:255',
+            'username' => 'required|string|max:255',
+            'password' => 'nullable|string|max:255',
+            'new_user' => 'nullable|boolean|max:255',
+        ];
+    }
     public function store()
     {
 
     }
-    public function create()
+    public function create(): bool
     {
         $this->validate([
             'name' => 'required|string|max:255',
@@ -74,50 +97,12 @@ class EmployeeForm extends Form
         $this->employee->password = $this->password ? Hash::make($this->password): Hash::make('1234');
         $this->employee->new_user = $this->new_user??true;
         $this->employee->save();
-        return true;
+        return $this->employee;
     }
     public function update($id)
     {
-        $validated = \Validator::make([
-            'name' => $this->name,
-            'phone' => $this->phone,
-            'email' => $this->email,
-            'birth' => $this->birth,
-            'address' => $this->address,
-            'name_ref_one' => $this->name_ref_one,
-            'name_ref_two' => $this->name_ref_two,
-            'phone_ref_one' => $this->phone_ref_one,
-            'phone_ref_two' => $this->phone_ref_two,
-            'restriction' => $this->restriction,
-            'description' => $this->description,
-            'document' => $this->document,
-            'type' => $this->type,
-            'status' => $this->status,
-            'shift' => $this->shift,
-            'username' => $this->username,
-            'password' => $this->password,
-            'new_user' => $this->new_user,
-        ], [
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'birth' => 'nullable|string|max:255',
-            'address' => 'required|string|max:255',
-            'name_ref_one' => 'nullable|string|max:255',
-            'name_ref_two' => 'nullable|string|max:255',
-            'phone_ref_one' => 'nullable|string|max:255',
-            'phone_ref_two' => 'nullable|string|max:255',
-            'restriction' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:255',
-            'document' => 'nullable|string|max:255',
-            'type' => 'required|string|max:255',
-            'status' => 'nullable|string|max:255',
-            'shift' => 'nullable|string|max:255',
-            'username' => 'required|string|max:255',
-            'password' => 'nullable|string|max:255',
-            'new_user' => 'nullable|boolean|max:255',
-        ])->validate();
-
+        $validated = $this->validate();
+        dd($validated);
         $this->employee = Employee::find($id);
         $this->employee->name = $this->name;
         $this->employee->phone = $this->phone;
@@ -138,7 +123,7 @@ class EmployeeForm extends Form
         $this->employee->password = Hash::make($this->password);
         $this->employee->new_user = $this->new_user;
         $this->employee->save();
-        return true;
+        return response()->json(['er' => $validated->errors()]);
         //
     }
     public function changeStatus($id): true
