@@ -46,7 +46,6 @@
                                             class="materialize-select browser-default"
                                             id="select-cad-service-customer"
                                     >
-                                        <option selected><div wire:loading class="block button--loading"></div></option>
                                         <option>Customer</option>
                                         @foreach($customers as  $value)
                                             <option  value="{{$value->id}}">{{$value->name}} </option>

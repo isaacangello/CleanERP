@@ -25,7 +25,7 @@
             x-ref="input"
             type="text"
             data-input
-            {{ $attributes->merge(['class' => 'form-control text-gray-800', 'aria-label' => "m/d/Y"]) }}
+            {{ $attributes->merge(['class' => 'form-control text-gray-900', 'aria-label' => "m/d/Y"]) }}
     />
 </div>
 

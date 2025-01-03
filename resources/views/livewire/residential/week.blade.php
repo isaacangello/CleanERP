@@ -50,7 +50,18 @@
                             <x-standard-btn class="btn-small" @click="cadOpen = true" title="New Service">   New  </x-standard-btn>
                         </x-btn-week-mobile-navigator>
 
-                        <div class="grid grid-cols-4 gap-4" >
+                        <div class="grid grid-cols-4 gap-4 hide-on-small-and-down" >
+
+                            @foreach($this->dataCard() as $empName => $data )
+                                @if(Collect($data['Monday'])->isNotEmpty() || Collect($data['Tuesday'])->isNotEmpty() || Collect($data['Wednesday'])->isNotEmpty() || Collect($data['Thursday'])->isNotEmpty() || Collect($data['Friday'])->isNotEmpty() || Collect($data['Saturday'])->isNotEmpty() || Collect($data['Sunday'])->isNotEmpty())
+
+                                    <x-home-cards  :emp-name="$empName" :$data :$week :employee-id="$this->employeesIds[$empName]" />
+
+                                @endif
+                            @endforeach
+
+                        </div> <!--grid system row-->
+                        <div class="grid grid-cols-1 gap-1 hide-on-med-and-up" >
 
                             @foreach($this->dataCard() as $empName => $data )
                                 @if(Collect($data['Monday'])->isNotEmpty() || Collect($data['Tuesday'])->isNotEmpty() || Collect($data['Wednesday'])->isNotEmpty() || Collect($data['Thursday'])->isNotEmpty() || Collect($data['Friday'])->isNotEmpty() || Collect($data['Saturday'])->isNotEmpty() || Collect($data['Sunday'])->isNotEmpty())

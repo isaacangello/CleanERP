@@ -6132,6 +6132,11 @@ section.content {
     font-size: 12px;
     margin-top: 5px;
     color: #757575; }
+.form-group .help-info-no-color {
+    float: right;
+    font-size: 12px;
+    margin-top: 5px;
+     }
 .form-group label.error {
     font-size: 12px;
     display: block;

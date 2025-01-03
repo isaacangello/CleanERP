@@ -15,7 +15,7 @@
                     <div class="input-field col s12 m3">
                         <div class="form-group">
                             <div class="form-line success">
-                                <select id="select-service-customer" class="form-control browser-default livewire-select font-12 h-30" wire:model="selectedCustomer" >
+                                <select id="select-service-customer" class="form-control browser-default livewire-select font-12 h-30 text-gray-900" wire:model="selectedCustomer" >
                                     <option  value="{{$id??'0'}}">No Customers</option>
                                     @if(isset($customers) and !empty($customers))
                                         @foreach($customers as $customer)
@@ -39,7 +39,7 @@
                     <div class="input-field col s12 m3">
                         <div class="form-group">
                             <div class="form-line success">
-                                <select id="select-service-employee" class="form-control browser-default livewire-select font-12 h-30" wire:model="selectedEmployee" >
+                                <select id="select-service-employee" class="form-control browser-default livewire-select font-12 h-30 text-gray-900" wire:model="selectedEmployee" >
                                     <option  value="{{$id??'0'}}">No employee</option>
                                     @if(isset($employees) and !empty($employees))
                                     @foreach($employees as $employee)
@@ -89,7 +89,7 @@
                                         $options = "
                                         {
                                             weekNumbers:true,
-                                            monthSelectorType:'static',
+                                            monthSelectorType:'dropdown',
                                             dateFormat:'Y-m-d',
                                             altFormat:'F j, Y',
                                             altInput:true,
