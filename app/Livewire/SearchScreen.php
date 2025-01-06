@@ -127,8 +127,6 @@ class SearchScreen extends Component
     public function updateEmployee($id): void
     {
         $updateResult = $this->femployee->update($id);
-        dd($this->errors);
-
         $this->showEmployeeEdit = false;
         $this->dispatch('toast-alert', icon:'success',message:'Employee updated successfully');
     }

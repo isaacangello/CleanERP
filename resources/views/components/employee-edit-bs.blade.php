@@ -9,14 +9,14 @@
         }
     @endphp
     <div id="edit-fcustomer" class="modal-default bottom-sheet"
-         x-init="$watch('showEmployeeEdit', value => {
-                if (value) {
-                    document.body.classList.add('overflow-y-hidden');
-                    {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}
-                } else {
-                    document.body.classList.remove('overflow-y-hidden');
-                }
-            })"
+{{--         x-init="$watch('showEmployeeEdit', value => {--}}
+{{--                if (value) {--}}
+{{--                    document.body.classList.add('overflow-y-hidden');--}}
+{{--                    {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}--}}
+{{--                } else {--}}
+{{--                    document.body.classList.remove('overflow-y-hidden');--}}
+{{--                }--}}
+{{--            })"--}}
 
          x-on:open-modal.window="$event.detail == '{{ $name }}' ? showEmployeeEdit = true : null"
          x-on:close-modal.window="$event.detail == '{{ $name }}' ? showEmployeeEdit = false : null"
@@ -30,6 +30,22 @@
          x-transition:leave="animate__animated animate__slideOutDown animate__faster"
 
     >
+        <div
+                x-show="showEmployeeEdit"
+                class="fixed inset-0 transform transition-all"
+                x-on:click="showEmployeeEdit = false"
+                {{--            x-transition:enter="ease-out duration-300"--}}
+                x-transition:enter="animate__animated animate__fadeInUpBig "
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                {{--            x-transition:leave="ease-in duration-200"--}}
+                x-transition:leave="animate__animated animate__fadeOutDownBig "
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+        >
+            <div class="fixed inset-0 bg-green-700 dark:bg-gray-900 opacity-75"></div>
+        </div>
+
 
         <div class="modal-content modal-content-bs modal-col-white">
             <div class="container">
@@ -39,14 +55,14 @@
 
                             @if($formType === 'CREATE')
                                 id="customer-form-create" wire:submit.prevent="updateEmployee()"
-                                @keydown.enter.prevent="$wire.createEmployee()"
+                                @keydown.ctrl.s.prevent="$wire.createEmployee()"
                             @else
                                 id="customer-form-edit" wire:submit.prevent="updateEmployee({{$this->employee->id??0}})"
-                                @keydown.enter.prevent="$wire.updateEmployee({{$this->employee->id??0}})"
+                                @keydown.ctrl.s.prevent="$wire.updateEmployee({{$this->employee->id??0}})"
                             @endif
                             @if($formType === 'EDIT')
                                 id="customer-form-edit" wire:submit.prevent="updateEmployee({{$this->employee->id??0}})"
-                                @keydown.enter.prevent="$wire.updateEmployee({{$this->employee->id??0}})"
+                                @keydown.ctrl.s.prevent="$wire.updateEmployee({{$this->employee->id??0}})"
                             @endif
 
                     >

@@ -38,14 +38,14 @@
 
                             @if($formType === 'CREATE')
                                 id="customer-form-create" wire:submit.prevent="saveNewCustomer()"
-                            @keydown.enter.prevent="$wire.saveNewCustomer()"
+                                @keydown.ctrl.s.prevent="$wire.saveNewCustomer()"
                             @else
                                 id="customer-form-edit" wire:submit.prevent="updateCustomer({{$this->customer->id??0}})"
-                                @keydown.enter.prevent="$wire.updateCustomer({{$this->customer->id??0}})"
+                                @keydown.ctrl.s.prevent="$wire.updateCustomer({{$this->customer->id??0}})"
                             @endif
                             @if($formType === 'EDIT')
                                 id="customer-form-edit" wire:submit.prevent="updateCustomer({{$this->customer->id??0}})"
-                                @keydown.enter.prevent="$wire.updateCustomer({{$this->customer->id??0}})"
+                                @keydown.ctrl.s.prevent="$wire.updateCustomer({{$this->customer->id??0}})"
                             @endif
                     >
                         <div class="container " style="width: 95%">

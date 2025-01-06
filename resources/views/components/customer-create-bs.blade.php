@@ -1,7 +1,10 @@
 <div class="modal-content modal-content-bs modal-col-white w-full ">
     <div class="container-fluid ">
         <div class="modal-content">
-            <form id="customer-form-create" wire:submit.prevent="saveNewCustomer()" @keydown.enter.prevent="$wire.saveNewCustomer()">
+            <form id="customer-form-create"
+                  wire:submit.prevent="saveNewCustomer()"
+                  @keydown.ctrl.s.prevent="$wire.saveNewCustomer()"
+            >
                 <div class="container">
                     <div class="row">
                         <div class="col s12 text-start">
