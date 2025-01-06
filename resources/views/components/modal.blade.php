@@ -6,6 +6,7 @@
              x-show="open"
              x-transition:enter="animate__animated animate__fadeInUpBig animate__faster"
              x-transition:leave="animate__animated animate__fadeOutDownBig animate__faster"
+             x-on:keydown.escape.window="open = false"
         >
             <div class="modal-content modal-col-white">
                 <div class="modal-header">

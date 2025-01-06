@@ -20,7 +20,7 @@
             @foreach($data as $row)
                 @php
 //                    dd($row);
-                    $title=" customer: $row->cust_name \n employee: $row->emp_name \n";
+                    $title="Click to confirm service for customer:\n $row->cust_name";
                     if ($row->cust_id == 712) {
                         $classes_service = "btnFeeService secondary disabled p-l-2 p-r-2";
                         $wire_click = "\$dispatch('refresh-week')";
@@ -40,7 +40,7 @@
                     <td class="valign-wrapper">
                         <div class="left valign-wrapper center-align padding-0 p-l-4 p-r-4">
                             <a
-                                    class="p-l-4 p-r-4 {{$classes_service}}  btn-link padding-0 z-depth-3 pointer "
+                                    class="p-l-4 p-r-4 {{$classes_service}}  btn-link padding-0 z-depth-3 pointer rounded"
                                     wire:click="{!! $wire_click !!}"
 
                                     title="{{$title}}"

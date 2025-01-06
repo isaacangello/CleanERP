@@ -32,10 +32,10 @@ class EmployeeForm extends Form
     {
         return [
             'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
             'birth' => 'nullable|string|max:255',
-            'address' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255',
             'name_ref_one' => 'nullable|string|max:255',
             'name_ref_two' => 'nullable|string|max:255',
             'phone_ref_one' => 'nullable|string|max:255',
@@ -59,10 +59,10 @@ class EmployeeForm extends Form
     {
         $this->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
             'birth' => 'nullable|string|max:255',
-            'address' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255',
             'name_ref_one' => 'nullable|string|max:255',
             'name_ref_two' => 'nullable|string|max:255',
             'phone_ref_one' => 'nullable|string|max:255',
@@ -97,12 +97,13 @@ class EmployeeForm extends Form
         $this->employee->password = $this->password ? Hash::make($this->password): Hash::make('1234');
         $this->employee->new_user = $this->new_user??true;
         $this->employee->save();
-        return $this->employee;
+        $this->reset();
+        return true;
     }
     public function update($id)
     {
         $validated = $this->validate();
-        dd($validated);
+//        dd($validated);
         $this->employee = Employee::find($id);
         $this->employee->name = $this->name;
         $this->employee->phone = $this->phone;
@@ -123,7 +124,8 @@ class EmployeeForm extends Form
         $this->employee->password = Hash::make($this->password);
         $this->employee->new_user = $this->new_user;
         $this->employee->save();
-        return response()->json(['er' => $validated->errors()]);
+        $this->reset();
+        return true;
         //
     }
     public function changeStatus($id): true

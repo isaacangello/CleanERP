@@ -55,11 +55,14 @@
 
                             @if($formType === 'CREATE')
                                 id="customer-form-create" wire:submit.prevent="createEmployee"
+                                @keydown.ctrl.s.prevent="$wire.createEmployee()"
                             @else
                                 id="customer-form-edit" wire:submit.prevent="updateEmployee({{$this->femployee->id??0}})"
+                                @keydown.ctrl.s.prevent="$wire.updateEmployee({{$this->femployee->id??0}})"
                             @endif
                             @if($formType === 'EDIT')
                                 id="customer-form-edit" wire:submit.prevent="updateEmployee({{$this->femployee->id??0}})"
+                                @keydown.ctrl.s.prevent="$wire.updateEmployee({{$this->femployee->id??0}})"
                             @endif
                     >
                         <div class="container " style="width: 95%">

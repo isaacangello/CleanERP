@@ -10,9 +10,9 @@
         <div class="col s12 m12">
             <div class="card">
                 <div class="header">
-                            <span>RESIDENTIAL  </span>
+                            <span class="hidden md:block">RESIDENTIAL  </span>
                             <span>
-                              Reference Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
+                              <span class="hidden md:block">Reference</span> Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
                                         class="label-date-home">{{ $from }}</span> - Till <span
                                         class="label-date-home">{{ $till }} </span>
 
@@ -55,7 +55,7 @@
                                         @php
                                             //                                                    dd($row);
                                         @endphp
-                                        <tr class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }}" >
+                                        <tr class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }} flex-wrap" >
                                             <td>
                                                 <a
                                                     href="{{ route('finances.detailer',[
@@ -65,7 +65,8 @@
                                                     ] ) }}"
                                                     class="btn-link-underline grey-text text-darken-2 pointer"
                                                 >
-                                                    {{$data->name}}
+                                                    <span class="hidden md:block">{{$data->name}}</span>
+                                                    <span class="block md:hidden">{{Funcs::nameShort($data->name,' ',2)}}</span>
                                                 </a>
                                             </td>
                                             <td>{{$data->total_price}}</td>

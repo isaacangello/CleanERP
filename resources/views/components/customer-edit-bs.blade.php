@@ -38,14 +38,14 @@
 
                             @if($formType === 'CREATE')
                                 id="customer-form-create" wire:submit.prevent="saveNewCustomer()"
-                            @keydown.enter.prevent="$wire.saveNewCustomer()"
+                                @keydown.ctrl.s.prevent="$wire.saveNewCustomer()"
                             @else
                                 id="customer-form-edit" wire:submit.prevent="updateCustomer({{$this->customer->id??0}})"
-                                @keydown.enter.prevent="$wire.updateCustomer({{$this->customer->id??0}})"
+                                @keydown.ctrl.s.prevent="$wire.updateCustomer({{$this->customer->id??0}})"
                             @endif
                             @if($formType === 'EDIT')
                                 id="customer-form-edit" wire:submit.prevent="updateCustomer({{$this->customer->id??0}})"
-                                @keydown.enter.prevent="$wire.updateCustomer({{$this->customer->id??0}})"
+                                @keydown.ctrl.s.prevent="$wire.updateCustomer({{$this->customer->id??0}})"
                             @endif
                     >
                         <div class="container " style="width: 95%">
@@ -70,11 +70,11 @@
                                     <div class="form-group">
                                         <label class="form-label" for="input-edit-customer-name">Customer Name</label>
                                         <div class="form-line success form-line-name">
-                                            <input id="input-edit-customer-name" wire:model="fcustomer.name" type="text" class="form-control"/>
+                                            <input id="input-edit-customer-name" wire:model="fcustomer.name" type="text" class="form-control @error('fcustomer.name') bg-red-100 @enderror"/>
 
                                         </div>
                                         @error('fcustomer.name')
-                                        <div class="help-info red-text text-darken-4">{{ $message }}</div>
+                                        <div class="help-info-no-color text-red-800">{{ $message }}</div>
                                         @enderror
                                         <div class="help-info @error('fcustomer.name') hide @enderror">Insert customer name</div>
                                     </div>
@@ -84,15 +84,15 @@
                                         <label class="form-label" for="select-edit-customer-type">Customer Type</label>
                                         <div class="form-line success form-line-type">
                                             <select
-                                                    class="block text-gray-600  bg-white  border-t-0 border-b border-x-0 border-gray-300  shadow-sm h-45  text-left cursor-default
+                                                    class="block text-gray-600    border-t-0 border-b border-x-0 border-gray-300  shadow-sm h-45  text-left cursor-default @error('fcustomer.type') bg-red-100   @enderror
                                                     focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm"
                                                     wire:model="fcustomer.type"
                                                     id="select-edit-customer-type"
                                             >
                                                 <option value="">Select an option</option>
-                                                <option @if(isset($this->customer->type) and $this->customer->type  === "RESIDENTIAL") selected="selected" @endif value="RESIDENTIAL">Residential</option>
-                                                <option @if(isset($this->customer->type) and  $this->customer->type  === "COMMERCIAL") selected="selected" @endif value="COMMERCIAL">Commercial</option>
-                                                <option @if(isset($this->customer->type) and  $this->customer->type  === "RENTALHOUSE") selected="selected" @endif value="RENTALHOUSE">Rental House</option>
+                                                <option   value="RESIDENTIAL">Residential</option>
+                                                <option   value="COMMERCIAL">Commercial</option>
+                                                <option   value="RENTALHOUSE">Rental House</option>
                                             </select>
 
                                         </div>
@@ -107,11 +107,11 @@
                                 <div class="col s12 m7">
                                     <div class="form-group">
                                         <div class="form-line success form-line-address">
-                                            <input type="text" wire:model="fcustomer.address" id="input-edit-customer-address" class="form-control">
+                                            <input type="text" wire:model="fcustomer.address" id="input-edit-customer-address" class="form-control @error('fcustomer.address') bg-red-100 @enderror">
                                             <label class="form-label" for="input-edit-customer-address">Customer Address</label>
                                         </div>
                                         @error('fcustomer.address')
-                                        <div class="help-info red-text text-darken-4">{{ $message }}</div>
+                                        <div class="help-info-no-color text-red-800">{{ $message }}</div>
                                         @enderror
                                         <div class="help-info @error('fcustomer.address') hide @enderror">Insert customer address</div>
                                     </div>

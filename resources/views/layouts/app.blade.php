@@ -208,7 +208,7 @@
 {{--@use(Illuminate\Support\Facades\Vite)--}}
 <!-- Jquery core js -->
 <script  src="{{ asset('web/jquery/jquery-3.7.1.min.js') }}"></script>
-<script src="{{asset('web/systheme/plugins/jquery-countto/jquery.countTo.js/')}}" />
+<script src="{{asset('web/systheme/plugins/jquery-countto/jquery.countTo.js')}}" />
 {{--<!-- Jquery-ui Js -->--}}
 {{--<script src="{{ asset('web/jquery-ui/jquery-ui.js') }}"></script>--}}
 
@@ -235,9 +235,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Custom Js -->
 <script type="module" src="{{ asset('web/systheme/js/admin.js') }}"></script>
-
 <script src="{{ asset('web/systheme/js/pages/index.js') }}"></script>
-{{--<script src="{{ asset('web/systheme/js/pages/forms/form-validation.js') }}"></script>--}}
+
 <!-- Demo Js -->
 <script src="{{ asset('web/systheme/js/demo.js')}}"></script>
 <script src="{{ asset('web/systheme/js/systheme.js') }}"></script>
@@ -246,16 +245,12 @@
 <script src="{{ asset('web/systheme/plugins/moment/min/moment.min.js') }}"></script>
 
 <script  src="{{ asset('web/custom/helpers/plugins_init.js') }}"></script>
-{{--<script type="module" src="{{ asset('web/custom/helpers/funcs.js') }}"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>--}}
-{{--<script type="module" src="{{ asset('web/custom/service_cad.js') }}"></script>--}}
-{{--<script type="module" src="{{ asset('web/custom/field_change.js') }}"></script>--}}
-{{--<script type="module" src="{{ asset('web/custom/modalPush.js') }}"></script>--}}
-{{--<script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>--}}
+
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-{{--<script src="{{asset('build/assets/app-4ed993c7.js')}}"></script>--}}
-{{--@livewireScriptConfig--}}
+{{--<script src="{{ asset('js/materialize-css/js/sidenav.js') }}"></script>--}}
+<script src="{{asset('build/assets/app-4ed993c7.js')}}"></script>
+
 </body>
 
 </html>
