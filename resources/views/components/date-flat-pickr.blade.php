@@ -10,7 +10,7 @@
 @props(['options' => "
     {
                     weekNumbers:true,
-                    monthSelectorType:'static',
+                    monthSelectorType:'dropdown',
                     enableTime: true,
                     dateFormat: 'Y-m-d H:i',
                     altFormat: 'F j, Y h:i K',
@@ -25,7 +25,7 @@
             x-ref="input"
             type="text"
             data-input
-            {{ $attributes->merge(['class' => 'form-control grey-text text-darken-4', 'aria-label' => "m/d/Y"]) }}
+            {{ $attributes->merge(['class' => 'form-control text-gray-800', 'aria-label' => "m/d/Y"]) }}
     />
 </div>
 

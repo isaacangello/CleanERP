@@ -5506,7 +5506,7 @@ button.btn-floating {
 .btn-flat {
     -webkit-box-shadow: none;
     box-shadow: none;
-    background-color: transparent;
+    /*background-color: transparent;*/
     color: #343434;
     cursor: pointer;
     -webkit-transition: background-color .2s;
@@ -6148,7 +6148,7 @@ input[type=tel]:not(.browser-default),
 input[type=number]:not(.browser-default),
 input[type=search]:not(.browser-default),
 textarea.materialize-textarea {
-    background-color: transparent;
+    /*background-color: transparent;*/
     border: none;
     border-bottom: 1px solid #9e9e9e;
     border-radius: 0;

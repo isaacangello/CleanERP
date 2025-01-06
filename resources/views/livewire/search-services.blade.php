@@ -152,7 +152,7 @@
                             <td colspan="6"></td>
                             <td  class="text-start p-0">
                                 <x-danger-button wire:click="deleteServices" title="Delete selected services" >
-                                    <span class="material-symbols-outlined relative bottom-2 right-2">delete</span>
+                                    <span class="material-symbols-outlined relative bottom-1 right-2">delete</span>
                                 </x-danger-button>
                             </td>
                         </tr>

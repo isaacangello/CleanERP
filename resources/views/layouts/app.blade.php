@@ -36,7 +36,7 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-{{--    @vite(['resources/css/app.css','resources/js/app.js'])--}}
+
 
 
 
@@ -62,7 +62,8 @@
 
     <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
 
-    <link rel="stylesheet" href="{{  asset('/build/assets/app-55e5c2a6.css') }}">
+    <link rel="stylesheet" href="{{  asset('/build/assets/app-4aec8a89.css') }}">
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
     {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 </head>
@@ -207,6 +208,7 @@
 {{--@use(Illuminate\Support\Facades\Vite)--}}
 <!-- Jquery core js -->
 <script  src="{{ asset('web/jquery/jquery-3.7.1.min.js') }}"></script>
+<script src="{{asset('web/systheme/plugins/jquery-countto/jquery.countTo.js/')}}" />
 {{--<!-- Jquery-ui Js -->--}}
 {{--<script src="{{ asset('web/jquery-ui/jquery-ui.js') }}"></script>--}}
 
@@ -252,7 +254,7 @@
 {{--<script type="module" src="{{ asset('web/custom/commercial/modal_cad.js') }}"></script>--}}
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="{{asset('build/assets/app-4ed993c7.js')}}"></script>
+{{--<script src="{{asset('build/assets/app-4ed993c7.js')}}"></script>--}}
 {{--@livewireScriptConfig--}}
 </body>
 

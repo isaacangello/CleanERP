@@ -7,12 +7,6 @@
         // console.log('aqui é o livewire')
 
             console.log(window)
-       let tab =        document.querySelectorAll('.tabs')
-                let options = {
-                    swipeable: true
-                }
-                 var instance = window.M.Tabs.init(tab, options);
-                console.log(instance+" instancia tab")
 
 
 
@@ -82,7 +76,7 @@
         window.addEventListener('populate-date', event=>{
             flatpickr( event.detail.idElement,     {
                 weekNumbers:true,
-                monthSelectorType:'static',
+                monthSelectorType:'dropdown',
                 dateFormat:'Y-m-d',
                 altFormat:'F j, Y',
                 altInput:true,
@@ -105,22 +99,40 @@
 
         })
         window.addEventListener('populate-date-time', event=>{
-            flatpickr( event.detail.idElement,
-                {
-                    weekNumbers:true,
-                    monthSelectorType:'static',
-                    enableTime: true,
-                    dateFormat: "Y-m-d H:i",
-                    altFormat: 'F j, Y h:i K',
-                    altInput: true,
-                    // onChange: function(selectedDates, dateStr, instance){
-                    //     if (dateStr)
-                    //         instance.close();
-                    // },
-                    defaultDate: `${event.detail.dateTime}`
+            if(event.detail.dateTime){
+                flatpickr( event.detail.idElement,
+                    {
+                        weekNumbers:true,
+                        monthSelectorType:'dropdown',
+                        enableTime: true,
+                        dateFormat: "Y-m-d H:i",
+                        altFormat: 'F j, Y h:i K',
+                        altInput: true,
+                        // onChange: function(selectedDates, dateStr, instance){
+                        //     if (dateStr)
+                        //         instance.close();
+                        // },
+                        defaultDate: `${event.detail.dateTime}`
 
-                }
-            )
+                    }
+                )
+            }else{
+                flatpickr( event.detail.idElement,
+                    {
+                        weekNumbers:true,
+                        monthSelectorType:'dropdown',
+                        enableTime: true,
+                        dateFormat: "Y-m-d H:i",
+                        altFormat: 'F j, Y h:i K',
+                        altInput: true,
+                        // onChange: function(selectedDates, dateStr, instance){
+                        //     if (dateStr)
+                        //         instance.close();
+                        // },
+
+                    }
+                )
+            }
 
         })
 

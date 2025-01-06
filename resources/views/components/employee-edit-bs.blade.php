@@ -39,12 +39,16 @@
 
                             @if($formType === 'CREATE')
                                 id="customer-form-create" wire:submit.prevent="updateEmployee()"
+                                @keydown.enter.prevent="$wire.createEmployee()"
                             @else
                                 id="customer-form-edit" wire:submit.prevent="updateEmployee({{$this->employee->id??0}})"
+                                @keydown.enter.prevent="$wire.updateEmployee({{$this->employee->id??0}})"
                             @endif
                             @if($formType === 'EDIT')
                                 id="customer-form-edit" wire:submit.prevent="updateEmployee({{$this->employee->id??0}})"
+                                @keydown.enter.prevent="$wire.updateEmployee({{$this->employee->id??0}})"
                             @endif
+
                     >
                         <div class="container " style="width: 95%">
                             <div class="row">
@@ -67,7 +71,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="input-edit-employee-name">Employee Name</label>
                                         <div class="form-line success form-line-name">
-                                            <input id="input-edit-employee-name" wire:model="femployee.name" type="text" class="form-control"/>
+                                            <input id="input-edit-employee-name" wire:model="femployee.name" type="text" class="form-control @error('femployee.name') bg-red-100 @enderror"/>
                                         </div>
                                         @error('femployee.name')
                                         <div class="help-info red-text text-darken-4">{{ $message }}</div>
@@ -79,7 +83,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="input-edit-employee-phone">Phone</label>
                                         <div class="form-line success form-line-phone">
-                                            <input id="input-edit-employee-phone" wire:model="femployee.phone" type="text" class="form-control"/>
+                                            <input id="input-edit-employee-phone" wire:model.blur="femployee.phone" wire:dirty.class="text-red-700" type="text" class="form-control @error('femployee.phone') bg-red-100 @enderror"/>
                                         </div>
                                         @error('femployee.phone')
                                         <div class="help-info red-text text-darken-4">{{ $message }}</div>
@@ -93,10 +97,11 @@
                                     <div class="form-group">
                                         <label class="form-label" for="input-edit-employee-email">Email</label>
                                         <div class="form-line success form-line-email">
-                                            <input id="input-edit-employee-email" wire:model="femployee.email" type="text" class="form-control"/>
+                                            <input id="input-edit-employee-email" wire:model.blur="femployee.email"  type="text" class="form-control @error('femployee.email') bg-red-100 @enderror"/>
                                         </div>
+'
                                         @error('femployee.email')
-                                        <div class="help-info red-text text-darken-4">{{ $message }}</div>
+                                        <div class="help-info red-text text-darken-4">{{ $message }} </div>
                                         @enderror
                                         <div class="help-info @error('femployee.email') hide @enderror">Insert employee email</div>
                                     </div>
@@ -105,7 +110,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="input-edit-employee-birth">Birth Date</label>
                                         <div class="form-line success form-line-birth">
-                                            <x-date-flat-pickr id="input-edit-employee-birth" wire:model="femployee.birth" type="text" class="form-control"/>
+                                            <x-date-flat-pickr id="input-edit-employee-birth" wire:model="femployee.birth" type="text" class="form-control @error('femployee.birth') bg-red-100 @enderror"/>
                                         </div>
                                         @error('femployee.birth')
                                         <div class="help-info red-text text-darken-4">{{ $message }}</div>
@@ -119,7 +124,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="input-edit-employee-address">Address</label>
                                         <div class="form-line success form-line-address">
-                                            <input id="input-edit-employee-address" wire:model="femployee.address" type="text" class="form-control"/>
+                                            <input id="input-edit-employee-address" wire:model="femployee.address" type="text" class="form-control "/>
                                         </div>
                                         @error('femployee.address')
                                         <div class="help-info red-text text-darken-4">{{ $message }}</div>
