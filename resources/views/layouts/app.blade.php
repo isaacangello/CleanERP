@@ -248,6 +248,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+{{--<script src="{{ asset('js/materialize-css/js/sidenav.js') }}"></script>--}}
 <script src="{{asset('build/assets/app-4ed993c7.js')}}"></script>
 
 </body>

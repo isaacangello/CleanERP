@@ -1,5 +1,5 @@
 <div class="row m-b-0">
-    <div class="col s12 m2 input-field">
+    <div class="col s6 m2 input-field">
         <form action="{{route('finances')}}">
             <x-standard-btn type="submit" class="btn-small" >
                 <span class="material-symbols-outlined font-15">
@@ -8,7 +8,7 @@
             </x-standard-btn>
         </form>
     </div>
-    <div class="col s12 m2 input-field">
+    <div class="col s6 m2 input-field hide-on-small-and-down">
         <div class="form-group">
             <form wire:submit.prevent="thisWeek()">
                 <x-standard-btn type="submit" class="btn-small" >
@@ -17,7 +17,16 @@
             </form>
         </div>
     </div>
-    <div class="col s12 m1 input-field align-left">
+    <div class="col s6 m2 align-right input-field hide-on-med-and-up">
+        <div class="form-group">
+            <form wire:submit.prevent="thisWeek()">
+                <x-standard-btn type="submit" class="btn-small" >
+                    This week
+                </x-standard-btn>
+            </form>
+        </div>
+    </div>
+    <div class="col s6 m1 input-field align-left">
         <div class="form-group">
             @php
                 //numbered=28&year=current
@@ -31,8 +40,18 @@
             </x-standard-btn>
         </div>
     </div>
+    <div class="col s6 m1 input-field align-right hide-on-med-and-up">
+        <div class="form-group">
+            <x-standard-btn wire:click="forwardWeek()" type="submit" class="btn-small">
+                <span class="material-symbols-outlined">
+                    arrow_forward
+                </span>
+            </x-standard-btn>
+        </div>
+    </div>
+
     <form wire:submit.prevent="selectWeek()">
-        <div class="col s12 m2 input-field" >
+        <div class="col s4 m2 input-field" >
             <div class="form-group">
                 <div class="form-line success">
                     <select wire:model="selectedWeek"  class="form-control browser-default h-30 font-12" >
@@ -44,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m2 input-field">
+        <div class="col s5 m2 input-field">
             <div class="form-group">
                 <div class="form-line success">
                     <select wire:model="selectedYear"  class="form-control browser-default h-30 font-12">
@@ -56,13 +75,13 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m1 input-field">
+        <div class="col s3 m1 align-right input-field">
             <x-standard-btn type="submit" class="btn-small">
                 go
             </x-standard-btn>
         </div>
     </form>
-    <div class="col s12 m1 input-field align-left">
+    <div class="col s12 m1 input-field align-left hide-on-small-and-down">
         <div class="form-group">
             <x-standard-btn wire:click="forwardWeek()" type="submit" class="btn-small">
                 <span class="material-symbols-outlined">

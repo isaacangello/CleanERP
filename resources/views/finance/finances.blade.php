@@ -107,11 +107,11 @@
                                 <table class="table table-striped highlight">
                                     <thead>
                                     <tr class="green darken-3 white-text">
-                                        <th>Employee</th>
+                                        <th>Employee 1</th>
                                         <th>Total</th>
                                         <th>70%</th>
                                         <th>30%</th>
-                                        <th>&nbsp;</th>
+                                        <th>&nbsp;aaa</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -124,7 +124,8 @@
                                             @endphp
                                             @if($emp_name!=null)
                                                 <tr>
-                                                    <td>{{$emp_name}}</td>
+                                                    <td class="hidden">{{$emp_name}}</td>
+                                                    <td class="block  md:hidden">{{ Funcs::nameShort($emp_name)}} </td>
                                                     <td>{{$cem}}</td>
                                                     <td>{{$setenta}}</td>
                                                     <td>{{$trinta}}</td>
@@ -145,7 +146,7 @@
 
                         <div class="row clearfix">
                             <div class="s12 p-20">
-                                {{ $employees->links() }}
+                                {{ $employees->links() }}a
                             </div>
                         </div>
 

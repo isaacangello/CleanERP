@@ -19,7 +19,7 @@
 //  * import js
 //  */
 // import "../web/jquery-ui/jquery-ui.js"
-// import "../web/materialize/js/materialize.min.js"
+import "materialize-css/dist/js/materialize.min.js"
 // import "node-waves/dist/waves.min.js"
 // import "../web/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js"
 // import "../web/systheme/plugins/jquery-validation/jquery.validate.js"
