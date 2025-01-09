@@ -111,27 +111,100 @@
             </div>
             <div class="info-container">
                 <div class="name person-shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</div>
-                <div class="email person-shadow">{{ Auth::user()->email }}</div>
+                <div class="email person-shadow">{{ Auth::user()->email }}
+{{--                    <i class="material-icons white-text">keyboard_arrow_down</i>--}}
+                </div>
+
                 <div class="user-helper-dropdown">
-                    <a href="#" id="buton-user-dropdown" data-target='dropdown-left-sidebar'><i class="material-icons white-text">keyboard_arrow_down</i></a>
-                    <ul id="dropdown-left-sidebar" class='z-depth-4 scale-transition scale-out scale-in'>
-                        <li>
-                            <a href="{{ route('profile.edit') }}" class="waves-effect waves-classic waves-light"><i class="material-icons">person</i><span>Profile</span></a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{route('config')}}" class="waves-effect waves-classic waves-light"><i class="material-icons">settings_applications</i><span>Config</span></a></li>
-                        <li role="separator" class="divider"></li>
-                        <li style="background-color: transparent">
-                            <form action="{{ route('logout') }}" method="post" >
-                                @csrf
-                                <a href="javascript:void(0);" class="waves-effect waves-classic waves-light">
-                                    <button type="submit" style="border:none;background-color: transparent">
-                                        <i class="material-icons">input</i><span>Sign Out</span>
-                                    </button>
+                    <div class="flex justify-center">
+                        <div
+                                x-data="{
+                                    openDropDown: false,
+                                    toggle() {
+                                        if (this.openDropDown) {
+                                            return this.close()
+                                        }
+
+                                        this.$refs.button.focus()
+
+                                        this.openDropDown = true
+                                    },
+                                    close(focusAfter) {
+                                        if (! this.openDropDown) return
+
+                                        this.openDropDown = false
+
+                                        focusAfter && focusAfter.focus()
+                                    }
+                                }"
+                                x-on:keydown.escape.prevent.stop="close($refs.button)"
+                                x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                                x-id="['dropdown-button']"
+                                class="relative"
+                        >
+                            <!-- Button -->
+                            <button
+                                    x-ref="button"
+                                    x-on:click="toggle()"
+                                    :aria-expanded="openDropDown"
+                                    :aria-controls="$id('dropdown-button')"
+                                    type="button"
+                                    class="relative flex items-center whitespace-nowrap justify-center gap-2 py-2 rounded-lg shadow-sm bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 hover:border-gray-200 px-4"
+                            >
+
+                                <!-- Heroicon: micro chevron-down -->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                                    <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+
+                            <!-- Panel -->
+                            <div
+                                    x-ref="panel"
+                                    x-show="openDropDown"
+                                    x-transition.origin.top.left
+                                    x-on:click.outside="close($refs.button)"
+                                    :id="$id('dropdown-button')"
+                                    x-cloak
+                                    class="absolute -left-36 min-w-48 text-left  shadow-sm mt-2  origin-top-left bg-white p-1.5 outline-none border border-gray-200"
+                                    style="z-index: 9999999"
+                            >
+                                <a href="{{ route('profile.edit') }}" class="px-2 lg:py-1.5 py-2 w-full flex justify-start rounded-md transition-colors  text-gray-800 hover:bg-gray-50 focus-visible:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <i class="material-icons">person</i><span>Profile</span>
                                 </a>
-                            </form>
-                        </li>
-                    </ul>
+
+                                <a href="{{route('config')}}" class="px-2 lg:py-1.5 py-2 w-full flex justify-start rounded-md transition-colors text-left text-gray-800 hover:bg-gray-50 focus-visible:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <i class="material-icons">settings_applications</i><span>Config</span>
+                                </a>
+                                <form action="{{ route('logout') }}" method="post" >
+                                    @csrf
+                                <button type="submit" class="px-2 lg:py-1.5 py-2 w-full flex justify-start  rounded-md transition-colors text-left text-gray-800 hover:bg-gray-50 focus-visible:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <i class="material-icons">input</i><span>Sign Out</span>
+                                </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+{{--                    <a href="#" id="button-user-dropdown" data-target='dropdown-left-sidebar'>--}}
+{{--                    </a>--}}
+{{--                    <ul id="dropdown-left-sidebar" class='z-depth-4 scale-transition scale-out scale-in '>--}}
+{{--                        <li>--}}
+{{--                            <a href="{{ route('profile.edit') }}" class="waves-effect waves-classic waves-light"><i class="material-icons">person</i><span>Profile</span></a>--}}
+{{--                        </li>--}}
+{{--                        <li role="separator" class="divider"></li>--}}
+{{--                        <li><a href="{{route('config')}}" class="waves-effect waves-classic waves-light"><i class="material-icons">settings_applications</i><span>Config</span></a></li>--}}
+{{--                        <li role="separator" class="divider"></li>--}}
+{{--                        <li style="background-color: transparent">--}}
+{{--                            <form action="{{ route('logout') }}" method="post" >--}}
+{{--                                @csrf--}}
+{{--                                <a href="javascript:void(0);" class="waves-effect waves-classic waves-light">--}}
+{{--                                    <button type="submit" style="border:none;background-color: transparent">--}}
+{{--                                        <i class="material-icons">input</i><span>Sign Out</span>--}}
+{{--                                    </button>--}}
+{{--                                </a>--}}
+{{--                            </form>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
                 </div>
 
             </div>
