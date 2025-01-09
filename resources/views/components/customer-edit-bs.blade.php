@@ -293,7 +293,7 @@
                                 <div class="col s12 m5">
                                     <div class="checkbox-float">
                                         <label for="md-checkbox-keys{{$this->customer->id??"$$1"}}">
-                                            <input type="checkbox" wire:model="fcustomer.key" id="md-checkbox-keys{{$this->customer->id??"$$1"}}" class="accent-green-800" >
+                                            <input type="checkbox" wire:model="fcustomer.key" id="md-checkbox-keys{{$this->customer->id??"$$1"}}" class="green" >
                                             <span>Keys in office?</span>
                                         </label>
                                     </div>
