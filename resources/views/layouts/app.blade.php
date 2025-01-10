@@ -251,7 +251,7 @@
 
 <section class="content" id="site-content">
     @yield('content')
-
+    {{$slot??''}}
 </section>
 
 
