@@ -124,7 +124,7 @@
         </div><!-- col -->
         {{--            {{$this->modalData->id??'vazio'}}--}}
     </div>  <!-- row -->
-    <x-modal-alphine   :id="$this->modalData->id??'0'">
+    <x-modal-alphine   :id="$this->modalData->id??'0'" name="title">
         <x-slot:title>
             <span wire:loading.remove> {{$this->modalData->customer->name??'Loading...'}} </span>
             <span wire:loading>Loading...</span>
