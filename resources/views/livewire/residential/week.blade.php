@@ -11,15 +11,23 @@
         nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
         prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
         nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
-        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
-    }">
+        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 }    }">
+        <div wire:loading wire:target="thisWeek, backWeek, selectWeek, forwardWeek"  class="absolute top-1/2" style="z-index:1060">
+            <div>
+                <img src="{{asset('img/loading.gif')}}" alt="loading" class="w-36 " style="margin-left: 40vw; margin-top: 10vh;">
+            </div>
+        </div>
+
+
         <div class="block-header">
             <h2>
                 <small>EMPLOYEES SERVICES</small>
             </h2>
+
         </div>
         <!-- Basic Examples -->
         <div class="row clearfix">
+
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">

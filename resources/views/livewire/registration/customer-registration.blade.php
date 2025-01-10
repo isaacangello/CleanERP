@@ -27,7 +27,7 @@
 
     <div class="panel panel-default" >
         <div class="panel-heading p-l-15 p-t-2 p-r-2 p-b-2">
-            Search customer
+            Search customer s
         </div>
 
         <div class="panel-body " >
@@ -61,13 +61,13 @@
                 <div class="col s12 m3">
                     <div class="form-group">
                         <div class="form-line success">
-                            <select wire:model="searchFilterType" title="select type of customer to search"
+                            <select wire:model.live="searchFilterType" title="select type of customer to search"
                                     class="block text-gray-600  bg-white  border-t-0 border-b border-x-0 border-gray-300  shadow-sm h-30  text-left cursor-default
                                     focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm"
                             >
-                                <option value="ALL"> All </option>
-                                <option value="COMMERCIAL">Commercial</option>
-                                <option value="RESIDENTIAL">Residential</option>
+                                <option value="ALL"> ALL </option>
+                                <option value="COMMERCIAL">COMMERCIAL</option>
+                                <option value="RESIDENTIAL">RESIDENTIAL</option>
                             </select>
                         </div>
 
@@ -135,9 +135,9 @@
         </div>
     </div>
         <x-modal-alphine-bs name="Create">
-            <x-customer-create-bs />
+            <x-customer-create-bs :$filterType />
         </x-modal-alphine-bs>
-    <x-customer-edit-bs :$billings :$showCustomerEdit />
+    <x-customer-edit-bs :$billings :$showCustomerEdit :$filterType />
         <x-custom-events />
 </div>
 
