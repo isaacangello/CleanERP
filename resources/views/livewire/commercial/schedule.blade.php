@@ -1,8 +1,8 @@
 <div class="container-fluid" x-data="{
         open: $wire.entangle('showModal'),
         cadOpen: $wire.entangle('showCadModal'),
-        tab1: $wire.entangle('$showTab1'),
-        tab2: $wire.entangle('$showTab2')
+        tab1: $wire.entangle('showTab1'),
+        tab2: $wire.entangle('showTab2')
     }"
 
 >
@@ -124,7 +124,7 @@
         </div><!-- col -->
         {{--            {{$this->modalData->id??'vazio'}}--}}
     </div>  <!-- row -->
-    <x-modal-alphine   :id="$this->modalData->id??'0'" name="title">
+    <x-modal-alphine   :id="$this->modalData->id??'0'" name="title" :$show>
         <x-slot:title>
             <span wire:loading.remove> {{$this->modalData->customer->name??'Loading...'}} </span>
             <span wire:loading>Loading...</span>

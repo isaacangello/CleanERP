@@ -1,7 +1,5 @@
 @php
     $style='style=margin-bottom:0;';
-
-
 @endphp
 
 <div class="modal fade in" id="scheduleModal" tabindex="-1" role="dialog" style="display: block;">

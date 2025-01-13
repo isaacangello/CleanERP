@@ -62,7 +62,7 @@
 
     <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
 
-    <link rel="stylesheet" href="{{  asset('/build/assets/app-697a2566.css') }}">
+    <link rel="stylesheet" href="{{  asset('/build/assets/app-306f5f6d.css') }}">
     @vite(['resources/css/app.css','resources/js/app.js'])
 
     {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
@@ -299,7 +299,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 {{--<script src="{{ asset('js/materialize-css/js/sidenav.js') }}"></script>--}}
-<script src="{{asset('build/assets/app-72798aed.js')}}"></script>
+<script src="{{asset('build/assets/app-21de2618.js')}}"></script>
 
 </body>
 
