@@ -35,6 +35,8 @@ class CustomerRegistration extends Component
     {
 
         $this->billings = Billing::all()->toArray();
+        $this->fcustomer->type = strtoupper($this->filterType);
+        $this->searchFilterType = strtoupper($this->filterType);
     }
     public function createCustomerEvent():void{
 
@@ -125,6 +127,7 @@ public function editCustomerEvent($id)
 //        $this->billings = Billing::get()->toArray();
 //        dd($this->billings);
         if($this->search){
+
             if($this->searchFilterType == 'ALL') {
                 return  Searchy::search('customers')->fields('name')->query($this->search)
                     ->getQuery()->limit(10)->get()->toArray();

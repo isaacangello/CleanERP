@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col s12 text-start">
                             <h5 class="m-0 p-0 text-start font-bold relative right-2">
-                                New Customer
+                                New Customer create
                             </h5>
                         </div>
                     </div>
@@ -36,15 +36,15 @@
                                 <div class="form-line success form-line-type">
                                     <select wire:model.live="fcustomer.type" id="select-create-customer-type" class="block text-gray-600 bg-white border-t-0 border-b border-x-0 border-gray-300 shadow-sm h-45 text-left cursor-default focus:outline-none focus:ring-0 focus:border-t-0 focus:border-b focus:border-x-0 focus:border-green-800 sm:text-sm">
                                         <option value="">Select an option</option>
-                                        <option value="RESIDENTIAL">Residential</option>
-                                        <option value="COMMERCIAL">Commercial</option>
-                                        <option value="RENTALHOUSE">Rental House</option>
+                                        <option value="RESIDENTIAL">RESIDENTIAL</option>
+                                        <option value="COMMERCIAL">COMMERCIAL</option>
+                                        <option value="RENTALHOUSE">RENTAL HOUSE</option>
                                     </select>
                                 </div>
                                 @error('fcustomer.type')
                                 <div class="help-info red-text text-darken-4">{{ $message }}</div>
                                 @enderror
-                                <div class="help-info @error('fcustomer.type') hide @enderror">Select the customer type</div>
+                                <div class="help-info @error('fcustomer.type') hide @enderror">Select the customer type {{ $this->fcustomer->type }}</div>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                @if($this->fcustomer->type === "RESIDENTIAL")
+                @if(strtoupper($this->fcustomer->type) === "RESIDENTIAL" or strtoupper($this->fcustomer->type) === "RENTALHOUSE")
                         <div class="row label-employee-view-edit">
                             <span class="label label-padding">Billing Price</span>
                         </div>
@@ -143,7 +143,7 @@
                             </div>
                         </div>
                 @endif
-                @if($this->fcustomer->type === "COMMERCIAL")
+                @if(strtoupper($this->fcustomer->type) === "COMMERCIAL")
                         <div class="row label-employee-view-edit">
                             <span class="label label-padding">Others email</span>
                         </div>

@@ -36,14 +36,14 @@
                 <div class="modal-content">
                     <form
 
-                            @if($formType === 'CREATE')
+                            @if($this->formType === 'CREATE')
                                 id="customer-form-create" wire:submit.prevent="saveNewCustomer()"
                                 @keydown.ctrl.s.prevent="$wire.saveNewCustomer()"
                             @else
                                 id="customer-form-edit" wire:submit.prevent="updateCustomer({{$this->customer->id??0}})"
                                 @keydown.ctrl.s.prevent="$wire.updateCustomer({{$this->customer->id??0}})"
                             @endif
-                            @if($formType === 'EDIT')
+                            @if($this->formType === 'EDIT')
                                 id="customer-form-edit" wire:submit.prevent="updateCustomer({{$this->customer->id??0}})"
                                 @keydown.ctrl.s.prevent="$wire.updateCustomer({{$this->customer->id??0}})"
                             @endif
@@ -86,7 +86,7 @@
                                             <select
                                                     class="block text-gray-600    border-t-0 border-b border-x-0 border-gray-300  shadow-sm h-45  text-left cursor-default @error('fcustomer.type') bg-red-100   @enderror
                                                     focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm"
-                                                    wire:model="fcustomer.type"
+                                                    wire:model.live="fcustomer.type"
                                                     id="select-edit-customer-type"
                                             >
                                                 <option value="">Select an option</option>
@@ -99,7 +99,7 @@
                                         @error('fcustomer.type')
                                         <div class="help-info red-text text-darken-4">{{ $message }}</div>
                                         @enderror
-                                        <div class="help-info @error('fcustomer.type') hide @enderror">Select customer type</div>
+                                        <div class="help-info @error('fcustomer.type') hide @enderror">Select customer type </div>
                                     </div>
                                 </div>
                             </div>
@@ -155,8 +155,8 @@
                                     </div>
                                 </div>
                             </div>
-                            @isset($this->customer->type)
-                            @if($this->customer->type == "COMMERCIAL" )
+                            @isset($this->fcustomer->type)
+                            @if(strtoupper($this->fcustomer->type) == "COMMERCIAL" )
                                 <div class="row clearfix">
                                     <div class="col s12">
                                         <label for="textarea-edit-customer-note">Other Emails</label>
@@ -174,7 +174,7 @@
 
                             @endif
 
-                            @if( $this->customer->type  === "RESIDENTIAL" or $this->customer->type  === "RENTALHOUSE")
+                            @if( strtoupper($this->fcustomer->type)  === "RESIDENTIAL" or strtoupper($this->fcustomer->type)  === "RENTALHOUSE")
                             <div class="row label-employee-view-edit">
                                 <span class="label label-padding">Billing Price</span>
                             </div>

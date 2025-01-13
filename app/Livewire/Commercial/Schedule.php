@@ -22,7 +22,7 @@ class Schedule extends Component
     use CommercialTrait;
 
 
-
+    public $show = false;
     public  $showModal = false;
     public  $showCadModal = false;
     public $showTab1 = true;
@@ -206,8 +206,11 @@ class Schedule extends Component
         $this->address=$currentService->customer->address; $this->info=$currentService->customer->info;
         $this->notes=$currentService->notes;$this->instructions=$currentService->instructions;
         //dd($this->tempDate);
+
         $this->modalData = $currentService;
 //        dd($this->modalData);
+
+        $this->show = true;
     }
 
     public function mount():void{

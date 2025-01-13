@@ -17,6 +17,7 @@ use App\Livewire\Forms\CustomerForm;
     public $search = '';
     public $billings = [];
     public $status = '';
+    public $filterType;
     public $searchFilterType = 'ALL';
     public CustomerForm $fcustomer;
     public $customer;
@@ -24,6 +25,9 @@ use App\Livewire\Forms\CustomerForm;
     public function mount()
     {
         $this->billings = Billing::all();
+        $this->fcustomer->type = strtoupper($this->filterType);
+        $this->searchFilterType = strtoupper($this->filterType);
+
     }
 public function editCustomerEvent($id){
         $this->dispatch('edit-customer', id:$id);
