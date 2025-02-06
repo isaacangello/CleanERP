@@ -1,0 +1,74 @@
+================ total 61 ================
+############################################ refactor menu and login
+leftsidebar.blade.php
+btn-week-mobile-navigator.blade.php
+btn-week-navigator.blade.php
+menu-links.blade.php
+mobile-left-sidebar.blade.php
+mobile-menu-alphine.blade.php
+week-navigator.blade.php
+custom-events.blade.php
+generic-css.blade.php
+generic-js.blade.php
+############################################ block 1
+primary-button.blade.php
+danger-button.blade.php
+date-flat-pickr.blade.php
+m-date-picker.blade.php
+m-time-picker.blade.php
+btn-paid-out.blade.php
+input-error.blade.php
+input-label.blade.php
+input-tw.blade.php
+standard-btn.blade.php
+javascript-select-alpine.blade.php
+link-btn.blade.php
+livewire-select-modal.blade.php
+application-logo.blade.php
+dropdown.blade.php
+dropdown-link.blade.php
+text-input.blade.php
+time-flat-pickr.blade.php
+outline-btn.blade.php
+############################################ block 2
+customer-cad.blade.php
+customer-create-bs.blade.php
+customer-crud.blade.php
+customer-edit-bs.blade.php
+customer-view-edit.blade.php
+employee-cad.blade.php
+employee-create-bs.blade.php
+employee-edit-bs.blade.php
+employee-view-edit.blade.php
+auth-session-status.blade.php
+finance-panel-search.blade.php
+commercial-cad.blade.php
+commercial-card.blade.php
+############################################ block 3
+
+billings-cad.blade.php
+payment-cad.blade.php
+home-card-week-day.blade.php
+home-cards.blade.php
+
+############################################ block 4
+modal.blade.php
+modal-alphine.blade.php
+modal-alphine-bs.blade.php
+
+############################################ block 5
+modal-b.blade.php
+msgs.blade.php
+nav-link.blade.php
+
+paginate-links.blade.php
+responsive-nav-link.blade.php
+############################################
+schedule-details.blade.php
+search-javascript.blade.php
+secondary-button.blade.php
+select-actors.blade.php
+service-cad.blade.php
+service-details.blade.php
+
+
