@@ -11,20 +11,16 @@
         @vite('resources/js/app.js')
     </head>
     <body class="bg-gray-100">
-       <div class="w-full block" x-data="cnf">
-            <div x-init="console.log($refs.leftSideBar);sidebarInit()">
-            <x-cleopatra.navbar />
-            </div>
-            <div>
-            <x-cleopatra.left-sidebar />
-            </div>
-            {{ $slot }}
+        <x-cleopatra.loading  />
+        <div  class="w-full" x-cloak x-data="cnf" x-ref="mainContent" x-init="pageInit()">
+
+                <x-cleopatra.navbar  />
+                <x-cleopatra.left-sidebar  />
+                {{ $slot }}
+
         </div>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
         @livewireScriptConfig
     </body>
 </html>
-function colog() {
-
-}
