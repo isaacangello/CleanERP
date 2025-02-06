@@ -24,6 +24,6 @@ class ServiceDetails extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.service-details');
+        return view('components.old.service-details');
     }
 }

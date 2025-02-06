@@ -70,7 +70,7 @@ Route::middleware('auth')->group(function () {
 //############ RESIDENTIAL ROUTES
 //#############################################################
 
-    Route::get('/home',[IndexController::class,'home'])->name('home');
+    Route::get('/home',\App\Livewire\Home::class)->name('home');
     Route::get('/week',\App\Livewire\Residential\Week::class)->name('week');
     Route::get('/week/search',\App\Livewire\SearchScreen::class)->name('week.search');
 

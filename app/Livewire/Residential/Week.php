@@ -366,14 +366,18 @@ class Week extends Component
         $currentService = Service::with('customer','employee','control')->find($id);
         $this->dispatch('populate-date-time', idElement:"#serviceDate",dateTime:$currentService->service_date);
         if($currentService->control){
+            dd($currentService->control);
             $this->tempControlInTime = Carbon::create($currentService->control->checkin_datetime)->format('Y-m-d H:i:s');
             $this->tempControlOutTime = Carbon::create($currentService->control->checkout_datetime)->format('Y-m-d H:i:s');
+            $this->dispatch('populate-date-time', idElement:"#serviceInTime",dateTime:$this->tempControlInTime);
+            $this->dispatch('populate-date-time', idElement:"#serviceOutTime",dateTime:$this->tempControlOutTime);
+
         }else{
             $this->tempControlInTime = ' ';
             $this->tempControlOutTime= ' ';
+            $this->dispatch('populate-date-time', idElement:"#serviceInTime",dateTime:$this->tempControlInTime);
+            $this->dispatch('populate-date-time', idElement:"#serviceOutTime",dateTime:$this->tempControlOutTime);
         }
-        $this->dispatch('populate-date-time', idElement:"#serviceInTime",dateTime:$this->tempControlInTime);
-        $this->dispatch('populate-date-time', idElement:"#serviceOutTime",dateTime:$this->tempControlOutTime);
 
         $this->customer_id= $currentService->customer->id; $this->employee1_id=$currentService->employee->id;
         $this->phone=$currentService->customer->phone;
@@ -461,8 +465,7 @@ class Week extends Component
     public function render()
     {
 
-        return view('livewire.residential.week')
-            ->extends('layouts.app');
+        return view('livewire.residential.week');
 
     }
     public function closeModal():void
