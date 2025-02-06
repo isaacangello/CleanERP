@@ -1,10 +1,10 @@
-@extends("layouts.main")
+@extends("layouts.main_old")
 @section('title')
     <title>Finances - main - JJL System 2</title>
 @endsection
 {{--css links para o head--}}
 @section('css-style')
- @include('layouts.generic_css')
+    @include('layouts.generic_css')
 @endsection
 
 @section('content')
@@ -25,7 +25,7 @@
                     <div class="body">
                         <div class="row clearfix">
                             <div class="col s6 m6">
-                                <div class="panel panel-default" >
+                                <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <small>Seach paid</small>
                                     </div>
@@ -34,7 +34,9 @@
                                             <div class="input-field col s12 m12">
                                                 <div class="form-group">
                                                     <div class="form-line success">
-                                                        <select id="select-finance-employee" class="form-control materialize-select" name="finance-employee" >
+                                                        <select id="select-finance-employee"
+                                                                class="form-control materialize-select"
+                                                                name="finance-employee">
                                                             <option selected value=""></option>
                                                             @foreach($employees as $employee)
                                                                 <option value="{{ $employee->id }}">{{ $employee->name }}</option>
@@ -50,7 +52,8 @@
                                             <div class="input-field col s12 m6 ">
                                                 <div class="form-group">
                                                     <div class="form-line success">
-                                                        <input id="input-finance-from" name="finance-from" type="text" class="form-control date" value="">
+                                                        <input id="input-finance-from" name="finance-from" type="text"
+                                                               class="form-control date" value="">
                                                         <label class="form-label" for="input-finance-from">From</label>
                                                     </div>
                                                     <div class="help-info">Insert date from.</div>
@@ -59,7 +62,8 @@
                                             <div class="input-field col s12 m6">
                                                 <div class="form-group">
                                                     <div class="form-line success">
-                                                        <input id="input-finance-till" name="finance-till" type="text" class="form-control date" value="">
+                                                        <input id="input-finance-till" name="finance-till" type="text"
+                                                               class="form-control date" value="">
                                                         <label class="form-label" for="input-finance-till">Till</label>
                                                     </div>
                                                     <div class="help-info">Insert date till.</div>
@@ -67,25 +71,28 @@
 
                                             </div>
                                         </div>
-                                        <button class="teal waves-effect waves-classic waves-light white-text btn btn-small">Search</button>
+                                        <button class="teal waves-effect waves-classic waves-light white-text btn btn-small">
+                                            Search
+                                        </button>
                                     </div>
                                     <div class="panel-footer">
                                         <div class="row">
                                             <div class="col s1"></div>
-                                            <div class="col s11" >
+                                            <div class="col s11">
                                                 &nbsp;
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col s6 m6" >
+                            <div class="col s6 m6">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <small>Payments of week</small>
                                     </div>
                                     <div class="panel-body p-l-3 p-r-3" style="height:35vh;">
-                                        <div class="chart-container align-center" style="position: relative; height:30vh;" >
+                                        <div class="chart-container align-center"
+                                             style="position: relative; height:30vh;">
                                             <canvas id="chart-area"></canvas>
                                         </div>
                                     </div>
@@ -135,7 +142,8 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="5" style="padding: 10px"><p>Services not found in this week</p></td>
+                                            <td colspan="5" style="padding: 10px"><p>Services not found in this week</p>
+                                            </td>
                                         </tr>
                                     @endif
                                     </tbody>
@@ -158,56 +166,56 @@
 
         <!-- tratando variáveis -->
 
-@endsection
+        @endsection
 
-{{-- inclusção de scripts  no final no corpo--}}
-@section('script-botton')
+        {{-- inclusção de scripts  no final no corpo--}}
+        @section('script-botton')
 
-    @include('layouts.generic_js')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Custom Js -->
+            @include('layouts.generic_js')
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <!-- Custom Js -->
 
-    <script>
-        /**
-            copiado do style home  tables
-            materialize colors
-            yellow darken-3 : #f9a825; rgb(249,168,37)
-            yellow: #fff176; rgb(255,241,118)
-            green darken-3: #2e7d32; rgb(46,125,50)
-        */
-      const ctx = document.getElementById('chart-area');
+            <script>
+                /**
+                 copiado do style home  tables
+                 materialize colors
+                 yellow darken-3 : #f9a825; rgb(249,168,37)
+                 yellow: #fff176; rgb(255,241,118)
+                 green darken-3: #2e7d32; rgb(46,125,50)
+                 */
+                const ctx = document.getElementById('chart-area');
 
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['100%', '70%', '30%'],
-          datasets: [
-              {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['100%', '70%', '30%'],
+                        datasets: [
+                            {
 
-                data: [{{$total_services['cem']}},{{$total_services['setenta']}},{{$total_services['trinta']}},],
-                        backgroundColor: [
-                            'rgb(46,125,50,0.4)',
-                            'rgb(249,168,37,0.4)',
-                            'rgb(255,241,118,0.4)'
-                        ],
-                          borderColor:[
+                                data: [{{$total_services['cem']}}, {{$total_services['setenta']}}, {{$total_services['trinta']}},],
+                                backgroundColor: [
+                                    'rgb(46,125,50,0.4)',
+                                    'rgb(249,168,37,0.4)',
+                                    'rgb(255,241,118,0.4)'
+                                ],
+                                borderColor: [
                                     'rgb(46,125,50)',
                                     'rgb(249,168,37)',
                                     'rgb(255,241,118)'
-                          ],
-                borderWidth: 1,
-              }
-          ]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    </script>
+                                ],
+                                borderWidth: 1,
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
 @endsection
 
 

@@ -1,4 +1,4 @@
-@extends("layouts.main")
+@extends("layouts.main_old")
 
 @section('title')
     <title>WEEK - main - JJL System 2</title>
@@ -7,7 +7,7 @@
 {{--css links para o head--}}
 @section('css-style')
     @include('layouts.generic_css')
-{{--    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
+    {{--    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 @endsection
 
 @section('content')
@@ -25,9 +25,10 @@
                             <span>
                               Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
                                         class="label-date-home">{{ $weekArr['Monday'] }}</span> - Till <span
-                                        class="label-date-home">{{ $weekArr['Saturday'] }} </span><div class="displaytest">Iphone</div>
+                                        class="label-date-home">{{ $weekArr['Saturday'] }} </span><div
+                                        class="displaytest">Iphone</div>
                             </span>
-                        <x-msgs :$msg />
+                        <x-msgs :$msg/>
 
                     </div>
                     <x-service-cad :employees="$employeesCol" :customers="$customersCol" :num-week="$numWeek" :$year>
@@ -38,7 +39,8 @@
                             <div class="col s12 m2 input-field">
                                 <div class="form-group">
 
-                                    <x-standard-btn type="submit" class="btn btn-link btn-small modal-trigger" href="#new-service">
+                                    <x-standard-btn type="submit" class="btn btn-link btn-small modal-trigger"
+                                                    href="#new-service">
                                         New service
                                     </x-standard-btn>
                                 </div>
@@ -77,22 +79,27 @@
                                     @endphp
                                     <form action="{{ route('week') }}">
 
-                                            <x-text-input type="hidden" value="{{$numWeek_arrow_b}}" name="numberweek"></x-text-input>
-                                            <x-text-input type="hidden" value="{{$year_arrow_b}}" name="year"></x-text-input>
-                                            <x-standard-btn type="submit" class="btn btn-link btn-small">
+                                        <x-text-input type="hidden" value="{{$numWeek_arrow_b}}"
+                                                      name="numberweek"></x-text-input>
+                                        <x-text-input type="hidden" value="{{$year_arrow_b}}"
+                                                      name="year"></x-text-input>
+                                        <x-standard-btn type="submit" class="btn btn-link btn-small">
                                             <span class="material-symbols-outlined">
                                                 arrow_back
                                             </span>
-                                            </x-standard-btn>
+                                        </x-standard-btn>
                                     </form>
                                 </div>
                             </div>
                             <form action="{{ route('week') }}">
-                                <div class="col s12 m2 input-field" >
+                                <div class="col s12 m2 input-field">
                                     <div class="form-group">
                                         <div class="form-line success">
-                                            <select name="numberweek" class="form-control h-30 materialize-select browser-default" style="height: 30px">
-                                                <option value="{{ $numWeek?$numWeek:'' }}">week {{$numWeek?$numWeek:''}}</option>
+                                            <select name="numberweek"
+                                                    class="form-control h-30 materialize-select browser-default"
+                                                    style="height: 30px">
+                                                <option value="{{ $numWeek?$numWeek:'' }}">
+                                                    week {{$numWeek?$numWeek:''}}</option>
                                                 @for ($i = 1; $i < 53; $i++)
                                                     <option value="{{$i}}">week {{$i}}</option>
                                                 @endfor
@@ -104,7 +111,8 @@
                                     <div class="form-group">
                                         <div class="form-line success">
 
-                                            <select name="year" class="form-control h-30 materialize-select browser-default">
+                                            <select name="year"
+                                                    class="form-control h-30 materialize-select browser-default">
                                                 <option value="{{$year?$year:now()->format("Y")}}">{{$year?$year:'current year'}}</option>
                                                 @for ($i = 2020; $i < 2031; $i++)
                                                     <option value="{{$i}}">{{$i}}</option>
@@ -123,8 +131,10 @@
                             <div class="col s12 m1 input-field">
                                 <div class="form-group">
                                     <form action="{{ route('week')}}">
-                                        <x-text-input type="hidden" value="{{$numWeek_arrow_f}}" name="numberweek"></x-text-input>
-                                        <x-text-input type="hidden" value="{{$year_arrow_f}}" name="year"></x-text-input>
+                                        <x-text-input type="hidden" value="{{$numWeek_arrow_f}}"
+                                                      name="numberweek"></x-text-input>
+                                        <x-text-input type="hidden" value="{{$year_arrow_f}}"
+                                                      name="year"></x-text-input>
                                         <x-standard-btn type="submit" class="btn btn-link btn-small valign-wrapper">
                                             <span class="material-symbols-outlined">
                                                 arrow_forward
@@ -153,7 +163,7 @@
     <input type="hidden" id="numWeek" name="numWeek" value="{{$numWeek}}">
     <input type="hidden" id="year" name="year" value="{{$year}}">
     <input type="hidden" id="idToFee" name="year" value="">
-    <x-service-details  :employees="$employeesItems" :customers="$customersItems" />
+    <x-service-details :employees="$employeesItems" :customers="$customersItems"/>
 @endsection
 
 {{-- inclusção de scripts  no final no corpo--}}
@@ -162,7 +172,6 @@
     <script type="module" src="{{ asset('web/custom/service_cad.js') }}"></script>
     <script type="module" src="{{ asset('web/custom/modalPush.js') }}"></script>
     <script type="module" src="{{ asset('web/custom/field_change.js') }}"></script>
-
 
 @endsection
 

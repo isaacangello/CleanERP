@@ -1,7 +1,6 @@
-
-@extends('layouts.main')
+@extends('layouts.main_old')
 @section('title')
-     <title>Profile - main - JJL System 2</title>
+    <title>Profile - main - JJL System 2</title>
 @endsection
 {{--css links para o head--}}
 @section('css-style')
@@ -9,21 +8,25 @@
     @include('layouts.generic_css')
     <style>
         input.form-control {
-            margin-bottom: 0!important;
-            border-bottom: none!important;
+            margin-bottom: 0 !important;
+            border-bottom: none !important;
         }
+
         textarea.form-control {
-            margin-bottom: 0!important;
-            border-bottom: none!important;
+            margin-bottom: 0 !important;
+            border-bottom: none !important;
         }
+
         input.select-dropdown {
-            margin-bottom: 0!important;
-            border-bottom: none!important;
+            margin-bottom: 0 !important;
+            border-bottom: none !important;
         }
-        .red:hover{
-            background-color: #ef9a9a!important;
+
+        .red:hover {
+            background-color: #ef9a9a !important;
         }
-        input.form-line.success{
+
+        input.form-line.success {
             margin-bottom: 3px;
         }
     </style>
@@ -33,52 +36,52 @@
 @endsection
 
 @section('content')
-<div class="container-fluid">
-    <div class="block-header">
-        <h2>
-            <small>USER PROFILE</small>
-        </h2>
-    </div>
-
-    <div class="card">
-        <div class="header">
-            <x-slot name="header">
-                <h2 class="grey-text font-10">
-                    {{ __('Profile') }}
-                </h2>
-            </x-slot>
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>
+                <small>USER PROFILE</small>
+            </h2>
         </div>
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col s1 m3"></div>
-                <div class="col s10 m6">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-                <div class="col s1 m3"></div>
-            </div>
-            <div class="row clearfix">
-                <div class="col s1 m3"></div>
-                <div class="col s10 m6">
 
-                            @include('profile.partials.update-password-form')
-                </div>
-                <div class="col s1 m3"></div>
+        <div class="card">
+            <div class="header">
+                <x-slot name="header">
+                    <h2 class="grey-text font-10">
+                        {{ __('Profile') }}
+                    </h2>
+                </x-slot>
             </div>
-            <div class="row clearfix">
-                <div class="col s1 m3"></div>
-                <div class="col s10 m6">
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col s1 m3"></div>
+                    <div class="col s10 m6">
+                        @include('profile.partials.update-profile-information-form')
+                    </div>
+                    <div class="col s1 m3"></div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col s1 m3"></div>
+                    <div class="col s10 m6">
 
-                            @include('profile.partials.delete-user-form')
+                        @include('profile.partials.update-password-form')
+                    </div>
+                    <div class="col s1 m3"></div>
                 </div>
-                <div class="col s1 m3"></div>
-            </div>
-        </div> <!--card body-->
-    </div> <!-- card -->
-</div>{{-- container--}}
+                <div class="row clearfix">
+                    <div class="col s1 m3"></div>
+                    <div class="col s10 m6">
+
+                        @include('profile.partials.delete-user-form')
+                    </div>
+                    <div class="col s1 m3"></div>
+                </div>
+            </div> <!--card body-->
+        </div> <!-- card -->
+    </div>{{-- container--}}
 @endsection
 
 {{-- inclusção de scripts  no final no corpo--}}
 @section('script-botton')
-@include('layouts.generic_js')
+    @include('layouts.generic_js')
 @endsection
 

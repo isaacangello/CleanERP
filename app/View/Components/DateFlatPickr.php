@@ -25,6 +25,6 @@ class DateFlatPickr extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.date-flat-pickr');
+        return view('components.old.date-flat-pickr');
     }
 }

@@ -1,14 +1,14 @@
-@extends("layouts.main")
+@extends("layouts.main_old")
 <!-- Titlulo da página -->
 @section('title')
-     <title>data table - main - JJL System 2</title>
+    <title>data table - main - JJL System 2</title>
 @endsection
 <!-- links para css no topo do layout-->
 @section('css-style')
 
     <!-- DataTable Css-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
-{{--    <link href="web/systheme/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">--}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+    {{--    <link href="web/systheme/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">--}}
 
 @endsection
 <!-- Links para scripts no topo do layout -->
@@ -20,7 +20,7 @@
         $(document).ready(function () {
             var table = $('#tabela').DataTable();
             console.log(`aqui ${table}`);
-    });
+        });
     </script>
 
 @endsection
