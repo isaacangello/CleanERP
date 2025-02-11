@@ -1,25 +1,19 @@
-<div class="container-fluid">
-    <div class="block-header">
-        <h2>
+<div>
+    <x-cleopatra.card body-class="p-0">
+        <x-slot name="header">
             <small class="uppercase-text">billings REGISTER AND VIEW</small>
-        </h2>
-    </div>
+        </x-slot>
     <!-- Basic Examples -->
-    <div class="row clearfix">
-        <div class="col s12 m12">
-            <div class="card">
-                <div class="header between">
-                    <div class="w-30p">
-                            <button class="btn btn-link font-12  modal-trigger"  href="#new-billing"  >New Billings</button>
+                            <button class="btn btn-link font-12 "   >New Billings</button>
                             <span id="list-of-billings">LIST OF BILLINGS</span>
 
                             <!-- ############  Blade  component customer-cad ###########################################################################################-->
                             <!-- component register for register new customer-->
-                            <x-billings-cad />
-                    </div>
+{{--                            <x-old.billings-cad />--}}
 
-                        <div class="w-49p valign-wrapper" style="display: flex; justify-content: flex-end">
-                            <h2 class="text-center valign-wrapper m-r-5">Show deleted items.</h2>
+
+                        <div class="text-sm " style="display: flex; justify-content: flex-end">
+                            <h2 class="text-sm">Show deleted items.</h2>
                             <div class="switch">
                                 <label>
                                     Off
@@ -32,66 +26,39 @@
 
                         </div>
 
-                </div>
-            </div>
+
+                        <table class="table-auto w-full text-left">
+                            <thead>
+                            <tr class="border-t">
+                                <th class="px-4 py-2 border-r">label</th>
+                                <th class="px-4 py-2 border-r">value</th>
+                                <th class="px-4 py-2">hint</th>
+                            </tr>
+                            </thead>
+                            <tbody class="text-gray-600">
+                            @error('value')
+                                <tr>
+                                    <td colspan="3" class="red-text text-darken-3"> {{ $message }}  </td>
+                                </tr>
+                            @enderror
+                            @error('hint')
+                                <tr>
+                                    <td colspan="3" class="red-text text-darken-3"> {{ $message }}  </td>
+                                </tr>
+                            @enderror
+
+                        @foreach($billing as $row)
 
 
+                                <livewire:finance.td id="{{ $row->id }}" :model="$row" value="{{ $row->value }}" :key="$row->id" :show-hidden-regs="$showHiddenRegs" />
+
+                        @endforeach
+                            </tbody>
+                        </table>
+
+            <x-old.custom-events />
 
 
-
-                                    <div class="row">
-                                        <div class="col s12 m12">
-                                            <div class="card">
-                                                <div class="header">
-                                                    <h2 class="p-0">billings</h2>
-                                                </div>
-                                                <div class="body">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-hover dashboard-task-infos highlight">
-                                                            <thead>
-                                                            <tr>
-                                                                <th class="flow-text">label</th>
-                                                                <th class="flow-text">value</th>
-                                                                <th class="flow-text">hint</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            @error('value')
-                                                                <tr>
-                                                                    <td colspan="3" class="red-text text-darken-3"> {{ $message }}  </td>
-                                                                </tr>
-                                                            @enderror
-                                                            @error('hint')
-                                                                <tr>
-                                                                    <td colspan="3" class="red-text text-darken-3"> {{ $message }}  </td>
-                                                                </tr>
-                                                            @enderror
-
-                                                        @foreach($billing as $row)
-
-
-                                                                <livewire:finance.td id="{{ $row->id }}" :model="$row" value="{{ $row->value }}" :key="$row->id" :show-hidden-regs="$showHiddenRegs" />
-
-                                                        @endforeach
-                                                            </tbody>
-                                                        </table>
-{{--                                                        <button class="btn btn-link white-text" wire:click="toast">Click</button>--}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-            </div>
-{{--            <button--}}
-{{--                    class="btn btn-link"--}}
-{{--                    wire:click="showtoast"--}}
-{{--                    wire:confirm="Are you sure you want to delete this post?"--}}
-{{--            >--}}
-{{--                teste--}}
-{{--            </button>--}}
-            <x-custom-events />
+    </x-cleopatra.card>
 </div>
 

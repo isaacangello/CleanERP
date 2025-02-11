@@ -1,92 +1,86 @@
-@extends('layouts.clean')
-@section('title')
-     Login - main - JJL System 2
-@endsection
-@section('css-style')
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
-<style>
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
-</style>
-@endsection
-@section('content')
-   <div  class="backdrop-blur-sm">
-       @if($errors->get('email'))
-           <div class="alert alert-danger p-10 ">
+<x-cleopatra.guest>
+<x-slot name="title"> {{ config('app.name', 'JJL System') }} - Login </x-slot>
+<x-slot name="slot">
+   <div
+           class="w-screen h-screen flex flex-col justify-center items-center pt-0 sm:pt-0 overflow-hidden"
+           x-data="loginInit"
+           x-cloak
 
-               @foreach($errors->get('email') as $message)
-                   Email: {{ $message }}
-               @endforeach
+           x-init="pageInit()"
+           wire:loading.class="flex"
+   >
 
-           </div>
-       @endif
-       @if($errors->get('password'))
-           <div class="alert alert-danger">
-               <ul class="collection">
-               @foreach($errors->get('password') as $message)
-                   <li class="collection-item">Password: {{ $message }}</li>
-               @endforeach
-               </ul>
-           </div>
-       @endif
-
-        <div class="card shadow-lg rounded-xl">
-            <div class="body">
+        <div class="card shadow-lg rounded-xl bg-white dark:bg-gray-800">
+            <div class="card-body gap-4">
                 <form id="sign_in" method="POST" action="{{ route('login') }}">
                     @csrf
-                    <div class="msg w-full text-center">Sign in to start your session</div>
-                    <div class="input-group flex">
+                    <div class="w-full text-center text-sm text-gray-500 mb-4">Sign in to start your session</div>
+                    <div class="w-full text-center flex flex-col gap-2">
+                        <label class="input input-bordered  @if($errors->get('email'))  input-error @endif flex items-center gap-2">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 16 16"
+                                    fill="currentColor"
+                                    class="h-4 w-4 opacity-70">
+                                <path
+                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                            </svg>
+                            <input type="email" name="email" class="grow" placeholder="Username" />
+                        </label>
+                        @error('email')
+                        <div class="text-red-500 text-xs italic">
+                             <span>{{ $message }}</span>
+                        </div>
+                        @enderror
+                        <label class="input input-bordered @if($errors->get('password')) input-error @endif flex items-center gap-2">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 16 16"
+                                    fill="currentColor"
+                                    class="h-4 w-4 opacity-70">
+                                <path
+                                        fill-rule="evenodd"
+                                        d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+                                        clip-rule="evenodd" />
+                            </svg>
+                            <input type="password"  name="password" class="grow" placeholder="password" />
+                        </label>
+                        @error('password')
+                        <div class="text-red-500 text-xs italic">
+                            <span>{{ $message }}</span>
+                        </div>
+                        @enderror
 
-                            <span class="input-group-addon">
-                                <i class="material-icons">person</i>
-                            </span>
-                            <div class="form-line success">
-                                <input id="email" type="email" name="email"  class="form-control"  placeholder="Email" required autofocus autocomplete="username" />
-                            </div>
-
-                        <x-input-error :messages="$errors->get('email')" class="red-text text-darken-4" />
                     </div>
-                    <div class="input-group flex">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-
-                            <div class="form-line success">
-                                <input id="password" type="password" class="form-control" name="password"  autocomplete="current-password" placeholder="Password" required>
-                            </div>
-
-                        <x-input-error :messages="$errors->get('password')" class="red-text text-darken-4" />
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m6 valign-wrapper p-b-4 flex text-left align-middle justify-start gap-2">
+                    <div class="flex  mt-4  justify-between">
+                        <div class=" flex  items-center justify-between gap-2">
                                     <input type="checkbox" name="remember" id="remember_me"
                                            class="w-4 h-4 accent-green-800 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600
                                                 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                     >
                                     <span>Remember Me</span>
                         </div>
-                        <div class="col s12 m6 right-align">
-                            <button class="btn btn-link waves-effect waves-teal " type="submit">SIGN IN</button>
+                        <div class="">
+                            <button class="btn btn-primary" type="submit">SIGN IN</button>
                         </div>
                     </div>
-                    <div class="row m-t-15">
-                        <div class="col s12 m6">
+                    <div class="flex justify-between">
+                        <div class="">
                             &nbsp;
                         </div>
-                        <div class="col s12 m6 right-align">
-                            <a href="{{ route('password.request') }}" class="m-b-3 green-text text-darken-2">Forgot Password?</a>
+                        <div class="text-end mt-5">
+                            <a href="{{ route('password.request') }}" class="link link-primary">Forgot Password?</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
            <div>
-               <div class="p-t-5 p-b-10 center-align">
-                   <small class="w-75 text-bg-info white-text"  style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>The Office System. </b></small>
+               <div class="pt-5 pb-10 text-center text-white">
+                   <small class=""  style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>The Office System. </b></small>
                </div>
            </div>
 
 </div>
-
-@endsection
+</x-slot>
+</x-cleopatra.guest>

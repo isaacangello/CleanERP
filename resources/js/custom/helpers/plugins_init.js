@@ -1,5 +1,4 @@
-window.Swal = Swal
-
+import Swal from "sweetalert2";
 const toastAlert = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -68,3 +67,4 @@ const toastAlert = Swal.mixin({
         })
     }
 
+export {toastAlert,Toast_5000,swalConfirm,swalConfirmCallback}
