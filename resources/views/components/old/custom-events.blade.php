@@ -10,69 +10,69 @@
 
 
 
-            Livewire.on('wire-toast-alert', (event) => {
-                toastAlert.fire({
-                    icon: event.detail.icon,
-                    title: event.detail.message
-                });
+        Livewire.on('wire-toast-alert', (event) => {
+            toastAlert.fire({
+                icon: event.detail.icon,
+                title: event.detail.message
+            });
+        })
+        window.addEventListener('toast-alert', event =>{
+            // console.log(event)
+            toastAlert.fire({
+                icon: event.detail.icon,
+                title: event.detail.message
             })
-            window.addEventListener('toast-alert', event =>{
-                // console.log(event)
-                toastAlert.fire({
-                    icon: event.detail.icon,
-                    title: event.detail.message
-                })
-                console.log(window)
+            console.log(window)
+        })
+        window.addEventListener('close-modal', event =>{
+                let modalInstance = window.M.Modal.getInstance(document.getElementById(event.detail.idElement))
+                modalInstance.close()
             })
-            window.addEventListener('close-modal', event =>{
-                    let modalInstance = window.M.Modal.getInstance(document.getElementById(event.detail.idElement))
-                    modalInstance.close()
-                })
 
-            window.addEventListener('toggleDisabledBtnDelete', event =>{
-                        let btnElements = document.querySelectorAll('.btn-delete')
-
-                        btnElements.forEach(eL =>{
-                            console.log(eL)
-                            eL.classList.toggle('disabled')
-                        })
-                    })
-            window.addEventListener('enableBtnDelete', event =>{
-
+        window.addEventListener('toggleDisabledBtnDelete', event =>{
                     let btnElements = document.querySelectorAll('.btn-delete')
 
                     btnElements.forEach(eL =>{
                         console.log(eL)
-                        if(eL.classList.contains('disabled')){
-                            eL.classList.remove('disabled')
-                        }else{
-
-                        }
-
+                        eL.classList.toggle('disabled')
                     })
-
-
-            })
-            window.addEventListener('disabledBtnDelete', event =>{
-
-                    let btnElements = document.querySelectorAll('.btn-delete')
-
-                    btnElements.forEach(eL => {
-                        console.log(eL)
-                        if (eL.classList.contains('disabled')) {
-                        } else {
-                            eL.classList.add('disabled')
-                        }
-
-                    })
-
-            })
-            window.addEventListener('triggerRestoreBilling', function (event){
-
-                swalConfirmCallback('Do you want to restore this record?','Yes?', ()=> {
-                    window.Livewire.dispatch('restoreBilling',{id:event.detail.id})
                 })
+        window.addEventListener('enableBtnDelete', event =>{
+
+                let btnElements = document.querySelectorAll('.btn-delete')
+
+                btnElements.forEach(eL =>{
+                    console.log(eL)
+                    if(eL.classList.contains('disabled')){
+                        eL.classList.remove('disabled')
+                    }else{
+
+                    }
+
+                })
+
+
+        })
+        window.addEventListener('disabledBtnDelete', event =>{
+
+                let btnElements = document.querySelectorAll('.btn-delete')
+
+                btnElements.forEach(eL => {
+                    console.log(eL)
+                    if (eL.classList.contains('disabled')) {
+                    } else {
+                        eL.classList.add('disabled')
+                    }
+
+                })
+
+        })
+        window.addEventListener('triggerRestoreBilling', function (event){
+
+            swalConfirmCallback('Do you want to restore this record?','Yes?', ()=> {
+                window.Livewire.dispatch('restoreBilling',{id:event.detail.id})
             })
+        })
         window.addEventListener('populate-date', event=>{
             flatpickr( event.detail.idElement,     {
                 weekNumbers:true,
@@ -135,7 +135,6 @@
             }
 
         })
-
         document.addEventListener('select-cad-employee', event => {
             const empId = event.detail.empId;
             // const selectElementC = document.getElementById('select-cad-service-customer');
@@ -159,15 +158,6 @@
             window.Livewire.dispatch('populate-on-open', {empId: empId,date: event.detail.dateTime});
             $wire.showCadModal = true;
         });
-
-        // window.addEventListener('select-all-checkboxes', event => {
-        //         const checkboxClass = event.detail.checkboxClass;
-        //         const checkboxes = document.querySelectorAll(`.${checkboxClass}`);
-        //
-        //         checkboxes.forEach(checkbox => {
-        //             checkbox.checked = true;
-        //         });
-        //     });
         document.addEventListener('select-all-checkboxes', event => {
             console.log("select-all-checkboxes:  ".event)
             const checkboxClass = event.detail.checkboxClass;
@@ -178,14 +168,14 @@
                 checkbox.checked = !allChecked;
             });
         });
-            window.addEventListener('trigger-confirm-fee', function (event){
+        window.addEventListener('trigger-confirm-fee', function (event){
                 console.log("event fee")
                 console.log($wire)
                 swalConfirmCallback('Do you want to change fee status?','Yes?', ()=> {
                     window.Livewire.dispatch('toggle-fee')
                 })
             })
-            window.addEventListener('trigger-cancel-fee', function (event){
+        window.addEventListener('trigger-cancel-fee', function (event){
                 console.log("event cancel fee")
                 swalConfirmCallback('Do you want to change fee status?','Yes?', ()=> {
                     window.Livewire.dispatch('cancel-fee', {id:event.detail.id})
@@ -193,8 +183,7 @@
 
 
             })
-
-            window.addEventListener('trigger-confirm-delete', function (event){
+        window.addEventListener('trigger-confirm-delete', function (event){
                 console.log($wire)
                 swalConfirmCallback('Do you want to delete this record?','Yes?', ()=> {
                     window.Livewire.dispatch('delete-service')
