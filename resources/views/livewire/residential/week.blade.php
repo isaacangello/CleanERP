@@ -1,17 +1,4 @@
-    <div class="container-fluid" x-data="{
-        open: $wire.entangle('showModal'),
-        cadOpen: $wire.entangle('showCadModal'),
-        focusables() {
-            let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
-            return [...$el.querySelectorAll(selector)]
-                .filter(el => ! el.hasAttribute('disabled'))
-        },
-        firstFocusable() { return this.focusables()[0] },
-        lastFocusable() { return this.focusables().slice(-1)[0] },
-        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
-        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
-        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
-        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 }    }">
+    <div class="container-fluid" x-data="weekScreen" x-init="init()">
         <div wire:loading wire:target="thisWeek, backWeek, selectWeek, forwardWeek"  class="absolute top-1/2" style="z-index:1060">
             <div>
                 <img src="{{asset('img/loading.gif')}}" alt="loading" class="w-36 " style="margin-left: 40vw; margin-top: 10vh;">
@@ -45,7 +32,7 @@
                     <div class="body">
                         <x-btn-week-navigator :$route :$selectedWeek>
                             <x-slot:btn>
-                                <x-link-btn title="Print weekly report" href="{{route('week.pdf.export',[\Carbon\Carbon::create($from)->format('Y-m-d'),\Carbon\Carbon::create($till)->format('Y-m-d')])}}" class="btn-small z-depth-3" >
+                                <x-link-btn title="Print weekly report" href="{{route('week.pdf.export',[\Carbon\Carbon::create($from)->format('Y-m-d'),\Carbon\Carbon::create($till)->format('Y-m-d')])}}" class="btn btn-primary" >
                                     Print
                                 </x-link-btn>
                             </x-slot>
@@ -69,7 +56,7 @@
                             @endforeach
 
                         </div> <!--grid system row-->
-                        <div class="grid grid-cols-1 gap-1 hide-on-med-and-up" >
+                        <div class="grid grid-cols-1 gap-1 md:hidden" >
 
                             @foreach($this->dataCard() as $empName => $data )
                                 @if(Collect($data['Monday'])->isNotEmpty() || Collect($data['Tuesday'])->isNotEmpty() || Collect($data['Wednesday'])->isNotEmpty() || Collect($data['Thursday'])->isNotEmpty() || Collect($data['Friday'])->isNotEmpty() || Collect($data['Saturday'])->isNotEmpty() || Collect($data['Sunday'])->isNotEmpty())
@@ -92,34 +79,6 @@
                 <span wire:loading.remove> {{$this->modalData->customer->name??'Loading...'}}</span> {!! $this->customer_type !!}
                     <span wire:loading>Loading...</span>
             </x-slot>
-            <table  wire:loading style="width: 100%; border-collapse: collapse;  height:40vh; ">
-                <tbody>
-                <tr>
-
-                    <td style="width: 40vw; border-bottom:none!important;">
-
-
-                         <div  wire:loading.flex  style="margin-left: 22vw; margin-top: 10vh" >
-
-                                <div style="width: 25vw;">
-                                    <div class="preloader pl-size-xl">
-                                        <div class="spinner-layer pl-teal">
-                                            <div class="circle-clipper left">
-                                                <div class="circle"></div>
-                                            </div>
-                                            <div class="circle-clipper right">
-                                                <div class="circle"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p>Please wait...</p>
-                                </div>
-
-                         </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
             <table wire:loading.remove class="table-modal-services-details">
                 <tr>
                     <th colspan="1" class="green">Employee:</th>

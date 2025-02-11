@@ -10,7 +10,7 @@
            wire:loading.class="flex"
    >
 
-        <div class="card shadow-lg rounded-xl bg-white dark:bg-gray-800">
+        <div class="card shadow-lg rounded-xl bg-white/80 backdrop-blur-md dark:bg-gray-800">
             <div class="card-body gap-4">
                 <form id="sign_in" method="POST" action="{{ route('login') }}">
                     @csrf
