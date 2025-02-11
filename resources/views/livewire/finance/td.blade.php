@@ -1,8 +1,8 @@
 
-<tr @if(!is_null($model->deleted_at)) class="blue-grey lighten-4" @endif>
-<td class="flow-text padding-0">
+<tr @if(!is_null($model->deleted_at)) class="text-gray-600" @endif>
+<td class="border border-l-0">
     <input
-            class="form-control flow-text "
+            class="text-sm"
             type="text"
             wire:change.prevent="saveChange('Label')"
             data-id="{{ $model->id }}"
@@ -10,12 +10,12 @@
             @if($showHiddenRegs) disabled @endif
     >
     @error('label')
-    <span colspan="3" class="red-text text-darken-3 text-wrap"> {{ $message }}  </span>
+    <span colspan="3" class="text-red-600  text-wrap"> {{ $message }}  </span>
     @enderror
 </td>
-<td class="flow-text padding-0 w-10p">
+<td class="text-sm border border-l-0">
     <input
-            class="form-control flow-text"
+            class="text-sm"
             type="text"
             wire:change.prevent="saveChange('Value')"
             data-id="{{ $model->id }}"
@@ -23,12 +23,12 @@
             @if($showHiddenRegs) disabled @endif
     >
     @error('value')
-    <span colspan="3" class="red-text text-darken-3 text-wrap"> {{ $message }}  </span>
+    <span colspan="3" class="text-red-600  text-wrap"> {{ $message }}  </span>
     @enderror
 </td>
-<td class="flow-text padding-0 ">
+<td class="border border-l-0">
     <input
-            class="form-control flow-text "
+            class="text-sm"
             type="text"
             wire:change.prevent="saveChange('Hint')"
             data-id="{{ $model->id }}"
@@ -36,16 +36,16 @@
             @if($showHiddenRegs) disabled @endif
     >
     @error('hint')
-    <span colspan="3" class="red-text text-darken-3 text-wrap"> {{ $message }}  </span>
+    <span colspan="3" class="text-red-600  text-wrap"> {{ $message }}  </span>
     @enderror
 </td>
     <td class="align-right">
         @if(!is_null($model->deleted_at))
-            <a wire:click="$dispatch('triggerRestoreBilling', { id:{{ $model->id }} })" class="btn-link-underline red-text darken-4">{{ $model->deleted_at }}</a>
+            <a wire:click="$dispatch('triggerRestoreBilling', { id:{{ $model->id }} })" class="">{{ $model->deleted_at }}</a>
         @else
 {{--            {{ var_export($showHiddenRegs) }}--}}
-            <a  class="btn btn-link btn-danger btn-delete @if($showHiddenRegs) disabled @endif" wire:click="deleteBilling({{ $model->id }})">
-                <span class="material-symbols-outlined">delete</span>
+            <a  class="btn btn-link btn-danger   @if($showHiddenRegs) disabled @endif" wire:click="deleteBilling({{ $model->id }})">
+                <i class="fa-duotone fa-solid fa-trash"></i>
             </a>
 
         @endif

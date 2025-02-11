@@ -1,6 +1,6 @@
 
     <div id="gifLoading"
-         class="w-full h-screen flex justify-center items-center hidden"
+         class="w-full h-screen  justify-center items-center hidden"
          style="
             position: fixed;
             top: 0;
@@ -11,8 +11,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: transparent;
          "
          wire:loading.class="hidden"
+
 
     >
         <img  class="w-48" src="{{asset('./img/loading.gif')}}" alt="loading" style="width: 12rem;">

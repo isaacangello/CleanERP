@@ -95,7 +95,7 @@ class Billings extends Component
     }
     public function render()
     {
-        return view('livewire.finance.billings')
-            ->extends('layouts.app');
+        return view('livewire.finance.billings');
+
     }
 }

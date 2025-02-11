@@ -13,18 +13,18 @@
 
         <!-- Scripts -->
 {{--        @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
-        @include('layouts.generic_css')
+
         <style>
             input.form-control {
-                margin-bottom: 0px!important;
+                margin-bottom: 0!important;
                 border-bottom: none!important;
             }
             textarea.form-control {
-                margin-bottom: 0px!important;
+                margin-bottom: 0!important;
                 border-bottom: none!important;
             }
             input.select-dropdown {
-                margin-bottom: 0px!important;
+                margin-bottom: 0!important;
                 border-bottom: none!important;
             }
             .red:hover{
@@ -45,6 +45,6 @@
                 {{ $slot }}
             </div>
         </div>
-        @include('layouts.generic_js')
+
     </body>
 </html>

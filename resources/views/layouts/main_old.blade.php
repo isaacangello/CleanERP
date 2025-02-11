@@ -166,7 +166,7 @@
                                     x-on:click.outside="close($refs.button)"
                                     :id="$id('dropdown-button')"
                                     x-cloak
-                                    class="absolute -left-36 min-w-48 text-left  shadow-sm mt-2  origin-top-left bg-white p-1.5 outline-none border border-gray-200"
+                                    class="absolute -left-36 min-w-52 text-left  shadow-sm mt-2  origin-top-left bg-white p-1.5 outline-none border border-gray-200"
                                     style="z-index: 9999999"
                             >
                                 <a href="{{ route('profile.edit') }}" class="px-2 lg:py-1.5 py-2 w-full flex justify-start rounded-md transition-colors  text-gray-800 hover:bg-gray-50 focus-visible:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
