@@ -447,7 +447,7 @@ class Week extends Component
         if($this->from and ($this->numWeek === null)){
             $this->numWeek = $dateTrait->numberWeekByDay(Carbon::create($this->from)->nextWeekday()->format('Y-m-d'));
         }
-        if ($this->selectedWeek === null){$this->selectedWeek = $this->numWeek;}
+        if (empty($this->selectedWeek) ){$this->selectedWeek = $dateTrait->numberWeekByDay(now()->format('Y-m-d'));}
         if($this->selectedYear === null){$this->selectedYear = $this->year;}
 
 

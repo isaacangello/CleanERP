@@ -26,7 +26,7 @@
         window.addEventListener('populate-date', event=>{
                 flatpickr( event.detail.idElement,     {
                         weekNumbers:true,
-                        monthSelectorType:'static',
+                        monthSelectorType:'dropdown',
                         dateFormat:'Y-m-d',
                         altFormat:'F j, Y',
                         altInput:true,

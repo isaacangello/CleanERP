@@ -11,16 +11,16 @@
     @vite('resources/js/app.js')
 </head>
 <body class="block text-gray-900 antialiased  bg-gradient-to-bl  from-gray-300 to-gray-400 dark:bg-gray-900 overflow-hidden "
-style="
-background: rgb(209,213,219);
-background: linear-gradient(188deg, rgba(209,213,219,0.01) 10%, rgba(156,163,175,1) 100%);
-"
+    style="
+    background: rgb(209,213,219);
+    background: linear-gradient(188deg, rgba(209,213,219,0.01) 10%, rgba(156,163,175,1) 100%);
+    "
 >
-<x-cleopatra.loading  />
+    <x-cleopatra.loading  />
 
         {{ $slot }}
 
 
-@livewireScriptConfig
+    @livewireScriptConfig
 </body>
 </html>

@@ -57,7 +57,7 @@
                         <div class=" col s12 m4">
                             <div class="form-group">
                                 <div class="form-line success" >
-                                    <div  wire:loading class="absolute top-2 left-1/2 mt-4 ml-14  bg-white w-2/6 h-8"><div class="button--loading absolute top-0"></div></div>
+                                    <div  wire:loading class="absolute top-2 left-1/2 mt-4 ml-14  bg-white w-2/6 h-8"><div class="button--loading "></div></div>
                                     <select
 
                                             wire:model.live="form.customer_id"
