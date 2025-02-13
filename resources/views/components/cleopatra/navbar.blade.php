@@ -117,7 +117,7 @@
                         x-cloak
                         style="display: none !important;"
                         x-show="notifications"
-                        class="absolute right-0  z-20  py-2 mt-10 bg-white rounded shadow-md menu  w-64 md:right-44  md:w-48 md:mt-10  animated faster"
+                        class="absolute right-0  z-20  py-2 mt-10 bg-white rounded shadow-md menu  w-84 md:right-44  md:min-w-64 md:mt-10  animated faster"
 
                 >
                     <!-- top -->
@@ -166,7 +166,7 @@
                     <!-- end item -->
 
                     <!-- item -->
-                    <a class="flex flex-row items-center justify-start block px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200" href="#">
+                    <a class="flex flex-row items-center justify-start  px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200" href="#">
 
                         <div class="px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
                             <i class="text-sm fad fa-images"></i>
@@ -234,7 +234,7 @@
                         x-cloak
                         style="display: none !important;"
                         x-show="messages"
-                        class="absolute right-0 z-20  py-2  bg-white rounded shadow-md menu md:w-84 md:mt-10 md:right-1/3 mt-10 w-64 animated faster"
+                        class="absolute right-0 z-20  py-2  bg-white rounded shadow-md menu md:w-84 md:mt-10 md:right-1/3 mt-10 w-84 animated faster"
                 >
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between px-4 py-2 text-sm font-semibold capitalize">

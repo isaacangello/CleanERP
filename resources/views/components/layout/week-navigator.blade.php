@@ -1,7 +1,7 @@
 <div class="row m-b-0">
     <div class="col s6 m2 input-field">
         <form action="{{route('finances')}}">
-            <x-standard-btn type="submit" class="btn-small" >
+            <x-standard-btn type="submit" class="btn-sm" >
                 <span class="material-symbols-outlined font-15">
                 house
                 </span>

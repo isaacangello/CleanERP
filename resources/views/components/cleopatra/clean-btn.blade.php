@@ -1,3 +1,3 @@
-<div>
-    <!-- Simplicity is an acquired taste. - Katharine Gerould -->
-</div>
+<button {{ $attributes->merge(['class' => 'btn']) }}>
+    {{ $slot }}
+</button>

@@ -216,11 +216,15 @@ import {toastAlert,Toast_5000,swalConfirmCallback,swalConfirm} from "./custom/he
 
         },
 
-        pageInit(){
+        pageInit(pt = 30){
 
                 document.getElementById('gifLoading').style.display = 'none';
+
                 // document.getElementById('contentHidden').style.display = 'block';
-            console.log();
+                const navBar = document.getElementById('navBar');
+                const mainContent = document.getElementById('mainContent');
+                const mTop = navBar.offsetHeight + pt;
+
         },
 
     }));
@@ -250,22 +254,22 @@ import {toastAlert,Toast_5000,swalConfirmCallback,swalConfirm} from "./custom/he
 
     }));
     Alpine.data('weekScreen', () => ({
-    init(){
-      customEvents()
-    },
-    open: $wire.entangle('showModal'),
+        init(){
+          customEvents()
+        },
+        open: $wire.entangle('showModal'),
         cadOpen: $wire.entangle('showCadModal'),
-    focusables() {
-    let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
-    return [...$el.querySelectorAll(selector)]
-        .filter(el => ! el.hasAttribute('disabled'))
-},
-    firstFocusable() { return this.focusables()[0] },
-    lastFocusable() { return this.focusables().slice(-1)[0] },
-    nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
-    prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
-    nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
-    prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 }
+        focusables() {
+        let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+        return [...$el.querySelectorAll(selector)]
+            .filter(el => ! el.hasAttribute('disabled'))
+        },
+        firstFocusable() { return this.focusables()[0] },
+        lastFocusable() { return this.focusables().slice(-1)[0] },
+        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 }
     }))
     // console.log(Livewire)
 

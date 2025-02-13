@@ -40,8 +40,8 @@
                     }
                 @endphp
                 @php($c++)
-                <div class="flex flex-row items-center @if($row->cust_id == 712) justify-center @else justify-between @endif p-1 text-gray-600 text-xs border-b">
-                    <div class="flex  items-center"  >
+                <div class="flex flex-row items-center  justify-between  p-1 text-gray-600 text-xs border-b">
+                    <div>
                         <a
                                 class=" {{$classes_service}}  "
                                 wire:click="{!! $wire_click !!}"
@@ -50,11 +50,14 @@
                                 @if($row->cust_id == 712) disabled @endif
                         >
                             @if($row->cust_id == 712)
-                                <span class="num-2 mr-2"> &nbsp;&nbsp;&nbsp;&nbsp; </span>
+                                <span class="num-2 text-white"> 08:00 AM </span>
                             @else
-                                <span class="num-2 mr-2"> {{ Funcs::carbonFormat($row->service_date,'h')}}</span>
+                                <span class="num-2 "> {{ Funcs::carbonFormat($row->service_date,'h')}}</span>
                             @endif
                         </a>
+
+                    </div>
+                    <div >
                         <a
                                 data-service-id="{{$row->service_id}}"
                                 class="hover:underline cursor-pointer text-gray-700"
@@ -71,9 +74,13 @@
 
                                 @if(!empty($row->notes))
                                     <i class="fa-solid fa-message-middle mr-1"></i>
+                                    @else
+                            <i class="px-1">&nbsp;</i>
                                 @endif
                                 @if($row->cust_type === 'RENTALHOUSE')
                                     <i class="fa-solid fa-house-day"></i>
+                                    @else
+                                        <i class="px-1">&nbsp;</i>
                                 @endif
 
                     </div>
