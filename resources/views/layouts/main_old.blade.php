@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @yield('title')
-    @if(isset($title)){{ $title??'JJL System'   }}@endif
+    @if(isset($title)){{ $title??'CleanERP'   }}@endif
 
     <!-- Favicon-->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -68,7 +68,7 @@
             </li>
             <li>
                 <span class="person-shadow flow-text hide-on-med-and-down p-l-10" >
-                    JJL System 2
+                    CleanERP 2
                 </span>
             </li>
         </ul>

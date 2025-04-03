@@ -7,7 +7,7 @@
             <img src="img/android-chrome-256x256.png"   class="logo " alt="jjl logo"/>
         </a>
         <a href="javascript:void(0);" id="jjl-text" class=" brand-logo m-l-100 person-shadow flow-text hide-on-med-and-down" >
-            JJL System 2
+            CleanERP 2
         </a>
         <ul id="nav-mobile" class="right">
             <li>

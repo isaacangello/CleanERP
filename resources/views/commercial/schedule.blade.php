@@ -1,7 +1,7 @@
 @extends("layouts.main_old")
 
 @section('title')
-    <title>SCHEDULE - main - JJL System 2</title>
+    <title>SCHEDULE - main - CleanERP 2</title>
 @endsection
 
 {{--css links para o head--}}

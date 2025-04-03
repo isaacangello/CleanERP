@@ -1,7 +1,7 @@
 @extends("layouts.main_old")
 <!-- Titlulo da página -->
 @section('title')
-    <title>data table - main - JJL System 2</title>
+    <title>data table - main - CleanERP 2</title>
 @endsection
 <!-- links para css no topo do layout-->
 @section('css-style')

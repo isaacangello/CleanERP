@@ -1,6 +1,6 @@
 @extends('layouts.main_old')
 @section('title')
-    <title>Profile - main - JJL System 2</title>
+    <title>Profile - main - CleanERP 2</title>
 @endsection
 {{--css links para o head--}}
 @section('css-style')

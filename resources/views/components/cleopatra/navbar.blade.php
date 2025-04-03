@@ -1,16 +1,16 @@
 <!-- start navbar -->
 <div    id="navBar"
         x-ref="navBar"
-        class="flex flex-row w-full justify-between items-center p-6 bg-white border-b border-gray-300 md:fixed md:w-full md:top-0 md:z-20"
+        class="flex flex-row w-full justify-between items-center p-3 bg-white border-b border-gray-300 md:fixed md:w-full md:top-0 md:z-20"
 >
 
     <!-- logo -->
-    <div class="flex flex-row items-center flex-none w-56">
+    <div class="flex flex-row items-center flex-none w-64">
         <button @click="toggleLeftSideBar()" id="sliderBtn" class="flex-none block pr-2  text-right text-gray-900">
             <i class="fad fa-list-ul"></i>
         </button>
-        <img src="{{asset('img/android-chrome-256x256.png')}}" class="flex-none w-10">
-        <strong class="flex-1 ml-1 capitalize">JJL System</strong>
+        <img src="{{asset('img/logo.png')}}" class="flex-none w-[128px]">
+{{--        <strong class="flex-1 ml-1 capitalize">CleanERP</strong>--}}
 
     </div>
     <!-- end logo -->
