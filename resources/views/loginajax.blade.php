@@ -1,6 +1,6 @@
 @extends('layouts.clean')
 @section('title')
-     <title>Teste Login - main - JJL System 2</title>
+     <title>Teste Login - main - CleanERP 2</title>
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
    <div class="login-box" style="opacity: 1;">
         <div class="logo">
             <div class="float-end text-success">
-                <a href="javascript:void(0);" style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>JJLSYSTEM 2</b></a>
+                <a href="javascript:void(0);" style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>CleanERP</b></a>
                 <small class="w-75 text-bg-info" style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>The second version - The Powerful System. </b></small>
             </div>
         </div>

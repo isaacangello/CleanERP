@@ -4,26 +4,16 @@
     </div>
     <div class="card-body">
       <div class="flex">
-          <a target="_blank" href="https://meet.google.com/pbx-ngck-evi"
-             class="btn btn-outline btn-primary btn-sm border-r-0 rounded-r-none"
-          >
-            Chamada Principal
-          </a>
-          <a target="_blank" href="https://meet.google.com/vvh-zxmn-cjc"
-             class="btn btn-outline btn-primary btn-sm rounded-none"
-          >
-            Chamada Residencial
-          </a>
-          <a target="_blank" href="https://meet.google.com/cot-jkcr-dgw"
-             class="label btn btn-outline btn-primary btn-sm rounded-none"
-          >
-              Chamada Comercial
-          </a>
-          <a target="_blank" href="https://meet.google.com/mec-cngi-feo"
-             class="label btn btn-outline btn-primary btn-sm rounded-l-none"
-          >
-            Chamada Extra
-          </a>
+        <div class="w-full">
+          <div class="card bg-white/60 p-4 rounded-xl shadow-lg">
+            <h2 class="uppercase uppercase-text">Your Profile</h2>
+            <div class="mt-4">
+              <p class="text-gray-500">Name: {{ Auth::user()->name }}</p>
+              <p class="text-gray-500">Email: {{ Auth::user()->email }}</p>
+              <p class="text-gray-500">Role: {{ Auth::user()->role }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 @extends('layouts.clean')
 @section('title')
-     <title>Teste Login - main - JJL System 2</title>
+     <title>Teste Login - main - CleanERP 2</title>
 @endsection
 
 @section('content')

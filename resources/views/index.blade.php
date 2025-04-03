@@ -1,5 +1,5 @@
 <x-cleopatra.guest>
-<x-slot name="title"> {{ config('app.name', 'JJL System') }} - Login </x-slot>
+<x-slot name="title"> {{ config('app.name', 'CleanERP') }} - Login </x-slot>
 <x-slot name="slot">
    <div
            class="w-screen h-screen flex flex-col justify-center items-center pt-0 sm:pt-0 overflow-hidden"

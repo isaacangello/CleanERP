@@ -15,7 +15,7 @@
 
 
     @yield('title')
-{{--    @if(isset($title)){{ $title??'JJL System 2'   }}@endif--}}
+{{--    @if(isset($title)){{ $title??'CleanERP 2'   }}@endif--}}
 
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -105,7 +105,7 @@
             </li>
             <li>
                 <span class="person-shadow flow-text hide-on-med-and-down p-l-10" >
-                    JJL System 2
+                    CleanERP 2
                 </span>
             </li>
         </ul>

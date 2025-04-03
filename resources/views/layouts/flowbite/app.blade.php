@@ -5,49 +5,86 @@
     if(!empty(Auth::user()->email)){$email = Auth::user()->email;}else{$email="email@email.com";}
     $userName = Auth::user()->name;
 @endphp
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+{{--    @livewireStyles--}}
+
+
     @yield('title')
-    @if(isset($title)){{ $title??'CleanERP'   }}@endif
+{{--    @if(isset($title)){{ $title??'CleanERP 2'   }}@endif--}}
 
     <!-- Favicon-->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('./img/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('./img/favicon-16x16.png')}}">
-    <link rel="manifest" href="/img/site.webmanifest">
+{{--    <link rel="manifest" href="./img/site.webmanifest">--}}
     <link rel="mask-icon" href="{{ asset('./img/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#00a300">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    @yield('css-style')
-{{--    @if(isset($cssStyle)) {{ $cssStyle }} @endif--}}
-    @yield('script-top')
-{{--    @if(isset($scriptTop)) {{ $scriptTop }}@else <x-generic-css /> @endif--}}
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    {{--@use('Illuminate\Support\Facades\Vite')--}}
+    <!-- Animation Css -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
 
+
+
+
+
+    {{--<link href="{!! asset('js/node-waves/dist/waves.min.css') !!}" rel="stylesheet" />--}}
+
+    <!-- Materialize Core Css -->
+    <link href="{!! asset('web/materialize/css/materialize.css') !!}" rel="stylesheet">
+    <!-- jquery ui  Css -->
+{{--    <link href="{!! asset('web/jquery-ui/jquery-ui.css') !!}" rel="stylesheet" />--}}
+{{--    <!-- Animation Css -->--}}
+{{--    <link href="{!! asset('js/animate.css/animate.css') !!}" rel="stylesheet" />--}}
+
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{!! asset('web/systheme/css/themes/all-themes.css') !!}" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="{!! asset('web/custom/mobile.css') !!} " rel="stylesheet">
+
+    <link href="{!! asset('web/systheme/css/style.css') !!}" rel="stylesheet">
+
+    <link href="{!! asset('web/systheme/plugins/lou-multi-select/css/multi-select.css') !!}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{!! asset('web/systheme/css/themes/light.css') !!}">
+
+    <link rel="stylesheet" href="{{  asset('/build/assets/app-306f5f6d.css') }}">
+    @vite(['resources/css/app.css','resources/js/app.js'])
+
+    {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">--}}
 </head>
 
 <body class="theme-teal">
 <!-- Page Loader -->
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-teal">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-teal">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
                 </div>
             </div>
-            <p>Please wait...</p>
         </div>
+        <p>Please wait...</p>
     </div>
+</div>
 <!-- #END# Page Loader -->
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
@@ -60,11 +97,11 @@
 
         <ul class="left">
             <li>
-                <a href="javascript:void(0);" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a href="javascript:void(0);" id="btnCloseMenu"  class="btnCloseMenu hide-on-med-and-down white-text transparent " data-close="true"><i class="material-icons">menu</i></a>
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#" id="btnCloseMenu"  class="btnCloseMenu hide-on-med-and-down " data-close="true"><i class="material-icons">menu</i></a>
             </li>
             <li class="valign-wrapper p-l-3 p-t-12 center-align">
-                   <span class="valign-wrapper "> <img src="{{asset('img/android-chrome-256x256.png')}}"  class="logo"  alt="jjl logo"/></span>
+                <span class="valign-wrapper "> <img src="{{asset('img/android-chrome-256x256.png')}}"  class="logo"  alt="jjl logo"/></span>
             </li>
             <li>
                 <span class="person-shadow flow-text hide-on-med-and-down p-l-10" >
@@ -92,29 +129,26 @@
     </div>
 </nav>
 <!-- #Top Bar  #########################################-->
-    <!-- Left Sidebar mobile laravel component #########################################-->
-    <x-mobile-left-sidebar
+<!-- Left Sidebar mobile laravel component #########################################-->
+<x-mobile-left-sidebar
         :user-name="$userName"
         :user-img="$userImg"
         :email="$email"
         :system-version="$systemVersion"
-    />
-    <!-- Left Sidebar mobile end #########################################-->
+/>
+<!-- Left Sidebar mobile end #########################################-->
 
 <section>
     <!--###### Left Sidebar ######################################### -->
-    <aside id="leftsidebar" class="sidebar">
+    <aside id="leftsidebar" class="ls-closed sidebar ">
         <!-- User Info -->
         <div class="user-info" id="userInfoDesktop">
             <div class="image">
-                <img src="{{asset('img/users/user.png')}}" width="48" height="48" alt="User"/>
+                <img src="{{asset('/img/users/user.png')}}" width="48" height="48" alt="User"/>
             </div>
             <div class="info-container">
                 <div class="name person-shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</div>
-                <div class="email person-shadow">{{ Auth::user()->email }}
-{{--                    <i class="material-icons white-text">keyboard_arrow_down</i>--}}
-                </div>
-
+                <div class="email person-shadow">{{ Auth::user()->email }}</div>
                 <div class="user-helper-dropdown">
                     <div class="flex justify-center">
                         <div
@@ -166,7 +200,7 @@
                                     x-on:click.outside="close($refs.button)"
                                     :id="$id('dropdown-button')"
                                     x-cloak
-                                    class="absolute -left-36 min-w-52 text-left  shadow-sm mt-2  origin-top-left bg-white p-1.5 outline-none border border-gray-200"
+                                    class="absolute -left-36 min-w-48 text-left  shadow-sm mt-2  origin-top-left bg-white p-1.5 outline-none border border-gray-200"
                                     style="z-index: 9999999"
                             >
                                 <a href="{{ route('profile.edit') }}" class="px-2 lg:py-1.5 py-2 w-full flex justify-start rounded-md transition-colors  text-gray-800 hover:bg-gray-50 focus-visible:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
@@ -178,33 +212,13 @@
                                 </a>
                                 <form action="{{ route('logout') }}" method="post" >
                                     @csrf
-                                <button type="submit" class="px-2 lg:py-1.5 py-2 w-full flex justify-start  rounded-md transition-colors text-left text-gray-800 hover:bg-gray-50 focus-visible:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
-                                    <i class="material-icons">input</i><span>Sign Out</span>
-                                </button>
+                                    <button type="submit" class="px-2 lg:py-1.5 py-2 w-full flex justify-start  rounded-md transition-colors text-left text-gray-800 hover:bg-gray-50 focus-visible:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                                        <i class="material-icons">input</i><span>Sign Out</span>
+                                    </button>
                                 </form>
                             </div>
                         </div>
                     </div>
-{{--                    <a href="#" id="button-user-dropdown" data-target='dropdown-left-sidebar'>--}}
-{{--                    </a>--}}
-{{--                    <ul id="dropdown-left-sidebar" class='z-depth-4 scale-transition scale-out scale-in '>--}}
-{{--                        <li>--}}
-{{--                            <a href="{{ route('profile.edit') }}" class="waves-effect waves-classic waves-light"><i class="material-icons">person</i><span>Profile</span></a>--}}
-{{--                        </li>--}}
-{{--                        <li role="separator" class="divider"></li>--}}
-{{--                        <li><a href="{{route('config')}}" class="waves-effect waves-classic waves-light"><i class="material-icons">settings_applications</i><span>Config</span></a></li>--}}
-{{--                        <li role="separator" class="divider"></li>--}}
-{{--                        <li style="background-color: transparent">--}}
-{{--                            <form action="{{ route('logout') }}" method="post" >--}}
-{{--                                @csrf--}}
-{{--                                <a href="javascript:void(0);" class="waves-effect waves-classic waves-light">--}}
-{{--                                    <button type="submit" style="border:none;background-color: transparent">--}}
-{{--                                        <i class="material-icons">input</i><span>Sign Out</span>--}}
-{{--                                    </button>--}}
-{{--                                </a>--}}
-{{--                            </form>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
                 </div>
 
             </div>
@@ -218,7 +232,7 @@
         -->
         <div class="menu" id="menu-desktop">
             <ul>
-            <x-menu-links />
+                <x-menu-links />
             </ul>
         </div>
         <!-- #Menu -->
@@ -236,12 +250,56 @@
 </section>
 
 <section class="content" id="site-content">
-{{--    @if(isset($slot)) {{ $slot }} @endif--}}
     @yield('content')
-</section>
-@yield('script-botton')
 
-{{--@if(isset($scriptBotton)) {{ $scriptBotton }}@else <x-generic-js /> @endif--}}
+</section>
+
+
+{{--@use(Illuminate\Support\Facades\Vite)--}}
+<!-- Jquery core js -->
+<script  src="{{ asset('web/jquery/jquery-3.7.1.min.js') }}"></script>
+<script src="{{asset('web/systheme/plugins/jquery-countto/jquery.countTo.js')}}" />
+{{--<!-- Jquery-ui Js -->--}}
+{{--<script src="{{ asset('web/jquery-ui/jquery-ui.js') }}"></script>--}}
+
+<!-- Materialize Core Js -->
+<script src="{{ asset('web/materialize/js/materialize.min.js') }}"></script>
+
+{{--<!-- Waves Effect Plugin Js -->--}}
+{{--<script src="{{ asset('web/systheme/plugins/node-waves/dist/waves.min.js') }}"></script>--}}
+
+
+<!-- Slimscroll Plugin Js -->
+<script src="{{ asset('web/systheme/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+
+{{--<!-- Jquery Validation Plugin Css -->--}}
+{{--<script src="{{ asset('web/systheme/plugins/jquery-validation/jquery.validate.js') }}"></script>--}}
+
+{{--<!-- JQuery Steps Plugin Js -->--}}
+{{--<script src="{{ asset('web/systheme/plugins/jquery-steps/jquery.steps.js') }}"></script>--}}
+
+{{--<!-- Sweet Alert Plugin Js -->--}}
+{{--<!--Added version 2 -->--}}
+
+{{--<script src="{{ asset('node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>--}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Custom Js -->
+<script type="module" src="{{ asset('web/systheme/js/admin.js') }}"></script>
+<script src="{{ asset('web/systheme/js/pages/index.js') }}"></script>
+
+<!-- Demo Js -->
+<script src="{{ asset('web/systheme/js/demo.js')}}"></script>
+<script src="{{ asset('web/systheme/js/systheme.js') }}"></script>
+<script src="{{ asset('web/systheme/plugins/lou-multi-select/js/jquery.multi-select.js') }}"></script>
+
+<script src="{{ asset('web/systheme/plugins/moment/min/moment.min.js') }}"></script>
+
+<script  src="{{ asset('web/custom/helpers/plugins_init.js') }}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+{{--<script src="{{ asset('js/materialize-css/js/sidenav.js') }}"></script>--}}
+<script src="{{asset('build/assets/app-21de2618.js')}}"></script>
 
 </body>
 
