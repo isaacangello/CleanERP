@@ -14,7 +14,7 @@
         @endphp
 
 @if($weekDayLabel != 'Sunday')
-    <div class="flex flex-row items-center justify-center p-1 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-sm shadow-blue-500/50 dark:shadow-sm dark:shadow-blue-800/80 text-xs ">
+    <div class="flex flex-row items-center justify-center p-1 text-white bg-primary text-xs ">
         {{ $weekDayLabel }} {!! Carbon::create($week[$weekDayLabel])->format('m/d') !!}
     </div>
 
@@ -33,7 +33,7 @@
                             $classes_service = "text-amber-600 btnFeeService secondary  cursor-pointer ";
                             $wire_click = "\$dispatch('trigger-cancel-fee',{id:$row->service_id})";
                         } else {
-                            $confirmClass = $row->confirmed ? 'text-blue-700' : 'text-red-700';
+                            $confirmClass = $row->confirmed ? 'text-green-700' : 'text-red-700';
                             $classes_service = " btn-confirm-form cursor-pointer " . $confirmClass;
                             $wire_click = "confirmService($row->service_id)";
                         }

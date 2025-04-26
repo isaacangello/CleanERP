@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\flowbite;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class LinkBtn extends Component
+class BtnBlue extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class LinkBtn extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.link-btn');
+        return view('components.flowbite.btn-blue');
     }
 }
