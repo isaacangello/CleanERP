@@ -7,7 +7,7 @@
 
         <!-- Basic Examples -->
 
-                <div class="card">
+                <div class="card bg-white/60">
                     <div class="w-full header mb-2 justify-center text-center">
                             <span>
                               Week Number <span class="text-gray-900">{{ $numWeek }}</span> / From <span
@@ -15,24 +15,24 @@
                                         class="label-date-home">{{ $till }} </span>
                             </span>
                     </div>
-                    <x-daisyui.modal :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year :$populateBillings :emp-from-open="$this->empFromOpen">
+{{--                    <x-flowbite.modal :employees="$selectOptionsEmployees" :customers="$selectOptionsCustomers" :num-week="$numWeek" :$year :$populateBillings :emp-from-open="$this->empFromOpen">--}}
 
-                    </x-daisyui.modal>
+{{--                    </x-flowbite.modal>--}}
                     <div class="body">
-                        <x-daisyui.week-navigation :$route :selected-week="$selectedWeek">
+                        <x-flowbite.week-navigation :$route :selected-week="$selectedWeek">
                             <x-slot name="btns">
                                 <div>
-                                    <x-daisyui.link title="Print weekly report" href="{{route('week.pdf.export',[\Carbon\Carbon::create($from)->format('Y-m-d'),\Carbon\Carbon::create($till)->format('Y-m-d')])}}" class="btn btn-primary btn-sm" >
+                                    <x-flowbite.btn-blue title="Print weekly report" href="{{route('week.pdf.export',[\Carbon\Carbon::create($from)->format('Y-m-d'),\Carbon\Carbon::create($till)->format('Y-m-d')])}}"  >
                                         Print
-                                    </x-daisyui.link>
+                                    </x-flowbite.btn-blue>
                                 </div>
                                 <div>
-                                    <x-daisyui.std-btn class="btn-small" @click="cadOpen = true" title="New Service">New</x-daisyui.std-btn>
+                                    <x-flowbite.btn-blue class="" @click="cadOpen = true" title="New Service">New</x-flowbite.btn-blue>
                                 </div>
                             </x-slot>
-                        </x-daisyui.week-navigation>
+                        </x-flowbite.week-navigation>
 
-                        <div class="grid grid-cols-4 gap-4 hide-on-small-and-down" >
+                        <div class="grid grid-cols-4 gap-4 " >
 
                             @foreach($this->dataCard() as $empName => $data )
                                 @if(Collect($data['Monday'])->isNotEmpty() || Collect($data['Tuesday'])->isNotEmpty() || Collect($data['Wednesday'])->isNotEmpty() || Collect($data['Thursday'])->isNotEmpty() || Collect($data['Friday'])->isNotEmpty() || Collect($data['Saturday'])->isNotEmpty() || Collect($data['Sunday'])->isNotEmpty())
@@ -57,7 +57,7 @@
                     </div> <!--card body-->
                 </div> <!--card -->
 
-!-- row -->
+<!-- row -->
         <x-service-details   :id="$this->modalData->id??'0'" :showModal="$this->showModal" >
             <x-slot:title>
                 <span wire:loading.remove> {{$this->modalData->customer->name??'Loading...'}}</span> {!! $this->customer_type !!}
@@ -67,7 +67,7 @@
                 <tr>
                     <th colspan="1" class="green">Employee:</th>
                     <td colspan="3" >
-                        <x-daisyui.select-modal
+                        <x-flowbite.select-modal
                                 wire:model="employee1_id"
                                 wire:change="field_change('employee1_id')"
                                 id="selectServiceEmployee"
@@ -80,7 +80,7 @@
                 <tr>
                     <th colspan="1" class="green h-30">Customer:</th>
                     <td colspan="3" class=" ">
-                        <x-daisyui.select-modal
+                        <x-flowbite.select-modal
                                 wire:model="customer_id"
                                 wire:change="field_change('customer_id')"
                                 class="p-l-0"
@@ -93,7 +93,7 @@
                 <tr>
                     <th colspan="1" class="green font-12 h-30">Address:</th>
                     <td colspan="3"  >
-                        <x-daisyui.input
+                        <x-flowbite.input
                                 wire:model="address"
                                 wire:change="field_change('address')"
                                 class="p-l-2 h-30 font-12 grey-text text-darken-4"
@@ -105,7 +105,7 @@
                 <tr>
                     <th colspan="1" class="green h-30">Phone:</th>
                     <td  colspan="3"  >
-                        <x-daisyui.input
+                        <x-flowbite.input
                                 wire:model="phone"
                                 wire:change="field_change('phone')"
                                 class="p-l-2 h-30 font-12 grey-text text-darken-4"
@@ -128,7 +128,7 @@
                 <tr>
                     <th class="green h-30">In:</th>
                     <td>
-                        <x-daisyui.time-flatpickr
+                        <x-flowbite.time-flatpickr
 
                                 wire:model="checkin_datetime"
                                 wire:change.debounce.3000ms="field_change('checkin_datetime')"
@@ -138,7 +138,7 @@
                     </td>
                     <th class="green h-30">Out:</th>
                     <td>
-                        <x-daisyui.time-flatpickr
+                        <x-flowbite.time-flatpickr
                                 wire:model="checkout_datetime"
                                 wire:change.debounce.3000ms="field_change('checkout_datetime')"
                                 class="p-l-2 modal-residential-change h-30 font-12 grey-text darken-4"
