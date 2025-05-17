@@ -245,6 +245,21 @@ class ServicesController extends Controller
 
             return response()->json(['message' =>  $msg, 'html' => $html ],200);
     }
+    public function confirmOnly(int $id)
+    {
+
+        $service = $this->service->find($id);
+//        dd();
+        if ($service->confirmed === 0) {
+            $service->update(['confirmed' => 1]);
+            $msg = "Service has been confirmed";
+        } else {
+            $service->update(['confirmed' => 0]);
+            $msg = "Service has been decommitted";
+        }
+
+        return response()->json(['confirmed' =>$service->confirmed, 'message' =>  $msg, ],200);
+    }
 
     public function fee(Request $req)
     {

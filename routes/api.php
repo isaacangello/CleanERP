@@ -31,6 +31,7 @@ Route::apiResource('services', ServicesController::class)
 Route::post('/services/delete',[ServicesController::class, 'delete'])->name('services.api.delete');
 Route::post('/fee',[ServicesController::class,'fee'])->name('service.api.fee');
 Route::post('/confirm',[ServicesController::class,'confirm'])->name('service.api.confirm');
+Route::post('/confirm-only/{id}',[ServicesController::class,'confirmOnly'])->name('service.api.confirm.only');
 
 
 Route::get('/commercial-schedule',[CommercialController::class,'index'])->name('commercial.api.index');

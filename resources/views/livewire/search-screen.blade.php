@@ -121,7 +121,7 @@
                                         showCustomerEdit: $wire.entangle('showCustomerEdit')
                                     }"
                                 >
-                                    <x-customer-edit-bs :$billings />
+{{--                                    <x-customer-edit-bs :$billings />--}}
 
 
                                 </div>
@@ -137,7 +137,7 @@
                                         showEmployeeEdit: $wire.entangle('showEmployeeEdit')
                                     }"
                                 >
-                                    <x-employee-edit-bs  />
+{{--                                    <x-employee-edit-bs  />--}}
                                 </div>
                             </div>
                         </div>
@@ -148,5 +148,5 @@
     </div>
 
 
-    <x-search-javascript />
+    <x-old.search-javascript />
 </div>

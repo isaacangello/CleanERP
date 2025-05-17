@@ -20,7 +20,7 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
+        @livewire('wire-elements-modal')
         @livewireScriptConfig
     </body>
 </html>

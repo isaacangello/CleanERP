@@ -180,11 +180,13 @@ class ServicesController extends Controller
 //        dd();
         if ($service->confirmed === 0) {
             $service->update(['confirmed' => 1]);
+            $return = 1;
             $msg = "Service has been confirmed";
         } else {
             $service->update(['confirmed' => 0]);
+            $return = 0;
             $msg = "Service has been decommitted";
         }
-        return redirect()->back()->with(['msg' => $msg]);
+            return redirect()->back()->with(['return' =>$return,'msg' => $msg]);
     }
 }

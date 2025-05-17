@@ -5,6 +5,7 @@ namespace App\Treatment;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use DI\Definition\DecoratorDefinition;
+use phpDocumentor\Reflection\PseudoTypes\NumericString;
 
 class DateTreatment
 {
@@ -203,7 +204,7 @@ public function MakeArrayDays($firstdate = 0, $periodo = "WEK", $periodo_meses =
      * @param $year
      * @return array|string[]
      */
-    public function getWeekByNumberWeek($numberWeek, string $year = "current"):array{
+    public function getWeekByNumberWeek(int $numberWeek, string $year = "current"):array{
         if(is_nan($numberWeek)){
             return ['error' => "numberWeek var is not a number"];
         }

@@ -1,3 +1,7 @@
-<div>
-    <!-- Be present above all else. - Naval Ravikant -->
-</div>
+<select
+        {{$attributes->merge([
+        'class'=>"w-full py-2.5 font-medium rounded-lg text-sm"
+])}}
+>
+    {{$slot}}
+</select>
