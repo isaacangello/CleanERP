@@ -24,7 +24,7 @@
             @foreach($data as $row)
                 @php
 //                    dd($row);
-                    $title="Click to confirm service for customer:\n $row->cust_name";
+                    $title="Click to change status of service for customer:\n $row->cust_name";
                     if ($row->cust_id == 712) {
                         $classes_service = "btnFeeService  disabled ";
                         $wire_click = "\$dispatch('refresh-week')";
@@ -35,7 +35,8 @@
                         } else {
                             $confirmClass = $row->confirmed ? 'text-blue-700' : 'text-red-700';
                             $classes_service = " btn-confirm-form cursor-pointer " . $confirmClass;
-                            $wire_click = "confirmService($row->service_id)";
+//                            $wire_click = "confirmService($row->service_id)";
+                                $wire_click = "\$dispatch('toggle-status-service',{id:$row->service_id})";
                         }
                     }
                 @endphp
@@ -43,6 +44,7 @@
                 <div class="flex flex-row items-center  justify-between  p-1 text-gray-600 text-xs border-b">
                     <div>
                         <a
+                                id="el-{{$row->service_id}}"
                                 class=" {{$classes_service}}  "
                                 wire:click="{!! $wire_click !!}"
 

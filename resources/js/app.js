@@ -1,16 +1,53 @@
-//'resources/css/app.css','resources/fa6/css/all.css','resources/fa6/js/all.js'
+/*jshint esversion: 6 */
 
 import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
-import  Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import '../css/app.css';
+import axios from "axios";
 // import '../css/cleopatra.css'
 import '../fa6/pro/css/all.css';
 import '../fa6/pro/js/all.js';
 import 'animate.css';
+import flatpickr from "flatpickr";
+import 'flatpickr/dist/flatpickr.css'
+import 'flowbite';
 import {toastAlert,Toast_5000,swalConfirmCallback,swalConfirm} from "./custom/helpers/plugins_init.js";
+import {isValidElement} from "./custom/helpers/funcs.js";
+
 
     function customEvents() {
+        Livewire.on('toggle-status-service',function (event) {
+            axios.post('/api/confirm-only/'+event.id,
+                {
+                    id: event.id
+                }
+            ).then(function (resp) {
+                console.log(resp.data)
+                let icon;
+                let btn =document.querySelector("#el-"+event.id)
+                if(resp.data.confirmed === 1){
+                    icon =  'success'
+                    // 'text-blue-700' : 'text-red-700'
+                    btn.classList.remove('text-red-700')
+                    btn.classList.add('text-blue-700')
+                }else {
+                    icon =  'error'
+                    btn.classList.remove('text-blue-700')
+                    btn.classList.add('text-red-700')
+                }
+
+
+
+                toastAlert.fire({
+                    icon: icon,
+                    title: resp.data.message,
+                })
+
+            }).catch(function (error) {
+                console.error(error)
+            })
+        })
+
         Livewire.on('wire-toast-alert', (event) => {
             toastAlert.fire({
                 icon: event.detail.icon,
@@ -24,10 +61,6 @@ import {toastAlert,Toast_5000,swalConfirmCallback,swalConfirm} from "./custom/he
                 title: event.detail.message
             })
             console.log(window)
-        })
-        window.addEventListener('close-modal', event =>{
-            let modalInstance = window.M.Modal.getInstance(document.getElementById(event.detail.idElement))
-            modalInstance.close()
         })
 
         window.addEventListener('toggleDisabledBtnDelete', event =>{
@@ -137,27 +170,7 @@ import {toastAlert,Toast_5000,swalConfirmCallback,swalConfirm} from "./custom/he
 
         })
         document.addEventListener('select-cad-employee', event => {
-            const empId = event.detail.empId;
-            // const selectElementC = document.getElementById('select-cad-service-customer');
-            // selectElementC.querySelectorAll('option').forEach(option => {
-            //     if (option.value === '712') {
-            //         option.setAttribute('selected', 'selected');
-            //     } else {
-            //         option.removeAttribute('selected');
-            //     }
-            // });
-            // const selectElementE = document.getElementById('select-cad-service-employee1');
-            //
-            // selectElementE.querySelectorAll('option').forEach(option => {
-            //     if (option.value === empId) {
-            //         option.setAttribute('selected', 'selected');
-            //     } else {
-            //         option.removeAttribute('selected');
-            //     }
-            // });
-            window.Livewire.dispatch('populate-date-time', {idElement: "#input-cad-service-date", dateTime: event.detail.dateTime});
-            window.Livewire.dispatch('populate-on-open', {empId: empId,date: event.detail.dateTime});
-            $wire.showCadModal = true;
+            window.Livewire.dispatch('open-modal')
         });
         document.addEventListener('select-all-checkboxes', event => {
             console.log("select-all-checkboxes:  ".event)
@@ -170,8 +183,8 @@ import {toastAlert,Toast_5000,swalConfirmCallback,swalConfirm} from "./custom/he
             });
         });
         window.addEventListener('trigger-confirm-fee', function (event){
-            console.log("event fee")
-            console.log($wire)
+            // console.log("event fee")
+            // console.log($wire)
             swalConfirmCallback('Do you want to change fee status?','Yes?', ()=> {
                 window.Livewire.dispatch('toggle-fee')
             })
@@ -190,6 +203,29 @@ import {toastAlert,Toast_5000,swalConfirmCallback,swalConfirm} from "./custom/he
                 window.Livewire.dispatch('delete-service')
             })
         })
+
+    }
+    function modalInit(btnElement,btnClose,id1element,options = {}) {
+        if(isValidElement(id1element)){
+            let htmlEl1 = document.getElementById(id1element)
+            let instance = new Modal(htmlEl1, options);
+            let elBtn = document.getElementById(btnElement)
+            let elClose = document.getElementById(btnClose)
+            let elClose1 = document.getElementById(btnClose+"1")
+            elBtn.addEventListener('click',function (event) {
+                instance.show()
+            })
+            elClose.addEventListener('click',function (event) {
+                instance.hide()
+            })
+            elClose1.addEventListener('click',function (event) {
+                instance.hide()
+            })
+        }else{
+            console.error("Elemento id not found")
+            return "Elemento id not found";
+        }
+
 
     }
     Alpine.data('cnf', () => ({
@@ -254,11 +290,31 @@ import {toastAlert,Toast_5000,swalConfirmCallback,swalConfirm} from "./custom/he
 
     }));
     Alpine.data('weekScreen', () => ({
+        'cadOpen': Livewire.all()[0].$wire.entangle('showCadModal').live,
+        'open': Livewire.all()[0].$wire.entangle('showModal').live,
         init(){
-          customEvents()
+                this.$watch('cadOpen',this.closeModal())
+                let weekComponent = Livewire.getByName("residential.week")
+                console.log(Livewire.all())
+                console.log(Livewire.all()[0].ephemeral.from)
+                console.log(weekComponent[0].get('tempDate'))
+                //modalInit('btnNew','modalClose','modal-create',{placement:'center-center'})
+                customEvents()
+
         },
-        open: $wire.entangle('showModal'),
-        cadOpen: $wire.entangle('showCadModal'),
+        openModal(){
+            console.log('open modal')
+            var week  = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+            var now = new Date()
+            var dayTemp= now.getFullYear() + "-" + now.getMonth() + "-" + now.getDate()
+            window.Livewire.dispatch('populate-date-time', {idElement: "#input-cad-service-date", dateTime: dayTemp})
+            this.cadOpen = true
+        },
+        closeModal(){
+
+            this.cadOpen = false
+            return true
+        },
         focusables() {
         let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
         return [...$el.querySelectorAll(selector)]

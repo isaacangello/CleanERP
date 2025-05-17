@@ -96,7 +96,7 @@ class Employee extends Model
 
       return $result_services;
     }
-    public function servicesFromWeekNumber($emp_id, $weekNun, $year = 'current') :array{
+    public function servicesFromWeekNumber(int $emp_id,int $weekNun, $year = 'current') :array{
         $date = new DateTreatment();
        $arr_result = [];
        $weekArr = $date->getWeekByNumberWeek($weekNun,$year);

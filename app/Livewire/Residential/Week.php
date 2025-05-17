@@ -6,6 +6,7 @@ use AllowDynamicProperties;
 use App\Helpers\Residential\ResidentialTrait;
 use App\Http\Controllers\Populate;
 use App\Livewire\Forms\ServiceForm;
+use App\Models\Billing;
 use App\Models\Customer;
 use App\Models\Employee;
 use App\Models\Service;
@@ -65,7 +66,7 @@ class Week extends Component
      */
 
     public $modalData = '';
-    public $tempDate  = '';
+    public $tempDate  = 'agora';
     public $tempTime  = '';
     public $tempControlInTime  = '';
     public $tempControlOutTime  = '';
@@ -86,7 +87,10 @@ class Week extends Component
         $this->populate = new PopulateController();
         $this->dateTrait = new DateTreatment();
     }
-
+    #[On('test-alert')]
+    public function alert(){
+        return "teste de alerta!!";
+    }
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
      * @return void
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -178,7 +182,13 @@ class Week extends Component
     {
 //        dd($this->form->customer_id);
         $temp_customer = Customer::with('billings')->find($this->form->customer_id);
+        if($temp_customer->billings->isNotEmpty()){
         $this->populateBillings = $temp_customer->billings;
+        }else{
+            $this->populateBillings =    Billing::query()->orderBy('id')->take(4)->get();
+
+        }
+//        dd($this->populateBillings);
     }
 
     /***================================================================================================================
@@ -278,8 +288,9 @@ class Week extends Component
     public function store(){
         $return = $this->form->store();
         if($return){
-            $this->showCadModal = false;
             $this->dispatch('toast-alert',icon:"success",message:'New service has been created !!!');
+        }else{
+            $this->dispatch('toast-alert',icon:"error",message:'histon wen have a problem !!!');
         }
     }
 
@@ -470,8 +481,11 @@ class Week extends Component
     {
         $this->showModal = false;
     }
-    public function createService($date,$emp_id):void
+    public function createService($emp_id = 312,$date="today"):void
     {
+        if($date === "today"){
+            $date = now()->format('Y-m-d');
+        }
         $this->empFormOpen = $emp_id;
         $this->dispatch('populate-date-time', idElement:"#input-cad-service-date",dateTime:$date);
         //dd($date,$emp_id);

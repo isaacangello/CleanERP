@@ -3,10 +3,11 @@ const toastAlert = Swal.mixin({
         toast: true,
         position: "top-end",
         showConfirmButton: false,
+        iconColor:"#1A56DB",
         timer: 3000,
         customClass: {
-            confirmButton: "btn btn-link waves-effect waves-light",
-            cancelButton: "btn btn-link btn-danger waves-effect waves-light"
+            confirmButton: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2 text-center me-2 mb-2",
+            cancelButton: "text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
         },
         timerProgressBar: true,
         didOpen: (toast) => {
@@ -35,11 +36,11 @@ const toastAlert = Swal.mixin({
             showCancelButton: true,
             showCloseButton: true,
             customClass: {
-                confirmButton: "btn btn-link waves-effect waves-light",
-                cancelButton: "btn btn-link btn-danger waves-effect waves-light"
+                confirmButton: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2 text-center me-2 mb-2",
+                cancelButton: "text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
             },
-            confirmButtonColor:"#2e7d32",
-            iconColor:"#2e7d32"
+            confirmButtonColor:"#1A56DB",
+            iconColor:"#1A56DB"
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
@@ -57,8 +58,8 @@ const toastAlert = Swal.mixin({
             cancelButtonText: "Cancel",
             showCancelButton: true,
             showCloseButton: true,
-            confirmButtonColor:"#2e7d32",
-            iconColor:"#2e7d32"
+            confirmButtonColor:"#1A56DB",
+            iconColor:"#1A56DB"
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {

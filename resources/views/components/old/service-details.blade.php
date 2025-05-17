@@ -1,4 +1,4 @@
-@props(['showModal' => false, 'title' => 'Service Details'])
+@props(['showModal' => false,'open' =>false, 'title' => 'Service Details'])
 @php
 
 
