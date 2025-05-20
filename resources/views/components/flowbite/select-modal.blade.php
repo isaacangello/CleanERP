@@ -1,4 +1,4 @@
-<select  {{ $attributes->merge(['class'=>'border-b']) }}>
+<select  {{ $attributes->merge(['class'=>'w-full py-2.5 font-medium rounded-lg text-sm']) }}>
 
     <option value="null" @if(is_null($selected) or !isset($selected) ) selected @endif disabled>Options</option>
 

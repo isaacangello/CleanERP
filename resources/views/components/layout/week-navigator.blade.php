@@ -1,28 +1,28 @@
-<div class="row m-b-0">
+<div class="flex gap-4">
     <div class="col s6 m2 input-field">
         <form action="{{route('finances')}}">
-            <x-standard-btn type="submit" class="btn-sm" >
+            <x-flowbite.btn-blue type="submit" class="btn-sm" >
                 <span class="material-symbols-outlined font-15">
                 house
                 </span>
-            </x-standard-btn>
+            </x-flowbite.btn-blue>
         </form>
     </div>
     <div class="col s6 m2 input-field hide-on-small-and-down">
         <div class="form-group">
             <form wire:submit.prevent="thisWeek()">
-                <x-standard-btn type="submit" class="btn-small" >
+                <x-flowbite.btn-blue type="submit" class="btn-small" >
                     This week
-                </x-standard-btn>
+                </x-flowbite.btn-blue>
             </form>
         </div>
     </div>
     <div class="col s6 m2 align-right input-field hide-on-med-and-up">
         <div class="form-group">
             <form wire:submit.prevent="thisWeek()">
-                <x-standard-btn type="submit" class="btn-small" >
+                <x-flowbite.btn-blue type="submit" class="btn-small" >
                     This week
-                </x-standard-btn>
+                </x-flowbite.btn-blue>
             </form>
         </div>
     </div>
@@ -33,20 +33,20 @@
             @endphp
 
 
-            <x-standard-btn wire:click="backWeek()" type="submit" class="btn-small">
+            <x-flowbite.btn-blue wire:click="backWeek()" type="submit" class="btn-small">
                 <span class="material-symbols-outlined">
                     arrow_back
                 </span>
-            </x-standard-btn>
+            </x-flowbite.btn-blue>
         </div>
     </div>
     <div class="col s6 m1 input-field align-right hide-on-med-and-up">
         <div class="form-group">
-            <x-standard-btn wire:click="forwardWeek()" type="submit" class="btn-small">
+            <x-flowbite.btn-blue wire:click="forwardWeek()" type="submit" class="btn-small">
                 <span class="material-symbols-outlined">
                     arrow_forward
                 </span>
-            </x-standard-btn>
+            </x-flowbite.btn-blue>
         </div>
     </div>
 
@@ -76,18 +76,18 @@
             </div>
         </div>
         <div class="col s3 m1 align-right input-field">
-            <x-standard-btn type="submit" class="btn-small">
+            <x-flowbite.btn-blue type="submit" class="btn-small">
                 go
-            </x-standard-btn>
+            </x-flowbite.btn-blue>
         </div>
     </form>
     <div class="col s12 m1 input-field align-left hide-on-small-and-down">
         <div class="form-group">
-            <x-standard-btn wire:click="forwardWeek()" type="submit" class="btn-small">
+            <x-flowbite.btn-blue wire:click="forwardWeek()" type="submit" class="btn-small">
                 <span class="material-symbols-outlined">
                     arrow_forward
                 </span>
-            </x-standard-btn>
+            </x-flowbite.btn-blue>
         </div>
     </div>
 </div>

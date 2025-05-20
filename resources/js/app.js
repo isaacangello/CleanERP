@@ -170,7 +170,46 @@ import {isValidElement} from "./custom/helpers/funcs.js";
 
         })
         document.addEventListener('select-cad-employee', event => {
-            window.Livewire.dispatch('open-modal')
+            var week;
+            // console.log(Livewire.getByName('residential.week'))
+            var selectElement = document.querySelector('#select-cad-service-employee1')
+            if (selectElement) {
+                for (let i = 0; i < selectElement.options.length; i++) {
+                         if(selectElement.options[i].value === event.detail.empId){
+                             selectElement.options[i].selected = true
+                             console.log(`Option ${i + 1}: Value = ${selectElement.options[i].value}, Text = ${selectElement.options[i].text}`);
+                         }
+
+                }
+            } else {
+                console.error("Select element with ID 'mySelect' not found.");
+            }
+            Livewire.all().forEach(value => {
+                if(value.name === "residential.week"){
+                    console.log(value)
+                    Livewire.dispatch('populate-on-open',{'empId':event.detail.empId,'date':event.detail.dateTime})
+
+
+                }
+            })
+            flatpickr( "#input-cad-service-date",
+                {
+                    weekNumbers:true,
+                    monthSelectorType:'dropdown',
+                    enableTime: true,
+                    dateFormat: "Y-m-d H:i",
+                    altFormat: 'F j, Y h:i K',
+                    altInput: true,
+                    // onChange: function(selectedDates, dateStr, instance){
+                    //     if (dateStr)
+                    //         instance.close();
+                    // },
+                    defaultDate: `${event.detail.dateTime}`
+
+                }
+            )
+
+
         });
         document.addEventListener('select-all-checkboxes', event => {
             console.log("select-all-checkboxes:  ".event)
@@ -198,7 +237,6 @@ import {isValidElement} from "./custom/helpers/funcs.js";
 
         })
         window.addEventListener('trigger-confirm-delete', function (event){
-            console.log($wire)
             swalConfirmCallback('Do you want to delete this record?','Yes?', ()=> {
                 window.Livewire.dispatch('delete-service')
             })
@@ -293,21 +331,39 @@ import {isValidElement} from "./custom/helpers/funcs.js";
         'cadOpen': Livewire.all()[0].$wire.entangle('showCadModal').live,
         'open': Livewire.all()[0].$wire.entangle('showModal').live,
         init(){
-                this.$watch('cadOpen',this.closeModal())
-                let weekComponent = Livewire.getByName("residential.week")
+                // let weekComponent = Livewire.getByName("residential.week")
                 console.log(Livewire.all())
-                console.log(Livewire.all()[0].ephemeral.from)
-                console.log(weekComponent[0].get('tempDate'))
+                // console.log(Livewire.all()[0].ephemeral.from)
+                // console.log(weekComponent[0].get('tempDate'))
                 //modalInit('btnNew','modalClose','modal-create',{placement:'center-center'})
                 customEvents()
-
+        },
+        showModal(){
+            this.open = true
         },
         openModal(){
             console.log('open modal')
             var week  = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
             var now = new Date()
             var dayTemp= now.getFullYear() + "-" + now.getMonth() + "-" + now.getDate()
-            window.Livewire.dispatch('populate-date-time', {idElement: "#input-cad-service-date", dateTime: dayTemp})
+            // window.Livewire.dispatch('populate-date-time', {idElement: "#input-cad-service-date", dateTime: dayTemp})
+            flatpickr( "#input-cad-service-date",
+                {
+                    weekNumbers:true,
+                    monthSelectorType:'dropdown',
+                    enableTime: true,
+                    dateFormat: "Y-m-d H:i",
+                    altFormat: 'F j, Y h:i K',
+                    altInput: true,
+                    // onChange: function(selectedDates, dateStr, instance){
+                    //     if (dateStr)
+                    //         instance.close();
+                    // },
+                    defaultDate: `${dayTemp}`
+
+                }
+            )
+
             this.cadOpen = true
         },
         closeModal(){

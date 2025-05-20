@@ -10,29 +10,25 @@
      x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
      style="display: {{ $cadOpen ? 'block' : 'none' }};"
      x-show="cadOpen"
-     x-transition:enter="animate__animated animate__slideInUp "
-     x-transition:leave="animate__animated animate__slideOutDown animate__faster"
-     @open-modal="cadOpen = true"
-     @close-modal="cadOpen = false"
+     x-transition:enter="animate__animated animate__fadeInUpBig animate__faster"
+     x-transition:leave="animate__animated animate__fadeOutDownBig animate__faster"
 
 >
-    <div
-            x-show="cadOpen"
-            class="fixed inset-0 transform transition-all"
-            x-on:click="cadOpen = false"
-            {{--            x-transition:enter="ease-out duration-300"--}}
-            x-transition:enter="animate__animated animate__fadeInUpBig "
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            {{--            x-transition:leave="ease-in duration-200"--}}
-            x-transition:leave="animate__animated animate__fadeOutDownBig "
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-            @open-modal="openModal"
-            @close-modal="closeModal"
-    >
-        <div class="fixed inset-0 bg-blue-800 dark:bg-gray-900 opacity-0"></div>
-    </div>
+{{--    <div--}}
+{{--            x-show="cadOpen"--}}
+{{--            class="fixed inset-0 transform transition-all"--}}
+{{--            x-on:click="cadOpen = false"--}}
+{{--            --}}{{--            x-transition:enter="ease-out duration-300"--}}
+{{--            x-transition:enter="animate__animated animate__fadeInUpBig "--}}
+{{--            x-transition:enter-start="opacity-0"--}}
+{{--            x-transition:enter-end="opacity-100"--}}
+{{--            --}}{{--            x-transition:leave="ease-in duration-200"--}}
+{{--            x-transition:leave="animate__animated animate__fadeOutDownBig "--}}
+{{--            x-transition:leave-start="opacity-100"--}}
+{{--            x-transition:leave-end="opacity-0"--}}
+{{--    >--}}
+{{--        <div class="fixed inset-0 bg-blue-800 dark:bg-gray-900 opacity-0"></div>--}}
+{{--    </div>--}}
 
 
     <!-- Modal content -->
@@ -43,6 +39,13 @@
                     <h3 class="text-xl font-medium text-gray-900 dark:text-white">
                         New service
                     </h3>
+                    <div role="status" wire:loading>
+                        <svg aria-hidden="true" class="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                        </svg>
+                        <span class="sr-only">Loading...</span>
+                    </div>
                     <button type="button" id="modalClose" @click="cadOpen = false" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-private function closeModal() {
 
                     }
@@ -64,16 +67,17 @@
 {{--                            Customer --}}
                             <div>
                                     <label class="form-label"  for="select-cad-service-customer">Customer</label>
-                                    <select
 
+                                    <select
+                                            wire:loading.attr="disabled"
                                             wire:model.live="form.customer_id"
                                             wire:change="price_inject()"
                                             class="w-full py-2.5 font-medium rounded-lg text-sm"
                                             id="select-cad-service-customer"
                                     >
-                                        <option>Customer</option>
+                                        <option wire:loading.class="opacity-50" >Customer</option>
                                         @foreach($this->selectOptionsCustomers as  $value)
-                                            <option  value="{{$value->id}}">{{$value->name}} </option>
+                                            <option wire:loading.class="opacity-50" value="{{$value->id}}">{{$value->name}} </option>
                                         @endforeach
 
                                     </select>
@@ -87,15 +91,16 @@
 
                                     <label class="form-label"  for="select-cad-service-employee1">Employee</label>
                                     <select
+                                            wire:loading.attr="disabled"
+                                            wire:loading.class="opacity-50"
                                             wire:model.live="form.employee1_id"
                                             id="select-cad-service-employee1"
                                             class="w-full py-2.5 font-medium rounded-lg text-sm"
                                     >
 
                                         <option  value="none">Employee</option>
-
                                         @foreach($this->selectOptionsEmployees as $values)
-                                            <option  value="{{$values->id}}">{{$values->name}} </option>
+                                            <option   wire:loading.class="opacity-50" value="{{$values->id}}">{{$values->name}} </option>
                                         @endforeach
                                     </select>
                                 @error('form.employee1_id')
@@ -105,7 +110,7 @@
                             </div>
 {{--                             employee 2--}}
                             <div>
-                                <label class="form-label"  for="select-cad-service-employee1">Second employee.</label>
+                                <label class="form-label"  for="select-cad-service-employee2">Second employee.</label>
                                 <select
                                         wire:model="form.employee2_id"
                                         class="w-full py-2.5 font-medium rounded-lg text-sm"
@@ -208,11 +213,12 @@
                         <div>
                             <label class="form-label"  for="select-cad-service-billings">type of billing.</label>
                                 <x-flowbite.select
+                                        wire:loading.attr="disabled"
                                         wire:model="form.frequency_payment"
                                 >
                                     @if($this->populateBillings)
                                         @foreach($this->populateBillings as $billing)
-                                            <option value="{{$billing->id}},{{$billing->value}}">{{$billing->label}} / {{ $billing->value }}</option>
+                                            <option wire:loading.class="opacity-50"  value="{{$billing->id}},{{$billing->value}}">{{$billing->label}} / {{ $billing->value }}</option>
                                         @endforeach
                                     @endif
                                 </x-flowbite.select>
@@ -252,6 +258,15 @@
                 <div class="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
                     <button  type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
                     <button id="modalClose1"  @click="cadOpen = false" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancel</button>
+
+                        <div role="status" wire:loading wire:target="store">
+                            <svg aria-hidden="true" class="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                            </svg>
+                            <span class="sr-only">Loading...</span>
+                        </div>
+
                 </div>
             </form>
         </div>

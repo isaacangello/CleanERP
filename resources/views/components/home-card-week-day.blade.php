@@ -64,7 +64,7 @@
                                 data-service-id="{{$row->service_id}}"
                                 class="hover:underline cursor-pointer text-gray-700"
                                 wire:click ="populateModal({{$row->service_id}})"
-                                @click="open = !open"
+                                @click="showModal()"
                                 title="{{$title}}"
                         >
                             {{ Funcs::nameShort($row->cust_name,' ',2) }}
@@ -104,17 +104,16 @@
             @endforeach
         @if($c === 1)
             <div class="flex flex-row items-center  justify-center p-1 text-gray-600 text-xs border-b">
-                <a class="hover:underline cursor-pointer text-gray-700 link-modal-residential modal-on-livewire " wire:click="$dispatch('select-cad-employee', {empId:'{{$employeeId}}',dateTime:'{{$week[$weekDayLabel]}}'} )" >***OPEN***</a>
+                <a class="hover:underline cursor-pointer text-gray-700 link-modal-residential modal-on-livewire " @click="cadOpen = !cadOpen" wire:click="$dispatch('select-cad-employee', {empId:'{{$employeeId}}',dateTime:'{{$week[$weekDayLabel]}}'} )" >***OPEN***</a>
             </div>
         @endif
                 @if($arrayCount == 0)
                     <div class="flex flex-row items-center  justify-center p-1 text-gray-600 text-xs border-b">
-                        <a class="hover:underline cursor-pointer text-gray-700 link-modal-residential modal-on-livewire " wire:click="$dispatch('select-cad-employee', {empId:'{{$employeeId}}',dateTime:'{{$week[$weekDayLabel]}}'} )" >***OPEN***</a>
+                        <a class="hover:underline cursor-pointer text-gray-700 link-modal-residential modal-on-livewire" @click="cadOpen = !cadOpen" wire:click="$dispatch('select-cad-employee', {empId:'{{$employeeId}}',dateTime:'{{$week[$weekDayLabel]}}'} )" >***OPEN***</a>
                     </div>
                     <div class="flex flex-row items-center  justify-center p-1 text-gray-600 text-xs border-b">
-                        <a class="hover:underline cursor-pointer text-gray-700 link-modal-residential modal-on-livewire " wire:click="$dispatch('select-cad-employee', {empId:'{{$employeeId}}',dateTime:'{{$week[$weekDayLabel]}}'} )" >***OPEN***</a>
+                        <a class="hover:underline cursor-pointer text-gray-700 link-modal-residential modal-on-livewire" @click="cadOpen = !cadOpen" wire:click="$dispatch('select-cad-employee', {empId:'{{$employeeId}}',dateTime:'{{$week[$weekDayLabel]}}'} )" >***OPEN***</a>
                     </div>
-
                 @endif
 
 @endif

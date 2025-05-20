@@ -1,15 +1,15 @@
-<div class="container-fluid">
-    <div class="block-header">
+<div class="card bg-white/40  mt-5 rounded-xl shadow-lg ">
+    <div class="card-header p-4 border-b">
         <h2>
-            <small>FINANCES</small>
+            FINANCES
         </h2>
     </div>
     <!-- Basic Examples -->
 
-    <div class="clearfix row">
-        <div class="col s12 m12">
-            <div class="card">
-                <div class="header">
+    <div class="card-body">
+        <div class="w-full">
+            <div class="card bg-white  mt-5 rounded-xl shadow-lg ">
+                <h2 class="card-header p-4 border-b">
                             <span class="hidden md:block">RESIDENTIAL  </span>
                             <span>
                               <span class="hidden md:block">Reference</span> Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
@@ -17,21 +17,19 @@
                                         class="label-date-home">{{ $till }} </span>
 
                             </span>
+                </h2>
 
-
-                </div>
-
-                <div class="body">
+                <div class="mt-4">
                     <x-layout.week-navigator :$numWeek :$year :$selectedWeek :$selectedYear :$previousWeek :$nextWeek  />
 
                     <div class="clearfix row m-b-0">
                         <div class="col s12 ">
                             @php $id='1'; @endphp
-                            <x-finance-panel-search :id="$id" :employees="$this->allEmployees" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
+                            <x-old.finance-panel-search :id="$id" :employees="$this->allEmployees" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
                         </div>
 
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+                        <div class="card bg-gray-100 rounded-xl shadow-lg ">
+                            <div class="w-full">
 
                             <table class="table table-striped highlight">
                                 <thead>
