@@ -290,8 +290,9 @@ class Week extends Component
         if($return){
             $this->dispatch('toast-alert',icon:"success",message:'New service has been created !!!');
         }else{
-            $this->dispatch('toast-alert',icon:"error",message:'histon wen have a problem !!!');
+            $this->dispatch('toast-alert',icon:"error",message:'histom wen have a problem !!!');
         }
+        $this->showCadModal = false;
     }
 
     /***================================================================================================================
@@ -377,7 +378,7 @@ class Week extends Component
         $currentService = Service::with('customer','employee','control')->find($id);
         $this->dispatch('populate-date-time', idElement:"#serviceDate",dateTime:$currentService->service_date);
         if($currentService->control){
-            dd($currentService->control);
+            //dd($currentService->control);
             $this->tempControlInTime = Carbon::create($currentService->control->checkin_datetime)->format('Y-m-d H:i:s');
             $this->tempControlOutTime = Carbon::create($currentService->control->checkout_datetime)->format('Y-m-d H:i:s');
             $this->dispatch('populate-date-time', idElement:"#serviceInTime",dateTime:$this->tempControlInTime);
@@ -395,13 +396,7 @@ class Week extends Component
         $this->address=$currentService->customer->address; $this->info=$currentService->customer->info;
         $this->notes=$currentService->notes;$this->instructions=$currentService->instructions;
         //dd($this->tempDate);
-        if ($currentService->customer->type === "RENTALHOUSE"){
-            $this->customer_type = "<span class='material-symbols-outlined '>brightness_7</span>";
-        }else{
-            $this->customer_type = "<span class='material-symbols-outlined '>person</span>";
-        }
         $this->modalData = $currentService;
-//        dd($this->modalData);
     }
 
     #[On('populate-on-open')]
@@ -488,9 +483,14 @@ class Week extends Component
         if($date === "today"){
             $date = now()->format('Y-m-d');
         }
-        $this->empFormOpen = $emp_id;
+        $this->form->fill([
+            'employee1_id'=> $emp_id,
+            'service_date' => $date,
+            'customer_id' => 712,
+        ]);
+
         $this->dispatch('populate-date-time', idElement:"#input-cad-service-date",dateTime:$date);
         //dd($date,$emp_id);
-        $this->showCadModal = true;
+        //        $this->showCadModal = true;
     }
 }

@@ -37,7 +37,7 @@ class ServiceSeeder extends Seeder
                         'customer_id' => $customArrayId[$key1],
                         'employee1_id' => $employee->id,
                         'employee2_id' => $employee->id,
-                        'service_date' => $day->format('Y-m-d 012:01:00'),
+                        'service_date' => $day->format('Y-m-d 13:01:00'),
                     ]);
 
             }

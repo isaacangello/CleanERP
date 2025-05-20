@@ -8,6 +8,16 @@ use function Laravel\Prompts\select;
 
 trait RepeatTrait
 {
+    public function chPeriod($reference_date):string
+    {
+        $hour = intval($reference_date->format('H'));
+        //dd($hour);
+        if($hour >= 0 and $hour < 12 ){return "Morning";}
+        if($hour >= 12 and $hour< 18){return "Afternoon";}
+        if($hour >= 18){return "Evening";}
+
+    }
+
     public function repeat($data, $repeat_frequency, $repeat_months, $destination = 'residential'): array
     {
 //        dd($data['schedule_date']);
@@ -17,12 +27,10 @@ trait RepeatTrait
         $week_step=0;
         $reference_date = $destination === 'residential' ? Carbon::create($data['service_date']) : Carbon::create($data['schedule_date']);
         $data_return =array();
+
             while ($count_months <= $repeat_months) {
 
                 if($destination == 'residential'){
-                    if($reference_date->format('H')> 0 and $reference_date->format('H')< 12){$period = "Morning";}
-                    if($reference_date->format('H')>= 12 and $reference_date->format('H')< 18){$period = "Afternoon";}
-                    if($reference_date->format('H')>= 18){$period = "Evening";}
                     $frequency_payment = explode(',',$data['frequency_payment']);
                     $data_return[$numeric_index] = [
                         'customer_id' => $data['customer_id'],
@@ -31,7 +39,7 @@ trait RepeatTrait
                         'instructions' => $data['instructions'],
                         'employee1_id' =>$data['employee1_id'],
                         'employee2_id'=>$data['employee2_id'],
-                        'period'=>$period,
+                        'period'=>$this->chPeriod($reference_date),
                         'frequency'=>$repeat_frequency,
                         'frequency_payment'=>$data['frequency_payment'],
                         'price'=>$data['price'],
