@@ -1,65 +1,13 @@
-<div>
-    <div class="container-fluid" x-data="
-                            {
-                                        tabService: $wire.entangle('tabService'),
-                                        tabRepeat: $wire.entangle('tabRepeat'),
-                                        tabCustomer: $wire.entangle('tabCustomer'),
-                                        tabEmployee: $wire.entangle('tabEmployee'),
-                                        selectTab(selected) {
-                                                switch (selected) {
-                                                        case 'tabService':
-                                                                this.tabService = true;
-                                                                this.tabRepeat = false;
-                                                                this.tabCustomer = false;
-                                                                this.tabEmployee = false;
-                                                                this.$refs.tabServiceElement.classList.add('active', 'success');
-                                                                this.$refs.tabRepeatElement.classList.remove('active', 'success');
-                                                                this.$refs.tabCustomerElement.classList.remove('active', 'success');
-                                                                this.$refs.tabEmployeeElement.classList.remove('active', 'success');
-                                                                break;
-                                                        case 'tabRepeat':
-                                                                this.tabService = false;
-                                                                this.tabRepeat = true;
-                                                                this.tabCustomer = false;
-                                                                this.tabEmployee = false;
-                                                                this.$refs.tabServiceElement.classList.remove('active', 'success');
-                                                                this.$refs.tabRepeatElement.classList.add('active', 'success');
-                                                                this.$refs.tabCustomerElement.classList.remove('active', 'success');
-                                                                this.$refs.tabEmployeeElement.classList.remove('active', 'success');
-                                                                break;
-                                                        case 'tabCustomer':
-                                                                this.tabService = false;
-                                                                this.tabRepeat = false;
-                                                                this.tabCustomer = true;
-                                                                this.tabEmployee = false;
-                                                                this.$refs.tabServiceElement.classList.remove('active', 'success');
-                                                                this.$refs.tabRepeatElement.classList.remove('active', 'success');
-                                                                this.$refs.tabCustomerElement.classList.add('active', 'success');
-                                                                this.$refs.tabEmployeeElement.classList.remove('active', 'success');
-                                                                break;
-                                                        case 'tabEmployee':
-                                                                this.tabService = false;
-                                                                this.tabRepeat = false;
-                                                                this.tabCustomer = false;
-                                                                this.tabEmployee = true;
-                                                                this.$refs.tabServiceElement.classList.remove('active', 'success');
-                                                                this.$refs.tabRepeatElement.classList.remove('active', 'success');
-                                                                this.$refs.tabCustomerElement.classList.remove('active', 'success');
-                                                                this.$refs.tabEmployeeElement.classList.add('active', 'success');
-                                                                break;
-                                                }
-                                        }
 
-                            }
-    ">
-        <div class="block-header">
+    <div class="container-fluid p-4" >
+        <div class="p-4">
             <h2>
-                <small>SEARCHES</small>
+                SEARCHES
             </h2>
         </div>
         <!-- Basic Examples -->
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="bg-white p-4">
+            <div class="">
                 <div class="card">
                     <div class="header">
                                 <span>
@@ -68,34 +16,53 @@
                                             class="label-date-home">{{ $till }} </span>
                                 </span>
                     </div>
-                    <div class="body">
-                        <ul class="nav nav-tabs tab-col-green flex m-l-2" role="tablist">
-                            <li role="presentation"  x-ref="tabServiceElement" class="px-5 active success">
-                                <a  class="pointer " data-toggle="tab" @click="selectTab('tabService')" >
-                                    <span class="text-sm material-symbols-outlined">search</span>
-                                    <span class="uppercase">Services</span>
-                                </a>
-                            </li>
-                            <li role="presentation" x-ref="tabRepeatElement" class="px-5">
-                                <a  class="pointer" data-toggle="tab" @click="selectTab('tabRepeat')" >
-                                    <span class="text-sm material-symbols-outlined">mystery</span>
-                                    <span class="uppercase">Search Repetition</span>
-                                </a>
-                            </li>
-                            <li role="presentation" x-ref="tabCustomerElement" class="px-5">
-                                <a  class="pointer" data-toggle="tab" @click="selectTab('tabCustomer')">
-                                    <span class="text-sm material-symbols-outlined">group_search</span>
-                                    <span class="uppercase" >Search Customer</span>
-                                </a>
-                            </li>
-                            <li role="presentation" x-ref="tabEmployeeElement" class="px-5">
-                                <a  class="pointer" data-toggle="tab" @click="selectTab('tabEmployee')" >
-                                    <span class="text-sm material-symbols-outlined">data_loss_prevention</span>
-                                    <span class="uppercase">Search Employee</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
+                    <div class="body" x-data="searchScreen">
+                        <div class="w-full text-sm font-medium text-center flex items-center justify-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+                            <ul class="nav nav-tabs tab-col-green flex m-l-2" role="tablist">
+                                <li role="presentation"   class="px-5">
+                                    <a  class="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500"
+                                        x-ref="tabServiceElement"
+                                        aria-current="page"
+                                        data-toggle="tab"
+                                        @click="selectTab('tabService')"
+                                    >
+                                        <i class="fa-duotone fa-solid fa-vacuum"></i>
+                                        <span class="uppercase">Services</span>
+                                    </a>
+                                </li>
+                                <li role="presentation"  class="px-5">
+                                    <a  class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 cursor-pointer"
+                                        data-toggle="tab"
+                                        x-ref="tabRepeatElement"
+                                        @click="selectTab('tabRepeat')"
+                                    >
+                                        <i class="fa-duotone fa-regular fa-magnifying-glass-arrows-rotate"></i>
+                                        <span class="uppercase">Search Repetition</span>
+                                    </a>
+                                </li>
+                                <li role="presentation"  class="px-5">
+                                    <a  class="cursor-pointer inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                        data-toggle="tab"
+                                        x-ref="tabCustomerElement"
+                                        @click="selectTab('tabCustomer')"
+                                    >
+                                        <i class="fa-duotone fa-regular fa-user-magnifying-glass"></i>
+                                        <span class="uppercase" >Search Customer</span>
+                                    </a>
+                                </li>
+                                <li role="presentation"  class="px-5">
+                                    <a  class="cursor-pointer inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                        x-ref="tabEmployeeElement"
+                                        data-toggle="tab"
+                                        @click="selectTab('tabEmployee')"
+                                    >
+                                        <i class="fa-backward fa-regular fa-user-magnifying-glass"></i>
+                                        <span class="uppercase">Search Employee</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
                             <div role="tabpanel" class="tab-pane fade in active" id="tab_service"
                                  x-show="tabService"
                                  x-trap="tabService"
@@ -145,8 +112,8 @@
                 </div>
             </div>
         </div>
+{{--        <x-old.search-javascript />--}}
     </div>
 
 
-    <x-old.search-javascript />
-</div>
+

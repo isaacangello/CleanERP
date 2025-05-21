@@ -4,156 +4,147 @@
             <img src="{{asset('img/loading.gif')}}" alt="loading" class="w-36 " style="margin-left: 40vw; margin-top: 10vh">
         </div>
     </div>
-    <div class="panel panel-default" >
-        <div class="panel-heading p-l-15 p-t-2 p-r-2 p-b-2">
+    <div>
+        <div class="header w-full p-4">
             Search
         </div>
 
-        <div class="panel-body " >
-            <div class="clearfix row m-b-0">
-                <form wire:submit.prevent="searchServices()">
-                    <div class="input-field col s12 m3">
-                        <div class="form-group">
-                            <div class="form-line success">
-                                <select id="select-service-customer" class="form-control browser-default livewire-select font-12 h-30 text-gray-900" wire:model="selectedCustomer" >
-                                    <option  value="{{$id??'0'}}">No Customers</option>
-                                    @if(isset($customers) and !empty($customers))
-                                        @foreach($customers as $customer)
-                                            <option wire:key="empKey{{$customer['id']}}"  value="{{$customer['id']}}" @if($id === $customer['id']) selected @endif >{{ $customer['name'] }}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                                @error('selectedEmployee')
-                                @script
-                                <script>
-                                    console.log("error in plus")
-                                    $wire.dispatch('toast-btn-alert', {icon:'error', title:"Error", text:"{{$message}}"})
-                                </script>
-                                @endscript
-                                @enderror
-                            </div>
-                            <div class="help-info">Select Customer.</div>
-                        </div>
-                    </div>
+        <div class="w-full" >
+            <div class="border  border-gray-300">
+                <form wire:submit.prevent="searchServices()" >
+                    <div class="flex space-x-2 items-end justify-center p-2 mb-3">
+                        <div>
 
-                    <div class="input-field col s12 m3">
-                        <div class="form-group">
-                            <div class="form-line success">
-                                <select id="select-service-employee" class="form-control browser-default livewire-select font-12 h-30 text-gray-900" wire:model="selectedEmployee" >
-                                    <option  value="{{$id??'0'}}">No employee</option>
-                                    @if(isset($employees) and !empty($employees))
-                                    @foreach($employees as $employee)
-                                        <option wire:key="empKey{{$employee['id']}}"  value="{{$employee['id']}}" @if($id === $employee['id']) selected @endif >{{ $employee['name'] }}</option>
-                                    @endforeach
-                                    @endif
-                                </select>
-                                @error('selectedEmployee')
-                                @script
-                                <script>
-                                    console.log("error in plus")
-                                    $wire.dispatch('toast-btn-alert', {icon:'error', title:"Error", text:"{{$message}}"})
-                                </script>
-                                @endscript
-                                @enderror
-                            </div>
-                            <div class="help-info">Select employee.</div>
+                                <x-old.input-label class="help-info">Select Customer.</x-old.input-label>
+                                    <x-flowbite.select
+                                            id="select-service-customer"
+                                             wire:model="selectedCustomer"
+                                    >
+                                        <option  value="{{$id??'0'}}">No Customers</option>
+                                        @if(isset($customers) and !empty($customers))
+                                            @foreach($customers as $customer)
+                                                <option wire:key="empKey{{$customer['id']}}"  value="{{$customer['id']}}" @if($id === $customer['id']) selected @endif >{{ $customer['name'] }}</option>
+                                            @endforeach
+                                        @endif
+                                    </x-flowbite.select>
+                                    @error('selectedEmployee')
+                                    @script
+                                    <script>
+                                        console.log("error in plus")
+                                        $wire.dispatch('toast-btn-alert', {icon:'error', title:"Error", text:"{{$message}}"})
+                                    </script>
+                                    @endscript
+                                    @enderror
                         </div>
-                    </div>
-                    <div class="input-field col s12 m2 ">
-                        <div class="form-group">
-                            <div class="form-line success">
-                                @php
-                                    $from = Carbon\Carbon::create($this->from)->format("Y-m-d");
+
+                        <div>
+                                    <x-old.input-label class="help-info">Select employee.</x-old.input-label>
+                                    <x-flowbite.select
+                                            id="select-service-employee"
+                                            wire:model="selectedEmployee"
+                                    >
+                                        <option  value="{{$id??'0'}}">No employee</option>
+                                        @if(isset($employees) and !empty($employees))
+                                        @foreach($employees as $employee)
+                                            <option wire:key="empKey{{$employee['id']}}"  value="{{$employee['id']}}" @if($id === $employee['id']) selected @endif >{{ $employee['name'] }}</option>
+                                        @endforeach
+                                        @endif
+                                    </x-flowbite.select>
+                                    @error('selectedEmployee')
+                                    @script
+                                    <script>
+                                        console.log("error in plus")
+                                        $wire.dispatch('toast-btn-alert', {icon:'error', title:"Error", text:"{{$message}}"})
+                                    </script>
+                                    @endscript
+                                    @enderror
+
+                        </div>
+                        <div>
+
+                            @php
+                                $from = Carbon\Carbon::create($this->from)->format("Y-m-d");
+                                $options = "
+                                {
+                                    weekNumbers:true,
+                                    monthSelectorType:'static',
+                                    dateFormat:'Y-m-d',
+                                    altFormat:'F j, Y',
+                                    altInput:true,
+                                    defaultDate:'$from'
+                                }
+                                ";
+                            @endphp
+                            <x-old.input-label class="form-label" for="input-search-service-from">From</x-old.input-label>
+                            <x-flowbite.flatpickr-date id="input-search-service-from" class="p-1 w-full h-10" options="{!! $options !!}"  wire:model="from" value="{{$this->from}}"   />
+                        </div>
+                        <div>
+                            @php
+                                $till = Carbon\Carbon::create($this->till)->format("Y-m-d");
                                     $options = "
                                     {
                                         weekNumbers:true,
-                                        monthSelectorType:'static',
+                                        monthSelectorType:'dropdown',
                                         dateFormat:'Y-m-d',
                                         altFormat:'F j, Y',
                                         altInput:true,
-                                        defaultDate:'$from'
+                                        defaultDate: '$till'
                                     }
                                     ";
-                                @endphp
-                                <x-date-flat-pickr id="input-search-service-from" options="{!! $options !!}" class="font-12 h-30" wire:model="from" value="{{$this->from}}"   />
-                                <label class="form-label" for="input-search-service-from">From</label>
-                            </div>
-                            <div class="help-info">Insert date from.</div>
+                            @endphp
+                            <x-old.input-label>Till</x-old.input-label>
+                            <x-flowbite.flatpickr-date id="input-search-service-till"  class="h-10 w-full"  options="{!! $options !!}"  wire:model="till" value="{{$this->till}}" />
+                        </div>
+                        <div>
+                            <x-old.input-label class="text-white">Till</x-old.input-label>
+                            <x-flowbite.btn-blue type="submit" class="h-10 me-0 mb-0">
+                                <i class="fa-duotone fa-regular fa-magnifying-glass-play"></i>
+                            </x-flowbite.btn-blue>
                         </div>
                     </div>
-                    <div class="input-field col s12 m2">
-                        <div class="form-group">
-                            <div class="form-line success">
-                                @php
-                                    $till = Carbon\Carbon::create($this->till)->format("Y-m-d");
-                                        $options = "
-                                        {
-                                            weekNumbers:true,
-                                            monthSelectorType:'dropdown',
-                                            dateFormat:'Y-m-d',
-                                            altFormat:'F j, Y',
-                                            altInput:true,
-                                            defaultDate: '$till'
-                                        }
-                                        ";
-                                @endphp
-                                <x-date-flat-pickr id="input-search-service-till" options="{!! $options !!}"  class="font-12 h-30" wire:model="till" />
-                                <label class="form-label" for="input-search-service-till">Till</label>
-                            </div>
-                            <div class="help-info">Insert date till.</div>
-                        </div>
 
-                    </div>
-                    <div class="input-field col s12 m2 valign-wrapper">
-                        <div class="form-group valign-wrapper">
-                            <button type="submit" class="btn btn-link btn-small waves-effect waves-teal">Search</button>
-                        </div>
-                    </div>
                 </form>
             </div>
-            <div class="row">
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
                     @if($this->searchedServices)
                         @php
                             $counter = 0;
                         @endphp
 
-                    <table>
-
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
 
-                            <th>Date</th>
-                            <th>customer</th>
-                            <th>employee</th>
-                            <th>frequency</th>
-                            <th class="text-center">Confirmed</th>
-                            <th class="text-center">Canceled</th>
-                            <th class="p-0"><input  type="checkbox"  wire:change="$dispatch('select-all-checkboxes', { checkboxClass: 'services-entries-found' } )"   class=" w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
+                            <th  scope="col" class="px-6 py-3">Date</th>
+                            <th scope="col" class="px-6 py-3">customer</th>
+                            <th scope="col" class="px-6 py-3">employee</th>
+                            <th scope="col" class="px-6 py-3">frequency</th>
+                            <th scope="col" class="px-6 py-3 text-center">Confirmed</th>
+                            <th scope="col" class="px-6 py-3 text-center">Canceled</th>
+                            <th scope="col" class="px-6 py-3 flex items-center justify-center"><input  type="checkbox"  wire:change="$dispatch('select-all-checkboxes', { checkboxClass: 'services-entries-found' } )"   class=" w-4 h-4 accent-blue-900-800 bg-blue-800 text-blue-800  border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> </th>
                         </tr>
+                        </thead>
                         @foreach($this->searchedServices as $service)
-                            <tr wire:key="tr{{ $service->id }}" class="{{ \App\Helpers\Funcs::altClass($counter,['bg-gray-100',' ']) }}" >
+                            <tr wire:key="tr{{ $service->id }}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600" >
 
-                                <td class="p-0">{{ Carbon\Carbon::create($service['service_date'] )->format('l, m/d/Y h:i A')  }}</td>
-                                <td class="p-0">{{$service->customer->name}}</td>
-                                <td class="p-0">{{$service->employee->name}}</td>
-                                <td class="p-0">{{$service->frequency}}</td>
-                                <td class="p-0 text-center">{!! $service->confirmed===1?"<span class='material-symbols-outlined text-teal-700 text-sm'>verified</span>":"" !!}</td>
-                                <td class="p-0 text-center">{!! $service->fee===1?"<span class='material-symbols-outlined text-amber-700 text-sm'>verified</span>":"" !!}</td>
-                                <td class="p-0">
-                                    <input  wire:model="selectedServices" value="{{ $service->id }}" type="checkbox"  class="services-entries-found w-4 h-4 accent-emerald-800 bg-green-800 text-green-800  border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-{{--                                    <label>--}}
-{{--                                        <input type="checkbox" class="materialize-checkbox filled-in" checked="checked"  />--}}
-{{--                                        <span></span>--}}
-{{--                                    </label>--}}
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ Carbon\Carbon::create($service['service_date'] )->format('l, m/d/Y h:i A')  }}</td>
+                                <td class="px-6 py-4">{{$service->customer->name}}</td>
+                                <td class="px-6 py-4">{{$service->employee->name}}</td>
+                                <td class="px-6 py-4">{{$service->frequency}}</td>
+                                <td class="px-6 py-4 text-center">{!! $service->confirmed===1?"<i class='fa-solid fa-badge-check text-blue-950 text-sm mx-auto'></i>":"" !!}</td>
+                                <td class="px-6 py-4 text-center">{!! $service->fee===1?"<i class='fa-solid fa-badge-check text-amber-700 text-sm mx-auto'></i>":"" !!}</td>
+                                <td class="px-6 py-4 flex items-center justify-center">
+                                    <input  wire:model="selectedServices" value="{{ $service->id }}" type="checkbox"  class="services-entries-found w-4 h-4 accent-blue-900 bg-blue-800 text-blue-800  border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </td>
                             </tr>
                             @php($counter++)
                         @endforeach
                         <tr>
                             <td colspan="6"></td>
-                            <td  class="text-start p-0">
-                                <x-danger-button wire:click="deleteServices" title="Delete selected services" >
-                                    <span class="material-symbols-outlined relative bottom-1 right-2">delete</span>
-                                </x-danger-button>
+                            <td  class="px-6 py-4 flex items-center justify-center">
+                                <x-flowbite.btn-red wire:click="deleteServices" title="Delete selected services" >
+                                    <i class="fa-duotone fa-regular fa-trash-xmark"></i>
+                                </x-flowbite.btn-red>
                             </td>
                         </tr>
                     </table>

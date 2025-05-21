@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <div class="form-line success form-line-Employee_id flex gap-3">
                             <span class="text-sm material-symbols-outlined">search</span>
-                            <x-text-input
+                            <x-flowbite.input
                                     label="Search Employee"
                                     placeholder="Search Employee"
                                     wire:model.live.debounce="search"
