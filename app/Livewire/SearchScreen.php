@@ -162,7 +162,7 @@ class SearchScreen extends Component
     }
     public function render()
     {
-        return view('livewire.search-screen')
-            ->extends('layouts.app');
+        return view('livewire.search-screen');
+
     }
 }
