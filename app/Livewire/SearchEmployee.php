@@ -25,7 +25,8 @@ class SearchEmployee extends Component
           if($this->searchFilterType == 'COMMERCIAL') {
               return Searchy::search('employees')->fields('name')->query($this->search)
                   ->getQuery()->where('type', 'COMMERCIAL')->limit(10)->get()->toArray();
-          }else{
+          }
+          if($this->searchFilterType === 'RESIDENTIAL') {
                 return Searchy::search('employees')->fields('name')->query($this->search)
                     ->getQuery()->where('type', 'RESIDENTIAL')->orWhere('type', 'HENTALHOUSE')->limit(10)->get()->toArray();
           }
@@ -35,6 +36,10 @@ class SearchEmployee extends Component
             return [];
         }
 
+    }
+    public function mount()
+    {
+        $this->searchFilterType = 'ALL';
     }
     public function render()
     {

@@ -29,6 +29,6 @@ class customerEditBs extends Component
     public function render(): View|Closure|string
     {
 
-        return view('components.customer-edit-bs');
+        return view('components.old.customer-edit-bs');
     }
 }

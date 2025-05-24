@@ -143,7 +143,11 @@ public function editCustomerEvent($id)
             }
 
         }else{
+            if($this->filterType == "ALL"){
+                return Customer::paginate($config->nun_reg_pages);
+            }else{
             return  Customer::where('type', $this->filterType)->orderBy('name')->paginate($config->nun_reg_pages);
+            }
         }
 
 

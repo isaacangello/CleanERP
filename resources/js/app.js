@@ -413,8 +413,9 @@ import {isValidElement} from "./custom/helpers/funcs.js";
                     this.tabCustomer = false;
                     this.tabEmployee = false;
                     console.log('Service');
-                    this.$refs.tabServiceElement.classList.add('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabServiceElement.classList.remove( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
+                    this.$refs.tabServiceElement.classList.add('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+
 
                     this.$refs.tabRepeatElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabRepeatElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
@@ -456,8 +457,9 @@ import {isValidElement} from "./custom/helpers/funcs.js";
                     this.$refs.tabRepeatElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabRepeatElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
 
-                    this.$refs.tabCustomerElement.classList.add('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabCustomerElement.classList.remove( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
+                    this.$refs.tabCustomerElement.classList.add('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+
 
                     this.$refs.tabEmployeeElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabEmployeeElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
@@ -468,8 +470,8 @@ import {isValidElement} from "./custom/helpers/funcs.js";
                     this.tabCustomer = false;
                     this.tabEmployee = true;
                     console.log('Employee');
-                    this.$refs.tabServiceElement.classList.add('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
-                    this.$refs.tabServiceElement.classList.remove( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
+                    this.$refs.tabServiceElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+                    this.$refs.tabServiceElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
 
                     this.$refs.tabRepeatElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabRepeatElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
@@ -477,10 +479,43 @@ import {isValidElement} from "./custom/helpers/funcs.js";
                     this.$refs.tabCustomerElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabCustomerElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
 
-                    this.$refs.tabEmployeeElement.classList.add('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabEmployeeElement.classList.remove( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
+                    this.$refs.tabEmployeeElement.classList.add('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+
                     break;
             }
         },
     }))
+Alpine.data( 'multiSelectAlpine',() => {
+
+        return {
+            selectOpen: false,
+            options: $wire.billings,
+            selectedOptions: $wire.entangle('billingsSelected'),
+            selectedValues: $wire.entangle('selectedValues'),
+            joinSelectedValues() {
+                if(this.selectedValues.length === 0) {
+                    return 'Select options';
+                }
+                const tempValues = new  Set(this.selectedValues);
+                return Array.from(tempValues).join(', ');
+            },
+            toggleOption(option) {
+                if (this.selectedOptions.includes(option)) {
+                    this.selectedOptions = this.selectedOptions.filter(item => item !== option);
+                } else {
+                    this.selectedOptions.push(option);
+                }
+            },
+            toggleValues(option) {
+                if (this.selectedValues.includes(option)) {
+                    this.selectedValues = this.selectedValues.filter(item => item !== option);
+                } else {
+                    this.selectedValues.push(option);
+                }
+            }
+        }
+    }
+);
+
 Livewire.start();

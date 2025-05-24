@@ -273,7 +273,7 @@
                     <a class="flex flex-row items-center justify-start block px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200" href="#">
 
                         <div class="w-10 h-10 mr-3 overflow-hidden bg-gray-100 border border-gray-300 rounded-full">
-                            <img class="object-cover w-full h-full" src="img/user2.jpg" alt="">
+                            <img class="object-cover w-full h-full" src="/img/user2.jpg" alt="">
                         </div>
 
                         <div class="flex flex-1 flex-rowbg-green-100">

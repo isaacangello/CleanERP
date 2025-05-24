@@ -34,8 +34,8 @@ Route::post('/authenticate', [IndexController::class , 'authenticate'])->name('l
 //#############################################################
 //############ RESOURCES CUSTOMERS EMPLOYEES SERVICES NAD ETC
 //#############################################################
+Route::get('customers',\App\Livewire\Registration\CustomerRegistration::class)->name('customers.index');
 Route::resources([
-   'customers' => CustomerController::class,
     'employees' => EmployeeController::class,
     'services' => ServicesController::class,
 ]);

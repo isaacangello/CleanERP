@@ -1,6 +1,6 @@
 @extends("layouts.main_old")
 @section('title')
-    <title>Customers - main - CleanERP 2</title>
+    <title>Customers - main - CleanERP</title>
 @endsection
 {{--css links para o head--}}
 @section('css-style')
@@ -53,7 +53,7 @@
         <div class="row clearfix">
             <div class="col s12 m12">
                 <div class="card">
-                    <div class="header" style="padding-bottom: 0px;">
+                    <div class="header" style="padding-bottom: 0;">
                         <div class="row">
                             <div class="col s12 m12">
                                 {{--                            <button class="btn btn-link waves-effect waves-light  btn-small modal-trigger"  href="#new-customer"  >New Customer</button>--}}
@@ -61,7 +61,7 @@
 
                                 <!-- ############  Blade  component customer-cad ###########################################################################################-->
                                 <!-- component register for register new customer-->
-                                <x-customer-cad :billings='$billings_all' :$type/>
+{{--                                <x-flowbite.customer-html-form :billings='$billings_all' :$type/>--}}
 
 
                             </div>

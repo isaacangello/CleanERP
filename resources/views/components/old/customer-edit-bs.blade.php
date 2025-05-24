@@ -9,14 +9,14 @@
     }
 @endphp
     <div id="edit-fcustomer" class="modal-default bottom-sheet"
-                 x-init="$watch('showCustomerEdit', value => {
-                if (value) {
-                    document.body.classList.add('overflow-y-hidden');
-                    {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}
-                } else {
-                    document.body.classList.remove('overflow-y-hidden');
-                }
-            })"
+{{--                 x-init="$watch('showCustomerEdit', value => {--}}
+{{--                if (value) {--}}
+{{--                    document.body.classList.add('overflow-y-hidden');--}}
+{{--                    {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}--}}
+{{--                } else {--}}
+{{--                    document.body.classList.remove('overflow-y-hidden');--}}
+{{--                }--}}
+{{--            })"--}}
 
          x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"
          x-on:close-modal.window="$event.detail == '{{ $name }}' ? show = false : null"

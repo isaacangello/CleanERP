@@ -1,6 +1,6 @@
 @props(['showModal' => false,'open' =>false, 'title' => 'Service Details','name' => 'Service Details'])
 <!-- Extra Large Modal -->
-<div id="modal-show" tabindex="-1" class="fixed top-0 left-0 right-0 z-50  bg-blue-800/30  w-full  overflow-x-hidden overflow-y-auto md:inset-0 flex h-screen max-h-full items-center justify-center"
+<div id="modal-show" tabindex="-1" class="fixed top-0 left-0 right-0 z-50  bg-blue-800/30  w-full  overflow-x-hidden overflow-y-auto md:inset-0  h-screen max-h-full flex items-center justify-center"
      x-on:open-modal.window="$event.detail == '{{ $name }}' ? open = true : null"
      x-on:close-modal.window="$event.detail == '{{ $name }}' ? open = false : null"
      x-on:close.stop="open = false"
@@ -17,10 +17,9 @@
 >
 
 
-    <div class="relative w-full max-w-7xl max-h-full mx-auto my-auto">
+    <div class="relative  max-w-7xl max-h-full mx-auto my-auto">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700"
-        >
+        <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
             <!-- Modal header -->
             <div class="flex items-center justify-between p-2 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
                 <div role="status" wire:loading>

@@ -76,7 +76,7 @@
                                 ";
                             @endphp
                             <x-old.input-label class="form-label" for="input-search-service-from">From</x-old.input-label>
-                            <x-flowbite.flatpickr-date id="input-search-service-from" class="p-1 w-full h-10" options="{!! $options !!}"  wire:model="from" value="{{$this->from}}"   />
+                            <x-flowbite.flatpickr-date id="input-search-service-from" class="p-1 w-full h-10" options="{!! $options !!}"  wire:model="from"  />
                         </div>
                         <div>
                             @php
@@ -93,11 +93,11 @@
                                     ";
                             @endphp
                             <x-old.input-label>Till</x-old.input-label>
-                            <x-flowbite.flatpickr-date id="input-search-service-till"  class="h-10 w-full"  options="{!! $options !!}"  wire:model="till" value="{{$this->till}}" />
+                            <x-flowbite.flatpickr-date id="input-search-service-till"  class="h-10 w-full"  options="{!! $options !!}"  wire:model="till"  />
                         </div>
                         <div>
                             <x-old.input-label class="text-white">Till</x-old.input-label>
-                            <x-flowbite.btn-blue type="submit" class="h-10 me-0 mb-0">
+                            <x-flowbite.btn-blue type="submit" class="h-10 me-0 mb-0" style="margin-left: 0;margin-bottom: 0">
                                 <i class="fa-duotone fa-regular fa-magnifying-glass-play"></i>
                             </x-flowbite.btn-blue>
                         </div>
@@ -106,12 +106,12 @@
                 </form>
             </div>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
-                    @if($this->searchedServices)
                         @php
                             $counter = 0;
                         @endphp
 
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        @if($this->searchedServices)
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
 
@@ -147,8 +147,13 @@
                                 </x-flowbite.btn-red>
                             </td>
                         </tr>
+                        @else
+                            <tr>
+                                <td class="px-6 py-3 text-center" colspan="3"> Not found </td>
+                            </tr>
+                        @endif
                     </table>
-                    @endif
+
             </div>
             @if($this->searchedServices)
             <div class="row">
