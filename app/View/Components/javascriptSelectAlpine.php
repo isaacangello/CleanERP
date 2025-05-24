@@ -21,6 +21,6 @@ class javascriptSelectAlpine extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.javascript-select-alpine');
+        return view('components.old.javascript-select-alpine');
     }
 }

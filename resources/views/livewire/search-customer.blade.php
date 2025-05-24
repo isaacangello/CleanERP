@@ -5,7 +5,7 @@
         </div>
     </div>
 
-    <div>
+    <div class="w-full">
         <div class="header w-full p-4">
             Search customer
         </div>
@@ -17,7 +17,6 @@
                             label="Search Customer"
                             placeholder="Search Customer"
                             wire:model.live.debounce="search"
-                            wire:keydown.enter="searchedCustomers"
                             class="text-sm"
                     />
                 </div>
@@ -33,7 +32,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
 
@@ -54,7 +53,7 @@
 
                                 @endphp
 
-                                <tr wire:key="cust{{$key}}"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr wire:key="cust{{$data->id}}"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-3 hidden md:block md:text-wrap">{{Carbon\Carbon::create($data->created_at)->format('l, m/d/Y h:i A')}}</td>
                                     <td class="px-6 py-3 block md:hidden md:text-wrap">{{Carbon\Carbon::create($data->created_at)->format('m/d/Y h:i A')}}</td>
                                     <td class="px-6 py-3"><a title="Click to Edit customer information." class="hover:text-gray-900 hover:underline cursor-pointer" wire:click="editCustomerEvent({{ $data->id }})">{{$data->name}}</a></td>
@@ -79,5 +78,6 @@
                     </table>
 
             </div>
+    </div>
 
 </div>

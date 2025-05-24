@@ -53,12 +53,15 @@ class SearchServices extends Component
     }
     public function mount()
     {
+        $DateTreatment = new  DateTreatment();
 //        dd(Populate::employeeFilter('RESIDENTIAL')->toArray());
         $this->customers = Populate::customerFilter('RESIDENTIAL')->toArray();
         $this->employees = Populate::employeeFilter('RESIDENTIAL')->toArray();
-
+        $week = $DateTreatment->getWeekByNumberWeek(Carbon::now()->week);
         $this->initVars();
         $this->searchedServices();
+        $this->from = $week['Monday'];
+        $this->till = $week['Saturday'];
     }
     public function render()
     {

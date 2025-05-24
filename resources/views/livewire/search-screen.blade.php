@@ -82,13 +82,13 @@
                                  x-trap="tabCustomer"
                                  x-transition:enter="animate__animated animate__fadeIn animate__faster"
                             >
-                                <livewire:search-customer @edit-customer="editCustomer($event.detail.id);selectTab('tabCustomer')" />
+                                <livewire:search-customer :key="$this->formId" @edit-customer="editCustomer($event.detail.id);selectTab('tabCustomer')" />
 
                                 <div x-data="{
                                         showCustomerEdit: $wire.entangle('showCustomerEdit')
                                     }"
                                 >
-{{--                                    <x-customer-edit-bs :$billings />--}}
+                                    <x-flowbite.customer-html-form :$billings />
 
 
                                 </div>

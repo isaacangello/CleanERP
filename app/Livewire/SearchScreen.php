@@ -24,7 +24,7 @@ class SearchScreen extends Component
     public $tabRepeat = false;
     public $tabCustomer = false;
     public $tabEmployee = false;
-    public $showCustomerEdit = false;
+    public $showCustomerEdit = true;
     public $showEmployeeEdit = false;
     public $billings = [];
     public $selectedOptions = [];
@@ -34,7 +34,7 @@ class SearchScreen extends Component
     public $status = 'ACTIVE';
     public $employee;
     public $formType = 'EDIT';
-
+    public $formId= "Ycjdd$$";
     public function editCustomer($id): void
     {
 
@@ -84,7 +84,7 @@ class SearchScreen extends Component
 
         //dd($this->customer->type);
         $this->showCustomerEdit = true;
-
+//        dd($this->customer);
     }
 
     public function updateCustomer($id): void

@@ -11,7 +11,7 @@
                 Search repetition
             </div>
 
-            <div class="panel-body " >
+            <div class="" >
                     <form wire:submit.prevent="searchCycles()">
                         <div class="w-full flex space-x-2 items-end justify-center p2 mb-3">
                                 <div>
@@ -54,7 +54,7 @@
                                     </x-flowbite.select>
                                 </div>
                             <div>
-                                <x-flowbite.btn-blue type="submit" class="h-10 me-0 mb-0">
+                                <x-flowbite.btn-blue type="submit" class="h-10 me-0 mb-0" style="margin-left: 0;margin-bottom: 0">
                                     <i class="fa-duotone fa-regular fa-magnifying-glass-play"></i>
                                 </x-flowbite.btn-blue>
                             </div>
@@ -75,7 +75,7 @@
                                 </tr>
                             </thead>
                             @php
-                                $counter = 1;
+                                $counter = 10;
                             @endphp
                         @foreach($this->searchedCycles as $cycle)
                                 <tr wire:key="tr{{ $counter }}"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600" >
@@ -122,4 +122,3 @@
         </div>
     </div>
 
-</div>

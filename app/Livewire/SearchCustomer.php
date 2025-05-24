@@ -26,7 +26,7 @@ use App\Livewire\Forms\CustomerForm;
     {
         $this->billings = Billing::all();
         $this->fcustomer->type = strtoupper($this->filterType);
-        $this->searchFilterType = strtoupper($this->filterType);
+        $this->searchFilterType = 'ALL';
 
     }
 public function editCustomerEvent($id){
@@ -37,16 +37,16 @@ public function editCustomerEvent($id){
 //        $this->billings = Billing::get()->toArray();
 //        dd($this->billings);
         if($this->search){
-            if($this->searchFilterType == 'ALL') {
+            if($this->searchFilterType === 'ALL' or is_null($this->searchFilterType)) {
                 return  Searchy::search('customers')->fields('name')->query($this->search)
                     ->getQuery()->limit(10)->get()->toArray();
 
             }
-            if($this->searchFilterType == 'COMMERCIAL') {
+            if($this->searchFilterType === 'COMMERCIAL') {
                 return Searchy::search('customers')->fields('name')->query($this->search)
                     ->getQuery()->where('type', 'COMMERCIAL')->limit(10)->get()->toArray();
             }
-            if($this->searchFilterType == 'RESIDENTIAL') {
+            if($this->searchFilterType === 'RESIDENTIAL') {
                 return Searchy::search('customers')->fields('name')->query($this->search)
                     ->getQuery()->where('type', 'RESIDENTIAL')->orWhere('type','HENTALHOUSE')->limit(10)->get()->toArray();
             }
