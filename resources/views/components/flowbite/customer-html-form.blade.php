@@ -203,7 +203,38 @@
                                                         //                                                }, $billings);
                                                         //                                                dd($billings);
                                                     @endphp
-                                                    <div class="max-w-md mx-auto" x-data="multiSelectAlpine">
+                                                    <div class="max-w-md mx-auto" x-data="{
+                                                                selectOpen:false,
+                                                                options:$wire.billings,
+                                                                 selectedOptions:$wire.entangle('billingsSelected'),
+                                                                 selectedValues:$wire.entangle('selectedValues'),
+                                                            init(){
+                                                                console.log($wire)
+                                                            },
+                                                                joinSelectedValues() {
+                                                                    if(this.selectedValues.length === 0) {
+                                                                        return 'Select options';
+                                                                    }
+                                                                    const tempValues = new  Set(this.selectedValues);
+                                                                    return Array.from(tempValues).join(', ');
+                                                                },
+                                                                toggleOption(option) {
+                                                                    if (this.selectedOptions.includes(option)) {
+                                                                        this.selectedOptions = this.selectedOptions.filter(item => item !== option);
+                                                                    } else {
+                                                                        this.selectedOptions.push(option);
+                                                                    }
+                                                                },
+                                                                toggleValues(option)
+                                                                {
+                                                                    if (this.selectedValues.includes(option)) {
+                                                                        this.selectedValues = this.selectedValues.filter(item => item !== option);
+                                                                    } else {
+                                                                        this.selectedValues.push(option);
+                                                                    }
+                                                                }
+
+                                                    }">
                                                         <div class="relative">
                                                             {{--                                                    <label for="multi-select" class="block text-sm font-medium text-gray-700 mb-1">Select options:</label>--}}
 

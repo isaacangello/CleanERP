@@ -1,3 +1,8 @@
+@props([
+    'disabledResidential' => false,
+    'disabledCommercial' => false,
+    'disabledFinance' => false,
+])
 <!-- start sidebar -->
 <div
         id="leftSideBar"
@@ -28,27 +33,27 @@
         <!-- end sidebar toggle -->
         <x-cleopatra.left-side-bar-links title="Residential">
 
-            <x-cleopatra.menu-link href="{{ route('week') }}" icon="fa-calendar-week" text="Services Week" />
-            <x-cleopatra.menu-link href="{{ route('week.search') }}" icon="fa-magnifying-glass" text="Search" />
-            <x-cleopatra.menu-link href="{{route('customers.index')}}" icon="fa-user" text="Customers Reg." />
-            <x-cleopatra.menu-link href="{{route('employees.index')}}" icon="fa-address-card" text="Employees Reg." />
+            <x-cleopatra.menu-link   href="{{!$disabledResidential?route('week'):'JavaScript:void(0);' }}"   icon="fa-calendar-week" text="Services Week" />
+            <x-cleopatra.menu-link   href="{{!$disabledResidential? route('week.search'):'JavaScript:void(0);' }}"   icon="fa-magnifying-glass" text="Search" />
+            <x-cleopatra.menu-link   href="{{!$disabledResidential?route('customers.index'):'JavaScript:void(0);'}}"   icon="fa-user" text="Customers Reg." />
+            <x-cleopatra.menu-link   href="{{!$disabledResidential?route('employees.index'):'JavaScript:void(0);'}}"    icon="fa-address-card" text="Employees Reg." />
 
         </x-cleopatra.left-side-bar-links>
-        <x-cleopatra.left-side-bar-links title="Commercial">
+        <x-cleopatra.left-side-bar-links title="Commercial" >
 
-            <x-cleopatra.menu-link href="{{route('commercial.schedule')}}" icon="fa-calendar-week" text="Services Schedule" />
-            <x-cleopatra.menu-link href="{{ route('commercial.schedule.search') }}" icon="fa-magnifying-glass" text="Search" />
-            <x-cleopatra.menu-link href="{{route('customers.index')}}/filter/commercial" icon="fa-user" text="Customers Registration" />
-            <x-cleopatra.menu-link href="{{route('employees.index')}}/filter/commercial" icon="fa-address-card" text="Employees Reg." />
+            <x-cleopatra.menu-link   href="{{!$disabledCommercial?route('commercial.schedule'):'JavaScript:void(0);'}}"   icon="fa-calendar-week" text="Services Schedule"  />
+            <x-cleopatra.menu-link  href="{{ !$disabledCommercial?route('commercial.schedule.search'):'JavaScript:void(0);' }}"   icon="fa-magnifying-glass" text="Search" />
+            <x-cleopatra.menu-link  href="{{!$disabledCommercial?route('customers.index'):'JavaScript:void(0);'}}"   icon="fa-user" text="Customers Registration" />
+            <x-cleopatra.menu-link  href="{{!$disabledCommercial?route('employees.index'):'JavaScript:void(0);'}}"   icon="fa-address-card" text="Employees Reg." />
 
         </x-cleopatra.left-side-bar-links>
 
         <x-cleopatra.left-side-bar-links title="finance">
 
-            <x-cleopatra.menu-link href="{{route('finances')}}" icon="fa-money-bill-wave" text="Home" />
-            <x-cleopatra.menu-link href="{{ route('week.search') }}" icon="fa-magnifying-glass" text="Search" />
-            <x-cleopatra.menu-link href="{{ route('finances') }}/billings" icon="fa-file-invoice-dollar" text="Billings" />
-            <x-cleopatra.menu-link href="{{ route('finances') }}/payments" icon="fa-credit-card" text="Payments" />
+            <x-cleopatra.menu-link  href="{{ !$disabledFinance? route('finances'):'JavaScript:void(0);'}}"   icon="fa-money-bill-wave" text="Home" />
+            <x-cleopatra.menu-link  href="{{ !$disabledFinance? route('week.search'):'JavaScript:void(0);' }}"   icon="fa-magnifying-glass" text="Search" />
+            <x-cleopatra.menu-link  href="{{ !$disabledFinance? route('finances.billings'):'JavaScript:void(0);' }}"   icon="fa-file-invoice-dollar" text="Billings" />
+            <x-cleopatra.menu-link  href="{{ !$disabledFinance? route('finances.payments'):'JavaScript:void(0);' }}"   icon="fa-credit-card" text="Payments" />
 
         </x-cleopatra.left-side-bar-links>
         <br><br> <br><br>

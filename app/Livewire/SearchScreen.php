@@ -24,7 +24,7 @@ class SearchScreen extends Component
     public $tabRepeat = false;
     public $tabCustomer = false;
     public $tabEmployee = false;
-    public $showCustomerEdit = true;
+    public $showCustomerEdit = false;
     public $showEmployeeEdit = false;
     public $billings = [];
     public $selectedOptions = [];

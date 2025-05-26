@@ -14,7 +14,7 @@
         <x-cleopatra.loading  />
         <div class="w-full h-full" x-cloak x-data="cnf" x-ref="allContent" x-init="$nextTick(() => { pageInit() })">
             <x-cleopatra.navbar  />
-            <x-cleopatra.left-sidebar  />
+            <x-cleopatra.left-sidebar :disabled-finance="true" :disabled-commercial="true" />
             <div x-ref="mainContent" class="md:ml-64 md:px-3.5 pt-20 transition-all duration-300 ease-in-out">
                 {{ $slot }}
             </div>

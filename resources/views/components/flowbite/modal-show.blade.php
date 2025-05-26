@@ -22,20 +22,22 @@
         <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
             <!-- Modal header -->
             <div class="flex items-center justify-between p-2 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                <div role="status" wire:loading>
-                    <svg aria-hidden="true" class="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-                    </svg>
-                    <span class="sr-only">Loading...</span>
+                <div wire:loading class=" bg-black/5 w-full h-full absolute top-0 left-0 flex items-center justify-center">
+                    <div role="status" class="bg-white rounded-lg w-14 h-14 flex items-center justify-center"  style="margin-left: 23vw; margin-top: 45vh;">
+                        <svg aria-hidden="true" class="inline w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                        </svg>
+                        <span class="sr-only">Loading...</span>
+                    </div>
                 </div>
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white space-x-2">
                     @php
                         if (isset($dataService->customer->type)){
-                        $custoType  = $dataService->customer->type === "RENTALHOUSE"? "<i class='fa-solid fa-house-day'></i>":"<i class='fa-solid fa-user-tie text-sm'></i>";
+                        $custoType  = $dataService->customer->type === "RENTALHOUSE"? "<i class='fa-solid fa-house-day ms-1'></i>":"<i class='fa-solid fa-user-tie ms-1'></i>";
                         }else{$custoType="&nbsp;";}
                     @endphp
-                    {{ $dataService->customer->name??"" }}{!! $custoType !!}
+                    {!! $custoType !!} - {{ $dataService->customer->name??"" }}
                 </h3>
                 <button type="button" @click="open = false" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -157,7 +159,7 @@
                 <x-flowbite.btn-orange
                         wire:click="$dispatch('trigger-confirm-fee')"
                         @click="open = false"
-                        class="btnFeeService"
+                        class="btnFeeService py-3"
                         id="btnFeeService"
                 >
                     <i class="fa-duotone fa-rectangle-xmark"></i>
@@ -166,10 +168,11 @@
                         wire:click="$dispatch('trigger-confirm-delete')"
                         @click="open = false"
                         id="btnDeleteService"
+                        class="py-2.5"
                 >
                     <i class="fa-duotone fa-trash"></i>
                 </x-flowbite.btn-red>
-                <x-flowbite.btn-blue class="text-base py-2.5" @click="open = false">
+                <x-flowbite.btn-blue class="text-base py-2.5 me-2 mb-2" @click="open = false">
                     Close
                 </x-flowbite.btn-blue>
             </div>

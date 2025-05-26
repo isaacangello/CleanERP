@@ -16,7 +16,7 @@
                             </span>
                     </div>
                     <div class="body" >
-                        <x-flowbite.week-navigation :$route :selected-week="$selectedWeek" >
+                        <x-flowbite.week-navigation :$route :selected-week="$selectedWeek"  >
                             <x-slot name="btns">
                                 <div>
                                     <x-flowbite.btn-blue id="btnNew" title="New Service" x-on:click="openModal()">

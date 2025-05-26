@@ -40,7 +40,11 @@ class EmployeeRegistration extends Component
                     ->getQuery()->where('type', 'RESIDENTIAL')->limit(10)->get()->toArray();
             }
         } else {
+            if($this->searchFilterType == 'ALL'){
+                return Employee::paginate(Funcs::getConfig()->nun_reg_pages);
+            }else{
             return Employee::where('type', $this->filterType)->orderBy('name')->paginate(Funcs::getConfig()->nun_reg_pages);
+            }
         }
         return [];
     }
