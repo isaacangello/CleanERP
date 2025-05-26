@@ -15,7 +15,8 @@ import {toastAlert,Toast_5000,swalConfirmCallback,swalConfirm} from "./custom/he
 import {isValidElement} from "./custom/helpers/funcs.js";
 
 
-    function customEvents() {
+    window.customEvents = function () {
+
         Livewire.on('toggle-status-service',function (event) {
             axios.post('/api/confirm-only/'+event.id,
                 {
@@ -327,6 +328,8 @@ import {isValidElement} from "./custom/helpers/funcs.js";
         }
 
     }));
+
+
     Alpine.data('weekScreen', () => ({
         'cadOpen': Livewire.all()[0].$wire.entangle('showCadModal').live,
         'open': Livewire.all()[0].$wire.entangle('showModal').live,
@@ -336,7 +339,7 @@ import {isValidElement} from "./custom/helpers/funcs.js";
                 // console.log(Livewire.all()[0].ephemeral.from)
                 // console.log(weekComponent[0].get('tempDate'))
                 //modalInit('btnNew','modalClose','modal-create',{placement:'center-center'})
-                customEvents()
+               window.customEvents()
         },
         showModal(){
             this.open = true
@@ -386,7 +389,7 @@ import {isValidElement} from "./custom/helpers/funcs.js";
     // console.log(Livewire)
     Alpine.data('searchScreen',()=>({
         init(){
-            customEvents()
+           window.customEvents()
             console.log(Livewire.all())
             console.log(this.$refs.tabServiceElement)
 
@@ -486,36 +489,14 @@ import {isValidElement} from "./custom/helpers/funcs.js";
             }
         },
     }))
-Alpine.data( 'multiSelectAlpine',() => {
-
-        return {
-            selectOpen: false,
-            options: $wire.billings,
-            selectedOptions: $wire.entangle('billingsSelected'),
-            selectedValues: $wire.entangle('selectedValues'),
-            joinSelectedValues() {
-                if(this.selectedValues.length === 0) {
-                    return 'Select options';
-                }
-                const tempValues = new  Set(this.selectedValues);
-                return Array.from(tempValues).join(', ');
-            },
-            toggleOption(option) {
-                if (this.selectedOptions.includes(option)) {
-                    this.selectedOptions = this.selectedOptions.filter(item => item !== option);
-                } else {
-                    this.selectedOptions.push(option);
-                }
-            },
-            toggleValues(option) {
-                if (this.selectedValues.includes(option)) {
-                    this.selectedValues = this.selectedValues.filter(item => item !== option);
-                } else {
-                    this.selectedValues.push(option);
-                }
-            }
+    Alpine.store( 'registration', {
+        init(){
+           window.customEvents()
         }
-    }
-);
+    })
+
+
+
+
 
 Livewire.start();

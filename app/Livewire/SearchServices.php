@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Helpers\Funcs;
 use App\Http\Controllers\Populate;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -30,7 +31,10 @@ class SearchServices extends Component
         //$this->dispatch('toast-alert',icon:'info', title:"Info", text:'Searching services');
         $tempServices = new Service();
         if($this->selectedEmployee === 0 and $this->selectedCustomer === 0){
-            return null;
+            return $tempServices->where('service_date','>=',$this->from)
+                ->where('service_date','<=',$this->till)
+                ->orderBy('service_date','desc')
+                ->paginate(Funcs::getConfig()->nun_reg_pages);
         }
         $tempServices = $tempServices->with('employee','customer','control');
         if($this->selectedEmployee>0)
@@ -43,7 +47,6 @@ class SearchServices extends Component
         }
         $tempServices = $tempServices->where('service_date','>=',$this->from)->where('service_date','<=',$this->till)->orderBy('service_date','desc');
 
-        $this->services =  $tempServices->paginate(10)->toArray();
         return $tempServices->paginate(10);
 //
     }

@@ -35,8 +35,8 @@ Route::post('/authenticate', [IndexController::class , 'authenticate'])->name('l
 //############ RESOURCES CUSTOMERS EMPLOYEES SERVICES NAD ETC
 //#############################################################
 Route::get('customers',\App\Livewire\Registration\CustomerRegistration::class)->name('customers.index');
+Route::get('employees',\App\Livewire\Registration\EmployeeRegistration::class)->name('employees.index');
 Route::resources([
-    'employees' => EmployeeController::class,
     'services' => ServicesController::class,
 ]);
 //#############################################################
@@ -56,8 +56,8 @@ Route::prefix('finances')->group(function () {
     Route::get('/detailer/{id}/{from}/{till}', \App\Livewire\Finance\Detailer::class)->middleware(['auth', 'verified'])->name('finances.detailer');
     Route::get('/report/{id}/{from}/{till}/{message?}', [\App\Http\Controllers\FinanceReportController::class, 'index'])->middleware(['auth', 'verified'])->name('finances.report');
     Route::get('/report/{id}/{from}/{till}/{message?}/export', [\App\Http\Controllers\FinanceReportController::class, 'generate_pdf'])->middleware(['auth', 'verified'])->name('finances.report.export');
-    Route::get('/billings', \App\Livewire\Finance\Billings::class);
-    Route::get('/payments',\App\Livewire\Finance\PaymentsReg::class);
+    Route::get('/billings', \App\Livewire\Finance\Billings::class)->name('finances.billings');
+    Route::get('/payments',\App\Livewire\Finance\PaymentsReg::class)->name('finances.payments');
 });
 
 

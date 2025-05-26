@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('config', function (Blueprint $table) {
+        Schema::table('configs', function (Blueprint $table) {
             $table->integer('search_limit')->default(10);
         });
     }

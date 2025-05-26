@@ -1,4 +1,4 @@
-<div class="flex gap-2 justify-center">
+<div class="flex gap-2 justify-center mb-3">
     <div class="" >
         <form action="{{route($route??'home')}}">
             <x-flowbite.btn-blue type="submit" class="" >

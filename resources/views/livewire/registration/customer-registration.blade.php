@@ -17,7 +17,7 @@
                     prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
                 }"
 
-
+            x-init="window.customEvents()"
 >
     <div wire:loading.class.remove="hidden" class="hidden fixed w-full h-full">
         <div>
@@ -27,26 +27,27 @@
 
     <div class="w-full" >
         <div class="header w-full p-4">
-            Search customer
+            <i class="fa-duotone fa-regular fa-user-magnifying-glass font-medium"></i> Search customer
         </div>
 
         <div class="w-full" >
-            <div class="flex space-x-2 items-end justify-center p-2 mb-3 border border-gray-300">
+            <div class="flex space-x-2 items-end justify-center p-2 mb-3 border border-gray-300 bg-white shadow-md sm:rounded-lg">
                 <div >
-                    <x-flowbite.btn-blue wire:click="createCustomerEvent">
+                    <label>&nbsp;</label>
+                    <x-flowbite.btn-blue wire:click="createCustomerEvent" class="py-2.5">
                         <i class="fa-duotone fa-regular fa-user-plus"></i>
                     </x-flowbite.btn-blue>
                 </div>
-                <div>
-                        <span class="text-sm material-symbols-outlined">search</span>
+                <div class="flex space-x-1 justify-center">
                         <x-flowbite.input
-                                label="Search Customer"
+                                label=" "
                                 placeholder="Search Customer"
                                 wire:model.live.debounce="search"
                                 wire:keydown.enter="searchedCustomers"
                         />
                 </div>
                 <div>
+                    <label>&nbsp;</label>
                     <x-flowbite.select
                             wire:model.live="searchFilterType"
                             title="select type of customer to search"
@@ -80,10 +81,10 @@
                                         <span class="hidden md:block">{{Carbon\Carbon::create($data->created_at)->format('l, m/d/Y h:i A')}}</span>
                                         <span class="block md:hidden text-sm">{{Carbon\Carbon::create($data->created_at)->format('m/d/Y')}}</span>
                                     </td>
-                                    <td class="px-6 py-3"><a title="Click to Edit customer information." class="btn-link-underline pointer waves-effect waves-grey text-green-950" wire:click="editCustomerEvent({{ $data->id }})">{{$data->name}}</a></td>
-                                    <td class="px-6 py-3 hidden md:block"><span class=" @if($data->type == "COMMERCIAL") text-gray-700 @else text-green-700 @endif ">{{$data->type}}</span> </td>
+                                    <td class="px-6 py-3"><a title="Click to Edit customer information." class="hover:text-gray-900 hover:underline cursor-pointer text-blue-950" wire:click="editCustomerEvent({{ $data->id }})">{{$data->name}}</a></td>
+                                    <td class="px-6 py-3 hidden md:block"><span class=" @if($data->type == "COMMERCIAL") text-gray-700 @else text-blue-700 @endif ">{{$data->type}}</span> </td>
                                     <td class="px-6 py-3" colspan="2">
-                                        <a class="btn-link-underline pointer" wire:click="changeStatus({{$data->id}})"
+                                        <a class="hover:text-gray-900 hover:underline cursor-pointer" wire:click="changeStatus({{$data->id}})"
                                            title="Click to change status."
                                         >
                                             <span>{{$data->status}}</span>
@@ -104,9 +105,9 @@
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col s12 m12">
-                    <div class="flex justify-center">
+            <div class="w-full">
+                <div class="">
+                    <div class=" py-7 flex justify-center">
 
                         @if(!is_array($this->data))
                             {{ $this->data->links() }}
