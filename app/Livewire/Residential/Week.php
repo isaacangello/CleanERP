@@ -70,7 +70,7 @@ class Week extends Component
     public $tempTime  = '';
     public $tempControlInTime  = '';
     public $tempControlOutTime  = '';
-    public  $showModal = true;
+    public  $showModal = false;
     public  $showCadModal = false;
      public $cardsHtml ='';
      public array $week = [];

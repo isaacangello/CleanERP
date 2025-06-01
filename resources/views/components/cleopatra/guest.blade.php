@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}" type="image/x-icon">
-    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+{{--    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">--}}
     <title>{{ $title ?? 'CleanERP' }}</title>
-    @livewireStyles
-    @vite('resources/js/app.js')
+{{--    @livewireStyles--}}
+{{--    @vite('resources/js/app.js')--}}
+    <link rel="stylesheet" href="{{asset('build/assets/app-75096b1a.css')}}">
 </head>
 <body class="block text-gray-900 antialiased  bg-gradient-to-bl  from-gray-300 to-gray-400 dark:bg-gray-900 overflow-hidden "
     style="
@@ -16,11 +17,12 @@
     background: linear-gradient(188deg, rgba(209,213,219,0.01) 10%, rgba(156,163,175,1) 100%);
     "
 >
-    <x-cleopatra.loading  />
+    <x-cleopatra.loading wire:loading />
 
         {{ $slot }}
 
 
-    @livewireScriptConfig
+{{--    @livewireScriptConfig--}}
+    <script type="module" src="{{asset('build/assets/app-1e78b4ef.js')}}"></script>
 </body>
 </html>

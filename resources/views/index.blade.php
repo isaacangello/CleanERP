@@ -55,13 +55,13 @@
                     <div class="flex  mt-4  justify-between">
                         <div class=" flex  items-center justify-between gap-2">
                                     <input type="checkbox" name="remember" id="remember_me"
-                                           class="w-4 h-4 accent-green-800 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600
+                                           class="w-4 h-4 accent-blue-800 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
                                                 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                     >
                                     <span>Remember Me</span>
                         </div>
                         <div class="">
-                            <button class="btn btn-primary" type="submit">SIGN IN</button>
+                            <x-flowbite.btn-blue  type="submit">SIGN IN</x-flowbite.btn-blue>
                         </div>
                     </div>
                     <div class="flex justify-between">
@@ -69,7 +69,7 @@
                             &nbsp;
                         </div>
                         <div class="text-end mt-5">
-                            <a href="{{ route('password.request') }}" class="link link-primary">Forgot Password?</a>
+                            <a href="{{ route('password.request') }}" class="link link-info">Forgot Password?</a>
                         </div>
                     </div>
                 </form>
@@ -77,7 +77,7 @@
         </div>
            <div>
                <div class="pt-5 pb-10 text-center text-white">
-                   <small class=""  style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>The Office System. </b></small>
+                   <small class=""  style="text-shadow: 2px 2px 6px rgba(3,3,3,0.81);"><b>The Office System.</b></small>
                </div>
            </div>
 

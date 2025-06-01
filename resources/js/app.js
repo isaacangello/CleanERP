@@ -5,7 +5,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import '../css/app.css';
 import axios from "axios";
 // import '../css/cleopatra.css'
-import '../fa6/pro/css/all.css';
+// import '../fa6/pro/css/all.css';
 import '../fa6/pro/js/all.js';
 import 'animate.css';
 import flatpickr from "flatpickr";

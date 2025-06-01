@@ -70,8 +70,9 @@ return [
     */
 
     'links' => [
-        public_path('web') => storage_path('../resources/web'),
-        public_path('js') => storage_path('../node_modules/'),
+        public_path('fa6') => storage_path('../resources/fa6'),
+//        public_path('web') => storage_path('../resources/web'),
+//        public_path('js') => storage_path('../node_modules/'),
     ],
 
 ];
