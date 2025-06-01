@@ -1,12 +1,12 @@
 
-    <div class="container-fluid p-4" >
+<div class="p-4">
         <div class="p-4">
             <h2>
                 SEARCHES
             </h2>
         </div>
         <!-- Basic Examples -->
-        <div class="bg-white p-4">
+        <div class="bg-white p-4 max-h-96">
             <div class="">
                 <div class="card">
                     <div class="header">
@@ -113,7 +113,7 @@
             </div>
         </div>
 {{--        <x-old.search-javascript />--}}
-    </div>
+</div>
 
 
 

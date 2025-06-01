@@ -472,9 +472,9 @@ class Week extends Component
     public function render()
     {
 
-        return view('livewire.residential.week')
-            ->section('title', 'Residential Week Schedule')
-            ->extends('layouts.app');
+        return view('livewire.residential.week');
+//            ->section('title', 'Residential Week Schedule')
+//            ->extends('layouts.app');
 
     }
     public function closeModal():void

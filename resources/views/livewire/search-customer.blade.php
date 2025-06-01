@@ -46,7 +46,7 @@
                                 <th scope="col" class="px-6 py-3">Type</th>
                                 <th scope="col" class="px-6 py-3">Status</th>
                             </tr>
-
+                            </thead>
                             @php $counter = 0; @endphp
                             @foreach($this->data as $key => $data)
                                 @php
