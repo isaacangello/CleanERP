@@ -5,11 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}" type="image/x-icon">
-        <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
         <title>{{ $title ?? 'CleanERP' }}</title>
         @livewireStyles
         @vite('resources/js/app.js')
+{{--        <link rel="stylesheet" href="{{ asset('build/assets/app-75096b1a.css') }}">--}}
     </head>
+
     <body class="bg-gray-100">
         <x-cleopatra.loading  />
         <div class="w-full h-full" x-cloak x-data="cnf" x-ref="allContent" x-init="$nextTick(() => { pageInit() })">
@@ -20,7 +21,8 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-        @livewire('wire-elements-modal')
+{{--        @livewire('wire-elements-modal')--}}
         @livewireScriptConfig
+{{--        <script type="module" src="{{asset('build/assets/app-1e78b4ef.js')}}"></script>--}}
     </body>
 </html>

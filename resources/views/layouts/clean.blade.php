@@ -18,8 +18,9 @@
         <meta name="theme-color" content="#ffffff">
 {{--        @yield('css-style')--}}
 {{--        @include('layouts.generic_css')--}}
-    @livewireStyles
-    @vite('resources/js/app.js')
+{{--    @livewireStyles--}}
+{{--    @vite('resources/js/app.js')--}}
+            <link rel="stylesheet" href="{{ asset('build/assets/app-cfa6a903.css') }}">
 </head>
 
 <body class=" text-gray-900 antialiased  bg-gradient-to-bl from-[#bdbdbd] to-[#bab5b5] dark:bg-gray-900 " >
@@ -35,7 +36,8 @@
                 {{$slot}}
         </div>
     </div>
-    @livewireScriptConfig
+{{--    @livewireScriptConfig--}}
+            <script src="{{ asset('build/assets/app-dbdff85e.js') }}" />
 </body>
 
 </html>

@@ -34,11 +34,12 @@ public function editCustomerEvent($id){
 }
     #[Computed]
     public function data(){
-//        $this->billings = Billing::get()->toArray();
+//        $this->billings = Billing::get()->tArray();
 //        dd($this->billings);
         if($this->search){
+//            dd($this->search , $this->searchFilterType);
             if($this->searchFilterType === 'ALL' or is_null($this->searchFilterType)) {
-                return  Searchy::search('customers')->fields('name')->query($this->search)
+                return  Searchy::search('customers')->fields('name','email')->query("$this->search")
                     ->getQuery()->limit(10)->get()->toArray();
 
             }

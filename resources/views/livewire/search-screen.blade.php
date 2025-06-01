@@ -104,7 +104,7 @@
                                         showEmployeeEdit: $wire.entangle('showEmployeeEdit')
                                     }"
                                 >
-{{--                                    <x-employee-edit-bs  />--}}
+                                    <x-flowbite.employee-html-form  />
                                 </div>
                             </div>
                         </div>

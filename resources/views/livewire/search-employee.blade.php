@@ -5,7 +5,7 @@
         </div>
     </div>
 
-    <div class="w-full" >
+    <div class="w-full">
         <div class="header w-full p-4">
             Search Employee
         </div>
@@ -17,11 +17,11 @@
                             label="Search Employee"
                             placeholder="Search Employee"
                             wire:model.live.debounce="search"
-
+                            class="text-sm"
                     />
                 </div>
                 <div>
-                    <x-old.input-label>search</x-old.input-label>
+
                     <x-flowbite.select wire:model="searchFilterType" >
                         <option selected value="ALL"> All </option>
                         <option value="COMMERCIAL">Commercial</option>
@@ -29,13 +29,11 @@
                     </x-flowbite.select>
                 </div>
             </div>
+        </div>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
 
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         @if($this->data)
-                            @php
-//                            dd($this->data[0]->name);
-                            @endphp
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">Created At</th>
@@ -45,7 +43,7 @@
                                 </tr>
                             </thead>
                             @php $counter = 0; @endphp
-                            <tbody>
+
                             @foreach($this->data as $key => $data)
                                 <tr wire:key="emp{{$data->id}}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td  class="px-6 py-3">{{Carbon\Carbon::create($data->created_at)->format('l, m/d/Y h:i A')}}</td>
@@ -61,17 +59,17 @@
                                 </tr>
                           @php $counter++; @endphp
                             @endforeach
-                            </tbody>
+
                         @else
-                            <tbody>
+
                                 <tr>
                                     <td colspan="3" class="px-6 py-3 text-center"> Not found </td>
                                 </tr>
-                            </tbody>
+
                         @endif
 
                     </table>
             </div>
-        </div>
     </div>
 </div>
+
