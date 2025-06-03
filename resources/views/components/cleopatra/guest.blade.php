@@ -9,7 +9,7 @@
     <title>{{ $title ?? 'CleanERP' }}</title>
 {{--    @livewireStyles--}}
 {{--    @vite('resources/js/app.js')--}}
-    <link rel="stylesheet" href="{{asset('build/assets/app-75096b1a.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app-81101dd1.css')}}">
 </head>
 <body class="block text-gray-900 antialiased  bg-gradient-to-bl  from-gray-300 to-gray-400 dark:bg-gray-900 overflow-hidden "
     style="
@@ -23,6 +23,6 @@
 
 
 {{--    @livewireScriptConfig--}}
-    <script type="module" src="{{asset('build/assets/app-1e78b4ef.js')}}"></script>
+    <script type="module" src="{{asset('build/assets/app-97786443.js')}}"></script>
 </body>
 </html>
