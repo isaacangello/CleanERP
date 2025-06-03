@@ -2,7 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Http\Controllers\Populate;
 use App\Livewire\Forms\EmployeeForm;
+use App\Models\Customer;
+use App\Models\Employee;
 use HighSolutions\LaravelSearchy\Facades\Searchy;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -33,7 +36,7 @@ class SearchEmployee extends Component
 
 
         }else{
-            return [];
+            return Employee::take(10)->get();
         }
 
     }

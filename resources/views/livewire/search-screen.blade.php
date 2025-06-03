@@ -6,9 +6,7 @@
             </h2>
         </div>
         <!-- Basic Examples -->
-        <div class="bg-white p-4 max-h-96">
-            <div class="">
-                <div class="card">
+        <div class="bg-white p-4 min-h-96">
                     <div class="header">
                                 <span>
                                   Week Number <span class="yellow-text text-darken-4 font-bold">{{ $numWeek }}</span> / From <span
@@ -62,7 +60,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div>
+
                             <div role="tabpanel" class="tab-pane fade in active" id="tab_service"
                                  x-show="tabService"
                                  x-trap="tabService"
@@ -89,11 +87,9 @@
                                     }"
                                 >
                                     <x-flowbite.customer-html-form :$billings />
-
-
                                 </div>
-
                             </div>
+
                             <div role="tabpanel" class="tab-pane fade in active" id="tab_employee"
                                  x-show="tabEmployee"
                                  x-trap="tabEmployee"
@@ -104,13 +100,11 @@
                                         showEmployeeEdit: $wire.entangle('showEmployeeEdit')
                                     }"
                                 >
-                                    <x-flowbite.employee-html-form  />
+{{--                                    <x-flowbite.employee-html-form  />--}}
                                 </div>
                             </div>
-                        </div>
+
                     </div>
-                </div>
-            </div>
         </div>
 {{--        <x-old.search-javascript />--}}
 </div>

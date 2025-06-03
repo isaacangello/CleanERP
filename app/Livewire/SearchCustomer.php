@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use AllowDynamicProperties;
+use App\Helpers\Funcs;
+use App\Http\Controllers\Populate;
 use App\Models\Billing;
 use App\Models\Customer;
 use HighSolutions\LaravelSearchy\Facades\Searchy;
@@ -36,11 +38,13 @@ public function editCustomerEvent($id){
     public function data(){
 //        $this->billings = Billing::get()->tArray();
 //        dd($this->billings);
+        $config = Funcs::getConfig();
+        $limit = $config->nun_reg_pages - 5;
         if($this->search){
 //            dd($this->search , $this->searchFilterType);
             if($this->searchFilterType === 'ALL' or is_null($this->searchFilterType)) {
-                return  Searchy::search('customers')->fields('name','email')->query("$this->search")
-                    ->getQuery()->limit(10)->get()->toArray();
+                return  Searchy::search('customers')->fields('name')->query($this->search)
+                    ->getQuery()->limit($limit)->get()->toArray();
 
             }
             if($this->searchFilterType === 'COMMERCIAL') {
@@ -53,7 +57,8 @@ public function editCustomerEvent($id){
             }
 
         }else{
-            return [];
+
+            return  Customer::take(10)->get() ;
         }
 
 

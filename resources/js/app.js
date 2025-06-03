@@ -401,9 +401,9 @@ import {isValidElement} from "./custom/helpers/funcs.js";
             console.log()
         },
             tabService: false,
-            'tabRepeat': false,
-            'tabCustomer': false,
-            'tabEmployee': true,
+            tabRepeat: false,
+            tabCustomer: false,
+            tabEmployee: true,
             // tabService: this.$wire.entangle('tabService'),
             // 'tabRepeat': $wire.entangle('tabRepeat'),
             // 'tabCustomer': $wire.entangle('tabCustomer'),
