@@ -17,4 +17,4 @@ jobs:
         server: ${{ secrets.INFINITY_FREE_HOST }}
         username: ${{ secrets.INFINITY_FREE_USER }}
         password: ${{ secrets.INFINITY_FREE_PASSWORD }}
-        server-dir: /cleanerp.free.nf/htdocs
+        server-dir: /cleanerp.free.nf/htdocs/
