@@ -6,7 +6,7 @@
             </h2>
         </div>
         <!-- Basic Examples -->
-        <div class="bg-white p-4 min-h-96">
+        <div class="bg-white p-4 min-h-screen">
                     <div class="header">
                                 <span>
                                   Week Number <span class="yellow-text text-darken-4 font-bold">{{ $numWeek }}</span> / From <span
@@ -18,7 +18,7 @@
                         <div class="w-full text-sm font-medium text-center flex items-center justify-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
                             <ul class="nav nav-tabs tab-col-green flex m-l-2" role="tablist">
                                 <li role="presentation"   class="px-5">
-                                    <a  class="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500"
+                                    <a  class="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500 cursor-pointer"
                                         x-ref="tabServiceElement"
                                         aria-current="page"
                                         data-toggle="tab"
@@ -60,7 +60,7 @@
                                 </li>
                             </ul>
                         </div>
-
+                        <div class="w-full">
                             <div role="tabpanel" class="tab-pane fade in active" id="tab_service"
                                  x-show="tabService"
                                  x-trap="tabService"
@@ -68,6 +68,7 @@
                             >
                                 <livewire:search-services />
                             </div>
+
                             <div role="tabpanel" class="tab-pane fade in active" id="TabRepeat"
                                  x-show="tabRepeat"
                                  x-trap="tabRepeat"
@@ -75,6 +76,7 @@
                             >
                                 <livewire:search-repeat />
                             </div>
+
                             <div role="tabpanel" class="tab-pane fade in active" id="tab_customer"
                                  x-show="tabCustomer"
                                  x-trap="tabCustomer"
@@ -89,20 +91,22 @@
                                     <x-flowbite.customer-html-form :$billings />
                                 </div>
                             </div>
-
+                        </div>
                             <div role="tabpanel" class="tab-pane fade in active" id="tab_employee"
                                  x-show="tabEmployee"
                                  x-trap="tabEmployee"
                                  x-transition:enter="animate__animated animate__fadeIn animate__faster"
                             >
-                                <livewire:search-employee @edit-employee="editEmployee($event.detail.id);selectTab('tabEmployee')" />
-                                <div x-data="{
-                                        showEmployeeEdit: $wire.entangle('showEmployeeEdit')
-                                    }"
-                                >
-{{--                                    <x-flowbite.employee-html-form  />--}}
-                                </div>
+                                <livewire:search-employee :key="$this->formId.'emp'" @edit-employee="editEmployee($event.detail.id);selectTab('tabEmployee')" />
+                                {{--                                <div x-data="{--}}
+                                {{--                                        showEmployeeEdit: $wire.entangle('showEmployeeEdit')--}}
+                                {{--                                    }"--}}
+                                {{--                                >--}}
+                                {{--                                    <x-flowbite.employee-html-form  />--}}
+                                {{--                                </div>--}}
                             </div>
+
+                        </div>
 
                     </div>
         </div>

@@ -391,19 +391,12 @@ import {isValidElement} from "./custom/helpers/funcs.js";
         init(){
            window.customEvents()
             console.log(Livewire.all())
-            console.log(this.$refs.tabServiceElement)
 
-            Livewire.all().forEach((el)=>{
-                if(el.epherial){
-
-                }
-            })
-            console.log()
         },
-            tabService: false,
+            tabService: true,
             tabRepeat: false,
             tabCustomer: false,
-            tabEmployee: true,
+            tabEmployee: false,
             // tabService: this.$wire.entangle('tabService'),
             // 'tabRepeat': $wire.entangle('tabRepeat'),
             // 'tabCustomer': $wire.entangle('tabCustomer'),
@@ -411,48 +404,46 @@ import {isValidElement} from "./custom/helpers/funcs.js";
             selectTab(selected) {
             switch (selected) {
                 case 'tabService':
+                    console.log('Service');
+                    this.$refs.tabServiceElement.classList.remove( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
+                    this.$refs.tabServiceElement.classList.add( 'active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500' );
+
+                    this.$refs.tabRepeatElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+                    this.$refs.tabRepeatElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
+
+                    this.$refs.tabCustomerElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+                    this.$refs.tabCustomerElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
+
+                    this.$refs.tabEmployeeElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+                    this.$refs.tabEmployeeElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
                     this.tabService = true;
                     this.tabRepeat = false;
                     this.tabCustomer = false;
                     this.tabEmployee = false;
-                    console.log('Service');
-                    this.$refs.tabServiceElement.classList.remove( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
-                    this.$refs.tabServiceElement.classList.add('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
 
-
-                    this.$refs.tabRepeatElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
-                    this.$refs.tabRepeatElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
-
-                    this.$refs.tabCustomerElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
-                    this.$refs.tabCustomerElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
-
-                    this.$refs.tabEmployeeElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
-                    this.$refs.tabEmployeeElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
                     break;
                 case 'tabRepeat':
-                    this.tabService = false;
-                    this.tabRepeat = true;
-                    this.tabCustomer = false;
-                    this.tabEmployee = false;
                     console.log('repeat');
-                    this.$refs.tabServiceElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+                    this.$refs.tabServiceElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabServiceElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
 
                     this.$refs.tabRepeatElement.classList.remove( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
                     this.$refs.tabRepeatElement.classList.add('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
 
 
-                    this.$refs.tabCustomerElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+                    this.$refs.tabCustomerElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabCustomerElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
 
-                    this.$refs.tabEmployeeElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+                    this.$refs.tabEmployeeElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabEmployeeElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
+
+                    this.tabService = false;
+                    this.tabRepeat = true;
+                    this.tabCustomer = false;
+                    this.tabEmployee = false;
+
                     break;
                 case 'tabCustomer':
-                    this.tabService = false;
-                    this.tabRepeat = false;
-                    this.tabCustomer = true;
-                    this.tabEmployee = false;
                     console.log('Customer');
                     this.$refs.tabServiceElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabServiceElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
@@ -466,17 +457,19 @@ import {isValidElement} from "./custom/helpers/funcs.js";
 
                     this.$refs.tabEmployeeElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabEmployeeElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
-                    break;
-                case 'tabEmployee':
+
                     this.tabService = false;
                     this.tabRepeat = false;
-                    this.tabCustomer = false;
-                    this.tabEmployee = true;
+                    this.tabCustomer = true;
+                    this.tabEmployee = false;
+
+                    break;
+                case 'tabEmployee':
                     console.log('Employee');
                     this.$refs.tabServiceElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabServiceElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
 
-                    this.$refs.tabRepeatElement.classList.remove('active','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+                    this.$refs.tabRepeatElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
                     this.$refs.tabRepeatElement.classList.add( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
 
                     this.$refs.tabCustomerElement.classList.remove('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
@@ -484,6 +477,11 @@ import {isValidElement} from "./custom/helpers/funcs.js";
 
                     this.$refs.tabEmployeeElement.classList.remove( 'border-transparent','hover:text-gray-600','hover:border-gray-300','dark:hover:text-gray-300');
                     this.$refs.tabEmployeeElement.classList.add('active','text-blue-600','border-blue-600','dark:text-blue-500','dark:border-blue-500');
+
+                    this.tabService = false;
+                    this.tabRepeat = false;
+                    this.tabCustomer = false;
+                    this.tabEmployee = true;
 
                     break;
             }

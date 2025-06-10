@@ -1,4 +1,4 @@
-<div class="p-4">
+<div>
     <div wire:loading class="fixed w-full h-full">
         <div>
             <img src="{{asset('img/loading.gif')}}" alt="loading" class="w-36 " style="margin-left: 40vw; margin-top: 10vh">
