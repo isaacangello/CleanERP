@@ -1,8 +1,8 @@
 on:
     push:
         branches:
-            - infinity_free
-name: 🚀 Deploy to infinity_free
+            - top3host
+name: 🚀 Deploy to top3 host
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -14,7 +14,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ${{ secrets.INFINITY_FREE_HOST }}
-        username: ${{ secrets.INFINITY_FREE_USER }}
-        password: ${{ secrets.INFINITY_FREE_PASSWORD }}
-        server-dir: /cleanerp.free.nf/htdocs/
+        server: ${{ secrets.TOP3_HOST }}
+        username: ${{ secrets.TOP3_USER }}
+        password: ${{ secrets.TOP3_PASSWORD }}
+        server-dir: /
