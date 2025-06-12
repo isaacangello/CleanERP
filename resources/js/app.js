@@ -333,6 +333,9 @@ import {isValidElement} from "./custom/helpers/funcs.js";
     Alpine.data('weekScreen', () => ({
         'cadOpen': Livewire.all()[0].$wire.entangle('showCadModal').live,
         'open': Livewire.all()[0].$wire.entangle('showModal').live,
+        price_inject(){
+          $wire.price_inject()
+        },
         init(){
             window.customEvents()
 
@@ -343,7 +346,7 @@ import {isValidElement} from "./custom/helpers/funcs.js";
                     console.log()
                     if(el.name === "residential.week"){
                         console.log('é o componente')
-
+                        console.log()
                     }
                 })
 
@@ -403,12 +406,6 @@ import {isValidElement} from "./custom/helpers/funcs.js";
             console.log(Livewire.all())
             console.log(this.$refs.tabServiceElement)
 
-            Livewire.all().forEach((el)=>{
-                if(el.epherial.name === "residential.week"){
-                              console.log('é o componente')
-                                console.log(el.epherial)
-                }
-            })
             console.log()
         },
             tabService: false,

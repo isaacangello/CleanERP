@@ -72,10 +72,11 @@
 
                                     <select
                                             wire:loading.attr="disabled"
-                                            wire:model="form.customer_id"
+                                            wire:model.blur="form.customer_id"
 {{--                                            wire:change="price_inject()"--}}
                                             class="w-full py-2.5 font-medium rounded-lg text-sm"
                                             id="select-cad-service-customer"
+                                            x-ref="customerId"
                                     >
                                         <option wire:loading.class="opacity-50" >Customer</option>
                                         @foreach($this->selectOptionsCustomers as  $value)

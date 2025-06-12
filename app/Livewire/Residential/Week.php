@@ -11,8 +11,10 @@ use App\Models\Customer;
 use App\Models\Employee;
 use App\Models\Service;
 use App\Treatment\DateTreatment;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use JetBrains\PhpStorm\NoReturn;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -33,8 +35,6 @@ class Week extends Component
     public $numWeek = null;
     public $year = null;
     public $customer_id='',$employee1_id, $address='',$date='',$phone='',$info,$notes='',$instructions='',$service_date='',$service_time='',$checkin_datetime='',$checkout_datetime='',$customer_type='';
-    public $populateBillings = null;
-
     public $selectOptionsEmployees='';
     public $selectOptionsCustomers='';
     #[Validate('required')]
@@ -176,18 +176,22 @@ class Week extends Component
     }
 
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
-     * @return void
+     * @return array|Collection
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    public function price_inject(): void
+    #[Computed]
+     public function populateBillings():array|Collection
     {
-//        dd($this->form->customer_id);
-        $temp_customer = Customer::with('billings')->find($this->form->customer_id);
-        if($temp_customer->billings->isNotEmpty()){
-        $this->populateBillings = $temp_customer->billings;
+        if($this->form->customer_id){
+            $temp_customer = Customer::with('billings')->find($this->form->customer_id);
+            if($temp_customer->billings->isNotEmpty()){
+            return $temp_customer->billings;
+            }else{
+                return    Billing::query()->orderBy('id')->take(4)->get();
+            }
+
         }else{
-            $this->populateBillings =    Billing::query()->orderBy('id')->take(4)->get();
+            return    Billing::query()->orderBy('id')->take(4)->get();
         }
-//        dd($this->populateBillings);
     }
 
     /***================================================================================================================
@@ -460,7 +464,9 @@ class Week extends Component
         $this->week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
         $this->selectOptionsEmployees = Populate::employeeFilter();
         $this->selectOptionsCustomers = Populate::customerFilter();
-
+        $this->form->fill([
+            'customer_id' => false
+        ]);
 
 
     }
