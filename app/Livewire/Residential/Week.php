@@ -186,7 +186,6 @@ class Week extends Component
         $this->populateBillings = $temp_customer->billings;
         }else{
             $this->populateBillings =    Billing::query()->orderBy('id')->take(4)->get();
-
         }
 //        dd($this->populateBillings);
     }

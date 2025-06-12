@@ -164,6 +164,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-di/php-di" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/wire-elements/modal" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/_laravel_idea" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor" />
     </content>
     <content url="file://$MODULE_DIR$/../laravel7-docker">
       <sourceFolder url="file://$MODULE_DIR$/../laravel7-docker/src/app" isTestSource="false" packagePrefix="App\" />

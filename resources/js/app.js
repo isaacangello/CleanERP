@@ -334,12 +334,22 @@ import {isValidElement} from "./custom/helpers/funcs.js";
         'cadOpen': Livewire.all()[0].$wire.entangle('showCadModal').live,
         'open': Livewire.all()[0].$wire.entangle('showModal').live,
         init(){
+            window.customEvents()
+
                 // let weekComponent = Livewire.getByName("residential.week")
                 console.log(Livewire.all())
+                console.log('aqui')
+                Livewire.all().forEach((el)=>{
+                    console.log()
+                    if(el.name === "residential.week"){
+                        console.log('é o componente')
+
+                    }
+                })
+
                 // console.log(Livewire.all()[0].ephemeral.from)
                 // console.log(weekComponent[0].get('tempDate'))
                 //modalInit('btnNew','modalClose','modal-create',{placement:'center-center'})
-               window.customEvents()
         },
         showModal(){
             this.open = true
@@ -394,8 +404,9 @@ import {isValidElement} from "./custom/helpers/funcs.js";
             console.log(this.$refs.tabServiceElement)
 
             Livewire.all().forEach((el)=>{
-                if(el.epherial){
-
+                if(el.epherial.name === "residential.week"){
+                              console.log('é o componente')
+                                console.log(el.epherial)
                 }
             })
             console.log()
