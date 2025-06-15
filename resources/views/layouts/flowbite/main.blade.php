@@ -7,8 +7,9 @@
         <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}" type="image/x-icon">
         <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
         <title>{{ $title ?? 'CleanERP' }}</title>
-        @livewireStyles
-        @vite('resources/js/app.js')
+{{--        @livewireStyles--}}
+{{--        @vite('resources/js/app.js')--}}
+        <link rel="stylesheet" href="{{asset('build/assets/app-81101dd1.css')}}">
     </head>
     <body class="bg-gray-100">
         <x-cleopatra.loading  />
@@ -20,7 +21,7 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-        @livewireScriptConfig
+        <script type="module" src="{{ asset('build/assets/app-8d3e5beb.js') }}" />
+{{--        @livewireScriptConfig--}}
     </body>
 </html>
