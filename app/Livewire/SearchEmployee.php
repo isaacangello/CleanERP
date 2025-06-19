@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Helpers\Funcs;
 use App\Livewire\Forms\EmployeeForm;
+use App\Models\Employee;
 use HighSolutions\LaravelSearchy\Facades\Searchy;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -16,8 +18,8 @@ class SearchEmployee extends Component
     public EmployeeForm $femployee;
     #[Computed]
     public function data(){
+        $config = Funcs::getConfig();
         if($this->search){
-
           if($this->searchFilterType == 'ALL') {
               return Searchy::search('employees')->fields('name')->query($this->search)
                   ->getQuery()->limit(10)->get()->toArray();
@@ -33,7 +35,7 @@ class SearchEmployee extends Component
 
 
         }else{
-            return [];
+            return Employee::paginate($config->nun_reg_pages);
         }
 
     }

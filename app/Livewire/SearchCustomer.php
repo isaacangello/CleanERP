@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use AllowDynamicProperties;
+use App\Helpers\Funcs;
 use App\Models\Billing;
 use App\Models\Customer;
 use HighSolutions\LaravelSearchy\Facades\Searchy;
@@ -10,6 +11,7 @@ use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use App\Livewire\Forms\CustomerForm;
+use function DI\get;
 
 #[AllowDynamicProperties] class SearchCustomer extends Component
 {
@@ -34,8 +36,7 @@ public function editCustomerEvent($id){
 }
     #[Computed]
     public function data(){
-//        $this->billings = Billing::get()->tArray();
-//        dd($this->billings);
+        $config = Funcs::getConfig();
         if($this->search){
 //            dd($this->search , $this->searchFilterType);
             if($this->searchFilterType === 'ALL' or is_null($this->searchFilterType)) {
@@ -53,7 +54,7 @@ public function editCustomerEvent($id){
             }
 
         }else{
-            return [];
+            return Customer::paginate($config->nun_reg_pages);
         }
 
 

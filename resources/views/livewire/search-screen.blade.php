@@ -94,6 +94,7 @@
                                 </div>
 
                             </div>
+                        </div>
                             <div role="tabpanel" class="tab-pane fade in active" id="tab_employee"
                                  x-show="tabEmployee"
                                  x-trap="tabEmployee"
