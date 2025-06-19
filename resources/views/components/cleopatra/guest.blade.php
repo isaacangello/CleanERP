@@ -9,7 +9,7 @@
     <title>{{ $title ?? 'CleanERP' }}</title>
 {{--    @livewireStyles--}}
 {{--    @vite('resources/js/app.js')--}}
-    <link rel="stylesheet" href="{{asset('build/assets/app-75096b1a.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app-81101dd1.css')}}">
 </head>
 <body class="block text-gray-900 antialiased  bg-gradient-to-bl  from-gray-300 to-gray-400 dark:bg-gray-900 overflow-hidden "
     style="
@@ -17,12 +17,13 @@
     background: linear-gradient(188deg, rgba(209,213,219,0.01) 10%, rgba(156,163,175,1) 100%);
     "
 >
+AQUI
     <x-cleopatra.loading wire:loading />
 
         {{ $slot }}
 
 
 {{--    @livewireScriptConfig--}}
-    <script type="module" src="{{asset('build/assets/app-1e78b4ef.js')}}"></script>
+    <script type="module" src="{{asset('build/assets/app-8d3e5beb.js')}}"></script>
 </body>
 </html>
