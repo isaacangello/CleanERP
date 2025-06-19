@@ -2,7 +2,7 @@
     <div class="container-fluid p-4" >
         <div class="p-4">
             <h2>
-                SEARCHES
+                SEARCHES <!--before rebase-->
             </h2>
         </div>
         <!-- Basic Examples -->
