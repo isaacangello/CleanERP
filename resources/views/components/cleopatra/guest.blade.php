@@ -7,8 +7,8 @@
     <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}" type="image/x-icon">
 {{--    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">--}}
     <title>{{ $title ?? 'CleanERP' }}</title>
-{{--    @livewireStyles--}}
-{{--    @vite('resources/js/app.js')--}}
+    @livewireStyles
+    @vite('resources/js/app.js')
     <link rel="stylesheet" href="{{asset('build/assets/app-75096b1a.css')}}">
 </head>
 <body class="block text-gray-900 antialiased  bg-gradient-to-bl  from-gray-300 to-gray-400 dark:bg-gray-900 overflow-hidden "
@@ -22,7 +22,7 @@
         {{ $slot }}
 
 
-{{--    @livewireScriptConfig--}}
-    <script type="module" src="{{asset('build/assets/app-1e78b4ef.js')}}"></script>
+    @livewireScriptConfig
+{{--    <script type="module" src="{{asset('build/assets/app-1e78b4ef.js')}}"></script>--}}
 </body>
 </html>

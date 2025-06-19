@@ -7,7 +7,7 @@
 
         <!-- Basic Examples -->
 
-                <div class="card bg-white/60">
+                <div class="card bg-white/80">
                     <div class="w-full header mb-2 justify-center text-center">
                             <span>
                               Week Number <span class="text-gray-900">{{ $numWeek }}</span> / From <span
