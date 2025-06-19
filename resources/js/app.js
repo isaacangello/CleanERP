@@ -340,15 +340,8 @@ import {isValidElement} from "./custom/helpers/funcs.js";
             window.customEvents()
 
                 // let weekComponent = Livewire.getByName("residential.week")
-                console.log(Livewire.all())
+
                 console.log('aqui')
-                Livewire.all().forEach((el)=>{
-                    console.log()
-                    if(el.name === "residential.week"){
-                        console.log('é o componente')
-                        console.log()
-                    }
-                })
 
                 // console.log(Livewire.all()[0].ephemeral.from)
                 // console.log(weekComponent[0].get('tempDate'))

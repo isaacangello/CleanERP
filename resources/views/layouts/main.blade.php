@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}" type="image/x-icon">
         <title>{{ $title ?? 'CleanERP' }}</title>
-{{--        @livewireStyles--}}
-{{--        @vite('resources/js/app.js')--}}
-        <link rel="stylesheet" href="{{ asset('build/assets/app-81101dd1.css') }}">
+        @livewireStyles
+        @vite('resources/js/app.js')
+{{--        <link rel="stylesheet" href="{{ asset('build/assets/app-PYQyfNAH.css') }}">--}}
     </head>
 
     <body class="bg-gray-100">
@@ -21,8 +21,7 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-{{--        @livewire('wire-elements-modal')--}}
-{{--        @livewireScriptConfig--}}
-        <script type="module" src="{{asset('build/assets/app-8d3e5beb.js')}}"></script>
+        @livewireScriptConfig
+{{--        <script  src="{{asset('build/assets/app-hhTrlKwr.js')}}"></script>--}}
     </body>
 </html>

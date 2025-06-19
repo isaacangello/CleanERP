@@ -14,9 +14,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "spatie/laravel-html": "^3.11",
-        "spatie/laravel-pdf": "^1.5",
-        "spatie/laravel-ray": "^1.37.1",
-        "wire-elements/modal": "^2.0"
+        "spatie/laravel-pdf": "^1.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

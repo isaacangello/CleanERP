@@ -10,7 +10,7 @@
            wire:loading.class="flex"
    >
 
-        <div class="card shadow-lg rounded-xl bg-white/80 backdrop-blur-md dark:bg-gray-800">
+        <div class="p-5 shadow-lg rounded-xl bg-white/80 backdrop-blur-md dark:bg-gray-800">
             <div class="card-body gap-4">
                 <form id="sign_in" method="POST" action="{{ route('login') }}">
                     @csrf
@@ -25,7 +25,7 @@
                                 <path
                                         d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
                             </svg>
-                            <input type="email" name="email" class="grow" placeholder="Username" />
+                            <x-flowbite.input type="email" name="email" class="grow" placeholder="Username" />
                         </label>
                         @error('email')
                         <div class="text-red-500 text-xs italic">
@@ -43,7 +43,7 @@
                                         d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
                                         clip-rule="evenodd" />
                             </svg>
-                            <input type="password"  name="password" class="grow" placeholder="password" />
+                            <x-flowbite.input type="password"  name="password" class="grow" placeholder="password" />
                         </label>
                         @error('password')
                         <div class="text-red-500 text-xs italic">
