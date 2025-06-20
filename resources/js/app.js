@@ -277,7 +277,7 @@ console.log(prefix)
         profileDropDown: false,
         notifications: false,
         messages: false,
-
+        popUpContainer:false,
         toggle() {
             this.show = !this.show;
         },
@@ -285,6 +285,33 @@ console.log(prefix)
             this.leftSideBar = !this.leftSideBar;
             this.$refs.mainContent.classList.toggle('md:ml-64');
 
+        },
+        togglePopUpContainer(item){
+            const is_true = 0
+            if(this.popUpContainer === false){
+                this.popUpContainer = true
+            }else{
+                switch (item) {
+                    case 'profileDropDown':
+                        if(this.messages === false && this.notifications === false){
+                            this.popUpContainer = false
+                        }
+                    break;
+                    case 'notifications':
+                        if(this.messages === false && this.profileDropDown === false){
+                            this.popUpContainer = false
+                        }
+                    break;
+                    case 'messages':
+                        if(this.profileDropDown === false && this.notifications === false){
+                            this.popUpContainer = false
+                        }
+                    break;
+                    default:
+                    // Code to execute if no case matches
+                        console.error('please verify parameter')
+                }
+            }
         },
         sidebarInit(el1) {
                 const navBar = document.getElementById('navBar');
