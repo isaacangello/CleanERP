@@ -1,10 +1,10 @@
-<section>
+<section class="w-full">
     <header>
-        <h2 class="grey-text text-darken-3 flow-text" >
+        <h2 class="text-gray-700 " >
             {{ __('Profile Information') }}
         </h2>
 
-        <p class="grey-text text-darken-3 ">
+        <p class="text-gray-700 ">
             {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>
@@ -19,18 +19,19 @@
 
         <div class="form-group">
             <div class="form-line success">
-                <x-input-label for="profile-name" :value="__('Name')" />
-                <x-text-input id="profile-name" name="name" type="text" class="form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+
+                <x-flowbite.input-label for="profile-name" :value="__('Name')" />
+                <x-flowbite.input id="profile-name" name="name" type="text" class="form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             </div>
-                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                <x-flowbite.input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
         <div class="form-group">
             <div class="form-line success">
-                <x-input-label for="profile-email" :value="__('Email')" />
-                <x-text-input id="profile-email" name="email" type="email" class="form-control" :value="old('email', $user->email)" required autocomplete="username" />
+                <x-flowbite.input-label for="profile-email" :value="__('Email')" />
+                <x-flowbite.input id="profile-email" name="email" type="email" class="form-control" :value="old('email', $user->email)" required autocomplete="username" />
 
             </div>
-                <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                <x-flowbite.input-error class="mt-2" :messages="$errors->get('email')" />
         </div>
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -39,7 +40,7 @@
                             <p>
                                 {{ __('Your email address is unverified.') }}
 
-                                <button form="send-verification">
+                                <button form="send-verification" type="submit">
                                     {{ __('Click here to re-send the verification email.') }}
                                 </button>
                             </p>
@@ -57,7 +58,7 @@
             <div class="form-line success">
 
 
-            <x-standard-btn>{{ __('Save') }}</x-standard-btn>
+            <x-flowbite.btn-blue>{{ __('Save') }}</x-flowbite.btn-blue>
 
             @if (session('status') === 'profile-updated')
                 <p

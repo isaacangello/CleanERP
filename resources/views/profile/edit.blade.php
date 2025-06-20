@@ -1,87 +1,31 @@
-@extends('layouts.main_old')
-@section('title')
-    <title>Profile - main - CleanERP 2</title>
-@endsection
+<x-flowbite.layout.main>
 {{--css links para o head--}}
-@section('css-style')
-
-    @include('layouts.generic_css')
-    <style>
-        input.form-control {
-            margin-bottom: 0 !important;
-            border-bottom: none !important;
-        }
-
-        textarea.form-control {
-            margin-bottom: 0 !important;
-            border-bottom: none !important;
-        }
-
-        input.select-dropdown {
-            margin-bottom: 0 !important;
-            border-bottom: none !important;
-        }
-
-        .red:hover {
-            background-color: #ef9a9a !important;
-        }
-
-        input.form-line.success {
-            margin-bottom: 3px;
-        }
-    </style>
-@endsection
-@section('script-top')
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-@endsection
-
-@section('content')
-    <div class="container-fluid">
-        <div class="block-header">
+    <div class="w-full">
+        <div class="w-full py-3 font-bold">
             <h2>
                 <small>USER PROFILE</small>
             </h2>
         </div>
 
-        <div class="card">
+        <div class="w-full flex flex-col items-center justify-center">
             <div class="header">
-                <x-slot name="header">
-                    <h2 class="grey-text font-10">
+
+                    <h2 class="text-gray-700 font-10">
                         {{ __('Profile') }}
                     </h2>
-                </x-slot>
+
             </div>
-            <div class="body">
-                <div class="row clearfix">
-                    <div class="col s1 m3"></div>
-                    <div class="col s10 m6">
+            <div class="flex flex-col gap-4 items-center justify-center max-w-6xl">
+                <div class="bg-white w-full  p-3 rounded">
                         @include('profile.partials.update-profile-information-form')
-                    </div>
-                    <div class="col s1 m3"></div>
                 </div>
-                <div class="row clearfix">
-                    <div class="col s1 m3"></div>
-                    <div class="col s10 m6">
-
+                <div class="bg-white w-full p-3 rounded">
                         @include('profile.partials.update-password-form')
-                    </div>
-                    <div class="col s1 m3"></div>
                 </div>
-                <div class="row clearfix">
-                    <div class="col s1 m3"></div>
-                    <div class="col s10 m6">
-
+                <div class="bg-white w-full p-3 rounded">
                         @include('profile.partials.delete-user-form')
-                    </div>
-                    <div class="col s1 m3"></div>
                 </div>
             </div> <!--card body-->
         </div> <!-- card -->
     </div>{{-- container--}}
-@endsection
-
-{{-- inclusção de scripts  no final no corpo--}}
-@section('script-botton')
-    @include('layouts.generic_js')
-@endsection
-
+</x-flowbite.layout.main>

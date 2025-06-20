@@ -9,15 +9,15 @@
         </p>
     </header>
 
-    <x-danger-button
+    <x-flowbite.btn-red
         x-data=""
         x-on:click.prevent="open = ! open"
-        style="width:90px"
+
     >
         {{ __('Delete Account') }}
-    </x-danger-button>
+    </x-flowbite.btn-red>
 
-    <x-modal name="confirm-user-deletion"  focusable>
+    <x-flowbite.modal-profile name="confirm-user-deletion"  focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
             @csrf
             @method('delete')
@@ -31,9 +31,9 @@
             </p>
 
             <div class="mt-6">
-                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+                <x-flowbite.input-label for="password" value="{{ __('Password') }}" class="sr-only" />
 
-                <x-text-input
+                <x-flowbite.input
                     id="password"
                     name="password"
                     type="password"
@@ -41,18 +41,18 @@
                     placeholder="{{ __('Password') }}"
                 />
 
-                <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
+                <x-flowbite.input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button @click="open = ! open" class="m-r-5">
+                <x-flowbite.btn-secondary @click="open = ! open" class="m-r-5">
                     {{ __('Cancel') }}
-                </x-secondary-button>
+                </x-flowbite.btn-secondary>
 
-                <x-danger-button class="ml-3" style="width:90px">
+                <x-flowbite.btn-red class="ml-3" >
                     {{ __('Delete Account') }}
-                </x-danger-button>
+                </x-flowbite.btn-red>
             </div>
         </form>
-    </x-modal>
+    </x-flowbite.modal-profile>
 </section>
