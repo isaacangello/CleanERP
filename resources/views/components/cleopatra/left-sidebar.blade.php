@@ -43,7 +43,7 @@
 
             <x-cleopatra.menu-link   href="{{!$disabledCommercial?route('commercial.schedule'):'JavaScript:void(0);'}}"   icon="fa-calendar-week" text="Services Schedule"  />
             <x-cleopatra.menu-link  href="{{ !$disabledCommercial?route('commercial.schedule.search'):'JavaScript:void(0);' }}"   icon="fa-magnifying-glass" text="Search" />
-            <x-cleopatra.menu-link  href="{{!$disabledCommercial?route('customers.index'):'JavaScript:void(0);'}}"   icon="fa-user" text="Customers Registration" />
+            <x-cleopatra.menu-link  href="{{!$disabledCommercial?route('customers.index'):'JavaScript:void(0);'}}"   icon="fa-user" text="Customers Reg" />
             <x-cleopatra.menu-link  href="{{!$disabledCommercial?route('employees.index'):'JavaScript:void(0);'}}"   icon="fa-address-card" text="Employees Reg." />
 
         </x-cleopatra.left-side-bar-links>

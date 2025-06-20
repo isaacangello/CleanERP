@@ -13,40 +13,44 @@ import 'flatpickr/dist/flatpickr.css'
 import 'flowbite';
 import {toastAlert,Toast_5000,swalConfirmCallback,swalConfirm} from "./custom/helpers/plugins_init.js";
 import {isValidElement} from "./custom/helpers/funcs.js";
-
-
+import prefix from "./prefix.json" assert {type:'json'}
+console.log(prefix)
     window.customEvents = function () {
 
-        Livewire.on('toggle-status-service',function (event) {
-            axios.post('/api/confirm-only/'+event.id,
-                {
-                    id: event.id
-                }
-            ).then(function (resp) {
-                console.log(resp.data)
-                let icon;
-                let btn =document.querySelector("#el-"+event.id)
-                if(resp.data.confirmed === 1){
-                    icon =  'success'
-                    // 'text-blue-700' : 'text-red-700'
-                    btn.classList.remove('text-red-700')
-                    btn.classList.add('text-blue-700')
-                }else {
-                    icon =  'error'
-                    btn.classList.remove('text-blue-700')
-                    btn.classList.add('text-red-700')
-                }
+        window.addEventListener('toggle-status-service',function (event) {
+
+                console.log(event.detail.id)
+                axios.post(prefix.prefix+'api/confirm-only/'+event.detail.id,
+                ).then(function (resp) {
+                    console.log(resp.data)
+                    let icon;
+                    let btn =document.querySelector("#el-"+event.detail.id)
+                    if(resp.data.confirmed === 1){
+                        icon =  'success'
+                        // 'text-blue-700' : 'text-red-700'
+                        btn.classList.remove('text-red-700')
+                        btn.classList.add('text-blue-700')
+                    }
+                    if(resp.data.confirmed === 0){
+
+
+                        icon =  'error'
+                        btn.classList.remove('text-blue-700')
+                        btn.classList.add('text-red-700')
+                    }
 
 
 
-                toastAlert.fire({
-                    icon: icon,
-                    title: resp.data.message,
+                    toastAlert.fire({
+                        icon: icon,
+                        title: resp.data.message,
+                    })
+
+                }).catch(function (error) {
+                    console.error(error)
                 })
 
-            }).catch(function (error) {
-                console.error(error)
-            })
+
         })
 
         Livewire.on('wire-toast-alert', (event) => {
@@ -341,7 +345,8 @@ import {isValidElement} from "./custom/helpers/funcs.js";
 
                 // let weekComponent = Livewire.getByName("residential.week")
 
-                console.log('aqui')
+                console.log('aqui', prefix.prefix)
+                console.log(window.location.href)
 
                 // console.log(Livewire.all()[0].ephemeral.from)
                 // console.log(weekComponent[0].get('tempDate'))
