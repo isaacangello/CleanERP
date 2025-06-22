@@ -32,8 +32,6 @@ console.log(prefix)
                         btn.classList.add('text-blue-700')
                     }
                     if(resp.data.confirmed === 0){
-
-
                         icon =  'error'
                         btn.classList.remove('text-blue-700')
                         btn.classList.add('text-red-700')

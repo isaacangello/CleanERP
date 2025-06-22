@@ -1,49 +1,48 @@
 <div class="card bg-white/40  mt-5 rounded-xl shadow-lg ">
-    <div class="card-header p-4 border-b">
+    <div class=" p-4 border-b">
         <h2>
-            FINANCES
+            RESIDENTIAL FINANCES
         </h2>
     </div>
     <!-- Basic Examples -->
 
     <div class="card-body">
         <div class="w-full">
-            <div class="card bg-white  mt-5 rounded-xl shadow-lg ">
-                <h2 class="card-header p-4 border-b">
-                            <span class="hidden md:block">RESIDENTIAL  </span>
-                            <span>
-                              <span class="hidden md:block">Reference</span> Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
-                                        class="label-date-home">{{ $from }}</span> - Till <span
-                                        class="label-date-home">{{ $till }} </span>
+            <div class=" bg-white  mt-5 rounded-xl shadow-lg ">
+                <h2 class=" p-4 border-b flex w-full">
 
+                            <span class="flex gap-3">
+                              <span class="hidden md:block ms-1">Reference</span>  <span> Week Number</span>  <span class="ms-1 me-1 font-bold">{{ $numWeek }}</span> /
+                                From <span class="ms-1 font-bold"> {{ $from }}</span> -
+                                Till <span class="ms-1 font-bold"> {{ $till }} </span>
                             </span>
                 </h2>
 
                 <div class="mt-4">
-                    <x-layout.week-navigator :$numWeek :$year :$selectedWeek :$selectedYear :$previousWeek :$nextWeek  />
+                    <x-flowbite.week-navigation :$numWeek :$year :$selectedWeek :$selectedYear :$previousWeek :$nextWeek  />
 
                     <div class="clearfix row m-b-0">
                         <div class="col s12 ">
                             @php $id='1'; @endphp
-                            <x-old.finance-panel-search :id="$id" :employees="$this->allEmployees" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
+                            <x-flowbite.finance-panel-search :id="$id" :employees="$this->allEmployees" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
                         </div>
 
                         <div class="card bg-gray-100 rounded-xl shadow-lg ">
                             <div class="w-full">
 
-                            <table class="table table-striped highlight">
-                                <thead>
-                                <tr class="green darken-3 white-text">
-                                    <th>Employee</th>
-                                    <th>Total</th>
-                                    <th>70%</th>
-                                    <th>30%</th>
-                                    <th>&nbsp;</th>
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">Employee</th>
+                                    <th scope="col" class="px-6 py-3">Total</th>
+                                    <th scope="col" class="px-6 py-3">70%</th>
+                                    <th scope="col" class="px-6 py-3">30%</th>
+                                    <th scope="col" class="px-6 py-3">&nbsp;</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 {{--                                @php dd($this->populate) @endphp--}}
-                                @if($this->populate != null)
+                                @if($this->populate)
                                     @php
                                         $i=0;
 //                                    dd($this->populate['employees_services']);
@@ -53,8 +52,8 @@
                                         @php
                                             //                                                    dd($row);
                                         @endphp
-                                        <tr class="{{ \App\Helpers\Funcs::altClass($i,['grey lighten-2','']) }} flex-wrap" >
-                                            <td>
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <a
                                                     href="{{ route('finances.detailer',[
                                                         'id' => $data->id,
@@ -66,31 +65,25 @@
                                                     <span class="hidden md:block">{{$data->name}}</span>
                                                     <span class="block md:hidden">{{Funcs::nameShort($data->name,' ',2)}}</span>
                                                 </a>
-                                            </td>
-                                            <td>{{$data->total_price}}</td>
-                                            <td>{{($data->total_price*0.7)}}</td>
-                                            <td>{{($data->total_price*0.3)}}</td>
-                                            <td></td>
+                                            </th>
+                                            <td class="px-6 py-4">{{$data->total_price}}</td>
+                                            <td class="px-6 py-4">{{($data->total_price*0.7)}}</td>
+                                            <td class="px-6 py-4">{{($data->total_price*0.3)}}</td>
+                                            <td class="px-6 py-4"></td>
                                         </tr>
                                             @php($i++)
 
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="5" style="padding: 10px"><p>Services not found in this week</p></td>
+                                        <td colspan="5" class="px-6 py-4"><p>Services not found in this week</p></td>
                                     </tr>
                                 @endif
                                 </tbody>
                             </table>
                             </div>
-                            <div class="panel-footer">
-                                <div class="row">
-                                    <div class="col s12">
-                                        <div class="btn-group">
+                            <div class="px-6 py-4">
                                                 {{ $this->populate->links() }}
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>{{--panel--}}
 

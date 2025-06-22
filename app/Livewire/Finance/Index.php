@@ -5,6 +5,7 @@ namespace App\Livewire\Finance;
 use AllowDynamicProperties;
 use App\Helpers\Finance\FinanceTrait;
 use App\Helpers\Funcs;
+use App\Helpers\WeekNavigation;
 use App\Models\Config;
 use App\Models\Employee;
 use App\Treatment\DateTreatment;
@@ -24,6 +25,7 @@ use function Symfony\Component\String\u;
 #[AllowDynamicProperties] class Index extends Component
 {
     use WithPagination;
+    use WeekNavigation;
     use FinanceTrait;
     protected $listeners = ['refresh-index' => '$refresh'];
 
@@ -32,10 +34,8 @@ use function Symfony\Component\String\u;
     //public $dateTrait = "";
     public $nun_reg_pages = 5;
     #[Url]
-    public $numWeek = null;
+
     public $data = null;
-    public $from ='';
-    public $till ='';
 
     public $allEmployees = null;
     public $employees = null;
@@ -43,11 +43,8 @@ use function Symfony\Component\String\u;
     public mixed $total_services = null;
     #[Validate('required')]
     public $selectedEmployee = null;
-    public $selectedWeek = null;
-    public $selectedYear = null;
 
     #[Url]
-    public $year = null;
     public $previousYear=0;
     public $nextYear=0;
     public $previousWeek=0;
@@ -104,12 +101,12 @@ use function Symfony\Component\String\u;
     #[Computed]
     public function populate(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
-        $date = new DateTreatment();
-        $this->traitNullVars();
-        $this->previousYear = $this->year - 1;
-        $this->nextYear = $this->year + 1;
-        $this->previousWeek = $this->numWeek - 1;
-
+//        $date = new DateTreatment();
+//        $this->traitNullVars();
+//        $this->previousYear = $this->year - 1;
+//        $this->nextYear = $this->year + 1;
+//        $this->previousWeek = $this->numWeek - 1;
+//
 
         //dd($this->year);
         return $this->getData($this->numWeek,$this->year);

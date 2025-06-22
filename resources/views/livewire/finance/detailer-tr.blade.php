@@ -69,7 +69,7 @@
     <td class="font-10 p-0 m-0">$ {{number_format(($total*0.3),2)}}</td>
     <td class=" font-10 w-24 h-7 p-0 my-0">
         <div class="w-full flex gap-1">
-        <div><span class="">$</span></div> <div><x-text-input type="text" class=" font-10 h-30" wire:change="changeValues" wire:model="plus" value="{{$this->computedService->plus}}"/></div>
+        <div><span class="">$</span></div> <div><x-flowbite.input type="text" class=" font-10 h-30" wire:change="changeValues" wire:model="plus" value="{{$this->computedService->plus}}"/></div>
         </div>
         @error('plus')
             @script
@@ -82,7 +82,7 @@
     </td>
     <td class=" font-10 w-24 p-0 my-0">
         <div class="flex gap-1">
-        <div><span >$</span></div> <div><x-text-input class=" font-10 h-30" wire:change="changeValues" wire:model="minus" value="{{$this->computedService->minus}}"/></div>
+        <div><span >$</span></div> <div><x-flowbite.input class=" font-10 h-30" wire:change="changeValues" wire:model="minus" value="{{$this->computedService->minus}}"/></div>
         </div>
         @error('minus')
         @script

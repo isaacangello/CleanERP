@@ -6,7 +6,7 @@
             </x-flowbite.btn-blue>
         </form>
     </div>
-    {{ $btns }}
+    {{ $btns??"" }}
     <div class="">
             <form wire:submit.prevent="thisWeek()">
                 <x-flowbite.btn-blue type="submit" class="" >

@@ -1,13 +1,13 @@
 @php
 use Carbon\Carbon;
 @endphp
-<div class="container-fluid"
+<div class="w-full"
      x-data="{
         notesOpen: $wire.entangle('notesOpen'),
         open: $wire.entangle('modalOpen')
         }"
 >
-    <div class="block-header">
+    <div class="py-4 font-bold">
         <h2>
             <small>FINANCES</small>
         </h2>
@@ -15,23 +15,23 @@ use Carbon\Carbon;
     <!-- Basic Examples -->
 
     <div class="clearfix row">
-        <div class="col s12 m12">
-            <div class="card">
 
-                <div class="header">
+            <div class="bg-white border border-gray-300 rounded-lg p-4">
+
+                <div class="py-4">
                     <span>
-                          Week Number <span class="yellow-text text-darken-4">{{ $numWeek }}</span> / From <span
-                            class="label-date-home">{{ $from }}</span> - Till <span
-                            class="label-date-home">{{ $till }} </span><div class="displaytest">Iphone</div>
+                        Week Number <span class="font-bold pl-2">{{ $numWeek }}</span> /
+                        From <span class="font-bold pl-2">{{ $from }}</span> -
+                        Till<span class="font-bold pl-2"> {{ $till }} </span>
                     </span>
                 </div>
 
                 <div class="body">
-                    <x-layout.week-navigator :$numWeek :$year :$selectedWeek :$selectedYear   />
+                    <x-flowbite.week-navigation :$numWeek :$year :$selectedWeek :$selectedYear   />
 
                     <div class="clearfix row">
                         <div class="col s12">
-                            <x-finance-panel-search :employees="$this->allEmployees()" :$from :$till :id="$currentEmployee->id" />
+                            <x-flowbite.finance-panel-search :employees="$this->allEmployees()" :$from :$till :id="$currentEmployee->id" />
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-body">
@@ -87,14 +87,13 @@ use Carbon\Carbon;
                                     </tbody>
                                 </table>
                                 <div class="mt-5">
-                                    <x-standard-btn class="btn btn-success btn-link btn-small h-30" wire:click="notesOpen = ! notesOpen">Type notes</x-standard-btn>
+                                    <x-flowbite.btn-blue class="btn btn-success btn-link btn-small h-30" wire:click="notesOpen = ! notesOpen">Type notes</x-flowbite.btn-blue>
 
-                                    <x-link-btn
+                                    <x-flowbite.btn-blue
                                             href="{{  route('finances.report.export', [ 'id' => $currentEmployee->id, 'from' => Carbon::create($from)->format('Y-m-d'),  'till' => Carbon::create($till)->format('Y-m-d'), 'message'=> $financeNotes??'&nbsp;' ] ) }} "
                                     >
                                         Print Report
-                                    </x-link-btn>
-
+                                    </x-flowbite.btn-blue>
 
                                     <p x-show="notesOpen" x-collapse.duration.500ms class="mt-3 ">
                                             <textarea id="textarea-finance-notes"
@@ -102,7 +101,6 @@ use Carbon\Carbon;
                                                       class="form-control custom-textarea "
                                                       rows="4"
                                                       placeholder="Type notes..."
-
                                             ></textarea>
                                     </p>
                                 </div>
@@ -113,9 +111,9 @@ use Carbon\Carbon;
                 </div>
 
             </div>
-        </div>
+
     </div>
-    <x-modal>
+    <x-flowbite.modal-profile>
         <x-slot:title>
             Finance Information.
         </x-slot>
@@ -158,9 +156,9 @@ use Carbon\Carbon;
          </div>
 
         <x-slot:footer>
-            <x-standard-btn class="btn btn-link btn-small" @click="open = !open ">Close</x-standard-btn>
+            <x-flowbite.btn-secondary class="btn btn-link btn-small" @click="open = !open ">Close</x-flowbite.btn-secondary>
         </x-slot>
-    </x-modal>
+    </x-flowbite.modal-profile>
     @script
     <script>
         console.log(window)

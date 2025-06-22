@@ -185,8 +185,9 @@ trait FinanceTrait
 
     public function getTotalPricesByEmployee(string $from,string $till,$orderBy=['employees.name','asc'] ,$type = "RESIDENTIAL", $nun_reg_pages = 15): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
-        $from = Carbon::create($from)->format('Y-m-d');
-        $till = Carbon::create($till)->format('Y-m-d');
+        $from = Carbon::create($from)->format('Y-m-d 00:00:00');
+        $till = Carbon::create($till)->format('Y-m-d 00:00:00');
+//        dd($from,$till);
         $results = DB::table('services')
             ->join('employees', 'services.employee1_id', '=', 'employees.id')
             ->where('employees.status', '=', "ACTIVE")
