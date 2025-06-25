@@ -49,48 +49,48 @@ use function Symfony\Component\String\u;
     public $nextYear=0;
     public $previousWeek=0;
     public $nextWeek=0;
-    public function thisWeek(): void
-    {
-        $dateTrait =new DateTreatment();
-        $this->numWeek =  $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
-        $this->year = now()->format('Y');
-    }
-    public function backWeek(): void
-    {
-        $date = new DateTreatment();
-        if(($this->numWeek -1) <= 0 ){
-            $this->numWeek = 52;
-            $this->year--;
-
-        }else{
-            $this->numWeek--;
-        }
-        $this->traitNullVars();
-    }
-    public function forwardWeek(): void
-    {
-        if(($this->numWeek +1) > 52 ){
-            $this->numWeek = 1;
-            $this->year++;
-        }else{
-            $this->numWeek++;
-        }
-        $date = new DateTreatment();
-        $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
-        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
-        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
-        $this->dispatch('reloadSelects');
-    }
-    #[NoReturn] public
-    function selectWeek(): void
-    {
-
-        $this->numWeek = $this->selectedWeek;
-        $this->year = $this->selectedYear;
-        $this->dispatch('refresh-index');
-
-    }
-########################################################################################################################
+//    public function thisWeek(): void
+//    {
+//        $dateTrait =new DateTreatment();
+//        $this->numWeek =  $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
+//        $this->year = now()->format('Y');
+//    }
+//    public function backWeek(): void
+//    {
+//        $date = new DateTreatment();
+//        if(($this->numWeek -1) <= 0 ){
+//            $this->numWeek = 52;
+//            $this->year--;
+//
+//        }else{
+//            $this->numWeek--;
+//        }
+//        $this->traitNullVars();
+//    }
+//    public function forwardWeek(): void
+//    {
+//        if(($this->numWeek +1) > 52 ){
+//            $this->numWeek = 1;
+//            $this->year++;
+//        }else{
+//            $this->numWeek++;
+//        }
+//        $date = new DateTreatment();
+//        $week = $date->getWeekByNumberWeek($this->numWeek,$this->year);
+//        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
+//        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
+//        $this->dispatch('reloadSelects');
+//    }
+//    #[NoReturn] public
+//    function selectWeek(): void
+//    {
+//
+//        $this->numWeek = $this->selectedWeek;
+//        $this->year = $this->selectedYear;
+//        $this->dispatch('refresh-index');
+//
+//    }
+//########################################################################################################################
     ############################################################# populate
 ########################################################################################################################
     /**
@@ -101,12 +101,12 @@ use function Symfony\Component\String\u;
     #[Computed]
     public function populate(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
-//        $date = new DateTreatment();
-//        $this->traitNullVars();
-//        $this->previousYear = $this->year - 1;
-//        $this->nextYear = $this->year + 1;
-//        $this->previousWeek = $this->numWeek - 1;
-//
+        $date = new DateTreatment();
+        $this->traitNullVars();
+        $this->previousYear = $this->year - 1;
+        $this->nextYear = $this->year + 1;
+        $this->previousWeek = $this->numWeek - 1;
+
 
         //dd($this->year);
         return $this->getData($this->numWeek,$this->year);
@@ -119,8 +119,10 @@ use function Symfony\Component\String\u;
      */
     public function mount(): void
     {
-        $this->traitNullVars();
-
+        $this->initVars();
+//        dd();
+        $this->dispatch('populate-date-time', idElement:"#input-finance-from",dateTime:$this->week['Monday']);
+        $this->dispatch('populate-date-time', idElement:"#input-finance-till",dateTime:$this->week['Sunday']);
         $this->allEmployees = Employee::select()
             ->where('status','=',"ACTIVE")
             ->where('type','=',"RESIDENTIAL")

@@ -19,12 +19,12 @@
                 </h2>
 
                 <div class="mt-4">
-                    <x-flowbite.week-navigation :$numWeek :$year :$selectedWeek :$selectedYear :$previousWeek :$nextWeek  />
+                    <x-flowbite.week-navigation route="finances" :$numWeek :$year :$selectedWeek :$selectedYear :$previousWeek :$nextWeek  />
 
                     <div class="clearfix row m-b-0">
                         <div class="col s12 ">
-                            @php $id='1'; @endphp
-                            <x-flowbite.finance-panel-search :id="$id" :employees="$this->allEmployees" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
+
+                            <x-flowbite.finance-panel-search :id="$id??1" :employees="$this->allEmployees" :from="now()->startOfWeek()->format('Y-m-d')" :till="now()->endOfWeek()->format('Y-m-d')"  />
                         </div>
 
                         <div class="card bg-gray-100 rounded-xl shadow-lg ">
@@ -112,6 +112,44 @@
             })
             //console.log(window)
         })
+        window.addEventListener('populate-date-time', event=>{
+            if(event.detail.dateTime){
+                flatpickr( event.detail.idElement,
+                    {
+                        weekNumbers:true,
+                        monthSelectorType:'dropdown',
+                        enableTime: true,
+                        dateFormat: "Y-m-d H:i",
+                        altFormat: 'F j, Y h:i K',
+                        altInput: true,
+                        // onChange: function(selectedDates, dateStr, instance){
+                        //     if (dateStr)
+                        //         instance.close();
+                        // },
+                        defaultDate: `${event.detail.dateTime}`
+
+                    }
+                )
+            }else{
+                flatpickr( event.detail.idElement,
+                    {
+                        weekNumbers:true,
+                        monthSelectorType:'dropdown',
+                        enableTime: true,
+                        dateFormat: "Y-m-d H:i",
+                        altFormat: 'F j, Y h:i K',
+                        altInput: true,
+                        // onChange: function(selectedDates, dateStr, instance){
+                        //     if (dateStr)
+                        //         instance.close();
+                        // },
+
+                    }
+                )
+            }
+
+        })
+
 
 
 

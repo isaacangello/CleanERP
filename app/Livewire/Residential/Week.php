@@ -4,6 +4,7 @@ namespace App\Livewire\Residential;
 
 use AllowDynamicProperties;
 use App\Helpers\Residential\ResidentialTrait;
+use App\Helpers\WeekNavigation;
 use App\Http\Controllers\Populate;
 use App\Livewire\Forms\ServiceForm;
 use App\Models\Billing;
@@ -27,21 +28,22 @@ use App\Http\Controllers\PopulateController;
 class Week extends Component
 {
     use ResidentialTrait;
+    use WeekNavigation;
     public ServiceForm $form;
     #[Url]
     public $id;
-    public $from;
-    public $till;
-    public $numWeek = null;
-    public $year = null;
+//    public $from;
+//    public $till;
+//    public $numWeek = null;
+//    public $year = null;
     public $customer_id='',$employee1_id, $address='',$date='',$phone='',$info,$notes='',$instructions='',$service_date='',$service_time='',$checkin_datetime='',$checkout_datetime='',$customer_type='';
     public $selectOptionsEmployees='';
     public $selectOptionsCustomers='';
     #[Validate('required')]
     public $selectedEmployee = null;
-    public $currentEmployee = null;
-    public $selectedWeek = null;
-    public $selectedYear = null;
+//    public $currentEmployee = null;
+//    public $selectedWeek = null;
+//    public $selectedYear = null;
     public $route = 'week';
     public $populate;
     public $employeesIds = [];
@@ -73,7 +75,7 @@ class Week extends Component
     public  $showModal = false;
     public  $showCadModal = false;
      public $cardsHtml ='';
-     public array $week = [];
+//     public array $week = [];
 
     protected $listeners = [
         'refresh-week' => '$refresh'
@@ -94,62 +96,62 @@ class Week extends Component
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
      * @return void
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    public function thisWeek(): void
-    {
-        $dateTrait =new DateTreatment();
-        $this->numWeek =  $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
-        $this->year = $dateTrait->referenceYear(now()->format('Y-m-d'));
-        $this->traitNullVars();
-    }
+//    public function thisWeek(): void
+//    {
+//        $this->traitNullVars();
+//        $dateTrait =new DateTreatment();
+//        $this->numWeek =  $dateTrait->numberWeekByDay(now()->format('Y-m-d'));
+//        $this->year = $dateTrait->referenceYear(now()->format('Y-m-d'));
+//    }
     public function exportPdf(){
         return redirect()->route('week.pdf.export', [ 'from' => Carbon::create($this->from)->format("Y-m-d"), 'till' => Carbon::create($this->till)->format("Y-m-d")]);
     }
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
      * @return void
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    public function backWeek(): void
-    {
-        $date = new DateTreatment();
-        if(($this->numWeek -1) <= 0 ){
-            $this->numWeek = 52;
-            $this->year--;
-
-        }else{
-            $this->numWeek--;
-        }
-        $this->traitNullVars();
-
-    }
-
-    /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
-     * @return void
-     *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    public function forwardWeek(): void
-    {
-        if(($this->numWeek +1) > 52 ){
-            $this->numWeek = 1;
-            $this->year++;
-        }else{
-            $this->numWeek++;
-        }
-        $this->traitNullVars();
-    }
+//    public function backWeek(): void
+//    {
+//        $date = new DateTreatment();
+//        if(($this->numWeek -1) <= 0 ){
+//            $this->numWeek = 52;
+//            $this->year--;
+//
+//        }else{
+//            $this->numWeek--;
+//        }
+//        $this->traitNullVars();
+//
+//    }
 
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
      * @return void
      *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    public function selectWeek(): void
-    {
-        if(is_null($this->numWeek) || is_null($this->year)  ){
-            $this->dispatch('toast-alert',icon:'error', message:"you need select number week and Year") ;
-        }
-        $this->numWeek = $this->selectedWeek;
-        $this->year  = $this->selectedYear;
-        $dateTrait = new DateTreatment();
-        $week = $dateTrait->getWeekByNumberWeek($this->selectedWeek,$this->selectedYear);
-        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
-        $this->till = Carbon::create($week['Sunday'])->format('m/d/Y');
-    }
+//    public function forwardWeek(): void
+//    {
+//        if(($this->numWeek +1) > 52 ){
+//            $this->numWeek = 1;
+//            $this->year++;
+//        }else{
+//            $this->numWeek++;
+//        }
+//        $this->traitNullVars();
+//    }
+
+    /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+     * @return void
+     *=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+//    public function selectWeek(): void
+//    {
+//        if(is_null($this->numWeek) || is_null($this->year)  ){
+//            $this->dispatch('toast-alert',icon:'error', message:"you need select number week and Year") ;
+//        }
+//        $this->numWeek = $this->selectedWeek;
+//        $this->year  = $this->selectedYear;
+//        $dateTrait = new DateTreatment();
+//        $week = $dateTrait->getWeekByNumberWeek($this->selectedWeek,$this->selectedYear);
+//        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
+//        $this->till = Carbon::create($week['Sunday'])->format('m/d/Y');
+//    }
 
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
      * @return array

@@ -45,7 +45,7 @@
         <div class="">
             <select wire:model="selectedYear"  class="px-5 py-2 font-medium rounded-lg text-sm">
                 <option value="{{$selectedYear??now()->format('Y')}}">{{$selectedYear??now()->format('Y')}}</option>
-                @for ($i = 2020; $i < ((int)now()->format('Y'))+5; $i++)
+                @for ($i = ((int)now()->format('Y'))-5; $i < ((int)now()->format('Y'))+5; $i++)
                     <option wire:key="selectedYear{{$i}}" value="{{$i}}">{{$i}}</option>
                 @endfor
             </select>

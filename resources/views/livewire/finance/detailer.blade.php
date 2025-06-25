@@ -27,22 +27,22 @@ use Carbon\Carbon;
                 </div>
 
                 <div class="body">
-                    <x-flowbite.week-navigation :$numWeek :$year :$selectedWeek :$selectedYear   />
+                    <x-flowbite.week-navigation route="finances" :$numWeek :$year :$selectedWeek :$selectedYear   />
 
                     <div class="clearfix row">
-                        <div class="col s12">
+                        <div class="">
                             <x-flowbite.finance-panel-search :employees="$this->allEmployees()" :$from :$till :id="$currentEmployee->id" />
                         </div>
-                        <div class="panel panel-default">
+                        <div class="">
                             <div class="panel-body">
 
-                                    <div class="panel-default pb-2">
-                                        <div class="header bg-blue-grey">
+                                    <div class=" pb-2 ">
+                                        <div class="">
                                             <h2>
                                                 <span class="text-xl">
                                                           <b>{{ $currentEmployee->name??'' }}</b>
                                                 </span>
-                                                <small><b>Total <span class="text-amber-300">$ {{number_format($this->sumTotals,2)}}</span></b></small>
+                                                <small><b>Total <span class="text-blue-700 ">$ {{number_format($this->sumTotals,2)}}</span></b></small>
                                             </h2>
 
                                         </div>
@@ -51,20 +51,20 @@ use Carbon\Carbon;
 
 
 
-                                <table class="table table-striped highlight">
-                                    <thead>
-                                    <tr class="green darken-3 white-text">
-                                        <th class="center-align text-wrap">Paid</th>
-                                        <th class="center-align ">date</th>
-                                        <th class="center-align text-wrap">Customer</th>
-                                        <th>Frequency</th>
-                                        <th>Price</th>
-                                        <th>70%</th>
-                                        <th>30%</th>
-                                        <th>Plus</th>
-                                        <th>Minus</th>
-                                        <th>Total</th>
-                                        <th>Payment</th>
+                                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-center">Paid</th>
+                                        <th scope="col" class="px-6 py-3 text-center">date</th>
+                                        <th scope="col" class="px-6 py-3 text-center">Customer</th>
+                                        <th scope="col" class="px-6 py-3 text-center">Frequency</th>
+                                        <th scope="col" class="px-6 py-3 text-center">Price</th>
+                                        <th scope="col" class="px-6 py-3 text-center">70%</th>
+                                        <th scope="col" class="px-6 py-3 text-center">30%</th>
+                                        <th scope="col" class="px-6 py-3 text-center">Plus</th>
+                                        <th scope="col" class="px-6 py-3 text-center">Minus</th>
+                                        <th scope="col" class="px-6 py-3 text-center">Total</th>
+                                        <th scope="col" class="px-6 py-3 text-center">Payment</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -160,8 +160,9 @@ use Carbon\Carbon;
         </x-slot>
     </x-flowbite.modal-profile>
     @script
-    <script>
+    <script type="module">
         console.log(window)
+
         window.addEventListener('toast-alert', event =>{
             // console.log(event)
             toastAlert.fire({

@@ -25,7 +25,7 @@
                         </div>
                         <div>
                             <x-flowbite.input-label class="form-label" for="input-finance-from">From</x-flowbite.input-label>
-                            <x-flowbite.flatpickr-date id="input-finance-from"   wire:model="from" value="{{$this->from}}"  title="Type init date." />
+                            <x-flowbite.flatpickr-date id="input-finance-from"   wire:model="from"   title="Type init date." />
 
                         </div>
                         <div>

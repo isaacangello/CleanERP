@@ -185,24 +185,41 @@ trait FinanceTrait
 
     public function getTotalPricesByEmployee(string $from,string $till,$orderBy=['employees.name','asc'] ,$type = "RESIDENTIAL", $nun_reg_pages = 15): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
-        $from = Carbon::create($from)->format('Y-m-d 00:00:00');
-        $till = Carbon::create($till)->format('Y-m-d 00:00:00');
+        //dd($from,$till);
+        $from = Carbon::create($from);
+        $till = Carbon::create($till);
 //        dd($from,$till);
-        $results = DB::table('services')
-            ->join('employees', 'services.employee1_id', '=', 'employees.id')
-            ->where('employees.status', '=', "ACTIVE")
-            ->where('employees.type', '=', $type)
-            ->whereDate('services.service_date', '>=', $from)
-            ->whereDate('services.service_date', '<=', $till)
+        $results = Employee::query()
+            ->join('services', 'employees.id', '=', 'services.employee1_id')
+            ->where('employees.status', 'ACTIVE')
+            ->where('employees.type', $type)
+            ->whereBetween('services.service_date', [$from->startOfDay(), $till->endOfDay()])
             ->select(
                 'employees.name',
-                        'employees.id',
-                DB::raw('SUM(services.price + services.plus - services.minus) as total_price')
+                'employees.id',
+                DB::raw('SUM(COALESCE(services.price, 0) + COALESCE(services.plus, 0) - COALESCE(services.minus, 0)) as total_price')
+
             )
-            ->groupBy('employees.name','employees.id')
-            ->havingRaw('SUM(services.price + services.plus - services.minus) != 0')
+            ->groupBy('employees.name', 'employees.id')
+//            ->havingRaw('SUM(COALESCE(services.price, 0) + COALESCE(services.plus, 0) - COALESCE(services.minus, 0)) >= 0')
             ->orderBy($orderBy[0], $orderBy[1])
-            ->paginate((int)$nun_reg_pages); // Ajuste o número de itens por página conforme necessário
+            ->paginate((int) $nun_reg_pages);
+
+//        $results = DB::table('services')
+//            ->join('employees', 'services.employee1_id', '=', 'employees.id')
+//            ->where('employees.status', '=', "ACTIVE")
+//            ->where('employees.type', '=', $type)
+//            ->where('services.service_date', '>=', $from->startOfDay()->format('Y-m-d H:i:s'))
+//            ->where('services.service_date', '<=', $till->endOfDay()->format('Y-m-d H:i:s'))
+//            ->select(
+//                'employees.name',
+//                        'employees.id',
+//                DB::raw('SUM(services.price + services.plus - services.minus) as total_price')
+//            )
+//            ->groupBy('employees.name','employees.id')
+////            ->havingRaw('SUM(services.price + services.plus - services.minus) >= 0')
+//            ->orderBy($orderBy[0], $orderBy[1])
+//            ->paginate((int)$nun_reg_pages); // Ajuste o número de itens por página conforme necessário
 
         return $results;
     }
@@ -212,7 +229,7 @@ trait FinanceTrait
         $getConfig = Funcs::getConfig();
         $dateFrom = $date->getWeekByNumberWeek($numWeek,$year);
 
-//        dd($this->getTotalPricesByEmployee($dateFrom['Monday'],$dateFrom['Sunday'],['employees.name','asc'],"RESIDENTIAL",$getConfig->nun_reg_pages));
+        //dd($this->getTotalPricesByEmployee($dateFrom['Monday'],$dateFrom['Sunday'],['employees.name','asc'],"RESIDENTIAL",$getConfig->nun_reg_pages));
         return $this->getTotalPricesByEmployee($dateFrom['Monday'],$dateFrom['Sunday'],['employees.name','asc'],"RESIDENTIAL",$getConfig->nun_reg_pages);
     }
     public function getEmployees ($type="RESIDENTIAL", $status="ACTIVE"): Collection

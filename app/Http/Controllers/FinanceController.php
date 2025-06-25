@@ -117,7 +117,7 @@ class FinanceController extends Controller
         if($day === null){
             $day = Carbon::now()->format('Y-m-d');
         }
-        $dateFrom = $date->GetMondaySartuday($day);
+        $dateFrom = $date->GetMondaySaturday($day);
 //        dd($collection_employees->items());
         $array_temp =array();
         $sorted = $collection_employees;

@@ -151,7 +151,7 @@ public function MakeArrayDays($firstdate = 0, $periodo = "WEK", $periodo_meses =
         }else{return $number_days[$mes];}
 
     } // MakeArrayDays
-    public function GetMondaySartuday(string $day = null): array
+    public function GetMondaySaturday(string $day = null): array
     {
         if($day === null){
                 $array_result['reference_day'] = date('Y-m-d', strtotime('today'));

@@ -6,71 +6,69 @@
 //        $this->dispatch('sum-totals', val: $total);
 @endphp
 
-<tr class="{{ \App\Helpers\Funcs::altClass($count,['bg-gray-300 hover:bg-gray-50','hover:bg-gray-300']) }}" >
-    <td class="p-0 my-0">
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600" >
+    <td class="p-0 m-0 text-center">
         <a
-                class="  pointer valign-wrapper w-7 h-7  @if($this->computedService->paid_out)btn btn-link btn-success btn-flat white-text @else btn btn-link btn-flat btn-danger white-text  @endif"
+                class=" cursor-pointer"
                 @if($this->computedService->paid_out) wire:click="confirmPaid('{{$this->computedService->id}}',false)" @else wire:click="confirmPaid('{{$this->computedService->id}}',true)" @endif
 
         >
             @if($this->computedService->paid_out)
-                <span class="material-symbols-outlined relative right-2">
-                task_alt
-                </span>
+                <i class="fa-duotone fa-solid fa-circle-check " style="color: #1E40AF"></i>
+{{--                <i class="fa fa-duotone fa-circle-check "></i>--}}
             @else
-                <span class="material-symbols-outlined relative right-2">
-                    error
-                </span>
+                <i class="fa fa-duotone fa-circle-xmark" style="color: #882020"></i>
             @endif
         </a>
 
     </td>
-    <td class="center-align font-10 h-7 p-0 my-0" title="{{Carbon\Carbon::create($this->computedService->service_date)->format('l, m/d/Y h:i A') }}">{{Carbon\Carbon::create($this->computedService->service_date)->format('m/d') }}</td>
-    <td class="center-align font-10 p-0 my-0" title="{{$this->title}}">
-       <a class="btn-link-underline pointer font-10 @if($this->computedService->fee) text-amber-500 @endif " wire:click.prevent="modalCall"> {{$this->computedService->cust_name}}</a>
+    <td class="text-center  h-7 p-0 m-0" title="{{Carbon\Carbon::create($this->computedService->service_date)->format('l, m/d/Y h:i A') }}">{{Carbon\Carbon::create($this->computedService->service_date)->format('m/d') }}</td>
+    <td class="text-center  p-0 m-0" title="{{$this->title}}">
+       <a class="btn-link-underline pointer  @if($this->computedService->fee) text-amber-500 @endif " wire:click.prevent="modalCall"> {{$this->computedService->cust_name}}</a>
     </td>
-    <td class="font-10 h-7 p-0 my-0">{{$this->computedService->frequency}}</td>
-    <td class="font-10 flex p-0 my-0">
-        <span class="">$</span>
-        <select
-                class="bg-transparent
-                w-90   block text-gray-600    border-0   shadow-sm h-30  text-left cursor-default
-                focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm font-10"
-                wire:change="changePrice"
-                wire:model="price"
-        >
-            @if($this->computedService->price <= 0){
-                <option value="0" selected >
-                    No Price
-                </option>
-            @else
-                <option value="{{$this->computedService->price}}" selected>
-                    {{$this->computedService->price}}
-                </option>
-            @endif
-            @foreach($this->computedPrices as $price)
-{{--                @php dd($price); @endphp--}}
+    <td class="h-7 p-0 m-0 text-center">{{$this->computedService->frequency}}</td>
+    <td class=" p-0 m-0">
+        <div class=" w-full h-full flex gap-1 justify-center items-center">
+            <span class="">$</span>
+            <x-flowbite.select
+                    class="text-xs p-0 m-0 bg-transparent"
+                    style="padding: 0"
+                    wire:change="changePrice"
+                    wire:model="price"
 
-                <option  wire:key="pricekey{{$price->id}}" value="{{$price->value}}" @if( $this->computedService->price === $price->value) selected @endif> {{ $price->value }}</option>
-            @endforeach
-        </select>
-        @error('price')
-            @script
-                <script>
-                    console.log("error in price")
-                    $wire.dispatch('toast-btn-alert', {icon:'error', title:"Error", text:"{{$message}}"})
-                </script>
-            @endscript
-        @enderror
+            >
+                @if($this->computedService->price <= 0){
+                    <option value="0" selected >
+                        No Price
+                    </option>
+                @else
+                    <option value="{{$this->computedService->price}}" selected>
+                        {{$this->computedService->price}}
+                    </option>
+                @endif
+                @foreach($this->computedPrices as $price)
+    {{--                @php dd($price); @endphp--}}
 
-    </td>
-
-    <td class="font-10 p-0 m-0">$ {{number_format(($total*0.7),2)}}</td>
-    <td class="font-10 p-0 m-0">$ {{number_format(($total*0.3),2)}}</td>
-    <td class=" font-10 w-24 h-7 p-0 my-0">
-        <div class="w-full flex gap-1">
-        <div><span class="">$</span></div> <div><x-flowbite.input type="text" class=" font-10 h-30" wire:change="changeValues" wire:model="plus" value="{{$this->computedService->plus}}"/></div>
+                    <option  wire:key="pricekey{{$price->id}}" value="{{$price->value}}" @if( $this->computedService->price === $price->value) selected @endif> {{ $price->value }}</option>
+                @endforeach
+            </x-flowbite.select>
+            @error('price')
+                @script
+                    <script>
+                        console.log("error in price")
+                        $wire.dispatch('toast-btn-alert', {icon:'error', title:"Error", text:"{{$message}}"})
+                    </script>
+                @endscript
+            @enderror
         </div>
+    </td>
+
+    <td class=" p-0 m-0 text-center">$ {{number_format(($total*0.7),2)}}</td>
+    <td class=" p-0 m-0 text-center">$ {{number_format(($total*0.3),2)}}</td>
+    <td class="  w-24  p-0 m-0">
+        <div class="w-full h-full flex gap-1 justify-center items-center">
+        <div><span class="">$</span></div> <div><x-flowbite.input class="mb-2"  style="padding: 0"  wire:change="changeValues" wire:model="plus" value="{{$this->computedService->plus}}"/></div>
+
         @error('plus')
             @script
             <script>
@@ -79,27 +77,26 @@
             </script>
             @endscript
         @enderror
-    </td>
-    <td class=" font-10 w-24 p-0 my-0">
-        <div class="flex gap-1">
-        <div><span >$</span></div> <div><x-flowbite.input class=" font-10 h-30" wire:change="changeValues" wire:model="minus" value="{{$this->computedService->minus}}"/></div>
         </div>
-        @error('minus')
-        @script
-            <script>
-                    console.log("error in minus")
-                    $wire.dispatch('toast-btn-alert',{icon:'error', title:"Error", text:"{{$message}}"})
-            </script>
-        @endscript
-        @enderror
-
     </td>
-    <td class="font-10 p-0 my-0">$ {{number_format($total,2)}}</td>
-    <td class="p-0 my-0">
-        <select name="" id=""
-                class="bg-transparent p-0 m-0
-                   block text-gray-600    border-t-0 border-b border-x-0 border-gray-300 h-7  shadow-sm   text-left cursor-default
-                focus:outline-none focus:ring-0  focus:border-t-0 focus:border-b focus:border-x-0  focus:border-green-800 sm:text-sm font-10"
+    <td class="  w-24 p-0 m-0">
+        <div class="w-full h-full flex gap-1 justify-center items-center">
+            <div><span >$</span></div> <div><x-flowbite.input  class="mb-2" style="padding: 0" wire:change="changeValues" wire:model="minus" value="{{$this->computedService->minus}}"/></div>
+
+            @error('minus')
+            @script
+                <script>
+                        console.log("error in minus")
+                        $wire.dispatch('toast-btn-alert',{icon:'error', title:"Error", text:"{{$message}}"})
+                </script>
+            @endscript
+            @enderror
+        </div>
+    </td>
+    <td class=" p-0 m-0 text-center">$ {{number_format($total,2)}}</td>
+    <td class="p-0 m-0 text-center">
+        <x-flowbite.select
+                class="bg-transparent"
                 wire:model="payment" wire:change="changePayment"
         >
             @if(is_null($this->computedService->payment) || $this->computedService->payment === 0)
@@ -115,7 +112,7 @@
                         <option value="{{$payRow->id}}" wire:key="paymentKey{{$payRow->id}}" >{{$payRow->title}}</option>
 
             @endforeach
-        </select>
+        </x-flowbite.select>
         @error('payment')
             @script
                 <script>

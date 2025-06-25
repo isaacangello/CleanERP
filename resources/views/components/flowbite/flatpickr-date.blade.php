@@ -20,8 +20,21 @@
 
 <div wire:ignore>
     <input
-            x-data
-            x-init="flatpickr($refs.input, {{ $options }} );"
+            x-data="{
+                init(){
+                    console.log()
+                },
+                options:{
+                weekNumbers:true,
+                monthSelectorType:'dropdown',
+                enableTime: true,
+                dateFormat: 'Y-m-d',
+                altFormat: 'F j, Y',
+                altInput: true,
+                defaultDate: Date.now()
+                }
+            }"
+            x-init="flatpickr($refs.input, options);"
             x-ref="input"
             type="text"
             data-input

@@ -54,6 +54,7 @@ class DetailerTr extends Component
         $CurrentService->minus =  (float)$this->minus;
         $CurrentService->save();
         $this->dispatch('detailer-tr-refresh')->self();
+        $this->dispatch('detailer-refresh');
         $this->dispatch('toast-alert',icon:'success',message:"this fields has bean changed !!!") ;
     }
     #[Computed]

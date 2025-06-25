@@ -12,7 +12,7 @@ trait WeekNavigation
      */
     public string|int|null $numWeek = null;
     public string|int|null $year = null;
-    public string|int|null $week = null;
+    public array|null $week = null;
     public string|int|null $from;
     public string|int|null $till;
 
@@ -34,16 +34,16 @@ trait WeekNavigation
             $this->year = now()->format('Y');
         }
 
-//        $week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
-//        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
-//        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
+//        $this->week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
+//        $this->from = Carbon::create($this->week['Monday'])->format('m/d/Y');
+//        $this->till = Carbon::create($this->week['Saturday'])->format('m/d/Y') ;
 
         if ($this->selectedWeek === null){$this->selectedWeek = $this->numWeek;}
         if($this->selectedYear === null){$this->selectedYear = $this->year;}
 
-        $week = $dateTrait->getWeekByNumberWeek($this->numWeek, $this->year);
-        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
-        $this->till = Carbon::create($week['Sunday'])->format('m/d/Y');
+        $this->week = $dateTrait->getWeekByNumberWeek($this->numWeek, $this->year);
+        $this->from = Carbon::create($this->week['Monday'])->format('m/d/Y');
+        $this->till = Carbon::create($this->week['Sunday'])->format('m/d/Y');
 
     }
     /**=====================++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
@@ -60,10 +60,10 @@ trait WeekNavigation
             $this->year = $dateTrait->referenceYear(now()->format('Y-m-d'));
         }
 
-        $week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
-        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
-        $this->till = Carbon::create($week['Saturday'])->format('m/d/Y') ;
-        //dd($this->numWeek,$this->year, $week);
+        $this->week = $dateTrait->getWeekByNumberWeek($this->numWeek,$this->year);
+        $this->from = Carbon::create($this->week['Monday'])->format('m/d/Y');
+        $this->till = Carbon::create($this->week['Saturday'])->format('m/d/Y') ;
+        //dd($this->numWeek,$this->year, $this->week);
         if ($this->selectedWeek === null){$this->selectedWeek = $this->numWeek;}
         if($this->selectedYear === null){$this->selectedYear = $this->year;}
     }
@@ -120,9 +120,9 @@ trait WeekNavigation
         $this->numWeek = $this->selectedWeek;
         $this->year  = $this->selectedYear;
         $dateTrait = new DateTreatment();
-        $week = $dateTrait->getWeekByNumberWeek($this->selectedWeek,$this->selectedYear);
-        $this->from = Carbon::create($week['Monday'])->format('m/d/Y');
-        $this->till = Carbon::create($week['Sunday'])->format('m/d/Y');
+        $this->week = $dateTrait->getWeekByNumberWeek($this->selectedWeek,$this->selectedYear);
+        $this->from = Carbon::create($this->week['Monday'])->format('m/d/Y');
+        $this->till = Carbon::create($this->week['Sunday'])->format('m/d/Y');
     }
 
 
